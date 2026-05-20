@@ -12,3 +12,6 @@ venv/
 .DS_Store
 .idea/
 .vscode/
+
+# Raw SEC submissions downloaded from SEC EDGAR
+data/raw/sec_submissions/
