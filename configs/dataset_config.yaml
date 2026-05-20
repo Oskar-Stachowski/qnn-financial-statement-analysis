@@ -1,0 +1,49 @@
+dataset:
+  start_year: 2011
+  end_year: 2024
+  forms:
+    - 10-K
+  exclude_sectors:
+    - Financial Services
+    - Utilities
+    - Banks
+    - Insurance
+  min_years_per_company: 3
+  max_missing_feature_ratio: 0.2
+
+target:
+  horizon_years: 1
+
+  # do doprecyzowania metodologia targetu
+  deterioration_rules:
+    roa_drop_pct: 0.20
+    profit_margin_drop_pct: 0.20
+    debt_to_assets_increase_pct: 0.10
+    current_ratio_drop_pct: 0.15
+    min_conditions_met: 2
+
+# do doprecyzowania metodologia - które dane finansowe, jakie wskaźniki
+features:
+  base:
+    - current_ratio
+    - debt_to_assets
+    - liabilities_to_equity
+    - roa
+    - roe
+    - profit_margin
+    - asset_turnover
+    - sales_growth
+    - working_capital_to_assets
+    - cash_to_assets
+  optional:
+    - altman_z_score
+    - beneish_m_score
+
+splits:
+  train_end_year: 2020
+  validation_years:
+    - 2021
+    - 2022
+  test_years:
+    - 2023
+    - 2024
