@@ -16,3 +16,6 @@ venv/
 # Raw SEC submissions downloaded from SEC EDGAR
 data/raw/sec_submissions/
 data/raw/companyfacts/
+
+# Large generated SEC facts table
+data/interim/sec_facts_long.csv

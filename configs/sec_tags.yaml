@@ -1,0 +1,203 @@
+# odrzucam dane finansowe ifrs
+assets:
+    tier_1:
+      - namespace: us-gaap
+        tag: Assets
+
+liabilities:
+  tier_1:
+    - namespace: us-gaap
+      tag: Liabilities
+
+current_assets:
+  tier_1:
+    - namespace: us-gaap
+      tag: AssetsCurrent
+
+current_liabilities:
+  tier_1:
+    - namespace: us-gaap
+      tag: LiabilitiesCurrent
+
+revenues:
+  tier_1:
+    - namespace: us-gaap
+      tag: Revenues # ogólny tag przychodów; najwyższe pokrycie
+    - namespace: us-gaap
+      tag: RevenueFromContractWithCustomerExcludingAssessedTax # nowszy standard revenue recognition; wysokie pokrycie
+  tier_2:
+    - namespace: us-gaap
+      tag: SalesRevenueNet # starszy standard (bez istotnego wpływu na metodologię badania)
+    - namespace: us-gaap
+      tag: SalesRevenueGoodsNet # sprzeda produktów
+    - namespace: us-gaap
+      tag: SalesRevenueServicesNet # sprzeda usług
+
+net_income:
+  tier_1:
+    - namespace: us-gaap
+      tag: NetIncomeLoss # podstawowy tag wyniku netto przypisanego parent
+  tier_2:
+    - namespace: us-gaap
+      tag: ProfitLoss # wynik netto z uwzględnieniem noncontrolling interest (bez istotnego wpływu na metodologię badania)
+
+equity:
+  tier_1:
+    - namespace: us-gaap
+      tag: StockholdersEquity
+  tier_2:
+    - namespace: us-gaap
+      tag: StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest
+
+cash:
+  tier_1:
+    - namespace: us-gaap
+      tag: CashAndCashEquivalentsAtCarryingValue
+  tier_2:
+    - namespace: us-gaap
+      tag: CashCashEquivalentsRestrictedCashAndRestrictedCashEquivalents
+    - namespace: us-gaap
+      tag: Cash
+
+accounts_receivable:
+  tier_1:
+    - namespace: us-gaap
+      tag: AccountsReceivableNetCurrent
+  tier_2:
+    - namespace: us-gaap
+      tag: ReceivablesNetCurrent
+    - namespace: us-gaap
+      tag: AccountsReceivableNet
+    - namespace: us-gaap
+      tag: AccountsAndOtherReceivablesNetCurrent
+
+inventory:
+  tier_1:
+    - namespace: us-gaap
+      tag: InventoryNet
+
+cost_of_revenue:
+  tier_1:
+    - namespace: us-gaap
+      tag: CostOfGoodsAndServicesSold
+    - namespace: us-gaap
+      tag: CostOfRevenue
+  tier_2:
+    - namespace: us-gaap
+      tag: CostOfGoodsSold
+
+ppe:
+  tier_1:
+    - namespace: us-gaap
+      tag: PropertyPlantAndEquipmentNet
+  tier_2:
+    - namespace: us-gaap
+      tag: PropertyPlantAndEquipmentGross
+
+intangible_assets:
+  tier_1:
+    - namespace: us-gaap
+      tag: IntangibleAssetsNetExcludingGoodwill
+    - namespace: us-gaap
+      tag: FiniteLivedIntangibleAssetsNet
+  tier_2:
+    - namespace: us-gaap
+      tag: IntangibleAssetsNetIncludingGoodwill
+
+goodwill:
+  tier_1:
+    - namespace: us-gaap
+      tag: Goodwill
+
+depreciation_amortization:
+  tier_1:
+    - namespace: us-gaap
+      tag: DepreciationDepletionAndAmortization
+  tier_2:
+    - namespace: us-gaap
+      tag: DepreciationAndAmortization
+
+long_term_investments:
+  tier_1:
+    - namespace: us-gaap
+      tag: LongTermInvestments
+
+long_term_debt:
+  tier_1:
+    - namespace: us-gaap
+      tag: LongTermDebtNoncurrent
+  tier_2:
+    - namespace: us-gaap
+      tag: LongTermDebt
+    - namespace: us-gaap
+      tag: LongTermDebtAndCapitalLeaseObligations
+
+short_term_debt:
+  tier_1:
+    - namespace: us-gaap
+      tag: DebtCurrent
+  tier_2:
+    - namespace: us-gaap
+      tag: LongTermDebtCurrent
+    - namespace: us-gaap
+      tag: ShortTermBorrowings
+
+ebit:
+  tier_1:
+    - namespace: us-gaap
+      tag: OperatingIncomeLoss
+
+gross_profit:
+  tier_1:
+    - namespace: us-gaap
+      tag: GrossProfit
+
+interest_expense:
+  tier_1:
+    - namespace: us-gaap
+      tag: InterestExpense
+  tier_2:
+    - namespace: us-gaap
+      tag: InterestExpenseDebt
+    - namespace: us-gaap
+      tag: InterestAndDebtExpense
+
+capex:
+  tier_1:
+    - namespace: us-gaap
+      tag: PaymentsToAcquirePropertyPlantAndEquipment
+  tier_2:
+    - namespace: us-gaap
+      tag: PaymentsToAcquireProductiveAssets
+
+retained_earnings:
+  tier_1:
+    - namespace: us-gaap
+      tag: RetainedEarningsAccumulatedDeficit
+  tier_2:
+    - namespace: us-gaap
+      tag: RetainedEarningsUnappropriated
+
+operating_cash_flow:
+  tier_1:
+    - namespace: us-gaap
+      tag: NetCashProvidedByUsedInOperatingActivities
+  tier_2:
+    - namespace: us-gaap
+      tag: NetCashProvidedByUsedInOperatingActivitiesContinuingOperations
+
+investing_cash_flow:
+  tier_1:
+    - namespace: us-gaap
+      tag: NetCashProvidedByUsedInInvestingActivities
+  tier_2:
+    - namespace: us-gaap
+      tag: NetCashProvidedByUsedInInvestingActivitiesContinuingOperations
+
+financing_cash_flow:
+  tier_1:
+    - namespace: us-gaap
+      tag: NetCashProvidedByUsedInFinancingActivities
+  tier_2:
+    - namespace: us-gaap
+      tag: NetCashProvidedByUsedInFinancingActivitiesContinuingOperations
