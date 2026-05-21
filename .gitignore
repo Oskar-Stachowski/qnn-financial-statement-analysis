@@ -15,3 +15,4 @@ venv/
 
 # Raw SEC submissions downloaded from SEC EDGAR
 data/raw/sec_submissions/
+data/raw/companyfacts/

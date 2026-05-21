@@ -1,0 +1,104 @@
+python src/data/download_sec.py
+Company Facts files created: 500 / 3,730
+ERROR Failed to download Company Facts for CIK 0000794998: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0000794998.json
+Company Facts files created: 600 / 3,730
+ERROR Failed to download Company Facts for CIK 0000841533: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0000841533.json
+Company Facts files created: 700 / 3,730
+ERROR Failed to download Company Facts for CIK 0000877019: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0000877019.json
+ERROR Failed to download Company Facts for CIK 0000890725: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0000890725.json
+Company Facts files created: 800 / 3,730
+ERROR Failed to download Company Facts for CIK 0000925779: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0000925779.json
+Company Facts files created: 900 / 3,730
+ERROR Failed to download Company Facts for CIK 0000946112: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0000946112.json
+Company Facts files created: 1,000 / 3,730
+ERROR Failed to download Company Facts for CIK 0001061040: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001061040.json
+Company Facts files created: 1,100 / 3,730
+ERROR Failed to download Company Facts for CIK 0001081188: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001081188.json
+Company Facts files created: 1,200 / 3,730
+ERROR Failed to download Company Facts for CIK 0001108248: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001108248.json
+ERROR Failed to download Company Facts for CIK 0001122993: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001122993.json
+ERROR Failed to download Company Facts for CIK 0001128252: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001128252.json
+ERROR Failed to download Company Facts for CIK 0001138586: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001138586.json
+Company Facts files created: 1,300 / 3,730
+ERROR Failed to download Company Facts for CIK 0001144392: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001144392.json
+ERROR Failed to download Company Facts for CIK 0001178660: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001178660.json
+Company Facts files created: 1,400 / 3,730
+ERROR Failed to download Company Facts for CIK 0001277575: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001277575.json
+Company Facts files created: 1,500 / 3,730
+Company Facts files created: 1,600 / 3,730
+ERROR Failed to download Company Facts for CIK 0001363598: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001363598.json
+ERROR Failed to download Company Facts for CIK 0001378866: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001378866.json
+Company Facts files created: 1,700 / 3,730
+Company Facts files created: 1,800 / 3,730
+Company Facts files created: 1,900 / 3,730
+Company Facts files created: 2,000 / 3,730
+Company Facts files created: 2,100 / 3,730
+Company Facts files created: 2,200 / 3,730
+Company Facts files created: 2,300 / 3,730
+Company Facts files created: 2,400 / 3,730
+Company Facts files created: 2,500 / 3,730
+Company Facts files created: 2,600 / 3,730
+Company Facts files created: 2,700 / 3,730
+Company Facts files created: 2,800 / 3,730
+Company Facts files created: 2,900 / 3,730
+Company Facts files created: 3,000 / 3,730
+Company Facts files created: 3,100 / 3,730
+Company Facts files created: 3,200 / 3,730
+Company Facts files created: 3,300 / 3,730
+Company Facts files created: 3,400 / 3,730
+Company Facts files created: 3,500 / 3,730
+ERROR Failed to download Company Facts for CIK 0001976923: 404 Client Error: Not Found for url: https://data.sec.gov/api/xbrl/companyfacts/CIK0001976923.json
+Company Facts files created: 3,600 / 3,730
+Company Facts files created: 3,700 / 3,730
+Read research universe: /Users/oskarstachowski/qnn-financial-statement-analysis/data/processed/research_universe.csv
+Saved Company Facts to: /Users/oskarstachowski/qnn-financial-statement-analysis/data/raw/companyfacts
+CIKs:                   3,730
+Existing at start:      441
+Renamed legacy files:   0
+Downloaded:             3,271
+Skipped cached:         441
+Errors:                 18 (ok. 0,48%)
+
+
+Wniosek: errors to spółki nieistotne dla dalszych prac badawczych
+https://chatgpt.com/c/6a0ed5ad-6340-8387-8812-74bb9c0143bb
+
+| CIK        | Spółka / nazwa z SEC                 | Ocena                                                                           |
+| ---------- | ------------------------------------ | ------------------------------------------------------------------------------- |
+| 0000794998 | SETO Holdings / Semicon Tools        | raczej nieistotna; OTC/Reg A, brak klasycznego Company Facts ([SEC][1])         |
+| 0000841533 | Interline Resources Corp             | stara/mała spółka oil & gas ([SEC][2])                                          |
+| 0000877019 | Nevada Star Resource Corp            | stara mała spółka mining ([SEC][3])                                             |
+| 0000890725 | GelStat Corp                         | OTC/mikrospółka pharma; nie priorytet ([SEC][4])                                |
+| 0000925779 | HIRU Corp / Phoenix Restaurant Group | OTC/mikrospółka; nie priorytet ([SEC][5])                                       |
+| 0000946112 | Paperclip / China Dongsheng          | stara/OTC, nie priorytet ([SEC][6])                                             |
+| 0001061040 | New Generation Consumer Group        | Reg A / non-operating; nie priorytet ([SEC][7])                                 |
+| 0001081188 | Gold Entertainment Group             | Reg A, mała spółka med/health; nie priorytet ([SEC][8])                         |
+| 0001108248 | Kronos Advanced Technologies         | OTC/Reg CF/mała spółka; można pominąć ([SEC][9])                                |
+| 0001122993 | Brookmount Explorations              | OTC/mining; raczej pominąć ([SEC][10])                                          |
+| 0001128252 | SIPP International Industries        | OTC/small issuer; raczej pominąć ([SEC][11])                                    |
+| 0001138586 | Xcelerate Inc                        | Reg A / health services; nie priorytet ([SEC][12])                              |
+| 0001144392 | Megola Inc                           | OTC/Reg A; nie priorytet ([SEC][13])                                            |
+| 0001178660 | Standard Dental Labs                 | Reg A / dental equipment; nie priorytet ([SEC][14])                             |
+| 0001277575 | Saxon Capital Group                  | Form D / oil & gas; nie do klasycznego panelu finansowego ([SEC][15])           |
+| 0001363598 | UHF Logistics / Entrex Carbon Market | OTC / zmiany nazw; nie priorytet ([SEC][16])                                    |
+| 0001378866 | Go Green Global Technologies         | mała spółka, S-1/A; nie priorytet ([SEC][17])                                   |
+| 0001976923 | YouneeqAI Technical Services         | nowsza mała spółka tech; można ręcznie sprawdzić, ale nie krytyczna ([SEC][18]) |
+
+[1]: https://www.sec.gov/Archives/edgar/data/0000794998/000168316825007349/0001683168-25-007349-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001683168-25-007349"
+[2]: https://www.sec.gov/Archives/edgar/data/841533/000084153309000001/0000841533-09-000001-index.html?utm_source=chatgpt.com "EDGAR Filing Documents for 0000841533-09-000001"
+[3]: https://www.sec.gov/Archives/edgar/data/877019/0000877019-04-000005-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0000877019-04-000005"
+[4]: https://www.sec.gov/Archives/edgar/data/890725/000107997326000628/0001079973-26-000628-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001079973-26-000628"
+[5]: https://www.sec.gov/Archives/edgar/data/0000925779/000168316823008259/0001683168-23-008259-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001683168-23-008259"
+[6]: https://www.sec.gov/Archives/edgar/data/946112/000101376206002468/0001013762-06-002468-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001013762-06-002468"
+[7]: https://www.sec.gov/Archives/edgar/data/0001061040/000147793225001240/0001477932-25-001240-index.htm "EDGAR Filing Documents for 0001477932-25-001240"
+[8]: https://www.sec.gov/Archives/edgar/data/0001081188/000108118825000002/0001081188-25-000002-index.htm "EDGAR Filing Documents for 0001081188-25-000002"
+[9]: https://www.sec.gov/Archives/edgar/data/1108248/000110824824000002/0001108248-24-000002-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001108248-24-000002"
+[10]: https://www.sec.gov/Archives/edgar/data/0001122993/000201260525000002/0002012605-25-000002-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0002012605-25-000002"
+[11]: https://www.sec.gov/Archives/edgar/data/1128252/0001829126-21-008426-index.html?utm_source=chatgpt.com "EDGAR Filing Documents for 0001829126-21-008426"
+[12]: https://www.sec.gov/Archives/edgar/data/0001138586/000168316824002780/0001683168-24-002780-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001683168-24-002780"
+[13]: https://www.sec.gov/Archives/edgar/data/1144392/000147793225000809/0001477932-25-000809-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001477932-25-000809"
+[14]: https://www.sec.gov/Archives/edgar/data/0001178660/000168316825005894/0001683168-25-005894-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001683168-25-005894"
+[15]: https://www.sec.gov/Archives/edgar/data/1277575/0001277575-26-000003-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001277575-26-000003"
+[16]: https://www.sec.gov/Archives/edgar/data/0001363598/000136359825000008/0001363598-25-000008-index.htm?utm_source=chatgpt.com "EDGAR Filing Documents for 0001363598-25-000008"
+[17]: https://www.sec.gov/Archives/edgar/data/1378866/000168316825000309/gogreen_is1a3.htm "Go Green Global Technologies Corp. Form S-1/A"
+[18]: https://www.sec.gov/Archives/edgar/data/0001976923/000106594924000038/0001065949-24-000038-index.htm "EDGAR Filing Documents for 0001065949-24-000038"
