@@ -9,6 +9,11 @@ liabilities:
     - namespace: us-gaap
       tag: Liabilities
 
+liabilities_and_equity:
+  tier_1:
+    - namespace: us-gaap
+      tag: LiabilitiesAndStockholdersEquity
+
 current_assets:
   tier_1:
     - namespace: us-gaap
@@ -32,6 +37,9 @@ revenues:
       tag: SalesRevenueGoodsNet # sprzeda produktów
     - namespace: us-gaap
       tag: SalesRevenueServicesNet # sprzeda usług
+  tier_3:
+    - namespace: us-gaap
+      tag: RevenueFromContractWithCustomerIncludingAssessedTax # fallback obejmujący assessed tax
 
 net_income:
   tier_1:
@@ -86,6 +94,11 @@ cost_of_revenue:
     - namespace: us-gaap
       tag: CostOfGoodsSold
 
+operating_costs:
+  tier_1:
+    - namespace: us-gaap
+      tag: CostsAndExpenses # total cost of sales plus operating expenses; excludes financing costs
+
 ppe:
   tier_1:
     - namespace: us-gaap
@@ -131,6 +144,11 @@ long_term_debt:
       tag: LongTermDebt
     - namespace: us-gaap
       tag: LongTermDebtAndCapitalLeaseObligations
+  tier_3:
+    - namespace: us-gaap
+      tag: ConvertibleDebtNoncurrent
+    - namespace: us-gaap
+      tag: OtherLongTermDebtNoncurrent
 
 short_term_debt:
   tier_1:
@@ -141,16 +159,18 @@ short_term_debt:
       tag: LongTermDebtCurrent
     - namespace: us-gaap
       tag: ShortTermBorrowings
+  tier_3:
+    - namespace: us-gaap
+      tag: NotesPayableCurrent
+    - namespace: us-gaap
+      tag: ConvertibleNotesPayableCurrent
+    - namespace: us-gaap
+      tag: LongTermDebtAndCapitalLeaseObligationsCurrent
 
 ebit:
   tier_1:
     - namespace: us-gaap
       tag: OperatingIncomeLoss
-
-gross_profit:
-  tier_1:
-    - namespace: us-gaap
-      tag: GrossProfit
 
 interest_expense:
   tier_1:

@@ -8,16 +8,29 @@ This report does not interpret financial results.
 - Research universe: `/Users/oskarstachowski/qnn-financial-statement-analysis/data/processed/research_universe.csv`
 - Company Facts directory: `/Users/oskarstachowski/qnn-financial-statement-analysis/data/raw/companyfacts`
 - Tag configuration: `/Users/oskarstachowski/qnn-financial-statement-analysis/configs/sec_tags.yaml`
+- Dataset configuration: `/Users/oskarstachowski/qnn-financial-statement-analysis/configs/dataset_config.yaml`
 - Accepted units: `USD`
-- Preferred forms: `10-K;10-K/A;10-KT;10-KT/A`
+- Accepted filing forms: `10-K`
+- Configured source company-year range: `2011-2025`
+- Target horizon years: `1`
+- Max split feature year: `2024`
 
 ## Processing Rules
 
 - Missing values were not imputed.
 - Facts with units outside the accepted unit list were skipped.
+- Facts from filing forms outside the dataset configuration were skipped.
+- Facts outside the configured source company-year range were skipped.
 - Non-annual facts were skipped.
+- Flow variables required `start`, `end` and a 300-400 day period.
+- Missing assets were derived from liabilities and equity when total assets were not reported directly.
+- Missing liabilities were derived from liabilities and equity minus equity when both source values were available.
+- Operating costs were derived as revenues minus operating income/loss when both source values were available; direct `CostsAndExpenses` values were kept only as fallback.
+- Company years were assigned from SEC fiscal-year metadata when available, then from annual/Q4 calendar frames, then from period end year.
 - Facts with `end` year more than 1 year after `fy` or `filed` year were skipped.
-- Duplicate facts were resolved deterministically using annual status, preferred form, fiscal-year match, tier, tag priority, filing date, period end date and accession number.
+- Facts with filing lag above 240 days were skipped to avoid stale comparative facts from later 10-K filings.
+- Facts filed more than 1 year after `company_year` were skipped.
+- Duplicate facts were resolved deterministically using annual status, preferred form, fiscal-period label, period match, filing lag, fiscal-year match, frame match, tier, tag priority, filing date, period end date and accession number.
 - Raw SEC metadata fields `form`, `fp`, `filed`, `accn`, `frame`, `start` and `end` were preserved in the long output.
 
 ## Counts
@@ -28,17 +41,29 @@ This report does not interpret financial results.
 - Missing Company Facts files: 18
 - JSON parse errors: 0
 - Files without `facts`: 0
-- Candidate annual facts: 2,827,505
-- Facts rejected by unit: 24,824
-- Facts rejected as non-annual: 6,435,250
-- Facts rejected by invalid end year: 2,017
+- Candidate annual facts: 897,920
+- Facts rejected by unit: 26,087
+- Facts rejected by filing form: 6,965,612
+- Facts rejected by company year: 54,418
+- Facts rejected as non-annual: 0
+- Facts rejected by invalid end year: 405
+- Facts rejected by excessive filing lag: 1,484,854
+- Facts rejected by filing year: 1,678
+- Facts rejected by invalid flow period: 88,242
 - Facts without value: 0
 - Facts without company year: 0
+- Derived assets: 138
+- Derived assets rejected: 8
+- Derived liabilities: 7,947
+- Derived liabilities rejected: 12
+- Derived operating costs: 23,088
+- Derived operating costs replaced: 6,661
+- Derived operating costs rejected: 156
 
 ## Outputs
 
-- Long facts rows: 888,942 -> `/Users/oskarstachowski/qnn-financial-statement-analysis/data/interim/sec_facts_long.csv`
-- Wide facts rows: 48,620 -> `/Users/oskarstachowski/qnn-financial-statement-analysis/data/interim/sec_facts_wide.csv`
-- Variable coverage rows: 26 -> `/Users/oskarstachowski/qnn-financial-statement-analysis/data/reports/xbrl_variable_coverage.csv`
-- Tag usage rows: 54 -> `/Users/oskarstachowski/qnn-financial-statement-analysis/data/reports/xbrl_tag_usage.csv`
+- Long facts rows: 799,171 -> `/Users/oskarstachowski/qnn-financial-statement-analysis/data/interim/sec_facts_long.csv`
+- Wide facts rows: 36,664 -> `/Users/oskarstachowski/qnn-financial-statement-analysis/data/interim/sec_facts_wide.csv`
+- Variable coverage rows: 27 -> `/Users/oskarstachowski/qnn-financial-statement-analysis/data/reports/xbrl_variable_coverage.csv`
+- Tag usage rows: 61 -> `/Users/oskarstachowski/qnn-financial-statement-analysis/data/reports/xbrl_tag_usage.csv`
 - Missing-by-company rows: 3,730 -> `/Users/oskarstachowski/qnn-financial-statement-analysis/data/reports/xbrl_missing_by_company.csv`

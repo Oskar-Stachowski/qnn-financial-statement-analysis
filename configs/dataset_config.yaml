@@ -1,6 +1,7 @@
 dataset:
   start_year: 2011
-  end_year: 2024
+  # Includes the one-year target lookahead for 2024 test observations.
+  end_year: 2025
   forms:
     - 10-K
   exclude_sectors:

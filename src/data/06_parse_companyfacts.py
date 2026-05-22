@@ -5,6 +5,7 @@ Input:
 - data/raw/companyfacts/CIK{cik10}.json
 - data/processed/research_universe.csv
 - configs/sec_tags.yaml
+- configs/dataset_config.yaml
 
 Output:
 - data/interim/sec_facts_long.csv
@@ -15,9 +16,9 @@ Output:
 - data/reports/xbrl_parse_quality_report.md
 
 This script applies the XBRL tag mapping from configs/sec_tags.yaml to SEC
-Company Facts. It keeps only accepted units, prefers annual facts and 10-K
-filings, resolves duplicates deterministically, and does not impute missing
-values or interpret the results.
+Company Facts. It keeps only accepted units and configured annual filing forms,
+resolves duplicates deterministically, and does not impute missing values or
+interpret the results.
 """
 
 from collections import defaultdict
@@ -41,6 +42,7 @@ CONFIG_DIR = BASE_DIR / "configs"
 COMPANYFACTS_DIR = RAW_DIR / "companyfacts"
 RESEARCH_UNIVERSE_PATH = PROCESSED_DIR / "research_universe.csv"
 SEC_TAGS_CONFIG_PATH = CONFIG_DIR / "sec_tags.yaml"
+DATASET_CONFIG_PATH = CONFIG_DIR / "dataset_config.yaml"
 
 LONG_OUTPUT_PATH = INTERIM_DIR / "sec_facts_long.csv"
 WIDE_OUTPUT_PATH = INTERIM_DIR / "sec_facts_wide.csv"
@@ -50,10 +52,13 @@ MISSING_BY_COMPANY_PATH = REPORTS_DIR / "xbrl_missing_by_company.csv"
 QUALITY_REPORT_PATH = REPORTS_DIR / "xbrl_parse_quality_report.md"
 
 ACCEPTED_UNITS = ("USD",)
-PREFERRED_FORMS = ("10-K", "10-K/A", "10-KT", "10-KT/A")
+DEFAULT_ACCEPTED_FORMS = ("10-K",)
 ANNUAL_PERIOD_MIN_DAYS = 300
 ANNUAL_PERIOD_MAX_DAYS = 400
 MAX_END_YEAR_LEAD = 1
+# Generous 10-K lag cap; removes prior-year comparative facts from later filings.
+MAX_SELECTED_FILING_LAG_DAYS = 240
+MAX_FILING_YEAR_LEAD = 1
 NON_ANNUAL_RANK = 99
 PROGRESS_EVERY_FILES = 100
 
@@ -66,6 +71,39 @@ COMPANY_COLUMNS = [
     "research_sector",
     "fiscal_year_end",
 ]
+
+FLOW_VARIABLES = {
+    "revenues",
+    "net_income",
+    "cost_of_revenue",
+    "operating_costs",
+    "depreciation_amortization",
+    "ebit",
+    "interest_expense",
+    "capex",
+    "operating_cash_flow",
+    "investing_cash_flow",
+    "financing_cash_flow",
+}
+
+STOCK_VARIABLES = {
+    "assets",
+    "liabilities",
+    "liabilities_and_equity",
+    "current_assets",
+    "current_liabilities",
+    "equity",
+    "cash",
+    "accounts_receivable",
+    "inventory",
+    "ppe",
+    "intangible_assets",
+    "goodwill",
+    "long_term_investments",
+    "long_term_debt",
+    "short_term_debt",
+    "retained_earnings",
+}
 
 LONG_COLUMNS = [
     *COMPANY_COLUMNS,
@@ -158,6 +196,13 @@ def read_sec_tag_config(path: Path) -> tuple[list[str], pd.DataFrame]:
     if not isinstance(config, dict) or not config:
         raise ValueError(f"No tag rules parsed from {path}")
 
+    unclassified_variables = set(config) - FLOW_VARIABLES - STOCK_VARIABLES
+    if unclassified_variables:
+        raise ValueError(
+            "Variables must be classified as flow or stock before parsing: "
+            f"{sorted(unclassified_variables)}"
+        )
+
     rows = []
     for variable, tiers in config.items():
         if not isinstance(tiers, dict):
@@ -193,6 +238,96 @@ def read_sec_tag_config(path: Path) -> tuple[list[str], pd.DataFrame]:
     return list(config), pd.DataFrame(rows)
 
 
+def read_dataset_scope(path: Path) -> dict[str, Any]:
+    scope: dict[str, Any] = {
+        "accepted_forms": DEFAULT_ACCEPTED_FORMS,
+        "start_year": None,
+        "end_year": None,
+        "target_horizon_years": None,
+        "max_split_year": None,
+    }
+    if not path.exists():
+        return scope
+
+    with path.open("r", encoding="utf-8") as f:
+        config = yaml.safe_load(f) or {}
+
+    dataset_config = config.get("dataset", {}) if isinstance(config, dict) else {}
+    target_config = config.get("target", {}) if isinstance(config, dict) else {}
+    splits_config = config.get("splits", {}) if isinstance(config, dict) else {}
+    configured_forms = dataset_config.get("forms", DEFAULT_ACCEPTED_FORMS)
+    if not isinstance(configured_forms, (list, tuple)):
+        raise ValueError(f"Invalid dataset.forms in {path}: expected a list")
+
+    accepted_forms = tuple(
+        str(form).strip().upper()
+        for form in configured_forms
+        if str(form).strip()
+    )
+    if not accepted_forms:
+        raise ValueError(f"Invalid dataset.forms in {path}: at least one form is required")
+
+    for key in ["start_year", "end_year"]:
+        value = dataset_config.get(key)
+        if value in (None, ""):
+            continue
+        try:
+            scope[key] = int(value)
+        except (TypeError, ValueError) as error:
+            raise ValueError(f"Invalid dataset.{key} in {path}: {value!r}") from error
+
+    scope["accepted_forms"] = accepted_forms
+    scope["target_horizon_years"] = int(target_config.get("horizon_years", 0) or 0)
+    split_years = []
+    train_end_year = splits_config.get("train_end_year")
+    if train_end_year not in (None, ""):
+        split_years.append(int(train_end_year))
+    for split_key in ["validation_years", "test_years"]:
+        years = splits_config.get(split_key, [])
+        if not isinstance(years, (list, tuple)):
+            raise ValueError(f"Invalid splits.{split_key} in {path}: expected a list")
+        split_years.extend(int(year) for year in years)
+    scope["max_split_year"] = max(split_years) if split_years else None
+
+    if scope["start_year"] is not None and scope["end_year"] is not None:
+        if scope["start_year"] > scope["end_year"]:
+            raise ValueError(
+                f"Invalid dataset year range in {path}: "
+                f"{scope['start_year']} > {scope['end_year']}"
+            )
+
+    if (
+        scope["end_year"] is not None
+        and scope["max_split_year"] is not None
+        and scope["target_horizon_years"] is not None
+    ):
+        required_end_year = scope["max_split_year"] + scope["target_horizon_years"]
+        if scope["end_year"] < required_end_year:
+            raise ValueError(
+                "dataset.end_year must include the target lookahead period: "
+                f"got {scope['end_year']}, expected at least {required_end_year} "
+                f"for max split year {scope['max_split_year']} and horizon "
+                f"{scope['target_horizon_years']}."
+            )
+
+    return scope
+
+
+def company_year_in_dataset_scope(company_year: str, dataset_scope: dict[str, Any]) -> bool:
+    try:
+        year = int(company_year)
+    except (TypeError, ValueError):
+        return False
+
+    start_year = dataset_scope.get("start_year")
+    end_year = dataset_scope.get("end_year")
+    if start_year is not None and year < start_year:
+        return False
+    if end_year is not None and year > end_year:
+        return False
+    return True
+
+
 def parse_iso_date(value: object) -> date | None:
     try:
         return date.fromisoformat(str(value or "").strip())
@@ -213,7 +348,24 @@ def period_days(fact: dict[str, Any]) -> int | None:
     return (end_date - start_date).days + 1
 
 
-def annual_rank(fact: dict[str, Any]) -> int:
+def frame_year(fact: dict[str, Any]) -> str | None:
+    match = re.fullmatch(r"CY(\d{4})(?:Q4I)?", str(fact.get("frame", "") or ""))
+    return match.group(1) if match else None
+
+
+def has_valid_annual_flow_period(fact: dict[str, Any]) -> bool:
+    days = period_days(fact)
+    return days is not None and ANNUAL_PERIOD_MIN_DAYS <= days <= ANNUAL_PERIOD_MAX_DAYS
+
+
+def annual_rank(
+    fact: dict[str, Any],
+    variable: str,
+    accepted_forms: tuple[str, ...],
+) -> int:
+    if variable in FLOW_VARIABLES:
+        return 0 if has_valid_annual_flow_period(fact) else NON_ANNUAL_RANK
+
     if str(fact.get("fp", "") or "").upper() == "FY":
         return 0
 
@@ -226,27 +378,36 @@ def annual_rank(fact: dict[str, Any]) -> int:
         return 2
 
     form = str(fact.get("form", "") or "").upper()
-    if form in PREFERRED_FORMS and fact.get("end") and not fact.get("start"):
+    if form in accepted_forms and fact.get("end") and not fact.get("start"):
         return 3
 
     return NON_ANNUAL_RANK
 
 
-def form_rank(form: object) -> int:
+def form_rank(form: object, accepted_forms: tuple[str, ...]) -> int:
     form_text = str(form or "").upper()
-    return PREFERRED_FORMS.index(form_text) if form_text in PREFERRED_FORMS else len(PREFERRED_FORMS)
+    return accepted_forms.index(form_text) if form_text in accepted_forms else len(accepted_forms)
+
+
+def fp_rank(fact: dict[str, Any]) -> int:
+    return 0 if str(fact.get("fp", "") or "").upper() == "FY" else 1
 
 
 def company_year_from_fact(fact: dict[str, Any]) -> str:
+    fiscal_year = fact.get("fy")
+    try:
+        return str(int(fiscal_year))
+    except (TypeError, ValueError):
+        pass
+
+    framed_year = frame_year(fact)
+    if framed_year is not None:
+        return framed_year
+
     end_date = parse_iso_date(fact.get("end"))
     if end_date is not None:
         return str(end_date.year)
 
-    match = re.match(r"CY(\d{4})", str(fact.get("frame", "") or ""))
-    if match:
-        return match.group(1)
-
-    fiscal_year = fact.get("fy")
     return "" if fiscal_year in (None, "") else str(fiscal_year)
 
 
@@ -269,19 +430,78 @@ def has_invalid_end_year(fact: dict[str, Any]) -> bool:
 
 def fy_match_rank(fact: dict[str, Any], company_year: str) -> int:
     try:
-        return 0 if str(int(fact.get("fy"))) == company_year else 1
+        return 0 if str(int(fact.get("fy"))) == company_year else 2
     except (TypeError, ValueError):
         return 1
+
+
+def frame_match_rank(fact: dict[str, Any], company_year: str) -> int:
+    framed_year = frame_year(fact)
+    if framed_year is None:
+        return 1
+    return 0 if framed_year == company_year else 2
+
+
+def period_match_rank(fact: dict[str, Any], company_year: str) -> int:
+    framed_year = frame_year(fact)
+    try:
+        fiscal_year = str(int(fact.get("fy")))
+    except (TypeError, ValueError):
+        fiscal_year = None
+
+    frame_matches = framed_year == company_year
+    fy_matches = fiscal_year == company_year
+
+    if frame_matches and fy_matches:
+        return 0
+    if fy_matches:
+        return 1
+    if frame_matches:
+        return 2
+    if framed_year is None and fiscal_year is None:
+        return 3
+    return 4
+
+
+def filing_lag_days(fact: dict[str, Any]) -> int:
+    filed_date = parse_iso_date(fact.get("filed"))
+    end_date = parse_iso_date(fact.get("end"))
+    if filed_date is None or end_date is None:
+        return 999_999
+
+    lag_days = (filed_date - end_date).days
+    return lag_days if lag_days >= 0 else 999_999
+
+
+def has_excessive_filing_lag(fact: dict[str, Any]) -> bool:
+    return filing_lag_days(fact) > MAX_SELECTED_FILING_LAG_DAYS
+
+
+def has_invalid_filing_year(fact: dict[str, Any], company_year: str) -> bool:
+    filed_date = parse_iso_date(fact.get("filed"))
+    if filed_date is None:
+        return False
+
+    try:
+        year = int(company_year)
+    except (TypeError, ValueError):
+        return False
+
+    return filed_date.year > year + MAX_FILING_YEAR_LEAD
 
 
 def candidate_sort_key(row: dict[str, Any]) -> tuple:
     return (
         row["_annual_rank"],
         row["_form_rank"],
+        row["_fp_rank"],
+        row["_period_match_rank"],
+        row["_filing_lag_days"],
         row["_fy_match_rank"],
+        row["_frame_match_rank"],
         row["_tier_rank"],
         row["tag_priority"],
-        -date_sort_value(row["filed"]),
+        date_sort_value(row["filed"]),
         -date_sort_value(row["end"]),
         str(row["accn"]),
         str(row["namespace"]),
@@ -298,6 +518,7 @@ def build_candidate_row(
     fact: dict[str, Any],
     company_year: str,
     rank: int,
+    accepted_forms: tuple[str, ...],
 ) -> dict[str, Any]:
     return {
         **company,
@@ -319,8 +540,12 @@ def build_candidate_row(
         "fy": fact.get("fy", ""),
         "source_file": str(source_path.relative_to(BASE_DIR)),
         "_annual_rank": rank,
-        "_form_rank": form_rank(fact.get("form")),
+        "_form_rank": form_rank(fact.get("form"), accepted_forms),
+        "_fp_rank": fp_rank(fact),
+        "_period_match_rank": period_match_rank(fact, company_year),
+        "_filing_lag_days": filing_lag_days(fact),
         "_fy_match_rank": fy_match_rank(fact, company_year),
+        "_frame_match_rank": frame_match_rank(fact, company_year),
         "_tier_rank": int(rule["tier_rank"]),
     }
 
@@ -335,10 +560,150 @@ def keep_best_candidate(
         selected_rows[key] = row
 
 
+def numeric_value(row: dict[str, Any]) -> float | None:
+    try:
+        return float(row["value"])
+    except (TypeError, ValueError):
+        return None
+
+
+def build_derived_row(
+    source_row: dict[str, Any],
+    variable: str,
+    tag: str,
+    value: float,
+    *additional_source_rows: dict[str, Any],
+) -> dict[str, Any]:
+    source_rows = (source_row, *additional_source_rows)
+    row = source_row.copy()
+    row.update(
+        {
+            "variable": variable,
+            "value": value,
+            "namespace": "derived",
+            "tag": tag,
+            "tier": "derived",
+            "tag_priority": 0,
+            "_annual_rank": max(row.get("_annual_rank", 0) for row in source_rows),
+            "_form_rank": max(row.get("_form_rank", 0) for row in source_rows),
+            "_fp_rank": max(row.get("_fp_rank", 0) for row in source_rows),
+            "_period_match_rank": max(row.get("_period_match_rank", 0) for row in source_rows),
+            "_filing_lag_days": max(row.get("_filing_lag_days", 0) for row in source_rows),
+            "_fy_match_rank": max(row.get("_fy_match_rank", 0) for row in source_rows),
+            "_frame_match_rank": max(row.get("_frame_match_rank", 0) for row in source_rows),
+            "_tier_rank": 99,
+        }
+    )
+    return row
+
+
+def add_derived_balance_sheet_values(
+    selected_rows: dict[tuple[str, str, str], dict[str, Any]],
+    stats: dict[str, int],
+) -> None:
+    company_years = {
+        (cik10, company_year)
+        for cik10, variable, company_year in selected_rows
+        if variable in {"liabilities_and_equity", "equity"}
+    }
+
+    for cik10, company_year in sorted(company_years):
+        assets_key = (cik10, "assets", company_year)
+        liabilities_key = (cik10, "liabilities", company_year)
+        total_key = (cik10, "liabilities_and_equity", company_year)
+        equity_key = (cik10, "equity", company_year)
+
+        if total_key not in selected_rows:
+            continue
+
+        total_value = numeric_value(selected_rows[total_key])
+        if total_value is None:
+            stats["derived_assets_rejected"] += 1
+            stats["derived_liabilities_rejected"] += 1
+            continue
+        if total_value < 0:
+            stats["derived_assets_rejected"] += 1
+            stats["derived_liabilities_rejected"] += 1
+            continue
+
+        if assets_key not in selected_rows:
+            selected_rows[assets_key] = build_derived_row(
+                selected_rows[total_key],
+                "assets",
+                "LiabilitiesAndStockholdersEquityAsAssets",
+                total_value,
+            )
+            stats["derived_assets"] += 1
+
+        if liabilities_key not in selected_rows and equity_key in selected_rows:
+            equity_value = numeric_value(selected_rows[equity_key])
+            if equity_value is None:
+                stats["derived_liabilities_rejected"] += 1
+                continue
+
+            derived_value = total_value - equity_value
+            if derived_value < 0:
+                stats["derived_liabilities_rejected"] += 1
+                continue
+
+            selected_rows[liabilities_key] = build_derived_row(
+                selected_rows[total_key],
+                "liabilities",
+                "LiabilitiesAndStockholdersEquityLessEquity",
+                derived_value,
+                selected_rows[equity_key],
+            )
+            stats["derived_liabilities"] += 1
+
+
+def add_derived_operating_cost_values(
+    selected_rows: dict[tuple[str, str, str], dict[str, Any]],
+    stats: dict[str, int],
+) -> None:
+    company_years = {
+        (cik10, company_year)
+        for cik10, variable, company_year in selected_rows
+        if variable in {"revenues", "ebit"}
+    }
+
+    for cik10, company_year in sorted(company_years):
+        operating_costs_key = (cik10, "operating_costs", company_year)
+        revenues_key = (cik10, "revenues", company_year)
+        ebit_key = (cik10, "ebit", company_year)
+
+        if revenues_key not in selected_rows or ebit_key not in selected_rows:
+            continue
+
+        revenues_value = numeric_value(selected_rows[revenues_key])
+        ebit_value = numeric_value(selected_rows[ebit_key])
+        if revenues_value is None or ebit_value is None:
+            stats["derived_operating_costs_rejected"] += 1
+            continue
+
+        derived_value = revenues_value - ebit_value
+        if derived_value < 0:
+            stats["derived_operating_costs_rejected"] += 1
+            continue
+
+        replacing_existing = operating_costs_key in selected_rows
+        selected_rows[operating_costs_key] = build_derived_row(
+            selected_rows[revenues_key],
+            "operating_costs",
+            "RevenuesLessOperatingIncomeLoss",
+            derived_value,
+            selected_rows[ebit_key],
+        )
+        if replacing_existing:
+            stats["derived_operating_costs_replaced"] += 1
+        else:
+            stats["derived_operating_costs"] += 1
+
+
 def parse_companyfacts_file(
     company: dict[str, str],
     path: Path,
     rules: pd.DataFrame,
+    dataset_scope: dict[str, Any],
     selected_rows: dict[tuple[str, str, str], dict[str, Any]],
     stats: dict[str, int],
 ) -> None:
@@ -349,6 +714,7 @@ def parse_companyfacts_file(
         stats["files_without_facts"] += 1
         return
 
+    accepted_forms = dataset_scope["accepted_forms"]
     for _, rule in rules.iterrows():
         units = all_facts.get(rule["namespace"], {}).get(rule["tag"], {}).get("units", {})
         if not isinstance(units, dict):
@@ -364,6 +730,10 @@ def parse_companyfacts_file(
             for fact in facts:
                 if not isinstance(fact, dict):
                     continue
+                form = str(fact.get("form", "") or "").strip().upper()
+                if form not in accepted_forms:
+                    stats["facts_rejected_form"] += 1
+                    continue
                 if fact.get("val") in (None, ""):
                     stats["facts_without_value"] += 1
                     continue
@@ -372,12 +742,25 @@ def parse_companyfacts_file(
                 if not company_year:
                     stats["facts_without_company_year"] += 1
                     continue
+                if not company_year_in_dataset_scope(company_year, dataset_scope):
+                    stats["facts_rejected_company_year"] += 1
+                    continue
 
                 if has_invalid_end_year(fact):
                     stats["facts_rejected_invalid_end_year"] += 1
                     continue
+                if has_excessive_filing_lag(fact):
+                    stats["facts_rejected_excessive_filing_lag"] += 1
+                    continue
+                if has_invalid_filing_year(fact, company_year):
+                    stats["facts_rejected_filing_year"] += 1
+                    continue
 
-                rank = annual_rank(fact)
+                if rule["variable"] in FLOW_VARIABLES and not has_valid_annual_flow_period(fact):
+                    stats["facts_rejected_invalid_flow_period"] += 1
+                    continue
+
+                rank = annual_rank(fact, str(rule["variable"]), accepted_forms)
                 if rank == NON_ANNUAL_RANK:
                     stats["facts_rejected_nonannual"] += 1
                     continue
@@ -385,7 +768,16 @@ def parse_companyfacts_file(
                 stats["candidate_facts"] += 1
                 keep_best_candidate(
                     selected_rows,
-                    build_candidate_row(company, path, rule, str(unit), fact, company_year, rank),
+                    build_candidate_row(
+                        company,
+                        path,
+                        rule,
+                        str(unit),
+                        fact,
+                        company_year,
+                        rank,
+                        accepted_forms,
+                    ),
                 )
 
 
@@ -557,7 +949,18 @@ def build_missing_by_company(
     return output
 
 
-def write_quality_report(path: Path, stats: dict[str, int], output_counts: dict[str, int]) -> None:
+def write_quality_report(
+    path: Path,
+    stats: dict[str, int],
+    output_counts: dict[str, int],
+    dataset_scope: dict[str, Any],
+) -> None:
+    accepted_forms = dataset_scope["accepted_forms"]
+    configured_year_range = (
+        f"{dataset_scope['start_year']}-{dataset_scope['end_year']}"
+        if dataset_scope.get("start_year") is not None or dataset_scope.get("end_year") is not None
+        else "not configured"
+    )
     count_metrics = [
         ("Companies in research universe", "companies_in_universe"),
         ("Company Facts files found", "companyfacts_files_found"),
@@ -567,10 +970,22 @@ def write_quality_report(path: Path, stats: dict[str, int], output_counts: dict[
         ("Files without `facts`", "files_without_facts"),
         ("Candidate annual facts", "candidate_facts"),
         ("Facts rejected by unit", "facts_rejected_unit"),
+        ("Facts rejected by filing form", "facts_rejected_form"),
+        ("Facts rejected by company year", "facts_rejected_company_year"),
         ("Facts rejected as non-annual", "facts_rejected_nonannual"),
         ("Facts rejected by invalid end year", "facts_rejected_invalid_end_year"),
+        ("Facts rejected by excessive filing lag", "facts_rejected_excessive_filing_lag"),
+        ("Facts rejected by filing year", "facts_rejected_filing_year"),
+        ("Facts rejected by invalid flow period", "facts_rejected_invalid_flow_period"),
         ("Facts without value", "facts_without_value"),
         ("Facts without company year", "facts_without_company_year"),
+        ("Derived assets", "derived_assets"),
+        ("Derived assets rejected", "derived_assets_rejected"),
+        ("Derived liabilities", "derived_liabilities"),
+        ("Derived liabilities rejected", "derived_liabilities_rejected"),
+        ("Derived operating costs", "derived_operating_costs"),
+        ("Derived operating costs replaced", "derived_operating_costs_replaced"),
+        ("Derived operating costs rejected", "derived_operating_costs_rejected"),
     ]
     output_metrics = [
         ("Long facts rows", "long_rows", LONG_OUTPUT_PATH),
@@ -591,16 +1006,29 @@ def write_quality_report(path: Path, stats: dict[str, int], output_counts: dict[
         f"- Research universe: `{RESEARCH_UNIVERSE_PATH}`",
         f"- Company Facts directory: `{COMPANYFACTS_DIR}`",
         f"- Tag configuration: `{SEC_TAGS_CONFIG_PATH}`",
+        f"- Dataset configuration: `{DATASET_CONFIG_PATH}`",
         f"- Accepted units: `{';'.join(ACCEPTED_UNITS)}`",
-        f"- Preferred forms: `{';'.join(PREFERRED_FORMS)}`",
+        f"- Accepted filing forms: `{';'.join(accepted_forms)}`",
+        f"- Configured source company-year range: `{configured_year_range}`",
+        f"- Target horizon years: `{dataset_scope.get('target_horizon_years')}`",
+        f"- Max split feature year: `{dataset_scope.get('max_split_year')}`",
         "",
         "## Processing Rules",
         "",
         "- Missing values were not imputed.",
         "- Facts with units outside the accepted unit list were skipped.",
+        "- Facts from filing forms outside the dataset configuration were skipped.",
+        "- Facts outside the configured source company-year range were skipped.",
         "- Non-annual facts were skipped.",
+        f"- Flow variables required `start`, `end` and a {ANNUAL_PERIOD_MIN_DAYS}-{ANNUAL_PERIOD_MAX_DAYS} day period.",
+        "- Missing assets were derived from liabilities and equity when total assets were not reported directly.",
+        "- Missing liabilities were derived from liabilities and equity minus equity when both source values were available.",
+        "- Operating costs were derived as revenues minus operating income/loss when both source values were available; direct `CostsAndExpenses` values were kept only as fallback.",
+        "- Company years were assigned from SEC fiscal-year metadata when available, then from annual/Q4 calendar frames, then from period end year.",
         f"- Facts with `end` year more than {MAX_END_YEAR_LEAD} year after `fy` or `filed` year were skipped.",
-        "- Duplicate facts were resolved deterministically using annual status, preferred form, fiscal-year match, tier, tag priority, filing date, period end date and accession number.",
+        f"- Facts with filing lag above {MAX_SELECTED_FILING_LAG_DAYS} days were skipped to avoid stale comparative facts from later 10-K filings.",
+        f"- Facts filed more than {MAX_FILING_YEAR_LEAD} year after `company_year` were skipped.",
+        "- Duplicate facts were resolved deterministically using annual status, preferred form, fiscal-period label, period match, filing lag, fiscal-year match, frame match, tier, tag priority, filing date, period end date and accession number.",
         "- Raw SEC metadata fields `form`, `fp`, `filed`, `accn`, `frame`, `start` and `end` were preserved in the long output.",
         "",
         "## Counts",
@@ -619,6 +1047,7 @@ def write_quality_report(path: Path, stats: dict[str, int], output_counts: dict[
 def parse_all_companyfacts(
     companies: pd.DataFrame,
     rules: pd.DataFrame,
+    dataset_scope: dict[str, Any],
 ) -> tuple[pd.DataFrame, dict[str, int]]:
     selected_rows: dict[tuple[str, str, str], dict[str, Any]] = {}
     stats = defaultdict(int)
@@ -634,7 +1063,7 @@ def parse_all_companyfacts(
             continue
 
         try:
-            parse_companyfacts_file(company, path, rules, selected_rows, stats)
+            parse_companyfacts_file(company, path, rules, dataset_scope, selected_rows, stats)
         except (OSError, json.JSONDecodeError) as error:
             stats["json_parse_errors"] += 1
             print(f"Failed to parse {path}: {error}")
@@ -646,6 +1075,9 @@ def parse_all_companyfacts(
                 "Parsed Company Facts files: "
                 f"{stats['companyfacts_files_parsed']:,} / {len(companies):,}"
             )
+
+    add_derived_balance_sheet_values(selected_rows, stats)
+    add_derived_operating_cost_values(selected_rows, stats)
 
     long_frame = pd.DataFrame(selected_rows.values())
     if long_frame.empty:
@@ -675,12 +1107,14 @@ def main() -> None:
 
     companies = read_research_universe(RESEARCH_UNIVERSE_PATH)
     variables, rules = read_sec_tag_config(SEC_TAGS_CONFIG_PATH)
+    dataset_scope = read_dataset_scope(DATASET_CONFIG_PATH)
 
     print(f"Read research universe companies: {len(companies):,}")
     print(f"Read configured variables:        {len(variables):,}")
     print(f"Read configured tag rules:        {len(rules):,}")
+    print(f"Accepted filing forms:            {';'.join(dataset_scope['accepted_forms'])}")
 
-    long_frame, stats = parse_all_companyfacts(companies, rules)
+    long_frame, stats = parse_all_companyfacts(companies, rules, dataset_scope)
     wide_frame = build_wide_frame(long_frame, companies, variables)
     report_frames = {
         VARIABLE_COVERAGE_PATH: build_variable_coverage(
@@ -703,6 +1137,7 @@ def main() -> None:
     write_quality_report(
         QUALITY_REPORT_PATH,
         stats=stats,
+        dataset_scope=dataset_scope,
         output_counts={
             "long_rows": len(long_frame),
             "wide_rows": len(wide_frame),
