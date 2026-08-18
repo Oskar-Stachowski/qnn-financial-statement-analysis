@@ -1,0 +1,203 @@
+scope:
+  feature_year_start: 2011
+  feature_year_end: 2022
+  train_end_year: 2020
+  validation_years: [2021, 2022]
+  # Held out throughout target selection and freeze-gate work. Build and
+  # evaluate these feature years only after the target definition is frozen.
+  test_years: [2023, 2024]
+  allowed_forms: [10-K]
+  annual_period_min_days: 300
+  annual_period_max_days: 400
+  period_start_tolerance_days: 14
+  minimum_denominator_usd: 1000.0
+
+# The order below is methodological, not coverage-driven. A strategy may be
+# used only when it represents both the comparative and current periods in the
+# same t+1 anchor accession. Cross-tag substitution is disabled unless the
+# strategy explicitly lists an equivalence group.
+primitive_concepts:
+  assets:
+    period_type: instant
+    strategies:
+      - name: assets_direct
+        priority: 1
+        concepts: [Assets]
+        equivalence_group: consolidated_assets
+      - name: balance_total_as_assets
+        priority: 2
+        concepts: [LiabilitiesAndStockholdersEquity]
+        equivalence_group: consolidated_assets
+
+  liabilities:
+    period_type: instant
+    strategies:
+      - name: liabilities_direct
+        priority: 1
+        concepts: [Liabilities]
+        equivalence_group: consolidated_liabilities
+      - name: total_less_equity_including_nci
+        priority: 2
+        derived: subtraction
+        minuend: LiabilitiesAndStockholdersEquity
+        subtrahend: StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest
+        equivalence_group: consolidated_liabilities
+      # StockholdersEquity excludes NCI in some taxonomies.  The fallback is
+      # therefore valid only when no non-zero MinorityInterest is reported for
+      # either selected annual instant.  It is never chosen merely for coverage.
+      - name: total_less_stockholders_equity_without_nci
+        priority: 3
+        derived: subtraction
+        minuend: LiabilitiesAndStockholdersEquity
+        subtrahend: StockholdersEquity
+        equivalence_group: consolidated_liabilities
+        requires_zero_or_absent_concepts: [MinorityInterest]
+
+  current_assets:
+    period_type: instant
+    strategies:
+      - name: current_assets_direct
+        priority: 1
+        concepts: [AssetsCurrent]
+
+  current_liabilities:
+    period_type: instant
+    strategies:
+      - name: current_liabilities_direct
+        priority: 1
+        concepts: [LiabilitiesCurrent]
+
+  revenues:
+    period_type: duration
+    material_concept_disagreement_ratio: 0.02
+    resolver: primary_income_statement_fail_closed
+    # A tag is only an allowed candidate. Selection additionally requires the
+    # same tag and both annual values on one admissible consolidated revenue
+    # row in the SEC-rendered primary income/operations statement identified
+    # by FilingSummary.xml. Component/segment/note rows never qualify. Missing
+    # or non-unique statement evidence yields ambiguous/NA, never a fallback.
+    strategies:
+      - name: contract_revenue_excluding_tax
+        priority: 1
+        concepts: [RevenueFromContractWithCustomerExcludingAssessedTax]
+        equivalence_group: consolidated_revenue
+      - name: sales_revenue_net
+        priority: 2
+        concepts: [SalesRevenueNet]
+        equivalence_group: consolidated_revenue
+      - name: revenues_general
+        priority: 3
+        concepts: [Revenues]
+        equivalence_group: consolidated_revenue
+      - name: contract_revenue_including_tax
+        priority: 4
+        concepts: [RevenueFromContractWithCustomerIncludingAssessedTax]
+        equivalence_group: consolidated_revenue
+      # Goods/services concepts are acceptable only when the complementary
+      # concept is absent from both annual periods in the accession. Otherwise
+      # each is only a component and cannot stand in for consolidated revenue.
+      - name: goods_revenue_only
+        priority: 5
+        concepts: [SalesRevenueGoodsNet]
+        equivalence_group: consolidated_revenue
+        requires_absent_concepts: [SalesRevenueServicesNet]
+      - name: services_revenue_only
+        priority: 6
+        concepts: [SalesRevenueServicesNet]
+        equivalence_group: consolidated_revenue
+        requires_absent_concepts: [SalesRevenueGoodsNet]
+
+  net_income:
+    period_type: duration
+    strategies:
+      - name: net_income_loss
+        priority: 1
+        concepts: [NetIncomeLoss]
+      - name: profit_loss_including_nci
+        priority: 2
+        concepts: [ProfitLoss]
+
+  operating_cash_flow:
+    period_type: duration
+    strategies:
+      - name: operating_cash_flow_total
+        priority: 1
+        concepts: [NetCashProvidedByUsedInOperatingActivities]
+      - name: operating_cash_flow_continuing
+        priority: 2
+        concepts: [NetCashProvidedByUsedInOperatingActivitiesContinuingOperations]
+
+reporting_entity_continuity:
+  # Confirmed from the earliest original t+1 10-K. These are not ordinary
+  # discontinued-operations reclassifications: the accounting predecessor or
+  # historical reporting entity changes.
+  confirmed_exclusions:
+    - cik10: "0001485074"
+      feature_year: 2016
+      anchor_t1_accession: "0001477932-18-001638"
+      reason: reverse_merger_accounting_predecessor_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1485074/000147793218001638/frzt_10k.htm
+    - cik10: "0001422142"
+      feature_year: 2020
+      anchor_t1_accession: "0001564590-22-010721"
+      reason: reverse_asset_acquisition_accounting_predecessor_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1422142/000156459022010721/aadi-10k_20211231.htm
+    - cik10: "0001394638"
+      feature_year: 2021
+      anchor_t1_accession: "0001731122-23-000046"
+      reason: reverse_acquisition_accounting_predecessor_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1394638/000173112223000046/e4345_10k.htm
+    - cik10: "0001588014"
+      feature_year: 2017
+      anchor_t1_accession: "0001493152-19-005499"
+      reason: reverse_acquisition_accounting_predecessor_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1588014/000149315219005499/form10-k.htm
+    - cik10: "0001415404"
+      feature_year: 2022
+      anchor_t1_accession: "0001558370-24-002209"
+      reason: retrospective_common_control_combination_reporting_entity_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1415404/000155837024002209/tmb-20231231x10k.htm
+    - cik10: "0001743725"
+      feature_year: 2019
+      anchor_t1_accession: "0001213900-21-013771"
+      reason: reverse_recapitalization_accounting_predecessor_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1743725/000121390021013771/f10k2020_griddynamics.htm
+    - cik10: "0001773751"
+      feature_year: 2020
+      anchor_t1_accession: "0001773751-22-000039"
+      reason: reverse_recapitalization_accounting_predecessor_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1773751/000177375122000039/hims-20211231.htm
+    - cik10: "0001811210"
+      feature_year: 2020
+      anchor_t1_accession: "0001628280-22-004253"
+      reason: reverse_recapitalization_accounting_predecessor_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1811210/000162828022004253/lcid-20211231.htm
+    - cik10: "0001826681"
+      feature_year: 2020
+      anchor_t1_accession: "0000950170-22-004931"
+      reason: reverse_recapitalization_accounting_predecessor_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1826681/000095017023008496/strc-20221231.htm
+    - cik10: "0001514443"
+      feature_year: 2021
+      anchor_t1_accession: "0001829126-23-002409"
+      reason: reverse_merger_accounting_predecessor_change
+      evidence: https://www.sec.gov/Archives/edgar/data/1514443/000182912622020293/ameriguardsec_8k.htm
+
+  # Company Facts does not contain filing narrative. Material, multi-primitive
+  # rebasing which is not in the confirmed registry is therefore ambiguous,
+  # never a negative target. Thresholds are data-quality rules, not target
+  # thresholds and are not optimized against model outcomes.
+  ambiguity_screen:
+    minimum_material_components: 2
+    balance_sheet_relative_change: 0.50
+    revenues_relative_change: 0.50
+    income_or_ocf_change_to_assets: 0.20
+
+# Some filer-created XBRL facts reverse the sign of a signed flow when the same
+# annual amount is repeated as a comparative.  An exact cross-vintage sign
+# inversion is not treated as an economic revision: the B value is unresolved
+# without presentation/context metadata and the observation remains NA.
+semantic_vintage_validation:
+  signed_primitives: [net_income, operating_cash_flow]
+  sign_inversion_relative_tolerance: 1.0e-9
+  minimum_absolute_value_usd: 1000.0
