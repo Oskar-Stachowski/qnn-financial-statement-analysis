@@ -29,6 +29,9 @@ data/raw/sec_filings/
 # and bounded same-accession submission headers). Rebuilt from the manifest.
 data/raw/sec_historical_universe/
 
+# Compact point-in-time inputs used only to apply the two frozen components.
+data/raw/research_universe_target_application/
+
 # Large generated SEC facts table
 data/interim/sec_facts_long.csv
 
@@ -40,13 +43,16 @@ data/reports/target_candidate_v2_pit_b_revision_deltas.csv
 # and compact audit/manifest remain visible for intentional versioning.
 data/interim/research_universe_pit_candidates.csv
 data/interim/research_universe_pit_unresolved.csv
+data/interim/research_universe_pit_v1_1_0_target_pit_b_v1_0_0_working.csv
 
 # Canonical historical-universe panel (~69 MB). Reproducible from SEC caches;
 # its exact hash and row count are recorded in the versioned build manifest.
 data/processed/research_universe_pit.csv
+data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv
 
 # Download-run manifests; summary results remain in the audit reports
 data/reports/target_candidate_v2_pit_b_revenue_evidence_downloads.json
+data/reports/research_universe_target_application_revenue_evidence.json
 data/reports/target_candidate_v2_pit_b_revenue_review_downloads.json
 data/reports/target_candidate_v2_pit_b_sec_shards.json
 

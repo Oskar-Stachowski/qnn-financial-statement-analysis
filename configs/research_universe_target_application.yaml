@@ -1,0 +1,60 @@
+application:
+  id: research_universe_pit_v1_1_0_target_pit_b_v1_0_0
+  status: derived_from_frozen_components
+  universe_id: research_universe_pit
+  universe_version: 1.1.0
+  target_id: target_candidate_v2_pit_b
+  target_version: 1.0.0
+  feature_year_start: 2011
+  feature_year_end: 2024
+  eligible_membership_only: true
+  preserve_unavailable_target_rows: true
+  unavailable_target_statuses:
+    - missing
+    - ambiguous
+    - hard_exclude
+    - not_computable
+  map_unavailable_to_zero: false
+  models_used: false
+  x_t_built: false
+
+frozen_inputs:
+  universe_manifest: configs/research_universe_pit_freeze_manifest.yaml
+  universe_artifact: data/processed/research_universe_pit.csv
+  target_manifest: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+  target_artifact: data/interim/target_candidate_v2_pit_b.csv
+  target_config: configs/target_candidate_v2_pit.yaml
+
+application_cache:
+  root: data/raw/research_universe_target_application
+  companyfacts: data/raw/research_universe_target_application/companyfacts
+  submissions: data/raw/research_universe_target_application/sec_submissions
+  revenue_statement_evidence: data/raw/sec_filings/revenue_statement_evidence
+  companyfacts_projection: frozen_required_us_gaap_tags_only
+  submissions_projection: frozen_target_metadata_fields_only
+
+outputs:
+  working_artifact: data/interim/research_universe_pit_v1_1_0_target_pit_b_v1_0_0_working.csv
+  final_artifact: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv
+  input_download_report: data/reports/research_universe_target_application_inputs.json
+  revenue_evidence_download_report: data/reports/research_universe_target_application_revenue_evidence.json
+  audit_json: data/reports/research_universe_target_application_audit.json
+  audit_markdown: data/reports/research_universe_target_application_audit.md
+  coverage_by_year: data/reports/research_universe_target_application_by_year.csv
+  coverage_by_sector: data/reports/research_universe_target_application_by_sector.csv
+  coverage_by_sic: data/reports/research_universe_target_application_by_sic.csv
+  coverage_by_size: data/reports/research_universe_target_application_by_size.csv
+  status_reasons: data/reports/research_universe_target_application_status_reasons.csv
+  reproduction_manifest: data/reports/research_universe_target_application_manifest.json
+
+audit:
+  size_proxy: first_release_total_assets_t
+  size_binning: within_feature_year_quartiles
+  random_seed: 20260818
+  complete_case_high_risk_thresholds:
+    coverage_range: 0.10
+    absolute_standardized_mean_difference: 0.25
+  informative_censoring_high_risk_thresholds:
+    recovered_coverage_gap: 0.10
+    inactive_proxy_coverage_gap: 0.10
+    non_xbrl_coverage_gap: 0.10

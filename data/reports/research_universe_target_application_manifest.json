@@ -1,0 +1,124 @@
+{
+  "application_id": "research_universe_pit_v1_1_0_target_pit_b_v1_0_0",
+  "created_at": "2026-08-18T15:41:25.586945+00:00",
+  "frozen_components": {
+    "universe_manifest_path": "configs/research_universe_pit_freeze_manifest.yaml",
+    "universe_manifest_sha256": "60310dbc9379371c05316b28de273832d0eaf02f20fc1ee7bb28697a26fb71b7",
+    "universe_artifact_path": "data/processed/research_universe_pit.csv",
+    "universe_artifact_sha256": "a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182",
+    "universe_rows_all_statuses": 103099,
+    "universe_eligible_rows": 64901,
+    "target_manifest_path": "configs/target_candidate_v2_pit_b_freeze_manifest.yaml",
+    "target_manifest_sha256": "52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb",
+    "target_artifact_path": "data/interim/target_candidate_v2_pit_b.csv",
+    "target_artifact_sha256": "473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff",
+    "target_artifact_rows": 26917
+  },
+  "code_and_configuration": [
+    {
+      "path": "configs/research_universe_target_application.yaml",
+      "bytes": 2725,
+      "sha256": "258108302c92692eddb4590597c62a73e453de93493c81c93637b9329f9403f4"
+    },
+    {
+      "path": "src/data/research_universe_target_application.py",
+      "bytes": 19969,
+      "sha256": "ddfbe5fd87b4aa17e29a40ef32404a31fd3b2b4459bb011e1cdb2830d4cb4313"
+    },
+    {
+      "path": "src/data/25_prepare_research_universe_target_inputs.py",
+      "bytes": 12063,
+      "sha256": "03d531eff0279bbb4e9d43d55216f918b13ba2baecf8eaf1ea757133502aee85"
+    },
+    {
+      "path": "src/data/26_apply_frozen_target_to_historical_universe.py",
+      "bytes": 799,
+      "sha256": "7dc80b2dfdf4811b1dcb176f909f9202935be060c790f7b163e815b50fe322da"
+    },
+    {
+      "path": "src/data/27_download_research_universe_target_revenue_evidence.py",
+      "bytes": 8722,
+      "sha256": "dae82544653c5c59b73c2e7fbe59c1546d3d92db6ec2cf5d5126b2365ca37077"
+    },
+    {
+      "path": "src/data/28_audit_research_universe_target_application.py",
+      "bytes": 28696,
+      "sha256": "61f6eb0905617dfd7c77799ac708eecf0a5275f0bcd181c6233f9dce29916ab2"
+    }
+  ],
+  "artifact": {
+    "path": "data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv",
+    "rows": 64901,
+    "bytes": 402367104,
+    "sha256": "ea42eb43018b2c8e238e2c4757260bb692e27edd5429628e28892f360f0f7f7d"
+  },
+  "cache_inventory": {
+    "companyfacts_projection": {
+      "files": 9365,
+      "bytes": 2185423831,
+      "aggregate_sha256": "feac9b1d86f51423b765444ba847ca37ca28cea95f3887b8efbfce1948e8f518"
+    },
+    "submissions_projection": {
+      "files": 10944,
+      "bytes": 1030509090,
+      "aggregate_sha256": "d0143c3a0efc4b76a50d0ea9a20c92eedd41ce1e916562c48ea32b99d7186aff"
+    },
+    "revenue_statement_evidence": {
+      "files": 94773,
+      "bytes": 6093981891,
+      "aggregate_sha256": "03f7c5f0817d7f35835730ef4b75e5f850470026e5673f4eb5a7a69fa7c9edaf"
+    }
+  },
+  "audit_outputs": [
+    {
+      "path": "data/reports/research_universe_target_application_audit.json",
+      "bytes": 169556,
+      "sha256": "7884a7a73f500c265f4e3cd811542072a7a8854f9af248db746905e5f9afa528"
+    },
+    {
+      "path": "data/reports/research_universe_target_application_audit.md",
+      "bytes": 5925,
+      "sha256": "d35adb3671340fe1160e15c4e787276fce8b3081122896751c4d4e5e60f34311"
+    },
+    {
+      "path": "data/reports/research_universe_target_application_by_year.csv",
+      "bytes": 1190,
+      "sha256": "44177779a4fdfdee1de703e791557ed936265586544a3c13e8cc28a3c52a44d3"
+    },
+    {
+      "path": "data/reports/research_universe_target_application_by_sector.csv",
+      "bytes": 505,
+      "sha256": "ba48789c3357ac4d828a37dd2479209933de34e5f068532bc0dcaa998850ac2d"
+    },
+    {
+      "path": "data/reports/research_universe_target_application_by_sic.csv",
+      "bytes": 35711,
+      "sha256": "717036bd0440863ba2f2e78fd76d880a41b4f71f7eef67bffeea126fddd6bea9"
+    },
+    {
+      "path": "data/reports/research_universe_target_application_by_size.csv",
+      "bytes": 570,
+      "sha256": "7eb6299f9919db276f237ded26a5418fff244d5b035dd77835caaa4d99d4dcc9"
+    },
+    {
+      "path": "data/reports/research_universe_target_application_status_reasons.csv",
+      "bytes": 3140,
+      "sha256": "6ff4e35e2cd43f13552e6b8a111b4f291ca8d34084d553da169750fc0d2ed384"
+    }
+  ],
+  "build_checks": {
+    "exactly_64901_eligible_rows": true,
+    "membership_all_eligible": true,
+    "unique_cik_year": true,
+    "unavailable_rows_with_class": 0,
+    "frozen_overlap_mismatch_cells": 0,
+    "provenance_violation_count": 0,
+    "frozen_hashes_unchanged": true
+  },
+  "verdict": "FROZEN UNIVERSE v1.1.0 + FROZEN TARGET v1.0.0 CORRECTLY AND REPRODUCIBLY BUILT",
+  "notes": [
+    "The reproduction manifest intentionally does not hash itself.",
+    "The two frozen component manifests and artifacts were read-only inputs.",
+    "Raw caches are excluded from Git and controlled by aggregate content digests."
+  ]
+}

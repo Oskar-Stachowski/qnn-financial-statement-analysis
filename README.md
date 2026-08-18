@@ -44,6 +44,9 @@ The active pipeline currently covers:
 - point-in-time target B construction and audit in steps `09`-`19`;
 - filing-first historical point-in-time research-universe construction,
   registrant-role/economic-entity resolution, and audit in steps `20`-`24`;
+- read-only application of frozen PIT-B v1.0.0 to eligible historical-universe
+  v1.1.0 company-years, including compact SEC input preparation and audit, in
+  steps `25`-`28`;
 - the frozen `target_candidate_v2_pit_b` v1.0.0 specification in
   `docs/04_9_target_candidate_v2_pit_b_frozen_specification.md`;
 - the frozen historical research-universe v1.1.0 specification and manifest in

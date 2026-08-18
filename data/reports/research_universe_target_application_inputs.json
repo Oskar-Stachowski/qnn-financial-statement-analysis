@@ -1,0 +1,149 @@
+{
+  "application_id": "research_universe_pit_v1_1_0_target_pit_b_v1_0_0",
+  "eligible_ciks": 9798,
+  "required_us_gaap_tags": [
+    "Assets",
+    "AssetsCurrent",
+    "Liabilities",
+    "LiabilitiesAndStockholdersEquity",
+    "LiabilitiesCurrent",
+    "MinorityInterest",
+    "NetCashProvidedByUsedInOperatingActivities",
+    "NetCashProvidedByUsedInOperatingActivitiesContinuingOperations",
+    "NetIncomeLoss",
+    "ProfitLoss",
+    "RevenueFromContractWithCustomerExcludingAssessedTax",
+    "RevenueFromContractWithCustomerIncludingAssessedTax",
+    "Revenues",
+    "SalesRevenueGoodsNet",
+    "SalesRevenueNet",
+    "SalesRevenueServicesNet",
+    "StockholdersEquity",
+    "StockholdersEquityIncludingPortionAttributableToNoncontrollingInterest"
+  ],
+  "companyfacts": {
+    "total": 9798,
+    "status_counts": {
+      "downloaded_and_projected": 5835,
+      "not_found": 17,
+      "projected_existing_cache": 3530,
+      "skipped_no_eligible_xbrl_submission": 416
+    },
+    "errors": [
+      {
+        "key": "0000101001",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000101001.json"
+      },
+      {
+        "key": "0000714560",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000714560.json"
+      },
+      {
+        "key": "0000784681",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000784681.json"
+      },
+      {
+        "key": "0000789388",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0000789388.json"
+      },
+      {
+        "key": "0001021113",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001021113.json"
+      },
+      {
+        "key": "0001035688",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001035688.json"
+      },
+      {
+        "key": "0001053439",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001053439.json"
+      },
+      {
+        "key": "0001061937",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001061937.json"
+      },
+      {
+        "key": "0001065023",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001065023.json"
+      },
+      {
+        "key": "0001337274",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001337274.json"
+      },
+      {
+        "key": "0001364652",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001364652.json"
+      },
+      {
+        "key": "0001395864",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001395864.json"
+      },
+      {
+        "key": "0001467974",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001467974.json"
+      },
+      {
+        "key": "0001481423",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001481423.json"
+      },
+      {
+        "key": "0001507563",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001507563.json"
+      },
+      {
+        "key": "0001517687",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001517687.json"
+      },
+      {
+        "key": "0001620602",
+        "status": "not_found",
+        "url": "https://data.sec.gov/api/xbrl/companyfacts/CIK0001620602.json"
+      }
+    ]
+  },
+  "main_submissions": {
+    "total": 9365,
+    "status_counts": {
+      "downloaded_and_projected": 5701,
+      "projected_existing_cache": 3664
+    },
+    "errors": []
+  },
+  "historical_submission_shards": {
+    "total": 1579,
+    "status_counts": {
+      "downloaded_and_projected": 709,
+      "projected_existing_cache": 870
+    },
+    "errors": []
+  },
+  "frozen_inputs": {
+    "universe_manifest_path": "configs/research_universe_pit_freeze_manifest.yaml",
+    "universe_manifest_sha256": "60310dbc9379371c05316b28de273832d0eaf02f20fc1ee7bb28697a26fb71b7",
+    "universe_artifact_path": "data/processed/research_universe_pit.csv",
+    "universe_artifact_sha256": "a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182",
+    "universe_rows_all_statuses": 103099,
+    "universe_eligible_rows": 64901,
+    "target_manifest_path": "configs/target_candidate_v2_pit_b_freeze_manifest.yaml",
+    "target_manifest_sha256": "52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb",
+    "target_artifact_path": "data/interim/target_candidate_v2_pit_b.csv",
+    "target_artifact_sha256": "473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff",
+    "target_artifact_rows": 26917
+  }
+}
