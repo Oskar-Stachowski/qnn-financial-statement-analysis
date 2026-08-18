@@ -1,0 +1,126 @@
+manifest_schema_version: 1
+
+target:
+  id: target_candidate_v2_pit_b
+  version: 1.0.0
+  status: frozen
+  frozen_on: "2026-08-18"
+  freeze_scope: target_definition_and_pit_b_extraction
+  dataset_frozen: false
+  feature_pipeline_frozen: false
+  research_universe_frozen: false
+
+git:
+  basis_commit_before_freeze: a12f9a2f052a6b23daf6c85397ceccc5508a1a59
+  freeze_commit: commit_containing_this_manifest
+  component_commits:
+    pit_b_implementation: 56c32bf2ee9ef96ddf670ad2bb9d98f9a04a4372
+    methodological_status_documents: a89371937a46155f294b062e0847208f9781055e
+    freeze_gate_pipeline: 86289b885f497c098b5fe1c002f0cf44ae20d000
+    final_freeze_gate_results: a12f9a2f052a6b23daf6c85397ceccc5508a1a59
+
+development_scope:
+  train_feature_years: [2011, 2020]
+  validation_feature_years: [2021, 2022]
+  test_feature_years: [2023, 2024]
+  test_used_in_pit_b_freeze_gate: false
+  observations: 26917
+  target_available: 14122
+  target_coverage: 0.5246498495374671
+  positive_observations: 2167
+  positive_rate_among_available: 0.15344852003965445
+
+runtime_observed_at_freeze:
+  python: 3.13.13
+  numpy: 2.4.4
+  pandas: 3.0.3
+  pyyaml: 6.0.3
+  requests: 2.34.1
+
+versioned_components:
+  configuration:
+    - path: configs/target_candidate_v2_pit.yaml
+      sha256: 3fb43750c265fbd913058d665b372335ea71cfd571fa6dac13af2d73181a43e5
+    - path: requirements.txt
+      sha256: 8b29fed7bed21fa1202c6f692e040474ab536dc67aef0e3fc63897ecf28a3327
+
+  construction_code:
+    - path: src/data/09_build_target_candidate_v2_pit.py
+      sha256: 8a69e73da1943347fb5c3af8fa01d8e25bbea63551ac921ac3dbea28c2c2ef2e
+    - path: src/data/10_download_sec_submission_shards.py
+      sha256: 11a27c6b6c079ca7c66dce2e6f5234b1ff524fe14a5e7aa9abde6ac545652e22
+    - path: src/data/15_download_revenue_statement_evidence.py
+      sha256: 375192fa3793aac96fac898536cb9dd135d866e66d5cec2db3b412f4ae0fab15
+    - path: src/data/target_candidate_v2_pit.py
+      sha256: efad99c1f7376cbad9ad009fff417f6ec342482b8d9b2acf5f52b60165327cac
+    - path: src/data/revenue_statement_resolver.py
+      sha256: 013a4dc3958b32b0982a4c1150c4fb221a9d87dbf5883cb8aec4c756b877575b
+
+  audit_and_manual_review_code:
+    - path: src/data/11_freeze_gate_target_candidate_v2_pit.py
+      sha256: 3118b2fdb869ecc782bf4c35220ffcc3917cb4950ac5467d95da8aaa2f00995a
+    - path: src/data/16_prepare_final_revenue_resolver_audit.py
+      sha256: 6f0ceafa1a5261cfe867a86e048af3ea5859114e9e546784838d57a5619ebb7f
+    - path: src/data/17_prepare_revenue_manual_review_evidence.py
+      sha256: c8caa7d27e6e7f9247eafa15030c839f5c39513cdde5aad41073f6c196da719d
+    - path: src/data/18_compile_final_revenue_resolver_audit.py
+      sha256: b8c72833734f05ad1fd6f937123d830bc8f2d644c0c20a6748385f023a109ed1
+    - path: src/data/19_finalize_revenue_manual_review.py
+      sha256: 124d581b0d963916e1a676d704d65cee10d2f111a98c05e40dce410d538da424
+    - path: src/data/revenue_manual_review.py
+      sha256: f257e92021e5858ba1122e62fcb8f7ddf9c51d47291a8c0311af457fde77d762
+
+  tests:
+    - path: tests/test_target_candidate_v2_pit.py
+      sha256: 2acb734041411a6d6da13e94cb92320a35160eb37157b88c46109a87b2ee426e
+    - path: tests/test_revenue_manual_review.py
+      sha256: dd9bdcb528963acc53fda08d98c184c804ed42d5c1e41d0c9cd9972b5c734787
+
+  methodological_records:
+    - path: docs/04_8_pre_registered_methodological_target_specification.md
+      sha256: 420d3435385eb7e8ed67432a97d99274417e55f6331303fc443d8631287ac9e0
+    - path: docs/04_9_target_candidate_v2_pit_b_frozen_specification.md
+      sha256: 029d4ab5040d96fd3856c5d3ef27b0deb96d34f0ebdde247e2e8afd8e605a002
+
+  final_audit_evidence:
+    - path: data/reports/target_candidate_v2_pit_b_final_revenue_resolver.json
+      sha256: a73631835f5d0a7d4515e79ab4a9ec3a48127c53602516a2d94faa35076606fb
+    - path: data/reports/target_candidate_v2_pit_b_final_revenue_resolver.md
+      sha256: c40dfdfe43417cb89fe1be7dcc6db14b9022e3ab25b7f724ca12b702abb338bf
+    - path: data/reports/target_candidate_v2_pit_b_final_revenue_resolver_final.json
+      sha256: 56abb5d3384e4703d4535e8e5cb4c68fe0f244f1c77d86c92a316683ec4da386
+    - path: data/reports/target_candidate_v2_pit_b_final_revenue_resolver_manual_review_template.csv
+      sha256: 8fcefe170896c43253d3fb08317fd7c5783411fe87ca9f1410d65c629fa4fd74
+    - path: data/reports/target_candidate_v2_pit_b_final_revenue_resolver_manual_review.csv
+      sha256: 46896c2f3cc530a8533a88ad9c3a9989bc6117220d0ceb3108acd352a83752d5
+    - path: data/reports/target_candidate_v2_pit_b_final_revenue_resolver_manual_review_sheet.md
+      sha256: 58d7ffd51c1aa82da66c047f0c7da8ed88f6959e2f7c78add5fc75710b41cc5d
+    - path: data/reports/target_candidate_v2_pit_b_final_revenue_resolver_manual_review_statement_rows.csv
+      sha256: b9533f303c075a9b67294b9571c763f16d49a9b6082d5824e0eb796eea1927c2
+
+non_versioned_reproduction_checks:
+  # These large/generated files remain excluded from Git. Their hashes allow
+  # a rebuilt local artifact to be checked against the freeze-time result.
+  - path: data/interim/target_candidate_v2_pit_b.csv
+    tracked_in_git: false
+    data_rows: 26917
+    bytes: 177561296
+    sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+  - path: data/reports/target_candidate_v2_pit_b_revision_deltas.csv
+    tracked_in_git: false
+    data_rows: 286047
+    bytes: 60191532
+    sha256: 6db4a3fdc73ed47be65e93fbb5efcdb709b7fc8fc6ef7075d87816f968aa9f6d
+  - path: data/processed/research_universe.csv
+    tracked_in_git: false
+    data_rows: 3730
+    bytes: 725477
+    sha256: a91a7fd1b985898f8158a130bb822723baa378e952c653d7fe4f3650731a2b1f
+    frozen: false
+    note: Hash records the audit input only; research-universe survivorship risk remains unresolved.
+
+notes:
+  - The manifest intentionally does not hash itself or its containing commit.
+  - The containing Git commit is the authoritative repository version of the freeze package.
+  - Raw SEC caches remain excluded from Git; exact accession and fact provenance are retained in the generated PIT-B artifact.
+  - Any change to a versioned component requires a new target version and a new train/validation audit.

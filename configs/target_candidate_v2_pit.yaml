@@ -1,3 +1,41 @@
+frozen_target:
+  id: target_candidate_v2_pit_b
+  version: 1.0.0
+  status: frozen
+  frozen_on: 2026-08-18
+  freeze_scope: target_definition_and_pit_b_extraction
+  dataset_frozen: false
+  feature_pipeline_frozen: false
+  research_universe_frozen: false
+  signals:
+    D1_roa_drop_pp: 0.03
+    D2_ocf_assets_drop_pp: 0.03
+    D3_current_ratio_relative_drop: 0.20
+    D4_liabilities_assets_increase_pp: 0.10
+    D5_revenues_relative_drop: 0.10
+  target:
+    score: deterioration_score_1y
+    positive_if_score_at_least: 3
+  mandatory_robustness_checks:
+    score_thresholds: [2, 4]
+    operating_performance:
+      definition: max(D1_roa, D2_ocf_assets)
+      alternative_score_positive_if_at_least: 3
+  unavailable_target_policy:
+    missing: NA
+    ambiguous: NA
+    hard_exclude: NA
+    map_unavailable_to_zero: false
+  development_audit:
+    feature_years: [2011, 2022]
+    observations: 26917
+    target_available: 14122
+    target_coverage: 0.5246498495374671
+    positive_observations: 2167
+    positive_rate_among_available: 0.15344852003965445
+    models_trained: false
+    feature_years_2023_2024_used_in_pit_b_freeze_gate: false
+
 scope:
   feature_year_start: 2011
   feature_year_end: 2022

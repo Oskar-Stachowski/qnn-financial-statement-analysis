@@ -108,7 +108,9 @@ class PeriodValidationTests(unittest.TestCase):
             anchor("a3", "2024-01-31", [], 2023),
         ]
         resolved = resolve_fiscal_year_sequence(anchors, SCOPE)
-        self.assertEqual([item["resolved_fiscal_year"] for item in resolved], [2022, 2023, 2024])
+        self.assertEqual(
+            [item["resolved_fiscal_year"] for item in resolved], [2022, 2023, 2024]
+        )
 
 
 class SubmissionMetadataTests(unittest.TestCase):
@@ -155,7 +157,8 @@ class SubmissionMetadataTests(unittest.TestCase):
         )
         self.assertFalse(
             valid_evidence_payload(
-                Path("FilingSummary.xml"), b"<html>Request Rate Threshold Exceeded</html>"
+                Path("FilingSummary.xml"),
+                b"<html>Request Rate Threshold Exceeded</html>",
             )
         )
         self.assertFalse(
@@ -285,8 +288,18 @@ class SemanticValidationTests(unittest.TestCase):
 
     def test_revenue_uses_primary_statement_not_tag_priority(self) -> None:
         records = [
-            record("RevenueFromContractWithCustomerExcludingAssessedTax", 100.0, "2020-01-01", "2020-12-31"),
-            record("RevenueFromContractWithCustomerExcludingAssessedTax", 110.0, "2021-01-01", "2021-12-31"),
+            record(
+                "RevenueFromContractWithCustomerExcludingAssessedTax",
+                100.0,
+                "2020-01-01",
+                "2020-12-31",
+            ),
+            record(
+                "RevenueFromContractWithCustomerExcludingAssessedTax",
+                110.0,
+                "2021-01-01",
+                "2021-12-31",
+            ),
             record("SalesRevenueNet", 200.0, "2020-01-01", "2020-12-31"),
             record("SalesRevenueNet", 220.0, "2021-01-01", "2021-12-31"),
         ]
@@ -310,7 +323,9 @@ class SemanticValidationTests(unittest.TestCase):
             )
         self.assertEqual(result["status"], "selected")
         self.assertEqual(result["strategy"], "sales_revenue_net")
-        self.assertEqual(result["semantic_diagnostic"], "primary_statement_revenue_confirmed")
+        self.assertEqual(
+            result["semantic_diagnostic"], "primary_statement_revenue_confirmed"
+        )
 
     def test_revenue_without_primary_statement_evidence_is_ambiguous(self) -> None:
         records = [
@@ -330,8 +345,18 @@ class SemanticValidationTests(unittest.TestCase):
 
     def test_component_revenue_label_is_rejected(self) -> None:
         records = [
-            record("RevenueFromContractWithCustomerExcludingAssessedTax", 100.0, "2020-01-01", "2020-12-31"),
-            record("RevenueFromContractWithCustomerExcludingAssessedTax", 110.0, "2021-01-01", "2021-12-31"),
+            record(
+                "RevenueFromContractWithCustomerExcludingAssessedTax",
+                100.0,
+                "2020-01-01",
+                "2020-12-31",
+            ),
+            record(
+                "RevenueFromContractWithCustomerExcludingAssessedTax",
+                110.0,
+                "2021-01-01",
+                "2021-12-31",
+            ),
         ]
         with tempfile.TemporaryDirectory() as temporary_directory:
             evidence = Path(temporary_directory)
@@ -374,7 +399,7 @@ class SemanticValidationTests(unittest.TestCase):
             statement = statement_path.read_text()
             statement = statement.replace(
                 "</table>",
-                "<tr><td><a onclick=\"top.Show.showAR(this, "
+                '<tr><td><a onclick="top.Show.showAR(this, '
                 "'defref_us-gaap_Revenues', window);\">Total revenues</a></td>"
                 "<td>110</td><td>100</td></tr></table>",
             )
@@ -423,7 +448,9 @@ class SemanticValidationTests(unittest.TestCase):
             result["reason"], "component_revenue_without_absent_complement"
         )
 
-    def test_net_sales_is_rejected_when_financial_services_revenue_is_separate(self) -> None:
+    def test_net_sales_is_rejected_when_financial_services_revenue_is_separate(
+        self,
+    ) -> None:
         records = [
             record("SalesRevenueNet", 100.0, "2020-01-01", "2020-12-31"),
             record("SalesRevenueNet", 110.0, "2021-01-01", "2021-12-31"),
@@ -441,7 +468,7 @@ class SemanticValidationTests(unittest.TestCase):
             statement_path.write_text(
                 statement_path.read_text().replace(
                     "</table>",
-                    "<tr><td><a onclick=\"top.Show.showAR(this, "
+                    '<tr><td><a onclick="top.Show.showAR(this, '
                     "'defref_us-gaap_FinancialServicesRevenue', window);\">"
                     "Financial services revenue</a></td><td>22</td><td>20</td>"
                     "</tr></table>",
@@ -480,7 +507,7 @@ class SemanticValidationTests(unittest.TestCase):
             statement_path.write_text(
                 statement_path.read_text().replace(
                     "</table>",
-                    "<tr><td><a onclick=\"top.Show.showAR(this, "
+                    '<tr><td><a onclick="top.Show.showAR(this, '
                     "'defref_us-gaap_LicensesRevenue', window);\">"
                     "Licensing revenue</a></td><td>2</td><td>1</td>"
                     "</tr></table>",
@@ -501,7 +528,9 @@ class SemanticValidationTests(unittest.TestCase):
             "component_revenue_without_confirmed_consolidated_total",
         )
 
-    def test_revenue_row_is_confirmed_when_it_equals_presented_component_sum(self) -> None:
+    def test_revenue_row_is_confirmed_when_it_equals_presented_component_sum(
+        self,
+    ) -> None:
         records = [
             record("Revenues", 100.0, "2020-01-01", "2020-12-31"),
             record("Revenues", 110.0, "2021-01-01", "2021-12-31"),
@@ -519,10 +548,10 @@ class SemanticValidationTests(unittest.TestCase):
             statement_path.write_text(
                 statement_path.read_text().replace(
                     "</table>",
-                    "<tr><td><a onclick=\"top.Show.showAR(this, "
+                    '<tr><td><a onclick="top.Show.showAR(this, '
                     "'defref_us-gaap_SalesRevenueGoodsNet', window);\">"
                     "Product revenue</a></td><td>66</td><td>60</td></tr>"
-                    "<tr><td><a onclick=\"top.Show.showAR(this, "
+                    '<tr><td><a onclick="top.Show.showAR(this, '
                     "'defref_us-gaap_SalesRevenueServicesNet', window);\">"
                     "Service revenue</a></td><td>44</td><td>40</td>"
                     "</tr></table>",
@@ -558,9 +587,9 @@ class SemanticValidationTests(unittest.TestCase):
             statement_path.write_text(
                 statement_path.read_text().replace(
                     "</table>",
-                    "<tr><td><a onclick=\"top.Show.showAR(this, "
+                    '<tr><td><a onclick="top.Show.showAR(this, '
                     "'defref_us-gaap_RevenueFromContractWithCustomerIncludingAssessedTax', "
-                    "window);\">Revenues including excise taxes</a></td>"
+                    'window);">Revenues including excise taxes</a></td>'
                     "<td>330</td><td>300</td></tr></table>",
                 )
             )
@@ -593,7 +622,7 @@ class SemanticValidationTests(unittest.TestCase):
             statement = statement_path.read_text()
             statement = statement.replace(
                 "</table>",
-                "<tr><td><a onclick=\"top.Show.showAR(this, "
+                '<tr><td><a onclick="top.Show.showAR(this, '
                 "'defref_example_TotalRevenue', window);\">Total revenues</a></td>"
                 "<td>110</td><td>100</td></tr></table>",
             )
@@ -628,7 +657,7 @@ class SemanticValidationTests(unittest.TestCase):
             statement = statement_path.read_text()
             statement = statement.replace(
                 "</table>",
-                "<tr><td><a onclick=\"top.Show.showAR(this, "
+                '<tr><td><a onclick="top.Show.showAR(this, '
                 "'defref_example_TotalRevenue', window);\">Total revenues</a></td>"
                 "<td>110</td><td>—</td></tr></table>",
             )
@@ -732,6 +761,59 @@ class SemanticValidationTests(unittest.TestCase):
 
 
 class TargetAndContinuityTests(unittest.TestCase):
+    def test_frozen_target_metadata_and_definition(self) -> None:
+        frozen = CONFIG["frozen_target"]
+        self.assertEqual(frozen["id"], "target_candidate_v2_pit_b")
+        self.assertEqual(frozen["version"], "1.0.0")
+        self.assertEqual(frozen["status"], "frozen")
+        self.assertEqual(
+            frozen["freeze_scope"], "target_definition_and_pit_b_extraction"
+        )
+        self.assertFalse(frozen["dataset_frozen"])
+        self.assertFalse(frozen["feature_pipeline_frozen"])
+        self.assertFalse(frozen["research_universe_frozen"])
+        self.assertEqual(
+            frozen["signals"],
+            {
+                "D1_roa_drop_pp": 0.03,
+                "D2_ocf_assets_drop_pp": 0.03,
+                "D3_current_ratio_relative_drop": 0.20,
+                "D4_liabilities_assets_increase_pp": 0.10,
+                "D5_revenues_relative_drop": 0.10,
+            },
+        )
+        self.assertEqual(frozen["target"]["positive_if_score_at_least"], 3)
+        self.assertEqual(
+            frozen["mandatory_robustness_checks"]["score_thresholds"], [2, 4]
+        )
+        self.assertEqual(
+            frozen["mandatory_robustness_checks"]["operating_performance"],
+            {
+                "definition": "max(D1_roa, D2_ocf_assets)",
+                "alternative_score_positive_if_at_least": 3,
+            },
+        )
+        self.assertEqual(
+            frozen["unavailable_target_policy"],
+            {
+                "missing": "NA",
+                "ambiguous": "NA",
+                "hard_exclude": "NA",
+                "map_unavailable_to_zero": False,
+            },
+        )
+
+    def test_frozen_scope_excludes_test_from_target_freeze_gate(self) -> None:
+        self.assertEqual(SCOPE.feature_year_start, 2011)
+        self.assertEqual(SCOPE.feature_year_end, 2022)
+        self.assertEqual(SCOPE.validation_years, frozenset({2021, 2022}))
+        self.assertEqual(CONFIG["scope"]["test_years"], [2023, 2024])
+        self.assertFalse(
+            CONFIG["frozen_target"]["development_audit"][
+                "feature_years_2023_2024_used_in_pit_b_freeze_gate"
+            ]
+        )
+
     def test_target_candidate_v2_thresholds_are_unchanged(self) -> None:
         base = {
             "assets": 100.0,
@@ -752,15 +834,44 @@ class TargetAndContinuityTests(unittest.TestCase):
             "operating_cash_flow": 6.9,
         }
         signals, score, target, _, _ = target_candidate_v2(base, nxt, minimum=0.0)
-        self.assertEqual(signals, {
-            "D1_roa": 1,
-            "D2_ocf_assets": 1,
-            "D3_current_ratio": 1,
-            "D4_liabilities_assets": 1,
-            "D5_revenues": 1,
-        })
+        self.assertEqual(
+            signals,
+            {
+                "D1_roa": 1,
+                "D2_ocf_assets": 1,
+                "D3_current_ratio": 1,
+                "D4_liabilities_assets": 1,
+                "D5_revenues": 1,
+            },
+        )
         self.assertEqual(score, 5)
         self.assertEqual(target, 1)
+
+    def test_frozen_main_target_requires_three_signals(self) -> None:
+        base = {
+            "assets": 100.0,
+            "liabilities": 40.0,
+            "current_assets": 100.0,
+            "current_liabilities": 50.0,
+            "revenues": 100.0,
+            "net_income": 10.0,
+            "operating_cash_flow": 10.0,
+        }
+        two_signal_next = {
+            **base,
+            "net_income": 6.9,
+            "operating_cash_flow": 6.9,
+        }
+        three_signal_next = {**two_signal_next, "revenues": 89.0}
+
+        _, score_two, target_two, _, _ = target_candidate_v2(
+            base, two_signal_next, minimum=0.0
+        )
+        _, score_three, target_three, _, _ = target_candidate_v2(
+            base, three_signal_next, minimum=0.0
+        )
+        self.assertEqual((score_two, target_two), (2, 0))
+        self.assertEqual((score_three, target_three), (3, 1))
 
     def test_material_multi_primitive_rebasing_is_ambiguous(self) -> None:
         base = {
@@ -773,14 +884,18 @@ class TargetAndContinuityTests(unittest.TestCase):
             "operating_cash_flow": 8.0,
         }
         revised = {**base, "assets": 300.0, "liabilities": 180.0, "revenues": 400.0}
-        ambiguous, components = continuity_ambiguity_screen(base, revised, CONFIG, minimum=1.0)
+        ambiguous, components = continuity_ambiguity_screen(
+            base, revised, CONFIG, minimum=1.0
+        )
         self.assertTrue(ambiguous)
         self.assertEqual(components, ["assets", "liabilities", "revenues"])
 
     def test_two_material_components_are_now_conservatively_ambiguous(self) -> None:
         base = {"assets": 100.0, "liabilities": 50.0}
         revised = {"assets": 300.0, "liabilities": 180.0}
-        ambiguous, components = continuity_ambiguity_screen(base, revised, CONFIG, minimum=1.0)
+        ambiguous, components = continuity_ambiguity_screen(
+            base, revised, CONFIG, minimum=1.0
+        )
         self.assertTrue(ambiguous)
         self.assertEqual(components, ["assets", "liabilities"])
 
