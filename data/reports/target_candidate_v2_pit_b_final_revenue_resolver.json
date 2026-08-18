@@ -1,0 +1,91 @@
+{
+  "scope": {
+    "feature_year_min": 2011,
+    "feature_year_max": 2022,
+    "feature_years_2023_2024_used": false,
+    "models_trained": false,
+    "target_definition_changed": false,
+    "target_frozen": false
+  },
+  "rows": 26917,
+  "target_status": {
+    "available": 14122,
+    "missing": 4221,
+    "ambiguous": 8453,
+    "hard_exclude": 121
+  },
+  "coverage": [
+    {
+      "split": "all",
+      "rows": 26917,
+      "D5_available": 14987,
+      "D5_coverage": 0.5567856744808114,
+      "target_available": 14122,
+      "target_coverage": 0.5246498495374671
+    },
+    {
+      "split": "train",
+      "rows": 20656,
+      "D5_available": 11896,
+      "D5_coverage": 0.5759101471727344,
+      "target_available": 11145,
+      "target_coverage": 0.5395526723470179
+    },
+    {
+      "split": "validation",
+      "rows": 6261,
+      "D5_available": 3091,
+      "D5_coverage": 0.4936911036575627,
+      "target_available": 2977,
+      "target_coverage": 0.4754831496566044
+    }
+  ],
+  "class_balance": [
+    {
+      "split": "all",
+      "available": 14122,
+      "positive": 2167,
+      "positive_rate": 0.15344852003965445
+    },
+    {
+      "split": "train",
+      "available": 11145,
+      "positive": 1561,
+      "positive_rate": 0.14006280843427546
+    },
+    {
+      "split": "validation",
+      "available": 2977,
+      "positive": 606,
+      "positive_rate": 0.20356063150822976
+    }
+  ],
+  "revenues": {
+    "selected": 15491,
+    "missing": 3111,
+    "ambiguous": 7896,
+    "not_evaluated": 419
+  },
+  "manual_review": {
+    "rows": 60,
+    "template_path": "data/reports/target_candidate_v2_pit_b_final_revenue_resolver_manual_review_template.csv",
+    "years": [
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022
+    ],
+    "sectors": 4,
+    "selected_tags": 6,
+    "historical_concept_pairs": 7,
+    "status": "pending_direct_statement_review"
+  }
+}
