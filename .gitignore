@@ -36,3 +36,18 @@ data/reports/target_candidate_v2_pit_b_revision_deltas.csv
 data/reports/target_candidate_v2_pit_b_revenue_evidence_downloads.json
 data/reports/target_candidate_v2_pit_b_revenue_review_downloads.json
 data/reports/target_candidate_v2_pit_b_sec_shards.json
+
+# Reproducible target-audit detail outputs. Canonical freeze reports and
+# manually reviewed evidence remain versioned separately.
+data/reports/target_candidate_v2_component_robustness_changed_observations.csv
+data/reports/target_candidate_v2_missing_target_observations.csv
+data/reports/target_candidate_v2_pit_b_audit.json
+data/reports/target_candidate_v2_pit_b_audit.md
+data/reports/target_candidate_v2_pit_b_manual_review.md
+data/reports/target_candidate_v2_pit_b_manual_review_sample.csv
+data/reports/target_candidate_v2_pit_b_revision_outliers.csv
+data/reports/target_candidate_v2_pit_b_freeze_gate*
+data/reports/target_candidate_v2_pit_b_final_revenue_resolver_*.csv
+
+# LEGACY is intentionally not ignored. Archived source and documentation must
+# be committed once so that moving them does not turn them into local-only files.
