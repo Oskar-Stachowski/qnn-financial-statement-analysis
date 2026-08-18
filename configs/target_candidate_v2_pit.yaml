@@ -3,8 +3,11 @@ scope:
   feature_year_end: 2022
   train_end_year: 2020
   validation_years: [2021, 2022]
-  # Held out throughout target selection and freeze-gate work. Build and
-  # evaluate these feature years only after the target definition is frozen.
+  # Reserved for later model evaluation and excluded from the PIT-B
+  # reconstruction, freeze-gate, and revenue-resolver audit. Preliminary
+  # pre-PIT descriptive analyses had already summarized these years, so they
+  # are not a fully unseen holdout for target-definition diagnostics. Do not
+  # build or evaluate PIT-B test labels before the formal target freeze.
   test_years: [2023, 2024]
   allowed_forms: [10-K]
   annual_period_min_days: 300
