@@ -1,0 +1,109 @@
+historical_universe:
+  id: research_universe_pit
+  version: 1.1.0
+  status: frozen
+  approved_on: "2026-08-18"
+  frozen_on: "2026-08-18"
+  freeze_scope: historical_filing_first_membership_and_economic_entity_resolution
+  x_t_frozen: false
+  feature_availability_frozen: false
+  preprocessing_frozen: false
+  models_frozen: false
+  hyperparameters_frozen: false
+  unit: cik_fiscal_year
+  anchor: earliest_original_10k
+  membership_timestamp: anchor_accepted_at
+  membership_timestamp_fallback: filed_date_with_date_precision_only
+  current_ticker_required: false
+  current_exchange_required: false
+  target_definition: target_candidate_v2_pit_b_v1.0.0_frozen_unchanged
+
+scope:
+  feature_year_start: 2011
+  development_feature_year_end: 2022
+  mechanically_applied_test_years: [2023, 2024]
+  filing_index_year_start: 2011
+  filing_index_year_end: 2025
+
+forms:
+  qualifying_original: [10-K]
+  non_qualifying: [10-K/A, 10-KT, 10-KT/A]
+
+classification:
+  missing_sic_status: ambiguous
+  conflicting_sic_status: ambiguous
+  use_future_sic_as_fallback: false
+  use_current_entity_metadata: false
+  use_company_name_as_exclusion_rule: false
+  filer_status_filter: false
+
+entity_history:
+  primary_identifier: cik
+  ticker_and_exchange_are_membership_filters: false
+  retain_pre_delisting_pre_acquisition_years: true
+  successor_cik_is_separate_registrant: true
+  infer_cik_links_from_names_or_tickers: false
+  joint_filing_policy: one_eligible_row_per_economic_statement_scope_fail_closed
+  registrant_role_values:
+    - single_filer_xbrl_registrant
+    - single_filer_non_xbrl_registrant
+    - joint_primary_registrant
+    - joint_co_registrant
+  joint_statement_scope_policy:
+    representative_selection: primary_10k_statement_scope_evidence_only
+    retain_distinct_full_annual_statement_scopes: true
+    shared_statement_scope: retain_one_representative_and_link_other_ciks
+    unresolved_statement_owner: ambiguous
+    duplicate_reason: duplicate_registrant_same_statement_scope
+    nominal_nonoperating_coissuer_reason: nominal_nonoperating_finance_coissuer
+  economic_group_policy:
+    changes_membership: false
+    overrides_temporal_split: false
+    uses:
+      - dependence_diagnostics
+      - clustered_inference
+      - leakage_diagnostics
+      - optional_group_aware_cross_validation
+  confirmed_delisting_source_available: false
+  inactivity_audit_proxy: absent_current_ticker_and_no_later_original_10k
+
+sector_policy:
+  version: historical_sic_policy_v1.0.0
+  excluded_ranges:
+    - [6000, 6799, financials_insurance_real_estate_excluded]
+    - [4900, 4999, utilities_excluded]
+  technology_ranges:
+    - [3570, 3579]
+    - [3660, 3669]
+    - [3670, 3679]
+    - [3810, 3819]
+    - [3820, 3829]
+    - [7370, 7379]
+  technology_description_keywords:
+    - computer
+    - software
+    - semiconductor
+    - data processing
+    - electronic
+    - communications equipment
+  retail_range: [5200, 5999]
+  industrials_manufacturing_range: [2000, 3999]
+  extended_candidate_ranges:
+    - [8000, 8099, extended_candidate_healthcare_services]
+    - [7000, 8999, extended_candidate_services]
+    - [5000, 5199, extended_candidate_wholesale_trade]
+    - [1500, 1799, extended_candidate_construction]
+    - [4000, 4899, extended_candidate_transportation_communications]
+    - [1000, 1499, extended_candidate_energy_mining]
+
+status_policy:
+  membership: [eligible, excluded, ambiguous]
+  x_t_before_feature_pipeline: not_built
+  target_for_recovered_observation: not_computed
+  missing_t1_removes_membership: false
+
+sources:
+  full_index_url: https://www.sec.gov/Archives/edgar/full-index/{year}/QTR{quarter}/master.idx
+  fsds_url: https://www.sec.gov/files/dera/data/financial-statement-data-sets/{year}q{quarter}.zip
+  sec_archive_url: https://www.sec.gov/Archives/{filename}
+  sic_list_url: https://www.sec.gov/search-filings/standard-industrial-classification-sic-code-list

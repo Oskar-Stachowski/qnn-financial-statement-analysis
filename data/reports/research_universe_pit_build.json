@@ -1,0 +1,71 @@
+{
+  "created_at": "2026-08-18T13:12:19.895397+02:00",
+  "policy_id": "research_universe_pit",
+  "policy_version": "1.1.0",
+  "policy_sha256": "ba3c3e89016f3754e2838e9d535264855dd010666a4178145eb3e9e36115a63d",
+  "source_manifest_sha256": "5ff04b1734615972daaa5064feb40d13c4e7cae62e6498b4383fcbcfd091fe5d",
+  "registrant_resolution_detail_sha256": "116dc2db66765d0a849576f98883c668d45814f756533639cae260193d0826f3",
+  "canonical_output_includes": [
+    "eligible",
+    "excluded",
+    "ambiguous"
+  ],
+  "consumer_rule": "use only membership_status == eligible",
+  "feature_status": "not_built",
+  "target_definition": "target_candidate_v2_pit_b_v1.0.0_frozen_unchanged",
+  "target_artifact_sha256_verified": "473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff",
+  "target_artifact_sha256_verified_after_build": "473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff",
+  "membership_before_entity_resolution": {
+    "eligible": 65067,
+    "excluded": 36499,
+    "ambiguous": 1533
+  },
+  "membership_after_entity_resolution": {
+    "eligible": 64901,
+    "excluded": 36659,
+    "ambiguous": 1539
+  },
+  "entity_resolution": {
+    "audit_rows_matched": 4534,
+    "audit_action_counts": {
+      "retain_one_economic_entity": 4368,
+      "exclude_duplicate_registrant_row": 132,
+      "exclude_nonoperating_issuer": 28,
+      "mark_ambiguous": 6
+    },
+    "duplicate_rows_removed_from_eligible": 132,
+    "nonoperating_coissuers_removed_from_eligible": 28,
+    "rows_changed_to_ambiguous": 6,
+    "eligible_statement_scope_year_duplicates": 0,
+    "eligible_distinct_statement_scope_years": 64901,
+    "eligible_distinct_representative_ciks": 9798,
+    "eligible_distinct_economic_groups": 9739
+  },
+  "master_rows": 112935,
+  "fsds_rows": 88625,
+  "header_fallback_rows": 26339,
+  "company_year_anchors": 103099,
+  "unique_ciks": 16088,
+  "eligible_company_years": 64901,
+  "eligible_unique_ciks": 9798,
+  "ambiguous_company_years": 1539,
+  "excluded_company_years": 36659,
+  "unresolved_filing_rows": 7671,
+  "outputs": {
+    "canonical": {
+      "path": "data/processed/research_universe_pit.csv",
+      "bytes": 111619454,
+      "sha256": "a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182"
+    },
+    "candidates": {
+      "path": "data/interim/research_universe_pit_candidates.csv",
+      "bytes": 111619454,
+      "sha256": "a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182"
+    },
+    "unresolved": {
+      "path": "data/interim/research_universe_pit_unresolved.csv",
+      "bytes": 4404026,
+      "sha256": "20171fb53aa82e9fac327cd02ea1a90e88cb313befb78dafa2ffe35f712ce3b2"
+    }
+  }
+}

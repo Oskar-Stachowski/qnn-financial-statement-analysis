@@ -1,0 +1,162 @@
+manifest_schema_version: 1
+
+historical_research_universe:
+  id: research_universe_pit
+  version: 1.1.0
+  status: frozen
+  frozen_on: "2026-08-18"
+  freeze_scope: historical_filing_first_membership_and_economic_entity_resolution
+  unit: cik_fiscal_year
+  x_t_frozen: false
+  feature_availability_frozen: false
+  preprocessing_frozen: false
+  models_frozen: false
+  hyperparameters_frozen: false
+
+final_membership:
+  company_year_anchors_all_statuses: 103099
+  unique_ciks_all_statuses: 16088
+  eligible: 64901
+  excluded: 36659
+  ambiguous: 1539
+  eligible_unique_representative_ciks: 9798
+  eligible_distinct_statement_scope_years: 64901
+  eligible_distinct_economic_groups: 9739
+  eligible_duplicate_statement_scope_year_rows: 0
+  eligible_nonrepresentative_rows: 0
+  eligible_joint_filing_company_years: 610
+
+entity_resolution:
+  duplicate_registrant_rows_excluded: 132
+  duplicate_reason: duplicate_registrant_same_statement_scope
+  nominal_nonoperating_coissuers_excluded: 28
+  nonoperating_reason: nominal_nonoperating_finance_coissuer
+  unresolved_rows_changed_to_ambiguous: 6
+  representative_selection_uses_target_features_or_models: false
+
+scope:
+  feature_years: [2011, 2024]
+  development_train_validation_feature_years: [2011, 2022]
+  mechanically_applied_test_feature_years: [2023, 2024]
+  test_used_to_choose_universe_policy: false
+  qualifying_original_forms: [10-K]
+  non_qualifying_forms: [10-K/A, 10-KT, 10-KT/A]
+
+target_invariant:
+  id: target_candidate_v2_pit_b
+  version: 1.0.0
+  status: frozen_unchanged
+  path: data/interim/target_candidate_v2_pit_b.csv
+  sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+  changed_by_universe_freeze: false
+
+git:
+  basis_commit_before_historical_universe_implementation: 5976a0d07620cbafd6a29439f1ee0e3730827e73
+  freeze_commit: commit_containing_this_manifest
+  component_commits:
+    historical_universe_implementation: commit_containing_this_manifest
+    registrant_role_resolution: commit_containing_this_manifest
+    final_universe_audit: commit_containing_this_manifest
+    formal_freeze: commit_containing_this_manifest
+
+runtime_observed_at_freeze:
+  python: 3.13.13
+  numpy: 2.4.4
+  pandas: 3.0.3
+  pyyaml: 6.0.3
+  requests: 2.34.1
+
+versioned_components:
+  configuration:
+    - path: configs/research_universe_pit.yaml
+      sha256: ba3c3e89016f3754e2838e9d535264855dd010666a4178145eb3e9e36115a63d
+    - path: configs/research_universe_registrant_role_manual.yaml
+      sha256: b987ca6669c587e8b8988a8511a41af2f019636104b3b7c2cacd7c200714bdfc
+    - path: requirements.txt
+      sha256: 8b29fed7bed21fa1202c6f692e040474ab536dc67aef0e3fc63897ecf28a3327
+
+  construction_code:
+    - path: src/data/20_download_historical_universe_sources.py
+      sha256: e4d7df7443afd213692a937009858c38421be63f5b2a65c7d278bdf10deba404
+    - path: src/data/21_build_historical_research_universe.py
+      sha256: ed9d92a934f9df3d47b53f09073ba8ddc2ca613bed2092e4938f89fdb98c4410
+    - path: src/data/historical_research_universe.py
+      sha256: c7d0c29f9a3f8daf864f63e39cbb7556c8d5bd2c52f2128fe2d21d99e8607609
+    - path: src/data/registrant_role_resolution.py
+      sha256: 262e589c7e07bfeba1bb15075f17af3f7ce3317e37cb59f6c0993115cd419089
+
+  audit_and_evidence_code:
+    - path: src/data/22_audit_historical_research_universe.py
+      sha256: 220e26c4f985d2c1bbde8a06bb7a0794394d522cb9b7127e4a0cc3d16717014d
+    - path: src/data/23_download_registrant_role_evidence.py
+      sha256: 701c99f3573bd2f2bdbe6a5b997e9d0adc6e4fe101b50d84b6b2b72e1d276693
+    - path: src/data/24_audit_registrant_role_economic_entity.py
+      sha256: 0d426e0b8999226a78ddce5822544feb2819ce08d27d1eb3aa0fda9a24d6475d
+
+  policy_tests:
+    - path: tests/test_historical_research_universe.py
+      sha256: 027f1d8b9cdb83a0fd788db5e62f8ea8abaf7267de5fb81d0f0f157cce78a94d
+    - path: tests/test_registrant_role_economic_entity.py
+      sha256: 972bdebafbe6bb7adfbafa89a9666e80e200f2a5966cc3a13585fa4c5604e64c
+
+  methodological_record:
+    - path: docs/05_1_historical_research_universe_pit_frozen_specification.md
+      sha256: b57ef230b0ee8a6d72c6640ace5d5a60bc7aa726efda77f91ea59d8ddd3c5b79
+
+  source_and_build_evidence:
+    - path: data/reports/research_universe_pit_sources.json
+      sha256: 5ff04b1734615972daaa5064feb40d13c4e7cae62e6498b4383fcbcfd091fe5d
+    - path: data/reports/research_universe_pit_build.json
+      sha256: 9f6be93f042923a8778dfd1d4441dde03ae70a2011f73c644aca919c7adb02fc
+
+  final_audit_evidence:
+    - path: data/reports/research_universe_pit_audit.json
+      sha256: 7e95340655cef75b30edf43c7157def5f6e9cf680c3d75e8525ba52850076757
+    - path: data/reports/research_universe_pit_audit.md
+      sha256: b59a79360a20c8be9cf47fa671f460016e8eacb64a91becab18e02ecf96b66fe
+    - path: data/reports/research_universe_pit_by_year.csv
+      sha256: f129b4e57eabbc7b522a27bb27da41d4db950a352102be29fee0e181b2c0efd5
+    - path: data/reports/research_universe_pit_by_sector_year.csv
+      sha256: e6058299befebbcbe289b95587ff43fdb88f8aab73c10f46c201e9ce28c4cc26
+    - path: data/reports/research_universe_pit_by_sic.csv
+      sha256: 4c5198abf8708bdbecaeb87ef2d80b719d50269d20d1b67c5ec62c5dcd532b8b
+
+  pre_resolution_registrant_evidence:
+    - path: data/reports/research_universe_pit_registrant_evidence.json
+      sha256: 413c60f3a94855a80018c8714e8ca3929efb211f0dd0286a367e9b0d5035acae
+    - path: data/reports/research_universe_pit_joint_accessions.csv
+      sha256: 43d893b3fba089e4239c8ac40968c1b1d39f8c44772c7e2deb60eb7331e700a5
+    - path: data/reports/research_universe_pit_registrant_role_detail.csv
+      sha256: 116dc2db66765d0a849576f98883c668d45814f756533639cae260193d0826f3
+    - path: data/reports/research_universe_pit_registrant_role_audit.json
+      sha256: 53bfca591c438db932a671a50b952e63a9608551056488574f737157e4dd32ec
+    - path: data/reports/research_universe_pit_registrant_role_audit.md
+      sha256: a66825e6b3c01083e18c5d9f8364e4debdbe167740d6e3ea00a4eb3da9a0f53b
+
+non_versioned_reproduction_checks:
+  - path: data/processed/research_universe_pit.csv
+    tracked_in_git: false
+    data_rows: 103099
+    bytes: 111619454
+    sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+    frozen: true
+  - path: data/interim/research_universe_pit_candidates.csv
+    tracked_in_git: false
+    data_rows: 103099
+    bytes: 111619454
+    sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+    frozen: true
+  - path: data/interim/research_universe_pit_unresolved.csv
+    tracked_in_git: false
+    data_rows: 7671
+    bytes: 4404026
+    sha256: 20171fb53aa82e9fac327cd02ea1a90e88cb313befb78dafa2ffe35f712ce3b2
+    frozen: true
+
+notes:
+  - The manifest intentionally does not hash itself, its containing commit, or the freeze-lock test to avoid self-reference.
+  - The containing Git commit is the authoritative repository version of the universe freeze package.
+  - Raw SEC caches remain excluded from Git; source manifests and accession-level provenance are versioned.
+  - Rows excluded or made ambiguous by economic-entity resolution remain in the canonical artifact for auditability.
+  - Any change to a frozen component requires a new universe version and a new full audit.
+  - X_t, feature availability, preprocessing, models, and hyperparameters are explicitly outside this freeze.

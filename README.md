@@ -39,15 +39,27 @@ The reproducible SEC preprocessing flow is organized as numbered steps in
 
 The active pipeline currently covers:
 
-- SEC acquisition, universe construction, Company Facts parsing, and quality
-  checks in steps `01`-`07`;
+- the original current-snapshot SEC acquisition, preliminary universe,
+  Company Facts parsing, and quality checks in steps `01`-`07`;
 - point-in-time target B construction and audit in steps `09`-`19`;
+- filing-first historical point-in-time research-universe construction,
+  registrant-role/economic-entity resolution, and audit in steps `20`-`24`;
 - the frozen `target_candidate_v2_pit_b` v1.0.0 specification in
-  `docs/04_9_target_candidate_v2_pit_b_frozen_specification.md`.
+  `docs/04_9_target_candidate_v2_pit_b_frozen_specification.md`;
+- the frozen historical research-universe v1.1.0 specification and manifest in
+  `docs/05_1_historical_research_universe_pit_frozen_specification.md` and
+  `configs/research_universe_pit_freeze_manifest.yaml`.
 
-The final point-in-time feature dataset `X_t` has not been frozen yet. The
-research universe and feature pipeline must be corrected for temporal and
-survivorship bias before model training.
+The historical research universe now uses original SEC 10-K filings and the
+historical SIC attached to the same accession. Membership, `X_t` availability,
+and target availability are separate statuses. Universe policy v1.1.0 retains
+at most one eligible representative per consolidated annual statement scope,
+preserves linked co-registrants as provenance, and assigns related scopes an
+`economic_group_id` without changing the temporal split. It has passed its
+implementation audit and is formally frozen as historical-universe version
+v1.1.0. The final point-in-time feature
+dataset `X_t` has not been built or frozen yet, and no model training should be
+performed until its temporal/data-vintage controls are implemented and audited.
 
 The earlier pre-PIT modeling-dataset implementation and superseded audit
 helpers are retained under `LEGACY/` for historical reference. They are not

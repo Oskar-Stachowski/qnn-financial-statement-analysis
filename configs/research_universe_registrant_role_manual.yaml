@@ -1,0 +1,387 @@
+audit_id: research_universe_registrant_role_economic_entity_v1
+purpose: >-
+  Manual resolutions for joint-filing statement scopes that cannot be mapped
+  safely from XBRL entity identifiers alone. Decisions use the primary
+  original 10-K only and never target values or model results. This includes
+  every non-XBRL joint accession and XBRL edge cases where one package contains
+  multiple separately audited annual statement suites.
+
+non_xbrl_joint_accessions:
+  - accession: 0000843762-11-000014
+    scope_status: resolved
+    statement_entity_ciks: ["0001213336"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      The only primary audited suite is RBS Global, Inc. and subsidiaries;
+      the filing expressly says separate guarantor-subsidiary statements are
+      not presented. Rexnord LLC is therefore not a second statement scope.
+
+  - accession: 0001104659-11-035633
+    scope_status: resolved
+    statement_entity_ciks: ["0001489096", "0001497822"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      Item 8 contains separate audited consolidated balance sheets, operations,
+      equity and cash-flow statements for Thermon Group Holdings, Inc. and
+      Thermon Holding Corp.
+
+  - accession: 0001144326-11-000003
+    scope_status: resolved
+    statement_entity_ciks: ["0001166365"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      The audited annual suite is headed Paperweight Development Corp. and
+      Subsidiaries. No separate Appleton Papers annual suite is presented.
+
+  - accession: 0001144326-13-000002
+    scope_status: resolved
+    statement_entity_ciks: ["0001144326", "0001166365"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      The filing explicitly states that separate financial statements are
+      presented for Paperweight Development Corp. and Appleton Papers, the
+      debt issuer; both complete annual suites are included.
+
+  - accession: 0001193125-11-071241
+    scope_status: resolved
+    statement_entity_ciks: ["0000017927", "0000809248"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      Separate audit opinions and complete annual consolidated statements are
+      presented for Carrols Corporation and Carrols Restaurant Group, Inc.
+
+  - accession: 0001193125-11-324609
+    scope_status: resolved
+    statement_entity_ciks: ["0000101462"]
+    scope_reason: manual_primary_statement_review_with_longitudinal_cik_check
+    evidence: >-
+      One audited suite is presented for United Refining Company and
+      subsidiaries. CIK 0000101462 is confirmed as that statement entity by
+      the XBRL entity identifier in each 2012-2016 successor accession; the
+      other twelve cover-page CIKs have no distinct annual statement suites.
+
+  - accession: 0001193125-11-345802
+    scope_status: resolved
+    statement_entity_ciks: ["0001064090"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      The audited consolidated suite is Pretium Packaging, LLC and
+      subsidiaries. Pretium Finance, Inc. has no separate annual suite.
+
+  - accession: 0001193125-12-144077
+    scope_status: resolved
+    statement_entity_ciks: ["0001053439", "0001323274"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      Item 8 indexes and presents separate audit opinions and complete annual
+      statement suites for Stanadyne Corporation and Stanadyne Holdings, Inc.
+
+  - accession: 0001193125-13-113356
+    scope_status: resolved
+    statement_entity_ciks: ["0001566011"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      The primary annual suite is PBF Holding Company LLC and subsidiaries;
+      PBF Finance Corp has no distinct annual statement suite.
+
+  - accession: 0001193125-14-099457
+    scope_status: ambiguous
+    statement_entity_ciks: []
+    scope_reason: statements_belong_to_nonregistrant_parent
+    evidence: >-
+      The primary audited consolidated suite belongs to Trinseo S.A. and
+      subsidiaries, not to either registrant (Trinseo Materials Operating
+      S.C.A. or Trinseo Materials Finance, Inc.). Neither eligible CIK can be
+      treated as an independent company-year without an additional documented
+      economic-scope rule.
+
+  - accession: 0001368775-11-000003
+    scope_status: resolved
+    statement_entity_ciks: ["0001368775"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      The only audited consolidated suite is Burlington Coat Factory
+      Investments Holdings, Inc. and subsidiaries; Warehouse Corp is included
+      in that scope and has no separate annual suite.
+
+  - accession: 0001445305-12-000134
+    scope_status: resolved
+    statement_entity_ciks: ["0001067701"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      The only audited annual suite is United Rentals, Inc.; United Rentals
+      (North America), Inc. uses reduced disclosure and has no separate suite.
+
+  - accession: 0001487730-17-000040
+    scope_status: resolved
+    statement_entity_ciks: ["0001487730", "0001592706"]
+    scope_reason: manual_primary_statement_review
+    evidence: >-
+      Separate audit opinions and complete annual consolidated statements are
+      presented for Spectrum Brands Holdings, Inc. and SB/RH Holdings, LLC.
+
+xbrl_joint_accessions:
+  # Carnival Corporation and Carnival plc form one dual-listed-company economic
+  # scope. Every reviewed filing expressly states that separate statements for
+  # the two legal registrants are not presented. The stable XBRL statement CIK
+  # across the series is 0000815097.
+  - accession: 0001193125-12-028375
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; separate registrant statements are expressly not presented.
+  - accession: 0001193125-13-027239
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0001193125-14-025514
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0000815097-15-000007
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0000815097-16-000030
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0000815097-17-000001
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0000815097-18-000005
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0000815097-19-000004
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0000815097-20-000003
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0000815097-21-000027
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: Filing expressly says separate Carnival Corporation and Carnival plc financial statements have not been presented.
+  - accession: 0000815097-22-000009
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0000815097-23-000012
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: One Carnival Corporation & plc consolidated suite; stable XBRL statement CIK 0000815097.
+  - accession: 0000815097-24-000011
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: Filing expressly says separate Carnival Corporation and Carnival plc financial statements have not been presented.
+  - accession: 0000815097-25-000007
+    scope_status: resolved
+    statement_entity_ciks: ["0000815097"]
+    scope_reason: manual_dual_listed_company_single_statement_scope
+    evidence: Filing expressly says separate Carnival Corporation and Carnival plc financial statements have not been presented.
+
+  # The primary statement name collides with a second cover-page CIK, but the
+  # longitudinal XBRL identifier resolves the United Refining scope to 101462.
+  - accession: 0001193125-12-475519
+    scope_status: resolved
+    statement_entity_ciks: ["0000101462"]
+    scope_reason: manual_name_collision_resolved_by_xbrl_series
+    evidence: XBRL entity CIK is 0000101462; one United Refining Company consolidated suite.
+  - accession: 0001193125-13-454420
+    scope_status: resolved
+    statement_entity_ciks: ["0000101462"]
+    scope_reason: manual_name_collision_resolved_by_xbrl_series
+    evidence: XBRL entity CIK is 0000101462; one United Refining Company consolidated suite.
+  - accession: 0001193125-14-421650
+    scope_status: resolved
+    statement_entity_ciks: ["0000101462"]
+    scope_reason: manual_name_collision_resolved_by_xbrl_series
+    evidence: XBRL entity CIK is 0000101462; one United Refining Company consolidated suite.
+  - accession: 0001193125-15-385265
+    scope_status: resolved
+    statement_entity_ciks: ["0000101462"]
+    scope_reason: manual_name_collision_resolved_by_xbrl_series
+    evidence: XBRL entity CIK is 0000101462; the other twelve CIKs have no distinct annual suites.
+  - accession: 0001193125-16-779734
+    scope_status: resolved
+    statement_entity_ciks: ["0000101462"]
+    scope_reason: manual_name_collision_resolved_by_xbrl_series
+    evidence: XBRL entity CIK is 0000101462; the other twelve CIKs have no distinct annual suites.
+
+  # Both Noble legal registrants have their own audited annual suites; the
+  # normalized names collide only because one master-index name adds a country.
+  - accession: 0000950123-12-003293
+    scope_status: resolved
+    statement_entity_ciks: ["0001169055", "0001458891"]
+    scope_reason: manual_name_collision_two_distinct_statement_scopes
+    evidence: Two audit opinions and two complete annual suites are presented, one for each Noble CIK.
+  - accession: 0001193125-13-074360
+    scope_status: resolved
+    statement_entity_ciks: ["0001169055", "0001458891"]
+    scope_reason: manual_name_collision_two_distinct_statement_scopes
+    evidence: Two audit opinions and two complete annual suites are presented, one for each Noble CIK.
+
+xbrl_joint_accession_series:
+  - series_id: ferrellgas_four_separate_statement_scopes
+    accessions:
+      - 0001104659-11-053149
+      - 0000922358-12-000009
+      - 0000922358-13-000014
+      - 0000922358-14-000011
+      - 0000922358-15-000016
+      - 0000922358-16-000032
+      - 0000922358-17-000009
+      - 0000922358-18-000010
+      - 0001558370-19-008908
+      - 0001558370-20-011490
+      - 0001558370-21-013178
+      - 0001558370-22-014733
+      - 0001558370-23-016157
+      - 0001558370-24-013059
+    scope_status: resolved
+    statement_entity_ciks: ["0000922358", "0000922359", "0000922360", "0001012493"]
+    non_operating_issuer_ciks: ["0000922360", "0001012493"]
+    scope_reason: manual_four_distinct_audited_statement_scopes
+    evidence: >-
+      Item 8 presents a separate auditor opinion and full annual balance-sheet,
+      operations/equity and cash-flow suite for Ferrellgas Partners, L.P.,
+      Ferrellgas, L.P., Ferrellgas Partners Finance Corp. and Ferrellgas Finance
+      Corp. The two finance corporations are expressly described as nominal
+      debt co-issuers with no substantive operations and are separately flagged
+      for issuer-substance exclusion.
+
+  - series_id: virgin_media_three_separate_statement_scopes
+    accessions: [0001193125-12-069962, 0001270400-13-000015]
+    scope_status: resolved
+    statement_entity_ciks: ["0001270400", "0001322791", "0001481423"]
+    scope_reason: manual_three_distinct_audited_statement_scopes
+    evidence: >-
+      The financial-statement index and Item 8 contain separate complete annual
+      statements for Virgin Media Inc., Virgin Media Investment Holdings Ltd
+      and Virgin Media Investments Ltd.
+
+  - series_id: sungard_three_separate_statement_scopes
+    accessions:
+      - 0001193125-12-119924
+      - 0001193125-13-116111
+      - 0001193125-14-110603
+      - 0001193125-15-104907
+    scope_status: resolved
+    statement_entity_ciks: ["0000789388", "0001337272", "0001337274"]
+    scope_reason: manual_three_distinct_audited_statement_scopes
+    evidence: >-
+      Item 8 separately indexes and presents audited annual balance sheets,
+      comprehensive-income, equity and cash-flow statements for SunGard Capital
+      Corp., SunGard Capital Corp. II and SunGard Data Systems Inc.
+
+  - series_id: denver_parent_venoco_two_separate_statement_scopes
+    accessions:
+      - 0001047469-14-003617
+      - 0001047469-15-003553
+      - 0001558370-16-006276
+    scope_status: resolved
+    statement_entity_ciks: ["0001313024", "0001588242"]
+    scope_reason: manual_two_distinct_audited_statement_scopes
+    evidence: >-
+      The filing states that separate financial statements are included and
+      presents separate audit opinions and complete annual suites for Denver
+      Parent Corporation and Venoco, Inc.
+
+  - series_id: revlon_two_separate_statement_scopes
+    accessions: [0000887921-22-000004, 0000887921-23-000006]
+    scope_status: resolved
+    statement_entity_ciks: ["0000887921", "0000890547"]
+    scope_reason: manual_two_distinct_audited_statement_scopes
+    evidence: >-
+      Separate audit opinions and full consolidated annual statements are
+      presented for Revlon, Inc. and Revlon Consumer Products Corporation.
+
+  - series_id: noble_2020_two_separate_statement_scopes
+    accessions: [0001628280-21-004612]
+    scope_status: resolved
+    statement_entity_ciks: ["0001169055", "0001458891"]
+    scope_reason: manual_two_distinct_audited_statement_scopes
+    evidence: >-
+      Separate audit opinions and full annual suites are presented for Noble
+      Corporation and Noble Finance Company for fiscal 2020.
+
+  - series_id: alphabet_google_two_separate_statement_scopes
+    accessions: [0001652044-16-000012]
+    scope_status: resolved
+    statement_entity_ciks: ["0001288776", "0001652044"]
+    scope_reason: manual_two_distinct_audited_statement_scopes
+    evidence: >-
+      Item 8 separately indexes, audits and presents complete annual statements
+      for Alphabet Inc. and Google Inc.; the combined filing and substantial
+      overlap do not turn the two statement suites into one suite.
+
+  - series_id: saic_leidos_two_separate_statement_scopes
+    accessions:
+      - 0001193125-12-133697
+      - 0001193125-13-127240
+      - 0001336920-14-000007
+      - 0001336920-15-000010
+    scope_status: resolved
+    statement_entity_ciks: ["0000353394", "0001336920"]
+    scope_reason: manual_two_distinct_audited_statement_scopes
+    evidence: >-
+      Separate audit opinions and complete annual consolidated statements are
+      presented for the parent and operating registrant under the historical
+      SAIC and later Leidos names.
+
+  - series_id: tpc_two_separate_statement_scopes
+    accessions: [0001193125-12-107168]
+    scope_status: resolved
+    statement_entity_ciks: ["0001452217", "0001517687"]
+    scope_reason: manual_two_distinct_audited_statement_scopes
+    evidence: >-
+      Separate audit opinions and complete annual consolidated statements are
+      presented for TPC Group Inc. and TPC Group LLC.
+
+  - series_id: pbf_energy_two_separate_statement_scopes
+    accessions:
+      - 0001534504-19-000012
+      - 0001534504-20-000030
+      - 0001534504-21-000008
+      - 0001534504-22-000007
+      - 0001534504-23-000011
+    scope_status: resolved
+    statement_entity_ciks: ["0001534504", "0001645026"]
+    scope_reason: manual_two_distinct_audited_statement_scopes
+    evidence: >-
+      Separate audit opinions and complete consolidated annual statements are
+      presented for PBF Energy Inc. and PBF Energy Company LLC.
+
+  - series_id: broadcom_two_separate_statement_scopes
+    accessions: [0001649338-17-000158]
+    scope_status: resolved
+    statement_entity_ciks: ["0001649338", "0001649345"]
+    scope_reason: manual_two_distinct_audited_statement_scopes
+    evidence: >-
+      Item 8 separately indexes, audits and presents complete annual statements
+      for Broadcom Limited and Broadcom Cayman L.P.
+
+  - series_id: sinclair_two_separate_statement_scopes
+    accessions: [0001971213-24-000011, 0001971213-25-000012]
+    scope_status: resolved
+    statement_entity_ciks: ["0000912752", "0001971213"]
+    scope_reason: manual_two_distinct_audited_statement_scopes
+    evidence: >-
+      Item 8 has separate statement indexes, audit opinions and complete annual
+      suites for Sinclair, Inc. and Sinclair Broadcast Group, LLC.

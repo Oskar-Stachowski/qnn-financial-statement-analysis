@@ -25,12 +25,25 @@ data/raw/companyfacts/
 # Reproducible SEC filing caches (FilingSummary, rendered statements, reviews)
 data/raw/sec_filings/
 
+# Filing-first historical-universe SEC caches (master index, SUB-only extracts,
+# and bounded same-accession submission headers). Rebuilt from the manifest.
+data/raw/sec_historical_universe/
+
 # Large generated SEC facts table
 data/interim/sec_facts_long.csv
 
 # Large generated row-level PIT-B artifacts
 data/interim/target_candidate_v2_pit_b.csv
 data/reports/target_candidate_v2_pit_b_revision_deltas.csv
+
+# Historical-universe row-level staging outputs. The canonical processed panel
+# and compact audit/manifest remain visible for intentional versioning.
+data/interim/research_universe_pit_candidates.csv
+data/interim/research_universe_pit_unresolved.csv
+
+# Canonical historical-universe panel (~69 MB). Reproducible from SEC caches;
+# its exact hash and row count are recorded in the versioned build manifest.
+data/processed/research_universe_pit.csv
 
 # Download-run manifests; summary results remain in the audit reports
 data/reports/target_candidate_v2_pit_b_revenue_evidence_downloads.json

@@ -1,0 +1,1114 @@
+{
+  "created_at": "2026-08-18T11:12:54.049413+02:00",
+  "policy_id": "research_universe_pit",
+  "policy_version": "1.0.0",
+  "source_strategy": {
+    "filing_census": "SEC quarterly master.idx",
+    "historical_metadata": "quarterly FSDS sub.txt",
+    "fsds_transfer": "HTTP Range extraction of sub.txt only",
+    "header_fallback": "bounded leading bytes of same EDGAR accession"
+  },
+  "master_10k_rows": 112935,
+  "master_unique_accessions": 108865,
+  "fsds_10k_rows": 88625,
+  "fallback_headers_required": 22269,
+  "fallback_headers_complete": 22269,
+  "fallback_headers_complete_bytes": 26831136,
+  "fallback_headers_aggregate_sha256": "2f440808ff279bd2c37b89e5a0bb3ff091398eaf644813fd1f9ea67824192bb4",
+  "fallback_headers_downloaded_this_run": 0,
+  "fallback_headers_cached_this_run": 22269,
+  "http_requests_this_run": 1,
+  "http_bytes_received_this_run": 109052,
+  "sources": [
+    {
+      "kind": "official_sec_sic_code_list",
+      "period": "static_reference",
+      "url": "https://www.sec.gov/search-filings/standard-industrial-classification-sic-code-list",
+      "path": "data/raw/sec_historical_universe/sec_sic_code_list.html",
+      "status": "downloaded",
+      "bytes": 109052,
+      "sha256": "fc5afcf6a5a6e4d6eab8dcdf0acd8e968f8a142140aa941ae845904fcaefa673"
+    },
+    {
+      "kind": "master_index",
+      "period": "2011q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2011/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2011q1_master.idx",
+      "status": "cached",
+      "bytes": 27382190,
+      "sha256": "4bf3488d26de4f0482d49f01c5634fd1dec4d5cdda1056d2d8431dbddddfe494"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2011q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2011q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2011q1_sub.txt",
+      "status": "cached",
+      "bytes": 423999,
+      "sha256": "33f0850a4fffb63b03df229a99f5503957c8eb2aad15d47bcbfe7301aef886a4"
+    },
+    {
+      "kind": "master_index",
+      "period": "2011q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2011/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2011q2_master.idx",
+      "status": "cached",
+      "bytes": 23416942,
+      "sha256": "51cb6dfbc281f7b29c4b9103a73927a3a578cb72416be85b50d8bda3410d510e"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2011q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2011q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2011q2_sub.txt",
+      "status": "cached",
+      "bytes": 484745,
+      "sha256": "c05cdbcc9c8c64b0b4241853849853ff37db7d010e0f8a5705138fdd04195757"
+    },
+    {
+      "kind": "master_index",
+      "period": "2011q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2011/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2011q3_master.idx",
+      "status": "cached",
+      "bytes": 18542045,
+      "sha256": "aa15f0842cf12f924d2145e3f5bbd47389ca1f23872994e30c452d9b96dbbd81"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2011q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2011q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2011q3_sub.txt",
+      "status": "cached",
+      "bytes": 2079953,
+      "sha256": "83587bc530b2914d5c57050cd119a8245fc57af2226039e5389c680b8aae3904"
+    },
+    {
+      "kind": "master_index",
+      "period": "2011q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2011/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2011q4_master.idx",
+      "status": "cached",
+      "bytes": 18082223,
+      "sha256": "b0770b3c3da2405f0cf60fe166539c3478b540481233446261627bf7e1b93ea6"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2011q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2011q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2011q4_sub.txt",
+      "status": "cached",
+      "bytes": 2221533,
+      "sha256": "ccc2cee85b387a34bf6c9676e57338b49ceff0989190177afdf04bef99ed1ef4"
+    },
+    {
+      "kind": "master_index",
+      "period": "2012q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2012/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2012q1_master.idx",
+      "status": "cached",
+      "bytes": 27560118,
+      "sha256": "8a1f6ad4f077b0fb8ce12b37684e101a4ff73605a0e57ec7f5eac69c57077d3c"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2012q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2012q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2012q1_sub.txt",
+      "status": "cached",
+      "bytes": 2167964,
+      "sha256": "a3a94933ef43530c79bbbe2ca72cb6a71eabc636cce1e620d7bcab6b583ae80b"
+    },
+    {
+      "kind": "master_index",
+      "period": "2012q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2012/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2012q2_master.idx",
+      "status": "cached",
+      "bytes": 22012517,
+      "sha256": "7c0a90be3962d2a8738e8cb2be2d57011643cab4e6aefde11d0f9b95f1b1be25"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2012q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2012q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2012q2_sub.txt",
+      "status": "cached",
+      "bytes": 2710289,
+      "sha256": "29f82317b229dae0ce9baaed5304e77a3deec76a8d45d4475d32275dd639c150"
+    },
+    {
+      "kind": "master_index",
+      "period": "2012q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2012/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2012q3_master.idx",
+      "status": "cached",
+      "bytes": 18219312,
+      "sha256": "f8e8e89e630c30c57fc508c09be74bcee25c08c75d2a20e95541bc38942b03a9"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2012q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2012q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2012q3_sub.txt",
+      "status": "cached",
+      "bytes": 2347242,
+      "sha256": "a753d08a4d5b653c5bac547c9f56acc2edd3b6baf46140e867b07262419a66b4"
+    },
+    {
+      "kind": "master_index",
+      "period": "2012q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2012/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2012q4_master.idx",
+      "status": "cached",
+      "bytes": 19165922,
+      "sha256": "f5bfecafcf388b3c1ac63fbc6a6f50fe24c293a42e1ed2b1b1cf6adc97e9f9b0"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2012q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2012q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2012q4_sub.txt",
+      "status": "cached",
+      "bytes": 2384403,
+      "sha256": "567bb775763cf14cf760cb84d00583ea99b8d6d16ab98b42ac249063ad8a030e"
+    },
+    {
+      "kind": "master_index",
+      "period": "2013q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2013/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2013q1_master.idx",
+      "status": "cached",
+      "bytes": 27054635,
+      "sha256": "a6b4af79f5b52a1ee99da7a42a171ec976892d3f1de4702d2bce27d27a328c3b"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2013q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2013q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2013q1_sub.txt",
+      "status": "cached",
+      "bytes": 1984484,
+      "sha256": "5a1d9320036891c2876f2fbdc85a0738ec99f4a2b96e8846736cb221932363ee"
+    },
+    {
+      "kind": "master_index",
+      "period": "2013q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2013/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2013q2_master.idx",
+      "status": "cached",
+      "bytes": 22944920,
+      "sha256": "d01cf867160120c34b0494b612b1158c65849b87175b43e551e221fce3429153"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2013q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2013q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2013q2_sub.txt",
+      "status": "cached",
+      "bytes": 2653236,
+      "sha256": "22d2f2eec2ce1f49846551aeee5e89c488a735d97d1ed7086cb979841662b726"
+    },
+    {
+      "kind": "master_index",
+      "period": "2013q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2013/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2013q3_master.idx",
+      "status": "cached",
+      "bytes": 19111699,
+      "sha256": "b328266cea18d9d511ab0f9900d275885f92c1b945cb9866c6a105c92a13c7b2"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2013q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2013q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2013q3_sub.txt",
+      "status": "cached",
+      "bytes": 2374404,
+      "sha256": "0017acd67096a63688657069976a7475a90833d1fd09fb61122c4d5ac2bfa21d"
+    },
+    {
+      "kind": "master_index",
+      "period": "2013q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2013/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2013q4_master.idx",
+      "status": "cached",
+      "bytes": 19347000,
+      "sha256": "6c433478e790d990508373f13ab0e9cae413d801ea8b706fc9707a25142aa91d"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2013q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2013q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2013q4_sub.txt",
+      "status": "cached",
+      "bytes": 2295795,
+      "sha256": "3dde25c8a18dae9dce47f2b22ccc18bf55a218b8387542e316c00e777b4a8494"
+    },
+    {
+      "kind": "master_index",
+      "period": "2014q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2014/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2014q1_master.idx",
+      "status": "cached",
+      "bytes": 27772803,
+      "sha256": "c2b7e77c5a94caf676b059cae5c7859e42777e2c7067d126e0db92eb2198e984"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2014q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2014q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2014q1_sub.txt",
+      "status": "cached",
+      "bytes": 2087723,
+      "sha256": "063bc8bcb95c8c048996de3a7a0c1d5d847f10c383302d30a12275b5982b2470"
+    },
+    {
+      "kind": "master_index",
+      "period": "2014q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2014/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2014q2_master.idx",
+      "status": "cached",
+      "bytes": 22458075,
+      "sha256": "a36944629dc5d9a2c5b4f03c31966213b9b1cf80563c1728c59252507bf16da8"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2014q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2014q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2014q2_sub.txt",
+      "status": "cached",
+      "bytes": 2531177,
+      "sha256": "99a58367caeeb56cd25fdece138a8a35f92fa1c7b93be16839a8fc7ffba25ddf"
+    },
+    {
+      "kind": "master_index",
+      "period": "2014q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2014/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2014q3_master.idx",
+      "status": "cached",
+      "bytes": 19032594,
+      "sha256": "a4012a442583dc7da381a1f5ac84e30283956300de92ea222667e72ed669f80a"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2014q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2014q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2014q3_sub.txt",
+      "status": "cached",
+      "bytes": 2299713,
+      "sha256": "308d821d986d4cce7560f7eaa000d1674d8db81177e7c5b4a9f6558aad7403bf"
+    },
+    {
+      "kind": "master_index",
+      "period": "2014q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2014/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2014q4_master.idx",
+      "status": "cached",
+      "bytes": 19656261,
+      "sha256": "d9d464d227b410b10cc98e8d8ea45db44a804ac5ba23e717a293fbee5beef2cc"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2014q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2014q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2014q4_sub.txt",
+      "status": "cached",
+      "bytes": 2276504,
+      "sha256": "2c76be9929211c848a4af78f7b42287ca4ceb9a0c677af790af08edb3cf8026b"
+    },
+    {
+      "kind": "master_index",
+      "period": "2015q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2015/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2015q1_master.idx",
+      "status": "cached",
+      "bytes": 28429665,
+      "sha256": "7f7241c79f7ff1ed6666fcc222bc3bb5ceaccba3dd6614cd1cf961ff4d03c81c"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2015q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2015q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2015q1_sub.txt",
+      "status": "cached",
+      "bytes": 2058044,
+      "sha256": "7b8e9135ed3e757a37bf110b70d10f005960fc5e2d216f72b337939fdfd1ecb9"
+    },
+    {
+      "kind": "master_index",
+      "period": "2015q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2015/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2015q2_master.idx",
+      "status": "cached",
+      "bytes": 23150075,
+      "sha256": "89b520fa914241b41b6b8a9ddafe52e1c01de629f47334a08dbf43ef2fb5806a"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2015q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2015q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2015q2_sub.txt",
+      "status": "cached",
+      "bytes": 2434139,
+      "sha256": "9990e273bf8d48445851593c0850faf2558363cfb9208135d411ec847a577f99"
+    },
+    {
+      "kind": "master_index",
+      "period": "2015q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2015/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2015q3_master.idx",
+      "status": "cached",
+      "bytes": 18529383,
+      "sha256": "e76a3b004b2d1573d7b3b3269ade1474697ebbc2b453791ca4e5d8a49ceec877"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2015q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2015q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2015q3_sub.txt",
+      "status": "cached",
+      "bytes": 2202475,
+      "sha256": "2ef2b1ec2faa34ffe49dc84b12fee5c4518e71a5c4fec2dd83abac6aeb8bfc30"
+    },
+    {
+      "kind": "master_index",
+      "period": "2015q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2015/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2015q4_master.idx",
+      "status": "cached",
+      "bytes": 18795111,
+      "sha256": "e0e4604664595a4a17208a803515d87de16c8c66c8c90bb6401c5ce2ff779ac2"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2015q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2015q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2015q4_sub.txt",
+      "status": "cached",
+      "bytes": 2134274,
+      "sha256": "90e4189b40223c2c651baf4b4991b37c6f6b7da0fe8419da464f4ddf01035348"
+    },
+    {
+      "kind": "master_index",
+      "period": "2016q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2016/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2016q1_master.idx",
+      "status": "cached",
+      "bytes": 27657710,
+      "sha256": "43ccb67ed90ad4229b02b99094846a291c6d1672eb25a1ee89dcb0636c2a264e"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2016q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2016q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2016q1_sub.txt",
+      "status": "cached",
+      "bytes": 1918003,
+      "sha256": "1daa8c5589b4b7679ec9610e5e24dba0f582b2d186143186de91118dccbf9d9d"
+    },
+    {
+      "kind": "master_index",
+      "period": "2016q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2016/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2016q2_master.idx",
+      "status": "cached",
+      "bytes": 21795882,
+      "sha256": "a9be706b290c7c4737b0c0c739dda7933980ba9f91449bdebb6e4a273350892b"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2016q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2016q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2016q2_sub.txt",
+      "status": "cached",
+      "bytes": 2228033,
+      "sha256": "9aaea8777cea2996e6d14f595ba1351407c0cc643441b6956753fe719afab030"
+    },
+    {
+      "kind": "master_index",
+      "period": "2016q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2016/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2016q3_master.idx",
+      "status": "cached",
+      "bytes": 18086318,
+      "sha256": "575483595aa7290024301c3b2bc7df9fd3cb12ece671b1884e1f8bd39719b84d"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2016q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2016q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2016q3_sub.txt",
+      "status": "cached",
+      "bytes": 1809862,
+      "sha256": "c86c01f45c87ada5ad13cd75c76803600814dc531136eec866104a9f1d3a8230"
+    },
+    {
+      "kind": "master_index",
+      "period": "2016q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2016/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2016q4_master.idx",
+      "status": "cached",
+      "bytes": 17753421,
+      "sha256": "a736e5fcdfed73d3c847196c4cb32080ce4ecddf69e5f6c1e237fa15b04ab73d"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2016q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2016q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2016q4_sub.txt",
+      "status": "cached",
+      "bytes": 1989011,
+      "sha256": "e55a1274bba3e07cb27a7da02dd932c0743bf12dd2b2eaaf97ca01f97c7f9917"
+    },
+    {
+      "kind": "master_index",
+      "period": "2017q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2017/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2017q1_master.idx",
+      "status": "cached",
+      "bytes": 27826698,
+      "sha256": "31b2a16408517c5b4ca4dc8f32b18efe4ddb2add5933c1c89fca3ed0587e2812"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2017q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2017q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2017q1_sub.txt",
+      "status": "cached",
+      "bytes": 1843921,
+      "sha256": "d1b217900f73851082796fd62a63715cc1d693d03db92cc1611feaf43532aed3"
+    },
+    {
+      "kind": "master_index",
+      "period": "2017q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2017/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2017q2_master.idx",
+      "status": "cached",
+      "bytes": 22935391,
+      "sha256": "0475fc410b7ded7d3b2732df9bec92fc12db7acb0d1a5783f000ecb8f8bb383f"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2017q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2017q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2017q2_sub.txt",
+      "status": "cached",
+      "bytes": 2147127,
+      "sha256": "bf1c8c8f0f125ab32da8deabcbd8a306e57d358e215ec2f2c26f198a7baa6149"
+    },
+    {
+      "kind": "master_index",
+      "period": "2017q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2017/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2017q3_master.idx",
+      "status": "cached",
+      "bytes": 17926174,
+      "sha256": "82a8689817b58cf8a6bacefc3711c294817c2797e3c879372ed60090c3b7a10d"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2017q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2017q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2017q3_sub.txt",
+      "status": "cached",
+      "bytes": 1923811,
+      "sha256": "4462a6f224dfa9ae0e511144dd6efe001e73ca302ee17558457c2a649a608cd9"
+    },
+    {
+      "kind": "master_index",
+      "period": "2017q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2017/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2017q4_master.idx",
+      "status": "cached",
+      "bytes": 18271966,
+      "sha256": "c4ac8c2a1f34071f3ab5b119ef0d27199b51865757b538d9c36295e03389ef57"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2017q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2017q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2017q4_sub.txt",
+      "status": "cached",
+      "bytes": 1935807,
+      "sha256": "b8064f8f01634d47728a433bf99d89e90512a083df4453a5b891cd76dddd7ad9"
+    },
+    {
+      "kind": "master_index",
+      "period": "2018q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2018/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2018q1_master.idx",
+      "status": "cached",
+      "bytes": 27208905,
+      "sha256": "1c76fb8af1fd81935e02db2771849fa4bfb49e7344c5f2fadf8c1659fda24bb9"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2018q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2018q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2018q1_sub.txt",
+      "status": "cached",
+      "bytes": 1763807,
+      "sha256": "329d23d92b3494fe264bc69aec420b7cd0c08f89f535d8cbac7295023af81802"
+    },
+    {
+      "kind": "master_index",
+      "period": "2018q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2018/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2018q2_master.idx",
+      "status": "cached",
+      "bytes": 22254945,
+      "sha256": "71ad669c60bdefa3a469f653fcf96ca1ea6fdf870ac239b82458edeaa861703a"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2018q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2018q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2018q2_sub.txt",
+      "status": "cached",
+      "bytes": 2227373,
+      "sha256": "4bf1e2d91223545ed9a5943b95b669f25858471bf55811af9452328664c387b8"
+    },
+    {
+      "kind": "master_index",
+      "period": "2018q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2018/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2018q3_master.idx",
+      "status": "cached",
+      "bytes": 17550854,
+      "sha256": "3bcb79ffbd2a42b26d7ed666a7b3491b9f01265925a41908bf57f952cefd9b00"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2018q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2018q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2018q3_sub.txt",
+      "status": "cached",
+      "bytes": 1921225,
+      "sha256": "b5772c99e120fb0b4434bdbb86e9851dbed16d71571237eb178d61183c1f17c1"
+    },
+    {
+      "kind": "master_index",
+      "period": "2018q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2018/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2018q4_master.idx",
+      "status": "cached",
+      "bytes": 17974263,
+      "sha256": "bfca373df69a64d3a2a5c408c1d01238f408b5a4aa33b2cac542d1af2f69ff69"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2018q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2018q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2018q4_sub.txt",
+      "status": "cached",
+      "bytes": 1903806,
+      "sha256": "e8e34077f4b41ac2bdaf46c91e64cd0823c35876e1677ad33a7ba3838e4adf79"
+    },
+    {
+      "kind": "master_index",
+      "period": "2019q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2019/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2019q1_master.idx",
+      "status": "cached",
+      "bytes": 26574570,
+      "sha256": "51ed5a547ab5bf3375307a80cac243d9f8e3c18ca0e0863134ac82c77b729760"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2019q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2019q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2019q1_sub.txt",
+      "status": "cached",
+      "bytes": 1687340,
+      "sha256": "e2f0b40fd5332234da2973e491a33256421b381c80d7a2ab7a9c32cf22d2f0b6"
+    },
+    {
+      "kind": "master_index",
+      "period": "2019q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2019/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2019q2_master.idx",
+      "status": "cached",
+      "bytes": 22345086,
+      "sha256": "43abca946a5710cb16799e752b7744c1e0b2f705c3903739e3468e22f67decd6"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2019q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2019q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2019q2_sub.txt",
+      "status": "cached",
+      "bytes": 2158184,
+      "sha256": "3fea567e8736663630a36bac19360f18d2ceab4552772415238580940c10d72b"
+    },
+    {
+      "kind": "master_index",
+      "period": "2019q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2019/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2019q3_master.idx",
+      "status": "cached",
+      "bytes": 17871794,
+      "sha256": "da852e19e0f697aeddb7c7f2ab81e6db0dc8f662b3fad7a30e3c713b316375d3"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2019q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2019q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2019q3_sub.txt",
+      "status": "cached",
+      "bytes": 1873789,
+      "sha256": "26df85890173d218cb8b75e54abbb428fcd6943a0111287e49b1296335a78c05"
+    },
+    {
+      "kind": "master_index",
+      "period": "2019q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2019/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2019q4_master.idx",
+      "status": "cached",
+      "bytes": 18610711,
+      "sha256": "1cd516d4d8afa9755ac268107f38d471286aeeb1c2257f714a159490313e64b1"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2019q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2019q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2019q4_sub.txt",
+      "status": "cached",
+      "bytes": 1855913,
+      "sha256": "44ed47fb2a8d3d9a9b1a49282be237290456aaf08859b80c91d9ab3a295f3221"
+    },
+    {
+      "kind": "master_index",
+      "period": "2020q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2020/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2020q1_master.idx",
+      "status": "cached",
+      "bytes": 29145406,
+      "sha256": "1973b14fc2c8e437db28e733d23148e3b1ac7c07fe1fe5c81009031d8cde02fd"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2020q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2020q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2020q1_sub.txt",
+      "status": "cached",
+      "bytes": 1739253,
+      "sha256": "5c89b0295c403903909c34b9293d9a050f589b0722585f3ee6d6035b16501950"
+    },
+    {
+      "kind": "master_index",
+      "period": "2020q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2020/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2020q2_master.idx",
+      "status": "cached",
+      "bytes": 23900498,
+      "sha256": "5d5526866206e5a515a05eced8a871853ee6a06cd45c9ca8e5676e1e25a4555e"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2020q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2020q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2020q2_sub.txt",
+      "status": "cached",
+      "bytes": 1970962,
+      "sha256": "98b22c06bef3114129df460122f6bb0dc8dc87e217ab393144e56c815f28b09f"
+    },
+    {
+      "kind": "master_index",
+      "period": "2020q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2020/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2020q3_master.idx",
+      "status": "cached",
+      "bytes": 20020413,
+      "sha256": "9abd019518757e7bdd145d056f41f627a973509c5a8e4d275bef91f4d7f60b0a"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2020q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2020q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2020q3_sub.txt",
+      "status": "cached",
+      "bytes": 1888760,
+      "sha256": "bc21f3f831c75fb4f63952f01dc8823c9537db6a44da020aa8a167e663b325fa"
+    },
+    {
+      "kind": "master_index",
+      "period": "2020q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2020/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2020q4_master.idx",
+      "status": "cached",
+      "bytes": 21045722,
+      "sha256": "c764de83dd6c95984fbcebaa8993a7ca9d11816063c67151c28f4031eaccefb4"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2020q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2020q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2020q4_sub.txt",
+      "status": "cached",
+      "bytes": 1874158,
+      "sha256": "aa21f0660fed6c25f42ffe6a7b1cb62098bd56f51327aade4884e059a19b5d25"
+    },
+    {
+      "kind": "master_index",
+      "period": "2021q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2021/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2021q1_master.idx",
+      "status": "cached",
+      "bytes": 32441111,
+      "sha256": "54c3877f050abca82f2b4089d04522e526f5d44ac3d22032bd6b41edc155014f"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2021q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2021q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2021q1_sub.txt",
+      "status": "cached",
+      "bytes": 1889669,
+      "sha256": "1b6f2e9bf6d98b959c3150c4c86ccab3f5cfcc640bb66760fe23a44cc5972bfe"
+    },
+    {
+      "kind": "master_index",
+      "period": "2021q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2021/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2021q2_master.idx",
+      "status": "cached",
+      "bytes": 26982343,
+      "sha256": "aae702889ecdcc4a4f474598e744ac36e821ff9658647b28fa884c025386d88b"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2021q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2021q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2021q2_sub.txt",
+      "status": "cached",
+      "bytes": 2354653,
+      "sha256": "a4abc698a8fe17e33b4e068c0d1d882d4bda80b2c5087a22d0568cf44db1fc9e"
+    },
+    {
+      "kind": "master_index",
+      "period": "2021q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2021/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2021q3_master.idx",
+      "status": "cached",
+      "bytes": 22799812,
+      "sha256": "d6870311f1e1ff549a29fa048e9bad5567b941993fad4dada1cfd42136ef146c"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2021q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2021q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2021q3_sub.txt",
+      "status": "cached",
+      "bytes": 2268169,
+      "sha256": "325ebe0b81ae8f58b8838d978964e69c27b29f31a02a6b980af61a3db7236e3c"
+    },
+    {
+      "kind": "master_index",
+      "period": "2021q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2021/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2021q4_master.idx",
+      "status": "cached",
+      "bytes": 23329020,
+      "sha256": "734aa0ceb3912b69624a1a0efe9de22509eb1e5bbb3bb8ee565cfe8bc940c994"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2021q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2021q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2021q4_sub.txt",
+      "status": "cached",
+      "bytes": 2284171,
+      "sha256": "2e3112ec4f8e291d091dd20bd584b600f452094930c6838e1e6a582a8c3829ff"
+    },
+    {
+      "kind": "master_index",
+      "period": "2022q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2022/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2022q1_master.idx",
+      "status": "cached",
+      "bytes": 32053656,
+      "sha256": "f3d36ee4a845ce2331890de949733572a08a13e63694b74ab3ef8744a27e7df5"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2022q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2022q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2022q1_sub.txt",
+      "status": "cached",
+      "bytes": 2181982,
+      "sha256": "0602161b3e42b93f5497f8c877392237aa6f6f267548813d2c4fb8447af06d2e"
+    },
+    {
+      "kind": "master_index",
+      "period": "2022q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2022/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2022q2_master.idx",
+      "status": "cached",
+      "bytes": 26323025,
+      "sha256": "52d7b1a7033a1e90a100568eab6990bc0545a0ecb0bf6a0ee81ca5c62aa03543"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2022q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2022q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2022q2_sub.txt",
+      "status": "cached",
+      "bytes": 2583817,
+      "sha256": "7626538fe45445bd0b926ef15bed0289fccbf97cd8b7a1201688c5c932ab7d90"
+    },
+    {
+      "kind": "master_index",
+      "period": "2022q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2022/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2022q3_master.idx",
+      "status": "cached",
+      "bytes": 21594281,
+      "sha256": "31de58972a46ba20f65592787a6dc83c30b7faa1d64fa166b49a70e59904c612"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2022q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2022q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2022q3_sub.txt",
+      "status": "cached",
+      "bytes": 2257608,
+      "sha256": "bfca5d4af747b5daf2d0c87549460847cf0a80a7dfb180ce7c71028459b0e435"
+    },
+    {
+      "kind": "master_index",
+      "period": "2022q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2022/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2022q4_master.idx",
+      "status": "cached",
+      "bytes": 20890799,
+      "sha256": "30bc8ebde79fa2bd68be8a630db67ce43949e1de0dad400a574fb48a67611c45"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2022q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2022q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2022q4_sub.txt",
+      "status": "cached",
+      "bytes": 2200127,
+      "sha256": "2329a871f5fc1211f9efbf5de7510f97e852b438b19c67971162a11e162fce84"
+    },
+    {
+      "kind": "master_index",
+      "period": "2023q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2023/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2023q1_master.idx",
+      "status": "cached",
+      "bytes": 31342294,
+      "sha256": "ac27f20d337fe26f9f87c1fe4f8be707bfc5d2464214182345f448e51312618a"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2023q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2023q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2023q1_sub.txt",
+      "status": "cached",
+      "bytes": 2037632,
+      "sha256": "cdac82dc4c6cb6ed63b37eabbab49f5c7b7f58e3e0f7495d0280684adbce510c"
+    },
+    {
+      "kind": "master_index",
+      "period": "2023q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2023/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2023q2_master.idx",
+      "status": "cached",
+      "bytes": 27689667,
+      "sha256": "34a413738374023e583d10e3983810254c172cf59c54fe1b7913aa410268ad16"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2023q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2023q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2023q2_sub.txt",
+      "status": "cached",
+      "bytes": 2446972,
+      "sha256": "ce8187645c8e6ddcd0fe3acad5a9c4f04df1937dd18b40679f02a5a8a2354a54"
+    },
+    {
+      "kind": "master_index",
+      "period": "2023q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2023/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2023q3_master.idx",
+      "status": "cached",
+      "bytes": 22826663,
+      "sha256": "314366b52da2d41f6c1752ce5f67983851c5248f5a5100e9d0219ddebbc5ec18"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2023q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2023q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2023q3_sub.txt",
+      "status": "cached",
+      "bytes": 2132903,
+      "sha256": "39018609468f6ff75d3f79c29bec8b8af266d77b53b9adade9a45365b6909021"
+    },
+    {
+      "kind": "master_index",
+      "period": "2023q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2023/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2023q4_master.idx",
+      "status": "cached",
+      "bytes": 22708716,
+      "sha256": "4d85070d14cee7fc49cf84dd4b19dcdd2d5b3a51b2f44db18472d0d6bb9dc1b5"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2023q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2023q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2023q4_sub.txt",
+      "status": "cached",
+      "bytes": 2077229,
+      "sha256": "b8124ce83f4f595f0de85c955716a9d683f5e843f8ff14ce2633b2d0079412b7"
+    },
+    {
+      "kind": "master_index",
+      "period": "2024q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2024/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2024q1_master.idx",
+      "status": "cached",
+      "bytes": 33207145,
+      "sha256": "3825cce088018abdbef386bc4f4e3b0c6dc2644061d53f131642b3b4ee450ed9"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2024q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2024q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2024q1_sub.txt",
+      "status": "cached",
+      "bytes": 1811493,
+      "sha256": "4a69e3aa0e42cac4056238f17c260ccb1a35b53cd67c76776c2581818fbfbb66"
+    },
+    {
+      "kind": "master_index",
+      "period": "2024q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2024/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2024q2_master.idx",
+      "status": "cached",
+      "bytes": 28449098,
+      "sha256": "46c8c976ad3abba186cda1afdc564a289d1a29453a25d9a0884a2a8a702c425a"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2024q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2024q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2024q2_sub.txt",
+      "status": "cached",
+      "bytes": 2330878,
+      "sha256": "b40357b0abfd25415c8512b937d340ad00178e37bac1da937745afbd79589541"
+    },
+    {
+      "kind": "master_index",
+      "period": "2024q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2024/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2024q3_master.idx",
+      "status": "cached",
+      "bytes": 24575755,
+      "sha256": "98079cb1f5a046fd01275b4cdd48fd5ed515477457592721949e74b2e7d02cd2"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2024q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2024q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2024q3_sub.txt",
+      "status": "cached",
+      "bytes": 2024936,
+      "sha256": "db892c40cddbf8a4d47e351e3f580c317d9bbed36c0e7ca2c4a5097d42549843"
+    },
+    {
+      "kind": "master_index",
+      "period": "2024q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2024/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2024q4_master.idx",
+      "status": "cached",
+      "bytes": 25709830,
+      "sha256": "fa55ef877e6f440b747072cd5d8165b7221206e6a7ce97a72ad9245fccdf8eb9"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2024q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2024q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2024q4_sub.txt",
+      "status": "cached",
+      "bytes": 1961415,
+      "sha256": "3fe6959d8751761a8ae088e7687ffd28ef86bfeee54314c9bd3f374bc39a8791"
+    },
+    {
+      "kind": "master_index",
+      "period": "2025q1",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2025/QTR1/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2025q1_master.idx",
+      "status": "cached",
+      "bytes": 30615009,
+      "sha256": "8ee3b45ad4c07f8f258a1ecd06128cc51de040bb263b83962af255419d2af74d"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2025q1",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2025q1.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2025q1_sub.txt",
+      "status": "cached",
+      "bytes": 1876540,
+      "sha256": "99b34664dca79c4435eb2a107b3a06a2f8f094dac144dfe06813e2e106649316"
+    },
+    {
+      "kind": "master_index",
+      "period": "2025q2",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2025/QTR2/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2025q2_master.idx",
+      "status": "cached",
+      "bytes": 30198451,
+      "sha256": "aede1698e0e583539acc3e51fa2b83aed3349d3cc4351b67ea1293d06dec470c"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2025q2",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2025q2.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2025q2_sub.txt",
+      "status": "cached",
+      "bytes": 2129036,
+      "sha256": "e0cc345207057d5d7706c6d53453ec1f2aa5b7296bfd23fc56692bb89e79f51a"
+    },
+    {
+      "kind": "master_index",
+      "period": "2025q3",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2025/QTR3/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2025q3_master.idx",
+      "status": "cached",
+      "bytes": 26240398,
+      "sha256": "34900f6c834aae238cd5d8ae9823393d5597e49167f0c93eb2e58ed2ad0e2228"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2025q3",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2025q3.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2025q3_sub.txt",
+      "status": "cached",
+      "bytes": 1978458,
+      "sha256": "4ea0ab7a78b0e52051046f8621f3a1e739929d326fcf958d18329deab70a37d4"
+    },
+    {
+      "kind": "master_index",
+      "period": "2025q4",
+      "url": "https://www.sec.gov/Archives/edgar/full-index/2025/QTR4/master.idx",
+      "path": "data/raw/sec_historical_universe/full_index/2025q4_master.idx",
+      "status": "cached",
+      "bytes": 25096130,
+      "sha256": "78e973c3ce31dbb80d0ceb57d101e758cf8b9433758d295a733cec39fa4dee81"
+    },
+    {
+      "kind": "fsds_sub_only",
+      "period": "2025q4",
+      "url": "https://www.sec.gov/files/dera/data/financial-statement-data-sets/2025q4.zip",
+      "path": "data/raw/sec_historical_universe/fsds_sub/2025q4_sub.txt",
+      "status": "cached",
+      "bytes": 1902944,
+      "sha256": "3a5dd1f6ce22fc8209b08d646cbeae6fb4e4a350237fad71ca273fd8ee731ac6"
+    }
+  ],
+  "errors": []
+}

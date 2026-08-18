@@ -1,0 +1,3201 @@
+{
+  "created_at": "2026-08-18T13:12:25.750545+02:00",
+  "universe_policy": "research_universe_pit v1.1.0",
+  "target": "target_candidate_v2_pit_b v1.0.0 frozen and unchanged",
+  "scope": {
+    "development_train_validation": [
+      2011,
+      2022
+    ],
+    "mechanical_test_year_application": [
+      2023,
+      2024
+    ],
+    "test_used_for_methodological_decisions": false
+  },
+  "overall": {
+    "company_year_anchors": 103099,
+    "unique_ciks_all_statuses": 16088,
+    "eligible_company_years": 64901,
+    "eligible_unique_ciks": 9798,
+    "excluded_company_years": 36659,
+    "ambiguous_company_years": 1539,
+    "unresolved_filing_rows_outside_company_year_panel": 7671,
+    "resolved_out_of_scope_filing_rows": 7671,
+    "truly_unresolved_feature_year_filing_rows": 0,
+    "development_eligible_company_years": 56903,
+    "test_year_eligible_company_years_mechanical_only": 7998,
+    "joint_filing_eligible_company_years": 610,
+    "joint_filing_eligible_unique_ciks": 130,
+    "eligible_company_years_with_multiple_original_10k_candidates": 701,
+    "eligible_max_original_10k_candidates": 3,
+    "accepted_timestamp_available_company_years": 103099,
+    "filed_date_fallback_company_years": 0,
+    "eligible_distinct_statement_scope_years": 64901,
+    "eligible_distinct_representative_ciks": 9798,
+    "eligible_distinct_economic_groups": 9739,
+    "eligible_statement_scope_year_duplicate_rows": 0,
+    "eligible_nonrepresentative_rows": 0,
+    "eligible_missing_statement_scope_rows": 0,
+    "eligible_missing_economic_group_rows": 0
+  },
+  "registrant_role_entity_resolution": {
+    "membership_before": [
+      {
+        "membership_status_pre_entity_resolution": "eligible",
+        "n": 65067,
+        "share_pct": 63.11
+      },
+      {
+        "membership_status_pre_entity_resolution": "excluded",
+        "n": 36499,
+        "share_pct": 35.4
+      },
+      {
+        "membership_status_pre_entity_resolution": "ambiguous",
+        "n": 1533,
+        "share_pct": 1.49
+      }
+    ],
+    "membership_after": [
+      {
+        "membership_status": "eligible",
+        "n": 64901,
+        "share_pct": 62.95
+      },
+      {
+        "membership_status": "excluded",
+        "n": 36659,
+        "share_pct": 35.56
+      },
+      {
+        "membership_status": "ambiguous",
+        "n": 1539,
+        "share_pct": 1.49
+      }
+    ],
+    "changes": [
+      {
+        "membership_status_pre_entity_resolution": "eligible",
+        "membership_status": "excluded",
+        "registrant_resolution_action": "exclude_duplicate_registrant_row",
+        "membership_reason": "duplicate_registrant_same_statement_scope",
+        "company_years": 132
+      },
+      {
+        "membership_status_pre_entity_resolution": "eligible",
+        "membership_status": "excluded",
+        "registrant_resolution_action": "exclude_nonoperating_issuer",
+        "membership_reason": "nominal_nonoperating_finance_coissuer",
+        "company_years": 28
+      },
+      {
+        "membership_status_pre_entity_resolution": "eligible",
+        "membership_status": "ambiguous",
+        "registrant_resolution_action": "mark_ambiguous",
+        "membership_reason": "statement_scope_owner_not_eligible_under_historical_policy",
+        "company_years": 4
+      },
+      {
+        "membership_status_pre_entity_resolution": "eligible",
+        "membership_status": "ambiguous",
+        "registrant_resolution_action": "mark_ambiguous",
+        "membership_reason": "statement_scope_owner_is_nonregistrant_parent",
+        "company_years": 2
+      }
+    ],
+    "duplicate_registrant_rows_excluded": 132,
+    "nominal_nonoperating_coissuers_excluded": 28,
+    "unresolved_rows_changed_to_ambiguous": 6,
+    "freeze_gate_ready": true
+  },
+  "recovered_and_activity": {
+    "old_current_snapshot_unique_ciks": 3730,
+    "new_pit_eligible_unique_ciks": 9798,
+    "recovered_unique_ciks": 6267,
+    "recovered_unique_ciks_absent_current_ticker": 6123,
+    "recovered_unique_ciks_present_current_ticker": 144,
+    "old_snapshot_ciks_without_eligible_anchor_2011_2024": 199,
+    "eligible_company_years": 64901,
+    "recovered_eligible_company_years": 30871,
+    "recovered_company_years_absent_current_ticker": 29961,
+    "recovered_company_years_present_current_ticker": 910,
+    "recovered_company_year_share_pct": 47.57,
+    "overlap_company_years_with_changed_sic": 4155,
+    "overlap_company_years_with_changed_sector": 7212,
+    "overlap_company_years_with_changed_eligibility": 1490,
+    "currently_eligible_but_historically_not_eligible_company_years": 589,
+    "currently_not_eligible_but_historically_eligible_company_years": 901,
+    "current_snapshot_cik_years_historically_excluded": 13298,
+    "current_snapshot_cik_years_historically_ambiguous": 30,
+    "eligible_absent_from_current_ticker_company_years": 29961,
+    "eligible_absent_from_current_ticker_unique_ciks": 6123,
+    "later_inactive_delisted_or_unmapped_proxy_company_years": 6042,
+    "later_inactive_delisted_or_unmapped_proxy_unique_ciks": 6042,
+    "proxy_definition": "eligible; absent from current SEC ticker snapshot; no later original 10-K observed through the 2025 filing index",
+    "current_ticker_snapshot_downloaded_at": "2026-05-20T09:51:01.214500+00:00",
+    "confirmed_delisting_count_available": false
+  },
+  "yearly": [
+    {
+      "year": 2011,
+      "anchors": 8486,
+      "eligible_company_years": 5662,
+      "eligible_pre_entity_resolution": 5678,
+      "removed_by_entity_resolution": 16,
+      "eligible_companies": 5662,
+      "excluded": 2745,
+      "ambiguous": 79,
+      "recovered_vs_old": 3994,
+      "recovered_share_pct": 70.54,
+      "absent_current_ticker": 3921,
+      "inactive_delisted_unmapped_proxy": 615
+    },
+    {
+      "year": 2012,
+      "anchors": 8024,
+      "eligible_company_years": 5364,
+      "eligible_pre_entity_resolution": 5376,
+      "removed_by_entity_resolution": 12,
+      "eligible_companies": 5364,
+      "excluded": 2570,
+      "ambiguous": 90,
+      "recovered_vs_old": 3623,
+      "recovered_share_pct": 67.54,
+      "absent_current_ticker": 3553,
+      "inactive_delisted_unmapped_proxy": 476
+    },
+    {
+      "year": 2013,
+      "anchors": 7942,
+      "eligible_company_years": 5262,
+      "eligible_pre_entity_resolution": 5276,
+      "removed_by_entity_resolution": 14,
+      "eligible_companies": 5262,
+      "excluded": 2586,
+      "ambiguous": 94,
+      "recovered_vs_old": 3444,
+      "recovered_share_pct": 65.45,
+      "absent_current_ticker": 3376,
+      "inactive_delisted_unmapped_proxy": 522
+    },
+    {
+      "year": 2014,
+      "anchors": 7873,
+      "eligible_company_years": 5148,
+      "eligible_pre_entity_resolution": 5159,
+      "removed_by_entity_resolution": 11,
+      "eligible_companies": 5148,
+      "excluded": 2618,
+      "ambiguous": 107,
+      "recovered_vs_old": 3202,
+      "recovered_share_pct": 62.2,
+      "absent_current_ticker": 3137,
+      "inactive_delisted_unmapped_proxy": 578
+    },
+    {
+      "year": 2015,
+      "anchors": 7515,
+      "eligible_company_years": 4851,
+      "eligible_pre_entity_resolution": 4874,
+      "removed_by_entity_resolution": 23,
+      "eligible_companies": 4851,
+      "excluded": 2575,
+      "ambiguous": 89,
+      "recovered_vs_old": 2817,
+      "recovered_share_pct": 58.07,
+      "absent_current_ticker": 2749,
+      "inactive_delisted_unmapped_proxy": 525
+    },
+    {
+      "year": 2016,
+      "anchors": 7247,
+      "eligible_company_years": 4592,
+      "eligible_pre_entity_resolution": 4613,
+      "removed_by_entity_resolution": 21,
+      "eligible_companies": 4592,
+      "excluded": 2559,
+      "ambiguous": 96,
+      "recovered_vs_old": 2461,
+      "recovered_share_pct": 53.59,
+      "absent_current_ticker": 2399,
+      "inactive_delisted_unmapped_proxy": 445
+    },
+    {
+      "year": 2017,
+      "anchors": 7032,
+      "eligible_company_years": 4408,
+      "eligible_pre_entity_resolution": 4418,
+      "removed_by_entity_resolution": 10,
+      "eligible_companies": 4408,
+      "excluded": 2524,
+      "ambiguous": 100,
+      "recovered_vs_old": 2166,
+      "recovered_share_pct": 49.14,
+      "absent_current_ticker": 2105,
+      "inactive_delisted_unmapped_proxy": 367
+    },
+    {
+      "year": 2018,
+      "anchors": 6879,
+      "eligible_company_years": 4295,
+      "eligible_pre_entity_resolution": 4304,
+      "removed_by_entity_resolution": 9,
+      "eligible_companies": 4295,
+      "excluded": 2485,
+      "ambiguous": 99,
+      "recovered_vs_old": 1939,
+      "recovered_share_pct": 45.15,
+      "absent_current_ticker": 1879,
+      "inactive_delisted_unmapped_proxy": 380
+    },
+    {
+      "year": 2019,
+      "anchors": 6730,
+      "eligible_company_years": 4150,
+      "eligible_pre_entity_resolution": 4159,
+      "removed_by_entity_resolution": 9,
+      "eligible_companies": 4150,
+      "excluded": 2484,
+      "ambiguous": 96,
+      "recovered_vs_old": 1667,
+      "recovered_share_pct": 40.17,
+      "absent_current_ticker": 1607,
+      "inactive_delisted_unmapped_proxy": 298
+    },
+    {
+      "year": 2020,
+      "anchors": 6998,
+      "eligible_company_years": 4206,
+      "eligible_pre_entity_resolution": 4215,
+      "removed_by_entity_resolution": 9,
+      "eligible_companies": 4206,
+      "excluded": 2687,
+      "ambiguous": 105,
+      "recovered_vs_old": 1519,
+      "recovered_share_pct": 36.12,
+      "absent_current_ticker": 1452,
+      "inactive_delisted_unmapped_proxy": 240
+    },
+    {
+      "year": 2021,
+      "anchors": 7683,
+      "eligible_company_years": 4542,
+      "eligible_pre_entity_resolution": 4551,
+      "removed_by_entity_resolution": 9,
+      "eligible_companies": 4542,
+      "excluded": 3021,
+      "ambiguous": 120,
+      "recovered_vs_old": 1510,
+      "recovered_share_pct": 33.25,
+      "absent_current_ticker": 1435,
+      "inactive_delisted_unmapped_proxy": 343
+    },
+    {
+      "year": 2022,
+      "anchors": 7333,
+      "eligible_company_years": 4423,
+      "eligible_pre_entity_resolution": 4431,
+      "removed_by_entity_resolution": 8,
+      "eligible_companies": 4423,
+      "excluded": 2776,
+      "ambiguous": 134,
+      "recovered_vs_old": 1240,
+      "recovered_share_pct": 28.04,
+      "absent_current_ticker": 1174,
+      "inactive_delisted_unmapped_proxy": 450
+    },
+    {
+      "year": 2023,
+      "anchors": 6820,
+      "eligible_company_years": 4142,
+      "eligible_pre_entity_resolution": 4150,
+      "removed_by_entity_resolution": 8,
+      "eligible_companies": 4142,
+      "excluded": 2520,
+      "ambiguous": 158,
+      "recovered_vs_old": 834,
+      "recovered_share_pct": 20.14,
+      "absent_current_ticker": 777,
+      "inactive_delisted_unmapped_proxy": 406
+    },
+    {
+      "year": 2024,
+      "anchors": 6537,
+      "eligible_company_years": 3856,
+      "eligible_pre_entity_resolution": 3863,
+      "removed_by_entity_resolution": 7,
+      "eligible_companies": 3856,
+      "excluded": 2509,
+      "ambiguous": 172,
+      "recovered_vs_old": 455,
+      "recovered_share_pct": 11.8,
+      "absent_current_ticker": 397,
+      "inactive_delisted_unmapped_proxy": 397
+    }
+  ],
+  "sector_distribution": [
+    {
+      "feature_year": 2011,
+      "research_sector": "Extended_Candidate",
+      "company_years": 2290
+    },
+    {
+      "feature_year": 2011,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1940
+    },
+    {
+      "feature_year": 2011,
+      "research_sector": "Retail",
+      "company_years": 389
+    },
+    {
+      "feature_year": 2011,
+      "research_sector": "Technology",
+      "company_years": 1043
+    },
+    {
+      "feature_year": 2012,
+      "research_sector": "Extended_Candidate",
+      "company_years": 2166
+    },
+    {
+      "feature_year": 2012,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1836
+    },
+    {
+      "feature_year": 2012,
+      "research_sector": "Retail",
+      "company_years": 369
+    },
+    {
+      "feature_year": 2012,
+      "research_sector": "Technology",
+      "company_years": 993
+    },
+    {
+      "feature_year": 2013,
+      "research_sector": "Extended_Candidate",
+      "company_years": 2106
+    },
+    {
+      "feature_year": 2013,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1823
+    },
+    {
+      "feature_year": 2013,
+      "research_sector": "Retail",
+      "company_years": 362
+    },
+    {
+      "feature_year": 2013,
+      "research_sector": "Technology",
+      "company_years": 971
+    },
+    {
+      "feature_year": 2014,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1994
+    },
+    {
+      "feature_year": 2014,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1850
+    },
+    {
+      "feature_year": 2014,
+      "research_sector": "Retail",
+      "company_years": 350
+    },
+    {
+      "feature_year": 2014,
+      "research_sector": "Technology",
+      "company_years": 954
+    },
+    {
+      "feature_year": 2015,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1798
+    },
+    {
+      "feature_year": 2015,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1847
+    },
+    {
+      "feature_year": 2015,
+      "research_sector": "Retail",
+      "company_years": 335
+    },
+    {
+      "feature_year": 2015,
+      "research_sector": "Technology",
+      "company_years": 871
+    },
+    {
+      "feature_year": 2016,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1658
+    },
+    {
+      "feature_year": 2016,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1801
+    },
+    {
+      "feature_year": 2016,
+      "research_sector": "Retail",
+      "company_years": 321
+    },
+    {
+      "feature_year": 2016,
+      "research_sector": "Technology",
+      "company_years": 812
+    },
+    {
+      "feature_year": 2017,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1551
+    },
+    {
+      "feature_year": 2017,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1770
+    },
+    {
+      "feature_year": 2017,
+      "research_sector": "Retail",
+      "company_years": 301
+    },
+    {
+      "feature_year": 2017,
+      "research_sector": "Technology",
+      "company_years": 786
+    },
+    {
+      "feature_year": 2018,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1461
+    },
+    {
+      "feature_year": 2018,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1774
+    },
+    {
+      "feature_year": 2018,
+      "research_sector": "Retail",
+      "company_years": 288
+    },
+    {
+      "feature_year": 2018,
+      "research_sector": "Technology",
+      "company_years": 772
+    },
+    {
+      "feature_year": 2019,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1377
+    },
+    {
+      "feature_year": 2019,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1748
+    },
+    {
+      "feature_year": 2019,
+      "research_sector": "Retail",
+      "company_years": 262
+    },
+    {
+      "feature_year": 2019,
+      "research_sector": "Technology",
+      "company_years": 763
+    },
+    {
+      "feature_year": 2020,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1313
+    },
+    {
+      "feature_year": 2020,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1840
+    },
+    {
+      "feature_year": 2020,
+      "research_sector": "Retail",
+      "company_years": 261
+    },
+    {
+      "feature_year": 2020,
+      "research_sector": "Technology",
+      "company_years": 792
+    },
+    {
+      "feature_year": 2021,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1328
+    },
+    {
+      "feature_year": 2021,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 2026
+    },
+    {
+      "feature_year": 2021,
+      "research_sector": "Retail",
+      "company_years": 287
+    },
+    {
+      "feature_year": 2021,
+      "research_sector": "Technology",
+      "company_years": 901
+    },
+    {
+      "feature_year": 2022,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1297
+    },
+    {
+      "feature_year": 2022,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 2004
+    },
+    {
+      "feature_year": 2022,
+      "research_sector": "Retail",
+      "company_years": 268
+    },
+    {
+      "feature_year": 2022,
+      "research_sector": "Technology",
+      "company_years": 854
+    },
+    {
+      "feature_year": 2023,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1207
+    },
+    {
+      "feature_year": 2023,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1885
+    },
+    {
+      "feature_year": 2023,
+      "research_sector": "Retail",
+      "company_years": 248
+    },
+    {
+      "feature_year": 2023,
+      "research_sector": "Technology",
+      "company_years": 802
+    },
+    {
+      "feature_year": 2024,
+      "research_sector": "Extended_Candidate",
+      "company_years": 1114
+    },
+    {
+      "feature_year": 2024,
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 1759
+    },
+    {
+      "feature_year": 2024,
+      "research_sector": "Retail",
+      "company_years": 231
+    },
+    {
+      "feature_year": 2024,
+      "research_sector": "Technology",
+      "company_years": 752
+    }
+  ],
+  "sic_distribution": [
+    {
+      "historical_sic": 2834.0,
+      "historical_sic_description": "PHARMACEUTICAL PREPARATIONS",
+      "company_years": 6327,
+      "unique_ciks": 993
+    },
+    {
+      "historical_sic": 7372.0,
+      "historical_sic_description": "SERVICES-PREPACKAGED SOFTWARE",
+      "company_years": 3030,
+      "unique_ciks": 599
+    },
+    {
+      "historical_sic": 1311.0,
+      "historical_sic_description": "CRUDE PETROLEUM & NATURAL GAS",
+      "company_years": 2604,
+      "unique_ciks": 435
+    },
+    {
+      "historical_sic": 7389.0,
+      "historical_sic_description": "SERVICES-BUSINESS SERVICES, NEC",
+      "company_years": 2165,
+      "unique_ciks": 427
+    },
+    {
+      "historical_sic": 3841.0,
+      "historical_sic_description": "SURGICAL & MEDICAL INSTRUMENTS & APPARATUS",
+      "company_years": 1793,
+      "unique_ciks": 272
+    },
+    {
+      "historical_sic": 2836.0,
+      "historical_sic_description": "BIOLOGICAL PRODUCTS, (NO DISGNOSTIC SUBSTANCES)",
+      "company_years": 1645,
+      "unique_ciks": 273
+    },
+    {
+      "historical_sic": 3674.0,
+      "historical_sic_description": "SEMICONDUCTORS & RELATED DEVICES",
+      "company_years": 1403,
+      "unique_ciks": 207
+    },
+    {
+      "historical_sic": 1000.0,
+      "historical_sic_description": "METAL MINING",
+      "company_years": 1181,
+      "unique_ciks": 264
+    },
+    {
+      "historical_sic": 7374.0,
+      "historical_sic_description": "SERVICES-COMPUTER PROCESSING & DATA PREPARATION",
+      "company_years": 1084,
+      "unique_ciks": 240
+    },
+    {
+      "historical_sic": 5812.0,
+      "historical_sic_description": "RETAIL-EATING PLACES",
+      "company_years": 814,
+      "unique_ciks": 126
+    },
+    {
+      "historical_sic": 8742.0,
+      "historical_sic_description": "SERVICES-MANAGEMENT CONSULTING SERVICES",
+      "company_years": 749,
+      "unique_ciks": 144
+    },
+    {
+      "historical_sic": 7370.0,
+      "historical_sic_description": "SERVICES-COMPUTER PROGRAMMING, DATA PROCESSING, ETC.",
+      "company_years": 702,
+      "unique_ciks": 154
+    },
+    {
+      "historical_sic": 1040.0,
+      "historical_sic_description": "GOLD AND SILVER ORES",
+      "company_years": 681,
+      "unique_ciks": 139
+    },
+    {
+      "historical_sic": 3714.0,
+      "historical_sic_description": "MOTOR VEHICLE PARTS & ACCESSORIES",
+      "company_years": 642,
+      "unique_ciks": 94
+    },
+    {
+      "historical_sic": 7373.0,
+      "historical_sic_description": "SERVICES-COMPUTER INTEGRATED SYSTEMS DESIGN",
+      "company_years": 632,
+      "unique_ciks": 110
+    },
+    {
+      "historical_sic": 2860.0,
+      "historical_sic_description": "INDUSTRIAL ORGANIC CHEMICALS",
+      "company_years": 619,
+      "unique_ciks": 99
+    },
+    {
+      "historical_sic": 3845.0,
+      "historical_sic_description": "ELECTROMEDICAL & ELECTROTHERAPEUTIC APPARATUS",
+      "company_years": 594,
+      "unique_ciks": 81
+    },
+    {
+      "historical_sic": 4813.0,
+      "historical_sic_description": "TELEPHONE COMMUNICATIONS (NO RADIOTELEPHONE)",
+      "company_years": 558,
+      "unique_ciks": 91
+    },
+    {
+      "historical_sic": 7371.0,
+      "historical_sic_description": "SERVICES-COMPUTER PROGRAMMING SERVICES",
+      "company_years": 538,
+      "unique_ciks": 99
+    },
+    {
+      "historical_sic": 3663.0,
+      "historical_sic_description": "RADIO & TV BROADCASTING & COMMUNICATIONS EQUIPMENT",
+      "company_years": 515,
+      "unique_ciks": 75
+    },
+    {
+      "historical_sic": 7011.0,
+      "historical_sic_description": "HOTELS & MOTELS",
+      "company_years": 495,
+      "unique_ciks": 74
+    },
+    {
+      "historical_sic": 3842.0,
+      "historical_sic_description": "ORTHOPEDIC, PROSTHETIC & SURGICAL APPLIANCES & SUPPLIES",
+      "company_years": 452,
+      "unique_ciks": 68
+    },
+    {
+      "historical_sic": 8200.0,
+      "historical_sic_description": "SERVICES-EDUCATIONAL SERVICES",
+      "company_years": 449,
+      "unique_ciks": 79
+    },
+    {
+      "historical_sic": 7310.0,
+      "historical_sic_description": "SERVICES-ADVERTISING",
+      "company_years": 423,
+      "unique_ciks": 80
+    },
+    {
+      "historical_sic": 7200.0,
+      "historical_sic_description": "SERVICES-PERSONAL SERVICES",
+      "company_years": 413,
+      "unique_ciks": 77
+    },
+    {
+      "historical_sic": 3690.0,
+      "historical_sic_description": "MISCELLANEOUS ELECTRICAL MACHINERY, EQUIPMENT & SUPPLIES",
+      "company_years": 401,
+      "unique_ciks": 74
+    },
+    {
+      "historical_sic": 7359.0,
+      "historical_sic_description": "SERVICES-EQUIPMENT RENTAL & LEASING, NEC",
+      "company_years": 395,
+      "unique_ciks": 56
+    },
+    {
+      "historical_sic": 1389.0,
+      "historical_sic_description": "OIL & GAS FIELD SERVICES, NEC",
+      "company_years": 389,
+      "unique_ciks": 58
+    },
+    {
+      "historical_sic": 3669.0,
+      "historical_sic_description": "COMMUNICATIONS EQUIPMENT, NEC",
+      "company_years": 383,
+      "unique_ciks": 63
+    },
+    {
+      "historical_sic": 4899.0,
+      "historical_sic_description": "COMMUNICATIONS SERVICES, NEC",
+      "company_years": 378,
+      "unique_ciks": 75
+    },
+    {
+      "historical_sic": 5900.0,
+      "historical_sic_description": "RETAIL-MISCELLANEOUS RETAIL",
+      "company_years": 376,
+      "unique_ciks": 68
+    },
+    {
+      "historical_sic": 3826.0,
+      "historical_sic_description": "LABORATORY ANALYTICAL INSTRUMENTS",
+      "company_years": 372,
+      "unique_ciks": 48
+    },
+    {
+      "historical_sic": 1381.0,
+      "historical_sic_description": "DRILLING OIL & GAS WELLS",
+      "company_years": 360,
+      "unique_ciks": 70
+    },
+    {
+      "historical_sic": 2833.0,
+      "historical_sic_description": "MEDICINAL CHEMICALS & BOTANICAL PRODUCTS",
+      "company_years": 360,
+      "unique_ciks": 80
+    },
+    {
+      "historical_sic": 8731.0,
+      "historical_sic_description": "SERVICES-COMMERCIAL PHYSICAL & BIOLOGICAL RESEARCH",
+      "company_years": 358,
+      "unique_ciks": 59
+    },
+    {
+      "historical_sic": 7363.0,
+      "historical_sic_description": "SERVICES-HELP SUPPLY SERVICES",
+      "company_years": 346,
+      "unique_ciks": 41
+    },
+    {
+      "historical_sic": 1382.0,
+      "historical_sic_description": "OIL & GAS FIELD EXPLORATION SERVICES",
+      "company_years": 344,
+      "unique_ciks": 60
+    },
+    {
+      "historical_sic": 2080.0,
+      "historical_sic_description": "BEVERAGES",
+      "company_years": 335,
+      "unique_ciks": 70
+    },
+    {
+      "historical_sic": 2835.0,
+      "historical_sic_description": "IN VITRO & IN VIVO DIAGNOSTIC SUBSTANCES",
+      "company_years": 334,
+      "unique_ciks": 49
+    },
+    {
+      "historical_sic": 4841.0,
+      "historical_sic_description": "CABLE & OTHER PAY TELEVISION SERVICES",
+      "company_years": 333,
+      "unique_ciks": 52
+    },
+    {
+      "historical_sic": 5961.0,
+      "historical_sic_description": "RETAIL-CATALOG & MAIL-ORDER HOUSES",
+      "company_years": 323,
+      "unique_ciks": 62
+    },
+    {
+      "historical_sic": 1400.0,
+      "historical_sic_description": "MINING & QUARRYING OF NONMETALLIC MINERALS (NO FUELS)",
+      "company_years": 318,
+      "unique_ciks": 52
+    },
+    {
+      "historical_sic": 8071.0,
+      "historical_sic_description": "SERVICES-MEDICAL LABORATORIES",
+      "company_years": 314,
+      "unique_ciks": 50
+    },
+    {
+      "historical_sic": 2911.0,
+      "historical_sic_description": "PETROLEUM REFINING",
+      "company_years": 312,
+      "unique_ciks": 42
+    },
+    {
+      "historical_sic": 7900.0,
+      "historical_sic_description": "SERVICES-AMUSEMENT & RECREATION SERVICES",
+      "company_years": 307,
+      "unique_ciks": 66
+    },
+    {
+      "historical_sic": 1531.0,
+      "historical_sic_description": "OPERATIVE BUILDERS",
+      "company_years": 305,
+      "unique_ciks": 41
+    },
+    {
+      "historical_sic": 3829.0,
+      "historical_sic_description": "MEASURING & CONTROLLING DEVICES, NEC",
+      "company_years": 302,
+      "unique_ciks": 43
+    },
+    {
+      "historical_sic": 2844.0,
+      "historical_sic_description": "PERFUMES, COSMETICS & OTHER TOILET PREPARATIONS",
+      "company_years": 301,
+      "unique_ciks": 51
+    },
+    {
+      "historical_sic": 7990.0,
+      "historical_sic_description": "SERVICES-MISCELLANEOUS AMUSEMENT & RECREATION",
+      "company_years": 295,
+      "unique_ciks": 67
+    },
+    {
+      "historical_sic": 3661.0,
+      "historical_sic_description": "TELEPHONE & TELEGRAPH APPARATUS",
+      "company_years": 290,
+      "unique_ciks": 40
+    },
+    {
+      "historical_sic": 5500.0,
+      "historical_sic_description": "RETAIL-AUTO DEALERS & GASOLINE STATIONS",
+      "company_years": 284,
+      "unique_ciks": 43
+    },
+    {
+      "historical_sic": 3823.0,
+      "historical_sic_description": "INDUSTRIAL INSTRUMENTS FOR MEASUREMENT, DISPLAY, AND CONTROL",
+      "company_years": 269,
+      "unique_ciks": 29
+    },
+    {
+      "historical_sic": 3559.0,
+      "historical_sic_description": "SPECIAL INDUSTRY MACHINERY, NEC",
+      "company_years": 265,
+      "unique_ciks": 39
+    },
+    {
+      "historical_sic": 4700.0,
+      "historical_sic_description": "TRANSPORTATION SERVICES",
+      "company_years": 253,
+      "unique_ciks": 54
+    },
+    {
+      "historical_sic": 3711.0,
+      "historical_sic_description": "MOTOR VEHICLES & PASSENGER CAR BODIES",
+      "company_years": 247,
+      "unique_ciks": 42
+    },
+    {
+      "historical_sic": 5990.0,
+      "historical_sic_description": "RETAIL-RETAIL STORES, NEC",
+      "company_years": 243,
+      "unique_ciks": 44
+    },
+    {
+      "historical_sic": 3679.0,
+      "historical_sic_description": "ELECTRONIC COMPONENTS, NEC",
+      "company_years": 242,
+      "unique_ciks": 34
+    },
+    {
+      "historical_sic": 3990.0,
+      "historical_sic_description": "MISCELLANEOUS MANUFACTURING INDUSTRIES",
+      "company_years": 239,
+      "unique_ciks": 45
+    },
+    {
+      "historical_sic": 4213.0,
+      "historical_sic_description": "TRUCKING (NO LOCAL)",
+      "company_years": 236,
+      "unique_ciks": 25
+    },
+    {
+      "historical_sic": 3577.0,
+      "historical_sic_description": "COMPUTER PERIPHERAL EQUIPMENT, NEC",
+      "company_years": 233,
+      "unique_ciks": 36
+    },
+    {
+      "historical_sic": 4610.0,
+      "historical_sic_description": "PIPE LINES (NO NATURAL GAS)",
+      "company_years": 229,
+      "unique_ciks": 29
+    },
+    {
+      "historical_sic": 3533.0,
+      "historical_sic_description": "OIL & GAS FIELD MACHINERY & EQUIPMENT",
+      "company_years": 228,
+      "unique_ciks": 31
+    },
+    {
+      "historical_sic": 7812.0,
+      "historical_sic_description": "SERVICES-MOTION PICTURE & VIDEO TAPE PRODUCTION",
+      "company_years": 225,
+      "unique_ciks": 63
+    },
+    {
+      "historical_sic": 2870.0,
+      "historical_sic_description": "AGRICULTURAL CHEMICALS",
+      "company_years": 224,
+      "unique_ciks": 33
+    },
+    {
+      "historical_sic": 7380.0,
+      "historical_sic_description": "SERVICES-MISCELLANEOUS BUSINESS SERVICES",
+      "company_years": 221,
+      "unique_ciks": 40
+    },
+    {
+      "historical_sic": 3576.0,
+      "historical_sic_description": "COMPUTER COMMUNICATIONS EQUIPMENT",
+      "company_years": 219,
+      "unique_ciks": 36
+    },
+    {
+      "historical_sic": 2800.0,
+      "historical_sic_description": "CHEMICALS & ALLIED PRODUCTS",
+      "company_years": 217,
+      "unique_ciks": 25
+    },
+    {
+      "historical_sic": 4512.0,
+      "historical_sic_description": "AIR TRANSPORTATION, SCHEDULED",
+      "company_years": 217,
+      "unique_ciks": 26
+    },
+    {
+      "historical_sic": 2300.0,
+      "historical_sic_description": "APPAREL & OTHER FINISHD PRODS OF FABRICS & SIMILAR MATL",
+      "company_years": 213,
+      "unique_ciks": 37
+    },
+    {
+      "historical_sic": 3089.0,
+      "historical_sic_description": "PLASTICS PRODUCTS, NEC",
+      "company_years": 209,
+      "unique_ciks": 28
+    },
+    {
+      "historical_sic": 4833.0,
+      "historical_sic_description": "TELEVISION BROADCASTING STATIONS",
+      "company_years": 208,
+      "unique_ciks": 30
+    },
+    {
+      "historical_sic": 2000.0,
+      "historical_sic_description": "FOOD AND KINDRED PRODUCTS",
+      "company_years": 204,
+      "unique_ciks": 41
+    },
+    {
+      "historical_sic": 3825.0,
+      "historical_sic_description": "INSTRUMENTS FOR MEAS & TESTING OF ELECTRICITY & ELEC SIGNALS",
+      "company_years": 201,
+      "unique_ciks": 23
+    },
+    {
+      "historical_sic": 2821.0,
+      "historical_sic_description": "PLASTIC MATERIALS, SYNTH RESINS & NONVULCAN ELASTOMERS",
+      "company_years": 200,
+      "unique_ciks": 26
+    },
+    {
+      "historical_sic": 4832.0,
+      "historical_sic_description": "RADIO BROADCASTING STATIONS",
+      "company_years": 200,
+      "unique_ciks": 22
+    },
+    {
+      "historical_sic": 3670.0,
+      "historical_sic_description": "ELECTRONIC COMPONENTS & ACCESSORIES",
+      "company_years": 199,
+      "unique_ciks": 24
+    },
+    {
+      "historical_sic": 1700.0,
+      "historical_sic_description": "CONSTRUCTION - SPECIAL TRADE CONTRACTORS",
+      "company_years": 196,
+      "unique_ciks": 39
+    },
+    {
+      "historical_sic": 2890.0,
+      "historical_sic_description": "MISCELLANEOUS CHEMICAL PRODUCTS",
+      "company_years": 196,
+      "unique_ciks": 31
+    },
+    {
+      "historical_sic": 3640.0,
+      "historical_sic_description": "ELECTRIC LIGHTING & WIRING EQUIPMENT",
+      "company_years": 194,
+      "unique_ciks": 34
+    },
+    {
+      "historical_sic": 5600.0,
+      "historical_sic_description": "RETAIL-APPAREL & ACCESSORY STORES",
+      "company_years": 189,
+      "unique_ciks": 29
+    },
+    {
+      "historical_sic": 8711.0,
+      "historical_sic_description": "SERVICES-ENGINEERING SERVICES",
+      "company_years": 188,
+      "unique_ciks": 28
+    },
+    {
+      "historical_sic": 3672.0,
+      "historical_sic_description": "PRINTED CIRCUIT BOARDS",
+      "company_years": 187,
+      "unique_ciks": 21
+    },
+    {
+      "historical_sic": 5065.0,
+      "historical_sic_description": "WHOLESALE-ELECTRONIC PARTS & EQUIPMENT, NEC",
+      "company_years": 184,
+      "unique_ciks": 20
+    },
+    {
+      "historical_sic": 5122.0,
+      "historical_sic_description": "WHOLESALE-DRUGS, PROPRIETARIES & DRUGGISTS' SUNDRIES",
+      "company_years": 184,
+      "unique_ciks": 36
+    },
+    {
+      "historical_sic": 8090.0,
+      "historical_sic_description": "SERVICES-MISC HEALTH & ALLIED SERVICES, NEC",
+      "company_years": 182,
+      "unique_ciks": 37
+    },
+    {
+      "historical_sic": 3949.0,
+      "historical_sic_description": "SPORTING & ATHLETIC GOODS, NEC",
+      "company_years": 178,
+      "unique_ciks": 34
+    },
+    {
+      "historical_sic": 5651.0,
+      "historical_sic_description": "RETAIL-FAMILY CLOTHING STORES",
+      "company_years": 178,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 5411.0,
+      "historical_sic_description": "RETAIL-GROCERY STORES",
+      "company_years": 171,
+      "unique_ciks": 28
+    },
+    {
+      "historical_sic": 5331.0,
+      "historical_sic_description": "RETAIL-VARIETY STORES",
+      "company_years": 170,
+      "unique_ciks": 18
+    },
+    {
+      "historical_sic": 3510.0,
+      "historical_sic_description": "ENGINES & TURBINES",
+      "company_years": 166,
+      "unique_ciks": 24
+    },
+    {
+      "historical_sic": 3420.0,
+      "historical_sic_description": "CUTLERY, HANDTOOLS & GENERAL HARDWARE",
+      "company_years": 163,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 5940.0,
+      "historical_sic_description": "RETAIL-MISCELLANEOUS SHOPPING GOODS STORES",
+      "company_years": 163,
+      "unique_ciks": 29
+    },
+    {
+      "historical_sic": 2810.0,
+      "historical_sic_description": "INDUSTRIAL INORGANIC CHEMICALS",
+      "company_years": 162,
+      "unique_ciks": 26
+    },
+    {
+      "historical_sic": 5960.0,
+      "historical_sic_description": "RETAIL-NONSTORE RETAILERS",
+      "company_years": 162,
+      "unique_ciks": 33
+    },
+    {
+      "historical_sic": 2510.0,
+      "historical_sic_description": "HOUSEHOLD FURNITURE",
+      "company_years": 159,
+      "unique_ciks": 18
+    },
+    {
+      "historical_sic": 7311.0,
+      "historical_sic_description": "SERVICES-ADVERTISING AGENCIES",
+      "company_years": 159,
+      "unique_ciks": 27
+    },
+    {
+      "historical_sic": 8741.0,
+      "historical_sic_description": "SERVICES-MANAGEMENT SERVICES",
+      "company_years": 159,
+      "unique_ciks": 26
+    },
+    {
+      "historical_sic": 8062.0,
+      "historical_sic_description": "SERVICES-GENERAL MEDICAL & SURGICAL HOSPITALS, NEC",
+      "company_years": 154,
+      "unique_ciks": 23
+    },
+    {
+      "historical_sic": 5810.0,
+      "historical_sic_description": "RETAIL-EATING & DRINKING PLACES",
+      "company_years": 151,
+      "unique_ciks": 28
+    },
+    {
+      "historical_sic": 3312.0,
+      "historical_sic_description": "STEEL WORKS, BLAST FURNACES & ROLLING MILLS (COKE OVENS)",
+      "company_years": 150,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 4400.0,
+      "historical_sic_description": "WATER TRANSPORTATION",
+      "company_years": 150,
+      "unique_ciks": 20
+    },
+    {
+      "historical_sic": 3812.0,
+      "historical_sic_description": "SEARCH, DETECTION, NAVAGATION, GUIDANCE, AERONAUTICAL SYS",
+      "company_years": 149,
+      "unique_ciks": 23
+    },
+    {
+      "historical_sic": 4731.0,
+      "historical_sic_description": "ARRANGEMENT OF TRANSPORTATION OF FREIGHT & CARGO",
+      "company_years": 149,
+      "unique_ciks": 20
+    },
+    {
+      "historical_sic": 1600.0,
+      "historical_sic_description": "HEAVY CONSTRUCTION OTHER THAN BLDG CONST - CONTRACTORS",
+      "company_years": 139,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 8082.0,
+      "historical_sic_description": "SERVICES-HOME HEALTH CARE SERVICES",
+      "company_years": 135,
+      "unique_ciks": 22
+    },
+    {
+      "historical_sic": 3620.0,
+      "historical_sic_description": "ELECTRICAL INDUSTRIAL APPARATUS",
+      "company_years": 132,
+      "unique_ciks": 20
+    },
+    {
+      "historical_sic": 5912.0,
+      "historical_sic_description": "RETAIL-DRUG STORES AND PROPRIETARY STORES",
+      "company_years": 132,
+      "unique_ciks": 28
+    },
+    {
+      "historical_sic": 1221.0,
+      "historical_sic_description": "BITUMINOUS COAL & LIGNITE SURFACE MINING",
+      "company_years": 131,
+      "unique_ciks": 21
+    },
+    {
+      "historical_sic": 3490.0,
+      "historical_sic_description": "MISCELLANEOUS FABRICATED METAL PRODUCTS",
+      "company_years": 130,
+      "unique_ciks": 18
+    },
+    {
+      "historical_sic": 8000.0,
+      "historical_sic_description": "SERVICES-HEALTH SERVICES",
+      "company_years": 130,
+      "unique_ciks": 39
+    },
+    {
+      "historical_sic": 2711.0,
+      "historical_sic_description": "NEWSPAPERS: PUBLISHING OR PUBLISHING & PRINTING",
+      "company_years": 129,
+      "unique_ciks": 19
+    },
+    {
+      "historical_sic": 5140.0,
+      "historical_sic_description": "WHOLESALE-GROCERIES & RELATED PRODUCTS",
+      "company_years": 129,
+      "unique_ciks": 22
+    },
+    {
+      "historical_sic": 7350.0,
+      "historical_sic_description": "SERVICES-MISCELLANEOUS EQUIPMENT RENTAL & LEASING",
+      "company_years": 129,
+      "unique_ciks": 19
+    },
+    {
+      "historical_sic": 3728.0,
+      "historical_sic_description": "AIRCRAFT PARTS & AUXILIARY EQUIPMENT, NEC",
+      "company_years": 128,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 2090.0,
+      "historical_sic_description": "MISCELLANEOUS FOOD PREPARATIONS & KINDRED PRODUCTS",
+      "company_years": 127,
+      "unique_ciks": 27
+    },
+    {
+      "historical_sic": 2040.0,
+      "historical_sic_description": "GRAIN MILL PRODUCTS",
+      "company_years": 126,
+      "unique_ciks": 20
+    },
+    {
+      "historical_sic": 3651.0,
+      "historical_sic_description": "HOUSEHOLD AUDIO & VIDEO EQUIPMENT",
+      "company_years": 125,
+      "unique_ciks": 21
+    },
+    {
+      "historical_sic": 3571.0,
+      "historical_sic_description": "ELECTRONIC COMPUTERS",
+      "company_years": 122,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 3569.0,
+      "historical_sic_description": "GENERAL INDUSTRIAL MACHINERY & EQUIPMENT, NEC",
+      "company_years": 121,
+      "unique_ciks": 22
+    },
+    {
+      "historical_sic": 5141.0,
+      "historical_sic_description": "WHOLESALE-GROCERIES, GENERAL LINE",
+      "company_years": 121,
+      "unique_ciks": 18
+    },
+    {
+      "historical_sic": 2750.0,
+      "historical_sic_description": "COMMERCIAL PRINTING",
+      "company_years": 120,
+      "unique_ciks": 23
+    },
+    {
+      "historical_sic": 2086.0,
+      "historical_sic_description": "BOTTLED & CANNED SOFT DRINKS & CARBONATED WATERS",
+      "company_years": 119,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 3572.0,
+      "historical_sic_description": "COMPUTER STORAGE DEVICES",
+      "company_years": 118,
+      "unique_ciks": 22
+    },
+    {
+      "historical_sic": 2030.0,
+      "historical_sic_description": "CANNED, FROZEN & PRESERVD FRUIT, VEG & FOOD SPECIALTIES",
+      "company_years": 117,
+      "unique_ciks": 19
+    },
+    {
+      "historical_sic": 2621.0,
+      "historical_sic_description": "PAPER MILLS",
+      "company_years": 117,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 4011.0,
+      "historical_sic_description": "RAILROADS, LINE-HAUL OPERATING",
+      "company_years": 117,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 3350.0,
+      "historical_sic_description": "ROLLING DRAWING & EXTRUDING OF NONFERROUS METALS",
+      "company_years": 116,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 7320.0,
+      "historical_sic_description": "SERVICES-CONSUMER CREDIT REPORTING, COLLECTION AGENCIES",
+      "company_years": 116,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 3590.0,
+      "historical_sic_description": "MISC INDUSTRIAL & COMMERCIAL MACHINERY & EQUIPMENT",
+      "company_years": 114,
+      "unique_ciks": 15
+    },
+    {
+      "historical_sic": 1090.0,
+      "historical_sic_description": "MISCELLANEOUS METAL ORES",
+      "company_years": 113,
+      "unique_ciks": 25
+    },
+    {
+      "historical_sic": 2060.0,
+      "historical_sic_description": "SUGAR & CONFECTIONERY PRODUCTS",
+      "company_years": 111,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 3561.0,
+      "historical_sic_description": "PUMPS & PUMPING EQUIPMENT",
+      "company_years": 111,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 1623.0,
+      "historical_sic_description": "WATER, SEWER, PIPELINE, COMM & POWER LINE CONSTRUCTION",
+      "company_years": 110,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 5190.0,
+      "historical_sic_description": "WHOLESALE-MISCELLANEOUS NONDURABLE GOODS",
+      "company_years": 109,
+      "unique_ciks": 20
+    },
+    {
+      "historical_sic": 5211.0,
+      "historical_sic_description": "RETAIL-LUMBER & OTHER BUILDING MATERIALS DEALERS",
+      "company_years": 109,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 5090.0,
+      "historical_sic_description": "WHOLESALE-MISC DURABLE GOODS",
+      "company_years": 106,
+      "unique_ciks": 20
+    },
+    {
+      "historical_sic": 2320.0,
+      "historical_sic_description": "MEN'S & BOYS' FURNISHGS, WORK CLOTHG, & ALLIED GARMENTS",
+      "company_years": 105,
+      "unique_ciks": 15
+    },
+    {
+      "historical_sic": 3531.0,
+      "historical_sic_description": "CONSTRUCTION MACHINERY & EQUIP",
+      "company_years": 105,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 3621.0,
+      "historical_sic_description": "MOTORS & GENERATORS",
+      "company_years": 105,
+      "unique_ciks": 15
+    },
+    {
+      "historical_sic": 7510.0,
+      "historical_sic_description": "SERVICES-AUTO RENTAL & LEASING (NO DRIVERS)",
+      "company_years": 105,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 5045.0,
+      "historical_sic_description": "WHOLESALE-COMPUTERS & PERIPHERAL EQUIPMENT & SOFTWARE",
+      "company_years": 104,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 3560.0,
+      "historical_sic_description": "GENERAL INDUSTRIAL MACHINERY & EQUIPMENT",
+      "company_years": 103,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 3751.0,
+      "historical_sic_description": "MOTORCYCLES, BICYCLES & PARTS",
+      "company_years": 102,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 5311.0,
+      "historical_sic_description": "RETAIL-DEPARTMENT STORES",
+      "company_years": 102,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 5700.0,
+      "historical_sic_description": "RETAIL-HOME FURNITURE, FURNISHINGS & EQUIPMENT STORES",
+      "company_years": 101,
+      "unique_ciks": 15
+    },
+    {
+      "historical_sic": 3585.0,
+      "historical_sic_description": "AIR-COND & WARM AIR HEATG EQUIP & COMM & INDL REFRIG EQUIP",
+      "company_years": 99,
+      "unique_ciks": 18
+    },
+    {
+      "historical_sic": 8093.0,
+      "historical_sic_description": "SERVICES-SPECIALTY OUTPATIENT FACILITIES, NEC",
+      "company_years": 99,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 4412.0,
+      "historical_sic_description": "DEEP SEA FOREIGN TRANSPORTATION OF FREIGHT",
+      "company_years": 98,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 5080.0,
+      "historical_sic_description": "WHOLESALE-MACHINERY, EQUIPMENT & SUPPLIES",
+      "company_years": 98,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 5531.0,
+      "historical_sic_description": "RETAIL-AUTO & HOME SUPPLY STORES",
+      "company_years": 96,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 7830.0,
+      "historical_sic_description": "SERVICES-MOTION PICTURE THEATERS",
+      "company_years": 96,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 2111.0,
+      "historical_sic_description": "CIGARETTES",
+      "company_years": 95,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 3440.0,
+      "historical_sic_description": "FABRICATED STRUCTURAL METAL PRODUCTS",
+      "company_years": 95,
+      "unique_ciks": 12
+    },
+    {
+      "historical_sic": 3861.0,
+      "historical_sic_description": "PHOTOGRAPHIC EQUIPMENT & SUPPLIES",
+      "company_years": 94,
+      "unique_ciks": 15
+    },
+    {
+      "historical_sic": 4812.0,
+      "historical_sic_description": "RADIOTELEPHONE COMMUNICATIONS",
+      "company_years": 94,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 5150.0,
+      "historical_sic_description": "WHOLESALE-FARM PRODUCT RAW MATERIALS",
+      "company_years": 94,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 5621.0,
+      "historical_sic_description": "RETAIL-WOMEN'S CLOTHING STORES",
+      "company_years": 94,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 3480.0,
+      "historical_sic_description": "ORDNANCE & ACCESSORIES, (NO VEHICLES/GUIDED MISSILES)",
+      "company_years": 92,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 3721.0,
+      "historical_sic_description": "AIRCRAFT",
+      "company_years": 91,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 3944.0,
+      "historical_sic_description": "GAMES, TOYS & CHILDREN'S VEHICLES (NO DOLLS & BICYCLES)",
+      "company_years": 91,
+      "unique_ciks": 15
+    },
+    {
+      "historical_sic": 8011.0,
+      "historical_sic_description": "SERVICES-OFFICES & CLINICS OF DOCTORS OF MEDICINE",
+      "company_years": 90,
+      "unique_ciks": 25
+    },
+    {
+      "historical_sic": 3580.0,
+      "historical_sic_description": "REFRIGERATION & SERVICE INDUSTRY MACHINERY",
+      "company_years": 89,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 3140.0,
+      "historical_sic_description": "FOOTWEAR, (NO RUBBER)",
+      "company_years": 88,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 3523.0,
+      "historical_sic_description": "FARM MACHINERY & EQUIPMENT",
+      "company_years": 88,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 3310.0,
+      "historical_sic_description": "STEEL WORKS, BLAST FURNACES & ROLLING & FINISHING MILLS",
+      "company_years": 87,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 3564.0,
+      "historical_sic_description": "INDUSTRIAL & COMMERCIAL FANS & BLOWERS & AIR PURIFING EQUIP",
+      "company_years": 87,
+      "unique_ciks": 12
+    },
+    {
+      "historical_sic": 2430.0,
+      "historical_sic_description": "MILLWOOD, VENEER, PLYWOOD, & STRUCTURAL WOOD MEMBERS",
+      "company_years": 86,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 3843.0,
+      "historical_sic_description": "DENTAL EQUIPMENT & SUPPLIES",
+      "company_years": 86,
+      "unique_ciks": 15
+    },
+    {
+      "historical_sic": 5047.0,
+      "historical_sic_description": "WHOLESALE-MEDICAL, DENTAL & HOSPITAL EQUIPMENT & SUPPLIES",
+      "company_years": 85,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 1220.0,
+      "historical_sic_description": "BITUMINOUS COAL & LIGNITE MINING",
+      "company_years": 84,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 2670.0,
+      "historical_sic_description": "CONVERTED PAPER & PAPERBOARD PRODS (NO CONTANERS/BOXES)",
+      "company_years": 84,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 3540.0,
+      "historical_sic_description": "METALWORKG MACHINERY & EQUIPMENT",
+      "company_years": 84,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 3730.0,
+      "historical_sic_description": "SHIP & BOAT BUILDING & REPAIRING",
+      "company_years": 84,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 5030.0,
+      "historical_sic_description": "WHOLESALE-LUMBER & OTHER CONSTRUCTION MATERIALS",
+      "company_years": 84,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 5200.0,
+      "historical_sic_description": "RETAIL-BUILDING MATERIALS, HARDWARE, GARDEN SUPPLY",
+      "company_years": 83,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 5400.0,
+      "historical_sic_description": "RETAIL-FOOD STORES",
+      "company_years": 83,
+      "unique_ciks": 18
+    },
+    {
+      "historical_sic": 2650.0,
+      "historical_sic_description": "PAPERBOARD CONTAINERS & BOXES",
+      "company_years": 82,
+      "unique_ciks": 15
+    },
+    {
+      "historical_sic": 3630.0,
+      "historical_sic_description": "HOUSEHOLD APPLIANCES",
+      "company_years": 82,
+      "unique_ciks": 12
+    },
+    {
+      "historical_sic": 7948.0,
+      "historical_sic_description": "SERVICES-RACING, INCLUDING TRACK OPERATION",
+      "company_years": 82,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 3827.0,
+      "historical_sic_description": "OPTICAL INSTRUMENTS & LENSES",
+      "company_years": 81,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 5051.0,
+      "historical_sic_description": "WHOLESALE-METALS SERVICE CENTERS & OFFICES",
+      "company_years": 81,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 8060.0,
+      "historical_sic_description": "SERVICES-HOSPITALS",
+      "company_years": 80,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 1520.0,
+      "historical_sic_description": "GENERAL BLDG CONTRACTORS - RESIDENTIAL BLDGS",
+      "company_years": 79,
+      "unique_ciks": 19
+    },
+    {
+      "historical_sic": 2840.0,
+      "historical_sic_description": "SOAP, DETERGENTS, CLEANG PREPARATIONS, PERFUMES, COSMETICS",
+      "company_years": 79,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 2820.0,
+      "historical_sic_description": "PLASTIC MATERIAL, SYNTH RESIN/RUBBER, CELLULOS (NO GLASS)",
+      "company_years": 78,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 3060.0,
+      "historical_sic_description": "FABRICATED RUBBER PRODUCTS, NEC",
+      "company_years": 78,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 5084.0,
+      "historical_sic_description": "WHOLESALE-INDUSTRIAL MACHINERY & EQUIPMENT",
+      "company_years": 78,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 7381.0,
+      "historical_sic_description": "SERVICES-DETECTIVE, GUARD & ARMORED CAR SERVICES",
+      "company_years": 78,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 2721.0,
+      "historical_sic_description": "PERIODICALS: PUBLISHING OR PUBLISHING & PRINTING",
+      "company_years": 77,
+      "unique_ciks": 21
+    },
+    {
+      "historical_sic": 5172.0,
+      "historical_sic_description": "WHOLESALE-PETROLEUM & PETROLEUM PRODUCTS (NO BULK STATIONS)",
+      "company_years": 77,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 8050.0,
+      "historical_sic_description": "SERVICES-NURSING & PERSONAL CARE FACILITIES",
+      "company_years": 76,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 5661.0,
+      "historical_sic_description": "RETAIL-SHOE STORES",
+      "company_years": 75,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 2082.0,
+      "historical_sic_description": "MALT BEVERAGES",
+      "company_years": 74,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 4522.0,
+      "historical_sic_description": "AIR TRANSPORTATION, NONSCHEDULED",
+      "company_years": 74,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 2731.0,
+      "historical_sic_description": "BOOKS: PUBLISHING OR PUBLISHING & PRINTING",
+      "company_years": 72,
+      "unique_ciks": 12
+    },
+    {
+      "historical_sic": 5160.0,
+      "historical_sic_description": "WHOLESALE-CHEMICALS & ALLIED PRODUCTS",
+      "company_years": 72,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 2851.0,
+      "historical_sic_description": "PAINTS, VARNISHES, LACQUERS, ENAMELS & ALLIED PRODS",
+      "company_years": 71,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 3460.0,
+      "historical_sic_description": "METAL FORGINGS & STAMPINGS",
+      "company_years": 71,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 7361.0,
+      "historical_sic_description": "SERVICES-EMPLOYMENT AGENCIES",
+      "company_years": 71,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 2400.0,
+      "historical_sic_description": "LUMBER & WOOD PRODUCTS (NO FURNITURE)",
+      "company_years": 70,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 3100.0,
+      "historical_sic_description": "LEATHER & LEATHER PRODUCTS",
+      "company_years": 70,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 8051.0,
+      "historical_sic_description": "SERVICES-SKILLED NURSING CARE FACILITIES",
+      "company_years": 70,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 3550.0,
+      "historical_sic_description": "SPECIAL INDUSTRY MACHINERY (NO METALWORKING MACHINERY)",
+      "company_years": 69,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 3578.0,
+      "historical_sic_description": "CALCULATING & ACCOUNTING MACHINES (NO ELECTRONIC COMPUTERS)",
+      "company_years": 69,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 5171.0,
+      "historical_sic_description": "WHOLESALE-PETROLEUM BULK STATIONS & TERMINALS",
+      "company_years": 69,
+      "unique_ciks": 12
+    },
+    {
+      "historical_sic": 3570.0,
+      "historical_sic_description": "COMPUTER & OFFICE EQUIPMENT",
+      "company_years": 68,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 5063.0,
+      "historical_sic_description": "WHOLESALE-ELECTRICAL APPARATUS & EQUIPMENT, WIRING SUPPLIES",
+      "company_years": 68,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 5130.0,
+      "historical_sic_description": "WHOLESALE-APPAREL, PIECE GOODS & NOTIONS",
+      "company_years": 68,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 7819.0,
+      "historical_sic_description": "SERVICES-ALLIED TO MOTION PICTURE PRODUCTION",
+      "company_years": 68,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 7997.0,
+      "historical_sic_description": "SERVICES-MEMBERSHIP SPORTS & RECREATION CLUBS",
+      "company_years": 68,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 3760.0,
+      "historical_sic_description": "GUIDED MISSILES & SPACE VEHICLES & PARTS",
+      "company_years": 67,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 5000.0,
+      "historical_sic_description": "WHOLESALE-DURABLE GOODS",
+      "company_years": 67,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 2020.0,
+      "historical_sic_description": "DAIRY PRODUCTS",
+      "company_years": 66,
+      "unique_ciks": 17
+    },
+    {
+      "historical_sic": 2070.0,
+      "historical_sic_description": "FATS & OILS",
+      "company_years": 66,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 3790.0,
+      "historical_sic_description": "MISCELLANEOUS TRANSPORTATION EQUIPMENT",
+      "company_years": 66,
+      "unique_ciks": 14
+    },
+    {
+      "historical_sic": 7340.0,
+      "historical_sic_description": "SERVICES-TO DWELLINGS & OTHER BUILDINGS",
+      "company_years": 64,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 3743.0,
+      "historical_sic_description": "RAILROAD EQUIPMENT",
+      "company_years": 63,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 1731.0,
+      "historical_sic_description": "ELECTRICAL WORK",
+      "company_years": 60,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 5731.0,
+      "historical_sic_description": "RETAIL-RADIO, TV & CONSUMER ELECTRONICS STORES",
+      "company_years": 59,
+      "unique_ciks": 12
+    },
+    {
+      "historical_sic": 2842.0,
+      "historical_sic_description": "SPECIALTY CLEANING, POLISHING AND SANITATION PREPARATIONS",
+      "company_years": 58,
+      "unique_ciks": 16
+    },
+    {
+      "historical_sic": 3080.0,
+      "historical_sic_description": "MISCELLANEOUS PLASTICS PRODUCTS",
+      "company_years": 58,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 3678.0,
+      "historical_sic_description": "ELECTRONIC CONNECTORS",
+      "company_years": 58,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3851.0,
+      "historical_sic_description": "OPHTHALMIC GOODS",
+      "company_years": 58,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 5944.0,
+      "historical_sic_description": "RETAIL-JEWELRY STORES",
+      "company_years": 58,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 3081.0,
+      "historical_sic_description": "UNSUPPORTED PLASTICS FILM & SHEET",
+      "company_years": 57,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 3470.0,
+      "historical_sic_description": "COATING, ENGRAVING & ALLIED SERVICES",
+      "company_years": 57,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 3357.0,
+      "historical_sic_description": "DRAWING & INSULATING OF NONFERROUS WIRE",
+      "company_years": 55,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 3821.0,
+      "historical_sic_description": "LABORATORY APPARATUS & FURNITURE",
+      "company_years": 55,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 2451.0,
+      "historical_sic_description": "MOBILE HOMES",
+      "company_years": 54,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 7500.0,
+      "historical_sic_description": "SERVICES-AUTOMOTIVE REPAIR, SERVICES & PARKING",
+      "company_years": 54,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 8700.0,
+      "historical_sic_description": "SERVICES-ENGINEERING, ACCOUNTING, RESEARCH, MANAGEMENT",
+      "company_years": 53,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 2330.0,
+      "historical_sic_description": "WOMEN'S, MISSES', AND JUNIORS OUTERWEAR",
+      "company_years": 52,
+      "unique_ciks": 12
+    },
+    {
+      "historical_sic": 5734.0,
+      "historical_sic_description": "RETAIL-COMPUTER & COMPUTER SOFTWARE STORES",
+      "company_years": 52,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 2050.0,
+      "historical_sic_description": "BAKERY PRODUCTS",
+      "company_years": 51,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 3720.0,
+      "historical_sic_description": "AIRCRAFT & PARTS",
+      "company_years": 51,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 3724.0,
+      "historical_sic_description": "AIRCRAFT ENGINES & ENGINE PARTS",
+      "company_years": 51,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 3272.0,
+      "historical_sic_description": "CONCRETE PRODUCTS, EXCEPT BLOCK & BRICK",
+      "company_years": 50,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 3443.0,
+      "historical_sic_description": "FABRICATED PLATE WORK (BOILER SHOPS)",
+      "company_years": 50,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 5013.0,
+      "historical_sic_description": "WHOLESALE-MOTOR VEHICLE SUPPLIES & NEW PARTS",
+      "company_years": 49,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 3433.0,
+      "historical_sic_description": "HEATING EQUIPMENT, EXCEPT ELECTRIC & WARM AIR FURNACES",
+      "company_years": 48,
+      "unique_ciks": 12
+    },
+    {
+      "historical_sic": 5010.0,
+      "historical_sic_description": "WHOLESALE-MOTOR VEHICLES & MOTOR VEHICLE PARTS & SUPPLIES",
+      "company_years": 48,
+      "unique_ciks": 12
+    },
+    {
+      "historical_sic": 7000.0,
+      "historical_sic_description": "HOTELS, ROOMING HOUSES, CAMPS & OTHER LODGING PLACES",
+      "company_years": 48,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 7600.0,
+      "historical_sic_description": "SERVICES-MISCELLANEOUS REPAIR SERVICES",
+      "company_years": 48,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 3021.0,
+      "historical_sic_description": "RUBBER & PLASTICS FOOTWEAR",
+      "company_years": 47,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3317.0,
+      "historical_sic_description": "STEEL PIPE & TUBES",
+      "company_years": 47,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 4513.0,
+      "historical_sic_description": "AIR COURIER SERVICES",
+      "company_years": 47,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 2100.0,
+      "historical_sic_description": "TOBACCO PRODUCTS",
+      "company_years": 46,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 3600.0,
+      "historical_sic_description": "ELECTRONIC & OTHER ELECTRICAL EQUIPMENT (NO COMPUTER EQUIP)",
+      "company_years": 46,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 5712.0,
+      "historical_sic_description": "RETAIL-FURNITURE STORES",
+      "company_years": 46,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 7822.0,
+      "historical_sic_description": "SERVICES-MOTION PICTURE & VIDEO TAPE DISTRIBUTION",
+      "company_years": 46,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 1540.0,
+      "historical_sic_description": "GENERAL BLDG CONTRACTORS - NONRESIDENTIAL BLDGS",
+      "company_years": 44,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 3411.0,
+      "historical_sic_description": "METAL CANS",
+      "company_years": 44,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 7330.0,
+      "historical_sic_description": "SERVICES-MAILING, REPRODUCTION, COMMERCIAL ART & PHOTOGRAPHY",
+      "company_years": 44,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 8734.0,
+      "historical_sic_description": "SERVICES-TESTING LABORATORIES",
+      "company_years": 44,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 2015.0,
+      "historical_sic_description": "POULTRY SLAUGHTERING AND PROCESSING",
+      "company_years": 43,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3713.0,
+      "historical_sic_description": "TRUCK & BUS BODIES",
+      "company_years": 43,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 4822.0,
+      "historical_sic_description": "TELEGRAPH & OTHER MESSAGE COMMUNICATIONS",
+      "company_years": 43,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 2273.0,
+      "historical_sic_description": "CARPETS & RUGS",
+      "company_years": 42,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3442.0,
+      "historical_sic_description": "METAL DOORS, SASH, FRAMES, MOLDINGS & TRIM",
+      "company_years": 41,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3562.0,
+      "historical_sic_description": "BALL & ROLLER BEARINGS",
+      "company_years": 40,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 3634.0,
+      "historical_sic_description": "ELECTRIC HOUSEWARES & FANS",
+      "company_years": 40,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 3844.0,
+      "historical_sic_description": "X-RAY APPARATUS & TUBES & RELATED IRRADIATION APPARATUS",
+      "company_years": 40,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 5070.0,
+      "historical_sic_description": "WHOLESALE-HARDWARE & PLUMBING & HEATING EQUIPMENT & SUPPLIES",
+      "company_years": 40,
+      "unique_ciks": 11
+    },
+    {
+      "historical_sic": 2033.0,
+      "historical_sic_description": "CANNED, FRUITS, VEG, PRESERVES, JAMS & JELLIES",
+      "company_years": 39,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 2390.0,
+      "historical_sic_description": "MISCELLANEOUS FABRICATED TEXTILE PRODUCTS",
+      "company_years": 39,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 2511.0,
+      "historical_sic_description": "WOOD HOUSEHOLD FURNITURE, (NO UPHOLSTERED)",
+      "company_years": 39,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 3390.0,
+      "historical_sic_description": "MISCELLANEOUS PRIMARY METAL PRODUCTS",
+      "company_years": 39,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3290.0,
+      "historical_sic_description": "ABRASIVE, ASBESTOS & MISC NONMETALLIC MINERAL PRODS",
+      "company_years": 38,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 3612.0,
+      "historical_sic_description": "POWER, DISTRIBUTION & SPECIALTY TRANSFORMERS",
+      "company_years": 38,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 4210.0,
+      "historical_sic_description": "TRUCKING & COURIER SERVICES (NO AIR)",
+      "company_years": 38,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 2200.0,
+      "historical_sic_description": "TEXTILE MILL PRODUCTS",
+      "company_years": 37,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 3011.0,
+      "historical_sic_description": "TIRES & INNER TUBES",
+      "company_years": 37,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 3086.0,
+      "historical_sic_description": "PLASTICS FOAM PRODUCTS",
+      "company_years": 37,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3430.0,
+      "historical_sic_description": "HEATING EQUIP, EXCEPT ELEC & WARM AIR; & PLUMBING FIXTURES",
+      "company_years": 37,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 3537.0,
+      "historical_sic_description": "INDUSTRIAL TRUCKS, TRACTORS, TRAILORS & STACKERS",
+      "company_years": 37,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 2990.0,
+      "historical_sic_description": "MISCELLANEOUS PRODUCTS OF PETROLEUM & COAL",
+      "company_years": 36,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3822.0,
+      "historical_sic_description": "AUTO CONTROLS FOR REGULATING RESIDENTIAL & COMML ENVIRONMENTS",
+      "company_years": 36,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 3652.0,
+      "historical_sic_description": "PHONOGRAPH RECORDS & PRERECORDED AUDIO TAPES & DISKS",
+      "company_years": 35,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 3231.0,
+      "historical_sic_description": "GLASS PRODUCTS, MADE OF PURCHASED GLASS",
+      "company_years": 34,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 5945.0,
+      "historical_sic_description": "RETAIL-HOBBY, TOY & GAME SHOPS",
+      "company_years": 34,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 3341.0,
+      "historical_sic_description": "SECONDARY SMELTING & REFINING OF NONFERROUS METALS",
+      "company_years": 33,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 7331.0,
+      "historical_sic_description": "SERVICES-DIRECT MAIL ADVERTISING SERVICES",
+      "company_years": 33,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 3910.0,
+      "historical_sic_description": "JEWELRY, SILVERWARE & PLATED WARE",
+      "company_years": 32,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 5020.0,
+      "historical_sic_description": "WHOLESALE-FURNITURE & HOME FURNISHINGS",
+      "company_years": 32,
+      "unique_ciks": 13
+    },
+    {
+      "historical_sic": 5072.0,
+      "historical_sic_description": "WHOLESALE-HARDWARE",
+      "company_years": 32,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 7841.0,
+      "historical_sic_description": "SERVICES-VIDEO TAPE RENTAL",
+      "company_years": 32,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 2340.0,
+      "historical_sic_description": "WOMEN'S, MISSES', CHILDREN'S & INFANTS' UNDERGARMENTS",
+      "company_years": 31,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 5110.0,
+      "historical_sic_description": "WHOLESALE-PAPER & PAPER PRODUCTS",
+      "company_years": 31,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 2780.0,
+      "historical_sic_description": "BLANKBOOKS, LOOSELEAF BINDERS & BOOKBINDG & RELATD WORK",
+      "company_years": 30,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3270.0,
+      "historical_sic_description": "CONCRETE, GYPSUM & PLASTER PRODUCTS",
+      "company_years": 30,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 3330.0,
+      "historical_sic_description": "PRIMARY SMELTING & REFINING OF NONFERROUS METALS",
+      "company_years": 30,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3360.0,
+      "historical_sic_description": "NONFERROUS FOUNDRIES (CASTINGS)",
+      "company_years": 30,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3530.0,
+      "historical_sic_description": "CONSTRUCTION, MINING & MATERIALS HANDLING MACHINERY & EQUIP",
+      "company_years": 30,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 2011.0,
+      "historical_sic_description": "MEAT PACKING PLANTS",
+      "company_years": 29,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 2221.0,
+      "historical_sic_description": "BROADWOVEN FABRIC MILLS, MAN MADE FIBER & SILK",
+      "company_years": 29,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 2891.0,
+      "historical_sic_description": "ADHESIVES & SEALANTS",
+      "company_years": 29,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3613.0,
+      "historical_sic_description": "SWITCHGEAR & SWITCHBOARD APPARATUS",
+      "company_years": 29,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3873.0,
+      "historical_sic_description": "WATCHES, CLOCKS, CLOCKWORK OPERATED DEVICES/PARTS",
+      "company_years": 29,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 2211.0,
+      "historical_sic_description": "BROADWOVEN FABRIC MILLS, COTTON",
+      "company_years": 28,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 2522.0,
+      "historical_sic_description": "OFFICE FURNITURE (NO WOOD)",
+      "company_years": 28,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 2741.0,
+      "historical_sic_description": "MISCELLANEOUS PUBLISHING",
+      "company_years": 28,
+      "unique_ciks": 10
+    },
+    {
+      "historical_sic": 3716.0,
+      "historical_sic_description": "MOTOR HOMES",
+      "company_years": 28,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 5099.0,
+      "historical_sic_description": "WHOLESALE-DURABLE GOODS, NEC",
+      "company_years": 28,
+      "unique_ciks": 9
+    },
+    {
+      "historical_sic": 2013.0,
+      "historical_sic_description": "SAUSAGES & OTHER PREPARED MEAT PRODUCTS",
+      "company_years": 27,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 2024.0,
+      "historical_sic_description": "ICE CREAM & FROZEN DESSERTS",
+      "company_years": 27,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3334.0,
+      "historical_sic_description": "PRIMARY PRODUCTION OF ALUMINUM",
+      "company_years": 27,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 5031.0,
+      "historical_sic_description": "WHOLESALE-LUMBER, PLYWOOD, MILLWORK & WOOD PANELS",
+      "company_years": 27,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 5040.0,
+      "historical_sic_description": "WHOLESALE-PROFESSIONAL & COMMERCIAL EQUIPMENT & SUPPLIES",
+      "company_years": 27,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 2531.0,
+      "historical_sic_description": "PUBLIC BLDG & RELATED FURNITURE",
+      "company_years": 25,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 5180.0,
+      "historical_sic_description": "WHOLESALE-BEER, WINE & DISTILLED ALCOHOLIC BEVERAGES",
+      "company_years": 25,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 8744.0,
+      "historical_sic_description": "SERVICES-FACILITIES SUPPORT MANAGEMENT SERVICES",
+      "company_years": 25,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3050.0,
+      "historical_sic_description": "GASKETS, PACKG & SEALG DEVICES & RUBBER & PLASTICS HOSE",
+      "company_years": 24,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3541.0,
+      "historical_sic_description": "MACHINE TOOLS, METAL CUTTING TYPES",
+      "company_years": 24,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3677.0,
+      "historical_sic_description": "ELECTRONIC COILS, TRANSFORMERS & OTHER INDUCTORS",
+      "company_years": 24,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 4581.0,
+      "historical_sic_description": "AIRPORTS, FLYING FIELDS & AIRPORT TERMINAL SERVICES",
+      "company_years": 23,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 5094.0,
+      "historical_sic_description": "WHOLESALE-JEWELRY, WATCHES, PRECIOUS STONES & METALS",
+      "company_years": 23,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 2611.0,
+      "historical_sic_description": "PULP MILLS",
+      "company_years": 22,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 2673.0,
+      "historical_sic_description": "PLASTICS, FOIL & COATED PAPER BAGS",
+      "company_years": 22,
+      "unique_ciks": 5
+    },
+    {
+      "historical_sic": 3221.0,
+      "historical_sic_description": "GLASS CONTAINERS",
+      "company_years": 22,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3695.0,
+      "historical_sic_description": "MAGNETIC & OPTICAL RECORDING MEDIA",
+      "company_years": 22,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 8900.0,
+      "historical_sic_description": "SERVICES-SERVICES, NEC",
+      "company_years": 22,
+      "unique_ciks": 8
+    },
+    {
+      "historical_sic": 2052.0,
+      "historical_sic_description": "COOKIES & CRACKERS",
+      "company_years": 21,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 2421.0,
+      "historical_sic_description": "SAWMILLS & PLANTING MILLS, GENERAL",
+      "company_years": 21,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3220.0,
+      "historical_sic_description": "GLASS & GLASSWARE, PRESSED OR BLOWN",
+      "company_years": 21,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 3824.0,
+      "historical_sic_description": "TOTALIZING FLUID METERS & COUNTING DEVICES",
+      "company_years": 21,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 8300.0,
+      "historical_sic_description": "SERVICES-SOCIAL SERVICES",
+      "company_years": 21,
+      "unique_ciks": 7
+    },
+    {
+      "historical_sic": 3448.0,
+      "historical_sic_description": "PREFABRICATED METAL BUILDINGS & COMPONENTS",
+      "company_years": 20,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3241.0,
+      "historical_sic_description": "CEMENT, HYDRAULIC",
+      "company_years": 19,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3942.0,
+      "historical_sic_description": "DOLLS & STUFFED TOYS",
+      "company_years": 19,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 2520.0,
+      "historical_sic_description": "OFFICE FURNITURE",
+      "company_years": 18,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 2631.0,
+      "historical_sic_description": "PAPERBOARD MILLS",
+      "company_years": 18,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3715.0,
+      "historical_sic_description": "TRUCK TRAILERS",
+      "company_years": 18,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 2590.0,
+      "historical_sic_description": "MISCELLANEOUS FURNITURE & FIXTURES",
+      "company_years": 17,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 2761.0,
+      "historical_sic_description": "MANIFOLD BUSINESS FORMS",
+      "company_years": 17,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 8111.0,
+      "historical_sic_description": "SERVICES-LEGAL SERVICES",
+      "company_years": 17,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3524.0,
+      "historical_sic_description": "LAWN & GARDEN TRACTORS & HOME LAWN & GARDENS EQUIP",
+      "company_years": 16,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 5412.0,
+      "historical_sic_description": "RETAIL-CONVENIENCE STORES",
+      "company_years": 15,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 5735.0,
+      "historical_sic_description": "RETAIL-RECORD & PRERECORDED TAPE STORES",
+      "company_years": 15,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3211.0,
+      "historical_sic_description": "FLAT GLASS",
+      "company_years": 14,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3260.0,
+      "historical_sic_description": "POTTERY & RELATED PRODUCTS",
+      "company_years": 14,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 3579.0,
+      "historical_sic_description": "OFFICE MACHINES, NEC",
+      "company_years": 14,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 8351.0,
+      "historical_sic_description": "SERVICES-CHILD DAY CARE SERVICES",
+      "company_years": 14,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 2771.0,
+      "historical_sic_description": "GREETING CARDS",
+      "company_years": 13,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 5050.0,
+      "historical_sic_description": "WHOLESALE-METALS & MINERALS (NO PETROLEUM)",
+      "company_years": 13,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 2452.0,
+      "historical_sic_description": "PREFABRICATED WOOD BLDGS & COMPONENTS",
+      "company_years": 12,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 2790.0,
+      "historical_sic_description": "SERVICE INDUSTRIES FOR THE PRINTING TRADE",
+      "company_years": 12,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 3412.0,
+      "historical_sic_description": "METAL SHIPPING BARRELS, DRUMS, KEGS & PAILS",
+      "company_years": 11,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 3555.0,
+      "historical_sic_description": "PRINTING TRADES MACHINERY & EQUIPMENT",
+      "company_years": 11,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 4220.0,
+      "historical_sic_description": "PUBLIC WAREHOUSING & STORAGE",
+      "company_years": 11,
+      "unique_ciks": 6
+    },
+    {
+      "historical_sic": 2600.0,
+      "historical_sic_description": "PAPERS & ALLIED PRODUCTS",
+      "company_years": 10,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3911.0,
+      "historical_sic_description": "JEWELRY, PRECIOUS METAL",
+      "company_years": 10,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 7385.0,
+      "historical_sic_description": "SERVICES-TELEPHONE INTERCONNECT SYSTEMS",
+      "company_years": 10,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 2092.0,
+      "historical_sic_description": "PREPARED FRESH OR FROZEN FISH & SEAFOODS",
+      "company_years": 9,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3281.0,
+      "historical_sic_description": "CUT STONE & STONE PRODUCTS",
+      "company_years": 9,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3444.0,
+      "historical_sic_description": "SHEET METAL WORK",
+      "company_years": 9,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 4013.0,
+      "historical_sic_description": "RAILROAD SWITCHING & TERMINAL ESTABLISHMENTS",
+      "company_years": 9,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 4100.0,
+      "historical_sic_description": "LOCAL & SUBURBAN TRANSIT & INTERURBAN HWY PASSENGER TRANS",
+      "company_years": 8,
+      "unique_ciks": 4
+    },
+    {
+      "historical_sic": 5064.0,
+      "historical_sic_description": "WHOLESALE-ELECTRICAL APPLIANCES, TV & RADIO SETS",
+      "company_years": 8,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 7384.0,
+      "historical_sic_description": "SERVICES-PHOTOFINISHING LABORATORIES",
+      "company_years": 8,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 3532.0,
+      "historical_sic_description": "MINING MACHINERY & EQUIP (NO OIL & GAS FIELD MACH & EQUIP)",
+      "company_years": 7,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3931.0,
+      "historical_sic_description": "MUSICAL INSTRUMENTS",
+      "company_years": 7,
+      "unique_ciks": 3
+    },
+    {
+      "historical_sic": 3452.0,
+      "historical_sic_description": "BOLTS, NUTS, SCREWS, RIVETS & WASHERS",
+      "company_years": 5,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 5399.0,
+      "historical_sic_description": "RETAIL-MISC GENERAL MERCHANDISE STORES",
+      "company_years": 5,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 7377.0,
+      "historical_sic_description": "SERVICES-COMPUTER RENTAL & LEASING",
+      "company_years": 5,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 2253.0,
+      "historical_sic_description": "KNIT OUTERWEAR MILLS",
+      "company_years": 4,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 2732.0,
+      "historical_sic_description": "BOOK PRINTING",
+      "company_years": 4,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 3320.0,
+      "historical_sic_description": "IRON & STEEL FOUNDRIES",
+      "company_years": 4,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 2540.0,
+      "historical_sic_description": "PARTITIONS, SHELVG, LOCKERS, & OFFICE & STORE FIXTURES",
+      "company_years": 3,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 3567.0,
+      "historical_sic_description": "INDUSTRIAL PROCESS FURNACES & OVENS",
+      "company_years": 3,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 3950.0,
+      "historical_sic_description": "PENS, PENCILS & OTHER ARTISTS' MATERIALS",
+      "company_years": 2,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 7829.0,
+      "historical_sic_description": "SERVICES-ALLIED TO MOTION PICTURE DISTRIBUTION",
+      "company_years": 2,
+      "unique_ciks": 2
+    },
+    {
+      "historical_sic": 3250.0,
+      "historical_sic_description": "STRUCTURAL CLAY PRODUCTS",
+      "company_years": 1,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 3960.0,
+      "historical_sic_description": "COSTUME JEWELRY & NOVELTIES",
+      "company_years": 1,
+      "unique_ciks": 1
+    },
+    {
+      "historical_sic": 5082.0,
+      "historical_sic_description": "WHOLESALE-CONSTRUCTION & MINING (NO PETRO) MACHINERY & EQUIP",
+      "company_years": 1,
+      "unique_ciks": 1
+    }
+  ],
+  "membership_reasons": [
+    {
+      "membership_status": "ambiguous",
+      "membership_reason": "historical_sic_missing_in_registrant_header",
+      "company_years": 1532
+    },
+    {
+      "membership_status": "ambiguous",
+      "membership_reason": "statement_scope_owner_not_eligible_under_historical_policy",
+      "company_years": 4
+    },
+    {
+      "membership_status": "ambiguous",
+      "membership_reason": "statement_scope_owner_is_nonregistrant_parent",
+      "company_years": 2
+    },
+    {
+      "membership_status": "ambiguous",
+      "membership_reason": "historical_sic_conflict",
+      "company_years": 1
+    },
+    {
+      "membership_status": "excluded",
+      "membership_reason": "financials_insurance_real_estate_excluded",
+      "company_years": 32076
+    },
+    {
+      "membership_status": "excluded",
+      "membership_reason": "utilities_excluded",
+      "company_years": 3778
+    },
+    {
+      "membership_status": "excluded",
+      "membership_reason": "out_of_scope_sector",
+      "company_years": 645
+    },
+    {
+      "membership_status": "excluded",
+      "membership_reason": "duplicate_registrant_same_statement_scope",
+      "company_years": 132
+    },
+    {
+      "membership_status": "excluded",
+      "membership_reason": "nominal_nonoperating_finance_coissuer",
+      "company_years": 28
+    }
+  ],
+  "filings_outside_company_year_panel": [
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2000,
+      "filing_rows": 2
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2001,
+      "filing_rows": 5
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2002,
+      "filing_rows": 5
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2003,
+      "filing_rows": 6
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2004,
+      "filing_rows": 11
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2005,
+      "filing_rows": 12
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2006,
+      "filing_rows": 16
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2007,
+      "filing_rows": 31
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2008,
+      "filing_rows": 59
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2009,
+      "filing_rows": 107
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2010,
+      "filing_rows": 6685
+    },
+    {
+      "feature_year_resolution_status": "resolved_out_of_scope",
+      "observed_fiscal_year": 2025,
+      "filing_rows": 732
+    }
+  ],
+  "target_status_development": [
+    {
+      "target_status": "not_computed",
+      "eligible_company_years": 30500
+    },
+    {
+      "target_status": "available",
+      "eligible_company_years": 14061
+    },
+    {
+      "target_status": "ambiguous",
+      "eligible_company_years": 8240
+    },
+    {
+      "target_status": "missing",
+      "eligible_company_years": 3998
+    },
+    {
+      "target_status": "hard_exclude",
+      "eligible_company_years": 104
+    }
+  ],
+  "x_t_status": [
+    {
+      "x_t_status": "not_built",
+      "n": 64901,
+      "share_pct": 100.0
+    }
+  ],
+  "registrant_roles": [
+    {
+      "registrant_role_resolved": "single_filer_xbrl_registrant",
+      "n": 60533,
+      "share_pct": 93.27
+    },
+    {
+      "registrant_role_resolved": "single_filer_non_xbrl_registrant",
+      "n": 3758,
+      "share_pct": 5.79
+    },
+    {
+      "registrant_role_resolved": "joint_primary_registrant",
+      "n": 338,
+      "share_pct": 0.52
+    },
+    {
+      "registrant_role_resolved": "joint_co_registrant",
+      "n": 272,
+      "share_pct": 0.42
+    }
+  ],
+  "historical_sic_sources": [
+    {
+      "historical_sic_source": "fsds_sub_same_accession",
+      "n": 85554,
+      "share_pct": 82.98
+    },
+    {
+      "historical_sic_source": "submission_header_same_accession",
+      "n": 16012,
+      "share_pct": 15.53
+    },
+    {
+      "historical_sic_source": "unavailable",
+      "n": 1532,
+      "share_pct": 1.49
+    },
+    {
+      "historical_sic_source": "conflict",
+      "n": 1,
+      "share_pct": 0.0
+    }
+  ],
+  "historical_classification_changes": [
+    {
+      "current_snapshot_eligible": false,
+      "historical_eligible": false,
+      "current_snapshot_sector": "Excluded_REIT",
+      "research_sector": "Excluded_Financials_Insurance_RealEstate",
+      "company_years": 2318
+    },
+    {
+      "current_snapshot_eligible": false,
+      "historical_eligible": false,
+      "current_snapshot_sector": "Excluded_Fund_ETF_Trust",
+      "research_sector": "Excluded_Financials_Insurance_RealEstate",
+      "company_years": 1564
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Industrials_Manufacturing",
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 568
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Industrials_Manufacturing",
+      "research_sector": "Extended_Candidate",
+      "company_years": 449
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Extended_Candidate",
+      "research_sector": "Extended_Candidate",
+      "company_years": 312
+    },
+    {
+      "current_snapshot_eligible": false,
+      "historical_eligible": false,
+      "current_snapshot_sector": "Excluded_SPAC_Blank_Check",
+      "research_sector": "Excluded_Financials_Insurance_RealEstate",
+      "company_years": 270
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": false,
+      "current_snapshot_sector": "Industrials_Manufacturing",
+      "research_sector": "Excluded_Financials_Insurance_RealEstate",
+      "company_years": 259
+    },
+    {
+      "current_snapshot_eligible": false,
+      "historical_eligible": false,
+      "current_snapshot_sector": "Excluded_Financials_Insurance_RealEstate",
+      "research_sector": "Excluded_Financials_Insurance_RealEstate",
+      "company_years": 256
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Extended_Candidate",
+      "research_sector": "Technology",
+      "company_years": 230
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Extended_Candidate",
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 207
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Technology",
+      "research_sector": "Extended_Candidate",
+      "company_years": 178
+    },
+    {
+      "current_snapshot_eligible": false,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Excluded_Financials_Insurance_RealEstate",
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 172
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": false,
+      "current_snapshot_sector": "Extended_Candidate",
+      "research_sector": "Excluded_Financials_Insurance_RealEstate",
+      "company_years": 167
+    },
+    {
+      "current_snapshot_eligible": false,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Excluded_Financials_Insurance_RealEstate",
+      "research_sector": "Extended_Candidate",
+      "company_years": 155
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Industrials_Manufacturing",
+      "research_sector": "Technology",
+      "company_years": 136
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Technology",
+      "research_sector": "Industrials_Manufacturing",
+      "company_years": 131
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Technology",
+      "research_sector": "Technology",
+      "company_years": 124
+    },
+    {
+      "current_snapshot_eligible": false,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Excluded_Fund_ETF_Trust",
+      "research_sector": "Extended_Candidate",
+      "company_years": 115
+    },
+    {
+      "current_snapshot_eligible": false,
+      "historical_eligible": true,
+      "current_snapshot_sector": "Excluded_Financials_Insurance_RealEstate",
+      "research_sector": "Technology",
+      "company_years": 107
+    },
+    {
+      "current_snapshot_eligible": true,
+      "historical_eligible": false,
+      "current_snapshot_sector": "Technology",
+      "research_sector": "Excluded_Financials_Insurance_RealEstate",
+      "company_years": 103
+    }
+  ],
+  "methodological_assessment": {
+    "survivorship_bias_old_universe": "material and empirically confirmed",
+    "historical_classification_bias_old_universe": "material if current SIC/sector is backcast; historical anchor SIC is now used",
+    "new_universe_membership_depends_on_current_ticker": false,
+    "new_universe_membership_depends_on_target_t1": false,
+    "new_universe_membership_depends_on_x_t_availability": false,
+    "economic_group_id_changes_membership": false,
+    "economic_group_id_overrides_temporal_split": false,
+    "delisting_status_limitation": "SEC-only sources identify a conservative inactive/delisted/unmapped proxy, not exchange-confirmed delisting events"
+  },
+  "frozen_target_sha256_verified": "473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff",
+  "freeze_gate_verdict": "RESEARCH UNIVERSE READY TO FREEZE"
+}

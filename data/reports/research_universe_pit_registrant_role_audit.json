@@ -1,0 +1,33 @@
+{
+  "audit_scope_observations": 4534,
+  "audit_scope_unique_ciks": 2773,
+  "single_filer_non_xbrl_observations": 3758,
+  "joint_observations": 776,
+  "joint_accessions": 385,
+  "joint_accessions_resolved": 384,
+  "joint_accessions_ambiguous": 1,
+  "joint_observations_in_multi_eligible_accessions": 720,
+  "separate_reporting_entity_observations": 4396,
+  "confirmed_shared_statement_duplicate_observations": 132,
+  "shared_statement_of_noneligible_cik_ambiguous_observations": 4,
+  "ambiguous_observations": 6,
+  "potential_non_operating_finance_registrant_observations": 22,
+  "verified_nonoperating_coissuer_observations": 28,
+  "freeze_ready": false,
+  "canonical_universe_sha256_verified": "7ed8faf9262f91b0098681722f941b9ffe6f44f6689ed8b7e96a7759dbcb5bb7",
+  "frozen_target_sha256_verified": "473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff",
+  "artifacts": {
+    "data/reports/research_universe_pit_registrant_role_detail.csv": {
+      "bytes": 1898359,
+      "sha256": "116dc2db66765d0a849576f98883c668d45814f756533639cae260193d0826f3"
+    },
+    "data/reports/research_universe_pit_joint_accessions.csv": {
+      "bytes": 328079,
+      "sha256": "43d893b3fba089e4239c8ac40968c1b1d39f8c44772c7e2deb60eb7331e700a5"
+    },
+    "data/reports/research_universe_pit_registrant_role_audit.md": {
+      "bytes": 8014,
+      "sha256": "a66825e6b3c01083e18c5d9f8364e4debdbe167740d6e3ea00a4eb3da9a0f53b"
+    }
+  }
+}
