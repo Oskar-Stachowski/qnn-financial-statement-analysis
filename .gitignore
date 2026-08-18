@@ -13,9 +13,26 @@ venv/
 .idea/
 .vscode/
 
+# Temporary Microsoft Office lock files
+~$*.docx
+~$*.xlsx
+~$*.pptx
+
 # Raw SEC submissions downloaded from SEC EDGAR
 data/raw/sec_submissions/
 data/raw/companyfacts/
 
+# Reproducible SEC filing caches (FilingSummary, rendered statements, reviews)
+data/raw/sec_filings/
+
 # Large generated SEC facts table
 data/interim/sec_facts_long.csv
+
+# Large generated row-level PIT-B artifacts
+data/interim/target_candidate_v2_pit_b.csv
+data/reports/target_candidate_v2_pit_b_revision_deltas.csv
+
+# Download-run manifests; summary results remain in the audit reports
+data/reports/target_candidate_v2_pit_b_revenue_evidence_downloads.json
+data/reports/target_candidate_v2_pit_b_revenue_review_downloads.json
+data/reports/target_candidate_v2_pit_b_sec_shards.json
