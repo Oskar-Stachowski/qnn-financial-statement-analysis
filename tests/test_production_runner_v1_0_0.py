@@ -17,15 +17,20 @@ from src.modeling.model_execution_contract import (
     canonical_candidate_index,
     canonical_sha256,
     file_sha256,
+    load_contract,
     max_f1_threshold,
+    rank_candidates,
 )
 from src.modeling.production_runner import (
+    CandidateExecutionResult,
     FoldExecution,
     ProductionExperimentRunner,
     ProtectedDataAccessError,
+    QNNResourceLedger,
     RunnerIntegrityError,
     SubprocessFoldExecutor,
     SyntheticFoldExecutor,
+    final_eligibility_pool,
     synthetic_dataset,
     synthetic_expectations,
 )
@@ -50,7 +55,7 @@ class ProductionRunnerPolicyTests(unittest.TestCase):
             self.assertEqual(len(index), 320)
             self.assertEqual(
                 canonical_sha256(index),
-                "263635db04d87466b182f3a853910e2cc6ca11a284deeb57969b5cbea43faf21",
+                "67184eac4f62909e0717bfb2e8775de275cbf3842fc9cf4dfd316e42a3b20726",
             )
 
     def test_protected_year_is_rejected_before_execution(self) -> None:
@@ -78,7 +83,9 @@ class ProductionRunnerPolicyTests(unittest.TestCase):
 
     def test_changed_candidate_registry_or_hash_is_hard_failure(self) -> None:
         registry = json.loads(
-            (ROOT / "configs/model_stage_candidates_v1.json").read_text()
+            (
+                ROOT / "configs/model_stage_candidates_v1_scientific_patch.json"
+            ).read_text()
         )
         registry["coarse"]["fixed_l2_logistic"][0]["configuration_id"] += "_MUTATED"
         config = yaml.safe_load(
@@ -125,6 +132,42 @@ class ProductionRunnerPolicyTests(unittest.TestCase):
             )
             self.assertFalse(report["model_fit_performed"])
             self.assertEqual(report["candidate_positions"], 320)
+            metadata = json.loads(
+                (Path(directory) / "runtime_metadata.json").read_text()
+            )
+            self.assertTrue(metadata["controller"]["sys_executable"])
+            self.assertTrue(metadata["controller"]["python_version"])
+            self.assertIn("numpy", metadata["controller"]["main_library_versions"])
+            self.assertTrue(metadata["controller"]["git_commit"])
+            self.assertEqual(metadata["seeds"]["coarse_and_refinement"], 20260818)
+            self.assertEqual(len(metadata["configuration_ids"]), 142)
+
+    def test_rbf_refinement_enters_same_final_pool_and_beats_coarse(self) -> None:
+        contract = load_contract()
+
+        def rbf(stage: str, configuration_id: str, metric: float) -> CandidateExecutionResult:
+            return CandidateExecutionResult(
+                row={
+                    "stage": stage,
+                    "family": "rbf_svm",
+                    "feature_block": "L",
+                    "configuration_id": configuration_id,
+                    "parameters": {"C": 1.0, "gamma": 0.1, "imbalance": "none"},
+                    "training_seed": 20260818,
+                    "fold_statuses": {},
+                    "status": "COMPLETE",
+                    "pooled_oof_pr_auc": metric,
+                    "oof_prediction_artifact_sha256": configuration_id,
+                    "failure_code": None,
+                },
+                predictions=[],
+            )
+
+        coarse = rbf("coarse", "rbf-coarse", 0.61)
+        refinement = rbf("refinement", "rbf-refinement", 0.72)
+        pool = final_eligibility_pool([coarse, refinement], [], contract)
+        ranked = rank_candidates((result.row for result in pool), contract)
+        self.assertEqual(ranked[0]["configuration_id"], "rbf-refinement")
 
     def test_oof_alignment_and_fsum_seed_aggregation_are_order_invariant(self) -> None:
         sample_rows = [
@@ -226,6 +269,170 @@ class ProductionRunnerPolicyTests(unittest.TestCase):
             self.assertEqual(result.status, "COMPLETE")
             self.assertEqual(executor.calls, [False, True, False])
 
+    def test_qnn_global_attempt_ledger_hard_stops_retry(self) -> None:
+        class ScriptedQNNExecutor(SubprocessFoldExecutor):
+            def __init__(self, ledger_path: Path) -> None:
+                self.calls: list[bool] = []
+                self.qnn_ledger = QNNResourceLedger(
+                    ledger_path,
+                    maximum_attempts=2,
+                    maximum_runtime_seconds=3600.0,
+                )
+
+            def _one_attempt(self, task, **kwargs):  # type: ignore[no-untyped-def]
+                resume = bool(kwargs["resume"])
+                self.calls.append(resume)
+                checkpoint_path = kwargs["checkpoint_path"]
+                checkpoint_path.parent.mkdir(parents=True, exist_ok=True)
+                checkpoint_path.write_bytes(b"synthetic checkpoint")
+                audit = {
+                    "attempt": len(self.calls),
+                    "resume": resume,
+                    "outcome": "INFRASTRUCTURE_FAILURE",
+                }
+                return (
+                    FoldExecution(
+                        status="INFRASTRUCTURE_FAILURE",
+                        raw_scores=None,
+                        failure_code="WORKER_PROCESS_LOST_BY_OS_SIGNAL",
+                        software_environment_sha256="synthetic",
+                        device_identity="cpu",
+                        attempts=[audit],
+                    ),
+                    audit,
+                )
+
+        from src.modeling.production_runner import FoldTask
+
+        task = FoldTask(
+            stage="qnn_q1",
+            family="qnn",
+            feature_block="L",
+            configuration_id="synthetic-qnn",
+            parameters={"epochs": 1},
+            training_seed=20260818,
+            fold_id="fold_2015",
+            validation_feature_year=2015,
+            selected_ansatz_id="ROT_CNOT_RING",
+            train_membership_sha256="a",
+            validation_membership_sha256="b",
+            preprocessing_sha256="c",
+            pca_sha256_if_applicable="d",
+            software_environment_role="qnn_mlp",
+            checkpoint_identity={},
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            directory_path = Path(directory)
+            executor = ScriptedQNNExecutor(directory_path / "ledger.json")
+            result = executor.execute(
+                task,
+                x_train=np.zeros((2, 1)),
+                y_train=np.array([0, 1]),
+                x_validation=np.zeros((1, 1)),
+                sample_weight=np.ones(2),
+                checkpoint_path=directory_path / "checkpoint.pt",
+                timeout_seconds=30,
+            )
+            self.assertEqual(result.status, "INFRASTRUCTURE_EXHAUSTED")
+            self.assertEqual(executor.calls, [False, True])
+            ledger = json.loads((directory_path / "ledger.json").read_text())
+            self.assertEqual(ledger["started_attempts"], 2)
+            self.assertEqual(ledger["completed_attempts"], 2)
+            self.assertGreater(ledger["total_runtime_seconds"], 0.0)
+            self.assertTrue(ledger["limit_reached"])
+            self.assertEqual(
+                [item["retry_reason"] for item in ledger["attempts"]],
+                ["INITIAL", "CHECKPOINT_RESUME_AFTER_WORKER_PROCESS_LOST_BY_OS_SIGNAL"],
+            )
+
+    def test_q2_t0_reuse_propagates_q1_fold_failure(self) -> None:
+        required_folds = [f"fold_{year}" for year in range(2015, 2021)]
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory)
+            runner = self.make_runner(output)
+            source_configuration = "model_stage_v1__qnn_q1__rot_cnot_ring"
+            fold_statuses = {fold: "COMPLETE" for fold in required_folds}
+            fold_statuses["fold_2015"] = "TIMEOUT_INVALID"
+            predictions = [
+                {
+                    "fold_id": fold,
+                    "validation_feature_year": int(fold.removeprefix("fold_")),
+                    "research_universe_company_year_id": f"SYN-{fold}",
+                    "target_label": 0,
+                    "economic_group_id": "SYN",
+                    "prediction_timestamp": "2020-01-01T00:00:00+00:00",
+                    "raw_score": 0.0,
+                    "raw_score_float64_hex": 0.0.hex(),
+                }
+                for fold in required_folds
+                if fold_statuses[fold] == "COMPLETE"
+            ]
+            source = CandidateExecutionResult(
+                row={
+                    "stage": "qnn_q1",
+                    "family": "qnn",
+                    "feature_block": "L",
+                    "configuration_id": source_configuration,
+                    "parameters": {"ansatz": "ROT_CNOT_RING"},
+                    "training_seed": 20260818,
+                    "fold_statuses": fold_statuses,
+                    "status": "QNN_CANDIDATE_TECHNICALLY_INVALID",
+                    "pooled_oof_pr_auc": None,
+                    "oof_prediction_artifact_sha256": None,
+                    "failure_code": "PARTIAL_OR_INVALID_FOLD",
+                },
+                predictions=predictions,
+            )
+            source_base = runner._artifact_directory(
+                stage="qnn_q1",
+                family="qnn",
+                configuration_id=source_configuration,
+                block="L",
+                seed=20260818,
+            )
+            for fold, status in fold_statuses.items():
+                path = source_base / fold / "result_manifest.json"
+                path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(
+                    json.dumps(
+                        {
+                            "status": status,
+                            "failure_code": "TIMEOUT"
+                            if status == "TIMEOUT_INVALID"
+                            else None,
+                            "oof_prediction_artifact_sha256": f"sha-{fold}"
+                            if status == "COMPLETE"
+                            else None,
+                        }
+                    )
+                )
+            q2_candidate = runner.registry["qnn"]["stage_q2"][0]
+            reused = runner._reuse_q1_as_q2_t0(
+                source=source,
+                q2_candidate=q2_candidate,
+                selected_ansatz_id="ROT_CNOT_RING",
+            )
+            q2_base = runner._artifact_directory(
+                stage="qnn_q2",
+                family="qnn",
+                configuration_id=q2_candidate["configuration_id"],
+                block="L",
+                seed=20260818,
+            )
+            failed = json.loads(
+                (q2_base / "fold_2015/result_manifest.json").read_text()
+            )
+            complete = json.loads(
+                (q2_base / "fold_2016/result_manifest.json").read_text()
+            )
+            self.assertEqual(failed["status"], "TIMEOUT_INVALID")
+            self.assertEqual(failed["failure_code"], "TIMEOUT")
+            self.assertIsNone(failed["oof_prediction_artifact_sha256"])
+            self.assertEqual(complete["status"], "COMPLETE")
+            self.assertEqual(
+                reused.row["status"], "QNN_CANDIDATE_TECHNICALLY_INVALID"
+            )
+
     def test_numeric_worker_has_no_project_data_loader(self) -> None:
         source = (ROOT / "src/modeling/production_worker.py").read_text()
         for forbidden in (
@@ -273,6 +480,7 @@ class SyntheticEndToEndTests(unittest.TestCase):
             "qnn_feasibility_and_executable_identity.json",
             "secondary_analysis_execution_plan.json",
             "final_ranking_manifest.json",
+            "runtime_metadata.json",
             "run_manifest.json",
         )
         self.assertTrue(all((root / path).is_file() for path in required))
@@ -281,7 +489,22 @@ class SyntheticEndToEndTests(unittest.TestCase):
         self.assertTrue(run["model_fit_performed"])
         self.assertFalse(run["project_data_model_fit_performed"])
         self.assertFalse(run["protected_feature_years_opened"])
+        self.assertTrue(run["runtime_metadata_sha256"])
         self.assertTrue(self.ranking_a["family_ranking"])
+
+    def test_mlp_epochs_are_in_candidate_checkpoint_and_result_identity(self) -> None:
+        root = Path(self.temp_a.name)
+        manifest_path = next(
+            root.glob("candidate_results/coarse/pytorch_mlp/**/result_manifest.json")
+        )
+        manifest = json.loads(manifest_path.read_text())
+        configuration_id = manifest["configuration_id"]
+        self.assertIn("__epochs_200__", configuration_id)
+        self.assertEqual(manifest["epochs"], 200)
+        self.assertEqual(manifest["task_identity"]["parameters"]["epochs"], 200)
+        self.assertEqual(
+            manifest["task_identity"]["checkpoint_identity"]["epochs"], 200
+        )
 
     def test_refinement_confirmation_and_result_manifests_are_accounted(self) -> None:
         root = Path(self.temp_a.name)

@@ -1,0 +1,26 @@
+schema_version: 1
+
+scientific_correctness_overlay:
+  id: model_execution_contract_scientific_correctness_patch
+  version: 1.0.0
+  applied_before_first_model_fit: true
+  search_space_changed: false
+  base_contract:
+    path: configs/model_execution_contract_v1_2_0.yaml
+    sha256: dd4dd4ae466e57ce992b8fa5392afc807c448cfca5ae85eef672347d24e3cd15
+  candidate_registry:
+    path: configs/model_stage_candidates_v1_scientific_patch.json
+    version: 1.0.1
+    sha256: f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac
+  expanded_order_sha256: 67184eac4f62909e0717bfb2e8775de275cbf3842fc9cf4dfd316e42a3b20726
+  checkpoint_identity_append: epochs_if_pytorch_mlp
+  qnn_global_resource_ledger:
+    maximum_total_fit_attempts: 240
+    maximum_total_runtime_seconds: 864000
+    records: [started_attempts, completed_attempts, total_runtime_seconds, retry_reason]
+    cap_effect: QNN_TECHNICALLY_INFEASIBLE
+  corrections:
+    - deterministic_refinement_uses_common_coarse_plus_activated_refinement_pool
+    - pytorch_mlp_epochs_are_explicit_in_candidate_and_execution_identity
+    - qnn_q1_to_q2_t0_reuse_propagates_fold_status_and_failure_code
+    - qnn_global_attempt_and_runtime_caps_are_enforced_by_a_simple_ledger

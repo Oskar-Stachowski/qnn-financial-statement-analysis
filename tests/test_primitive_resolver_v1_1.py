@@ -147,15 +147,26 @@ class ProtectedPeriodRoutingTests(unittest.TestCase):
             directory = Path(temporary_directory)
             source = directory / "mixed.csv"
             destination = directory / "train.csv"
+            isolated_source = directory / "isolated_train.csv"
+            isolated_destination = directory / "isolated_projection.csv"
+            header = b"research_universe_company_year_id,cik10,feature_year,payload\n"
+            allowed = b"allowed-2020,0000000001,2020,train-value\n"
             source.write_bytes(
-                b"research_universe_company_year_id,cik10,feature_year,payload\n"
-                b"allowed-2020,0000000001,2020,train-value\n"
-                b"sealed-2021,0000000001,2021,DO_NOT_OPEN_2021\n"
-                b"sealed-2024,0000000001,2024,DO_NOT_OPEN_2024\n"
+                header
+                + allowed
+                + b"sealed-2021,0000000001,2021,DO_NOT_OPEN_2021\n"
+                + b"sealed-2024,0000000001,2024,DO_NOT_OPEN_2024\n"
             )
+            isolated_source.write_bytes(header + allowed)
             count = materialize_train_projection(source, destination)
+            isolated_count = materialize_train_projection(
+                isolated_source, isolated_destination
+            )
             projected = destination.read_bytes()
+            isolated_projected = isolated_destination.read_bytes()
         self.assertEqual(count, 1)
+        self.assertEqual(isolated_count, 1)
+        self.assertEqual(projected, isolated_projected)
         self.assertIn(b"train-value", projected)
         self.assertNotIn(b"DO_NOT_OPEN", projected)
 
@@ -194,13 +205,26 @@ class ProtectedPeriodRoutingTests(unittest.TestCase):
             }
         }
         with tempfile.TemporaryDirectory() as temporary_directory:
-            path = Path(temporary_directory) / "companyfacts.json"
-            path.write_text(json.dumps(payload), encoding="utf-8")
+            directory = Path(temporary_directory)
+            mixed_path = directory / "companyfacts_mixed.json"
+            isolated_path = directory / "companyfacts_train_only.json"
+            mixed_path.write_text(json.dumps(payload), encoding="utf-8")
+            isolated_payload = json.loads(json.dumps(payload))
+            isolated_payload["facts"]["us-gaap"]["NetIncomeLoss"]["units"]["USD"] = [
+                payload["facts"]["us-gaap"]["NetIncomeLoss"]["units"]["USD"][0]
+            ]
+            isolated_path.write_text(json.dumps(isolated_payload), encoding="utf-8")
             root = restricted_companyfacts_root(
-                path,
+                mixed_path,
                 allowed_accessions={"allowed-accession"},
                 required_tags={"NetIncomeLoss"},
             )
+            isolated_root = restricted_companyfacts_root(
+                isolated_path,
+                allowed_accessions={"allowed-accession"},
+                required_tags={"NetIncomeLoss"},
+            )
+        self.assertEqual(root, isolated_root)
         facts = root["us-gaap"]["NetIncomeLoss"]["units"]["USD"]
         self.assertEqual(len(facts), 1)
         self.assertEqual(facts[0]["accn"], "allowed-accession")

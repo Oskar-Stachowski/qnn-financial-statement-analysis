@@ -340,7 +340,7 @@ def torch_fit_predict(
     )
     if family == "pytorch_mlp":
         model = build_mlp(torch, x_train.shape[1], parameters, seed)
-        epochs = 300 if task["stage"] == "refinement" else 200
+        epochs = int(parameters["epochs"])
     elif family == "qnn":
         ansatz = str(task["selected_ansatz_id"])
         model = build_qnn(torch, parameters, ansatz, seed)

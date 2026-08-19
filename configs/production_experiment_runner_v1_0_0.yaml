@@ -12,14 +12,14 @@ runner:
 
 authority:
   execution_contract:
-    path: configs/model_execution_contract_v1_2_0.yaml
-    sha256: dd4dd4ae466e57ce992b8fa5392afc807c448cfca5ae85eef672347d24e3cd15
+    path: configs/model_execution_contract_v1_2_0_scientific_patch.yaml
+    sha256: 59490dc080176a4f5655539db78edeb035e9ce02a2b6a68d95fad5c428081f59
   execution_contract_freeze_manifest:
     path: configs/model_execution_contract_v1_2_0_freeze_manifest.yaml
     sha256: 80c3e48b742ae679849872bf14715ee1e781024c5fdd9af3f26559a673c47df1
   candidate_registry:
-    path: configs/model_stage_candidates_v1.json
-    sha256: 857ed6361a55c4ff1183a56614a4058e132db7a8b49bb5742b187900cd9d7f58
+    path: configs/model_stage_candidates_v1_scientific_patch.json
+    sha256: f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac
   model_environments:
     path: configs/model_environments_v1_0_0.yaml
     sha256: b00ac0e712680a9c6fa56d5010722db5aae5b3959823c28365056139866c8726
@@ -69,7 +69,7 @@ data:
     - target_label
 
 determinism:
-  expanded_candidate_order_sha256: 263635db04d87466b182f3a853910e2cc6ca11a284deeb57969b5cbea43faf21
+  expanded_candidate_order_sha256: 67184eac4f62909e0717bfb2e8775de275cbf3842fc9cf4dfd316e42a3b20726
   fold_order: [fold_2015, fold_2016, fold_2017, fold_2018, fold_2019, fold_2020]
   feature_block_order: [L, L+D, L+D+R]
   coarse_seed: 20260818

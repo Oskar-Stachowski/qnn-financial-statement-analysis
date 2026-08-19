@@ -45,6 +45,8 @@ def make_task(
         if family == "qnn"
         else "cpu",
     }
+    if family == "pytorch_mlp":
+        checkpoint_identity["epochs"] = int(parameters["epochs"])
     return FoldTask(
         stage="qnn_q2" if family == "qnn" else "coarse",
         family=family,

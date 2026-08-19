@@ -7,7 +7,7 @@ import json
 import unittest
 from pathlib import Path
 
-from src.modeling.model_stage_preregistration import (
+from src.modeling.model_stage_preregistration_scientific_patch import (
     canonical_sha256,
     materialized_registry,
     pca_input_columns,
@@ -16,7 +16,7 @@ from src.modeling.model_stage_preregistration import (
 
 ROOT = Path(__file__).resolve().parents[1]
 NOTEBOOK = ROOT / "notebooks/05_model_stage_preregistration.ipynb"
-CANDIDATES = ROOT / "configs/model_stage_candidates_v1.json"
+CANDIDATES = ROOT / "configs/model_stage_candidates_v1_scientific_patch.json"
 
 
 def file_sha256(path: Path) -> str:
@@ -102,6 +102,30 @@ class ModelStagePreregistrationTests(unittest.TestCase):
         self.assertEqual(mlp["optimizer"]["eps"], 1e-8)
         self.assertEqual(mlp["loss"]["reduction"], "mean")
         self.assertTrue(mlp["determinism"]["torch_use_deterministic_algorithms"])
+        for stage, expected_epochs in (("coarse", 200), ("refinement", 300)):
+            for candidate in self.candidates[stage]["pytorch_mlp"]:
+                self.assertEqual(candidate["parameters"]["epochs"], expected_epochs)
+                self.assertIn(f"__epochs_{expected_epochs}__", candidate["configuration_id"])
+
+    def test_mlp_identity_patch_does_not_change_sampled_search_points(self) -> None:
+        historical = json.loads(
+            (ROOT / "configs/model_stage_candidates_v1.json").read_text()
+        )
+        for stage in ("coarse", "refinement"):
+            old = historical[stage]["pytorch_mlp"]
+            patched = self.candidates[stage]["pytorch_mlp"]
+            self.assertEqual(len(old), len(patched))
+            self.assertEqual(
+                [candidate["parameters"] for candidate in old],
+                [
+                    {
+                        key: value
+                        for key, value in candidate["parameters"].items()
+                        if key != "epochs"
+                    }
+                    for candidate in patched
+                ],
+            )
 
     def test_seed_score_calibration_and_roster_policies(self) -> None:
         seeds = self.namespace["SEED_AGGREGATION"]
@@ -140,4 +164,3 @@ class ModelStagePreregistrationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

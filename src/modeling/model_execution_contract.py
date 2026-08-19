@@ -19,8 +19,8 @@ import yaml
 
 
 ROOT = Path(__file__).resolve().parents[2]
-CONTRACT_PATH = ROOT / "configs/model_execution_contract_v1_2_0.yaml"
-REGISTRY_PATH = ROOT / "configs/model_stage_candidates_v1.json"
+CONTRACT_PATH = ROOT / "configs/model_execution_contract_v1_2_0_scientific_patch.yaml"
+REGISTRY_PATH = ROOT / "configs/model_stage_candidates_v1_scientific_patch.json"
 BEST_BLOCK_BINDING = "$BEST_COARSE_BLOCK"
 
 
@@ -47,6 +47,36 @@ def file_sha256(path: Path) -> str:
 
 def load_contract(path: Path = CONTRACT_PATH) -> dict[str, Any]:
     contract = yaml.safe_load(path.read_text(encoding="utf-8"))
+    overlay = (
+        contract.get("scientific_correctness_overlay")
+        if isinstance(contract, dict)
+        else None
+    )
+    if isinstance(overlay, dict):
+        base = (ROOT / str(overlay["base_contract"]["path"])).resolve()
+        if file_sha256(base) != str(overlay["base_contract"]["sha256"]):
+            raise ValueError("Scientific patch base-contract hash mismatch")
+        contract = yaml.safe_load(base.read_text(encoding="utf-8"))
+        contract["scientific_correctness_patch"] = {
+            key: value
+            for key, value in overlay.items()
+            if key not in {"base_contract", "candidate_registry", "expanded_order_sha256"}
+        }
+        contract["authority"]["candidate_registry"] = dict(
+            overlay["candidate_registry"]
+        )
+        contract["canonical_ordering"]["expanded_order_sha256"] = str(
+            overlay["expanded_order_sha256"]
+        )
+        checkpoint_field = str(overlay["checkpoint_identity_append"])
+        checkpoint_fields = contract["execution_failure_state_machine"][
+            "checkpoint_identity_fields"
+        ]
+        if checkpoint_field not in checkpoint_fields:
+            checkpoint_fields.append(checkpoint_field)
+        contract["execution_failure_state_machine"][
+            "qnn_global_resource_ledger"
+        ] = dict(overlay["qnn_global_resource_ledger"])
     if not isinstance(contract, dict) or "execution_contract" not in contract:
         raise ValueError(f"Invalid model execution contract: {path}")
     return contract

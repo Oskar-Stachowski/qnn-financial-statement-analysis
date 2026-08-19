@@ -13,11 +13,14 @@ from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 import hashlib
+import importlib.metadata
 import json
 import math
 import os
 from pathlib import Path
+import platform
 import subprocess
+import sys
 import tempfile
 import time
 from typing import Any, Mapping, Protocol, Sequence
@@ -92,6 +95,44 @@ class TechnicalExecutionError(RuntimeError):
         self.failure_code = failure_code
 
 
+def current_git_commit(root: Path) -> str:
+    completed = subprocess.run(
+        ["git", "rev-parse", "HEAD"],
+        cwd=root,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+    if completed.returncode != 0:
+        return "UNKNOWN"
+    value = completed.stdout.strip()
+    return value if value else "UNKNOWN"
+
+
+def controller_runtime_metadata(root: Path) -> dict[str, Any]:
+    distributions = (
+        "numpy",
+        "pandas",
+        "scipy",
+        "scikit-learn",
+        "xgboost",
+        "torch",
+        "PennyLane",
+    )
+    versions: dict[str, str | None] = {}
+    for distribution in distributions:
+        try:
+            versions[distribution] = importlib.metadata.version(distribution)
+        except importlib.metadata.PackageNotFoundError:
+            versions[distribution] = None
+    return {
+        "sys_executable": os.path.abspath(sys.executable),
+        "python_version": platform.python_version(),
+        "main_library_versions": versions,
+        "git_commit": current_git_commit(root),
+    }
+
+
 def atomic_write_bytes(path: Path, payload: bytes) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     descriptor, temporary_name = tempfile.mkstemp(
@@ -115,6 +156,114 @@ def atomic_write_json(path: Path, value: Any) -> str:
     )
     atomic_write_bytes(path, payload)
     return hashlib.sha256(payload).hexdigest()
+
+
+class QNNResourceLedger:
+    """Small sequential ledger enforcing the preregistered global QNN caps."""
+
+    def __init__(
+        self,
+        path: Path,
+        *,
+        maximum_attempts: int,
+        maximum_runtime_seconds: float,
+    ) -> None:
+        self.path = path
+        if path.is_file():
+            payload = json.loads(path.read_text(encoding="utf-8"))
+            if (
+                int(payload.get("maximum_attempts", -1)) != int(maximum_attempts)
+                or float(payload.get("maximum_runtime_seconds", -1.0))
+                != float(maximum_runtime_seconds)
+            ):
+                raise RunnerIntegrityError("Existing QNN resource ledger limits differ.")
+            self.payload = payload
+        else:
+            self.payload = {
+                "schema_version": 1,
+                "maximum_attempts": int(maximum_attempts),
+                "maximum_runtime_seconds": float(maximum_runtime_seconds),
+                "started_attempts": 0,
+                "completed_attempts": 0,
+                "total_runtime_seconds": 0.0,
+                "limit_reached": False,
+                "limit_reason": None,
+                "attempts": [],
+            }
+            self._write()
+
+    @property
+    def remaining_runtime_seconds(self) -> float:
+        return max(
+            0.0,
+            float(self.payload["maximum_runtime_seconds"])
+            - float(self.payload["total_runtime_seconds"]),
+        )
+
+    @property
+    def limit_reached(self) -> bool:
+        return bool(self.payload.get("limit_reached", False))
+
+    def _write(self) -> None:
+        atomic_write_json(self.path, self.payload)
+
+    def _mark_limit(self, reason: str) -> None:
+        self.payload["limit_reached"] = True
+        self.payload["limit_reason"] = reason
+        self._write()
+
+    def begin_attempt(self, retry_reason: str) -> int | None:
+        if int(self.payload["started_attempts"]) >= int(
+            self.payload["maximum_attempts"]
+        ):
+            self._mark_limit("MAXIMUM_TOTAL_FIT_ATTEMPTS")
+            return None
+        if self.remaining_runtime_seconds <= 0.0:
+            self._mark_limit("MAXIMUM_TOTAL_RUNTIME")
+            return None
+        global_attempt = int(self.payload["started_attempts"]) + 1
+        self.payload["started_attempts"] = global_attempt
+        self.payload["attempts"].append(
+            {
+                "global_attempt": global_attempt,
+                "retry_reason": retry_reason,
+                "status": "STARTED",
+                "runtime_seconds": None,
+                "outcome": None,
+            }
+        )
+        self._write()
+        return global_attempt
+
+    def finish_attempt(
+        self,
+        global_attempt: int,
+        *,
+        runtime_seconds: float,
+        outcome: str,
+    ) -> None:
+        entry = next(
+            item
+            for item in self.payload["attempts"]
+            if int(item["global_attempt"]) == int(global_attempt)
+        )
+        if entry["status"] != "STARTED":
+            raise RunnerIntegrityError("QNN resource attempt was already finalized.")
+        entry["status"] = "COMPLETED"
+        entry["runtime_seconds"] = float(runtime_seconds)
+        entry["outcome"] = str(outcome)
+        self.payload["completed_attempts"] = int(
+            self.payload["completed_attempts"]
+        ) + 1
+        self.payload["total_runtime_seconds"] = float(
+            self.payload["total_runtime_seconds"]
+        ) + float(runtime_seconds)
+        if float(self.payload["total_runtime_seconds"]) > float(
+            self.payload["maximum_runtime_seconds"]
+        ):
+            self.payload["limit_reached"] = True
+            self.payload["limit_reason"] = "MAXIMUM_TOTAL_RUNTIME"
+        self._write()
 
 
 def membership_sha256(values: Sequence[Any] | pd.Series) -> str:
@@ -218,6 +367,16 @@ class SyntheticFoldExecutor:
         "classical": environment_sha256,
         "qnn_mlp": environment_sha256,
     }
+    runtime_metadata_by_role = {
+        "synthetic": {
+            "sys_executable": os.path.abspath(sys.executable),
+            "python_version": platform.python_version(),
+            "main_library_versions": {
+                "numpy": np.__version__,
+                "pandas": pd.__version__,
+            },
+        }
+    }
 
     def execute(
         self,
@@ -266,6 +425,7 @@ class SubprocessFoldExecutor:
     """Dispatch one fold fit to the frozen classical or QNN/MLP interpreter."""
 
     synthetic_only = False
+    qnn_ledger: QNNResourceLedger | None = None
 
     def __init__(
         self,
@@ -302,6 +462,7 @@ class SubprocessFoldExecutor:
                 specification["software_environment_sha256"]
             )
         self.environment_hashes: dict[str, str] = {}
+        self.runtime_metadata_by_role: dict[str, dict[str, Any]] = {}
         environment = os.environ.copy()
         environment.update(
             {
@@ -351,6 +512,25 @@ class SubprocessFoldExecutor:
             if actual_environment_hash != expected_environment_hashes[role]:
                 raise RunnerIntegrityError(f"{role} runtime environment identity mismatch.")
             self.environment_hashes[role] = actual_environment_hash
+            runtime_identity = report["runtime_identity"]
+            self.runtime_metadata_by_role[role] = {
+                "sys_executable": str(interpreter),
+                "python_version": str(runtime_identity["python_version"]),
+                "main_library_versions": dict(runtime_identity["package_versions"]),
+            }
+
+    def configure_qnn_ledger(
+        self,
+        path: Path,
+        *,
+        maximum_attempts: int,
+        maximum_runtime_seconds: float,
+    ) -> None:
+        self.qnn_ledger = QNNResourceLedger(
+            path,
+            maximum_attempts=maximum_attempts,
+            maximum_runtime_seconds=maximum_runtime_seconds,
+        )
 
     def _one_attempt(
         self,
@@ -500,52 +680,112 @@ class SubprocessFoldExecutor:
             remaining = float(timeout_seconds) - (time.monotonic() - cumulative_started)
             return max(0, math.ceil(remaining))
 
-        def timeout_result() -> FoldExecution:
-            attempts.append(
-                {
-                    "attempt": len(attempts) + 1,
-                    "outcome": "TIMEOUT_INVALID",
-                    "cumulative_wall_timeout": True,
-                }
-            )
-            return FoldExecution(
-                "TIMEOUT_INVALID", None, "TIMEOUT", "", "unknown", attempts
+        def resource_limit_result(reason: str) -> tuple[FoldExecution, dict[str, Any]]:
+            audit = {
+                "attempt": len(attempts) + 1,
+                "outcome": "INFRASTRUCTURE_EXHAUSTED",
+                "retry_reason": reason,
+                "qnn_global_resource_limit": True,
+            }
+            return (
+                FoldExecution(
+                    "INFRASTRUCTURE_EXHAUSTED",
+                    None,
+                    reason,
+                    "",
+                    "unknown",
+                    [audit],
+                ),
+                audit,
             )
 
-        remaining = remaining_timeout()
-        if remaining <= 0:
-            return timeout_result()
-        execution, audit = self._one_attempt(
-            task,
-            x_train=x_train,
-            y_train=y_train,
-            x_validation=x_validation,
-            sample_weight=sample_weight,
-            checkpoint_path=checkpoint_path,
-            timeout_seconds=remaining,
+        def run_attempt(
+            *,
+            resume: bool,
+            attempt: int,
+            retry_reason: str,
+        ) -> tuple[FoldExecution, dict[str, Any]]:
+            remaining = remaining_timeout()
+            if remaining <= 0:
+                audit = {
+                    "attempt": attempt,
+                    "outcome": "TIMEOUT_INVALID",
+                    "retry_reason": retry_reason,
+                    "cumulative_wall_timeout": True,
+                }
+                return (
+                    FoldExecution(
+                        "TIMEOUT_INVALID", None, "TIMEOUT", "", "unknown", [audit]
+                    ),
+                    audit,
+                )
+            ledger = self.qnn_ledger if task.family == "qnn" else None
+            global_attempt: int | None = None
+            if ledger is not None:
+                remaining = min(
+                    remaining, math.floor(ledger.remaining_runtime_seconds)
+                )
+                if remaining <= 0:
+                    ledger._mark_limit("MAXIMUM_TOTAL_RUNTIME")
+                    return resource_limit_result("QNN_GLOBAL_RUNTIME_LIMIT")
+                global_attempt = ledger.begin_attempt(retry_reason)
+                if global_attempt is None:
+                    reason = (
+                        "QNN_GLOBAL_ATTEMPT_LIMIT"
+                        if ledger.payload.get("limit_reason")
+                        == "MAXIMUM_TOTAL_FIT_ATTEMPTS"
+                        else "QNN_GLOBAL_RUNTIME_LIMIT"
+                    )
+                    return resource_limit_result(reason)
+            started = time.monotonic()
+            try:
+                execution, audit = self._one_attempt(
+                    task,
+                    x_train=x_train,
+                    y_train=y_train,
+                    x_validation=x_validation,
+                    sample_weight=sample_weight,
+                    checkpoint_path=checkpoint_path,
+                    timeout_seconds=remaining,
+                    resume=resume,
+                    work=work,
+                    attempt=attempt,
+                )
+            except Exception:
+                if ledger is not None and global_attempt is not None:
+                    ledger.finish_attempt(
+                        global_attempt,
+                        runtime_seconds=time.monotonic() - started,
+                        outcome="RAISED_EXCEPTION",
+                    )
+                raise
+            if ledger is not None and global_attempt is not None:
+                elapsed = time.monotonic() - started
+                ledger.finish_attempt(
+                    global_attempt,
+                    runtime_seconds=elapsed,
+                    outcome=str(audit.get("outcome", execution.status)),
+                )
+                audit["qnn_global_attempt"] = global_attempt
+                audit["qnn_attempt_runtime_seconds"] = elapsed
+                audit["retry_reason"] = retry_reason
+            return execution, audit
+
+        execution, audit = run_attempt(
             resume=False,
-            work=work,
             attempt=1,
+            retry_reason="INITIAL",
         )
         attempts.append(audit)
         if execution.status != "INFRASTRUCTURE_FAILURE":
             execution.attempts = attempts
             return execution
         if checkpoint_capable and checkpoint_path.is_file():
-            remaining = remaining_timeout()
-            if remaining <= 0:
-                return timeout_result()
-            execution, audit = self._one_attempt(
-                task,
-                x_train=x_train,
-                y_train=y_train,
-                x_validation=x_validation,
-                sample_weight=sample_weight,
-                checkpoint_path=checkpoint_path,
-                timeout_seconds=remaining,
+            previous_reason = execution.failure_code or execution.status
+            execution, audit = run_attempt(
                 resume=True,
-                work=work,
                 attempt=2,
+                retry_reason=f"CHECKPOINT_RESUME_AFTER_{previous_reason}",
             )
             attempts.append(audit)
             if execution.status not in {
@@ -561,20 +801,11 @@ class SubprocessFoldExecutor:
                 checkpoint_path.suffix + ".invalid-for-fresh-retry"
             )
             os.replace(checkpoint_path, quarantine)
-        remaining = remaining_timeout()
-        if remaining <= 0:
-            return timeout_result()
-        execution, audit = self._one_attempt(
-            task,
-            x_train=x_train,
-            y_train=y_train,
-            x_validation=x_validation,
-            sample_weight=sample_weight,
-            checkpoint_path=checkpoint_path,
-            timeout_seconds=remaining,
+        previous_reason = execution.failure_code or execution.status
+        execution, audit = run_attempt(
             resume=False,
-            work=work,
             attempt=len(attempts) + 1,
+            retry_reason=f"FRESH_RETRY_AFTER_{previous_reason}",
         )
         attempts.append(audit)
         if execution.status == "INFRASTRUCTURE_FAILURE":
@@ -602,6 +833,31 @@ class PreparedFold:
 class CandidateExecutionResult:
     row: dict[str, Any]
     predictions: list[dict[str, Any]]
+
+
+def final_eligibility_pool(
+    merged_results: Sequence[CandidateExecutionResult],
+    confirmed_results: Sequence[CandidateExecutionResult],
+    contract: Mapping[str, Any],
+    *,
+    qnn_resource_limit_reached: bool = False,
+) -> list[CandidateExecutionResult]:
+    """Return the common final pool without dropping deterministic refinement."""
+
+    deterministic_families = set(
+        contract["confirmation"]["deterministic_exceptions"]
+    )
+    deterministic = [
+        result
+        for result in merged_results
+        if result.row["family"] in deterministic_families
+    ]
+    confirmed = [
+        result
+        for result in confirmed_results
+        if not (qnn_resource_limit_reached and result.row["family"] == "qnn")
+    ]
+    return [*deterministic, *confirmed]
 
 
 class ProductionExperimentRunner:
@@ -632,7 +888,55 @@ class ProductionExperimentRunner:
         self._environment_hashes: dict[str, str] = dict(
             getattr(executor, "environment_hashes", {})
         )
+        self._runtime_metadata_sha256: str | None = None
+        self._qnn_ledger: QNNResourceLedger | None = getattr(
+            executor, "qnn_ledger", None
+        )
         self._preflight()
+
+    def _write_runtime_metadata(
+        self, index: Sequence[Mapping[str, Any]]
+    ) -> str:
+        configuration_ids = list(
+            dict.fromkeys(str(item["configuration_id"]) for item in index)
+        )
+        metadata = {
+            "schema_version": 1,
+            "controller": controller_runtime_metadata(self.root),
+            "workers": dict(
+                getattr(self.executor, "runtime_metadata_by_role", {})
+            ),
+            "seeds": {
+                "coarse_and_refinement": int(
+                    self.contract["confirmation"]["coarse_seed"]
+                ),
+                "confirmation": list(
+                    self.contract["confirmation"]["confirmation_seeds"]
+                ),
+            },
+            "configuration_ids": configuration_ids,
+        }
+        self._runtime_metadata_sha256 = atomic_write_json(
+            self.output_dir / "runtime_metadata.json", metadata
+        )
+        return self._runtime_metadata_sha256
+
+    def _configure_qnn_ledger(self) -> None:
+        configure = getattr(self.executor, "configure_qnn_ledger", None)
+        if not callable(configure):
+            return
+        model_stage_path = self.root / str(
+            self.contract["authority"]["model_stage_v1"]["path"]
+        )
+        model_stage = yaml.safe_load(model_stage_path.read_text(encoding="utf-8"))
+        policy = model_stage["qnn"]["resource_policy"]
+        configure(
+            self.output_dir / "qnn_resource_ledger.json",
+            maximum_attempts=int(policy["maximum_total_fit_attempts"]),
+            maximum_runtime_seconds=float(policy["maximum_total_cpu_hours"])
+            * 3600.0,
+        )
+        self._qnn_ledger = getattr(self.executor, "qnn_ledger", None)
 
     def _preflight(self) -> None:
         authority = self.runner_config["authority"]
@@ -1132,6 +1436,8 @@ class ProductionExperimentRunner:
                 if family == "qnn"
                 else "cpu",
             }
+            if family == "pytorch_mlp":
+                checkpoint_identity["epochs"] = int(parameters["epochs"])
             task = FoldTask(
                 stage=stage,
                 family=family,
@@ -1254,6 +1560,12 @@ class ProductionExperimentRunner:
                 "task_identity_sha256": task.identity_sha256,
                 "status": status,
                 "failure_code": execution.failure_code,
+                "configuration_id": configuration_id,
+                "training_seed": int(training_seed),
+                "epochs": int(parameters["epochs"])
+                if family == "pytorch_mlp"
+                else None,
+                "runtime_metadata_sha256": self._runtime_metadata_sha256,
                 "attempts": execution.attempts,
                 "train_rows": len(prepared.train),
                 "validation_rows": len(prepared.validation),
@@ -1349,40 +1661,79 @@ class ProductionExperimentRunner:
             block=str(row["feature_block"]),
             seed=int(row["training_seed"]),
         )
+        source_base = self._artifact_directory(
+            stage=str(source.row["stage"]),
+            family="qnn",
+            configuration_id=str(source.row["configuration_id"]),
+            block=str(source.row["feature_block"]),
+            seed=int(source.row["training_seed"]),
+        )
+        reused_fold_manifests: list[dict[str, Any]] = []
         for fold_id in self.contract["execution_failure_state_machine"]["required_folds"]:
+            source_manifest_path = source_base / fold_id / "result_manifest.json"
+            if not source_manifest_path.is_file():
+                raise RunnerIntegrityError("Q1 source fold manifest is missing for Q2/T0 reuse.")
+            source_manifest = json.loads(
+                source_manifest_path.read_text(encoding="utf-8")
+            )
+            source_status = str(source.row["fold_statuses"][fold_id])
+            if str(source_manifest.get("status")) != source_status:
+                raise RunnerIntegrityError("Q1 row and fold manifest statuses disagree.")
+            source_failure_code = source_manifest.get("failure_code")
             fold_rows = [p for p in source.predictions if p["fold_id"] == fold_id]
             prediction_path = base / fold_id / "oof_predictions.json"
-            prediction_sha = atomic_write_json(
-                prediction_path,
-                {
-                    "schema_version": 1,
-                    "execution_mode": "q1_selected_ansatz_reuse_as_q2_t0",
-                    "rows": fold_rows,
+            prediction_sha: str | None = None
+            if source_status == "COMPLETE":
+                if not fold_rows:
+                    raise RunnerIntegrityError(
+                        "Complete Q1 fold has no predictions for Q2/T0 reuse."
+                    )
+                prediction_sha = atomic_write_json(
+                    prediction_path,
+                    {
+                        "schema_version": 1,
+                        "execution_mode": "q1_selected_ansatz_reuse_as_q2_t0",
+                        "rows": fold_rows,
+                    },
+                )
+            reused_manifest = {
+                "schema_version": 1,
+                "status": source_status,
+                "failure_code": source_failure_code,
+                "execution_mode": "q1_selected_ansatz_reuse_as_q2_t0",
+                "identity": {
+                    "stage": "qnn_q2",
+                    "family": "qnn",
+                    "configuration_id": q2_candidate["configuration_id"],
+                    "feature_block": row["feature_block"],
+                    "training_seed": row["training_seed"],
+                    "fold_id": fold_id,
+                    "selected_ansatz_id": selected_ansatz_id,
                 },
-            )
+                "configuration_id": q2_candidate["configuration_id"],
+                "training_seed": row["training_seed"],
+                "runtime_metadata_sha256": self._runtime_metadata_sha256,
+                "source_configuration_id": source.row["configuration_id"],
+                "source_status": source_status,
+                "source_failure_code": source_failure_code,
+                "source_prediction_sha256": source_manifest.get(
+                    "oof_prediction_artifact_sha256"
+                ),
+                "oof_prediction_artifact_sha256": prediction_sha,
+            }
             atomic_write_json(
                 base / fold_id / "result_manifest.json",
-                {
-                    "schema_version": 1,
-                    "status": "COMPLETE",
-                    "execution_mode": "q1_selected_ansatz_reuse_as_q2_t0",
-                    "identity": {
-                        "stage": "qnn_q2",
-                        "family": "qnn",
-                        "configuration_id": q2_candidate["configuration_id"],
-                        "feature_block": row["feature_block"],
-                        "training_seed": row["training_seed"],
-                        "fold_id": fold_id,
-                        "selected_ansatz_id": selected_ansatz_id,
-                    },
-                    "source_configuration_id": source.row["configuration_id"],
-                    "source_prediction_sha256": source.row[
-                        "oof_prediction_artifact_sha256"
-                    ],
-                    "oof_prediction_artifact_sha256": prediction_sha,
-                },
+                reused_manifest,
             )
-        atomic_write_json(base / "candidate_manifest.json", {"schema_version": 1, "candidate": row})
+            reused_fold_manifests.append(reused_manifest)
+        atomic_write_json(
+            base / "candidate_manifest.json",
+            {
+                "schema_version": 1,
+                "candidate": row,
+                "fold_manifests": reused_fold_manifests,
+            },
+        )
         return CandidateExecutionResult(row=row, predictions=list(source.predictions))
 
     def _aggregate_confirmed(
@@ -1570,6 +1921,7 @@ class ProductionExperimentRunner:
             "model_fit_performed": False,
             "protected_feature_years_opened": False,
         }
+        plan["runtime_metadata_sha256"] = self._write_runtime_metadata(index)
         atomic_write_json(self.output_dir / "dry_run_plan.json", plan)
         return plan
 
@@ -1591,6 +1943,8 @@ class ProductionExperimentRunner:
             return self._dry_run_plan(folds, expectations)
 
         index = canonical_candidate_index(self.contract, self.registry)
+        self._write_runtime_metadata(index)
+        self._configure_qnn_ledger()
         coarse_results: list[CandidateExecutionResult] = []
         for entry in index:
             if entry["stage"] != "coarse":
@@ -1768,10 +2122,29 @@ class ProductionExperimentRunner:
             confirmation_seed_results.extend(extras)
             confirmed_results.append(self._aggregate_confirmed(base, extras))
 
-        deterministic_families = set(self.contract["confirmation"]["deterministic_exceptions"])
-        final_results = [
-            result for result in coarse_results if result.row["family"] in deterministic_families
-        ] + confirmed_results
+        deterministic_families = set(
+            self.contract["confirmation"]["deterministic_exceptions"]
+        )
+        merged_results = [
+            result_lookup[
+                (
+                    str(row["family"]),
+                    str(row["feature_block"]),
+                    str(row["configuration_id"]),
+                    int(row["training_seed"]),
+                )
+            ]
+            for row in merged_rows
+        ]
+        qnn_resource_limit_reached = bool(
+            self._qnn_ledger is not None and self._qnn_ledger.limit_reached
+        )
+        final_results = final_eligibility_pool(
+            merged_results,
+            confirmed_results,
+            self.contract,
+            qnn_resource_limit_reached=qnn_resource_limit_reached,
+        )
         complete_final = [result for result in final_results if result.row["status"] == "COMPLETE"]
         family_representatives: list[CandidateExecutionResult] = []
         for family in self.contract["canonical_ordering"]["family_order"]:
@@ -1926,6 +2299,12 @@ class ProductionExperimentRunner:
             ),
             "device_identity": self.contract["qnn_executable_identity"]["device_identity"],
             "software_environment_sha256": self._environment_hashes.get("qnn_mlp"),
+            "global_resource_limit_reached": qnn_resource_limit_reached,
+            "global_resource_limit_reason": self._qnn_ledger.payload.get(
+                "limit_reason"
+            )
+            if self._qnn_ledger is not None
+            else None,
         }
         qnn_feasibility_sha = atomic_write_json(
             self.output_dir / "qnn_feasibility_and_executable_identity.json",
@@ -1959,6 +2338,12 @@ class ProductionExperimentRunner:
             "runner_config_sha256": file_sha256(self.runner_config_path),
             "sample_membership_sha256": expectations.membership_sha256,
             "runtime_environment_sha256_by_role": self._environment_hashes,
+            "runtime_metadata_sha256": self._runtime_metadata_sha256,
+            "qnn_resource_ledger_sha256": file_sha256(
+                self._qnn_ledger.path
+            )
+            if self._qnn_ledger is not None
+            else None,
             "canonical_candidate_result_table_sha256": common_table_sha,
             "final_family_roster_sha256": roster_sha,
             "qnn_feasibility_and_executable_identity_sha256": qnn_feasibility_sha,
@@ -1984,6 +2369,12 @@ class ProductionExperimentRunner:
             "model_fit_performed": True,
             "project_data_model_fit_performed": expectations.source_kind != "synthetic",
             "protected_feature_years_opened": False,
+            "runtime_metadata_sha256": self._runtime_metadata_sha256,
+            "qnn_resource_ledger_sha256": file_sha256(
+                self._qnn_ledger.path
+            )
+            if self._qnn_ledger is not None
+            else None,
         }
         atomic_write_json(self.output_dir / "run_manifest.json", run_manifest)
         return ranking_manifest
