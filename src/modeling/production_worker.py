@@ -23,6 +23,12 @@ from src.modeling.environment_audit import environment_report
 from src.modeling.model_execution_contract import canonical_sha256, file_sha256
 
 
+# Every classical estimator is frozen to one CPU.  Declaring the same bound to
+# loky prevents its macOS physical-core probe from emitting a non-model warning
+# that the execution contract would otherwise (correctly) treat as terminal.
+os.environ["LOKY_MAX_CPU_COUNT"] = "1"
+
+
 def atomic_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     payload = (json.dumps(value, ensure_ascii=False, sort_keys=True, indent=2) + "\n").encode()

@@ -3,6 +3,7 @@ from __future__ import annotations
 import copy
 import hashlib
 import json
+import os
 from pathlib import Path
 import re
 import tempfile
@@ -77,6 +78,36 @@ class ProductionRunnerPolicyTests(unittest.TestCase):
             warnings.simplefilter("always")
             scores = classical_fit_predict(task, arrays)
         self.assertEqual(scores.shape, (1,))
+        self.assertEqual(caught, [])
+
+    def test_loky_single_cpu_probe_is_warning_free_for_hist_gradient_boosting(self) -> None:
+        self.assertEqual(os.environ["LOKY_MAX_CPU_COUNT"], "1")
+        task = {
+            "family": "hist_gradient_boosting",
+            "parameters": {
+                "imbalance": "none",
+                "l2_regularization": 0.1,
+                "learning_rate": 0.1,
+                "max_features": 1.0,
+                "max_iter": 10,
+                "max_leaf_nodes": 7,
+                "min_samples_leaf": 2,
+            },
+            "training_seed": 20260818,
+            "stage": "coarse",
+        }
+        arrays = {
+            "x_train": np.asarray(
+                [[0.0], [0.5], [1.0], [1.5], [2.0], [2.5], [3.0], [3.5]]
+            ),
+            "y_train": np.asarray([0, 0, 0, 0, 1, 1, 1, 1]),
+            "x_validation": np.asarray([[1.25], [2.75]]),
+            "sample_weight": np.ones(8),
+        }
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            scores = classical_fit_predict(task, arrays)
+        self.assertEqual(scores.shape, (2,))
         self.assertEqual(caught, [])
 
     def test_protected_year_is_rejected_before_execution(self) -> None:
@@ -186,6 +217,37 @@ class ProductionRunnerPolicyTests(unittest.TestCase):
         self.assertFalse(report["mlp_performed"])
         self.assertFalse(report["qnn_performed"])
         self.assertEqual(artifact_names, {"result_manifest.json"})
+
+    def test_coarse_search_runs_exact_frozen_non_qnn_index_and_stops(self) -> None:
+        sample = synthetic_dataset(4)
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            runner = self.make_runner(root)
+            report = runner.run_classical_mlp_coarse_search(
+                sample, expectations=synthetic_expectations(sample)
+            )
+            refinement = json.loads(
+                (root / "refinement_eligibility.json").read_text()
+            )
+        self.assertEqual(report["status"], "COMPLETE")
+        self.assertEqual(report["executed_candidate_positions"], 247)
+        self.assertEqual(report["executed_fold_fits"], 1482)
+        self.assertEqual(report["complete_candidate_positions"], 247)
+        self.assertEqual(len(report["candidate_results"]), 247)
+        self.assertEqual(len(report["best_by_family_and_feature_block"]), 22)
+        self.assertEqual(len(report["best_by_family"]), 8)
+        self.assertEqual(len(report["top_20_coarse_candidates"]), 20)
+        self.assertTrue(report["all_candidate_positions_terminal"])
+        self.assertTrue(report["all_complete_oof_keys_exactly_once"])
+        self.assertTrue(report["all_complete_scores_finite"])
+        self.assertFalse(report["model_selection_performed"])
+        self.assertFalse(report["refinement_performed"])
+        self.assertFalse(report["qnn_performed"])
+        self.assertFalse(report["calibration_or_threshold_performed"])
+        self.assertFalse(report["external_validation_or_test_opened"])
+        self.assertFalse(report["protected_feature_years_opened"])
+        self.assertEqual(refinement["status"], "QUALIFIED_NOT_EXECUTED")
+        self.assertFalse(refinement["refinement_performed"])
 
     def test_rbf_refinement_enters_same_final_pool_and_beats_coarse(self) -> None:
         contract = load_contract()

@@ -1931,7 +1931,7 @@ class ProductionExperimentRunner:
         atomic_write_json(self.output_dir / "dry_run_plan.json", plan)
         return plan
 
-    def _smoke_candidate_report(
+    def _complete_candidate_report(
         self,
         result: CandidateExecutionResult,
         *,
@@ -1941,7 +1941,7 @@ class ProductionExperimentRunner:
         predictions = list(result.predictions)
         if row["status"] != "COMPLETE":
             raise RunnerIntegrityError(
-                "Execution-smoke candidate is not complete: "
+                "Candidate is not complete: "
                 f"{row['family']}/{row['configuration_id']}/{row['feature_block']} "
                 f"status={row['status']} failure_code={row['failure_code']}"
             )
@@ -1953,15 +1953,15 @@ class ProductionExperimentRunner:
             for item in predictions
         ]
         if len(keys) != len(set(keys)):
-            raise RunnerIntegrityError("Duplicate OOF prediction key in execution smoke.")
+            raise RunnerIntegrityError("Duplicate OOF prediction key in candidate result.")
         if set(keys) != expected_oof_keys:
-            raise RunnerIntegrityError("Execution-smoke OOF keys do not match all six folds.")
+            raise RunnerIntegrityError("Candidate OOF keys do not match all six folds.")
         scores = np.asarray([item["raw_score"] for item in predictions], dtype=np.float64)
         labels = np.asarray([item["target_label"] for item in predictions], dtype=np.int64)
         if not np.isfinite(scores).all():
-            raise RunnerIntegrityError("Nonfinite OOF score in execution smoke.")
+            raise RunnerIntegrityError("Nonfinite OOF score in candidate result.")
         if set(labels) - {0, 1}:
-            raise RunnerIntegrityError("Nonbinary OOF target in execution smoke.")
+            raise RunnerIntegrityError("Nonbinary OOF target in candidate result.")
         ordered = sorted(
             predictions,
             key=lambda item: (
@@ -1970,7 +1970,7 @@ class ProductionExperimentRunner:
             ),
         )
         if predictions != ordered:
-            raise RunnerIntegrityError("OOF predictions are not in canonical key order.")
+            raise RunnerIntegrityError("Candidate OOF predictions are not in canonical key order.")
         base_directory = self._artifact_directory(
             stage=str(row["stage"]),
             family=str(row["family"]),
@@ -2066,6 +2066,115 @@ class ProductionExperimentRunner:
         }
         return report
 
+    def _terminal_candidate_report(
+        self,
+        result: CandidateExecutionResult,
+        *,
+        expected_oof_keys: set[tuple[int, str]],
+    ) -> dict[str, Any]:
+        """Materialize a complete OOF report or a terminal technical-failure report."""
+
+        if result.row["status"] == "COMPLETE":
+            return self._complete_candidate_report(
+                result, expected_oof_keys=expected_oof_keys
+            )
+        row = result.row
+        required_folds = list(
+            self.contract["execution_failure_state_machine"]["required_folds"]
+        )
+        if list(row["fold_statuses"]) != required_folds:
+            raise RunnerIntegrityError(
+                "Terminal candidate does not account for every required fold in order."
+            )
+        base_directory = self._artifact_directory(
+            stage=str(row["stage"]),
+            family=str(row["family"]),
+            configuration_id=str(row["configuration_id"]),
+            block=str(row["feature_block"]),
+            seed=int(row["training_seed"]),
+        )
+        candidate_manifest_path = base_directory / "candidate_manifest.json"
+        if not candidate_manifest_path.is_file():
+            raise RunnerIntegrityError("Terminal candidate manifest is missing.")
+        candidate_manifest = json.loads(
+            candidate_manifest_path.read_text(encoding="utf-8")
+        )
+        by_fold = {
+            str(manifest["task_identity"]["fold_id"]): manifest
+            for manifest in candidate_manifest["fold_manifests"]
+        }
+        if list(by_fold) != required_folds:
+            raise RunnerIntegrityError(
+                "Terminal candidate manifests do not cover every required fold in order."
+            )
+        per_fold: list[dict[str, Any]] = []
+        total_runtime = 0.0
+        for fold_id in required_folds:
+            manifest = by_fold[fold_id]
+            runtime_seconds = float(
+                sum(
+                    float(attempt.get("runtime_seconds", 0.0))
+                    for attempt in manifest.get("attempts", [])
+                )
+            )
+            total_runtime += runtime_seconds
+            per_fold.append(
+                {
+                    "fold_id": fold_id,
+                    "validation_feature_year": int(
+                        manifest["task_identity"]["validation_feature_year"]
+                    ),
+                    "n": int(manifest["validation_rows"]),
+                    "positive_n": None,
+                    "pr_auc": None,
+                    "roc_auc": None,
+                    "runtime_seconds": runtime_seconds,
+                    "status": str(manifest["status"]),
+                    "failure_code": manifest.get("failure_code"),
+                }
+            )
+        partial_scores = np.asarray(
+            [item["raw_score"] for item in result.predictions], dtype=np.float64
+        )
+        return {
+            "family": row["family"],
+            "configuration_id": row["configuration_id"],
+            "feature_block": row["feature_block"],
+            "parameters": row["parameters"],
+            "training_seed": row["training_seed"],
+            "status": row["status"],
+            "failure_code": row["failure_code"],
+            "convergence_status": "NOT_CONVERGED_OR_INVALID",
+            "pooled_oof_n": None,
+            "pooled_oof_positive_n": None,
+            "pooled_oof_pr_auc": None,
+            "pooled_oof_roc_auc": None,
+            "fold_pr_auc_mean": None,
+            "fold_pr_auc_sample_sd": None,
+            "per_fold": per_fold,
+            "runtime_seconds": total_runtime,
+            "oof_key_count": len(result.predictions),
+            "oof_unique_key_count": len(
+                {
+                    (
+                        int(item["validation_feature_year"]),
+                        str(item["research_universe_company_year_id"]),
+                    )
+                    for item in result.predictions
+                }
+            ),
+            "oof_nonfinite_score_count": int(
+                (~np.isfinite(partial_scores)).sum()
+            ),
+            "canonical_oof_predictions": None,
+            "canonical_oof_predictions_sha256": None,
+            "canonical_prediction_keys_sha256": None,
+            "candidate_manifest": str(
+                candidate_manifest_path.relative_to(self.output_dir)
+            ),
+            "candidate_manifest_sha256": file_sha256(candidate_manifest_path),
+        }
+
     def run_real_data_execution_smoke(
         self,
         sample: pd.DataFrame,
@@ -2121,7 +2230,7 @@ class ProductionExperimentRunner:
                 folds=folds,
             )
             reports.append(
-                self._smoke_candidate_report(
+                self._complete_candidate_report(
                     result, expected_oof_keys=expected_oof_keys
                 )
             )
@@ -2194,6 +2303,330 @@ class ProductionExperimentRunner:
                 "status": status,
                 "mode": manifest["mode"],
                 "real_data_execution_smoke_manifest_sha256": manifest_sha,
+                "model_fit_performed": True,
+                "project_data_model_fit_performed": expectations.source_kind
+                != "synthetic",
+                "protected_feature_years_opened": False,
+                "runtime_metadata_sha256": self._runtime_metadata_sha256,
+            },
+        )
+        return manifest
+
+    @staticmethod
+    def _coarse_summary_entry(
+        report: Mapping[str, Any],
+        *,
+        rank: int | None = None,
+    ) -> dict[str, Any]:
+        entry = {
+            key: report.get(key)
+            for key in (
+                "family",
+                "configuration_id",
+                "feature_block",
+                "parameters",
+                "training_seed",
+                "status",
+                "failure_code",
+                "convergence_status",
+                "pooled_oof_n",
+                "pooled_oof_positive_n",
+                "pooled_oof_pr_auc",
+                "pooled_oof_roc_auc",
+                "fold_pr_auc_mean",
+                "fold_pr_auc_sample_sd",
+                "per_fold",
+                "runtime_seconds",
+                "delta_pr_auc_vs_dummy",
+                "delta_pr_auc_vs_fixed_l2",
+            )
+        }
+        if rank is not None:
+            entry["rank"] = rank
+        return entry
+
+    def run_classical_mlp_coarse_search(
+        self,
+        sample: pd.DataFrame,
+        *,
+        expectations: InputExpectations,
+    ) -> dict[str, Any]:
+        """Execute the complete frozen non-QNN coarse index and stop before refinement."""
+
+        sample = self._canonicalize_sample(sample)
+        if expectations.source_kind == "synthetic" and not self.executor.synthetic_only:
+            raise RunnerIntegrityError("Synthetic input requires the synthetic-only executor.")
+        if expectations.source_kind != "synthetic" and self.executor.synthetic_only:
+            raise RunnerIntegrityError("Synthetic executor is forbidden for project data.")
+        folds = self.verify_sample_and_folds(sample, expectations)
+        self.output_dir.mkdir(parents=True, exist_ok=True)
+        full_index = canonical_candidate_index(self.contract, self.registry)
+        coarse_index = [entry for entry in full_index if entry["stage"] == "coarse"]
+        expected_families = [
+            family
+            for family in self.contract["canonical_ordering"]["family_order"]
+            if family != "qnn"
+        ]
+        if len(coarse_index) != 247:
+            raise RunnerIntegrityError(
+                "Frozen classical/MLP coarse scope must contain 247 candidate positions."
+            )
+        if list(dict.fromkeys(entry["family"] for entry in coarse_index)) != expected_families:
+            raise RunnerIntegrityError("Frozen classical/MLP coarse family scope changed.")
+        self._write_runtime_metadata(coarse_index)
+        expected_oof_keys = {
+            (
+                int(observation["feature_year"]),
+                str(observation["research_universe_company_year_id"]),
+            )
+            for _, _, validation, _ in folds.values()
+            for _, observation in validation.iterrows()
+        }
+        fold_summary = [
+            {
+                "fold_id": fold_id,
+                "validation_feature_year": int(fold.validation_start),
+                "train_n": len(train),
+                "validation_n": len(validation),
+                "validation_positive_n": int(validation["target_label"].sum()),
+                "train_membership_sha256": membership_sha256(
+                    train["research_universe_company_year_id"].tolist()
+                ),
+                "validation_membership_sha256": membership_sha256(
+                    validation["research_universe_company_year_id"].tolist()
+                ),
+            }
+            for fold_id, (fold, train, validation, _) in folds.items()
+        ]
+        reports: list[dict[str, Any]] = []
+        coarse_results: list[CandidateExecutionResult] = []
+        started = time.monotonic()
+        for entry in coarse_index:
+            candidate = self._candidate_parameters(
+                "coarse", str(entry["family"]), str(entry["configuration_id"])
+            )
+            result = self._execute_candidate(
+                stage="coarse",
+                family=str(entry["family"]),
+                feature_block=str(entry["feature_block_or_binding"]),
+                candidate=candidate,
+                training_seed=int(self.contract["confirmation"]["coarse_seed"]),
+                folds=folds,
+            )
+            coarse_results.append(result)
+            reports.append(
+                self._terminal_candidate_report(
+                    result, expected_oof_keys=expected_oof_keys
+                )
+            )
+
+        report_by_identity = {
+            (
+                report["family"],
+                report["feature_block"],
+                report["configuration_id"],
+                int(report["training_seed"]),
+            ): report
+            for report in reports
+        }
+        ranked_rows = rank_candidates(
+            [result.row for result in coarse_results], self.contract
+        )
+        ranked_complete_reports = [
+            report_by_identity[
+                (
+                    row["family"],
+                    row["feature_block"],
+                    row["configuration_id"],
+                    int(row["training_seed"]),
+                )
+            ]
+            for row in ranked_rows
+            if row["status"] == "COMPLETE"
+        ]
+        dummy_report = next(
+            report
+            for report in ranked_complete_reports
+            if report["family"] == "dummy_prior"
+        )
+        fixed_l2_report = next(
+            report
+            for report in ranked_complete_reports
+            if report["family"] == "fixed_l2_logistic"
+        )
+        dummy_metric = float(dummy_report["pooled_oof_pr_auc"])
+        fixed_l2_metric = float(fixed_l2_report["pooled_oof_pr_auc"])
+        for report in reports:
+            metric = report.get("pooled_oof_pr_auc")
+            report["delta_pr_auc_vs_dummy"] = (
+                float(metric) - dummy_metric if metric is not None else None
+            )
+            report["delta_pr_auc_vs_fixed_l2"] = (
+                float(metric) - fixed_l2_metric if metric is not None else None
+            )
+
+        best_by_family_and_block: list[dict[str, Any]] = []
+        for family in expected_families:
+            family_blocks = (
+                [BLOCK_AGNOSTIC]
+                if family == "dummy_prior"
+                else list(self.contract["canonical_ordering"]["feature_block_order"])
+            )
+            for block in family_blocks:
+                candidates = [
+                    result.row
+                    for result in coarse_results
+                    if result.row["family"] == family
+                    and result.row["feature_block"] == block
+                ]
+                leader = rank_candidates(candidates, self.contract)[0]
+                leader_report = report_by_identity[
+                    (
+                        leader["family"],
+                        leader["feature_block"],
+                        leader["configuration_id"],
+                        int(leader["training_seed"]),
+                    )
+                ]
+                best_by_family_and_block.append(
+                    self._coarse_summary_entry(leader_report)
+                )
+        best_by_family: list[dict[str, Any]] = []
+        for family in expected_families:
+            candidates = [
+                result.row
+                for result in coarse_results
+                if result.row["family"] == family
+            ]
+            leader = rank_candidates(candidates, self.contract)[0]
+            leader_report = report_by_identity[
+                (
+                    leader["family"],
+                    leader["feature_block"],
+                    leader["configuration_id"],
+                    int(leader["training_seed"]),
+                )
+            ]
+            best_by_family.append(self._coarse_summary_entry(leader_report))
+        top_20 = [
+            self._coarse_summary_entry(report, rank=index)
+            for index, report in enumerate(ranked_complete_reports[:20], 1)
+        ]
+        activations = select_refinement_families(
+            [result.row for result in coarse_results], self.contract
+        )
+        refinement_sha = atomic_write_json(
+            self.output_dir / "refinement_eligibility.json",
+            {
+                "schema_version": 1,
+                "status": "QUALIFIED_NOT_EXECUTED",
+                "source": "coarse_seed_20260818_OOF_2015_2020_only",
+                "frozen_rule_applied": True,
+                "refinement_performed": False,
+                "qualified_families": activations,
+            },
+        )
+        family_manifests: dict[str, dict[str, str]] = {}
+        for family in expected_families:
+            family_path = (
+                self.output_dir / "coarse_results" / family / "result_manifest.json"
+            )
+            family_sha = atomic_write_json(
+                family_path,
+                {
+                    "schema_version": 1,
+                    "mode": "classical_mlp_coarse_search",
+                    "family": family,
+                    "candidate_results": [
+                        report for report in reports if report["family"] == family
+                    ],
+                },
+            )
+            family_manifests[family] = {
+                "path": str(family_path.relative_to(self.output_dir)),
+                "sha256": family_sha,
+            }
+        terminal_statuses = set(
+            self.contract["execution_failure_state_machine"]["terminal_fold_statuses"]
+        )
+        all_positions_terminal = all(
+            len(result.row["fold_statuses"]) == len(folds)
+            and set(result.row["fold_statuses"].values()) <= terminal_statuses
+            for result in coarse_results
+        )
+        all_complete_oof_exact = all(
+            report["oof_key_count"] == report["oof_unique_key_count"]
+            == len(expected_oof_keys)
+            for report in reports
+            if report["status"] == "COMPLETE"
+        )
+        all_complete_scores_finite = all(
+            report["oof_nonfinite_score_count"] == 0
+            for report in reports
+            if report["status"] == "COMPLETE"
+        )
+        status = (
+            "COMPLETE"
+            if all_positions_terminal
+            and all_complete_oof_exact
+            and all_complete_scores_finite
+            else "FAILED"
+        )
+        manifest = {
+            "schema_version": 1,
+            "status": status,
+            "mode": "classical_mlp_coarse_search",
+            "source_kind": expectations.source_kind,
+            "contract_sha256": file_sha256(self.contract_path),
+            "candidate_registry_sha256": file_sha256(self.registry_path),
+            "runner_config_sha256": file_sha256(self.runner_config_path),
+            "sample_membership_sha256": expectations.membership_sha256,
+            "candidate_index_sha256": canonical_sha256(coarse_index),
+            "executed_families": expected_families,
+            "executed_candidate_positions": len(reports),
+            "executed_fold_fits": len(reports) * len(folds),
+            "complete_candidate_positions": sum(
+                report["status"] == "COMPLETE" for report in reports
+            ),
+            "technically_invalid_candidate_positions": sum(
+                report["status"] != "COMPLETE" for report in reports
+            ),
+            "training_seed": int(self.contract["confirmation"]["coarse_seed"]),
+            "folds": fold_summary,
+            "runtime_seconds": float(time.monotonic() - started),
+            "runtime_metadata_sha256": self._runtime_metadata_sha256,
+            "family_result_manifests": family_manifests,
+            "refinement_eligibility_sha256": refinement_sha,
+            "candidate_results": reports,
+            "best_by_family_and_feature_block": best_by_family_and_block,
+            "best_by_family": best_by_family,
+            "top_20_coarse_candidates": top_20,
+            "dummy_baseline_identity": self._coarse_summary_entry(dummy_report),
+            "fixed_l2_baseline_identity": self._coarse_summary_entry(fixed_l2_report),
+            "refinement_qualified_families": activations,
+            "all_candidate_positions_terminal": all_positions_terminal,
+            "all_complete_oof_keys_exactly_once": all_complete_oof_exact,
+            "all_complete_scores_finite": all_complete_scores_finite,
+            "preprocessing_fit_scope": "from_scratch_within_each_train_fold",
+            "model_selection_performed": False,
+            "refinement_performed": False,
+            "qnn_performed": False,
+            "calibration_or_threshold_performed": False,
+            "robustness_or_interpretability_performed": False,
+            "external_validation_or_test_opened": False,
+            "protected_feature_years_opened": False,
+            "project_data_model_fit_performed": expectations.source_kind != "synthetic",
+        }
+        manifest_sha = atomic_write_json(
+            self.output_dir / "classical_mlp_coarse_search_manifest.json", manifest
+        )
+        atomic_write_json(
+            self.output_dir / "run_manifest.json",
+            {
+                "schema_version": 1,
+                "status": status,
+                "mode": manifest["mode"],
+                "classical_mlp_coarse_search_manifest_sha256": manifest_sha,
                 "model_fit_performed": True,
                 "project_data_model_fit_performed": expectations.source_kind
                 != "synthetic",
