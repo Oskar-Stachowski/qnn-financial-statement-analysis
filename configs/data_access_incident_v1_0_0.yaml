@@ -1,0 +1,81 @@
+schema_version: 1
+
+data_access_incident:
+  id: data_access_incident
+  version: 1.0.0
+  status: open_contained_requires_independent_review
+  occurred_on: "2026-08-19"
+  detected_on: "2026-08-19"
+  controlling_policy:
+    path: configs/data_access_policy_v1_1_0.yaml
+    version: 1.1.0
+    accidental_access_policy: stop_record_scope_do_not_continue_and_issue_new_versioned_incident_declaration
+  affected_process: final_integrity_only_freeze_gate_before_ultra_reaudit
+  gate_result: invalidated_not_frozen
+
+trigger:
+  mechanism: repository_wide_text_search_with_rendered_matches
+  intent: locate_prior_ultra_audit_findings_and_closure_evidence
+  cause: search_scope_incorrectly_included_data_reports_without_a_protected_content_allowlist
+  analytical_query_on_protected_data_intended: false
+  model_execution_involved: false
+
+conservatively_recorded_scope:
+  protected_feature_years_rendered_in_tool_output: [2021, 2022, 2023, 2024]
+  known_source_paths:
+    - data/reports/x_t_pit_v1_revenue_manual_review.csv
+    - data/reports/sec_facts_sanity_warnings.csv
+  potentially_exposed_categories:
+    - row_level_company_year_identity
+    - registrant_name
+    - financial_primitive_values
+    - resolver_or_audit_status_and_reason
+  explicitly_not_observed_or_used:
+    - model_predictions
+    - model_performance
+    - hyperparameter_results
+    - calibration_results
+    - threshold_results
+  exact_rendered_record_count: not_reopened_to_determine
+  scope_limit_reason: output_was_capped_and_policy_forbids_further_inspection
+  additional_protected_matches_within_capped_output_ruled_out: false
+
+decision_contamination:
+  protected_values_used_for_methodology: false
+  protected_values_used_for_model_selection: false
+  protected_values_used_for_preprocessing_or_sample_design: false
+  new_methodological_decisions_taken_after_exposure: false
+  models_trained_on_project_data: false
+  formal_freeze_manifest_created: false
+  readiness_verdict_may_be_passed_in_affected_process: false
+
+containment:
+  protected_file_content_search_stopped: true
+  integrity_gate_stopped: true
+  production_dry_run_after_detection_executed: false
+  synthetic_or_qnn_smoke_after_detection_executed: false
+  project_model_training_executed: false
+  protected_period_remains_closed: true
+  historical_frozen_artifacts_modified: false
+  methodology_modified: false
+
+required_resolution_before_repeat_gate:
+  - review_and_commit_this_incident_declaration
+  - repeat_the_integrity_gate_in_a_fresh_context_or_by_an_independent_reviewer
+  - use_an_explicit_allowlist_of_configs_code_docs_and_opaque_hash_checks
+  - exclude_all_reports_that_can_render_protected_period_records
+  - verify_protected_artifacts_by_existence_and_opaque_SHA256_only
+  - do_not_reuse_protected_values_revealed_in_this_process
+  - keep_2021_2024_closed_until_their_applicable_data_access_gates
+
+change_control:
+  this_declaration_changes_methodology: false
+  this_declaration_authorizes_protected_data_access: false
+  this_declaration_authorizes_model_training: false
+  any_scope_correction_requires_new_incident_version: true
+  historical_frozen_artifacts_may_be_edited_in_place: false
+
+notes:
+  - No protected values are reproduced in this declaration.
+  - Exact scope is intentionally conservative because further inspection would compound the incident.
+  - This declaration records the access event; it does not resolve or waive it.
