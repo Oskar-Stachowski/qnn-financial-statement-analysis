@@ -14,7 +14,7 @@ from src.modeling.production_runner import (
 
 def main() -> None:
     parser = argparse.ArgumentParser()
-    parser.add_argument("mode", choices=("dry-run", "execute"))
+    parser.add_argument("mode", choices=("dry-run", "execute", "real-data-smoke"))
     parser.add_argument("--output-dir", required=True, type=Path)
     parser.add_argument("--classical-python", required=True, type=Path)
     parser.add_argument("--qnn-python", required=True, type=Path)
@@ -27,7 +27,14 @@ def main() -> None:
     )
     runner = ProductionExperimentRunner(output_dir=args.output_dir, executor=executor)
     sample, expectations = runner.load_frozen_project_sample()
-    result = runner.run(sample, expectations=expectations, dry_run=args.mode == "dry-run")
+    if args.mode == "real-data-smoke":
+        result = runner.run_real_data_execution_smoke(
+            sample, expectations=expectations
+        )
+    else:
+        result = runner.run(
+            sample, expectations=expectations, dry_run=args.mode == "dry-run"
+        )
     print(json.dumps(result, ensure_ascii=False, sort_keys=True, indent=2))
 
 

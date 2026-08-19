@@ -142,6 +142,30 @@ class ProductionRunnerPolicyTests(unittest.TestCase):
             self.assertEqual(metadata["seeds"]["coarse_and_refinement"], 20260818)
             self.assertEqual(len(metadata["configuration_ids"]), 142)
 
+    def test_execution_smoke_runs_only_dummy_and_fixed_l2_without_selection(self) -> None:
+        sample = synthetic_dataset(4)
+        with tempfile.TemporaryDirectory() as directory:
+            runner = self.make_runner(Path(directory))
+            report = runner.run_real_data_execution_smoke(
+                sample, expectations=synthetic_expectations(sample)
+            )
+            artifact_names = {
+                path.name for path in Path(directory).rglob("result_manifest.json")
+            }
+        self.assertEqual(report["status"], "COMPLETE")
+        self.assertEqual(
+            report["executed_families"], ["dummy_prior", "fixed_l2_logistic"]
+        )
+        self.assertEqual(report["executed_candidate_positions"], 7)
+        self.assertEqual(report["executed_fold_fits"], 42)
+        self.assertTrue(report["all_oof_keys_exactly_once"])
+        self.assertTrue(report["all_scores_finite"])
+        self.assertFalse(report["model_selection_performed"])
+        self.assertFalse(report["refinement_performed"])
+        self.assertFalse(report["mlp_performed"])
+        self.assertFalse(report["qnn_performed"])
+        self.assertEqual(artifact_names, {"result_manifest.json"})
+
     def test_rbf_refinement_enters_same_final_pool_and_beats_coarse(self) -> None:
         contract = load_contract()
 
