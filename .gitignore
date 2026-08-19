@@ -72,8 +72,8 @@ data/processed/x_t_pit_v1_1_0_train.csv
 # audit JSON/Markdown and are reproducible from the frozen inputs.
 data/reports/x_t_pit_v1_revision_diagnostics.csv
 
-# Full real-data execution-smoke artifacts; the compact result report is versioned.
-data/model_runs/first_real_data_smoke_v1/
+# Full real-data execution artifacts; compact result reports are versioned separately.
+data/model_runs/
 
 # Download-run manifests; summary results remain in the audit reports
 data/reports/target_candidate_v2_pit_b_revenue_evidence_downloads.json

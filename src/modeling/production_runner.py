@@ -1939,6 +1939,12 @@ class ProductionExperimentRunner:
     ) -> dict[str, Any]:
         row = result.row
         predictions = list(result.predictions)
+        if row["status"] != "COMPLETE":
+            raise RunnerIntegrityError(
+                "Execution-smoke candidate is not complete: "
+                f"{row['family']}/{row['configuration_id']}/{row['feature_block']} "
+                f"status={row['status']} failure_code={row['failure_code']}"
+            )
         keys = [
             (
                 int(item["validation_feature_year"]),

@@ -8,6 +8,7 @@ import re
 import tempfile
 import unittest
 from unittest import mock
+import warnings
 
 import numpy as np
 import yaml
@@ -35,6 +36,7 @@ from src.modeling.production_runner import (
     synthetic_expectations,
 )
 from src.modeling.verify_environment_locks import verify as verify_environment_locks
+from src.modeling.production_worker import classical_fit_predict
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -57,6 +59,25 @@ class ProductionRunnerPolicyTests(unittest.TestCase):
                 canonical_sha256(index),
                 "67184eac4f62909e0717bfb2e8775de275cbf3842fc9cf4dfd316e42a3b20726",
             )
+
+    def test_fixed_l2_uses_warning_free_sklearn_1_8_equivalent_api(self) -> None:
+        task = {
+            "family": "fixed_l2_logistic",
+            "parameters": {"C": 1.0, "imbalance": "none"},
+            "training_seed": 20260818,
+            "stage": "coarse",
+        }
+        arrays = {
+            "x_train": np.asarray([[0.0], [1.0], [2.0], [3.0]]),
+            "y_train": np.asarray([0, 0, 1, 1]),
+            "x_validation": np.asarray([[1.5]]),
+            "sample_weight": np.ones(4),
+        }
+        with warnings.catch_warnings(record=True) as caught:
+            warnings.simplefilter("always")
+            scores = classical_fit_predict(task, arrays)
+        self.assertEqual(scores.shape, (1,))
+        self.assertEqual(caught, [])
 
     def test_protected_year_is_rejected_before_execution(self) -> None:
         sample = synthetic_dataset(4)

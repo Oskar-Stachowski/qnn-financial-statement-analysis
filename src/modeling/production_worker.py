@@ -83,8 +83,8 @@ def classical_fit_predict(task: Mapping[str, Any], arrays: Mapping[str, np.ndarr
         return np.full(len(x_validation), math.log(prior / (1.0 - prior)))
     if family == "fixed_l2_logistic":
         estimator = LogisticRegression(
-            penalty="l2",
             C=float(parameters["C"]),
+            l1_ratio=0.0,
             dual=False,
             tol=1e-6,
             fit_intercept=True,
@@ -95,11 +95,9 @@ def classical_fit_predict(task: Mapping[str, Any], arrays: Mapping[str, np.ndarr
             max_iter=2000,
             verbose=0,
             warm_start=False,
-            n_jobs=1,
         )
     elif family == "elastic_net_logistic":
         estimator = LogisticRegression(
-            penalty="elasticnet",
             C=float(parameters["C"]),
             l1_ratio=float(parameters["l1_ratio"]),
             dual=False,
@@ -112,7 +110,6 @@ def classical_fit_predict(task: Mapping[str, Any], arrays: Mapping[str, np.ndarr
             max_iter=5000,
             verbose=0,
             warm_start=False,
-            n_jobs=1,
         )
     elif family == "rbf_svm":
         estimator = SVC(
