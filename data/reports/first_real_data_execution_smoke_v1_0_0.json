@@ -1,0 +1,285 @@
+{
+  "schema_version": 1,
+  "report_id": "first_real_data_execution_smoke_v1_0_0",
+  "status": "COMPLETE",
+  "verdict": "FIRST REAL-DATA FIT PASSED",
+  "mode": "real_data_execution_smoke_not_model_selection",
+  "successful_output_root": "data/model_runs/first_real_data_smoke_v1_attempt2",
+  "attempt_history": [
+    {
+      "output_root": "data/model_runs/first_real_data_smoke_v1",
+      "status": "FAILED_CLOSED",
+      "reason": "scikit-learn 1.8 deprecation warnings were rejected by the frozen warning policy before any fixed-L2 OOF result was accepted"
+    },
+    {
+      "output_root": "data/model_runs/first_real_data_smoke_v1_attempt2",
+      "status": "COMPLETE"
+    }
+  ],
+  "code_git_commit": "e8e5f5ccf18ca41d991d92cab8fa107fdf4060a9",
+  "training_seed": 20260818,
+  "runtime_environment": {
+    "sys_executable": "/private/tmp/qnn_classical_fresh.MQ2T8r/venv/bin/python",
+    "python_version": "3.13.13",
+    "numpy_version": "2.4.4",
+    "pandas_version": "3.0.3",
+    "scikit_learn_version": "1.8.0",
+    "scipy_version": "1.17.1",
+    "xgboost_version": "3.4.1"
+  },
+  "execution_scope": {
+    "families": [
+      "dummy_prior",
+      "fixed_l2_logistic"
+    ],
+    "candidate_positions": 7,
+    "fold_fits": 42,
+    "validation_feature_years": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020
+    ],
+    "runtime_seconds": 50.01347420801176,
+    "preprocessing_fit_scope": "from_scratch_within_each_train_fold",
+    "model_selection_performed": false,
+    "refinement_performed": false,
+    "mlp_performed": false,
+    "qnn_performed": false,
+    "robustness_or_interpretability_performed": false,
+    "external_validation_or_test_opened": false,
+    "protected_feature_years_opened": false
+  },
+  "integrity_checks": {
+    "all_oof_keys_exactly_once": true,
+    "all_scores_finite": true,
+    "canonical_oof_key_count_per_position": 10760,
+    "canonical_oof_positive_count_per_position": 1986,
+    "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+    "preprocessing_manifest_count": 18
+  },
+  "artifact_hashes": {
+    "real_data_execution_smoke_manifest_sha256": "fb2f3308e7314a26e133fc2ad2a1c1c384fc9d1b6f02dc0b8cd42564ba615b3f",
+    "runtime_metadata_sha256": "e90552fdd1627ea7164e8c9ee400be30a62b5c53d6ca4e0e5ddd4d2ca4e8c147",
+    "dummy_prior_result_manifest_sha256": "f590bf12d8a9d5426437c2f0d9acd4196f44d83271ec09b28b7b176c94b6f00e",
+    "fixed_l2_logistic_result_manifest_sha256": "e0fdf535744aa7d381787b2b1b67b55ce73723b77bd074b6388a36f3dccca0ec"
+  },
+  "folds": [
+    {
+      "fold_id": "fold_2015",
+      "n": 2241,
+      "positive_n": 506
+    },
+    {
+      "fold_id": "fold_2016",
+      "n": 2133,
+      "positive_n": 351
+    },
+    {
+      "fold_id": "fold_2017",
+      "n": 1549,
+      "positive_n": 257
+    },
+    {
+      "fold_id": "fold_2018",
+      "n": 1511,
+      "positive_n": 327
+    },
+    {
+      "fold_id": "fold_2019",
+      "n": 1638,
+      "positive_n": 326
+    },
+    {
+      "fold_id": "fold_2020",
+      "n": 1688,
+      "positive_n": 219
+    }
+  ],
+  "candidate_results": [
+    {
+      "label": "dummy/prior",
+      "family": "dummy_prior",
+      "configuration_id": "model_stage_v1__coarse__dummy_prior__001",
+      "feature_block": "BLOCK_AGNOSTIC",
+      "parameters": {
+        "strategy": "prior",
+        "imbalance": "none"
+      },
+      "pooled_oof_pr_auc": 0.1722831509228104,
+      "pooled_oof_roc_auc": 0.46256921886072344,
+      "fold_pr_auc_mean": 0.1835730031294409,
+      "fold_pr_auc_sample_sd": 0.036527119771290084,
+      "per_fold_pr_auc": {
+        "2015": 0.22579205711735834,
+        "2016": 0.16455696202531644,
+        "2017": 0.1659134925758554,
+        "2018": 0.21641297154202516,
+        "2019": 0.199023199023199,
+        "2020": 0.129739336492891
+      },
+      "runtime_seconds": 6.639548460021615,
+      "status": "COMPLETE",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "failure_code": null
+    },
+    {
+      "label": "fixed-L2/L/none",
+      "family": "fixed_l2_logistic",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__001",
+      "feature_block": "L",
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "none"
+      },
+      "pooled_oof_pr_auc": 0.36355322016647007,
+      "pooled_oof_roc_auc": 0.7319698684041079,
+      "fold_pr_auc_mean": 0.3642221065340279,
+      "fold_pr_auc_sample_sd": 0.04751735102443391,
+      "per_fold_pr_auc": {
+        "2015": 0.43747982170960337,
+        "2016": 0.38023885347246433,
+        "2017": 0.36175517240138166,
+        "2018": 0.3803188452361941,
+        "2019": 0.320064814347571,
+        "2020": 0.3054751320369532
+      },
+      "runtime_seconds": 6.608381833997555,
+      "status": "COMPLETE",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "failure_code": null
+    },
+    {
+      "label": "fixed-L2/L/sqrt",
+      "family": "fixed_l2_logistic",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__002",
+      "feature_block": "L",
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "sqrt"
+      },
+      "pooled_oof_pr_auc": 0.3649769339532629,
+      "pooled_oof_roc_auc": 0.7331112062991201,
+      "fold_pr_auc_mean": 0.3641990962559061,
+      "fold_pr_auc_sample_sd": 0.0475635434210286,
+      "per_fold_pr_auc": {
+        "2015": 0.43902822142470554,
+        "2016": 0.3787475965597168,
+        "2017": 0.36077894603873406,
+        "2018": 0.3799888526488515,
+        "2019": 0.3189438908248331,
+        "2020": 0.3077070700385953
+      },
+      "runtime_seconds": 6.618609750003088,
+      "status": "COMPLETE",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "failure_code": null
+    },
+    {
+      "label": "fixed-L2/L+D/none",
+      "family": "fixed_l2_logistic",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__001",
+      "feature_block": "L+D",
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "none"
+      },
+      "pooled_oof_pr_auc": 0.3695074343621221,
+      "pooled_oof_roc_auc": 0.7314793995626095,
+      "fold_pr_auc_mean": 0.3734376351801478,
+      "fold_pr_auc_sample_sd": 0.04589689030264654,
+      "per_fold_pr_auc": {
+        "2015": 0.4432873551216257,
+        "2016": 0.38435828355296764,
+        "2017": 0.3906508939816001,
+        "2018": 0.37728214517402037,
+        "2019": 0.3181180319691716,
+        "2020": 0.32692910128150104
+      },
+      "runtime_seconds": 6.701119624020066,
+      "status": "COMPLETE",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "failure_code": null
+    },
+    {
+      "label": "fixed-L2/L+D/sqrt",
+      "family": "fixed_l2_logistic",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__002",
+      "feature_block": "L+D",
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "sqrt"
+      },
+      "pooled_oof_pr_auc": 0.37069862761566424,
+      "pooled_oof_roc_auc": 0.7326820855172439,
+      "fold_pr_auc_mean": 0.37323522142215326,
+      "fold_pr_auc_sample_sd": 0.045006110375116384,
+      "per_fold_pr_auc": {
+        "2015": 0.4434502971515465,
+        "2016": 0.38149430022185415,
+        "2017": 0.3886858367904589,
+        "2018": 0.37743371154467503,
+        "2019": 0.3187447471454592,
+        "2020": 0.32960243567892566
+      },
+      "runtime_seconds": 6.7404425839777105,
+      "status": "COMPLETE",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "failure_code": null
+    },
+    {
+      "label": "fixed-L2/L+D+R/none",
+      "family": "fixed_l2_logistic",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__001",
+      "feature_block": "L+D+R",
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "none"
+      },
+      "pooled_oof_pr_auc": 0.38077433909090347,
+      "pooled_oof_roc_auc": 0.7377011200583248,
+      "fold_pr_auc_mean": 0.38324412418310455,
+      "fold_pr_auc_sample_sd": 0.05242777257797644,
+      "per_fold_pr_auc": {
+        "2015": 0.4667076824963168,
+        "2016": 0.3848805040824496,
+        "2017": 0.4077460949965946,
+        "2018": 0.38474378442181345,
+        "2019": 0.32795647529493366,
+        "2020": 0.3274302038065194
+      },
+      "runtime_seconds": 6.771499332913663,
+      "status": "COMPLETE",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "failure_code": null
+    },
+    {
+      "label": "fixed-L2/L+D+R/sqrt",
+      "family": "fixed_l2_logistic",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__002",
+      "feature_block": "L+D+R",
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "sqrt"
+      },
+      "pooled_oof_pr_auc": 0.38165485192849713,
+      "pooled_oof_roc_auc": 0.7387039226718324,
+      "fold_pr_auc_mean": 0.3825843800394651,
+      "fold_pr_auc_sample_sd": 0.05195766128627831,
+      "per_fold_pr_auc": {
+        "2015": 0.46596792138931786,
+        "2016": 0.3798021208845178,
+        "2017": 0.40765992552565317,
+        "2018": 0.38551459830979856,
+        "2019": 0.32720323886586145,
+        "2020": 0.3293584752616417
+      },
+      "runtime_seconds": 6.883338125015143,
+      "status": "COMPLETE",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "failure_code": null
+    }
+  ]
+}
