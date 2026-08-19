@@ -1,0 +1,323 @@
+supervised_ml_pipeline:
+  id: supervised_ml_pipeline
+  version: 1.0.0
+  status: frozen
+  frozen_on: "2026-08-19"
+  freeze_scope: supervised_sample_preprocessing_feature_blocks_temporal_cv_ranking_inference_and_validation_policy
+  frozen_specification: docs/07_1_supervised_ml_pipeline_v1_frozen_specification.md
+  freeze_manifest: configs/supervised_ml_pipeline_v1_freeze_manifest.yaml
+  final_freeze_gate_notebook: notebooks/04_selection_bias_and_pipeline_freeze_gate.ipynb
+  pipeline_policy_frozen: true
+  predictive_models_trained: false
+  model_family_frozen: false
+  model_hyperparameters_frozen: false
+  model_training_budget_frozen: false
+  decision_threshold_frozen: false
+  calibration_method_frozen: false
+  external_validation_opened_analytically: false
+  test_opened_analytically: false
+
+upstream_frozen_inputs:
+  target:
+    id: target_candidate_v2_pit_b
+    version: 1.0.0
+    status: frozen_immutable
+    manifest: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+    artifact: data/interim/target_candidate_v2_pit_b.csv
+    artifact_sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+  historical_research_universe:
+    id: research_universe_pit
+    version: 1.1.0
+    status: frozen_immutable
+    manifest: configs/research_universe_pit_freeze_manifest.yaml
+    artifact: data/processed/research_universe_pit.csv
+    artifact_sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+  raw_x_t:
+    id: x_t_pit
+    version: 1.0.0
+    status: frozen_immutable
+    manifest: configs/x_t_pit_v1_freeze_manifest.yaml
+    artifact: data/processed/x_t_pit_v1_raw.csv
+    artifact_sha256: 0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f
+
+scope:
+  development_feature_years: [2011, 2022]
+  train_feature_years: [2011, 2020]
+  external_validation_feature_years: [2021, 2022]
+  test_feature_years: [2023, 2024]
+  test_used_for_pipeline_design_or_freeze: false
+  external_validation_target_values_or_financial_features_used_for_pipeline_freeze: false
+  external_validation_minimal_index_and_count_check_allowed: true
+
+supervised_sample:
+  unit: eligible_company_year
+  required_membership_status: eligible
+  required_target_status: available
+  allowed_x_t_statuses:
+    - available_core
+    - partially_available
+  missing_financial_feature_drops_main_row: false
+  development_n: 23218
+  train_n: 19671
+  external_validation_n: 3547
+  membership_fingerprint:
+    algorithm: sha256_utf8_lf_sorted_unique_research_universe_company_year_id
+    development: e2ea8b25ce703576de06467664be830423043bb3341ab626f6e6255723fd8124
+    train: 864af3d9aac6ea239d993ea48cd819c2185f3249957d8b81f6d8d4c3c9f3d680
+    external_validation: c0f69d25f018a85ea35c82e18070cbee5a7acd38d9db86ab3253c9c88f7c6a5f
+
+feature_blocks:
+  L:
+    - log_assets_t
+    - roa_t
+    - ocf_to_assets_t
+    - current_ratio_t
+    - liabilities_to_assets_t
+    - working_capital_to_assets_t
+    - accruals_to_assets_t
+  D:
+    - asset_growth_1y
+    - delta_roa_1y
+    - delta_ocf_to_assets_1y
+    - current_ratio_change_1y
+    - delta_liabilities_to_assets_1y
+  R:
+    - log1p_revenues_t
+    - profit_margin_t
+    - ocf_margin_t
+    - asset_turnover_t
+    - revenue_growth_1y
+  frozen_comparisons:
+    - [L]
+    - [L, D]
+    - [L, D, R]
+  same_main_sample_for_all_comparisons: true
+  missing_r_feature_drops_main_row: false
+  economic_group_id_is_predictor: false
+
+preprocessing:
+  main_variant:
+    id: C
+    fit_scope: train_partition_only
+    cv_fit_scope: fold_train_partition_only
+    validation_operation: transform_only
+    fresh_instance_per_fold_and_feature_block: true
+    financial_branch_order:
+      - winsorize
+      - median_impute
+      - standard_scale
+    winsorization:
+      enabled: true
+      per_feature: true
+      lower_quantile: 0.01
+      upper_quantile: 0.99
+      fit_on_observed_train_values_only: true
+    imputation:
+      method: median
+      per_feature: true
+      fit_on_train_only: true
+      drops_rows: false
+    scaling:
+      implementation: StandardScaler
+      center: mean_after_winsorization_and_imputation
+      scale: population_standard_deviation
+      ddof: 0
+      financial_features_only: true
+      fit_on_train_only: true
+    missing_indicators:
+      enabled: true
+      one_per_input_financial_feature: true
+      source: raw_pre_imputation_missingness
+      suffix: __missing
+      values: [0, 1]
+      winsorized: false
+      scaled: false
+      appended_after_scaled_financial_features: true
+
+temporal_cv:
+  id: pit_safe_expanding_window_6_fold
+  pool_feature_years: [2011, 2020]
+  expanding_window: true
+  validation_window_years: 1
+  label_embargo_years: 1
+  future_year_in_training_allowed: false
+  target_availability_rule: target_available_at <= min(prediction_timestamp_in_validation_fold)
+  preprocessing_refit_from_zero_inside_each_fold: true
+  validation_statistics_may_affect_preprocessing: false
+  folds:
+    - id: fold_2015
+      train_feature_years: [2011, 2013]
+      embargo_feature_years: [2014, 2014]
+      validation_feature_years: [2015, 2015]
+      validation_prediction_cutoff_utc: "2015-04-30T20:44:00+00:00"
+      base_train_n: 6611
+      late_labels_excluded_n: 141
+      pit_safe_train_n: 6470
+      validation_n: 2241
+    - id: fold_2016
+      train_feature_years: [2011, 2014]
+      embargo_feature_years: [2015, 2015]
+      validation_feature_years: [2016, 2016]
+      validation_prediction_cutoff_utc: "2016-04-28T22:09:00+00:00"
+      base_train_n: 8911
+      late_labels_excluded_n: 150
+      pit_safe_train_n: 8761
+      validation_n: 2133
+    - id: fold_2017
+      train_feature_years: [2011, 2015]
+      embargo_feature_years: [2016, 2016]
+      validation_feature_years: [2017, 2017]
+      validation_prediction_cutoff_utc: "2017-06-09T17:50:00+00:00"
+      base_train_n: 11152
+      late_labels_excluded_n: 63
+      pit_safe_train_n: 11089
+      validation_n: 1549
+    - id: fold_2018
+      train_feature_years: [2011, 2016]
+      embargo_feature_years: [2017, 2017]
+      validation_feature_years: [2018, 2018]
+      validation_prediction_cutoff_utc: "2018-06-08T15:22:00+00:00"
+      base_train_n: 13285
+      late_labels_excluded_n: 64
+      pit_safe_train_n: 13221
+      validation_n: 1511
+    - id: fold_2019
+      train_feature_years: [2011, 2017]
+      embargo_feature_years: [2018, 2018]
+      validation_feature_years: [2019, 2019]
+      validation_prediction_cutoff_utc: "2019-06-07T18:33:00+00:00"
+      base_train_n: 14834
+      late_labels_excluded_n: 50
+      pit_safe_train_n: 14784
+      validation_n: 1638
+    - id: fold_2020
+      train_feature_years: [2011, 2018]
+      embargo_feature_years: [2019, 2019]
+      validation_feature_years: [2020, 2020]
+      validation_prediction_cutoff_utc: "2020-06-12T20:43:00+00:00"
+      base_train_n: 16345
+      late_labels_excluded_n: 65
+      pit_safe_train_n: 16280
+      validation_n: 1688
+
+metric_aggregation:
+  primary_ranking:
+    name: pooled_oof_pr_auc
+    oof_validation_feature_years: [2015, 2020]
+    pooling: concatenate_all_oof_rows_before_metric
+    direction: higher_is_better
+  required_additional_reporting:
+    per_fold_metric: pr_auc
+    mean: arithmetic_mean_across_six_fold_values
+    standard_deviation: sample_standard_deviation
+    standard_deviation_ddof: 1
+  secondary_metrics_may_change_primary_ranking: false
+
+inference:
+  method: clustered_bootstrap
+  cluster_column: economic_group_id
+  cluster_column_is_predictor: false
+  resampling_unit: unique_economic_group
+  preserve_all_rows_and_draw_multiplicity_within_sampled_group: true
+  replicates: 2000
+  confidence_level: 0.95
+  interval: percentile
+  lower_quantile: 0.025
+  upper_quantile: 0.975
+  random_seed: 20260818
+  row_level_bootstrap_allowed_as_primary_ci: false
+  degenerate_single_class_draw_policy: redraw_deterministically_and_report_rejection_count
+
+mandatory_ablations_and_robustness:
+  B_without_missing_indicators:
+    type: ablation
+    same_main_rows: true
+    missing_indicators_enabled: false
+    all_other_main_preprocessing_unchanged: true
+    may_replace_primary_ranking: false
+  complete_case:
+    type: robustness
+    block_specific: true
+    exclude_row_if_any_feature_in_evaluated_block_is_missing: true
+    alternative_main_sample_policy: false
+    may_replace_primary_ranking: false
+  no_winsorization:
+    type: robustness
+    same_main_rows: true
+    winsorization_enabled: false
+    median_imputation_enabled: true
+    missing_indicators_enabled: true
+    scaling_enabled: true
+    may_replace_primary_ranking: false
+  purged_economic_group_cv:
+    type: robustness
+    temporal_folds_unchanged: true
+    remove_from_fold_train_groups_present_in_fold_validation: true
+    validation_rows_changed: false
+    alternative_estimand: unseen_economic_group_generalization
+    may_replace_primary_ranking: false
+  sparse_row:
+    type: robustness
+    count_source: raw_pre_imputation_frozen_financial_features
+    feature_count_total: 17
+    exclusion_rule: available_feature_count <= 10
+    retention_rule: available_feature_count >= 11
+    apply_to_train_and_evaluation_partitions_in_robustness_rerun: true
+    main_supervised_sample_unchanged: true
+    alternative_main_sample_policy: false
+    may_replace_primary_ranking: false
+    test_results_may_select_or_activate_this_policy: false
+
+selection_bias_policy:
+  required_descriptive_strata:
+    - feature_year
+    - research_sector
+    - time_t_size
+    - x_t_status
+    - xbrl_availability
+    - available_feature_count
+    - target_class
+  non_xbrl_rows_enter_model_matrix: false
+  scope_claim: conditional_on_available_target_and_accepted_x_t_status
+  ipw:
+    status: diagnostic_evaluated_and_rejected
+    reason:
+      - poor_positivity
+      - extreme_weights
+      - low_effective_sample_size
+      - nonuniform_balance
+      - time_t_covariates_do_not_support_mar_for_t_plus_1_availability
+      - cannot_recover_non_xbrl_or_unavailable_x_t_support
+    target_availability_candidate_population_n: 43175
+    selected_n: 19671
+    candidate_propensity_below_0_05_n: 4524
+    selected_propensity_below_0_05_n: 358
+    untruncated_effective_sample_size: 518.821
+    stabilized_p1_p99_effective_sample_size: 1889.230
+    ipw_weighted_predictive_metrics_allowed: false
+
+external_validation:
+  feature_years: [2021, 2022]
+  n: 3547
+  role: one_shot_no_tune_external_development_validation
+  may_be_opened_before_full_model_stage_lock: false
+  pipeline_or_models_may_be_tuned_after_results_and_retain_independent_status: false
+  failure_policy:
+    - no_go
+    - explicitly_versioned_new_pipeline_with_validation_declared_spent
+
+test_policy:
+  feature_years: [2023, 2024]
+  used_in_this_freeze: false
+  may_be_opened_before_full_model_stage_freeze: false
+  may_select_sample_preprocessing_blocks_cv_metrics_inference_or_robustness: false
+
+model_stage_boundary:
+  predictive_model_training_performed: false
+  model_families: outside_this_freeze
+  hyperparameters: outside_this_freeze
+  class_imbalance_strategy: outside_this_freeze
+  training_budget_and_seeds: outside_this_freeze
+  threshold_and_calibration: outside_this_freeze
+  final_refit_policy: outside_this_freeze
+  requirement_before_external_validation_or_test: freeze_in_a_later_model_stage_specification

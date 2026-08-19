@@ -1,0 +1,196 @@
+manifest_schema_version: 1
+
+supervised_ml_pipeline:
+  id: supervised_ml_pipeline
+  version: 1.0.0
+  status: frozen
+  frozen_on: "2026-08-19"
+  freeze_scope: supervised_sample_preprocessing_feature_blocks_temporal_cv_ranking_inference_and_validation_policy
+  pipeline_policy_frozen: true
+  supervised_sample_frozen: true
+  preprocessing_frozen: true
+  feature_blocks_frozen: true
+  temporal_cv_frozen: true
+  metric_aggregation_frozen: true
+  clustered_inference_frozen: true
+  mandatory_ablations_and_robustness_frozen: true
+  external_validation_policy_frozen: true
+  test_access_policy_frozen: true
+  predictive_models_trained: false
+  model_family_frozen: false
+  model_hyperparameters_frozen: false
+  model_stage_fully_frozen: false
+
+git:
+  basis_commit_before_supervised_pipeline_freeze: 9cacc6aae8f7ceab3036d55ea9a49503e3c5247c
+  freeze_commit: commit_containing_this_manifest
+  component_commits:
+    supervised_sample_design: commit_containing_this_manifest
+    preprocessing_design_and_implementation: commit_containing_this_manifest
+    temporal_cv_design_and_implementation: commit_containing_this_manifest
+    selection_bias_and_freeze_gate: commit_containing_this_manifest
+    formal_pipeline_freeze: commit_containing_this_manifest
+
+scope:
+  development_feature_years: [2011, 2022]
+  train_feature_years: [2011, 2020]
+  external_validation_feature_years: [2021, 2022]
+  test_feature_years: [2023, 2024]
+  external_validation_opened_analytically_for_freeze: false
+  external_validation_minimal_index_and_count_only: true
+  test_used_for_pipeline_design_or_freeze: false
+
+sample_at_freeze:
+  policy:
+    membership_status: eligible
+    target_status: available
+    x_t_status:
+      - available_core
+      - partially_available
+  development_n: 23218
+  train_n: 19671
+  external_validation_n: 3547
+  membership_fingerprint_algorithm: sha256_utf8_lf_sorted_unique_research_universe_company_year_id
+  development_membership_sha256: e2ea8b25ce703576de06467664be830423043bb3341ab626f6e6255723fd8124
+  train_membership_sha256: 864af3d9aac6ea239d993ea48cd819c2185f3249957d8b81f6d8d4c3c9f3d680
+  external_validation_membership_sha256: c0f69d25f018a85ea35c82e18070cbee5a7acd38d9db86ab3253c9c88f7c6a5f
+
+freeze_gate:
+  source: notebooks/04_selection_bias_and_pipeline_freeze_gate.ipynb
+  source_sha256: 34a78c162d35f9bf12b606631b9c421bccdfb34cdbd24805e36408164830cc43
+  verdict: SUPERVISED ML PIPELINE READY TO FREEZE
+  pipeline_automatically_frozen_by_notebook: false
+  formal_freeze_effected_by_this_manifest: true
+  predictive_models_trained: false
+  ipw_status: diagnostic_evaluated_and_rejected
+  ipw_weighted_predictive_metrics_allowed: false
+
+sparse_row_robustness_added_before_freeze:
+  status: frozen_mandatory_robustness
+  count_source: raw_pre_imputation_frozen_financial_features
+  feature_count_total: 17
+  exclusion_rule: available_feature_count <= 10
+  retention_rule: available_feature_count >= 11
+  main_supervised_sample_changed: false
+  alternative_main_sample_policy: false
+  may_change_primary_ranking: false
+  test_results_may_select_or_activate_policy: false
+  audited_main_train_rows_excluded_if_run: 474
+  audited_main_train_rows_retained_if_run: 19197
+
+upstream_frozen_inputs:
+  historical_research_universe:
+    id: research_universe_pit
+    version: 1.1.0
+    status: frozen_unchanged
+    manifest: configs/research_universe_pit_freeze_manifest.yaml
+    manifest_sha256: 60310dbc9379371c05316b28de273832d0eaf02f20fc1ee7bb28697a26fb71b7
+    artifact: data/processed/research_universe_pit.csv
+    artifact_rows: 103099
+    artifact_columns: 81
+    artifact_bytes: 111619454
+    artifact_sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+    changed_by_pipeline_freeze: false
+  target:
+    id: target_candidate_v2_pit_b
+    version: 1.0.0
+    status: frozen_unchanged
+    manifest: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+    manifest_sha256: 52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb
+    artifact: data/interim/target_candidate_v2_pit_b.csv
+    artifact_rows: 26917
+    artifact_columns: 802
+    artifact_bytes: 177561296
+    artifact_sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+    changed_by_pipeline_freeze: false
+  raw_x_t:
+    id: x_t_pit
+    version: 1.0.0
+    status: frozen_unchanged
+    manifest: configs/x_t_pit_v1_freeze_manifest.yaml
+    manifest_sha256: 9b59e812bfb1b34a2f72c78ce4fc0ba484249d0a1d48cdea8f94506a403a9023
+    artifact: data/processed/x_t_pit_v1_raw.csv
+    artifact_rows: 64901
+    artifact_columns: 1072
+    artifact_bytes: 814411483
+    artifact_sha256: 0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f
+    changed_by_pipeline_freeze: false
+
+runtime_observed_at_freeze:
+  python: 3.13.13
+  numpy: 2.4.4
+  pandas: 3.0.3
+  scikit_learn: 1.8.0
+  pyyaml: 6.0.3
+
+versioned_components:
+  configuration:
+    - path: configs/supervised_ml_pipeline_v1.yaml
+      sha256: 0e817dac719d1651ec7518141e71c627dc208f4bed5ccfebed6c5b9d88652765
+    - path: requirements.txt
+      sha256: 8b29fed7bed21fa1202c6f692e040474ab536dc67aef0e3fc63897ecf28a3327
+
+  modeling_data_pipeline_code:
+    - path: src/modeling/__init__.py
+      sha256: f51644b34be6237b82b7b66304be2bcc9def20b7cf1d053920e3748b4f56b6a1
+    - path: src/modeling/preprocessing.py
+      sha256: 96eb5f6fa54a51926f7186481a34276b31f39b1c4dfdf87cf27ea2258a8434f7
+    - path: src/modeling/temporal_cv.py
+      sha256: f00d1ff60e099d4233f36f39f8f1ca8094d86d8e4a3ce9537002796697011326
+
+  policy_tests:
+    - path: tests/test_preprocessing.py
+      sha256: b532f19bbea3b48234866ebb5a5e0636bb0b9066f907385ba8fb0d4b43e950ea
+    - path: tests/test_temporal_cv.py
+      sha256: 241f5a21d561b03856f5707672a0d2e8bde8c9eb52a3801b16ee852d1cb2ec2b
+
+  design_and_audit_notebooks:
+    - path: notebooks/01_supervised_sample_and_preprocessing_design.ipynb
+      sha256: 469e16b79ca9690a8fce6ff5be6151d59c743723a71c60294e0faf4676818d5e
+    - path: notebooks/02_preprocessing_design.ipynb
+      sha256: a69c86f525216a39b41cb38656e474929c46d6a54089a88f3497ee7a4ac4034d
+    - path: notebooks/03_temporal_cv_design.ipynb
+      sha256: e97821c083dec80a8d12beed19a916e735834597e80e122125ee46012cf5b62a
+    - path: notebooks/04_selection_bias_and_pipeline_freeze_gate.ipynb
+      sha256: 34a78c162d35f9bf12b606631b9c421bccdfb34cdbd24805e36408164830cc43
+
+  methodological_record:
+    - path: docs/07_1_supervised_ml_pipeline_v1_frozen_specification.md
+      sha256: 5dcdeeb037de81f92ab1fae393005c487c8dd3a0edfe80997c49ded2d3eaa7dc
+
+non_versioned_reproduction_checks:
+  - id: frozen_target_application_to_universe
+    path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv
+    tracked_in_git: false
+    data_rows: 64901
+    columns: 832
+    bytes: 402367104
+    sha256: ea42eb43018b2c8e238e2c4757260bb692e27edd5429628e28892f360f0f7f7d
+  - id: historical_research_universe
+    path: data/processed/research_universe_pit.csv
+    tracked_in_git: false
+    data_rows: 103099
+    columns: 81
+    bytes: 111619454
+    sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+  - id: target_candidate_v2_pit_b
+    path: data/interim/target_candidate_v2_pit_b.csv
+    tracked_in_git: false
+    data_rows: 26917
+    columns: 802
+    bytes: 177561296
+    sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+  - id: raw_point_in_time_x_t
+    path: data/processed/x_t_pit_v1_raw.csv
+    tracked_in_git: false
+    data_rows: 64901
+    columns: 1072
+    bytes: 814411483
+    sha256: 0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f
+
+notes:
+  - The manifest intentionally does not hash itself, its containing commit, or the freeze-lock test to avoid self-reference.
+  - The containing Git commit is the authoritative repository version of supervised ML pipeline v1.0.0.
+  - Any change to a frozen component or policy requires a new pipeline version and a new development-only audit.
+  - Sparse-row robustness was the only methodological addition between the accepted final freeze-gate notebook and formal freeze.
+  - Predictive models, hyperparameters, training results, external validation results, and test results are outside this freeze.
