@@ -1,0 +1,777 @@
+{
+  "artifact_id": "x_t_pit_v1_negative_sign_evidence",
+  "created_at": "2026-08-19T06:29:42.398130+00:00",
+  "development_years": [
+    2011,
+    2022
+  ],
+  "test_years_inspected": false,
+  "primitive_cases": 25,
+  "company_years": 23,
+  "status_counts": {
+    "available": 23
+  },
+  "frozen_inputs": {
+    "universe_manifest_path": "configs/research_universe_pit_freeze_manifest.yaml",
+    "universe_manifest_sha256": "60310dbc9379371c05316b28de273832d0eaf02f20fc1ee7bb28697a26fb71b7",
+    "universe_artifact_path": "data/processed/research_universe_pit.csv",
+    "universe_artifact_sha256": "a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182",
+    "universe_rows_all_statuses": 103099,
+    "universe_eligible_rows": 64901,
+    "target_manifest_path": "configs/target_candidate_v2_pit_b_freeze_manifest.yaml",
+    "target_manifest_sha256": "52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb",
+    "target_artifact_path": "data/interim/target_candidate_v2_pit_b.csv",
+    "target_artifact_sha256": "473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff",
+    "target_artifact_rows": 26917
+  },
+  "results": [
+    {
+      "research_universe_company_year_id": "0000925535-2011",
+      "cik10": "0000925535",
+      "company_name_historical": "CITIZENS CAPITAL CORP",
+      "feature_year": 2011,
+      "anchor_accession": "0001096906-12-000638",
+      "primitives": [
+        "current_assets"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "Consolidated Balance Sheet",
+          "long_name": "000020 - Statement - Consolidated Balance Sheet",
+          "role": "http://caapxbrl.com/20111231/role/idr_ConsolidatedBalanceSheet",
+          "menu_category": "",
+          "download_status": "cached",
+          "sha256": "d1b2a4c3903a398e53745bd2137256d736bad5525fd0d1544809f454d57cc564"
+        }
+      ],
+      "archive_cik": "0000925535",
+      "summary_status": "cached",
+      "summary_sha256": "621d7169d6f7073390cbecd25a4e4e3bc37f67c53a23751db37ffe4938476575",
+      "filing_index_file": "0001096906-12-000638-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "a39ffa7fe018a62496d7f3e50b7d09c2636c05b34c70fffd4b1396a13b9006d2",
+      "primary_10k_file": "caap10k20111231.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "a825c94c484b4437afc60d329f9ded7e484cb14bb2ecfa14a4ff605bf4670d20"
+    },
+    {
+      "research_universe_company_year_id": "0001024520-2011",
+      "cik10": "0001024520",
+      "company_name_historical": "WORLD HEART CORP",
+      "feature_year": 2011,
+      "anchor_accession": "0001193125-12-143629",
+      "primitives": [
+        "revenues"
+      ],
+      "revenue_statement_files": [
+        "R4.htm"
+      ],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R4.htm",
+          "short_name": "Condensed Consolidated Statements of Operations",
+          "long_name": "00200 - Statement - Condensed Consolidated Statements of Operations",
+          "role": "http://www.worldheart.com/role/StatementCondensedConsolidatedStatementsOfOperations",
+          "menu_category": "",
+          "download_status": "cached",
+          "sha256": "2f71043d52413acc5c689318b10e0c05d98d2926abf2d81679cdf98dc033017c"
+        }
+      ],
+      "archive_cik": "0001024520",
+      "summary_status": "cached",
+      "summary_sha256": "7c4b0d2d7cc3030253b6fa9082eb128a5a0659fff8e8badd7164e83b4e86ffe9",
+      "filing_index_file": "0001193125-12-143629-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "412ad5f1281f9bb9f3ff68d486f4eaa4c7c7af56cfdb30efc2568831c65de316",
+      "primary_10k_file": "d281196d10k.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "97e9ea66162890819c22f6dd2b1186cf5a6e59b129800b405f5157741128dffc"
+    },
+    {
+      "research_universe_company_year_id": "0001067286-2012",
+      "cik10": "0001067286",
+      "company_name_historical": "CELLYNX GROUP, INC.",
+      "feature_year": 2012,
+      "anchor_accession": "0001017386-13-000021",
+      "primitives": [
+        "current_assets"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "Consolidated Balance Sheets",
+          "long_name": "0002 - Statement - Consolidated Balance Sheets",
+          "role": "http://cellynx.com/role/ConsolidatedBalanceSheets",
+          "menu_category": "",
+          "download_status": "cached",
+          "sha256": "8d8b6cf44fb6b3a6c491981cafd4288e27ee85b0bacda507a5c6af834305bd10"
+        }
+      ],
+      "archive_cik": "0001067286",
+      "summary_status": "cached",
+      "summary_sha256": "00e18991fec4722937b1001e98c6c39dd55a59a7a149d63e61f6f0ee2c607527",
+      "filing_index_file": "0001017386-13-000021-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "1210db7693a5e84d755160842b4b8f4f8743610eaa3d6e215017708ed4b6374d",
+      "primary_10k_file": "cellynx_2012sept30-10k.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "bf49d5749e03654fd6416fdb6778b7077b8f9855a836144abcc3206270332f0f"
+    },
+    {
+      "research_universe_company_year_id": "0001089319-2014",
+      "cik10": "0001089319",
+      "company_name_historical": "FREESTONE RESOURCES, INC.",
+      "feature_year": 2014,
+      "anchor_accession": "0001121781-14-000282",
+      "primitives": [
+        "current_liabilities",
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "Consolidated Balance Sheets",
+          "long_name": "00000002 - Statement - Consolidated Balance Sheets",
+          "role": "http://freestoneresources.com/role/BalanceSheets",
+          "menu_category": "",
+          "download_status": "cached",
+          "sha256": "958777dec03a2713fe17d7c79c41ba683c37d9567ee4555e9cb8041242f1cffe"
+        }
+      ],
+      "archive_cik": "0001089319",
+      "summary_status": "cached",
+      "summary_sha256": "8acb2ee80547c2b84140ebf36015fc8345560475b3b692356dacd3a5141a4571",
+      "filing_index_file": "0001121781-14-000282-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "2db12cde388001b1c427221552823a0c0453f0a267aa0c186a63406421dbd976",
+      "primary_10k_file": "fsnr10k63014.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "a82d10dfd0729bda47a7fcb8b93a1b86cdab7cf1991b9a3a02fb5c7b1ad01730"
+    },
+    {
+      "research_universe_company_year_id": "0001326190-2022",
+      "cik10": "0001326190",
+      "company_name_historical": "ALTIMMUNE, INC.",
+      "feature_year": 2022,
+      "anchor_accession": "0001326190-23-000008",
+      "primitives": [
+        "revenues"
+      ],
+      "revenue_statement_files": [
+        "R4.htm"
+      ],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R4.htm",
+          "short_name": "CONSOLIDATED STATEMENTS OF OPERATIONS AND COMPREHENSIVE LOSS",
+          "long_name": "00200 - Statement - CONSOLIDATED STATEMENTS OF OPERATIONS AND COMPREHENSIVE LOSS",
+          "role": "http://www.altimmune.com/role/StatementConsolidatedStatementsOfOperationsAndComprehensiveLoss",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "c209e8e46c0708b0400dc38bc3e5efae5383bb7f3e957c9a7609448b97d9b4f0"
+        }
+      ],
+      "archive_cik": "0001326190",
+      "summary_status": "cached",
+      "summary_sha256": "f259012060a38339f32044050d3a4dac837380e0fe3844270550bf2884f4a9b9",
+      "filing_index_file": "0001326190-23-000008-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "92a9e32e70568b782cf57c716993c8afa9addbcfb0a347894fd71292fcbef49c",
+      "primary_10k_file": "alt-20221231x10k.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "44e0c32090098c74d6abc55aceeef6eaa5e95a84340bf84a061e4a86fd6b89a9"
+    },
+    {
+      "research_universe_company_year_id": "0001484674-2012",
+      "cik10": "0001484674",
+      "company_name_historical": "TORON INC.",
+      "feature_year": 2012,
+      "anchor_accession": "0001294606-13-000171",
+      "primitives": [
+        "current_liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "TORON, INC. AND SUBSIDIARY - Consolidated Balance Sheets",
+          "long_name": "001 - Statement - TORON, INC. AND SUBSIDIARY - Consolidated Balance Sheets",
+          "role": "http://manageyoururl.com/role/ConsolidatedBalanceSheet",
+          "menu_category": "",
+          "download_status": "cached",
+          "sha256": "7e3f5a5a38592dee16455717a75da0ac6af0923d621c4ecdfa58092380cf0a96"
+        }
+      ],
+      "archive_cik": "0001484674",
+      "summary_status": "cached",
+      "summary_sha256": "d4673d8530b09c30166dff9f3375a10eefad04ad6c5827eb4425252d3a55935d",
+      "filing_index_file": "0001294606-13-000171-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "b06a6ef6d4da062cbf562bb689660e4a61ebce6841d23787fe22d42a271c56f0",
+      "primary_10k_file": "toron-form10kjan3113.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "49c090ac9f927b374c7df13b5033a110512529641cd42f8eef4be8a74a4c9752"
+    },
+    {
+      "research_universe_company_year_id": "0001499735-2012",
+      "cik10": "0001499735",
+      "company_name_historical": "AMERICAN ENERGY DEVELOPMENT CORP.",
+      "feature_year": 2012,
+      "anchor_accession": "0001469299-12-000330",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "001 - Statement - BALANCE SHEETS",
+          "role": "http://www.aed-corp.com/role/ConsolidatedBalanceSheet",
+          "menu_category": "",
+          "download_status": "cached",
+          "sha256": "1e7500701d74333e56d96f6bb240375f97835171f8841861105f3fd693d30e6c"
+        }
+      ],
+      "archive_cik": "0001499735",
+      "summary_status": "cached",
+      "summary_sha256": "7e353e8d7854cca4ba47f21ac2dd1e2b192ca1dd5dc3c3c683fbfae08851a617",
+      "filing_index_file": "0001469299-12-000330-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "fc4f86375a8870eb1b31b8fc0b7627cd1ae65d7b60f634e449f8791a2bb86964",
+      "primary_10k_file": "aedcform10k063012.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "93eb194fd6c52c9dd73401b7e9bab06842f6c09d12c76278522952db8ffff4c0"
+    },
+    {
+      "research_universe_company_year_id": "0001514514-2014",
+      "cik10": "0001514514",
+      "company_name_historical": "BE ACTIVE HOLDINGS, INC.",
+      "feature_year": 2014,
+      "anchor_accession": "0001415889-15-001115",
+      "primitives": [
+        "revenues"
+      ],
+      "revenue_statement_files": [
+        "R4.htm"
+      ],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R4.htm",
+          "short_name": "Consolidated Statements of Operations",
+          "long_name": "00000004 - Statement - Consolidated Statements of Operations",
+          "role": "http://jalabars.com/role/StatementsOfOperations",
+          "menu_category": "",
+          "download_status": "cached",
+          "sha256": "ba1a9d41ed453c2b04addfd3a4f08c9da5287922b7d4acd80418fe8493c853fd"
+        }
+      ],
+      "archive_cik": "0001514514",
+      "summary_status": "cached",
+      "summary_sha256": "aaf03fdc9c783a3490cfd11f85ae0d4c0d64ff4dc3c583792cde1b8330933e7f",
+      "filing_index_file": "0001415889-15-001115-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "c1dd200e62b04784db5f06995e00226bf2615d4a769ce0962ef39967852af2a3",
+      "primary_10k_file": "jala10k_dec312014.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "5d153c41487836297398bbf25e2ea64f67c0f2204d05498b67b1243637e1b142"
+    },
+    {
+      "research_universe_company_year_id": "0001617351-2018",
+      "cik10": "0001617351",
+      "company_name_historical": "LEPOTA INC",
+      "feature_year": 2018,
+      "anchor_accession": "0001617351-18-000020",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://lepota@gmail.com/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "b3c4a2801212f5a06c77f319b032b634e30b6e32b9e9cfab30073c1023907e86"
+        }
+      ],
+      "archive_cik": "0001617351",
+      "summary_status": "cached",
+      "summary_sha256": "5cfdfd90a30631fb652e73825e182e7bfcba5c0cb377856888adbbc793a8266d",
+      "filing_index_file": "0001617351-18-000020-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "6a71592a88db4e9783777d8aff41e3982999b1990da3e8fb0cec04093fcdb5a1",
+      "primary_10k_file": "lepota_10k2018.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "55d42d6856f22225960b6088788241a272de0a262f9f8d274b22d5606fc6e5d9"
+    },
+    {
+      "research_universe_company_year_id": "0001617351-2019",
+      "cik10": "0001617351",
+      "company_name_historical": "LEPOTA INC",
+      "feature_year": 2019,
+      "anchor_accession": "0001617351-19-000008",
+      "primitives": [
+        "assets"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://lepora@com/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "6eb290e76862e12ab5ed8e6b10fcc4772f9ffca57ac74ee1660649fccf130eff"
+        }
+      ],
+      "archive_cik": "0001617351",
+      "summary_status": "cached",
+      "summary_sha256": "485520456ac2ef0040f4da08e730878a489dd015f3626f5a6e783405f77cf0ff",
+      "filing_index_file": "0001617351-19-000008-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "f7e77186d57b5ddc3d15688531898f6f97ffff3fea36ff976f18f28b9e03a43c",
+      "primary_10k_file": "lepota10k2019.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "ce56b1eb40f668311c2c0ff3d13118febf03af8d4c5b86a6e2f02c87ab89615d"
+    },
+    {
+      "research_universe_company_year_id": "0001625285-2018",
+      "cik10": "0001625285",
+      "company_name_historical": "ARMA SERVICES INC",
+      "feature_year": 2018,
+      "anchor_accession": "0001625285-20-000004",
+      "primitives": [
+        "assets",
+        "current_assets"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS (Audited)",
+          "long_name": "000020 - Statement - BALANCE SHEETS (Audited)",
+          "role": "http://www.arma.com/20181031/role/idr_BALANCESHEETSAudited",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "3470d564a79823454e42c4dcc5618a854f8616daea2ef95d8cdc43c774dc7923"
+        }
+      ],
+      "archive_cik": "0001625285",
+      "summary_status": "cached",
+      "summary_sha256": "f0cd25b67f09e9b8904df77b5591a4dc43ff32f4059dbe108735cbac3ed2b2b6",
+      "filing_index_file": "0001625285-20-000004-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "76067636b9df9d74269861ae16563f355c62096d6d56ce19e589b811613d9732",
+      "primary_10k_file": "reviewedform-10-k-20181031.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "567106f1db625a7ebe83bb3282e8d5bb0c16cfd08c8b34abfdc44a1cb9738ac3"
+    },
+    {
+      "research_universe_company_year_id": "0001629606-2018",
+      "cik10": "0001629606",
+      "company_name_historical": "DRIVEN DELIVERIES, INC.",
+      "feature_year": 2018,
+      "anchor_accession": "0001654954-19-004410",
+      "primitives": [
+        "revenues"
+      ],
+      "revenue_statement_files": [
+        "R4.htm"
+      ],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R4.htm",
+          "short_name": "CONSOLIDATED CONDENSED STATEMENTS OF OPERATIONS",
+          "long_name": "00000004 - Statement - CONSOLIDATED CONDENSED STATEMENTS OF OPERATIONS",
+          "role": "http://resultsbasedoutsourcing.com/20180630/role/idr_ResultsBasedOutsourcingIncStatementsOfOperations",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "01cb625e23befb8a1713ba55fd3698750ca4cfe5d10dfd79677b1ddf40b555c8"
+        }
+      ],
+      "archive_cik": "0001629606",
+      "summary_status": "cached",
+      "summary_sha256": "1169122acdddf1e300a18471fc9c6ad313746244d577062cc05d16dd4da14cc4",
+      "filing_index_file": "0001654954-19-004410-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "93a6c2e04a95e7f38dd155d6c119f79bbe217c67da91382e1dfe837bb9b45aaa",
+      "primary_10k_file": "drvd_10k.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "ea1aebbf56fe2d01f5ac798fee3df68bb343a409142516b8c9c610ee9e6371a4"
+    },
+    {
+      "research_universe_company_year_id": "0001673504-2019",
+      "cik10": "0001673504",
+      "company_name_historical": "GALEM GROUP INC.",
+      "feature_year": 2019,
+      "anchor_accession": "0001673504-19-000010",
+      "primitives": [
+        "assets"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://galem@com/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "28f46e0dd074e4e8002fab03547f2de40222c7bf7e7fa77db7323bbcfdefd7d5"
+        }
+      ],
+      "archive_cik": "0001673504",
+      "summary_status": "cached",
+      "summary_sha256": "7d6f20f5d4f39534b0675927027a0f80c7057a15c17ce4f6fa53e0b4bec31944",
+      "filing_index_file": "0001673504-19-000010-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "e977c14de5ad09ad1ab1f98244228c0ad24fb91b23216d1c1a00ddcfea55253d",
+      "primary_10k_file": "galem10kaugust.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "56825361afd1c41b3d4415dfd896fac9e9457c12640cf22bffaaf4611bb712b5"
+    },
+    {
+      "research_universe_company_year_id": "0001696411-2018",
+      "cik10": "0001696411",
+      "company_name_historical": "CRONA CORP.",
+      "feature_year": 2018,
+      "anchor_accession": "0001696411-20-000011",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://management@corpcrona.com/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "2021a4d29b9fe53555086c5a7901c5427ba04b6a7df004c663af2a0f3ad27495"
+        }
+      ],
+      "archive_cik": "0001696411",
+      "summary_status": "cached",
+      "summary_sha256": "c349b1863e8ef6842c0364c09228512dbd36b8e34da20de7fa1a8dbf4a62487b",
+      "filing_index_file": "0001696411-20-000011-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "4e7acc7cda8bbbb7a7daf51b1b2c62d4b7add367b3b1ac65304b8a5cf9ad62e7",
+      "primary_10k_file": "f10k_crona2018.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "de692380b2cd9aadf2968cdc23b325c649a142afeb75e0459e37699a2a7d1b3b"
+    },
+    {
+      "research_universe_company_year_id": "0001696411-2019",
+      "cik10": "0001696411",
+      "company_name_historical": "CRONA CORP.",
+      "feature_year": 2019,
+      "anchor_accession": "0001696411-20-000020",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://management@corpcrona.com/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "ac9a1b694cc49eefb057bfcf2797ce5cfe27aed1baaaf83b43b5e1fe34fb4bd1"
+        }
+      ],
+      "archive_cik": "0001696411",
+      "summary_status": "cached",
+      "summary_sha256": "451bbae79909664409757ff8e56616438547ef4b147cd7bd674769baf287e8df",
+      "filing_index_file": "0001696411-20-000020-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "c5080fe43bcfe19a5c2b636cc4daab9eeb39f16de3608655e8a233e1d111261c",
+      "primary_10k_file": "f10k_cronadecember312019.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "f7efe1c23b9354715b7fedba35c9b7c2a160aed173342cb5fabb3b45c453b756"
+    },
+    {
+      "research_universe_company_year_id": "0001696411-2020",
+      "cik10": "0001696411",
+      "company_name_historical": "CRONA CORP.",
+      "feature_year": 2020,
+      "anchor_accession": "0001696411-21-000008",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://management@corpcrona.com/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "90b4a81bf51d2e60d5fd26d2f94d6cabd42ed3d7a98fca4b83b9a71dba040a15"
+        }
+      ],
+      "archive_cik": "0001696411",
+      "summary_status": "cached",
+      "summary_sha256": "fb572c0da4cad2d52c92eb20d2450ef036353e5f742ea8bf15570c580f6e92c9",
+      "filing_index_file": "0001696411-21-000008-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "f34379761a95ff196a7a025cc80f094879641f27389ba1f77004717754c93d49",
+      "primary_10k_file": "crona10k1212020.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "85ddd8bc7e0c07ee37d4e2782a53f849a97d4a6d06ffe46bb3973a138371d67e"
+    },
+    {
+      "research_universe_company_year_id": "0001698530-2021",
+      "cik10": "0001698530",
+      "company_name_historical": "EXICURE, INC.",
+      "feature_year": 2021,
+      "anchor_accession": "0001698530-22-000019",
+      "primitives": [
+        "revenues"
+      ],
+      "revenue_statement_files": [
+        "R5.htm"
+      ],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R5.htm",
+          "short_name": "CONSOLIDATED STATEMENTS OF OPERATIONS",
+          "long_name": "1003005 - Statement - CONSOLIDATED STATEMENTS OF OPERATIONS",
+          "role": "http://www.exicuretx.com/role/CONSOLIDATEDSTATEMENTSOFOPERATIONS",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "feb1835b97085c0923ac6cd30889c080a088d1541bc527bd4102418804592895"
+        }
+      ],
+      "archive_cik": "0001698530",
+      "summary_status": "cached",
+      "summary_sha256": "d16deab6dab5d7f0caee2a5a73b7c4a790a67326f5431d45ad9f5c14f584e19d",
+      "filing_index_file": "0001698530-22-000019-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "fcb21482a37cf6b060a3d81a19fdf16785d9d80b6497fd31eaa127930369321a",
+      "primary_10k_file": "xcur-20211231.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "2af15e9d9c45c764c1661ad6a3bd3408853d648aece097a35eece2259abf0da7"
+    },
+    {
+      "research_universe_company_year_id": "0001714379-2019",
+      "cik10": "0001714379",
+      "company_name_historical": "TIBURON INTERNATIONAL TRADING CORP.",
+      "feature_year": 2019,
+      "anchor_accession": "0001714379-20-000003",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://tiburon@com/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "35660ae5999bd03f6b79ba2e882187b0ddc0d33a828a10e09005c4c7e67e357b"
+        }
+      ],
+      "archive_cik": "0001714379",
+      "summary_status": "cached",
+      "summary_sha256": "c93d9968a93ed63eed4cbaff55d3de7da949a351a47fbe715b3b8d8de562aed0",
+      "filing_index_file": "0001714379-20-000003-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "8a03cd4143b15c740784b2f1a96a2ea64594def1eaef3cf419d9f05fc70e7bcb",
+      "primary_10k_file": "f10ktiburonjan2020.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "39279d6da0a15c4ee47ef7b9a4f8debaba50f82aefddbd749416f15ef4030aca"
+    },
+    {
+      "research_universe_company_year_id": "0001746278-2020",
+      "cik10": "0001746278",
+      "company_name_historical": "LOVARRA",
+      "feature_year": 2020,
+      "anchor_accession": "0001746278-21-000016",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "Balance Sheets",
+          "long_name": "02001 - Statement - Balance Sheets",
+          "role": "http://director@lovarra.com/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "88d74591b64103fa069a86428053301db61f0a9d2fd40344eed84fddd505681b"
+        }
+      ],
+      "archive_cik": "0001746278",
+      "summary_status": "cached",
+      "summary_sha256": "3917e51df6524cf48763724d889526e338f0053eb59e44a6b47a812ceb760c7c",
+      "filing_index_file": "0001746278-21-000016-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "dad1370d3a7298e03570e62dd1a01492a4a7ab21eeadcba942f2243608464a2a",
+      "primary_10k_file": "f2020lovarra10k312020.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "d628158a3446ebf6b4f13a5a201148aeae51dff01a1b71f62369926cc7f4ab78"
+    },
+    {
+      "research_universe_company_year_id": "0001753373-2020",
+      "cik10": "0001753373",
+      "company_name_historical": "INKY INC.",
+      "feature_year": 2020,
+      "anchor_accession": "0001753373-21-000002",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://inky.live/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "7a436be55e705d78d545d9539abe314e34e371adec33352b36bed947b0b1c6cc"
+        }
+      ],
+      "archive_cik": "0001753373",
+      "summary_status": "cached",
+      "summary_sha256": "fb2e44f3002c18149a3e826a046e1c3bb6d87be06a64d6e7d2c275ac12ef8945",
+      "filing_index_file": "0001753373-21-000002-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "e013e8159b20566453d4230a4c50b72261995f0a5a2ed05ff818423b1bfe685d",
+      "primary_10k_file": "inky10k_november302020.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "83e8074aac219582c436e33eb8e00eb9f40232a907157651ff918b659eaf8eb9"
+    },
+    {
+      "research_universe_company_year_id": "0001753391-2019",
+      "cik10": "0001753391",
+      "company_name_historical": "BIGEON CORP.",
+      "feature_year": 2019,
+      "anchor_accession": "0001753391-19-000025",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://bigeon.in/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "d3ce1e980558351032d844176067c15e5fa09eec644b3846d6ec0729a13d46c7"
+        }
+      ],
+      "archive_cik": "0001753391",
+      "summary_status": "cached",
+      "summary_sha256": "65d68c69b2e13c99bdaa8c5dd3380874edc682d6138006613925841acfafce5f",
+      "filing_index_file": "0001753391-19-000025-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "691681e97bf328cdf4ada67f2c68ef313c19b7fbc14ba076a09582483e3ef8b4",
+      "primary_10k_file": "bigeon-10k-july312019.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "b3ac81c478ab9513437fd85c841bcc7fc7fa527da0ed0bd2bc1d02143ca3dcb2"
+    },
+    {
+      "research_universe_company_year_id": "0001753391-2020",
+      "cik10": "0001753391",
+      "company_name_historical": "BIGEON CORP.",
+      "feature_year": 2020,
+      "anchor_accession": "0001753391-20-000012",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "BALANCE SHEETS",
+          "long_name": "02001 - Statement - BALANCE SHEETS",
+          "role": "http://bigeon.in/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "408ccd4183eed1168a8c3ddf674e776b4d75733e6218caef890c3b8f06fe0394"
+        }
+      ],
+      "archive_cik": "0001753391",
+      "summary_status": "cached",
+      "summary_sha256": "64a202fd25034d46b6d3e7572b48419278d587a3b1c220f21d64c5257f12a90d",
+      "filing_index_file": "0001753391-20-000012-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "bb54e65f40ffde421ef3d32c147f4e89b6a837630932c93cc06d879638371996",
+      "primary_10k_file": "bigeon10kjuly312020.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "93d4b07140bf1a00718cfb7f2112cd3816af70452a45c77c0d65ef3e47febdf0"
+    },
+    {
+      "research_universe_company_year_id": "0001765048-2020",
+      "cik10": "0001765048",
+      "company_name_historical": "CHARMT, INC.",
+      "feature_year": 2020,
+      "anchor_accession": "0001765048-21-000003",
+      "primitives": [
+        "liabilities"
+      ],
+      "revenue_statement_files": [],
+      "status": "available",
+      "reports": [
+        {
+          "html_file_name": "R2.htm",
+          "short_name": "Balance Sheets",
+          "long_name": "02001 - Statement - Balance Sheets",
+          "role": "http://headquarters@charmt.net/role/BalanceSheet2",
+          "menu_category": "Statements",
+          "download_status": "cached",
+          "sha256": "ff0be7938ce3d26f2fdf35314173899b7592871e91761cf1395a0d4ed34bae6b"
+        }
+      ],
+      "archive_cik": "0001765048",
+      "summary_status": "cached",
+      "summary_sha256": "f67384676e2d8f81c163ecc191ae4b76b996ecf7a7250028d380616cbd6a6f27",
+      "filing_index_file": "0001765048-21-000003-index.html",
+      "filing_index_status": "downloaded",
+      "filing_index_sha256": "1381a228a30140ab6812d25038cae14ecf68f40ef0d32e809b79ff953b827c82",
+      "primary_10k_file": "charmt10-kdecember312020.htm",
+      "primary_10k_status": "downloaded",
+      "primary_10k_sha256": "a8efd75c1f1fa10003519721179cfd11b6d4e88ece72aa6fe9c09b76d600b2fd"
+    }
+  ]
+}

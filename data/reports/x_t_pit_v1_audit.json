@@ -1,0 +1,783 @@
+{
+  "artifact_id": "x_t_pit",
+  "artifact_version": "1.0.0",
+  "audit_scope": "development_feature_years_2011_2022_only",
+  "test_years_used_for_decisions": false,
+  "models_trained": false,
+  "preprocessing_applied": false,
+  "raw_rows_all_years": 64901,
+  "development_rows": 56903,
+  "row_status": {
+    "available_core": 45797,
+    "partially_available": 6086,
+    "not_available_non_xbrl": 3927,
+    "missing": 727,
+    "ambiguous": 366
+  },
+  "prediction_timestamp_lower_precision": 0,
+  "exact_accession_errors": 0,
+  "feature_timestamp_errors": 0,
+  "prediction_timestamp_policy_errors": 0,
+  "primitive_filed_errors": 0,
+  "primitive_accepted_at_errors": 0,
+  "non_original_10_k_anchor_rows": 0,
+  "transition_or_ambiguous_comparative_period_rows": 952,
+  "feature_coverage": [
+    {
+      "block": "L",
+      "feature": "log_assets_t",
+      "observations": 56903,
+      "available": 51606,
+      "coverage": 0.906911762121505,
+      "missing": 672,
+      "ambiguous": 188,
+      "not_computable": 510,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "L",
+      "feature": "roa_t",
+      "observations": 56903,
+      "available": 49301,
+      "coverage": 0.8664042317628244,
+      "missing": 1968,
+      "ambiguous": 1232,
+      "not_computable": 475,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "L",
+      "feature": "ocf_to_assets_t",
+      "observations": 56903,
+      "available": 50209,
+      "coverage": 0.8823612111839446,
+      "missing": 1114,
+      "ambiguous": 1246,
+      "not_computable": 407,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "L",
+      "feature": "current_ratio_t",
+      "observations": 56903,
+      "available": 48941,
+      "coverage": 0.8600776760451997,
+      "missing": 3818,
+      "ambiguous": 190,
+      "not_computable": 27,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "L",
+      "feature": "liabilities_to_assets_t",
+      "observations": 56903,
+      "available": 51004,
+      "coverage": 0.8963323550603659,
+      "missing": 1190,
+      "ambiguous": 278,
+      "not_computable": 504,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "L",
+      "feature": "working_capital_to_assets_t",
+      "observations": 56903,
+      "available": 48761,
+      "coverage": 0.8569143981863874,
+      "missing": 3827,
+      "ambiguous": 192,
+      "not_computable": 196,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "L",
+      "feature": "accruals_to_assets_t",
+      "observations": 56903,
+      "available": 48976,
+      "coverage": 0.8606927578510799,
+      "missing": 2260,
+      "ambiguous": 1335,
+      "not_computable": 405,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "D",
+      "feature": "asset_growth_1y",
+      "observations": 56903,
+      "available": 46603,
+      "coverage": 0.8189902114124036,
+      "missing": 4728,
+      "ambiguous": 955,
+      "not_computable": 690,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "D",
+      "feature": "delta_roa_1y",
+      "observations": 56903,
+      "available": 43945,
+      "coverage": 0.7722791416972743,
+      "missing": 5710,
+      "ambiguous": 2707,
+      "not_computable": 614,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "D",
+      "feature": "delta_ocf_to_assets_1y",
+      "observations": 56903,
+      "available": 44804,
+      "coverage": 0.7873750065901622,
+      "missing": 5138,
+      "ambiguous": 2513,
+      "not_computable": 521,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "D",
+      "feature": "current_ratio_change_1y",
+      "observations": 56903,
+      "available": 43878,
+      "coverage": 0.7711016993831609,
+      "missing": 7876,
+      "ambiguous": 956,
+      "not_computable": 266,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "D",
+      "feature": "delta_liabilities_to_assets_1y",
+      "observations": 56903,
+      "available": 45991,
+      "coverage": 0.8082350666924415,
+      "missing": 4419,
+      "ambiguous": 1895,
+      "not_computable": 671,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "R",
+      "feature": "log1p_revenues_t",
+      "observations": 56903,
+      "available": 30044,
+      "coverage": 0.5279862221675483,
+      "missing": 8051,
+      "ambiguous": 14876,
+      "not_computable": 5,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "R",
+      "feature": "profit_margin_t",
+      "observations": 56903,
+      "available": 28180,
+      "coverage": 0.495228722562958,
+      "missing": 8642,
+      "ambiguous": 15121,
+      "not_computable": 1033,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "R",
+      "feature": "ocf_margin_t",
+      "observations": 56903,
+      "available": 28907,
+      "coverage": 0.5080048503593835,
+      "missing": 7930,
+      "ambiguous": 15112,
+      "not_computable": 1027,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "R",
+      "feature": "asset_turnover_t",
+      "observations": 56903,
+      "available": 29880,
+      "coverage": 0.5251041245628526,
+      "missing": 8082,
+      "ambiguous": 14879,
+      "not_computable": 135,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "block": "R",
+      "feature": "revenue_growth_1y",
+      "observations": 56903,
+      "available": 25345,
+      "coverage": 0.44540709628666325,
+      "missing": 12722,
+      "ambiguous": 13828,
+      "not_computable": 1081,
+      "not_available_non_xbrl": 3927
+    }
+  ],
+  "primitive_coverage": [
+    {
+      "primitive": "assets",
+      "role": "current_t",
+      "observations": 56903,
+      "selected": 52116,
+      "coverage": 0.9158743827214734,
+      "missing": 672,
+      "ambiguous": 188,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "assets",
+      "role": "same_anchor_pair",
+      "observations": 56903,
+      "selected": 47293,
+      "coverage": 0.8311161098711843,
+      "missing": 4728,
+      "ambiguous": 955,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "liabilities",
+      "role": "current_t",
+      "observations": 56903,
+      "selected": 51733,
+      "coverage": 0.909143630388556,
+      "missing": 968,
+      "ambiguous": 275,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "liabilities",
+      "role": "same_anchor_pair",
+      "observations": 56903,
+      "selected": 46947,
+      "coverage": 0.8250355868759116,
+      "missing": 4137,
+      "ambiguous": 1892,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "current_assets",
+      "role": "current_t",
+      "observations": 56903,
+      "selected": 49968,
+      "coverage": 0.8781259336063125,
+      "missing": 2820,
+      "ambiguous": 188,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "current_assets",
+      "role": "same_anchor_pair",
+      "observations": 56903,
+      "selected": 45145,
+      "coverage": 0.7933676607560234,
+      "missing": 6876,
+      "ambiguous": 955,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "current_liabilities",
+      "role": "current_t",
+      "observations": 56903,
+      "selected": 49899,
+      "coverage": 0.8769133437604344,
+      "missing": 2890,
+      "ambiguous": 187,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "current_liabilities",
+      "role": "same_anchor_pair",
+      "observations": 56903,
+      "selected": 45181,
+      "coverage": 0.7940003163277859,
+      "missing": 6842,
+      "ambiguous": 953,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "revenues",
+      "role": "current_t",
+      "observations": 56903,
+      "selected": 30049,
+      "coverage": 0.5280740909969598,
+      "missing": 8051,
+      "ambiguous": 14876,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "revenues",
+      "role": "same_anchor_pair",
+      "observations": 56903,
+      "selected": 26426,
+      "coverage": 0.46440433720541974,
+      "missing": 12722,
+      "ambiguous": 13828,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "net_income",
+      "role": "current_t",
+      "observations": 56903,
+      "selected": 50168,
+      "coverage": 0.8816406867827706,
+      "missing": 1579,
+      "ambiguous": 1229,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "net_income",
+      "role": "same_anchor_pair",
+      "observations": 56903,
+      "selected": 45069,
+      "coverage": 0.7920320545489693,
+      "missing": 5203,
+      "ambiguous": 2704,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "operating_cash_flow",
+      "role": "current_t",
+      "observations": 56903,
+      "selected": 50927,
+      "coverage": 0.8949791750874295,
+      "missing": 806,
+      "ambiguous": 1243,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    },
+    {
+      "primitive": "operating_cash_flow",
+      "role": "same_anchor_pair",
+      "observations": 56903,
+      "selected": 45696,
+      "coverage": 0.8030508057571657,
+      "missing": 4770,
+      "ambiguous": 2510,
+      "hard_exclude": 0,
+      "not_available_non_xbrl": 3927
+    }
+  ],
+  "primitive_sign_summary": {
+    "assets": {
+      "selected": 52116,
+      "negative": 0,
+      "zero": 510,
+      "positive": 51606,
+      "nonfinite": 0
+    },
+    "liabilities": {
+      "selected": 51733,
+      "negative": 0,
+      "zero": 84,
+      "positive": 51649,
+      "nonfinite": 0
+    },
+    "current_assets": {
+      "selected": 49968,
+      "negative": 0,
+      "zero": 275,
+      "positive": 49693,
+      "nonfinite": 0
+    },
+    "current_liabilities": {
+      "selected": 49899,
+      "negative": 0,
+      "zero": 29,
+      "positive": 49870,
+      "nonfinite": 0
+    },
+    "revenues": {
+      "selected": 30049,
+      "negative": 5,
+      "zero": 1039,
+      "positive": 29005,
+      "nonfinite": 0
+    },
+    "net_income": {
+      "selected": 50168,
+      "negative": 28427,
+      "zero": 24,
+      "positive": 21717,
+      "nonfinite": 0
+    },
+    "operating_cash_flow": {
+      "selected": 50927,
+      "negative": 22910,
+      "zero": 121,
+      "positive": 27896,
+      "nonfinite": 0
+    }
+  },
+  "nonfinite_selected_primitives": 0,
+  "missing_revenue_evidence": 1,
+  "known_sec_revenue_evidence_not_found_rows": 1,
+  "income_statement_not_identified_rows": 0,
+  "incomplete_revenue_evidence_rows": 0,
+  "missing_revenue_evidence_by_year": {
+    "2014": 1
+  },
+  "missing_companyfacts_rows": 0,
+  "missing_companyfacts_ciks": 0,
+  "known_sec_companyfacts_not_found_rows": 0,
+  "unknown_uncached_companyfacts_rows": 0,
+  "x_t_source_download_complete": true,
+  "x_t_source_download_expected": 8218,
+  "x_t_source_download_processed": 8218,
+  "x_t_source_download_errors": 0,
+  "x_t_source_download_status_counts": {
+    "income_statement_not_identified": 214,
+    "not_found": 18,
+    "statement_reports_available": 7986
+  },
+  "revenue_manual_review_rows": 90,
+  "revenue_manual_review_errors": 0,
+  "primitive_manual_review_rows": 182,
+  "primitive_manual_review_errors": 0,
+  "outlier_summary": {
+    "log_assets_t": {
+      "available": 51606,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": 3.004989471593415,
+        "0.01": 6.366641974486278,
+        "0.5": 19.125694734574093,
+        "0.99": 24.96060262468414,
+        "0.999": 26.34332816708088
+      },
+      "near_zero_denominator": 0
+    },
+    "roa_t": {
+      "available": 49301,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -14890.495497301918,
+        "0.01": -283.8918918918919,
+        "0.5": -0.0297312750142938,
+        "0.99": 0.6088714859567806,
+        "0.999": 158.20677074663936
+      },
+      "near_zero_denominator": 665
+    },
+    "ocf_to_assets_t": {
+      "available": 50209,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -1642.4582981818182,
+        "0.01": -70.71032277427099,
+        "0.5": 0.0279720279720279,
+        "0.99": 0.4266634794156705,
+        "0.999": 4.020291667859639
+      },
+      "near_zero_denominator": 637
+    },
+    "current_ratio_t": {
+      "available": 48941,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": 0.0,
+        "0.01": 0.0005810898589326802,
+        "0.5": 1.744560772851166,
+        "0.99": 30.650394730655,
+        "0.999": 169.50718317722936
+      },
+      "near_zero_denominator": 53
+    },
+    "liabilities_to_assets_t": {
+      "available": 51004,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": 0.0,
+        "0.01": 0.02863558681148842,
+        "0.5": 0.575963540215483,
+        "0.99": 457.68326843413695,
+        "0.999": 21832.109696037904
+      },
+      "near_zero_denominator": 678
+    },
+    "working_capital_to_assets_t": {
+      "available": 48761,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -11140.362341736694,
+        "0.01": -261.94418462926325,
+        "0.5": 0.1591876600431476,
+        "0.99": 0.9349213217699175,
+        "0.999": 0.9879079764784442
+      },
+      "near_zero_denominator": 443
+    },
+    "accruals_to_assets_t": {
+      "available": 48976,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -12684.288610315185,
+        "0.01": -170.36682795698923,
+        "0.5": -0.0704459496439098,
+        "0.99": 1.784389619858569,
+        "0.999": 226.77336356467012
+      },
+      "near_zero_denominator": 632
+    },
+    "asset_growth_1y": {
+      "available": 46603,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -0.9985985020508629,
+        "0.01": -0.9547975645346083,
+        "0.5": 0.0374187431832262,
+        "0.99": 63.26539043989143,
+        "0.999": 4581.776797085608
+      },
+      "near_zero_denominator": 583
+    },
+    "delta_roa_1y": {
+      "available": 43945,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -12884.870653478698,
+        "0.01": -182.18563335690789,
+        "0.5": -0.00205264542278,
+        "0.99": 125.17246485098119,
+        "0.999": 7933.8325154170225
+      },
+      "near_zero_denominator": 887
+    },
+    "delta_ocf_to_assets_1y": {
+      "available": 44804,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -1125.1091264357901,
+        "0.01": -39.79896110463162,
+        "0.5": -0.0027281709684165503,
+        "0.99": 26.287120081030384,
+        "0.999": 1314.9376089254092
+      },
+      "near_zero_denominator": 848
+    },
+    "current_ratio_change_1y": {
+      "available": 43878,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -1.0,
+        "0.01": -0.9857674843910046,
+        "0.5": -0.02957901686008695,
+        "0.99": 43.909953602135026,
+        "0.999": 2716.206355546317
+      },
+      "near_zero_denominator": 666
+    },
+    "delta_liabilities_to_assets_1y": {
+      "available": 45991,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -9043.013068802695,
+        "0.01": -112.19239386651621,
+        "0.5": 0.009361395860166,
+        "0.99": 233.44975349163704,
+        "0.999": 14110.909558272871
+      },
+      "near_zero_denominator": 969
+    },
+    "log1p_revenues_t": {
+      "available": 30044,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": 0.0,
+        "0.01": 0.0,
+        "0.5": 19.239956043618307,
+        "0.99": 24.576913600476008,
+        "0.999": 25.813578989157214
+      },
+      "near_zero_denominator": 0
+    },
+    "profit_margin_t": {
+      "available": 28180,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -7393.037843122491,
+        "0.01": -395.90453887719985,
+        "0.5": 0.0073134328779449,
+        "0.99": 0.6299671846475218,
+        "0.999": 151.24884035442574
+      },
+      "near_zero_denominator": 114
+    },
+    "ocf_margin_t": {
+      "available": 28907,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -2147.9162082256166,
+        "0.01": -166.1465791628731,
+        "0.5": 0.0552915745540795,
+        "0.99": 0.6799221968369981,
+        "0.999": 7.399136412563708
+      },
+      "near_zero_denominator": 114
+    },
+    "asset_turnover_t": {
+      "available": 29880,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": 0.0,
+        "0.01": 0.0,
+        "0.5": 0.7766041457565385,
+        "0.99": 7.214545500272218,
+        "0.999": 54.41105910810039
+      },
+      "near_zero_denominator": 127
+    },
+    "revenue_growth_1y": {
+      "available": 25345,
+      "nonfinite": 0,
+      "quantiles": {
+        "0.001": -1.0,
+        "0.01": -0.9492799957912408,
+        "0.5": 0.0709333435098273,
+        "0.99": 13.725787201321227,
+        "0.999": 351.53761420302703
+      },
+      "near_zero_denominator": 82
+    }
+  },
+  "revision_summary": {
+    "assets": {
+      "comparable": 45102,
+      "median_delta": 0.0,
+      "median_absolute_relative_delta": 0.0,
+      "p99_absolute_relative_delta": 0.6745416117002587
+    },
+    "liabilities": {
+      "comparable": 44748,
+      "median_delta": 0.0,
+      "median_absolute_relative_delta": 0.0,
+      "p99_absolute_relative_delta": 0.962467329346273
+    },
+    "current_assets": {
+      "comparable": 43199,
+      "median_delta": 0.0,
+      "median_absolute_relative_delta": 0.0,
+      "p99_absolute_relative_delta": 0.9413682890622187
+    },
+    "current_liabilities": {
+      "comparable": 43173,
+      "median_delta": 0.0,
+      "median_absolute_relative_delta": 0.0,
+      "p99_absolute_relative_delta": 0.8665870244786806
+    },
+    "revenues": {
+      "comparable": 23979,
+      "median_delta": 0.0,
+      "median_absolute_relative_delta": 0.0,
+      "p99_absolute_relative_delta": 0.6224658459664878
+    },
+    "net_income": {
+      "comparable": 43246,
+      "median_delta": 0.0,
+      "median_absolute_relative_delta": 0.0,
+      "p99_absolute_relative_delta": 1.7088967531474348
+    },
+    "operating_cash_flow": {
+      "comparable": 44041,
+      "median_delta": 0.0,
+      "median_absolute_relative_delta": 0.0,
+      "p99_absolute_relative_delta": 1.5674656569702412
+    }
+  },
+  "selection_bias": {
+    "observations": 56903,
+    "x_core_available": 45797,
+    "x_core_coverage": 0.804825756111277,
+    "target_available": 23332,
+    "target_coverage": 0.4100311055656117,
+    "supervised_L_available": 22679,
+    "supervised_L_coverage": 0.39855543644447566,
+    "x_core_log_assets_smd_available_vs_unavailable": 0.5073417048498345,
+    "target_log_assets_smd_available_vs_unavailable": 0.5486041637363672,
+    "x_status_by_target_status": {
+      "ambiguous": {
+        "ambiguous": 52,
+        "available_core": 11989,
+        "missing": 39,
+        "not_available_non_xbrl": 38,
+        "partially_available": 1764
+      },
+      "available": {
+        "ambiguous": 7,
+        "available_core": 22679,
+        "missing": 4,
+        "not_available_non_xbrl": 103,
+        "partially_available": 539
+      },
+      "hard_exclude": {
+        "ambiguous": 7,
+        "available_core": 150,
+        "missing": 12,
+        "not_available_non_xbrl": 5,
+        "partially_available": 62
+      },
+      "missing": {
+        "ambiguous": 107,
+        "available_core": 10171,
+        "missing": 413,
+        "not_available_non_xbrl": 82,
+        "partially_available": 3472
+      },
+      "not_computable": {
+        "ambiguous": 193,
+        "available_core": 808,
+        "missing": 259,
+        "not_available_non_xbrl": 3699,
+        "partially_available": 249
+      }
+    },
+    "complete_case_selection_bias_risk": "high",
+    "informative_censoring_risk": "high"
+  },
+  "economic_group_diagnostics": {
+    "economic_groups": 9368,
+    "rows_missing_economic_group_id": 0,
+    "rows_missing_economic_statement_scope_id": 0,
+    "groups_with_multiple_ciks": 52,
+    "groups_spanning_train_and_validation": 4012,
+    "maximum_company_year_rows_per_group": 28,
+    "duplicate_statement_scope_year_rows": 0,
+    "economic_group_id_is_predictor": false,
+    "primary_split_changed": false
+  },
+  "registrant_scope_diagnostics": {
+    "joint_co_registrant_rows": 247,
+    "joint_co_registrant_filing_xbrl_rows": 230,
+    "joint_co_scope_specific_non_xbrl_rows": 226,
+    "joint_co_scope_xbrl_available_rows": 4,
+    "joint_co_scope_xbrl_exact_anchor_records_unavailable": 0,
+    "joint_co_scope_xbrl_core_available": 2,
+    "joint_co_scope_xbrl_core_coverage": 0.5,
+    "interpretation": "filing-level XBRL availability is separated from statement-scope availability using the audited XBRL entity identifier"
+  },
+  "joint_instance_provenance": {
+    "selected_joint_instance_primitive_facts": 33,
+    "unique_instance_files": 2,
+    "instance_file_sha256": {
+      "data/raw/sec_historical_universe/registrant_role_evidence/0001047469-14-003617/denparp-20131231.xml": "d7eefef53102b9a2a674dc7ed43e624e731c1657bd07dc63cf0f9243f6ad796c",
+      "data/raw/sec_historical_universe/registrant_role_evidence/0001104659-14-009852/cld-20131231.xml": "07d612d9fe0ea2d561a23096e688c088603dbe736c7e975b48bec1987ad29805"
+    },
+    "missing_instance_files": [],
+    "selected_facts_missing_context_id": 0,
+    "selected_facts_with_invalid_dimension_provenance": 0
+  },
+  "frozen_universe_sha256": "a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182",
+  "frozen_target_sha256": "473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff",
+  "raw_artifact_sha256": "0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f",
+  "blocking_issues": [],
+  "verdict": "X_T V1 READY TO FREEZE"
+}

@@ -50,9 +50,20 @@ data/interim/research_universe_pit_v1_1_0_target_pit_b_v1_0_0_working.csv
 data/processed/research_universe_pit.csv
 data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv
 
+# Large reproducible raw point-in-time feature artifact and interrupted build.
+# The versioned build manifest records its exact schema, row count and hash.
+data/processed/x_t_pit_v1_raw.csv
+data/processed/x_t_pit_v1_raw.csv.tmp
+data/processed/x_t_pit_v1_raw.csv.refresh.tmp
+
+# Large row-level revision diagnostic; compact summaries remain in the X_t
+# audit JSON/Markdown and are reproducible from the frozen inputs.
+data/reports/x_t_pit_v1_revision_diagnostics.csv
+
 # Download-run manifests; summary results remain in the audit reports
 data/reports/target_candidate_v2_pit_b_revenue_evidence_downloads.json
 data/reports/research_universe_target_application_revenue_evidence.json
+data/reports/x_t_pit_v1_source_download.json
 data/reports/target_candidate_v2_pit_b_revenue_review_downloads.json
 data/reports/target_candidate_v2_pit_b_sec_shards.json
 

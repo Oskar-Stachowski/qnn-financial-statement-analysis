@@ -1,0 +1,244 @@
+manifest_schema_version: 1
+
+raw_point_in_time_x_t:
+  id: x_t_pit
+  version: 1.0.0
+  status: frozen
+  frozen_on: "2026-08-19"
+  freeze_scope: raw_point_in_time_feature_construction
+  unit: eligible_company_year
+  raw_artifact_frozen: true
+  supervised_sample_policy_frozen: false
+  imputation_frozen: false
+  missing_indicators_frozen: false
+  winsorization_frozen: false
+  scaling_frozen: false
+  feature_selection_frozen: false
+  models_frozen: false
+  hyperparameters_frozen: false
+
+git:
+  basis_commit_before_x_t_implementation_and_freeze: 0af6e5a51c21bcc38724f10a56a43c1ddacf5674
+  freeze_commit: commit_containing_this_manifest
+  component_commits:
+    x_t_policy_and_implementation: commit_containing_this_manifest
+    source_backfill_and_audit: commit_containing_this_manifest
+    negative_sign_sanity_check: commit_containing_this_manifest
+    formal_freeze: commit_containing_this_manifest
+
+scope:
+  feature_years: [2011, 2024]
+  development_feature_years: [2011, 2022]
+  mechanically_built_test_feature_years: [2023, 2024]
+  test_used_for_policy_or_resolver_decisions: false
+  eligible_company_years: 64901
+  development_company_years: 56903
+  raw_columns: 1072
+
+feature_blocks:
+  L:
+    - log_assets_t
+    - roa_t
+    - ocf_to_assets_t
+    - current_ratio_t
+    - liabilities_to_assets_t
+    - working_capital_to_assets_t
+    - accruals_to_assets_t
+  D:
+    - asset_growth_1y
+    - delta_roa_1y
+    - delta_ocf_to_assets_1y
+    - current_ratio_change_1y
+    - delta_liabilities_to_assets_1y
+  R:
+    - log1p_revenues_t
+    - profit_margin_t
+    - ocf_margin_t
+    - asset_turnover_t
+    - revenue_growth_1y
+  preregistered_model_comparisons:
+    - [L]
+    - [L, D]
+    - [L, D, R]
+  test_set_may_select_blocks: false
+
+point_in_time_invariants:
+  anchor: exact_frozen_universe_accession
+  original_10_k_only: true
+  current_and_comparative_same_accession: true
+  amendments_allowed: false
+  later_filings_allowed: false
+  later_restatements_allowed: false
+  t_plus_1_allowed_in_x_t: false
+  accepted_at_primary_timestamp: true
+  missing_accepted_at_fallback: next_calendar_day_midnight_et_after_filed_date
+  fallback_timezone: America/New_York
+  fallback_lower_precision_flag_required: true
+  missing_or_ambiguous_is_fail_closed: true
+  missing_mapped_to_zero: false
+  heuristic_sign_correction_allowed: false
+
+negative_sign_freeze_gate:
+  reviewed_primitive_cases: 25
+  reviewed_company_years: 23
+  reported_economically_valid_retained: 5
+  xbrl_semantic_or_context_errors: 16
+  unresolved: 4
+  set_to_ambiguous_na: 20
+  remaining_negative_assets: 0
+  remaining_negative_liabilities: 0
+  remaining_negative_current_assets: 0
+  remaining_negative_current_liabilities: 0
+  remaining_negative_revenues: 5
+  test_years_inspected_for_decisions: false
+
+development_audit_at_freeze:
+  verdict: X_T V1 READY TO FREEZE
+  blocking_issues: []
+  x_t_status:
+    available_core: 45797
+    partially_available: 6086
+    not_available_non_xbrl: 3927
+    missing: 727
+    ambiguous: 366
+  exact_accession_errors: 0
+  feature_timestamp_errors: 0
+  prediction_timestamp_policy_errors: 0
+  primitive_filed_errors: 0
+  primitive_accepted_at_errors: 0
+  non_original_10_k_anchor_rows: 0
+  nonfinite_selected_primitives: 0
+  preprocessing_applied: false
+  models_trained: false
+
+upstream_frozen_invariants:
+  research_universe:
+    id: research_universe_pit
+    version: 1.1.0
+    status: frozen_unchanged
+    path: data/processed/research_universe_pit.csv
+    sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+    changed_by_x_t_freeze: false
+  target:
+    id: target_candidate_v2_pit_b
+    version: 1.0.0
+    status: frozen_unchanged
+    path: data/interim/target_candidate_v2_pit_b.csv
+    sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+    changed_by_x_t_freeze: false
+
+runtime_observed_at_freeze:
+  python: 3.13.13
+  numpy: 2.4.4
+  pandas: 3.0.3
+  pyyaml: 6.0.3
+  requests: 2.34.1
+
+versioned_components:
+  configuration_and_environment:
+    - path: configs/x_t_pit_v1.yaml
+      sha256: 791ad8df4ac94437133d7f8bfb329172d6ad782c1e4e4bba9ba006737931df4e
+    - path: configs/x_t_pit_v1_negative_sign_review.yaml
+      sha256: 987c288be960cfc829ca4ef68f86daab8702de28d7a4e34a1d20bd812a8266bf
+    - path: configs/target_candidate_v2_pit.yaml
+      sha256: 3fb43750c265fbd913058d665b372335ea71cfd571fa6dac13af2d73181a43e5
+    - path: requirements.txt
+      sha256: 8b29fed7bed21fa1202c6f692e040474ab536dc67aef0e3fc63897ecf28a3327
+
+  construction_and_resolvers:
+    - path: src/data/29_build_x_t_pit_v1.py
+      sha256: 978afdbb6fda41cee0c3737ecbca7dfb7143a8d3d98c22084e94acb6e830bba9
+    - path: src/data/x_t_pit.py
+      sha256: e04790d670742936d606d0c8536c8662d469fc95b1368542a779bed2bd93f418
+    - path: src/data/revenue_statement_resolver.py
+      sha256: 013a4dc3958b32b0982a4c1150c4fb221a9d87dbf5883cb8aec4c756b877575b
+    - path: src/data/target_candidate_v2_pit.py
+      sha256: efad99c1f7376cbad9ad009fff417f6ec342482b8d9b2acf5f52b60165327cac
+
+  source_acquisition_and_targeted_refresh:
+    - path: src/data/31_download_x_t_pit_v1_sources.py
+      sha256: 4817e90ccf781dcc986b780b48b6f00bd1cb5f6e513532e669b28d9844fc4b40
+    - path: src/data/32_refresh_x_t_pit_v1_rows.py
+      sha256: 61d948aef72efa6a38c9a4559c9ffef67ee713c94809a45915d91fb247ef7ec4
+    - path: src/data/33_download_x_t_pit_v1_negative_sign_evidence.py
+      sha256: f30a5841917f02c56bc0b6a3c2a41c7bd80f90e014d16fc48cc4ea326bc4b856
+
+  audit_code:
+    - path: src/data/30_audit_x_t_pit_v1.py
+      sha256: fc4a8962cedcb5acc421619bca536aaad8e0fe690ad3c315faa5da2d9cb6939b
+    - path: src/data/34_audit_x_t_pit_v1_negative_signs.py
+      sha256: 7e2888265f21502d399113273f7ffcf99bbb3bd71b4731a5c0ec6be2de58d0ed
+
+  policy_tests:
+    - path: tests/test_x_t_pit_v1.py
+      sha256: f023ce082436e26c57d44593faafb98f859e9ee2b27fa106321214b9d0d49861
+
+  methodological_records:
+    - path: docs/06_1_point_in_time_x_t_feature_pipeline_audit_and_policy.md
+      sha256: da611a4d191ef8351bea786fc151e6b72a7c83d119af62e6f81300071c3aacaf
+    - path: docs/06_2_raw_point_in_time_x_t_v1_frozen_specification.md
+      sha256: 188bd77f16c550a2597b45b479bbe8671e1328b0d1297877ddb5f04175ec45c0
+
+  final_build_and_audit_evidence:
+    - path: data/reports/x_t_pit_v1_build_manifest.json
+      sha256: b9afd59cb9453323afc7ca9f903b6d1493bfa66870da85c13b6c058ca953b67c
+    - path: data/reports/x_t_pit_v1_audit.json
+      sha256: 51f65f3c8e77114d28a78b090e954e2ccacbf637f453fffbeff2b05d688ee7c4
+    - path: data/reports/x_t_pit_v1_audit.md
+      sha256: 0abb0599a8a87ca8ce8302f121293f45bdf9ee8d007ce7aca4516cc276b30b46
+    - path: data/reports/x_t_pit_v1_negative_sign_evidence.json
+      sha256: 50e0e44f57ef118c5abec47d64ae4e1768e667f2be1a6c698dad6f59ea2451ad
+    - path: data/reports/x_t_pit_v1_negative_sign_review.csv
+      sha256: a6e1be5ae199ebbddbc98f570919fd92fa53679c268d95b26bbb11f314a0704a
+    - path: data/reports/x_t_pit_v1_negative_sign_review.md
+      sha256: c32c43f472c7c69542245d56dbfc56e9e9eb781b9d4b03d0c138b4a5547e36df
+    - path: data/reports/x_t_pit_v1_targeted_source_refresh.json
+      sha256: c82e3f3bb53fea1b590649e320cafe5f7775ecda3b271f4800b73cdb4606272f
+
+  supporting_audit_tables:
+    - path: data/reports/x_t_pit_v1_coverage_by_year.csv
+      sha256: caf1f7792dadccb95a2a98555ec0d9c4cbbda0a6c97abf81f9684f98def557fd
+    - path: data/reports/x_t_pit_v1_coverage_by_sector.csv
+      sha256: a5a0c7ed76e496f91d10582183bd29791686b49cfaf22355f70255890542efd2
+    - path: data/reports/x_t_pit_v1_coverage_by_sic.csv
+      sha256: 8b8aeb1c3677f59836a8e76a21f917fc1e3ac018ab6ad237f6cd4ef252d417d8
+    - path: data/reports/x_t_pit_v1_coverage_by_size.csv
+      sha256: 88bd5a65ade2d5a9fb25785f82e53ec2020274b79e831777cf5e1a7605c1ee03
+    - path: data/reports/x_t_pit_v1_coverage_by_registrant_role.csv
+      sha256: d4c792bf482985781025ba2adc6a0abe08c816fad7b54733b7b6e879e3e069fd
+    - path: data/reports/x_t_pit_v1_coverage_by_xbrl_availability.csv
+      sha256: 076908e7f4c3a13e3edbd4ecb309cbcbfb8b1ef541f3153840b389c16e247713
+    - path: data/reports/x_t_pit_v1_status_reasons.csv
+      sha256: 768add4f4fb0dce0b221b3d8d73e5c93b3b8721b8e47af883d5ec6f04a67bab1
+    - path: data/reports/x_t_pit_v1_selection_bias.csv
+      sha256: 8ba0779353194f415a464353bb201d090b2bcc227c664cfaf96e57ac079b0efc
+    - path: data/reports/x_t_pit_v1_feature_outliers.csv
+      sha256: ff39c69e205bfc3f5ee6d5c2f57eb2dd2367af8d7761a651c917ba64f4e057cc
+    - path: data/reports/x_t_pit_v1_primitive_manual_review.csv
+      sha256: aaef017854bc474675ea4cc4a2ea7e7ba9af117c23a2f519850f3e69b42eacb6
+    - path: data/reports/x_t_pit_v1_revenue_manual_review.csv
+      sha256: 50302dafcbcf7f37a0225f095c5d24d967c93d68689bf371109a1ce3b5d4a713
+    - path: data/reports/x_t_pit_v1_source_gaps.csv
+      sha256: 864042cbc3f1bcfe2cd26663823b07171734d749dd4442e95b93bc701d83da6d
+
+  upstream_manifest_locks:
+    - path: configs/research_universe_pit_freeze_manifest.yaml
+      sha256: 60310dbc9379371c05316b28de273832d0eaf02f20fc1ee7bb28697a26fb71b7
+    - path: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+      sha256: 52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb
+
+non_versioned_reproduction_check:
+  path: data/processed/x_t_pit_v1_raw.csv
+  tracked_in_git: false
+  data_rows: 64901
+  columns: 1072
+  bytes: 814411483
+  sha256: 0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f
+  frozen: true
+
+notes:
+  - The manifest intentionally does not hash itself, its containing commit, or the freeze-lock test to avoid self-reference.
+  - The containing Git commit is the authoritative repository version of the X_t v1.0.0 freeze package.
+  - Raw SEC caches and the 814 MB raw X_t artifact remain outside Git; accession-level provenance and reproduction hashes are frozen here.
+  - Any change to a frozen component requires a new X_t version, a new raw build, and a new development audit.
+  - Supervised sampling, preprocessing, missing indicators, models, and hyperparameters remain explicitly outside this freeze.

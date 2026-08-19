@@ -1,0 +1,201 @@
+x_t:
+  id: x_t_pit
+  version: 1.0.0
+  status: frozen
+  frozen_on: "2026-08-19"
+  freeze_scope: raw_point_in_time_feature_construction
+  policy_document: docs/06_1_point_in_time_x_t_feature_pipeline_audit_and_policy.md
+  frozen_specification: docs/06_2_raw_point_in_time_x_t_v1_frozen_specification.md
+  universe_id: research_universe_pit
+  universe_version: 1.1.0
+  eligible_membership_only: true
+  feature_year_start: 2011
+  feature_year_end: 2024
+  development_year_start: 2011
+  development_year_end: 2022
+  test_years: [2023, 2024]
+  test_used_for_policy_or_resolver_decisions: false
+  raw_only: true
+  preprocessing:
+    imputation: false
+    winsorization: false
+    scaling: false
+    feature_selection: false
+    missing_indicators: false
+  models_trained: false
+
+frozen_inputs:
+  universe_manifest: configs/research_universe_pit_freeze_manifest.yaml
+  universe_artifact: data/processed/research_universe_pit.csv
+  universe_sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+  target_manifest: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+  target_artifact: data/interim/target_candidate_v2_pit_b.csv
+  target_sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+  primitive_policy_source: configs/target_candidate_v2_pit.yaml
+  primitive_policy_reuse_scope:
+    - semantic concept priority
+    - annual period validation
+    - primary consolidated revenue resolver
+  target_definition_changed: false
+
+sources:
+  companyfacts: data/raw/research_universe_target_application/companyfacts
+  submissions: data/raw/research_universe_target_application/sec_submissions
+  revenue_statement_evidence: data/raw/sec_filings/revenue_statement_evidence
+  companyfacts_download_inventory: data/reports/research_universe_target_application_inputs.json
+  revenue_evidence_download_inventory: data/reports/research_universe_target_application_revenue_evidence.json
+  registrant_scope_audit: data/reports/research_universe_pit_joint_accessions.csv
+  registrant_scope_evidence: data/raw/sec_historical_universe/registrant_role_evidence
+  x_t_source_download_inventory: data/reports/x_t_pit_v1_source_download.json
+  negative_sign_review: configs/x_t_pit_v1_negative_sign_review.yaml
+  negative_sign_evidence_inventory: data/reports/x_t_pit_v1_negative_sign_evidence.json
+  companyfacts_namespace: us-gaap
+  unit: USD
+  allowed_forms: [10-K]
+
+point_in_time:
+  anchor: exact_frozen_universe_accession
+  original_10_k_only: true
+  amendments_allowed: false
+  later_filings_allowed: false
+  later_restatements_allowed: false
+  later_filing_feature_fallback_allowed: false
+  current_and_comparative_same_accession: true
+  current_role: current_t
+  comparative_role: comparative_t_minus_1
+  accepted_at_policy:
+    primary: universe_anchor_accepted_at
+    missing_fallback: next_calendar_day_midnight_et_after_filed_date
+    missing_fallback_timezone: America/New_York
+    lower_precision_flag: true
+    arbitrary_same_day_hour_imputation: false
+  annual_period_min_days: 300
+  annual_period_max_days: 400
+  period_start_tolerance_days: 14
+  standard_52_53_week_years_allowed: true
+  transition_or_ambiguous_period_policy: feature_na
+  reviewed_negative_current_primitive_policy:
+    development_years: [2011, 2022]
+    primary_statement_confirmation_required: true
+    xbrl_error_or_unresolved: ambiguous_na
+    heuristic_sign_correction_allowed: false
+    test_years_used_for_decisions: false
+
+status_policy:
+  row_statuses:
+    - available_core
+    - partially_available
+    - missing
+    - ambiguous
+    - not_available_non_xbrl
+    - hard_exclude_anchor_or_entity_context
+  scope_specific_non_xbrl_maps_to: not_available_non_xbrl
+  feature_statuses:
+    - available
+    - missing
+    - ambiguous
+    - not_computable
+    - not_available_non_xbrl
+  missing_feature_drops_row: false
+  missing_target_drops_raw_x_t_row: false
+  missing_mapped_to_zero: false
+
+denominators:
+  required_condition: strictly_greater_than_zero
+  global_minimum_usd: null
+  near_zero_diagnostic_abs_usd: 1000.0
+  near_zero_changes_availability: false
+
+blocks:
+  L:
+    description: core financial levels
+    features:
+      - log_assets_t
+      - roa_t
+      - ocf_to_assets_t
+      - current_ratio_t
+      - liabilities_to_assets_t
+      - working_capital_to_assets_t
+      - accruals_to_assets_t
+  D:
+    description: core dynamics from comparative t-1 to current t in anchor 10-K t
+    features:
+      - asset_growth_1y
+      - delta_roa_1y
+      - delta_ocf_to_assets_1y
+      - current_ratio_change_1y
+      - delta_liabilities_to_assets_1y
+  R:
+    description: primary-statement-confirmed consolidated revenue module
+    features:
+      - log1p_revenues_t
+      - profit_margin_t
+      - ocf_margin_t
+      - asset_turnover_t
+      - revenue_growth_1y
+
+pre_registered_model_comparisons:
+  - [L]
+  - [L, D]
+  - [L, D, R]
+block_selection_may_use_test_set: false
+
+metadata_controls:
+  retained_not_automatically_in_financial_block:
+    - historical_sic
+    - historical_sic_description
+    - research_sector
+  never_predictors:
+    - economic_group_id
+    - economic_statement_scope_id
+    - representative_cik
+    - linked_co_registrant_ciks
+    - current_ticker
+    - current_exchange
+    - later_inactive_delisted_or_unmapped_proxy
+    - recovered_vs_old_universe
+    - target_status
+    - target_available
+    - target_reason
+
+extension_block:
+  implemented: false
+  excluded_from_v1:
+    - cash_to_assets
+    - operating_margin
+    - capex_to_assets
+    - ppe_to_assets
+    - retained_earnings_to_assets
+    - interest_bearing_debt_to_assets
+    - inventory_to_assets
+    - receivables_to_assets
+    - goodwill_to_assets
+    - intangibles_to_assets
+
+outputs:
+  raw_artifact: data/processed/x_t_pit_v1_raw.csv
+  build_manifest: data/reports/x_t_pit_v1_build_manifest.json
+  audit_json: data/reports/x_t_pit_v1_audit.json
+  audit_markdown: data/reports/x_t_pit_v1_audit.md
+  coverage_by_year: data/reports/x_t_pit_v1_coverage_by_year.csv
+  coverage_by_sector: data/reports/x_t_pit_v1_coverage_by_sector.csv
+  coverage_by_sic: data/reports/x_t_pit_v1_coverage_by_sic.csv
+  coverage_by_size: data/reports/x_t_pit_v1_coverage_by_size.csv
+  coverage_by_registrant_role: data/reports/x_t_pit_v1_coverage_by_registrant_role.csv
+  coverage_by_xbrl_availability: data/reports/x_t_pit_v1_coverage_by_xbrl_availability.csv
+  status_reasons: data/reports/x_t_pit_v1_status_reasons.csv
+  revenue_manual_review: data/reports/x_t_pit_v1_revenue_manual_review.csv
+  primitive_manual_review: data/reports/x_t_pit_v1_primitive_manual_review.csv
+  feature_outliers: data/reports/x_t_pit_v1_feature_outliers.csv
+  revision_diagnostics: data/reports/x_t_pit_v1_revision_diagnostics.csv
+  selection_bias: data/reports/x_t_pit_v1_selection_bias.csv
+  source_gaps: data/reports/x_t_pit_v1_source_gaps.csv
+  negative_sign_review_csv: data/reports/x_t_pit_v1_negative_sign_review.csv
+  negative_sign_review_markdown: data/reports/x_t_pit_v1_negative_sign_review.md
+
+audit:
+  random_seed: 20260818
+  revenue_manual_review_minimum: 50
+  near_zero_abs_usd: 1000.0
+  outlier_quantiles: [0.001, 0.01, 0.99, 0.999]
+  development_only_for_decisions: true

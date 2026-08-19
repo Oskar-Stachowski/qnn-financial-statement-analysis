@@ -1,0 +1,76 @@
+{
+  "artifact_id": "x_t_pit",
+  "artifact_version": "1.0.0",
+  "status": "frozen",
+  "built_at_utc": "2026-08-19T06:51:56.871523+00:00",
+  "raw_artifact": "data/processed/x_t_pit_v1_raw.csv",
+  "raw_artifact_rows": 64901,
+  "raw_artifact_columns": 1072,
+  "raw_artifact_bytes": 814411483,
+  "raw_artifact_sha256": "0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f",
+  "config_path": "configs/x_t_pit_v1.yaml",
+  "config_sha256": "791ad8df4ac94437133d7f8bfb329172d6ad782c1e4e4bba9ba006737931df4e",
+  "construction_code": "src/data/x_t_pit.py",
+  "construction_code_sha256": "e04790d670742936d606d0c8536c8662d469fc95b1368542a779bed2bd93f418",
+  "semantic_resolver_code": "src/data/target_candidate_v2_pit.py",
+  "semantic_resolver_code_sha256": "efad99c1f7376cbad9ad009fff417f6ec342482b8d9b2acf5f52b60165327cac",
+  "revenue_resolver_code": "src/data/revenue_statement_resolver.py",
+  "revenue_resolver_code_sha256": "013a4dc3958b32b0982a4c1150c4fb221a9d87dbf5883cb8aec4c756b877575b",
+  "primitive_policy_config": "configs/target_candidate_v2_pit.yaml",
+  "primitive_policy_config_sha256": "3fb43750c265fbd913058d665b372335ea71cfd571fa6dac13af2d73181a43e5",
+  "universe_artifact_sha256": "a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182",
+  "target_artifact_sha256": "473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff",
+  "source_download_inventories": {
+    "companyfacts_download_inventory": {
+      "path": "data/reports/research_universe_target_application_inputs.json",
+      "sha256": "62ebde035d53de0dbc6cfe603fcfe5026f9b25e18c4bc6ba885d79b9bda8a6cd"
+    },
+    "revenue_evidence_download_inventory": {
+      "path": "data/reports/research_universe_target_application_revenue_evidence.json",
+      "sha256": "37ba4ae7acf658a876f9a67ba768e91e4fe7fb2fb1ba25f2d7b410f3e24182ef"
+    },
+    "x_t_source_download_inventory": {
+      "path": "data/reports/x_t_pit_v1_source_download.json",
+      "sha256": "2af3f30fb424d046cefd3e37a30134500e514f634fdfb15561b992ed3a984846"
+    }
+  },
+  "negative_sign_validation": {
+    "negative_sign_review": {
+      "path": "configs/x_t_pit_v1_negative_sign_review.yaml",
+      "sha256": "987c288be960cfc829ca4ef68f86daab8702de28d7a4e34a1d20bd812a8266bf"
+    },
+    "negative_sign_evidence_inventory": {
+      "path": "data/reports/x_t_pit_v1_negative_sign_evidence.json",
+      "sha256": "50e0e44f57ef118c5abec47d64ae4e1768e667f2be1a6c698dad6f59ea2451ad"
+    }
+  },
+  "eligible_rows_expected": 64901,
+  "feature_blocks": {
+    "L": [
+      "log_assets_t",
+      "roa_t",
+      "ocf_to_assets_t",
+      "current_ratio_t",
+      "liabilities_to_assets_t",
+      "working_capital_to_assets_t",
+      "accruals_to_assets_t"
+    ],
+    "D": [
+      "asset_growth_1y",
+      "delta_roa_1y",
+      "delta_ocf_to_assets_1y",
+      "current_ratio_change_1y",
+      "delta_liabilities_to_assets_1y"
+    ],
+    "R": [
+      "log1p_revenues_t",
+      "profit_margin_t",
+      "ocf_margin_t",
+      "asset_turnover_t",
+      "revenue_growth_1y"
+    ]
+  },
+  "preprocessing_applied": false,
+  "models_trained": false,
+  "test_used_for_policy_or_resolver_decisions": false
+}
