@@ -1,0 +1,112 @@
+manifest_schema_version: 1
+
+model_execution_contract:
+  id: model_execution_contract
+  version: 1.2.0
+  status: frozen_pre_runner_execution_contract
+  frozen_on: "2026-08-19"
+  formal_freeze_effected_by_this_manifest: true
+  verdict: MODEL_EXECUTION_CONTRACT_READY_FOR_RUNNER
+  production_runner_implemented: false
+  model_training_performed: false
+
+authoritative_sources:
+  contract:
+    path: configs/model_execution_contract_v1_2_0.yaml
+    sha256: dd4dd4ae466e57ce992b8fa5392afc807c448cfca5ae85eef672347d24e3cd15
+  reference_algorithms:
+    path: src/modeling/model_execution_contract.py
+    sha256: 6aee8752327a4314e2a091cc652c2bb0d38bf8e21a58c163d742197c79c9ae6e
+  deterministic_tests:
+    path: tests/test_model_execution_contract_v1_2_0.py
+    sha256: 1544bdb8349dd8fc517f5d5ed4d1a407227ed71c51ab50a1e240b58faa6ac75b
+  specification:
+    path: docs/08_3_model_execution_contract_v1_2_0.md
+    sha256: b6b76954ff9c0fb7263d42b0efe110d21cd73e33378c3f328534754a4dab417e
+  integrity_report:
+    path: data/reports/model_execution_contract_v1_2_0_integrity.json
+    sha256: 45944f8c6f5846e79c12e5b318ceafe552497707d67cf51c81fc56c753563460
+
+frozen_upstream:
+  data_access_policy:
+    path: configs/data_access_policy_v1_1_0.yaml
+    version: 1.1.0
+    sha256: 7ce08bca9921ff72db6b3ec6dfd1dc28c7e751e1ca1ad3b6706180809b66cd9b
+  raw_x_t:
+    path: configs/x_t_pit_v1_1_0_train_freeze_manifest.yaml
+    version: 1.1.0
+    sha256: d0e83ead2090c6de3b8f52e2eca557764ef2131395e026824b26230a2fa62019
+  supervised_ml_pipeline:
+    path: configs/supervised_ml_pipeline_v1_2_0_freeze_manifest.yaml
+    version: 1.2.0
+    sha256: 1da10ac56b2c77b294f92bdfecf22a4ff0f86aa29844d82898d8e7ae00d7fe02
+  model_stage_resolver_amendment:
+    path: configs/model_stage_v1_2_0_resolver_amendment.yaml
+    version: 1.2.0
+    sha256: 7ec0749d5ad2f9213cb344bf6d3665b4894bf1438d7f082afd919f8151e84dee
+  model_stage_candidates:
+    path: configs/model_stage_candidates_v1.json
+    version: 1.0.0
+    sha256: 857ed6361a55c4ff1183a56614a4058e132db7a8b49bb5742b187900cd9d7f58
+
+canonical_identity:
+  registry_configuration_ids: 142
+  expanded_execution_positions: 320
+  expanded_execution_order_sha256: 263635db04d87466b182f3a853910e2cc6ca11a284deeb57969b5cbea43faf21
+  classical_software_spec_sha256: 11fa28a6ee9599eeb0d8bc0ed459f75dfedaf506b8191649f114d98f4cf82a6c
+  qnn_mlp_software_spec_sha256: 7ff0365d25d1ff2d5dc6bdcdfd926f454b2b080d11284e420c56ee2d1a2c44a3
+
+closed_decision_domains:
+  canonical_coarse_and_refinement_ordering: true
+  full_space_boundary_definition: true
+  conditional_refinement_activation_and_ties: true
+  coarse_refinement_merge_and_confirmation_selection: true
+  seed_prediction_alignment_averaging_and_pooled_metric: true
+  partial_failure_nonfinite_warning_timeout_checkpoint_and_retry_states: true
+  qnn_q1_q2_selected_ansatz_and_executable_identity: true
+  raw_score_and_Platt_calibration_interface: true
+  exact_max_F1_threshold_and_artifact_schema: true
+  interpretability_and_robustness_execution_scope: true
+  integrity_only_second_freeze_gate: true
+  result_dependent_manual_decisions_remaining: false
+
+confirmation_budget_invariants:
+  classical_mlp_slots: 30
+  classical_mlp_additional_fold_fits: 360
+  qnn_slots: 3
+  qnn_additional_fold_fits: 36
+  conditional_refinement_maximum_families: 3
+  conditional_refinement_fold_fit_cap: 180
+
+access_boundary:
+  controlling_policy: configs/data_access_policy_v1_1_0.yaml
+  permitted_feature_years: [2011, 2020]
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_values_or_statistics_opened: false
+  project_data_model_fit_performed: false
+  synthetic_policy_tests_only: true
+
+second_gate:
+  id: MODEL_EXECUTION_V1_2_SECOND_INTEGRITY_GATE
+  integrity_only: true
+  performance_values_may_affect_verdict: false
+  qualitative_result_interpretation_allowed: false
+  test_may_open_directly_from_this_contract_freeze: false
+
+historical_preservation:
+  configs_model_stage_v1_yaml_edited: false
+  configs_model_stage_v1_freeze_manifest_edited: false
+  preregistration_notebook_v1_edited: false
+  historical_v1_status: immutable
+  v1_2_resolver_amendment_edited: false
+
+future_runner_boundary:
+  runner_must_implement_contract_without_new_defaults_or_prompts: true
+  runner_code_and_actual_environment_locks_require_separate_freeze: true
+  this_manifest_authorizes_training: false
+  any_contract_change_requires_new_version: true
+
+notes:
+  - This manifest intentionally does not hash itself or its containing commit.
+  - The execution contract operationalizes frozen decisions but contains no estimator training implementation.
+  - Actual calibrator, threshold, selected-ansatz, roster and prediction artifacts do not exist until the gated model execution stage.

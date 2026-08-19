@@ -1,0 +1,56 @@
+{
+  "report_schema_version": 1,
+  "id": "model_execution_contract_v1_2_0_integrity",
+  "executed_on": "2026-08-19",
+  "scope": "specification_and_synthetic_policy_tests_only",
+  "data_access_policy": "data_access_policy_v1.1.0",
+  "protected_feature_years_opened": false,
+  "model_training_performed": false,
+  "production_runner_implemented": false,
+  "checks": {
+    "authority_hashes_match": true,
+    "candidate_index_count": 320,
+    "candidate_index_sha256": "263635db04d87466b182f3a853910e2cc6ca11a284deeb57969b5cbea43faf21",
+    "candidate_index_hash_matches": true,
+    "classical_software_spec_sha256": "11fa28a6ee9599eeb0d8bc0ed459f75dfedaf506b8191649f114d98f4cf82a6c",
+    "qnn_mlp_software_spec_sha256": "7ff0365d25d1ff2d5dc6bdcdfd926f454b2b080d11284e420c56ee2d1a2c44a3",
+    "software_spec_hashes_match": true,
+    "canonical_ordering_closed": true,
+    "boundary_definition_closed": true,
+    "conditional_refinement_closed": true,
+    "merge_and_confirmation_closed": true,
+    "seed_alignment_and_aggregation_closed": true,
+    "failure_state_machine_closed": true,
+    "qnn_executable_identity_closed": true,
+    "calibration_contract_closed": true,
+    "threshold_contract_closed": true,
+    "interpretability_and_robustness_scope_closed": true,
+    "second_gate_integrity_only": true,
+    "manual_result_dependent_decisions_remaining": false
+  },
+  "tests": {
+    "command": "python -m pytest -q tests/test_model_execution_contract_v1_2_0.py tests/test_model_stage_preregistration.py tests/test_model_stage_v1_freeze.py tests/test_data_access_policy_v1_1_0.py tests/test_resolver_x_t_v1_1_freeze.py tests/test_temporal_cv.py tests/test_preprocessing.py",
+    "passed": 63,
+    "subtests_passed": 31,
+    "failed": 0
+  },
+  "authoritative_files": {
+    "contract": {
+      "path": "configs/model_execution_contract_v1_2_0.yaml",
+      "sha256": "dd4dd4ae466e57ce992b8fa5392afc807c448cfca5ae85eef672347d24e3cd15"
+    },
+    "reference_algorithms": {
+      "path": "src/modeling/model_execution_contract.py",
+      "sha256": "6aee8752327a4314e2a091cc652c2bb0d38bf8e21a58c163d742197c79c9ae6e"
+    },
+    "tests": {
+      "path": "tests/test_model_execution_contract_v1_2_0.py",
+      "sha256": "1544bdb8349dd8fc517f5d5ed4d1a407227ed71c51ab50a1e240b58faa6ac75b"
+    },
+    "specification": {
+      "path": "docs/08_3_model_execution_contract_v1_2_0.md",
+      "sha256": "b6b76954ff9c0fb7263d42b0efe110d21cd73e33378c3f328534754a4dab417e"
+    }
+  },
+  "verdict": "MODEL EXECUTION CONTRACT READY FOR RUNNER"
+}
