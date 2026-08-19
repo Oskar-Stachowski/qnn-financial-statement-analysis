@@ -1,0 +1,9 @@
+numpy==2.4.4
+scipy==1.17.1
+pandas==3.0.3
+scikit-learn==1.8.0
+xgboost==3.4.1
+shap==0.52.0
+joblib==1.5.3
+threadpoolctl==3.6.0
+PyYAML==6.0.3

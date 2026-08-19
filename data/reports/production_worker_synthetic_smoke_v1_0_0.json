@@ -1,0 +1,67 @@
+{
+  "id": "production_worker_synthetic_smoke_v1_0_0",
+  "project_data_opened": false,
+  "project_model_training_performed": false,
+  "results": [
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "command_sha256": "a961e5c3b216031118c35ce7aa8993768dab41dd8dd8d6cb39862e8658464b90",
+          "outcome": "COMPLETE",
+          "resume": false,
+          "returncode": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "configuration_id": "model_stage_v1__coarse__dummy_prior__001",
+      "failure_code": null,
+      "family": "dummy_prior",
+      "raw_score_count": 2,
+      "raw_score_sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+      "software_environment_sha256": "d4f569fb21dbf5c6fd8f8a472314391129df4f2afdbb9fd017c7dd740aa22454",
+      "status": "COMPLETE"
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "command_sha256": "cee6acc7378eebaa228b9c0b58b1370dac4396feb99d43f9fa163b6841935db7",
+          "outcome": "COMPLETE",
+          "resume": false,
+          "returncode": 0,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__001",
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "raw_score_count": 2,
+      "raw_score_sha256": "0d14e50f11a180e38b17aed8ac7eaeceb63b9bd65adf344691b7e173c77bc36d",
+      "software_environment_sha256": "cd3bbc8dda2f159573e2038d04ec58e3ccc9ca5aa86d229499083728fe163a81",
+      "status": "COMPLETE"
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "command_sha256": "90fa9f6b6a9f08f288465ec09ad9b88112ac2160ff0e0228eeac89aac48832e7",
+          "outcome": "COMPLETE",
+          "resume": false,
+          "returncode": 0,
+          "stderr_sha256": "201bde7ec277c60bef7897646db0ad552cd6bcfdc894f1b42814c0188244d5b7"
+        }
+      ],
+      "configuration_id": "model_stage_v1__qnn_q2__t1",
+      "failure_code": null,
+      "family": "qnn",
+      "raw_score_count": 2,
+      "raw_score_sha256": "90ad17a419b2cdd6f6d186a06817151ec6c913ce31f6b2065139ebd2ba1f799e",
+      "software_environment_sha256": "cd3bbc8dda2f159573e2038d04ec58e3ccc9ca5aa86d229499083728fe163a81",
+      "status": "COMPLETE"
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS",
+  "synthetic_only": true
+}

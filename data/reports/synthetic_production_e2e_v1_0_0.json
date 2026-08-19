@@ -1,0 +1,43 @@
+{
+  "calibration_threshold_pairs": 9,
+  "canonical_candidate_positions": 320,
+  "classical_mlp_confirmation_slots": 30,
+  "family_representatives": 9,
+  "folds": [
+    "fold_2015",
+    "fold_2016",
+    "fold_2017",
+    "fold_2018",
+    "fold_2019",
+    "fold_2020"
+  ],
+  "id": "synthetic_production_e2e_v1_0_0",
+  "key_artifact_sha256": {
+    "canonical_candidate_result_table.json": "3131dbfd1f0265379e83d3fa2e5af9ff54597fc388a98ed4b353353f1a9c5fa9",
+    "confirmation_selection.json": "7711b1b6723971dce51b786ae2f2b004e6fbde48fd0b58e9102d44661e376c23",
+    "final_family_roster.json": "bdabf258dcfd1c046205db19e0a28ead1942eccae545ef477b3b8613323a83ce",
+    "final_ranking_manifest.json": "a4f34f314642679bf2ef2dee2746a634eb9bea3bacb7c216c6ec2368cc84374b",
+    "qnn_feasibility_and_executable_identity.json": "77d14332b8a6b3a973dd9af4580c6625935612263e13bbd2c1a2a980a673a708",
+    "qnn_selected_ansatz.json": "7c19d5bbbf287ee4ca97d378eafca6b5b94ca59292791f726758579faa5724a3",
+    "refinement_activation.json": "7285847ff34492c622b96129fe8f517178a642d2f1e80e6732eb017d73c681ee",
+    "run_manifest.json": "03451b832094dc208810cc2562340d36418dbd931370d8761cc22bbd4529e4bc",
+    "secondary_analysis_execution_plan.json": "4c4b21a9f4f59a79b12c74c6c31d0a02834593366a0d2d4fa73b8309df839b35"
+  },
+  "per_fold_result_manifests": 2160,
+  "project_data_opened": false,
+  "project_model_training_performed": false,
+  "protected_feature_years_opened": false,
+  "qnn_confirmation_slots": 3,
+  "refinement_families_activated": 3,
+  "sample": {
+    "feature_years": [
+      2011,
+      2020
+    ],
+    "membership_sha256": "94d0c2ea59c32867d1bc4e270d9f7385543186a25751e3c4febd2515a9426852",
+    "rows": 40
+  },
+  "schema_version": 1,
+  "status": "PASS",
+  "synthetic_only": true
+}

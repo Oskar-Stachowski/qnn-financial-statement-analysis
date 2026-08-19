@@ -1,0 +1,118 @@
+schema_version: 1
+
+runner:
+  id: production_experiment_runner
+  version: 1.0.0
+  status: implemented_pending_freeze_gate
+  implemented_on: "2026-08-19"
+  execution_contract_version: 1.2.0
+  policy_changes: false
+  project_data_model_fit_performed: false
+  protected_feature_years_opened: false
+
+authority:
+  execution_contract:
+    path: configs/model_execution_contract_v1_2_0.yaml
+    sha256: dd4dd4ae466e57ce992b8fa5392afc807c448cfca5ae85eef672347d24e3cd15
+  execution_contract_freeze_manifest:
+    path: configs/model_execution_contract_v1_2_0_freeze_manifest.yaml
+    sha256: 80c3e48b742ae679849872bf14715ee1e781024c5fdd9af3f26559a673c47df1
+  candidate_registry:
+    path: configs/model_stage_candidates_v1.json
+    sha256: 857ed6361a55c4ff1183a56614a4058e132db7a8b49bb5742b187900cd9d7f58
+  model_environments:
+    path: configs/model_environments_v1_0_0.yaml
+    sha256: b00ac0e712680a9c6fa56d5010722db5aae5b3959823c28365056139866c8726
+  conflict_rule: no_runner_default_may_override_or_extend_the_frozen_execution_contract
+
+data:
+  permitted_feature_years: [2011, 2020]
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_path_policy: only_the_two_exact_sha_verified_train_projection_paths_may_be_deserialized
+  frozen_train_inputs:
+    raw_x_t_train:
+      path: data/processed/x_t_pit_v1_1_0_train.csv
+      sha256: 872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65
+    target_application_train:
+      path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_1_0_train.csv
+      sha256: f480ae14f9988fa9ec4e023147e741e095b2a807b8e1639be058db0c107e39ad
+  sample_policy:
+    required_membership_status: eligible
+    required_target_status: available
+    allowed_x_t_statuses: [available_core, partially_available]
+  canonical_observation_order: [feature_year_integer_ascending, research_universe_company_year_id_utf8_ascending]
+  canonical_prediction_key: [validation_feature_year, research_universe_company_year_id]
+  financial_predictor_allowlist:
+    - log_assets_t
+    - roa_t
+    - ocf_to_assets_t
+    - current_ratio_t
+    - liabilities_to_assets_t
+    - working_capital_to_assets_t
+    - accruals_to_assets_t
+    - asset_growth_1y
+    - delta_roa_1y
+    - delta_ocf_to_assets_1y
+    - current_ratio_change_1y
+    - delta_liabilities_to_assets_1y
+    - log1p_revenues_t
+    - profit_margin_t
+    - ocf_margin_t
+    - asset_turnover_t
+    - revenue_growth_1y
+  forbidden_predictors:
+    - economic_group_id
+    - feature_year
+    - prediction_timestamp
+    - target_available_at
+    - research_universe_company_year_id
+    - target_label
+
+determinism:
+  expanded_candidate_order_sha256: 263635db04d87466b182f3a853910e2cc6ca11a284deeb57969b5cbea43faf21
+  fold_order: [fold_2015, fold_2016, fold_2017, fold_2018, fold_2019, fold_2020]
+  feature_block_order: [L, L+D, L+D+R]
+  coarse_seed: 20260818
+  confirmation_seeds: [20260819, 20260820]
+  failure_state_machine_source: configs/model_execution_contract_v1_2_0.yaml#execution_failure_state_machine
+  no_manual_prompts_or_overrides: true
+
+worker_boundary:
+  controller_reads_project_data: true
+  workers_read_project_data: false
+  worker_input: already_folded_preprocessed_numeric_npz_plus_frozen_task_identity_json
+  classical_families: [dummy_prior, fixed_l2_logistic, elastic_net_logistic, rbf_svm, random_forest, hist_gradient_boosting, xgboost]
+  qnn_mlp_families: [pytorch_mlp, qnn]
+  full_installed_distribution_set_must_equal_lock_excluding_pip_bootstrap: true
+  runtime_environment_hash_required_before_first_task: true
+  runtime_environment_hash_must_be_constant_within_role: true
+
+artifacts:
+  serialization: canonical_pretty_JSON_UTF8_LF_and_float64_hex_for_executable_values
+  atomic_writes: true
+  per_fold_seed_configuration_result_manifest: true
+  candidate_manifest: true
+  refinement_activation_manifest: true
+  confirmation_selection_manifest: true
+  qnn_ansatz_identity_manifest: true
+  final_ranking_manifest: true
+  calibration_and_threshold_manifests: true
+  secondary_analysis_execution_plan: true
+  dry_run_plan_declares_model_fit_performed_false: true
+
+optional_quantum_backend_adapter_interface:
+  status: reserved_not_installed_not_executable
+  required_methods:
+    - backend_identity
+    - environment_identity
+    - execute_analytic_or_shot_task
+    - checkpoint_identity
+  required_result_fields:
+    - raw_scores_float64
+    - task_identity_sha256
+    - backend_identity
+    - resource_usage
+    - technical_status
+  ibm_plugin_installed: false
+  aws_braket_plugin_installed: false
+  activation_requires_new_explicit_preregistration_version: true

@@ -1,0 +1,178 @@
+manifest_schema_version: 1
+
+freeze_gate_candidate:
+  id: production_runner_and_environments
+  version: 1.0.0
+  status: ready_for_integrity_only_freeze_gate
+  prepared_on: "2026-08-19"
+  formal_freeze_effected_by_this_manifest: false
+  verdict: PRODUCTION_RUNNER_AND_ENVIRONMENTS_READY_FOR_FREEZE_GATE
+  production_runner_implemented: true
+  project_data_model_fit_performed: false
+  protected_feature_years_opened: false
+
+frozen_upstream:
+  data_access_policy:
+    path: configs/data_access_policy_v1_1_0.yaml
+    version: 1.1.0
+    sha256: 7ce08bca9921ff72db6b3ec6dfd1dc28c7e751e1ca1ad3b6706180809b66cd9b
+  raw_x_t:
+    path: configs/x_t_pit_v1_1_0_train_freeze_manifest.yaml
+    version: 1.1.0
+    sha256: d0e83ead2090c6de3b8f52e2eca557764ef2131395e026824b26230a2fa62019
+  supervised_ml_pipeline:
+    path: configs/supervised_ml_pipeline_v1_2_0_freeze_manifest.yaml
+    version: 1.2.0
+    sha256: 1da10ac56b2c77b294f92bdfecf22a4ff0f86aa29844d82898d8e7ae00d7fe02
+  model_stage_amendment:
+    path: configs/model_stage_v1_2_0_resolver_amendment.yaml
+    version: 1.2.0
+    sha256: 7ec0749d5ad2f9213cb344bf6d3665b4894bf1438d7f082afd919f8151e84dee
+  model_execution_contract:
+    path: configs/model_execution_contract_v1_2_0.yaml
+    version: 1.2.0
+    sha256: dd4dd4ae466e57ce992b8fa5392afc807c448cfca5ae85eef672347d24e3cd15
+  model_execution_contract_freeze_manifest:
+    path: configs/model_execution_contract_v1_2_0_freeze_manifest.yaml
+    sha256: 80c3e48b742ae679849872bf14715ee1e781024c5fdd9af3f26559a673c47df1
+  model_candidate_registry:
+    path: configs/model_stage_candidates_v1.json
+    sha256: 857ed6361a55c4ff1183a56614a4058e132db7a8b49bb5742b187900cd9d7f58
+
+runner_sources:
+  configuration:
+    path: configs/production_experiment_runner_v1_0_0.yaml
+    sha256: c648e454fe967cd7d1239eef58e028abc6ecba8f1db58e5c285da24ae297379d
+  controller:
+    path: src/modeling/production_runner.py
+    sha256: aab844ad417a0c738022fe6b0da039fe31b0fef95b9cf92528186a2a659f3ada
+  numeric_worker:
+    path: src/modeling/production_worker.py
+    sha256: 455a397e079623c79582309dd316dbc51722bbcb58bf8e31f0580e1e4a24d52c
+  production_cli:
+    path: src/modeling/run_production_experiment.py
+    sha256: 59aa5da61fcb1fff7eb4a49c13b36a82e16c2d817be902f771536325a813cead
+  synthetic_e2e:
+    path: src/modeling/run_synthetic_production_e2e.py
+    sha256: 468693a7b2100f494602a161d76aa460cfea2c74eaa5ffe7c162281d68fc7d84
+  synthetic_e2e_audit:
+    path: src/modeling/run_synthetic_e2e_audit.py
+    sha256: 86f856bb378178869a8f473f4cd8f2ab94a81a1ca5e2f1a25630124550f5c4ee
+  environment_audit:
+    path: src/modeling/environment_audit.py
+    sha256: e4fc1dff57a3f174693c6b763fef9097205629fd5f973468a5d07e86f1b1eed6
+  environment_lock_verifier:
+    path: src/modeling/verify_environment_locks.py
+    sha256: 507d274e50f65e9b4e7c0a48348bef1b47ffa49ff80dd29a627c31fc3898cf17
+  qnn_resource_smoke:
+    path: src/modeling/qnn_resource_smoke.py
+    sha256: 7abbf0b2200c05abe967724c00a3e5c63c82e18c4844f740172bafe8888e608d
+  production_worker_smoke:
+    path: src/modeling/production_worker_smoke.py
+    sha256: c9585d6d7b3cc46befda95614c63d59e296dc5f1266bded3963afd2af719e7e1
+  policy_and_integration_tests:
+    path: tests/test_production_runner_v1_0_0.py
+    sha256: 10040c42f1ad36bc12ee832cecb0d497079e8b2cedaab2eb81ffa8b9c8fdd605
+  specification:
+    path: docs/08_4_production_runner_and_environments_v1_0_0.md
+    sha256: c41b8dd80c11c50fc219b5ae49dbf74a1bf4485ae5291bb879302380d72c56b2
+
+environment_artifacts:
+  configuration:
+    path: configs/model_environments_v1_0_0.yaml
+    sha256: b00ac0e712680a9c6fa56d5010722db5aae5b3959823c28365056139866c8726
+  documentation:
+    path: environments/README.md
+    sha256: aa0380b8b0db3dea10b4994a6addd0dde8ebcdffdecd9517e5d205ea980de1b9
+  classical:
+    python_version_file:
+      path: environments/classical/.python-version
+      sha256: 56c16a411e41fec3219e828087f312d9891641e3b29093c69d08a05ec1e5d693
+    direct_requirements:
+      path: environments/classical/requirements.in
+      sha256: ccae745caa1edb1309b32e94e4cc7f3f691199fe2e261608ca7761d3d7383218
+    complete_hashed_lockfile:
+      path: environments/classical/requirements.lock
+      sha256: de581076a1bb3fa47c9f3faa8361adba0b26d0300d99fce7054a5e3723f5b00d
+    python: 3.13.13
+    locked_distribution_count: 17
+    fresh_require_hashes_install: PASS
+  qnn_mlp:
+    python_version_file:
+      path: environments/qnn_mlp/.python-version
+      sha256: 657062bd6c016c431fe7658173ba3611697eeb21357fd82faef0b7d21a491c3f
+    direct_requirements:
+      path: environments/qnn_mlp/requirements.in
+      sha256: 18a60920e8ea44b5b76c3c679d089ea7e0c61a66adf756a3963c400babe3dfda
+    complete_hashed_lockfile:
+      path: environments/qnn_mlp/requirements.lock
+      sha256: 91b2b56c4780b380d06bd2665ebd5c75871c688b644cdfd426d60fc11a261be6
+    python: 3.12.2
+    locked_distribution_count: 46
+    fresh_require_hashes_install: PASS
+  optional_ibm_plugin_installed: false
+  optional_aws_plugin_installed: false
+  future_adapter_interface_reserved: true
+
+verification_reports:
+  classical_fresh_install_import:
+    path: data/reports/classical_environment_smoke_v1_0_0.json
+    sha256: 1fc5a60cc8670391fc2cb71c2ca47659ed5b7cf9b6243c72840d1491812915e5
+    status: PASS
+  qnn_mlp_fresh_install_import:
+    path: data/reports/qnn_mlp_environment_smoke_v1_0_0.json
+    sha256: 60c0bd8da8e4ff47ce3cc6159dd8dd2594e2a1ba52803774a1f43ad54ea48aa2
+    status: PASS
+  qnn_resource_smoke:
+    path: data/reports/qnn_resource_smoke_v1_0_0.json
+    sha256: 2c50db30819662f591410188a9ba8aca21361cbbbfa39b15e2cc1522ebd6dca0
+    status: PASS
+  cross_environment_worker_smoke:
+    path: data/reports/production_worker_synthetic_smoke_v1_0_0.json
+    sha256: 85c0999b0bb4a99f8d7117e64a7610714b3a5e95b4d13803dc1ecad644dd205f
+    status: PASS
+  synthetic_end_to_end:
+    path: data/reports/synthetic_production_e2e_v1_0_0.json
+    sha256: a23f23d19ab8746b58774684b12df6f2973249ba6743e9ef77082de6b548561f
+    status: PASS
+  project_safe_dry_run:
+    path: data/reports/production_runner_project_dry_run_v1_0_0.json
+    sha256: df3e151d445109f1a3f010c252f4aa9ea091b9eb7bab55206479428d92e81365
+    status: PASS
+    model_fit_performed: false
+  aggregate_integrity:
+    path: data/reports/production_runner_and_environments_v1_0_0_integrity.json
+    sha256: c496d5fb37884937fe7570bc001b1ab3fb9459782ab4ff28088f04572ad937c6
+    status: PASS
+
+gate_invariants:
+  execution_contract_changed: false
+  frozen_upstream_changed: false
+  runner_result_dependent_manual_decisions: false
+  exact_train_input_paths_and_hashes_enforced: true
+  protected_period_access_guard_enforced: true
+  dry_run_performed_without_model_fit: true
+  synthetic_full_orchestration_passed: true
+  fresh_environment_installs_passed: true
+  exact_installed_distribution_sets_match_locks_excluding_pip_bootstrap: true
+  qnn_resource_smoke_all_six_cases_passed: true
+  policy_and_integration_tests_passed: 79
+  policy_and_integration_subtests_passed: 31
+  gate_is_integrity_only: true
+
+historical_preservation:
+  historical_frozen_v1_files_edited: false
+  data_access_policy_v1_1_0_edited: false
+  raw_x_t_v1_1_0_edited: false
+  supervised_ml_pipeline_v1_2_0_edited: false
+  model_stage_v1_2_0_edited: false
+  model_execution_contract_v1_2_0_edited: false
+
+authorization_boundary:
+  this_manifest_authorizes_project_model_training: false
+  execute_mode_invoked_on_project_data: false
+  next_action_requires_explicit_freeze_gate_acceptance: true
+  notes:
+    - This candidate manifest intentionally does not hash itself or a Git commit.
+    - It records an implementation ready for review; it does not itself freeze the implementation.
+    - Any change to a hashed source, lockfile, report or upstream authority invalidates this candidate manifest.

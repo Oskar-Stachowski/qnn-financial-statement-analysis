@@ -1,0 +1,89 @@
+{
+  "backend_settings": {
+    "threadpool_info": [
+      {
+        "filepath": "/private/tmp/qnn_classical_fresh.MQ2T8r/venv/lib/python3.13/site-packages/sklearn/.dylibs/libomp.dylib",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libomp",
+        "user_api": "openmp",
+        "version": null
+      },
+      {
+        "filepath": "/opt/homebrew/Cellar/libomp/22.1.5/lib/libomp.dylib",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "prefix": "libomp",
+        "user_api": "openmp",
+        "version": null
+      }
+    ]
+  },
+  "expected_packages": {
+    "joblib": "1.5.3",
+    "numpy": "2.4.4",
+    "pandas": "3.0.3",
+    "scikit-learn": "1.8.0",
+    "scipy": "1.17.1",
+    "shap": "0.52.0",
+    "threadpoolctl": "3.6.0",
+    "xgboost": "3.4.1"
+  },
+  "expected_python": "3.13.13",
+  "host": {
+    "architecture": "arm64",
+    "logical_cpu_count": 8,
+    "platform": "macOS-15.5-arm64-arm-64bit-Mach-O",
+    "processor": "arm",
+    "ram_bytes": 8589934592
+  },
+  "import_errors": {},
+  "lock_verification": {
+    "installed_distribution_count_excluding_pip": 17,
+    "locked_distribution_count": 17,
+    "lockfile": "/Users/oskarstachowski/qnn-financial-statement-analysis/environments/classical/requirements.lock",
+    "lockfile_sha256": "de581076a1bb3fa47c9f3faa8361adba0b26d0300d99fce7054a5e3723f5b00d",
+    "missing_locked_distributions": [],
+    "required": true,
+    "status": "EXACT_MATCH",
+    "unexpected_installed_distributions": [],
+    "version_mismatches": {}
+  },
+  "missing_distributions": [],
+  "model_fit_performed": false,
+  "package_versions_match": true,
+  "project_data_opened": false,
+  "python_matches": true,
+  "role": "classical",
+  "runtime_identity": {
+    "contract_version": "1.2.0",
+    "device_identity": "cpu",
+    "machine_architecture": "arm64",
+    "os_name": "Darwin",
+    "os_release": "24.5.0",
+    "package_versions": {
+      "joblib": "1.5.3",
+      "numpy": "2.4.4",
+      "pandas": "3.0.3",
+      "scikit-learn": "1.8.0",
+      "scipy": "1.17.1",
+      "shap": "0.52.0",
+      "threadpoolctl": "3.6.0",
+      "xgboost": "3.4.1"
+    },
+    "python_implementation": "CPython",
+    "python_version": "3.13.13",
+    "thread_environment": {
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "VECLIB_MAXIMUM_THREADS": "1"
+    }
+  },
+  "schema_version": 1,
+  "software_environment_sha256": "d4f569fb21dbf5c6fd8f8a472314391129df4f2afdbb9fd017c7dd740aa22454",
+  "status": "READY",
+  "synthetic_only": true,
+  "thread_environment_matches": true
+}

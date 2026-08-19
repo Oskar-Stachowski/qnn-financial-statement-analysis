@@ -1,0 +1,10 @@
+numpy==2.4.4
+scipy==1.17.1
+pandas==3.0.3
+scikit-learn==1.8.0
+torch==2.13.0
+PennyLane==0.45.1
+pennylane-lightning==0.45.0
+captum==0.9.0
+PyYAML==6.0.3
+setuptools==84.0.0

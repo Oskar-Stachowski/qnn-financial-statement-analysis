@@ -1,0 +1,24 @@
+{
+  "candidate_index_sha256": "263635db04d87466b182f3a853910e2cc6ca11a284deeb57969b5cbea43faf21",
+  "candidate_positions": 320,
+  "contract_sha256": "dd4dd4ae466e57ce992b8fa5392afc807c448cfca5ae85eef672347d24e3cd15",
+  "fold_ids": [
+    "fold_2015",
+    "fold_2016",
+    "fold_2017",
+    "fold_2018",
+    "fold_2019",
+    "fold_2020"
+  ],
+  "id": "production_runner_project_dry_run_v1_0_0",
+  "mode": "dry_run_no_model_fit",
+  "model_fit_performed": false,
+  "protected_feature_years_opened": false,
+  "registry_sha256": "857ed6361a55c4ff1183a56614a4058e132db7a8b49bb5742b187900cd9d7f58",
+  "runtime_environment_exact_lock_match_before_deserialization": true,
+  "sample_membership_sha256": "864af3d9aac6ea239d993ea48cd819c2185f3249957d8b81f6d8d4c3c9f3d680",
+  "schema_version": 1,
+  "source_feature_years": [2011, 2020],
+  "status": "PASS",
+  "upstream_file_sha256_verified_before_deserialization": true
+}
