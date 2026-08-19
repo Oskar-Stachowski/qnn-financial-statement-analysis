@@ -39,6 +39,14 @@ data/interim/sec_facts_long.csv
 data/interim/target_candidate_v2_pit_b.csv
 data/reports/target_candidate_v2_pit_b_revision_deltas.csv
 
+# Train-only resolver-correction projections and rebuilt row-level artifacts.
+# Exact hashes, row counts and provenance remain in the v1.1/v1.2 manifests.
+data/interim/research_universe_target_application_v1_train_access_projection.csv
+data/interim/target_candidate_v2_pit_b_v1_0_0_train_access_projection.csv
+data/interim/target_candidate_v2_pit_b_v1_1_0_train.csv
+data/interim/x_t_pit_v1_0_0_train_access_projection.csv
+data/interim/x_t_pit_v1_1_0_train_source_rebuild_candidate.csv
+
 # Historical-universe row-level staging outputs. The canonical processed panel
 # and compact audit/manifest remain visible for intentional versioning.
 data/interim/research_universe_pit_candidates.csv
@@ -55,6 +63,8 @@ data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv
 data/processed/x_t_pit_v1_raw.csv
 data/processed/x_t_pit_v1_raw.csv.tmp
 data/processed/x_t_pit_v1_raw.csv.refresh.tmp
+data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_1_0_train.csv
+data/processed/x_t_pit_v1_1_0_train.csv
 
 # Large row-level revision diagnostic; compact summaries remain in the X_t
 # audit JSON/Markdown and are reproducible from the frozen inputs.

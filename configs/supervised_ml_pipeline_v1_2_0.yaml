@@ -1,0 +1,122 @@
+schema_version: 1
+
+supervised_ml_pipeline:
+  id: supervised_ml_pipeline
+  version: 1.2.0
+  status: frozen_corrective_train_pipeline
+  frozen_on: "2026-08-19"
+  base_methodology: configs/supervised_ml_pipeline_v1.yaml
+  access_amendment: configs/supervised_ml_pipeline_v1_1_0_access_amendment.yaml
+  data_access_policy: configs/data_access_policy_v1_1_0.yaml
+  change_type: upstream_resolver_and_raw_feature_correction
+  sample_policy_changed: false
+  preprocessing_policy_changed: false
+  feature_blocks_changed: false
+  temporal_cv_definition_changed: false
+  metric_or_inference_policy_changed: false
+  predictive_models_trained: false
+
+authoritative_scope:
+  feature_years: [2011, 2020]
+  role: first_model_training_and_internal_temporal_cv
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_values_opened: false
+  later_period_application: pending_applicable_freeze_gates
+
+upstream_inputs:
+  target:
+    id: target_candidate_v2_pit_b
+    version: 1.1.0
+    artifact: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_1_0_train.csv
+    sha256: f480ae14f9988fa9ec4e023147e741e095b2a807b8e1639be058db0c107e39ad
+    target_definition_changed: false
+    target_status_changes: 0
+    target_label_changes: 0
+  raw_x_t:
+    id: x_t_pit
+    version: 1.1.0
+    artifact: data/processed/x_t_pit_v1_1_0_train.csv
+    sha256: 872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65
+  historical_research_universe:
+    id: research_universe_pit
+    version: 1.1.0
+    artifact: data/processed/research_universe_pit.csv
+    sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+    changed: false
+
+supervised_sample:
+  required_membership_status: eligible
+  required_target_status: available
+  allowed_x_t_statuses: [available_core, partially_available]
+  train_n: 19671
+  feature_changed_company_years_vs_v1: 25
+  feature_observations_changed_vs_v1: 75
+  feature_value_na_cells_delta_vs_v1: 74
+  membership_changed_vs_v1: false
+  entered_vs_v1: 0
+  exited_vs_v1: 0
+  membership_sha256: 864af3d9aac6ea239d993ea48cd819c2185f3249957d8b81f6d8d4c3c9f3d680
+  class_balance:
+    positive_n: 3623
+    negative_n: 16048
+    positive_rate: 0.18417975700269432
+
+raw_missingness_delta_in_supervised_sample:
+  roa_t: 25
+  accruals_to_assets_t: 25
+  profit_margin_t: 24
+  all_other_features: 0
+  missingness_changes_sample_membership: false
+  preprocessing_fitted_during_this_correction: false
+
+inherited_methodology:
+  source: configs/supervised_ml_pipeline_v1.yaml
+  sections_unchanged:
+    - feature_blocks
+    - preprocessing
+    - temporal_cv
+    - metric_aggregation
+    - inference
+    - mandatory_ablations_and_robustness
+    - selection_bias_policy
+  conflict_rule: this_v1_2_0_file_controls_upstream_versions_train_artifacts_counts_hashes_and_access_status
+
+temporal_cv_membership:
+  any_fold_membership_changed_vs_v1: false
+  folds:
+    - id: fold_2015
+      pit_safe_train_n: 6470
+      validation_n: 2241
+      train_membership_sha256: bc5b345a01b109dc66a5479f26e1f53ae09df621b0683d640edcf29febefe597
+      validation_membership_sha256: c080526cba47214eb81e8bde8eb10eef456b22dffe4834b9276d90d59ab3b044
+    - id: fold_2016
+      pit_safe_train_n: 8761
+      validation_n: 2133
+      train_membership_sha256: ad772df390693bde9ca57b30b6d080e5cb98f3638270ac6355ad2a9a16261528
+      validation_membership_sha256: ae57f2485c8b20520ddc3eb495822e3c72496c56724df7d31ef1952e955ce787
+    - id: fold_2017
+      pit_safe_train_n: 11089
+      validation_n: 1549
+      train_membership_sha256: b0daacf0496faaebf04d16d32481e86f725e0e54a7c3fc00252a78cb3dec98ac
+      validation_membership_sha256: f2ee36cf4dfc782a024b3d91ec3be9d0204f72cd2b00871bd1afc132ad03ee62
+    - id: fold_2018
+      pit_safe_train_n: 13221
+      validation_n: 1511
+      train_membership_sha256: ce32fbcc5fde215e3932d86fc7ee2b9b9bc7331cc74b7d370add1174da75fbdb
+      validation_membership_sha256: 42992b8a4fdb55970c88e2a895ba8cfd8f2853fdda0bead2f41f855c7a45886a
+    - id: fold_2019
+      pit_safe_train_n: 14784
+      validation_n: 1638
+      train_membership_sha256: 1ccea90c33abbe00c26805d91f54837c7793db79d649720574961f0e2b1d0737
+      validation_membership_sha256: 26b939c3af447f6f22f98506c74248bc11b6bffb9b9562f9b4e499c19fcd3616
+    - id: fold_2020
+      pit_safe_train_n: 16280
+      validation_n: 1688
+      train_membership_sha256: a1976723928f0776cd76572aa7ffcfaccc39419d7afae8ba93b0949296291aeb
+      validation_membership_sha256: 66a048bf980dd68769bb88c834262b9b5e295e1974a0eb7d07b7490103d91710
+
+supersession:
+  historical_pipeline: configs/supervised_ml_pipeline_v1.yaml
+  access_amendment_retained: configs/supervised_ml_pipeline_v1_1_0_access_amendment.yaml
+  v1_status: historical_superseded_for_first_model_training
+  historical_files_edited: false

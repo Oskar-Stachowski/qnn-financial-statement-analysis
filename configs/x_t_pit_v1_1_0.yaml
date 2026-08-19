@@ -1,0 +1,42 @@
+schema_version: 1
+
+x_t_patch:
+  id: x_t_pit
+  version: 1.1.0
+  status: frozen_train_cv_only_pending_later_period_gates
+  base_frozen_config: configs/x_t_pit_v1.yaml
+  base_frozen_artifact: data/processed/x_t_pit_v1_raw.csv
+  base_frozen_artifact_sha256: 0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f
+  resolver_module: src/data/primitive_resolver_v1_1.py
+  resolver_version: 1.1.0
+  correction: higher_priority_ambiguous_blocks_lower_priority_fallback
+  affected_resolver_paths:
+    - single_period
+    - controlled_cross_tag_equivalence
+  historical_v1_modified: false
+  target_version_assumed_by_x_t: 1.0.0
+  feature_years_materialized_now: [2011, 2020]
+  protected_feature_years_not_deserialized_analytically: [2021, 2024]
+  access_policy: configs/data_access_policy_v1_1_0.yaml
+  access_gate_for_later_period_application: not_opened
+
+inputs:
+  train_projection: data/interim/x_t_pit_v1_0_0_train_access_projection.csv
+  target_application_v1: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv
+  target_application_v1_sha256: ea42eb43018b2c8e238e2c4757260bb692e27edd5429628e28892f360f0f7f7d
+  target_application_train_projection: data/interim/research_universe_target_application_v1_train_access_projection.csv
+  frozen_target_v1: data/interim/target_candidate_v2_pit_b.csv
+  frozen_target_v1_sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+  frozen_target_train_projection: data/interim/target_candidate_v2_pit_b_v1_0_0_train_access_projection.csv
+  companyfacts: data/raw/research_universe_target_application/companyfacts
+  revenue_statement_evidence: data/raw/sec_filings/revenue_statement_evidence
+  primitive_policy: configs/target_candidate_v2_pit.yaml
+
+outputs:
+  source_rebuild_candidate: data/interim/x_t_pit_v1_1_0_train_source_rebuild_candidate.csv
+  raw_train_artifact: data/processed/x_t_pit_v1_1_0_train.csv
+  build_manifest: data/reports/x_t_pit_v1_1_0_train_build_manifest.json
+  impact_audit_json: data/reports/resolver_x_t_v1_1_0_impact_audit.json
+  impact_audit_markdown: data/reports/resolver_x_t_v1_1_0_impact_audit.md
+  target_train_artifact: data/interim/target_candidate_v2_pit_b_v1_1_0_train.csv
+  target_application_train_artifact: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_1_0_train.csv

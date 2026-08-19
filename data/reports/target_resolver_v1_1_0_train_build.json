@@ -1,0 +1,42 @@
+{
+  "artifact_id": "target_candidate_v2_pit_b_resolver_correction",
+  "artifact_version": "1.1.0",
+  "scope": "train_2011_2020_only",
+  "historical_v1_modified": false,
+  "target_definition_changed": false,
+  "target_labels_changed": false,
+  "cross_tag_pair_audit": {
+    "selected_cross_tag_pairs_checked": 1,
+    "newly_blocked_pairs": 0,
+    "candidates": [
+      {
+        "cik10": "0001616262",
+        "feature_year": 2015,
+        "primitive": "liabilities",
+        "old_strategy": "total_less_equity_including_nci->total_less_stockholders_equity_without_nci",
+        "new_status": "selected",
+        "new_reason": "controlled_cross_tag_equivalence",
+        "new_strategy": "total_less_equity_including_nci->total_less_stockholders_equity_without_nci"
+      }
+    ],
+    "blocked": []
+  },
+  "target_train": {
+    "rows": 20656,
+    "changed_rows": 87,
+    "changed_primitive_cells": 87,
+    "target_status_changes": [],
+    "target_label_changes": 0,
+    "sha256": "4436c9ed643eb4d4b6b1ba259219b1f94b3c9e984734d60e32743838eab69866"
+  },
+  "target_application_train": {
+    "rows": 47938,
+    "changed_rows": 108,
+    "changed_primitive_cells": 108,
+    "target_status_changes": [],
+    "target_label_changes": 0,
+    "sha256": "f480ae14f9988fa9ec4e023147e741e095b2a807b8e1639be058db0c107e39ad"
+  },
+  "models_trained": false,
+  "protected_feature_years_opened": false
+}

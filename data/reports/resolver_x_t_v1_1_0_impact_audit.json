@@ -1,0 +1,640 @@
+{
+  "audit_id": "resolver_x_t_v1_1_0_impact_audit",
+  "scope": "train_2011_2020_only",
+  "data_access_policy": "data_access_policy_v1.1.0",
+  "protected_feature_years_opened": false,
+  "models_trained": false,
+  "inputs": {
+    "old_train_projection": "data/interim/x_t_pit_v1_0_0_train_access_projection.csv",
+    "old_train_projection_sha256": "f5ca6167ad3e8d96d7891921473364c8520ae6f64acd14893ae6efef4fdee55a",
+    "new_raw_train": "data/processed/x_t_pit_v1_1_0_train.csv",
+    "new_raw_train_sha256": "872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65",
+    "target_application_train_projection": "data/interim/research_universe_target_application_v1_train_access_projection.csv",
+    "target_application_train_projection_sha256": "4b84074d41e061cd09a22961e0699025f5f7a146da8dca5dbec18ae2a1136d27",
+    "target_application_v1_1_train": "data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_1_0_train.csv",
+    "target_application_v1_1_train_sha256": "f480ae14f9988fa9ec4e023147e741e095b2a807b8e1639be058db0c107e39ad"
+  },
+  "raw_x_t": {
+    "rows_compared": 47938,
+    "changed_company_years": 112,
+    "current_primitive_changed_company_years": 112,
+    "pair_changed_company_years": 0,
+    "x_t_status_changed_company_years": 108,
+    "old_x_t_status_counts": {
+      "ambiguous": 350,
+      "available_core": 37622,
+      "missing": 645,
+      "not_available_non_xbrl": 3768,
+      "partially_available": 5553
+    },
+    "new_x_t_status_counts": {
+      "ambiguous": 350,
+      "available_core": 37514,
+      "missing": 645,
+      "not_available_non_xbrl": 3768,
+      "partially_available": 5661
+    },
+    "primitives": {
+      "assets": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "status_transitions": {},
+        "old_status_counts": {
+          "ambiguous": 182,
+          "missing": 594,
+          "not_available_non_xbrl": 3768,
+          "selected": 43394
+        },
+        "new_status_counts": {
+          "ambiguous": 182,
+          "missing": 594,
+          "not_available_non_xbrl": 3768,
+          "selected": 43394
+        }
+      },
+      "liabilities": {
+        "changed_company_years": 3,
+        "status_changed": 3,
+        "value_changed": 3,
+        "status_transitions": {
+          "selected->ambiguous": 3
+        },
+        "old_status_counts": {
+          "ambiguous": 262,
+          "missing": 897,
+          "not_available_non_xbrl": 3768,
+          "selected": 43011
+        },
+        "new_status_counts": {
+          "ambiguous": 265,
+          "missing": 897,
+          "not_available_non_xbrl": 3768,
+          "selected": 43008
+        }
+      },
+      "current_assets": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "status_transitions": {},
+        "old_status_counts": {
+          "ambiguous": 182,
+          "missing": 2511,
+          "not_available_non_xbrl": 3768,
+          "selected": 41477
+        },
+        "new_status_counts": {
+          "ambiguous": 182,
+          "missing": 2511,
+          "not_available_non_xbrl": 3768,
+          "selected": 41477
+        }
+      },
+      "current_liabilities": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "status_transitions": {},
+        "old_status_counts": {
+          "ambiguous": 181,
+          "missing": 2594,
+          "not_available_non_xbrl": 3768,
+          "selected": 41395
+        },
+        "new_status_counts": {
+          "ambiguous": 181,
+          "missing": 2594,
+          "not_available_non_xbrl": 3768,
+          "selected": 41395
+        }
+      },
+      "revenues": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "status_transitions": {},
+        "old_status_counts": {
+          "ambiguous": 11763,
+          "missing": 6816,
+          "not_available_non_xbrl": 3768,
+          "selected": 25591
+        },
+        "new_status_counts": {
+          "ambiguous": 11763,
+          "missing": 6816,
+          "not_available_non_xbrl": 3768,
+          "selected": 25591
+        }
+      },
+      "net_income": {
+        "changed_company_years": 109,
+        "status_changed": 109,
+        "value_changed": 109,
+        "status_transitions": {
+          "selected->ambiguous": 109
+        },
+        "old_status_counts": {
+          "ambiguous": 1137,
+          "missing": 1520,
+          "not_available_non_xbrl": 3768,
+          "selected": 41513
+        },
+        "new_status_counts": {
+          "ambiguous": 1246,
+          "missing": 1520,
+          "not_available_non_xbrl": 3768,
+          "selected": 41404
+        }
+      },
+      "operating_cash_flow": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "status_transitions": {},
+        "old_status_counts": {
+          "ambiguous": 1150,
+          "missing": 746,
+          "not_available_non_xbrl": 3768,
+          "selected": 42274
+        },
+        "new_status_counts": {
+          "ambiguous": 1150,
+          "missing": 746,
+          "not_available_non_xbrl": 3768,
+          "selected": 42274
+        }
+      }
+    },
+    "pairs": {
+      "assets": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "comparative_value_changed": 0,
+        "current_value_changed": 0
+      },
+      "liabilities": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "comparative_value_changed": 0,
+        "current_value_changed": 0
+      },
+      "current_assets": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "comparative_value_changed": 0,
+        "current_value_changed": 0
+      },
+      "current_liabilities": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "comparative_value_changed": 0,
+        "current_value_changed": 0
+      },
+      "revenues": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "comparative_value_changed": 0,
+        "current_value_changed": 0
+      },
+      "net_income": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "comparative_value_changed": 0,
+        "current_value_changed": 0
+      },
+      "operating_cash_flow": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "comparative_value_changed": 0,
+        "current_value_changed": 0
+      }
+    },
+    "features": {
+      "log_assets_t": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 4986,
+        "new_na_n": 4986,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "roa_t": {
+        "changed_company_years": 109,
+        "status_changed": 109,
+        "value_changed": 109,
+        "old_na_n": 7169,
+        "new_na_n": 7278,
+        "na_delta": 109,
+        "status_transitions": {
+          "available->ambiguous": 109
+        }
+      },
+      "ocf_to_assets_t": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 6277,
+        "new_na_n": 6277,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "current_ratio_t": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 7389,
+        "new_na_n": 7389,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "liabilities_to_assets_t": {
+        "changed_company_years": 3,
+        "status_changed": 3,
+        "value_changed": 3,
+        "old_na_n": 5551,
+        "new_na_n": 5554,
+        "na_delta": 3,
+        "status_transitions": {
+          "available->ambiguous": 3
+        }
+      },
+      "working_capital_to_assets_t": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 7528,
+        "new_na_n": 7528,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "accruals_to_assets_t": {
+        "changed_company_years": 109,
+        "status_changed": 109,
+        "value_changed": 109,
+        "old_na_n": 7471,
+        "new_na_n": 7580,
+        "na_delta": 109,
+        "status_transitions": {
+          "available->ambiguous": 109
+        }
+      },
+      "asset_growth_1y": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 9215,
+        "new_na_n": 9215,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "delta_roa_1y": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 11632,
+        "new_na_n": 11632,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "delta_ocf_to_assets_1y": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 10792,
+        "new_na_n": 10792,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "current_ratio_change_1y": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 11642,
+        "new_na_n": 11642,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "delta_liabilities_to_assets_1y": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 9791,
+        "new_na_n": 9791,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "log1p_revenues_t": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 22350,
+        "new_na_n": 22350,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "profit_margin_t": {
+        "changed_company_years": 66,
+        "status_changed": 66,
+        "value_changed": 57,
+        "old_na_n": 24003,
+        "new_na_n": 24060,
+        "na_delta": 57,
+        "status_transitions": {
+          "available->ambiguous": 57,
+          "missing->ambiguous": 9
+        }
+      },
+      "ocf_margin_t": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 23285,
+        "new_na_n": 23285,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "asset_turnover_t": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 22481,
+        "new_na_n": 22481,
+        "na_delta": 0,
+        "status_transitions": {}
+      },
+      "revenue_growth_1y": {
+        "changed_company_years": 0,
+        "status_changed": 0,
+        "value_changed": 0,
+        "old_na_n": 26286,
+        "new_na_n": 26286,
+        "na_delta": 0,
+        "status_transitions": {}
+      }
+    },
+    "feature_value_na_cells_old": 217848,
+    "feature_value_na_cells_new": 218126,
+    "feature_value_na_cells_delta": 278
+  },
+  "target": {
+    "frozen_target_affected": true,
+    "target_definition_changed": false,
+    "target_labels_changed": false,
+    "target_train_changed_company_years": 87,
+    "target_train_changed_primitive_cells": 87,
+    "target_train_status_changes": 0,
+    "target_application_changed_company_years": 108,
+    "target_application_changed_primitive_cells": 108,
+    "target_application_status_changes": 0,
+    "target_application_label_changes": 0,
+    "cross_tag_pair_audit": {
+      "selected_cross_tag_pairs_checked": 1,
+      "newly_blocked_pairs": 0,
+      "candidates": [
+        {
+          "cik10": "0001616262",
+          "feature_year": 2015,
+          "primitive": "liabilities",
+          "old_strategy": "total_less_equity_including_nci->total_less_stockholders_equity_without_nci",
+          "new_status": "selected",
+          "new_reason": "controlled_cross_tag_equivalence",
+          "new_strategy": "total_less_equity_including_nci->total_less_stockholders_equity_without_nci"
+        }
+      ],
+      "blocked": []
+    },
+    "target_train_artifact_sha256": "4436c9ed643eb4d4b6b1ba259219b1f94b3c9e984734d60e32743838eab69866",
+    "target_application_train_artifact_sha256": "f480ae14f9988fa9ec4e023147e741e095b2a807b8e1639be058db0c107e39ad"
+  },
+  "target_application": {
+    "target_status_or_label_changes": false,
+    "application_membership_source_changed": false
+  },
+  "supervised_sample": {
+    "old_n": 19671,
+    "new_n": 19671,
+    "feature_changed_company_years": 25,
+    "feature_changed_cells": 75,
+    "feature_value_na_cells_delta": 74,
+    "changed_membership_n": 0,
+    "entered_n": 0,
+    "exited_n": 0,
+    "entered_ids": [],
+    "exited_ids": [],
+    "old_membership_sha256": "864af3d9aac6ea239d993ea48cd819c2185f3249957d8b81f6d8d4c3c9f3d680",
+    "new_membership_sha256": "864af3d9aac6ea239d993ea48cd819c2185f3249957d8b81f6d8d4c3c9f3d680",
+    "missingness": {
+      "log_assets_t": {
+        "old_na_n": 5,
+        "new_na_n": 5,
+        "na_delta": 0
+      },
+      "roa_t": {
+        "old_na_n": 385,
+        "new_na_n": 410,
+        "na_delta": 25
+      },
+      "ocf_to_assets_t": {
+        "old_na_n": 295,
+        "new_na_n": 295,
+        "na_delta": 0
+      },
+      "current_ratio_t": {
+        "old_na_n": 75,
+        "new_na_n": 75,
+        "na_delta": 0
+      },
+      "liabilities_to_assets_t": {
+        "old_na_n": 34,
+        "new_na_n": 34,
+        "na_delta": 0
+      },
+      "working_capital_to_assets_t": {
+        "old_na_n": 77,
+        "new_na_n": 77,
+        "na_delta": 0
+      },
+      "accruals_to_assets_t": {
+        "old_na_n": 417,
+        "new_na_n": 442,
+        "na_delta": 25
+      },
+      "asset_growth_1y": {
+        "old_na_n": 2116,
+        "new_na_n": 2116,
+        "na_delta": 0
+      },
+      "delta_roa_1y": {
+        "old_na_n": 2564,
+        "new_na_n": 2564,
+        "na_delta": 0
+      },
+      "delta_ocf_to_assets_1y": {
+        "old_na_n": 2471,
+        "new_na_n": 2471,
+        "na_delta": 0
+      },
+      "current_ratio_change_1y": {
+        "old_na_n": 2197,
+        "new_na_n": 2197,
+        "na_delta": 0
+      },
+      "delta_liabilities_to_assets_1y": {
+        "old_na_n": 2158,
+        "new_na_n": 2158,
+        "na_delta": 0
+      },
+      "log1p_revenues_t": {
+        "old_na_n": 1494,
+        "new_na_n": 1494,
+        "na_delta": 0
+      },
+      "profit_margin_t": {
+        "old_na_n": 1610,
+        "new_na_n": 1634,
+        "na_delta": 24
+      },
+      "ocf_margin_t": {
+        "old_na_n": 1516,
+        "new_na_n": 1516,
+        "na_delta": 0
+      },
+      "asset_turnover_t": {
+        "old_na_n": 1499,
+        "new_na_n": 1499,
+        "na_delta": 0
+      },
+      "revenue_growth_1y": {
+        "old_na_n": 3779,
+        "new_na_n": 3779,
+        "na_delta": 0
+      }
+    },
+    "old_class_balance": {
+      "n": 19671,
+      "positive_n": 3623,
+      "negative_n": 16048,
+      "positive_rate": 0.18417975700269432
+    },
+    "new_class_balance": {
+      "n": 19671,
+      "positive_n": 3623,
+      "negative_n": 16048,
+      "positive_rate": 0.18417975700269432
+    }
+  },
+  "temporal_folds": {
+    "old": {
+      "fold_2015": {
+        "train_n": 6470,
+        "validation_n": 2241,
+        "late_labels_excluded_n": 141,
+        "validation_prediction_cutoff_utc": "2015-04-30T20:44:00+00:00",
+        "train_membership_sha256": "bc5b345a01b109dc66a5479f26e1f53ae09df621b0683d640edcf29febefe597",
+        "validation_membership_sha256": "c080526cba47214eb81e8bde8eb10eef456b22dffe4834b9276d90d59ab3b044"
+      },
+      "fold_2016": {
+        "train_n": 8761,
+        "validation_n": 2133,
+        "late_labels_excluded_n": 150,
+        "validation_prediction_cutoff_utc": "2016-04-28T22:09:00+00:00",
+        "train_membership_sha256": "ad772df390693bde9ca57b30b6d080e5cb98f3638270ac6355ad2a9a16261528",
+        "validation_membership_sha256": "ae57f2485c8b20520ddc3eb495822e3c72496c56724df7d31ef1952e955ce787"
+      },
+      "fold_2017": {
+        "train_n": 11089,
+        "validation_n": 1549,
+        "late_labels_excluded_n": 63,
+        "validation_prediction_cutoff_utc": "2017-06-09T17:50:00+00:00",
+        "train_membership_sha256": "b0daacf0496faaebf04d16d32481e86f725e0e54a7c3fc00252a78cb3dec98ac",
+        "validation_membership_sha256": "f2ee36cf4dfc782a024b3d91ec3be9d0204f72cd2b00871bd1afc132ad03ee62"
+      },
+      "fold_2018": {
+        "train_n": 13221,
+        "validation_n": 1511,
+        "late_labels_excluded_n": 64,
+        "validation_prediction_cutoff_utc": "2018-06-08T15:22:00+00:00",
+        "train_membership_sha256": "ce32fbcc5fde215e3932d86fc7ee2b9b9bc7331cc74b7d370add1174da75fbdb",
+        "validation_membership_sha256": "42992b8a4fdb55970c88e2a895ba8cfd8f2853fdda0bead2f41f855c7a45886a"
+      },
+      "fold_2019": {
+        "train_n": 14784,
+        "validation_n": 1638,
+        "late_labels_excluded_n": 50,
+        "validation_prediction_cutoff_utc": "2019-06-07T18:33:00+00:00",
+        "train_membership_sha256": "1ccea90c33abbe00c26805d91f54837c7793db79d649720574961f0e2b1d0737",
+        "validation_membership_sha256": "26b939c3af447f6f22f98506c74248bc11b6bffb9b9562f9b4e499c19fcd3616"
+      },
+      "fold_2020": {
+        "train_n": 16280,
+        "validation_n": 1688,
+        "late_labels_excluded_n": 65,
+        "validation_prediction_cutoff_utc": "2020-06-12T20:43:00+00:00",
+        "train_membership_sha256": "a1976723928f0776cd76572aa7ffcfaccc39419d7afae8ba93b0949296291aeb",
+        "validation_membership_sha256": "66a048bf980dd68769bb88c834262b9b5e295e1974a0eb7d07b7490103d91710"
+      }
+    },
+    "new": {
+      "fold_2015": {
+        "train_n": 6470,
+        "validation_n": 2241,
+        "late_labels_excluded_n": 141,
+        "validation_prediction_cutoff_utc": "2015-04-30T20:44:00+00:00",
+        "train_membership_sha256": "bc5b345a01b109dc66a5479f26e1f53ae09df621b0683d640edcf29febefe597",
+        "validation_membership_sha256": "c080526cba47214eb81e8bde8eb10eef456b22dffe4834b9276d90d59ab3b044"
+      },
+      "fold_2016": {
+        "train_n": 8761,
+        "validation_n": 2133,
+        "late_labels_excluded_n": 150,
+        "validation_prediction_cutoff_utc": "2016-04-28T22:09:00+00:00",
+        "train_membership_sha256": "ad772df390693bde9ca57b30b6d080e5cb98f3638270ac6355ad2a9a16261528",
+        "validation_membership_sha256": "ae57f2485c8b20520ddc3eb495822e3c72496c56724df7d31ef1952e955ce787"
+      },
+      "fold_2017": {
+        "train_n": 11089,
+        "validation_n": 1549,
+        "late_labels_excluded_n": 63,
+        "validation_prediction_cutoff_utc": "2017-06-09T17:50:00+00:00",
+        "train_membership_sha256": "b0daacf0496faaebf04d16d32481e86f725e0e54a7c3fc00252a78cb3dec98ac",
+        "validation_membership_sha256": "f2ee36cf4dfc782a024b3d91ec3be9d0204f72cd2b00871bd1afc132ad03ee62"
+      },
+      "fold_2018": {
+        "train_n": 13221,
+        "validation_n": 1511,
+        "late_labels_excluded_n": 64,
+        "validation_prediction_cutoff_utc": "2018-06-08T15:22:00+00:00",
+        "train_membership_sha256": "ce32fbcc5fde215e3932d86fc7ee2b9b9bc7331cc74b7d370add1174da75fbdb",
+        "validation_membership_sha256": "42992b8a4fdb55970c88e2a895ba8cfd8f2853fdda0bead2f41f855c7a45886a"
+      },
+      "fold_2019": {
+        "train_n": 14784,
+        "validation_n": 1638,
+        "late_labels_excluded_n": 50,
+        "validation_prediction_cutoff_utc": "2019-06-07T18:33:00+00:00",
+        "train_membership_sha256": "1ccea90c33abbe00c26805d91f54837c7793db79d649720574961f0e2b1d0737",
+        "validation_membership_sha256": "26b939c3af447f6f22f98506c74248bc11b6bffb9b9562f9b4e499c19fcd3616"
+      },
+      "fold_2020": {
+        "train_n": 16280,
+        "validation_n": 1688,
+        "late_labels_excluded_n": 65,
+        "validation_prediction_cutoff_utc": "2020-06-12T20:43:00+00:00",
+        "train_membership_sha256": "a1976723928f0776cd76572aa7ffcfaccc39419d7afae8ba93b0949296291aeb",
+        "validation_membership_sha256": "66a048bf980dd68769bb88c834262b9b5e295e1974a0eb7d07b7490103d91710"
+      }
+    },
+    "changed_folds": {},
+    "any_membership_changed": false
+  },
+  "verdict_checks": {
+    "raw_change_is_fail_closed_only": true,
+    "no_pair_regression_detected": true,
+    "target_labels_unchanged": true,
+    "supervised_membership_fully_accounted": true,
+    "protected_periods_remained_closed": true,
+    "models_trained": false
+  }
+}

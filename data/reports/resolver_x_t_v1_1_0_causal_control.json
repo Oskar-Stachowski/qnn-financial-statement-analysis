@@ -1,0 +1,21 @@
+{
+  "audit_id": "resolver_x_t_v1_1_0_same_source_causal_control",
+  "scope": "train_2011_2020_only",
+  "data_access_policy": "data_access_policy_v1.1.0",
+  "protected_feature_years_opened": false,
+  "models_trained": false,
+  "frozen_v1_train_projection": "data/interim/x_t_pit_v1_0_0_train_access_projection.csv",
+  "frozen_v1_train_projection_sha256": "f5ca6167ad3e8d96d7891921473364c8520ae6f64acd14893ae6efef4fdee55a",
+  "v1_1_source_candidate": "data/interim/x_t_pit_v1_1_0_train_source_rebuild_candidate.csv",
+  "v1_1_source_candidate_sha256": "e580d43fb4b7a793feeb3f110bf4ab7078015addc1ab59a360a99d602de99e26",
+  "changed_company_years_checked": 112,
+  "primitive_cells_checked": 112,
+  "primitive_cells_by_name": {
+    "liabilities": 3,
+    "net_income": 109
+  },
+  "exact_frozen_selection_matches": 112,
+  "mismatch_n": 0,
+  "mismatches": [],
+  "causal_isolation_passed": true
+}

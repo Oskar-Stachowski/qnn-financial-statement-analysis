@@ -1,0 +1,25 @@
+schema_version: 1
+
+model_stage_resolver_amendment:
+  id: model_stage
+  version: 1.2.0
+  status: frozen_input_reference_amendment
+  frozen_on: "2026-08-19"
+  base_preregistration: configs/model_stage_v1.yaml
+  access_amendment: configs/model_stage_v1_1_0_access_amendment.yaml
+  supervised_pipeline: configs/supervised_ml_pipeline_v1_2_0.yaml
+  supervised_pipeline_version: 1.2.0
+  raw_x_t_version: 1.1.0
+  target_resolver_version: 1.1.0
+  model_roster_changed: false
+  search_spaces_changed: false
+  seeds_changed: false
+  calibration_or_threshold_policy_changed: false
+  model_training_performed: false
+  production_runner_authorized: false
+  protected_feature_years_opened: false
+
+supersession:
+  scope: upstream_train_artifact_references_only
+  historical_preregistration_edited: false
+  all_non_input_model_stage_decisions_inherited: true

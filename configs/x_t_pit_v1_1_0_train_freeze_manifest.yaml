@@ -1,0 +1,87 @@
+manifest_schema_version: 1
+
+raw_point_in_time_x_t:
+  id: x_t_pit
+  version: 1.1.0
+  status: frozen_train_only_pending_later_period_gates
+  frozen_on: "2026-08-19"
+  scope: feature_years_2011_2020
+  historical_v1_modified: false
+  preprocessing_applied: false
+  models_trained: false
+
+access_boundary:
+  policy: configs/data_access_policy_v1_1_0.yaml
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_values_opened: false
+  full_period_v1_1_artifact_claimed: false
+
+historical_v1:
+  artifact: data/processed/x_t_pit_v1_raw.csv
+  sha256: 0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f
+  status: historical_superseded_for_first_model_training
+  retained_immutable: true
+
+artifact:
+  path: data/processed/x_t_pit_v1_1_0_train.csv
+  tracked_in_git: false
+  rows: 47938
+  columns: 1072
+  sha256: 872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65
+
+resolver_delta:
+  changed_company_years: 112
+  current_primitive_cells:
+    net_income: 109
+    liabilities: 3
+  pair_primitive_cells: 0
+  primitive_status_transition: selected_to_ambiguous
+  lower_priority_coverage_rescue_allowed: false
+  changed_derived_feature_company_years:
+    roa_t: 109
+    accruals_to_assets_t: 109
+    profit_margin_t: 66
+    liabilities_to_assets_t: 3
+  new_feature_value_na_cells: 278
+  x_t_status_changes:
+    available_core_to_partially_available: 108
+
+source_drift_quarantine:
+  source_candidate: data/interim/x_t_pit_v1_1_0_train_source_rebuild_candidate.csv
+  source_candidate_tracked_in_git: false
+  source_candidate_sha256: e580d43fb4b7a793feeb3f110bf4ab7078015addc1ab59a360a99d602de99e26
+  candidate_is_frozen_output: false
+  policy: only_old_selected_to_new_ambiguous_higher_priority_context_transitions_enter_output
+
+versioned_components:
+  - path: configs/x_t_pit_v1_1_0.yaml
+    sha256: 80ea61c1432b86ec6332b73902296df1f505740e5486c8dca46636c1c9de98c0
+  - path: src/data/primitive_resolver_v1_1.py
+    sha256: 922efaa2ab947a35ba0a418d03e546bc30e872bdea732c6ac377ce39fa2bc2e0
+  - path: src/data/x_t_pit_v1_1.py
+    sha256: c5846d1a6dc2751f5190b0edf55ceaf8523fe8ad5a58e7ff40961516e8ac8285
+  - path: src/data/35_build_x_t_pit_v1_1.py
+    sha256: 4da28852729a2387d039b40d2fc60396aa39f15b30fb05997e07a291e19c4107
+  - path: src/data/36_audit_resolver_v1_1.py
+    sha256: 034216d40264729bf3dc1d861eee756f04644cfc67e48fc8b0b79a724a3f20a1
+  - path: src/data/37_audit_resolver_causal_control_v1_1.py
+    sha256: 784e4fe3f2a1351b4320d4a66ddb7496a4984fd257b0cd4d50bcf2b9e692530f
+  - path: tests/test_primitive_resolver_v1_1.py
+    sha256: 7f365949baa3c79c1a897d37b2b00c8be9a7824b9454cf99ef621a008ce63dc0
+  - path: docs/06_3_raw_x_t_v1_1_0_resolver_correction.md
+    sha256: 4debd9963ca4af3737d0f057ef024992958a67c06feb14777d72b17212aa0703
+
+audit_evidence:
+  - path: data/reports/x_t_pit_v1_1_0_train_build_manifest.json
+    sha256: 8aae35c51e69b0860e6fe927c97c8ed858985de8fb8d1efb2307df4a9dec9565
+  - path: data/reports/resolver_x_t_v1_1_0_impact_audit.json
+    sha256: 62b7501ffb1d28e7be26d003e26892376d8b766b155cb700ccf8cc88d29fd47c
+  - path: data/reports/resolver_x_t_v1_1_0_impact_audit.md
+    sha256: 06a47b761820b26caeb84b6cdaa7a9c3881078f13bebd06e4d8cbe144eeeb80a
+  - path: data/reports/resolver_x_t_v1_1_0_causal_control.json
+    sha256: 753e865cbda0b005e6ecce9c739652fec61e1b050553171133aecd90bf1d9304
+
+supersession:
+  historical_manifest: configs/x_t_pit_v1_freeze_manifest.yaml
+  scope: first_model_training_and_train_period_feature_values
+  historical_manifest_edited: false

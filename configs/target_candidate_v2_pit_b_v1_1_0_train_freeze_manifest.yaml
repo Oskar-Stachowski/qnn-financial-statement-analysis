@@ -1,0 +1,68 @@
+manifest_schema_version: 1
+
+target_resolver_correction:
+  id: target_candidate_v2_pit_b
+  version: 1.1.0
+  status: frozen_train_only_pending_later_period_gates
+  frozen_on: "2026-08-19"
+  scope: feature_years_2011_2020
+  change_type: resolver_provenance_correction
+  target_definition_changed: false
+  target_status_changed: false
+  target_labels_changed: false
+  historical_v1_modified: false
+  models_trained: false
+
+access_boundary:
+  policy: configs/data_access_policy_v1_1_0.yaml
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_values_opened: false
+  later_period_application_status: pending_applicable_freeze_gate
+
+historical_v1:
+  artifact: data/interim/target_candidate_v2_pit_b.csv
+  sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+  status: historical_superseded_for_first_model_training
+  retained_immutable: true
+
+artifacts:
+  target_train:
+    path: data/interim/target_candidate_v2_pit_b_v1_1_0_train.csv
+    tracked_in_git: false
+    rows: 20656
+    sha256: 4436c9ed643eb4d4b6b1ba259219b1f94b3c9e984734d60e32743838eab69866
+    changed_company_years: 87
+    changed_A_primitive_cells: 87
+    target_status_changes: 0
+    target_label_changes: 0
+  target_application_train:
+    path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_1_0_train.csv
+    tracked_in_git: false
+    rows: 47938
+    sha256: f480ae14f9988fa9ec4e023147e741e095b2a807b8e1639be058db0c107e39ad
+    changed_company_years: 108
+    changed_A_primitive_cells: 108
+    target_status_changes: 0
+    target_label_changes: 0
+
+pair_resolver_audit:
+  selected_controlled_cross_tag_pairs_checked: 1
+  newly_blocked_pairs: 0
+  target_pair_values_changed: 0
+
+versioned_components:
+  - path: src/data/primitive_resolver_v1_1.py
+    sha256: 922efaa2ab947a35ba0a418d03e546bc30e872bdea732c6ac377ce39fa2bc2e0
+  - path: src/data/target_resolver_v1_1.py
+    sha256: 20818cdfbdbc27bd6c99c12eb40b8c7b3ac9de1ef5042bfef78e30e8ebb20bfe
+  - path: tests/test_primitive_resolver_v1_1.py
+    sha256: 7f365949baa3c79c1a897d37b2b00c8be9a7824b9454cf99ef621a008ce63dc0
+  - path: data/reports/target_resolver_v1_1_0_train_build.json
+    sha256: 28aa23bc9509cd1e189f48fc46331b0ab3c63ebef34838740df50127d0d75a3a
+  - path: docs/04_10_target_resolver_v1_1_0_train_correction.md
+    sha256: 5d0410f4980ce033168c947f6fce35d1af461284f2feab89ff24efe5dad0e2d0
+
+supersession:
+  historical_manifest: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+  scope: train_period_resolver_provenance_and_downstream_references_only
+  historical_manifest_edited: false

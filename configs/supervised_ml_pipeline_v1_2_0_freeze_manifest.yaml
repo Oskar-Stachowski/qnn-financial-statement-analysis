@@ -1,0 +1,70 @@
+manifest_schema_version: 1
+
+supervised_ml_pipeline:
+  id: supervised_ml_pipeline
+  version: 1.2.0
+  status: frozen_corrective_train_pipeline
+  frozen_on: "2026-08-19"
+  scope: train_and_internal_temporal_cv_2011_2020
+  predictive_models_trained: false
+
+frozen_inputs:
+  target_application_train:
+    path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_1_0_train.csv
+    tracked_in_git: false
+    sha256: f480ae14f9988fa9ec4e023147e741e095b2a807b8e1639be058db0c107e39ad
+  raw_x_t_train:
+    path: data/processed/x_t_pit_v1_1_0_train.csv
+    tracked_in_git: false
+    sha256: 872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65
+  historical_universe:
+    path: data/processed/research_universe_pit.csv
+    sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+
+membership:
+  train_n: 19671
+  train_sha256: 864af3d9aac6ea239d993ea48cd819c2185f3249957d8b81f6d8d4c3c9f3d680
+  feature_changed_company_years_vs_v1: 25
+  feature_observations_changed_vs_v1: 75
+  feature_value_na_cells_delta_vs_v1: 74
+  entered_vs_v1: 0
+  exited_vs_v1: 0
+  temporal_fold_memberships_changed: false
+
+impact_audit:
+  path: data/reports/resolver_x_t_v1_1_0_impact_audit.json
+  sha256: 62b7501ffb1d28e7be26d003e26892376d8b766b155cb700ccf8cc88d29fd47c
+  raw_changed_company_years: 112
+  supervised_feature_changed_company_years: 25
+  supervised_feature_observations_changed: 75
+  supervised_feature_value_na_cells_delta: 74
+  supervised_membership_changed: false
+  class_balance_changed: false
+
+causal_control:
+  path: data/reports/resolver_x_t_v1_1_0_causal_control.json
+  sha256: 753e865cbda0b005e6ecce9c739652fec61e1b050553171133aecd90bf1d9304
+  primitive_cells_checked: 112
+  exact_frozen_selection_matches: 112
+  mismatches: 0
+  causal_isolation_passed: true
+
+versioned_components:
+  - path: configs/supervised_ml_pipeline_v1_2_0.yaml
+    sha256: 9c2608259c1a6d1f31af677a0f25343b9e7e0975857147157e377b1e76abfe60
+  - path: configs/model_stage_v1_2_0_resolver_amendment.yaml
+    sha256: 7ec0749d5ad2f9213cb344bf6d3665b4894bf1438d7f082afd919f8151e84dee
+  - path: docs/07_3_supervised_ml_pipeline_v1_2_0_resolver_correction.md
+    sha256: 02af093fd10a02ff84bd90b77fba11ffbea298e67519d509bbb75e168636c6ea
+  - path: tests/test_resolver_x_t_v1_1_freeze.py
+    sha256: 82696b5c85371864df10487cf7254bf30e5e8838ef1a2711b6f7b37b227575b5
+
+access_boundary:
+  policy: configs/data_access_policy_v1_1_0.yaml
+  protected_feature_years_opened: false
+  later_period_artifacts_frozen: false
+
+supersession:
+  historical_manifest: configs/supervised_ml_pipeline_v1_freeze_manifest.yaml
+  historical_manifest_edited: false
+  scope: first_model_training_inputs_and_train_missingness
