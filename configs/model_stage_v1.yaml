@@ -1,0 +1,351 @@
+schema_version: 1
+
+model_stage:
+  id: model_stage_preregistration
+  version: 1.0.0
+  status: frozen
+  frozen_on: "2026-08-19"
+  freeze_scope: model_search_selection_calibration_interpretability_validation_and_test_transition
+  authoritative_notebook: notebooks/05_model_stage_preregistration.ipynb
+  authoritative_notebook_sha256: 67c4daa32a00cb0db08fbd35b950f422a277b63e22e669a449487c9a80626afc
+  technical_gate_report: data/reports/model_stage_preregistration_freeze_gate_execution.json
+  technical_gate_verdict: MODEL STAGE READY TO FREEZE
+  project_data_model_fit_performed: false
+  external_validation_opened_analytically: false
+  test_opened_or_used: false
+
+immutable_upstream:
+  target:
+    id: target_candidate_v2_pit_b
+    version: 1.0.0
+    manifest: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+    manifest_sha256: 52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb
+  historical_research_universe:
+    id: research_universe_pit
+    version: 1.1.0
+    manifest: configs/research_universe_pit_freeze_manifest.yaml
+    manifest_sha256: 60310dbc9379371c05316b28de273832d0eaf02f20fc1ee7bb28697a26fb71b7
+  raw_x_t:
+    id: x_t_pit
+    version: 1.0.0
+    manifest: configs/x_t_pit_v1_freeze_manifest.yaml
+    manifest_sha256: 9b59e812bfb1b34a2f72c78ce4fc0ba484249d0a1d48cdea8f94506a403a9023
+  supervised_ml_pipeline:
+    id: supervised_ml_pipeline
+    version: 1.0.0
+    config: configs/supervised_ml_pipeline_v1.yaml
+    config_sha256: 0e817dac719d1651ec7518141e71c627dc208f4bed5ccfebed6c5b9d88652765
+    manifest: configs/supervised_ml_pipeline_v1_freeze_manifest.yaml
+    manifest_sha256: f1000d9e66a83160ff4ae0c5759c09c96491e18c4b579f6a397e0e98afc6eef1
+
+frozen_pipeline_reference:
+  supervised_sample:
+    target_status: available
+    x_t_status: [available_core, partially_available]
+    development_n: 23218
+    train_2011_2020_n: 19671
+    external_validation_2021_2022_n: 3547
+  preprocessing_C:
+    order: [train_or_fold_p1_p99_winsorization, train_or_fold_median_imputation, financial_StandardScaler]
+    per_feature_missing_indicators: true
+    indicators_scaled: false
+  feature_blocks: [L, L+D, L+D+R]
+  temporal_cv:
+    id: pit_safe_expanding_window_6_fold
+    validation_years: [2015, 2016, 2017, 2018, 2019, 2020]
+    label_embargo_years: 1
+    exact_cutoff_rule: target_available_at <= min(prediction_timestamp_in_validation_fold)
+    preprocessing_refit_inside_each_fold: true
+  primary_metric: pooled_oof_pr_auc_2015_2020
+  primary_metric_input: seed_averaged_raw_oof_scores
+  inference:
+    method: clustered_bootstrap
+    cluster: economic_group_id
+    replicates: 2000
+    interval: 95_percent_percentile
+    seed: 20260818
+
+model_roster:
+  included:
+    - dummy_prior
+    - fixed_l2_logistic
+    - elastic_net_logistic
+    - rbf_svm
+    - random_forest
+    - hist_gradient_boosting
+    - xgboost
+    - pytorch_mlp
+    - qnn_if_technically_feasible
+  documented_omissions:
+    LDA: linear_role_covered_by_logistic_and_covariance_assumptions_unattractive_with_indicators
+    decision_tree: high_temporal_variance_and_tree_family_covered_by_RF_HistGB_XGBoost
+    LightGBM: earlier_XGBoost_or_LightGBM_alternative_instantiated_as_XGBoost
+  roster_may_change_after_validation: false
+
+candidate_materialization:
+  registry: configs/model_stage_candidates_v1.json
+  registry_sha256: 857ed6361a55c4ff1183a56614a4058e132db7a8b49bb5742b187900cd9d7f58
+  generator: src/modeling/model_stage_preregistration.py
+  generator_seed_coarse: 20260818
+  generator_seed_refinement: 20260821
+  total_configuration_ids: 142
+  all_configuration_ids_unique: true
+  exact_hyperparameters_live_in_registry: true
+  coarse_lists:
+    dummy_prior: {count: 1, sha256: 0bd658ab876c744c9d31ab24fd68d2bba1375adc02d88f306ba0ad5183cb832b}
+    elastic_net_logistic: {count: 12, sha256: a0cde4769aa6afd413b828b019c7c83f9ac90a171def2f842d740d36c50cd216}
+    fixed_l2_logistic: {count: 2, sha256: 0eb110e1552138bcd87d5d35777c826d73d75b4d7ec643a048e5f827e78668b1}
+    hist_gradient_boosting: {count: 16, sha256: 9f78bbc7b6e8f15a279effea7d0b1afb69d3080b22a0129a93396d2e4b694b96}
+    pytorch_mlp: {count: 12, sha256: 7316d4dab28573ea7984901da560738221a90406b41391855271e04b9639d85c}
+    random_forest: {count: 12, sha256: cc113d8091c867c6723301c165d0f2f0d8b0dd7b3ae9fcf4cdd0157da489b7f1}
+    rbf_svm: {count: 12, sha256: 9e2f34d2edea9cf7b14e5cb5abd01e96176a438906e2287b094e434e327e46bd}
+    xgboost: {count: 16, sha256: 712feb5fe5b28235330de10faa9a0d43c67ec03072f8efa000719dd2f7f7ff6b}
+  refinement_lists:
+    elastic_net_logistic: {count: 8, sha256: cb66a6ff5969436d7d81b4c698bb7174972d0eb251c26cf3bf63c26d1548d2f4}
+    hist_gradient_boosting: {count: 10, sha256: e4a0e89d1629f6564878e12ae0733d42e6dc26943d770ebaab6007a0cd63506d}
+    pytorch_mlp: {count: 8, sha256: 4a4373cdbcdb6e73a9040aaabf99814a991c44d3662c7a8cd646801f554d73e1}
+    random_forest: {count: 8, sha256: d15e7b62877096dbf26fcb1b19bea9d9f6c840b84b0e1424a0a881caa4517cb4}
+    rbf_svm: {count: 8, sha256: 8697c976326c5242bfd7f7444dee16b26822ac7147864ff07d6c233db3ec2a46}
+    xgboost: {count: 10, sha256: fac91cf8796ccb23fbf14b5664153a1ae05f6b01280e84d38577b5e45122712e}
+  qnn_lists:
+    stage_q1: {count: 3, sha256: 2393bf866e591e4c42ac69d1377c617d77de2aef94153e08cff5e93ff701fc28}
+    stage_q2: {count: 4, sha256: 6083b919b7ae8d57dd0119ab66b5aab5a5a1379fb74e30c416e4c1792cfe64f4}
+  conditional_refinement:
+    eligible_data: OOF_2015_2020_only
+    best_feature_block_only: true
+    maximum_families: 3
+    activation_requires_boundary_or_close_runner_up: true
+    coarse_leader_pr_auc_distance_max: 0.01
+    runner_up_gap_max: 0.003
+    validation_or_test_may_activate: false
+
+search_budgets_fold_fits:
+  classical_mlp_main: 1842
+  qnn_architecture_selection: 144
+  main_model_selection: 1986
+  conditional_classical_refinement: 180
+  ranking_search_cap: 2166
+  qnn_total_cap: 240
+  pca_matched_diagnostic_controls: 12
+
+class_imbalance:
+  count_scope: current_train_fold_only
+  w_negative: 1.0
+  w_positive: sqrt(N_negative/N_positive)
+  validation_weighted: false
+  APIs:
+    dummy_prior: none
+    fixed_l2_logistic: fit_sample_weight
+    elastic_net_logistic: fit_sample_weight
+    rbf_svm: fit_sample_weight
+    random_forest: fit_sample_weight
+    hist_gradient_boosting: fit_sample_weight
+    xgboost: fit_sample_weight_with_scale_pos_weight_1
+    pytorch_mlp: BCEWithLogitsLoss_pos_weight
+    qnn: BCEWithLogitsLoss_pos_weight
+
+elastic_net_logistic_constructor:
+  penalty: elasticnet
+  solver: saga
+  dual: false
+  tol: 0.0001
+  C: candidate_value
+  fit_intercept: true
+  intercept_scaling: 1
+  class_weight: null
+  random_state: training_seed
+  max_iter: 5000
+  verbose: 0
+  warm_start: false
+  n_jobs: 1
+  l1_ratio: candidate_value
+
+seed_aggregation:
+  candidate_sampling_seed: 20260818
+  refinement_sampling_seed: 20260821
+  coarse_and_refinement_training_seed: 20260818
+  confirmation_seeds: [20260819, 20260820]
+  stochastic_families: [elastic_net_logistic, random_forest, hist_gradient_boosting, xgboost, pytorch_mlp, qnn]
+  deterministic_exceptions: [dummy_prior, fixed_l2_logistic, rbf_svm]
+  oof_rule: arithmetic_mean_aligned_raw_scores_across_20260818_20260819_20260820_then_compute_PR_AUC_once
+  external_and_test_rule: refit_three_seeds_average_raw_scores_then_apply_frozen_Platt
+  probability_averaging_allowed: false
+
+raw_score_interface:
+  dummy_prior: logit_clip_train_prior_probability_1e-7
+  fixed_l2_logistic: decision_function
+  elastic_net_logistic: decision_function
+  rbf_svm: decision_function_probability_false
+  random_forest: logit_clip_predict_proba_1e-7
+  hist_gradient_boosting: decision_function
+  xgboost: native_output_margin_true
+  pytorch_mlp: direct_scalar_logit
+  qnn: direct_scalar_logit
+
+selection:
+  primary_rule: maximum_pooled_oof_pr_auc_2015_2020_on_seed_averaged_raw_scores
+  tie_definition: primary_metric_equal_after_rounding_to_6_decimals
+  tie_break_order:
+    - smaller_feature_block
+    - simpler_family_dummy_fixed_lr_elastic_lr_svm_histgb_xgboost_rf_pytorch_mlp_qnn
+    - no_class_weight
+    - fewer_parameters
+    - lexicographic_configuration_id
+  instability_role: report_only_except_technical_invalidity
+  required_stability_reporting: [fold_pr_auc, mean, sample_sd, minimum, year_prevalence_comparison, seed_dispersion]
+
+calibration_and_threshold:
+  calibrator: unweighted_one_dimensional_LogisticRegression_Platt
+  calibrator_input: final_seed_averaged_pooled_OOF_raw_scores
+  one_calibrator_per_family_representative: true
+  method_selection_allowed: false
+  threshold_rule: maximize_F1_on_same_calibrated_pooled_OOF
+  threshold_tie: higher_threshold
+  threshold_is_independent_generalization_estimate: false
+  may_change_model_ranking: false
+
+pytorch_mlp:
+  implementation: torch_nn_Sequential
+  dtype: float64
+  output: one_scalar_logit
+  loss: BCEWithLogitsLoss
+  loss_reduction: mean
+  weight_initialization: Xavier_uniform_hidden_activation_gain_output_gain_1
+  bias_initialization: 0.0
+  optimizer: Adam
+  Adam_betas: [0.9, 0.999]
+  Adam_eps: 1.0e-8
+  Adam_amsgrad: false
+  Adam_foreach: false
+  Adam_fused: false
+  batch_shuffle: true
+  batch_generator_seed: training_seed_times_10000_plus_validation_year
+  num_workers: 0
+  drop_last: false
+  early_stopping: false
+  deterministic_algorithms: true
+  checkpoints_every_epochs: 5
+  checkpoint_atomic_write: true
+  checkpoint_resume_limit: 1
+
+qnn:
+  stage_q1:
+    role: comparison_of_architecture_packages_not_causal_gate_effect
+    ansatzes: [ROT_CNOT_RING, RY_RZ_CZ_BRICKWORK, RY_CRX_RING]
+    may_select_final_ansatz: true
+    stage_q2_may_change_ansatz: false
+    fixed_settings: {qubits: 4, layers: 2, epochs: 45, learning_rate: 0.01, batch_size: 128, weight_decay: 0.0001, imbalance: sqrt}
+    shared_minibatch_order: training_seed_times_10000_plus_validation_year
+    tie_break: [pooled_OOF_PR_AUC_rounded_6_decimals, fewer_trainable_parameters, fixed_before_trainable_entanglers, lexicographic_ansatz_id]
+  stage_q2:
+    selected_ansatz_fixed: true
+    exact_candidates_source: configs/model_stage_candidates_v1.json
+    varies: [qubits_PCA_4_or_6, layers, epochs, learning_rate, batch_size, weight_decay, imbalance]
+  ansatzes:
+    ROT_CNOT_RING:
+      gate_order: Rot_on_wires_ascending_then_directed_CNOT_control_i_target_i_plus_1_mod_q
+      trainable_parameters_q4_depth2_including_head: 29
+    RY_RZ_CZ_BRICKWORK:
+      gate_order: RY_then_RZ_on_wires_ascending_then_even_odd_CZ_on_even_layers_and_odd_even_CZ_including_wrap_on_odd_layers
+      trainable_parameters_q4_depth2_including_head: 21
+    RY_CRX_RING:
+      gate_order: RY_on_wires_ascending_then_trainable_CRX_control_i_target_i_plus_1_mod_q
+      trainable_parameters_q4_depth2_including_head: 21
+  common_model:
+    encoding: ascending_wire_RY_angle_encoding_once_before_variational_layers
+    measurements: PauliZ_expectation_each_qubit
+    head: trainable_linear_all_expectations_to_one_logit
+    circuit_initialization: iid_Uniform_minus_0.1_plus_0.1_from_training_seed
+    linear_head_initialization: Xavier_uniform_gain_1_same_seeded_generator_bias_0
+    parameter_order: layer_major_then_wire_then_gate_parameter_then_head_wire_order_then_bias
+    optimizer: Adam
+    gradient_clip_norm: 5
+  representation:
+    source: frozen_preprocessing_C_output
+    input_order: financial_features_frozen_block_order_then_matching_missing_indicators
+    includes_missing_indicators: true
+    PCA_svd_solver: full
+    PCA_whiten: false
+    PCA_fit_scope: fold_train_only
+    component_scaler: StandardScaler_fit_fold_train_only
+    clipping: [-3.0, 3.0]
+    angle_mapping: angle_equals_pi_over_3_times_clipped_component
+    feature_order_sha256:
+      L: e44756941715e636fe21f13bd82585d580e9b24c7f1e2beb26e33ebaea525509
+      L+D: 8077c1bb7208155340ae32c6e0ce8833226e9cfca56690c966a49fd095b9bc4e
+      L+D+R: bb15196f3ab32eabe3492df6f5d9701da7a9b340eea3f9e84d126623f27429b7
+  matched_controls:
+    role: diagnostic_only_no_primary_ranking_no_QNN_selection
+    fixed_l2_logistic_fold_fits: 6
+    pytorch_mlp_fold_fits: 6
+    same_representation_rows_and_fold_fitted_transforms_as_QNN: true
+  resource_policy:
+    device: default.qubit
+    shots: null
+    differentiation: adjoint
+    dtype: float64
+    maximum_cumulative_wall_minutes_per_fold_fit: 120
+    maximum_total_cpu_hours: 240
+    maximum_total_fit_attempts: 240
+    checkpoint_every_epochs: 5
+    resume_limit: 1
+    fresh_retry_limit: 1
+    retry_may_change_methodology: false
+    post_hoc_simplification_allowed: false
+    infeasibility_status: QNN_TECHNICALLY_INFEASIBLE
+
+external_validation_roster:
+  one_CV_frozen_representative_per_family: true
+  frozen_fields: [feature_block, configuration_id_and_hyperparameters, seed_ensemble_or_deterministic_exception, raw_score_interface, Platt_calibrator_parameters, max_F1_threshold]
+  global_winner_role: primary
+  other_representatives_role: preregistered_secondary_comparisons
+  validation_may_remove_or_replace_roster_member: false
+  qnn_infeasibility_must_be_recorded_before_validation_opens: true
+
+interpretability:
+  common: grouped_permutation_importance_on_OOF_2015_2020_with_economic_group_clustered_CI
+  linear: [standardized_coefficients, odds_ratios, sign_and_fold_seed_stability, separate_missing_indicators]
+  tree_boosting: [common_permutation, interventional_TreeSHAP]
+  pytorch_mlp: [common_permutation, Integrated_Gradients_on_logit]
+  qnn: [common_permutation_in_original_17_features, PCA_loadings_and_explained_variance, encoded_component_sensitivity, fold_seed_stability, structural_ablations]
+  qnn_full_explanation_claim_allowed: false
+  may_change_model_or_feature_selection: false
+
+robustness_and_sensitivity:
+  retune_hyperparameters: false
+  may_change_primary_selection: false
+  pipeline: [B_without_missing_indicators, complete_case, no_winsorization, purged_economic_group_cv, sparse_row_available_features_at_least_11_of_17]
+  label: [deterioration_score_at_least_2, deterioration_score_at_least_4, operating_performance_max_D1_D2_alternative_score_at_least_3]
+  qnn: [replace_entangling_gates_with_identity, each_nonselected_ansatz_at_fixed_final_settings, swap_4_and_6_qubit_PCA_at_fixed_other_settings]
+
+validation_and_test:
+  external_validation:
+    years: [2021, 2022]
+    role: one_shot_no_tune
+    locked_family_roster_evaluated: true
+    may_change_methodology: false
+  after_validation_method_change:
+    new_explicit_methodology_version_required: true
+    validation_declared_spent: true
+    test_remains_closed: true
+  second_freeze_gate:
+    timing: after_one_shot_validation_before_any_test_access
+    allowed_verdicts: [MODEL_PIPELINE_v1_TEST_READY_UNCHANGED, MODEL_PIPELINE_v1_NOT_TEST_READY]
+    test_may_open_only_after_committed_test_ready_manifest: true
+  PIT_safe_refits:
+    external_2021: {train_years: [2011, 2019], embargo_year: 2020, exact_target_available_at_cutoff: true}
+    external_2022: {train_years: [2011, 2020], embargo_year: 2021, exact_target_available_at_cutoff: true}
+    test_2023: {train_years: [2011, 2021], embargo_year: 2022, exact_target_available_at_cutoff: true}
+    test_2024: {train_years: [2011, 2022], embargo_year: 2023, exact_target_available_at_cutoff: true, test_2023_labels_may_train: false}
+  forbidden_post_validation_changes: [model_families, hyperparameters, ansatz, feature_block, preprocessing, calibration, threshold]
+
+environment:
+  classical: {python: 3.13.13, numpy: 2.4.4, scipy: 1.17.1, pandas: 3.0.3, scikit_learn: 1.8.0, xgboost: 3.4.1, shap: 0.52.0, joblib: 1.5.3, threadpoolctl: 3.6.0}
+  qnn_mlp: {python: 3.12.2, numpy: 2.4.4, scipy: 1.17.1, pandas: 3.0.3, scikit_learn: 1.8.0, torch: 2.13.0, PennyLane: 0.45.1, pennylane_lightning: 0.45.0, captum: 0.9.0}
+  threads: {OMP_NUM_THREADS: 1, MKL_NUM_THREADS: 1, OPENBLAS_NUM_THREADS: 1, VECLIB_MAXIMUM_THREADS: 1, NUMEXPR_NUM_THREADS: 1, sklearn_n_jobs: 1, xgboost_n_jobs: 1, torch_num_threads: 1, torch_num_interop_threads: 1}
+
+change_control:
+  policy: any_change_requires_new_explicit_model_stage_version_and_development_only_audit
+  validation_2021_2022_may_trigger_change: false
+  test_2023_2024_may_trigger_change: false
+  search_or_training_authorized_by_this_freeze: false

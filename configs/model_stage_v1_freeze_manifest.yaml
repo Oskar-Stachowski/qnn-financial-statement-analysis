@@ -1,0 +1,192 @@
+manifest_schema_version: 1
+
+model_stage:
+  id: model_stage_preregistration
+  version: 1.0.0
+  status: frozen
+  frozen_on: "2026-08-19"
+  freeze_scope: model_stage_preregistration_all_search_selection_calibration_interpretability_and_test_transition_decisions
+  technical_gate_verdict: MODEL STAGE READY TO FREEZE
+  formal_freeze_effected_by_this_manifest: true
+  search_started: false
+  project_data_model_fit_performed: false
+  external_validation_opened_analytically: false
+  test_opened_or_used: false
+
+git:
+  basis_commit_before_model_stage_freeze: d38e1d42c225122061629c696fd61aa4f1cb489a
+  freeze_commit: commit_containing_this_manifest
+
+authoritative_sources:
+  notebook:
+    path: notebooks/05_model_stage_preregistration.ipynb
+    sha256: 67c4daa32a00cb0db08fbd35b950f422a277b63e22e669a449487c9a80626afc
+    outputs_clean: true
+    project_data_loaders_present: false
+  machine_policy:
+    path: configs/model_stage_v1.yaml
+    sha256: e9951acd7d81a15a6e60a49cc88bc3021bb20be9dd0afcad952b98cecbe62b25
+  candidate_registry:
+    path: configs/model_stage_candidates_v1.json
+    sha256: 857ed6361a55c4ff1183a56614a4058e132db7a8b49bb5742b187900cd9d7f58
+    configuration_id_count: 142
+    configuration_ids_unique: true
+  frozen_specification:
+    path: docs/08_1_model_stage_v1_frozen_specification.md
+    sha256: 09ce9f9a975ddd2177f6d81c58f4aecf619927a05e321c438b5ef4cf85d39b6c
+
+technical_freeze_gate:
+  report:
+    path: data/reports/model_stage_preregistration_freeze_gate_execution.json
+    sha256: d5071b51194d9c16c5fc47b7e61d412bc0ca4aa061ee05ed47c7f1c324bb3d84
+  report_schema_version: 1
+  executed_at_utc: "2026-08-19T12:00:09.754229+00:00"
+  scope: specification_candidate_materialization_and_synthetic_smoke_only
+  verdict: MODEL STAGE READY TO FREEZE
+  notebook_assertions_executed: 37
+  notebook_code_cells: 13
+  notebook_execution_error: null
+  notebook_outputs_clean: true
+  forbidden_project_data_loader_hits: []
+  external_validation_values_loaded: false
+  test_values_loaded: false
+  project_data_model_fit_performed: false
+  classical_synthetic_smoke_passed: true
+  qnn_mlp_synthetic_smoke_passed: true
+  repository_tests_passed: true
+  repository_tests_at_gate: 123
+
+upstream_frozen_inputs:
+  target:
+    id: target_candidate_v2_pit_b
+    version: 1.0.0
+    status: frozen_unchanged
+    manifest: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+    manifest_sha256: 52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb
+    artifact: data/interim/target_candidate_v2_pit_b.csv
+    artifact_sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+  historical_research_universe:
+    id: research_universe_pit
+    version: 1.1.0
+    status: frozen_unchanged
+    manifest: configs/research_universe_pit_freeze_manifest.yaml
+    manifest_sha256: 60310dbc9379371c05316b28de273832d0eaf02f20fc1ee7bb28697a26fb71b7
+    artifact: data/processed/research_universe_pit.csv
+    artifact_sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+  raw_x_t:
+    id: x_t_pit
+    version: 1.0.0
+    status: frozen_unchanged
+    manifest: configs/x_t_pit_v1_freeze_manifest.yaml
+    manifest_sha256: 9b59e812bfb1b34a2f72c78ce4fc0ba484249d0a1d48cdea8f94506a403a9023
+    artifact: data/processed/x_t_pit_v1_raw.csv
+    artifact_sha256: 0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f
+  supervised_ml_pipeline:
+    id: supervised_ml_pipeline
+    version: 1.0.0
+    status: frozen_unchanged
+    configuration: configs/supervised_ml_pipeline_v1.yaml
+    configuration_sha256: 0e817dac719d1651ec7518141e71c627dc208f4bed5ccfebed6c5b9d88652765
+    manifest: configs/supervised_ml_pipeline_v1_freeze_manifest.yaml
+    manifest_sha256: f1000d9e66a83160ff4ae0c5759c09c96491e18c4b579f6a397e0e98afc6eef1
+    specification: docs/07_1_supervised_ml_pipeline_v1_frozen_specification.md
+    specification_sha256: 5dcdeeb037de81f92ab1fae393005c487c8dd3a0edfe80997c49ded2d3eaa7dc
+
+frozen_decision_domains:
+  model_roster: true
+  coarse_search_spaces_and_materialized_candidates: true
+  conditional_classical_refinement_and_activation_rule: true
+  feature_blocks: true
+  class_imbalance_formula_and_family_APIs: true
+  random_seeds_and_seed_aggregation: true
+  temporal_cv_and_PIT_cutoffs: true
+  raw_score_interfaces: true
+  primary_ranking_and_tie_breaking: true
+  calibration_and_threshold: true
+  qnn_stage_q1_q2: true
+  qnn_ansatz_definitions_gate_order_and_parameter_counts: true
+  pca_qnn_representation_and_feature_order: true
+  pca_matched_classical_controls: true
+  qnn_resource_retry_and_infeasibility_policy: true
+  external_validation_family_roster: true
+  interpretability: true
+  robustness_and_sensitivity: true
+  PIT_safe_external_and_test_refits: true
+  second_freeze_gate_before_test: true
+
+candidate_lists:
+  coarse.dummy_prior: {count: 1, sha256: 0bd658ab876c744c9d31ab24fd68d2bba1375adc02d88f306ba0ad5183cb832b}
+  coarse.elastic_net_logistic: {count: 12, sha256: a0cde4769aa6afd413b828b019c7c83f9ac90a171def2f842d740d36c50cd216}
+  coarse.fixed_l2_logistic: {count: 2, sha256: 0eb110e1552138bcd87d5d35777c826d73d75b4d7ec643a048e5f827e78668b1}
+  coarse.hist_gradient_boosting: {count: 16, sha256: 9f78bbc7b6e8f15a279effea7d0b1afb69d3080b22a0129a93396d2e4b694b96}
+  coarse.pytorch_mlp: {count: 12, sha256: 7316d4dab28573ea7984901da560738221a90406b41391855271e04b9639d85c}
+  coarse.random_forest: {count: 12, sha256: cc113d8091c867c6723301c165d0f2f0d8b0dd7b3ae9fcf4cdd0157da489b7f1}
+  coarse.rbf_svm: {count: 12, sha256: 9e2f34d2edea9cf7b14e5cb5abd01e96176a438906e2287b094e434e327e46bd}
+  coarse.xgboost: {count: 16, sha256: 712feb5fe5b28235330de10faa9a0d43c67ec03072f8efa000719dd2f7f7ff6b}
+  refinement.elastic_net_logistic: {count: 8, sha256: cb66a6ff5969436d7d81b4c698bb7174972d0eb251c26cf3bf63c26d1548d2f4}
+  refinement.hist_gradient_boosting: {count: 10, sha256: e4a0e89d1629f6564878e12ae0733d42e6dc26943d770ebaab6007a0cd63506d}
+  refinement.pytorch_mlp: {count: 8, sha256: 4a4373cdbcdb6e73a9040aaabf99814a991c44d3662c7a8cd646801f554d73e1}
+  refinement.random_forest: {count: 8, sha256: d15e7b62877096dbf26fcb1b19bea9d9f6c840b84b0e1424a0a881caa4517cb4}
+  refinement.rbf_svm: {count: 8, sha256: 8697c976326c5242bfd7f7444dee16b26822ac7147864ff07d6c233db3ec2a46}
+  refinement.xgboost: {count: 10, sha256: fac91cf8796ccb23fbf14b5664153a1ae05f6b01280e84d38577b5e45122712e}
+  qnn.stage_q1: {count: 3, sha256: 2393bf866e591e4c42ac69d1377c617d77de2aef94153e08cff5e93ff701fc28}
+  qnn.stage_q2: {count: 4, sha256: 6083b919b7ae8d57dd0119ab66b5aab5a5a1379fb74e30c416e4c1792cfe64f4}
+
+pca_feature_order_hashes:
+  algorithm: sha256_utf8_lf_with_trailing_lf
+  includes_missing_indicators: true
+  L: e44756941715e636fe21f13bd82585d580e9b24c7f1e2beb26e33ebaea525509
+  L+D: 8077c1bb7208155340ae32c6e0ce8833226e9cfca56690c966a49fd095b9bc4e
+  L+D+R: bb15196f3ab32eabe3492df6f5d9701da7a9b340eea3f9e84d126623f27429b7
+
+protected_implementation_and_audit_components:
+  - path: src/modeling/model_stage_preregistration.py
+    sha256: 41e229cabf2f068bc99db45cfa9a4961283749af4a165bacceb4994e6d2c4a11
+  - path: src/modeling/model_stage_smoke.py
+    sha256: 83b6c33aeab3df0a78069c5e075e9fc9b4b49ef96bcfce309003f50e9bbf4450
+  - path: src/modeling/run_model_stage_freeze_gate.py
+    sha256: f0dfc5b6a6cf3a45126de3ee3e5d8e9747a28f7e2391166d5ce3dedc2f28664a
+  - path: tests/test_model_stage_preregistration.py
+    sha256: e5139db3d3cd76bc1ad381f5b0e4d3ecdd3976436914c96288634fb7415534ce
+
+environment_contract:
+  classical:
+    python: 3.13.13
+    numpy: 2.4.4
+    scipy: 1.17.1
+    pandas: 3.0.3
+    scikit_learn: 1.8.0
+    xgboost: 3.4.1
+    shap: 0.52.0
+    joblib: 1.5.3
+    threadpoolctl: 3.6.0
+  qnn_mlp:
+    python: 3.12.2
+    numpy: 2.4.4
+    scipy: 1.17.1
+    pandas: 3.0.3
+    scikit_learn: 1.8.0
+    torch: 2.13.0
+    PennyLane: 0.45.1
+    pennylane_lightning: 0.45.0
+    captum: 0.9.0
+  all_n_jobs_and_thread_pools: 1
+
+access_and_change_control:
+  external_validation_years: [2021, 2022]
+  external_validation_status_at_freeze: unopened_analytically
+  test_years: [2023, 2024]
+  test_status_at_freeze: unopened_unused
+  project_data_training_status_at_freeze: not_started
+  freeze_authorizes_search_or_training: false
+  validation_or_test_may_activate_tuning: false
+  validation_may_remove_models_from_test_roster: false
+  test_may_open_before_second_committed_test_ready_manifest: false
+  any_policy_or_candidate_change_requires: new_explicit_model_stage_version_and_development_only_audit
+
+notes:
+  - The manifest intentionally does not hash itself, its containing Git commit, or the freeze-lock test to avoid self-reference.
+  - The containing Git commit is the authoritative repository version of model-stage preregistration v1.0.0.
+  - Configuration IDs and exact hyperparameters are immutable through the candidate-registry artifact hash; each candidate-list hash is also checked independently.
+  - The positive gate used only imports, version checks, notebook assertions and synthetic smoke tests.
+  - Validation 2021-2022 and test 2023-2024 were not loaded, and no model fit on project data was performed.
