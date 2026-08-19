@@ -182,13 +182,22 @@ def iter_point_in_time_folds(
         label_available_at = pd.to_datetime(
             base_train[label_available_at_column], errors="coerce", utc=True
         )
+        train_prediction_at = pd.to_datetime(
+            base_train[prediction_timestamp_column], errors="coerce", utc=True
+        )
         prediction_at = pd.to_datetime(
             validation[prediction_timestamp_column], errors="coerce", utc=True
         )
         if label_available_at.isna().any():
             raise ValueError(f"Missing training label availability in {fold.name}.")
+        if train_prediction_at.isna().any():
+            raise ValueError(f"Missing training prediction timestamp in {fold.name}.")
         if prediction_at.isna().any():
             raise ValueError(f"Missing validation prediction timestamp in {fold.name}.")
+        if not train_prediction_at.lt(label_available_at).all():
+            raise AssertionError(
+                f"Prediction must strictly precede target availability in {fold.name}."
+            )
         cutoff = prediction_at.min()
         safe_mask = label_available_at.le(cutoff)
         train = base_train.loc[safe_mask].copy()
@@ -197,6 +206,11 @@ def iter_point_in_time_folds(
         retained_label_times = label_available_at.loc[safe_mask]
         if retained_label_times.max() > cutoff:
             raise AssertionError(f"Label-availability leakage detected in {fold.name}.")
+        retained_prediction_times = train_prediction_at.loc[safe_mask]
+        if not retained_prediction_times.lt(retained_label_times).all():
+            raise AssertionError(
+                f"Prediction/target ordering failed after filtering in {fold.name}."
+            )
         audit = PointInTimeFoldAudit(
             validation_prediction_cutoff=cutoff,
             base_train_rows=len(base_train),

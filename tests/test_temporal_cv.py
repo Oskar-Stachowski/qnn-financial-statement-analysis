@@ -111,6 +111,27 @@ class TemporalCrossValidationTests(unittest.TestCase):
         self.assertNotIn(late_index, train.index)
         self.assertEqual(validation["feature_year"].unique().tolist(), [2015])
 
+    def test_prediction_must_strictly_precede_own_target_availability(self) -> None:
+        invalid_index = self.frame.index[
+            self.frame["feature_year"].eq(2013)
+        ][0]
+        self.frame.loc[invalid_index, "target_available_at"] = (
+            self.frame.loc[invalid_index, "prediction_timestamp"]
+        )
+        with self.assertRaisesRegex(AssertionError, "strictly precede"):
+            list(iter_point_in_time_folds(self.frame))
+
+    def test_cutoff_comparison_uses_instants_not_rendered_offsets(self) -> None:
+        late_index = self.frame.index[
+            self.frame["feature_year"].eq(2013)
+            & self.frame["economic_group_id"].eq("g2013")
+        ][0]
+        self.frame.loc[late_index, "target_available_at"] = "2016-04-01T00:30:00-04:00"
+        first_fold = next(iter_point_in_time_folds(self.frame))
+        _, train, _, audit = first_fold
+        self.assertNotIn(late_index, train.index)
+        self.assertEqual(audit.label_unavailable_rows_excluded, 1)
+
     def test_missing_group_id_fails_closed(self) -> None:
         _, train, validation = next(iter_temporal_folds(self.frame))
         train.loc[train.index[0], "economic_group_id"] = None

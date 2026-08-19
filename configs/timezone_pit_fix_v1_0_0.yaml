@@ -1,0 +1,117 @@
+schema_version: 1
+
+timezone_pit_fix:
+  id: sec_acceptance_timezone_pit_fix
+  version: 1.0.0
+  status: passed
+  scope: train_2011_2020_only
+  target_definition_changed: false
+  target_labels_changed: false
+  feature_definitions_changed: false
+  x_t_artifact_changed: false
+  models_trained: false
+
+timestamp_semantics:
+  source_field: SEC Acceptance Time
+  naive_source_timezone: America/New_York
+  daylight_saving_rules: IANA_tzdb
+  explicit_offset_policy: preserve_represented_instant
+  cross_source_accession_resolution: frozen_X_t_anchor_instant_is_authoritative
+  cross_source_conflict_policy: reconcile_by_exact_accession_or_fail_closed
+  canonical_timezone: UTC
+  canonical_serialization: ISO_8601_second_precision_Z
+  comparison_policy: convert_both_operands_to_UTC_before_comparison
+  ambiguous_or_nonexistent_local_time: fail_closed
+
+scope:
+  permitted_feature_years: [2011, 2020]
+  forbidden_feature_years: [2021, 2022, 2023, 2024]
+
+inputs:
+  target_train: data/interim/target_candidate_v2_pit_b_v1_1_0_train.csv
+  target_application_train: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_1_0_train.csv
+  raw_x_t_train: data/processed/x_t_pit_v1_1_0_train.csv
+
+outputs:
+  target_train: data/interim/target_candidate_v2_pit_b_v1_2_0_train.csv
+  target_application_train: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_2_0_train.csv
+  audit_report: data/reports/timezone_pit_fix_v1_0_0.json
+
+results:
+  target_train:
+    rows: 20656
+    sha256: df68a31308d907d17a8efe63bd76641e88ed1b0010129cb166987527fa564e35
+    changed_timestamp_cells: 439530
+    non_timestamp_cells_changed: 0
+  target_application_train:
+    rows: 47938
+    sha256: 0f5d3bdefe13ed6ea6a1c6cdc94ae2c663f59175a7363dd8bffa26717069dd1b
+    changed_timestamp_cells: 895250
+    non_timestamp_cells_changed: 0
+  raw_x_t_train:
+    sha256_before: 872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65
+    sha256_after: 872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65
+    changed: false
+  target_labels:
+    changed: false
+    supervised_positive_n: 3623
+    supervised_negative_n: 16048
+  supervised_sample:
+    n: 19671
+    membership_sha256: 864af3d9aac6ea239d993ea48cd819c2185f3249957d8b81f6d8d4c3c9f3d680
+    prediction_before_target_violations: 0
+  changed_fold_memberships:
+    - fold: fold_2015
+      change: removed
+      research_universe_company_year_id: 0000880460-2013
+    - fold: fold_2015
+      change: removed
+      research_universe_company_year_id: 0001472601-2013
+    - fold: fold_2019
+      change: removed
+      research_universe_company_year_id: 0001586495-2016
+  folds:
+    - id: fold_2015
+      pit_safe_train_n: 6468
+      validation_n: 2241
+      train_membership_sha256: a5452f41bb4b4616ae60421408471f6e258aa0ced22b6f6e05af37a0a89c7919
+      validation_membership_sha256: c080526cba47214eb81e8bde8eb10eef456b22dffe4834b9276d90d59ab3b044
+      prediction_before_target_violations: 0
+      target_after_cutoff_violations: 0
+    - id: fold_2016
+      pit_safe_train_n: 8761
+      validation_n: 2133
+      train_membership_sha256: ad772df390693bde9ca57b30b6d080e5cb98f3638270ac6355ad2a9a16261528
+      validation_membership_sha256: ae57f2485c8b20520ddc3eb495822e3c72496c56724df7d31ef1952e955ce787
+      prediction_before_target_violations: 0
+      target_after_cutoff_violations: 0
+    - id: fold_2017
+      pit_safe_train_n: 11089
+      validation_n: 1549
+      train_membership_sha256: b0daacf0496faaebf04d16d32481e86f725e0e54a7c3fc00252a78cb3dec98ac
+      validation_membership_sha256: f2ee36cf4dfc782a024b3d91ec3be9d0204f72cd2b00871bd1afc132ad03ee62
+      prediction_before_target_violations: 0
+      target_after_cutoff_violations: 0
+    - id: fold_2018
+      pit_safe_train_n: 13221
+      validation_n: 1511
+      train_membership_sha256: ce32fbcc5fde215e3932d86fc7ee2b9b9bc7331cc74b7d370add1174da75fbdb
+      validation_membership_sha256: 42992b8a4fdb55970c88e2a895ba8cfd8f2853fdda0bead2f41f855c7a45886a
+      prediction_before_target_violations: 0
+      target_after_cutoff_violations: 0
+    - id: fold_2019
+      pit_safe_train_n: 14783
+      validation_n: 1638
+      train_membership_sha256: fe9a461be5df56a3f2f6d46bf1ee3c620498e1f7a4ce103fff5b980d9cd34df0
+      validation_membership_sha256: 26b939c3af447f6f22f98506c74248bc11b6bffb9b9562f9b4e499c19fcd3616
+      prediction_before_target_violations: 0
+      target_after_cutoff_violations: 0
+    - id: fold_2020
+      pit_safe_train_n: 16280
+      validation_n: 1688
+      train_membership_sha256: a1976723928f0776cd76572aa7ffcfaccc39419d7afae8ba93b0949296291aeb
+      validation_membership_sha256: 66a048bf980dd68769bb88c834262b9b5e295e1974a0eb7d07b7490103d91710
+      prediction_before_target_violations: 0
+      target_after_cutoff_violations: 0
+  all_six_folds_pass_label_availability: true
+  audit_report_sha256: 64fa7e617baff8b11b3c1225f7b8a2539ed0d6825f0c05a62a94efc2a3ab779f

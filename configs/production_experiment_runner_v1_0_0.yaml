@@ -3,7 +3,7 @@ schema_version: 1
 runner:
   id: production_experiment_runner
   version: 1.0.0
-  status: implemented_pending_freeze_gate
+  status: implemented_timezone_pit_fixed
   implemented_on: "2026-08-19"
   execution_contract_version: 1.2.0
   policy_changes: false
@@ -34,8 +34,13 @@ data:
       path: data/processed/x_t_pit_v1_1_0_train.csv
       sha256: 872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65
     target_application_train:
-      path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_1_0_train.csv
-      sha256: f480ae14f9988fa9ec4e023147e741e095b2a807b8e1639be058db0c107e39ad
+      path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_2_0_train.csv
+      sha256: 0f5d3bdefe13ed6ea6a1c6cdc94ae2c663f59175a7363dd8bffa26717069dd1b
+  timestamp_semantics:
+    authority: configs/timezone_pit_fix_v1_0_0.yaml
+    canonical_timezone_for_comparisons: UTC
+    own_observation_invariant: prediction_timestamp < target_available_at
+    fold_training_invariant: target_available_at <= fold_validation_cutoff
   sample_policy:
     required_membership_status: eligible
     required_target_status: available

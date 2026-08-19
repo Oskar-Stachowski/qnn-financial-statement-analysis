@@ -61,6 +61,7 @@ from src.modeling.temporal_cv import iter_point_in_time_folds
 
 ROOT = Path(__file__).resolve().parents[2]
 RUNNER_CONFIG_PATH = ROOT / "configs/production_experiment_runner_v1_0_0.yaml"
+PIPELINE_CONFIG_PATH = ROOT / "configs/supervised_ml_pipeline_v1_3_0_timezone_fix.yaml"
 BLOCKS: tuple[str, ...] = ("L", "L+D", "L+D+R")
 BLOCK_PARTS: dict[str, tuple[str, ...]] = {
     "L": ("L",),
@@ -1003,7 +1004,7 @@ class ProductionExperimentRunner:
         ):
             raise RunnerIntegrityError("Runner protected-year boundary differs from contract.")
         pipeline = yaml.safe_load(
-            (self.root / "configs/supervised_ml_pipeline_v1_2_0.yaml").read_text(
+            (self.root / PIPELINE_CONFIG_PATH.relative_to(ROOT)).read_text(
                 encoding="utf-8"
             )
         )
@@ -1017,12 +1018,12 @@ class ProductionExperimentRunner:
                 "sha256"
             ]:
                 raise RunnerIntegrityError(
-                    f"Runner {name} input is not the frozen pipeline v1.2.0 projection."
+                    f"Runner {name} input is not the timezone-corrected train projection."
                 )
 
     def production_input_expectations(self) -> InputExpectations:
         pipeline = yaml.safe_load(
-            (self.root / "configs/supervised_ml_pipeline_v1_2_0.yaml").read_text(
+            (self.root / PIPELINE_CONFIG_PATH.relative_to(ROOT)).read_text(
                 encoding="utf-8"
             )
         )
@@ -1166,6 +1167,10 @@ class ProductionExperimentRunner:
             if timestamps.isna().any():
                 raise RunnerIntegrityError(f"Invalid or missing {column}.")
             frame[column] = timestamps
+        if not frame["prediction_timestamp"].lt(frame["target_available_at"]).all():
+            raise RunnerIntegrityError(
+                "Prediction timestamp must strictly precede target availability."
+            )
         return frame.sort_values(
             ["feature_year", "research_universe_company_year_id"], kind="mergesort"
         ).reset_index(drop=True)
