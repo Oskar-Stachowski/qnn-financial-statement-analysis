@@ -1,0 +1,37 @@
+schema_version: 1
+
+access_amendment:
+  id: model_stage_access_declaration
+  version: 1.1.0
+  effective_on: "2026-08-19"
+  status: frozen_access_status_amendment
+  base_model_stage_id: model_stage_preregistration
+  base_model_stage_version: 1.0.0
+  base_configuration: configs/model_stage_v1.yaml
+  base_manifest: configs/model_stage_v1_freeze_manifest.yaml
+  amendment_scope: data_access_status_and_access_gates_only
+  authorizes_model_training: false
+  modifies_historical_v1_artifacts: false
+  authoritative_access_policy: configs/data_access_policy_v1_1_0.yaml
+
+corrected_access_status:
+  years_2021_2022:
+    status: design_exposed_spent_development_period
+    external_validation_opened_analytically: true
+    independent_one_shot_external_validation: false
+    model_performance_previously_exposed: false
+    may_activate_search_refinement_calibration_or_threshold_change: false
+    reopen_before_DATA_ACCESS_GATE_2021_2022_REOPEN_V1: false
+  years_2023_2024:
+    status: temporal_holdout_with_prior_aggregate_target_exposure
+    aggregate_target_statistics_previously_exposed: true
+    feature_level_analysis_previously_exposed: false
+    model_performance_previously_exposed: false
+    open_before_applicable_test_gate: false
+
+supersession:
+  access_status_in_base_configuration_superseded: true
+  access_status_in_base_manifest_superseded: true
+  access_status_in_base_specification_and_notebook_superseded: true
+  old_second_gate_access_semantics_superseded: true
+  all_non_access_model_stage_decisions_inherited_unchanged: true

@@ -1,0 +1,53 @@
+schema_version: 1
+
+data_access_policy_freeze:
+  id: data_access_policy
+  version: 1.1.0
+  status: frozen_corrective_access_declaration
+  frozen_on: "2026-08-19"
+  freeze_scope: project_wide_access_status_supersession_and_forward_access_gates
+  authoritative_configuration: configs/data_access_policy_v1_1_0.yaml
+  authoritative_document: docs/09_1_data_access_policy_v1_1_0.md
+  historical_frozen_artifacts_modified: false
+  project_data_opened_for_this_freeze: false
+  model_training_performed: false
+
+protected_components:
+  - path: configs/data_access_policy_v1_1_0.yaml
+    sha256: 7ce08bca9921ff72db6b3ec6dfd1dc28c7e751e1ca1ad3b6706180809b66cd9b
+  - path: configs/supervised_ml_pipeline_v1_1_0_access_amendment.yaml
+    sha256: 103cd6ba76598edf9cec33851bd5142eb7ea945217f39140287dc62ce6548d68
+  - path: configs/model_stage_v1_1_0_access_amendment.yaml
+    sha256: 24e7b066ab4fdd95fbd4013546ae8f172c6ead0f275061df156efd0c80fb58da
+  - path: docs/09_1_data_access_policy_v1_1_0.md
+    sha256: f0cd5be37c0a0ab49f193a777581cef4c7a93c6d2ff19908f14ce7584c82eea1
+  - path: docs/07_2_supervised_ml_pipeline_v1_1_0_access_amendment.md
+    sha256: 4af0ba347f1f59eb7809eabedaecb16dad5d133f93906c2d7b42b7fb2d06d7de
+  - path: docs/08_2_model_stage_v1_1_0_access_amendment.md
+    sha256: b36799fe2035e94f58101bc2fbcb9dd3653f38a8506e99fa376e1bc2cf28d203
+  - path: tests/test_data_access_policy_v1_1_0.py
+    sha256: c29eee7178b1050eed65365b435577d72d6fef441468db464272a99da85dd5e5
+
+frozen_access_facts:
+  years_2021_2022_status: design_exposed_spent_development_period
+  years_2021_2022_independent_one_shot_external_validation: false
+  years_2023_2024_status: temporal_holdout_with_prior_aggregate_target_exposure
+  years_2023_2024_feature_level_analysis_previously_exposed: false
+  years_2023_2024_model_performance_previously_exposed: false
+  years_2021_2024_forward_locked_until_applicable_gate: true
+
+supersession_boundary:
+  access_status_only: true
+  non_access_v1_methodology_rewritten: false
+  historical_manifests_rewritten: false
+  old_local_data_blind_gate_claims_are_project_wide_authority: false
+
+required_future_gates:
+  - DATA_ACCESS_GATE_2021_2022_REOPEN_V1
+  - DATA_ACCESS_GATE_2023_2024_FEATURE_APPLICATION_V1
+  - DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_V1
+
+notes:
+  - This manifest intentionally does not hash itself to avoid self-reference.
+  - Historical v1 files are verified by hashes stored in the authoritative policy and remain unchanged.
+  - No analytical project data was loaded and no model fit was performed to create this declaration.

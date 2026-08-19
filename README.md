@@ -32,6 +32,22 @@ thesis/        thesis drafts, chapter materials, and final written outputs
 
 Early-stage master's thesis research repository.
 
+## Current data-access authority
+
+The current project-wide access declaration is
+[`data_access_policy` v1.1.0](docs/09_1_data_access_policy_v1_1_0.md), with its
+machine-readable policy in
+[`configs/data_access_policy_v1_1_0.yaml`](configs/data_access_policy_v1_1_0.yaml).
+It supersedes only the access-status and access-gate claims in historical
+supervised-pipeline/model-stage v1.0.0 artifacts; those files remain immutable.
+
+Under this policy, 2021–2022 is a design-exposed, spent development period and
+is not independent one-shot external validation. Years 2023–2024 remain a
+temporal model-performance holdout with prior aggregate-target exposure. No
+values, features, targets or statistics from 2021–2024 may be reopened before
+the applicable committed access gate. This declaration does not authorize
+model training.
+
 ## Current data pipeline
 
 The reproducible SEC preprocessing flow is organized as numbered steps in

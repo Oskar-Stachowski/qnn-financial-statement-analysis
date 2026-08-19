@@ -1,0 +1,176 @@
+schema_version: 1
+
+data_access_policy:
+  id: data_access_policy
+  version: 1.1.0
+  status: frozen_corrective_access_declaration
+  effective_on: "2026-08-19"
+  authoritative_document: docs/09_1_data_access_policy_v1_1_0.md
+  amendment_type: access_status_only
+  historical_frozen_artifacts_modified: false
+  model_training_performed_for_this_amendment: false
+
+authority:
+  applies_to:
+    - supervised_ml_pipeline_v1_0_0
+    - model_stage_preregistration_v1_0_0
+    - all_future_model_execution_and_evaluation_stages
+  conflict_rule: this_policy_prevails_for_data_access_status_and_access_gates
+  inheritance_rule: all_non_access_methodological_decisions_remain_historical_and_unchanged_until_separately_versioned
+  supervised_pipeline_access_amendment: configs/supervised_ml_pipeline_v1_1_0_access_amendment.yaml
+  model_stage_access_amendment: configs/model_stage_v1_1_0_access_amendment.yaml
+
+periods:
+  model_development_train:
+    feature_years: [2011, 2020]
+    status: model_development_period
+    access_status_changed_by_this_policy: false
+
+  spent_development_2021_2022:
+    feature_years: [2021, 2022]
+    status: design_exposed_spent_development_period
+    external_validation_opened_analytically: true
+    independent_one_shot_external_validation: false
+    permitted_future_role: secondary_spent_development_evaluation_only
+    prior_exposure:
+      class_distribution: exposed
+      target_statistics: exposed
+      missingness: exposed
+      feature_statistics: exposed
+      sample_design_diagnostics: exposed
+      preprocessing_design_diagnostics: exposed
+      model_performance: not_exposed
+      model_hyperparameter_tuning: not_performed
+    reopen_before_gate_allowed: false
+    required_gate: DATA_ACCESS_GATE_2021_2022_REOPEN_V1
+    opening_may_activate_tuning_or_method_change: false
+    independent_validation_claim_allowed: false
+
+  temporal_holdout_2023_2024:
+    feature_years: [2023, 2024]
+    status: temporal_holdout_with_prior_aggregate_target_exposure
+    fully_unseen_holdout: false
+    model_performance_holdout: true
+    prior_exposure:
+      aggregate_target_statistics: exposed
+      row_level_target_analysis: not_exposed
+      feature_level_analysis: not_exposed
+      model_predictions: not_exposed
+      model_performance: not_exposed
+    feature_or_value_open_before_gate_allowed: false
+    required_feature_gate: DATA_ACCESS_GATE_2023_2024_FEATURE_APPLICATION_V1
+    required_label_gate: DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_V1
+    test_results_may_activate_tuning_or_method_change: false
+
+forward_access_lock:
+  effective_immediately: true
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  prohibited_before_applicable_gate:
+    - row_level_financial_values
+    - feature_values
+    - target_values
+    - class_labels
+    - missingness
+    - coverage_or_distribution_statistics
+    - feature_level_statistics
+    - model_predictions
+    - model_performance
+  allowed_without_opening_analytical_values:
+    - read_policy_specifications_and_manifests
+    - verify_file_existence_without_deserialization
+    - opaque_byte_level_sha256_verification
+    - synthetic_only_tests
+  row_counts_or_schema_summaries_for_2021_2024_allowed_before_gate: false
+  accidental_access_policy: stop_record_scope_do_not_continue_and_issue_new_versioned_incident_declaration
+
+gates:
+  DATA_ACCESS_GATE_2021_2022_REOPEN_V1:
+    purpose: controlled_secondary_evaluation_on_spent_development_period
+    prerequisites:
+      - corrected_versioned_data_pipeline_frozen
+      - production_model_execution_code_frozen_and_hashed
+      - search_selection_seed_calibration_threshold_and_reporting_contract_frozen
+      - model_selection_on_2011_2020_complete
+      - one_representative_per_family_and_qnn_feasibility_status_locked
+      - environment_locks_and_runtime_identity_frozen
+      - committed_gate_manifest_with_explicit_spent_status
+    post_opening_rules:
+      - no_tuning_or_method_change
+      - no_independent_external_validation_claim
+      - all_outputs_hashed_and_reported_as_spent_development_evidence
+
+  DATA_ACCESS_GATE_2023_2024_FEATURE_APPLICATION_V1:
+    purpose: blind_application_of_locked_pipeline_to_temporal_holdout_features
+    prerequisites:
+      - final_pipeline_roster_preprocessing_and_environment_frozen
+      - test_prediction_schema_and_row_alignment_contract_frozen
+      - committed_feature_application_gate_manifest
+      - target_values_and_target_statistics_remain_sealed
+    post_opening_rules:
+      - generate_predictions_without_loading_test_targets
+      - hash_predictions_and_complete_execution_audit_before_label_gate
+      - no_tuning_or_method_change
+
+  DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_V1:
+    purpose: one_time_evaluation_of_hashed_temporal_holdout_predictions
+    prerequisites:
+      - feature_application_gate_passed
+      - predictions_for_all_required_test_rows_hashed_and_locked
+      - evaluation_metrics_and_inference_contract_frozen
+      - committed_label_reveal_gate_manifest
+    post_opening_rules:
+      - one_time_evaluation_only
+      - no_tuning_or_method_change
+      - disclose_prior_aggregate_target_exposure_in_every_test_result
+
+supersession:
+  scope: access_status_and_access_gate_statements_only
+  historical_files_remain_immutable: true
+  superseded_declarations:
+    - path: configs/supervised_ml_pipeline_v1.yaml
+      sha256: 0e817dac719d1651ec7518141e71c627dc208f4bed5ccfebed6c5b9d88652765
+      superseded_fields:
+        - pipeline.external_validation_opened_analytically
+        - data_boundary.external_validation_target_values_or_financial_features_used_for_pipeline_freeze
+        - external_validation.role
+        - external_validation.failure_policy
+    - path: configs/supervised_ml_pipeline_v1_freeze_manifest.yaml
+      sha256: f1000d9e66a83160ff4ae0c5759c09c96491e18c4b579f6a397e0e98afc6eef1
+      superseded_fields:
+        - boundaries.external_validation_opened_analytically_for_freeze
+        - boundaries.external_validation_minimal_index_and_count_only
+    - path: docs/07_1_supervised_ml_pipeline_v1_frozen_specification.md
+      sha256: 5dcdeeb037de81f92ab1fae393005c487c8dd3a0edfe80997c49ded2d3eaa7dc
+      superseded_sections: [external_validation_and_test_access_status]
+    - path: configs/model_stage_v1.yaml
+      sha256: e9951acd7d81a15a6e60a49cc88bc3021bb20be9dd0afcad952b98cecbe62b25
+      superseded_fields:
+        - model_stage.external_validation_opened_analytically
+        - validation_and_test.external_validation.role
+        - validation_and_test.second_freeze_gate
+    - path: configs/model_stage_v1_freeze_manifest.yaml
+      sha256: f7525bc4943d233a71a2bacdc17a90c2e6ca13361ad523a0a4ee8ba33579e189
+      superseded_fields:
+        - model_stage.external_validation_opened_analytically
+        - access_and_execution.external_validation_values_loaded
+        - validation_and_test_access.external_validation_status_at_freeze
+    - path: docs/08_1_model_stage_v1_frozen_specification.md
+      sha256: 09ce9f9a975ddd2177f6d81c58f4aecf619927a05e321c438b5ef4cf85d39b6c
+      superseded_sections: [validation_test_access_declarations]
+    - path: notebooks/05_model_stage_preregistration.ipynb
+      sha256: 67c4daa32a00cb0db08fbd35b950f422a277b63e22e669a449487c9a80626afc
+      superseded_sections: [external_validation_access_declaration_and_one_shot_role]
+
+historical_execution_context:
+  local_data_blind_gate_claims_remain_execution_facts: true
+  local_gate_claims_must_not_be_interpreted_as_project_wide_access_status: true
+  components_not_authorized_for_future_access_gate_without_new_version:
+    - src/modeling/run_model_stage_freeze_gate.py
+    - tests/test_supervised_ml_pipeline_v1_freeze.py
+    - tests/test_model_stage_v1_freeze.py
+
+change_control:
+  any_change_requires_new_policy_version: true
+  historical_v1_files_may_be_edited_in_place: false
+  future_access_must_reference_this_policy_or_an_explicit_successor: true
+  validation_or_test_results_may_not_retroactively_change_this_declaration: true

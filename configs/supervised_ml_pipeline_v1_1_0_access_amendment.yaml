@@ -1,0 +1,36 @@
+schema_version: 1
+
+access_amendment:
+  id: supervised_ml_pipeline_access_declaration
+  version: 1.1.0
+  effective_on: "2026-08-19"
+  status: frozen_access_status_amendment
+  base_pipeline_id: supervised_ml_pipeline
+  base_pipeline_version: 1.0.0
+  base_configuration: configs/supervised_ml_pipeline_v1.yaml
+  base_manifest: configs/supervised_ml_pipeline_v1_freeze_manifest.yaml
+  amendment_scope: data_access_status_and_access_gates_only
+  creates_new_supervised_sample_or_preprocessing_policy: false
+  modifies_historical_v1_artifacts: false
+  authoritative_access_policy: configs/data_access_policy_v1_1_0.yaml
+
+corrected_access_status:
+  years_2021_2022:
+    status: design_exposed_spent_development_period
+    external_validation_opened_analytically: true
+    independent_one_shot_external_validation: false
+    class_distribution_missingness_and_feature_statistics_used_in_design: true
+    model_performance_used_in_design: false
+    reopen_before_DATA_ACCESS_GATE_2021_2022_REOPEN_V1: false
+  years_2023_2024:
+    status: temporal_holdout_with_prior_aggregate_target_exposure
+    aggregate_target_statistics_previously_exposed: true
+    feature_level_analysis_previously_exposed: false
+    model_performance_previously_exposed: false
+    open_before_applicable_test_gate: false
+
+supersession:
+  access_status_in_base_configuration_superseded: true
+  access_status_in_base_manifest_superseded: true
+  access_status_in_base_specification_superseded: true
+  all_non_access_pipeline_decisions_inherited_unchanged: true
