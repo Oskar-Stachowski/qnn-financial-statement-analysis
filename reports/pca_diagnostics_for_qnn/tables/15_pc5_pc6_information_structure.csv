@@ -1,0 +1,3 @@
+Component,Explained variance ratio,Explained variance [%],Dominant features
+PC5,0.05898285831296061,5.898285831296061,"asset_turnover_t (+0.4998), revenue_growth_1y (-0.4257), current_ratio_t (-0.3360)"
+PC6,0.053486722465413306,5.34867224654133,"revenue_growth_1y (+0.7017), current_ratio_t (-0.4485), current_ratio_change_1y (-0.3786)"

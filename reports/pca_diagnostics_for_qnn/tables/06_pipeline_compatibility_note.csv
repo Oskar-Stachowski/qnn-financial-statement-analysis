@@ -1,0 +1,9 @@
+,wartosc
+liczba kolumn wejściowych diagnostycznego PCA,17
+preprocessing finansowy,winsoryzacja P1/P99 → imputacja medianą → standaryzacja
+wskaźniki braków w diagnostycznym PCA,False
+liczba kolumn wejściowych zamrożonego QNN dla L+D+R,34
+wskaźniki braków w zamrożonym QNN,True
+zamrożony solver PCA QNN,full
+zamrożone whiten PCA QNN,False
+diagnostyczne PCA jest numeryczną kopią produkcyjnego PCA,False

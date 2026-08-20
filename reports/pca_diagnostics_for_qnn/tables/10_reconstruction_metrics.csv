@@ -1,0 +1,3 @@
+Wariant,Mean squared reconstruction error,Root mean squared reconstruction error,Relative squared Frobenius error,Relative Frobenius error,Lost explained variance ratio,Difference: relative squared error - lost variance
+PCA-4,0.3306222120390542,0.5749975756810234,0.3306222120390542,0.5749975756810234,0.3306222120390542,0.0
+PCA-6,0.21815263126068005,0.46706812271945947,0.21815263126068005,0.46706812271945947,0.2181526312606803,-2.498001805406602e-16

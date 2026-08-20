@@ -1,0 +1,11 @@
+**PC1.** Największe `|loading|`: `roa_t` (+0.9239), `accruals_to_assets_t` (+0.8611), `ocf_to_assets_t` (+0.8568). Trzy dominujące cechy mają w wybranej orientacji ten sam znak, co opisuje wspólny kierunek ich zmienności w tym komponencie. Znak całego komponentu jest arbitralny; interpretowana jest przede wszystkim wartość bezwzględna i wzajemna struktura cech.
+
+**PC2.** Największe `|loading|`: `asset_growth_1y` (+0.7237), `delta_liabilities_to_assets_1y` (-0.6938), `current_ratio_change_1y` (+0.6714). Wśród dominujących cech występują przeciwne znaki, więc komponent opisuje przede wszystkim kontrast pomiędzy odpowiadającymi im wzorcami zmienności. Znak całego komponentu jest arbitralny; interpretowana jest przede wszystkim wartość bezwzględna i wzajemna struktura cech.
+
+**PC3.** Największe `|loading|`: `ocf_margin_t` (+0.6878), `profit_margin_t` (+0.6220), `asset_turnover_t` (+0.4703). Trzy dominujące cechy mają w wybranej orientacji ten sam znak, co opisuje wspólny kierunek ich zmienności w tym komponencie. Znak całego komponentu jest arbitralny; interpretowana jest przede wszystkim wartość bezwzględna i wzajemna struktura cech.
+
+**PC4.** Największe `|loading|`: `log_assets_t` (+0.5549), `log1p_revenues_t` (+0.4644), `current_ratio_t` (-0.3865). Wśród dominujących cech występują przeciwne znaki, więc komponent opisuje przede wszystkim kontrast pomiędzy odpowiadającymi im wzorcami zmienności. Znak całego komponentu jest arbitralny; interpretowana jest przede wszystkim wartość bezwzględna i wzajemna struktura cech.
+
+**PC5.** Największe `|loading|`: `asset_turnover_t` (+0.4998), `revenue_growth_1y` (-0.4257), `current_ratio_t` (-0.3360). Wśród dominujących cech występują przeciwne znaki, więc komponent opisuje przede wszystkim kontrast pomiędzy odpowiadającymi im wzorcami zmienności. Znak całego komponentu jest arbitralny; interpretowana jest przede wszystkim wartość bezwzględna i wzajemna struktura cech.
+
+**PC6.** Największe `|loading|`: `revenue_growth_1y` (+0.7017), `current_ratio_t` (-0.4485), `current_ratio_change_1y` (-0.3786). Wśród dominujących cech występują przeciwne znaki, więc komponent opisuje przede wszystkim kontrast pomiędzy odpowiadającymi im wzorcami zmienności. Znak całego komponentu jest arbitralny; interpretowana jest przede wszystkim wartość bezwzględna i wzajemna struktura cech.

@@ -1,0 +1,3 @@
+Wariant,Liczba komponentów,Wymiar przed redukcją,Wymiar po redukcji,Usunięte wymiary,Redukcja wymiarowości [%],Współczynnik kompresji 17/k,Zachowana wariancja,Zachowana wariancja [%],Utracona wariancja,Utracona wariancja [%]
+PCA-4,4,17,4,13,76.47058823529412,4.25,0.6693777879609458,66.93777879609458,0.3306222120390542,33.062221203905416
+PCA-6,6,17,6,11,64.70588235294117,2.8333333333333335,0.7818473687393197,78.18473687393197,0.2181526312606803,21.81526312606803
