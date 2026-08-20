@@ -1,0 +1,3592 @@
+{
+  "candidate_results": [
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "d685300f6e70c6947d71ef3aa24433b21c12723d80b087200398224836565a47",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "d5d70182290d0d84c7e9e4976a84fc2a8db8e750b269448f3bb5cf22545a289f",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__001",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20950490920511586,
+      "delta_pr_auc_vs_fixed_l2": 0.00013320819942913564,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.3831677315768012,
+      "fold_pr_auc_sample_sd": 0.06570720555416726,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.47999650821932194,
+          "roc_auc": 0.7690868084427788,
+          "runtime_seconds": 7.373211958969478,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.40335509505140976,
+          "roc_auc": 0.7779264631116483,
+          "runtime_seconds": 7.244329667009879,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3874321793750829,
+          "roc_auc": 0.7843749623543868,
+          "runtime_seconds": 8.566358749987558,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40974100082420195,
+          "roc_auc": 0.7277008947020416,
+          "runtime_seconds": 9.832068999996409,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3178761080295299,
+          "roc_auc": 0.6575429260811013,
+          "runtime_seconds": 10.333095374982804,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3006054979612606,
+          "roc_auc": 0.7807861714395841,
+          "runtime_seconds": 11.265834166959394,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38178806012792627,
+      "pooled_oof_roc_auc": 0.7447430050012729,
+      "runtime_seconds": 54.61489891790552,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "50727a1e10d7c946649f2b17d903b8e4099e7a560f411546d63265aa3fb12014",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "9285347a12ebd27d48d13edddfc1a221bafff3d3a9d7bcef84af3ac671c7ae65",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__002",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21386776962728396,
+      "delta_pr_auc_vs_fixed_l2": 0.004496068621597238,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.38355737701031645,
+      "fold_pr_auc_sample_sd": 0.0670938527364333,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.49647007291719353,
+          "roc_auc": 0.7735929651103189,
+          "runtime_seconds": 6.052682083041873,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3873897948393278,
+          "roc_auc": 0.7701404676713319,
+          "runtime_seconds": 7.292158875032328,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.37559592404339404,
+          "roc_auc": 0.7819867246509499,
+          "runtime_seconds": 8.59390874998644,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40900622844591067,
+          "roc_auc": 0.7254331453012647,
+          "runtime_seconds": 9.640767583972774,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3198870324425044,
+          "roc_auc": 0.6664040288792458,
+          "runtime_seconds": 10.099335708015133,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.312995209373568,
+          "roc_auc": 0.7800059680893722,
+          "runtime_seconds": 11.174398459028453,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38615092055009437,
+      "pooled_oof_roc_auc": 0.7459366236093962,
+      "runtime_seconds": 52.853251459077,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "b068dafbb544118e3dc1c0a0782b0746831540f66c56dc5219a400ab9f90511b",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "824bc5b0288d961c4d7e2d1df479793182273a8f31b27c946c8427ca144185d1",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.2085904859801125,
+      "delta_pr_auc_vs_fixed_l2": -0.0007812150255742112,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.3807871698947846,
+      "fold_pr_auc_sample_sd": 0.06407252850070631,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4749588019749634,
+          "roc_auc": 0.7678702828308142,
+          "runtime_seconds": 5.073674000042956,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.4069895796078276,
+          "roc_auc": 0.7776722591537407,
+          "runtime_seconds": 5.928956415969878,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3834957422669786,
+          "roc_auc": 0.7806314825745985,
+          "runtime_seconds": 6.770277999981772,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40210709855389737,
+          "roc_auc": 0.7237568704025127,
+          "runtime_seconds": 7.509015625051688,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.31505347413087575,
+          "roc_auc": 0.6549009613945833,
+          "runtime_seconds": 8.252869917021599,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3021183228341648,
+          "roc_auc": 0.7820823658500953,
+          "runtime_seconds": 8.907584833039436,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3808736369029229,
+      "pooled_oof_roc_auc": 0.7443848448140862,
+      "runtime_seconds": 42.44237879110733,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__004/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "dfb8d8f6a177fe83aa7ff285d4fb07f1ed631c823ad33ffd0801eda7c0d6571e",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__004/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "fb990bb46bfc071b606d8db6ce4353570bf559b9ff4dc9959daabe31dc512868",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__004",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.2135511463946115,
+      "delta_pr_auc_vs_fixed_l2": 0.004179445388924785,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.38735656264153007,
+      "fold_pr_auc_sample_sd": 0.05922295502778351,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32,
+          16
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4891925867726832,
+          "roc_auc": 0.772750054105774,
+          "runtime_seconds": 14.951120208017528,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3900082064090635,
+          "roc_auc": 0.7740734345672617,
+          "runtime_seconds": 19.21205362502951,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3793438768548293,
+          "roc_auc": 0.7836220500897471,
+          "runtime_seconds": 23.322935666015837,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.406762930129312,
+          "roc_auc": 0.7291627923795356,
+          "runtime_seconds": 27.490329958032817,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3308531005059002,
+          "roc_auc": 0.6659107062696393,
+          "runtime_seconds": 30.7881732499809,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.32797867517739193,
+          "roc_auc": 0.7841587636108183,
+          "runtime_seconds": 34.21286374999909,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3858342973174219,
+      "pooled_oof_roc_auc": 0.7474074849453354,
+      "runtime_seconds": 149.97747645707568,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "ac81345b2f7a8e73e6b9c01ba8563497e49589439f3b9597969d5bc2f88409be",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "417619c0aa54c9cf783c336d34b6378a2297851e5a6b4603cc3147771fa17849",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.2174972041141717,
+      "delta_pr_auc_vs_fixed_l2": 0.008125503108484977,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.3880182105400321,
+      "fold_pr_auc_sample_sd": 0.06865676108419734,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.49183002683767213,
+          "roc_auc": 0.7740622615074438,
+          "runtime_seconds": 15.699020333006047,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.4073259687618628,
+          "roc_auc": 0.781146379911812,
+          "runtime_seconds": 19.724631124990992,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.39261314909520667,
+          "roc_auc": 0.7855103540494633,
+          "runtime_seconds": 25.014801584009547,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4124386478117417,
+          "roc_auc": 0.7297749297462601,
+          "runtime_seconds": 29.439627416955773,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.32265304135631057,
+          "roc_auc": 0.6602293131827024,
+          "runtime_seconds": 31.18769137497293,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3012484293773989,
+          "roc_auc": 0.7798878496538819,
+          "runtime_seconds": 35.56705395801691,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3897803550369821,
+      "pooled_oof_roc_auc": 0.7477246125201462,
+      "runtime_seconds": 156.6328257919522,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__006/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "a0a3cca4fd5a9442d1d56d740b4cf9abad9c011a79886fcb08032a9ab6ff5a01",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__006/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "907d3baceaae94e734c1007dc0df9c1652fbee7bb42d940bb56a13d055aa7cc9",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__006",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20927922414544273,
+      "delta_pr_auc_vs_fixed_l2": -9.247686024399515e-05,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.3841171418000171,
+      "fold_pr_auc_sample_sd": 0.06747070502824425,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4891605920230134,
+          "roc_auc": 0.7741249102983222,
+          "runtime_seconds": 12.304396374966018,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.4111203755201395,
+          "roc_auc": 0.7825005355869554,
+          "runtime_seconds": 15.014335707994178,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.37752915416555954,
+          "roc_auc": 0.784052715905121,
+          "runtime_seconds": 18.283880791976117,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40349218695683076,
+          "roc_auc": 0.7287392036531944,
+          "runtime_seconds": 21.840161499974784,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.318444855176128,
+          "roc_auc": 0.6589995136914559,
+          "runtime_seconds": 23.97535683301976,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.30495568695843095,
+          "roc_auc": 0.7791231882030768,
+          "runtime_seconds": 26.704146958014462,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38156237506825313,
+      "pooled_oof_roc_auc": 0.7471040731668294,
+      "runtime_seconds": 118.12227816594532,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__007/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "fb3d4f8e03f240ca442c1d497fe608abc3c7fb3371e08604f307ad84d1e652f2",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__007/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "9526734e7a42fe241cbeb380594227fd103aa481dc460a37bbfa80d88575a2f0",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__007",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20647389804360947,
+      "delta_pr_auc_vs_fixed_l2": -0.002897802962077256,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.383075260871618,
+      "fold_pr_auc_sample_sd": 0.061226769777863455,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          16
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.481944171053545,
+          "roc_auc": 0.7691164242348304,
+          "runtime_seconds": 5.026507208007388,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.38804446796198044,
+          "roc_auc": 0.7757953066595041,
+          "runtime_seconds": 5.930673959024716,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.38602764320274074,
+          "roc_auc": 0.7873655298695355,
+          "runtime_seconds": 6.754984124971088,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4058627722076986,
+          "roc_auc": 0.7260194540871148,
+          "runtime_seconds": 7.5912317499751225,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3150757590500715,
+          "roc_auc": 0.6535986832260962,
+          "runtime_seconds": 8.420665374957025,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3214967517536718,
+          "roc_auc": 0.783711156907908,
+          "runtime_seconds": 8.949774125008844,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3787570489664199,
+      "pooled_oof_roc_auc": 0.7443030091424103,
+      "runtime_seconds": 42.67383654194418,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__008/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "644a0aa409d4337b4c10490c61374cedb54807a01ef48c7091732d400bdc8b1e",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__008/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "609378af7ef3123c450f83c414166892219d84831047e0e65caab3c3d4fcd587",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__008",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20653751889486408,
+      "delta_pr_auc_vs_fixed_l2": -0.0028341821108226473,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.37869069151321355,
+      "fold_pr_auc_sample_sd": 0.0738616974434003,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32,
+          16
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.001,
+        "weight_decay": 1e-05
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.5027243413400827,
+          "roc_auc": 0.7721030629563395,
+          "runtime_seconds": 6.350087250000797,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3766203013430183,
+          "roc_auc": 0.774701750010392,
+          "runtime_seconds": 7.867316416988615,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.38530164711152326,
+          "roc_auc": 0.7824384720097337,
+          "runtime_seconds": 9.172016291995533,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.3988947108461569,
+          "roc_auc": 0.7301055355814531,
+          "runtime_seconds": 10.624634000007063,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3178980860254432,
+          "roc_auc": 0.6634136989376028,
+          "runtime_seconds": 11.407443750009406,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.2907050624130568,
+          "roc_auc": 0.7724121960393022,
+          "runtime_seconds": 12.271169582963921,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3788206698176745,
+      "pooled_oof_roc_auc": 0.7455877029335276,
+      "runtime_seconds": 57.692667291965336,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__009/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "a3848aa939bf745de96ec3c5090a47212c2461a412d35dc9853778800c52da3d",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__009/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "2d0f8f0c16faaf38e00f246cc0ddd5f065594373c6ceb2bdcde368b04a53f65a",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__009",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20729404479212468,
+      "delta_pr_auc_vs_fixed_l2": -0.0020776562135620402,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.38176134262500233,
+      "fold_pr_auc_sample_sd": 0.06422919866941754,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 1e-05
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.471651379661082,
+          "roc_auc": 0.7634313312298528,
+          "runtime_seconds": 5.379477499984205,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.41264996176816726,
+          "roc_auc": 0.7818866090471028,
+          "runtime_seconds": 6.28284579195315,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.38725724985075266,
+          "roc_auc": 0.7841280071315849,
+          "runtime_seconds": 7.5827103340416215,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4041987328685188,
+          "roc_auc": 0.7180926626167451,
+          "runtime_seconds": 8.279373041004874,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.30658068358745494,
+          "roc_auc": 0.6492803568756547,
+          "runtime_seconds": 9.110303583962377,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.30823004801403814,
+          "roc_auc": 0.7836862898688575,
+          "runtime_seconds": 9.80086525005754,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3795771957149351,
+      "pooled_oof_roc_auc": 0.7416828903303291,
+      "runtime_seconds": 46.43557550100377,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__010/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "877e2b464b0571f192c6489f399d413b6417133b7452eda7816fc6d4c3d2ce91",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__010/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "cb594cd34c5ef0e21a80993678c476b2fc2d653852bf4ed6125f73f6652156c4",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__010",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21051730225028933,
+      "delta_pr_auc_vs_fixed_l2": 0.001145601244602612,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.38567432046535993,
+      "fold_pr_auc_sample_sd": 0.06918380582033921,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.49124054778464427,
+          "roc_auc": 0.7732273239853743,
+          "runtime_seconds": 7.324411124980543,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.4024750462054313,
+          "roc_auc": 0.7809545278681082,
+          "runtime_seconds": 8.943159624992404,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3837026542102191,
+          "roc_auc": 0.7869710038428642,
+          "runtime_seconds": 10.8019188750186,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4166882172100249,
+          "roc_auc": 0.7320814220183487,
+          "runtime_seconds": 12.961114999954589,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.30374949909176197,
+          "roc_auc": 0.6553919459823432,
+          "runtime_seconds": 14.892035374999978,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3161899582900779,
+          "roc_auc": 0.7826356574689707,
+          "runtime_seconds": 15.22093104198575,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38280045317309974,
+      "pooled_oof_roc_auc": 0.747194918796747,
+      "runtime_seconds": 70.14357104193186,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__011/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "feb40eb96848e12f177caa6daf784affedc4e180dafd11838cd31c9d21f24c0e",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__011/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "226280d44ce2b6469e2ee1e25dc91a39587bbff6af5e1f6026f9ac8e5dda3a8b",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__011",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20327927212340804,
+      "delta_pr_auc_vs_fixed_l2": -0.006092428882278678,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.3726716889708707,
+      "fold_pr_auc_sample_sd": 0.07209156513767173,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.003,
+        "weight_decay": 1e-05
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4851234674433259,
+          "roc_auc": 0.7630793589320091,
+          "runtime_seconds": 13.060133084014524,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3593202359596236,
+          "roc_auc": 0.7628085220677814,
+          "runtime_seconds": 16.069971999968402,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.38709393350936006,
+          "roc_auc": 0.7835828986519859,
+          "runtime_seconds": 19.88413625000976,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40907249352617936,
+          "roc_auc": 0.7277938775931894,
+          "runtime_seconds": 23.081438041990623,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.31168813125500866,
+          "roc_auc": 0.6600025250635942,
+          "runtime_seconds": 25.490190875018016,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.28373187213172657,
+          "roc_auc": 0.774619145755041,
+          "runtime_seconds": 27.163670207955875,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.37556242304621845,
+      "pooled_oof_roc_auc": 0.7398250598961363,
+      "runtime_seconds": 124.7495404589572,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__012/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "9bb166a40a65f8c33621fd395a9e42858a6aee44b8d61bba6af5181605be1977",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__012/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "497b99199cd448e508efc2aeac3169ed6528a15d9d907a37d162e0ededcb0dea",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__012",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21026263622313532,
+      "delta_pr_auc_vs_fixed_l2": 0.0008909352174485963,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.38191526783163937,
+      "fold_pr_auc_sample_sd": 0.06629228690259184,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.5027579458004793,
+          "roc_auc": 0.771757925072046,
+          "runtime_seconds": 17.199313958000857,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3713504122588218,
+          "roc_auc": 0.759249666657074,
+          "runtime_seconds": 22.05992316699121,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.35892808383067815,
+          "roc_auc": 0.7758610304658419,
+          "runtime_seconds": 27.141611790983006,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4052016268431653,
+          "roc_auc": 0.7284060149599141,
+          "runtime_seconds": 31.276788209041115,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.32052487598413926,
+          "roc_auc": 0.6677834617686668,
+          "runtime_seconds": 35.170400459028315,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.33272866227255266,
+          "roc_auc": 0.7876836663962375,
+          "runtime_seconds": 38.42184320901288,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3825457871459457,
+      "pooled_oof_roc_auc": 0.7436382234336503,
+      "runtime_seconds": 171.26988079305738,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "dba58109aba35904b17d79372edeaf07a9da02763e544d6e80ee7aa9c3320866",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "6ce47eed177aa3c55e2ffac4821589aca29f64693fdc4cc606f13c9fde57a8cc",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__001",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.22025810229528534,
+      "delta_pr_auc_vs_fixed_l2": 0.010886401289598613,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.39825746991307703,
+      "fold_pr_auc_sample_sd": 0.04721662428962863,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4703168549044774,
+          "roc_auc": 0.766611611668622,
+          "runtime_seconds": 6.390981375006959,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.4037693024915498,
+          "roc_auc": 0.7789896431871741,
+          "runtime_seconds": 7.192993042001035,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.410294422218388,
+          "roc_auc": 0.7908003156208214,
+          "runtime_seconds": 8.411706415994558,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4120621507328883,
+          "roc_auc": 0.7253466195553352,
+          "runtime_seconds": 9.597619000007398,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3355613561018899,
+          "roc_auc": 0.6569525755648661,
+          "runtime_seconds": 10.243108667025808,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.35754073302926903,
+          "roc_auc": 0.802945811613529,
+          "runtime_seconds": 11.165677208045963,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.39254125321809574,
+      "pooled_oof_roc_auc": 0.7460966507976624,
+      "runtime_seconds": 53.00208570808172,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "ef16a9640cdf5afd6d09f296f5ad44e4c9b104ee583dc19dbe0d0486ff027528",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "2df0fb794f2093877d988a12ddb5ecdb8a733b873313093fa6cb7c801769dfb7",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__002",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.1938800597208358,
+      "delta_pr_auc_vs_fixed_l2": -0.015491641284850921,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.37063906194481344,
+      "fold_pr_auc_sample_sd": 0.049292286615987675,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.44264452202305304,
+          "roc_auc": 0.7327106423209669,
+          "runtime_seconds": 6.060572333983146,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.36109565636869845,
+          "roc_auc": 0.7372634224486077,
+          "runtime_seconds": 7.202141875051893,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3806478277068787,
+          "roc_auc": 0.7703632651094432,
+          "runtime_seconds": 8.474610208009835,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.404207612950811,
+          "roc_auc": 0.7202506405488057,
+          "runtime_seconds": 9.718905375048053,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3141851668167102,
+          "roc_auc": 0.6461532526559928,
+          "runtime_seconds": 10.24315612501232,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3210535858027294,
+          "roc_auc": 0.7679578876693679,
+          "runtime_seconds": 11.29838908300735,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3661632106436462,
+      "pooled_oof_roc_auc": 0.7221345233823911,
+      "runtime_seconds": 52.9977750001126,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "fd7f8a06343654950ecc947725f21c3c32ae153fb4f833a4b81552e9c7a45c11",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "6884c6e9649f0121c61877d62a844e094cd2d590db14451ad4707445d49cdda5",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.22320149760567362,
+      "delta_pr_auc_vs_fixed_l2": 0.013829796599986899,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.4002784009170943,
+      "fold_pr_auc_sample_sd": 0.047989800011082634,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.469820327959157,
+          "roc_auc": 0.7681983346812316,
+          "runtime_seconds": 5.522826374974102,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.4106323188317341,
+          "roc_auc": 0.778954470312495,
+          "runtime_seconds": 8.281832417007536,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4150441327537212,
+          "roc_auc": 0.7879061208755467,
+          "runtime_seconds": 7.141879041970242,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40837699303509556,
+          "roc_auc": 0.7169161707579139,
+          "runtime_seconds": 7.8556114580133,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.32644412860810923,
+          "roc_auc": 0.6530761353434086,
+          "runtime_seconds": 8.507357541995589,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.371352504314749,
+          "roc_auc": 0.798360951288579,
+          "runtime_seconds": 9.208629874978215,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.39548464852848403,
+      "pooled_oof_roc_auc": 0.7449430892013412,
+      "runtime_seconds": 46.51813670893898,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__004/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "fdea285d6aa1cc389512e0dc36eb5bdeac84d3ec5cd0631a598e36cdf216fe2d",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__004/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "0be2fce3c2d7376a95d5ab1a4d46c904fcea92753a7df726ee2b1f22439a3641",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__004",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21316332785585615,
+      "delta_pr_auc_vs_fixed_l2": 0.0037916268501694272,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.38841401118450153,
+      "fold_pr_auc_sample_sd": 0.05416380201371746,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32,
+          16
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.46980501501236627,
+          "roc_auc": 0.7574740007517855,
+          "runtime_seconds": 14.810074208013248,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3896858248860933,
+          "roc_auc": 0.7659373091471857,
+          "runtime_seconds": 19.563003541959915,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3996630847453194,
+          "roc_auc": 0.7843192468468034,
+          "runtime_seconds": 23.962259916996118,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.41304393554329305,
+          "roc_auc": 0.7261860484337549,
+          "runtime_seconds": 27.58986416598782,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.31724313720308006,
+          "roc_auc": 0.6546028636091575,
+          "runtime_seconds": 30.607211333001032,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.34104306971685694,
+          "roc_auc": 0.7869096798057883,
+          "runtime_seconds": 32.85625687497668,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38544647877866656,
+      "pooled_oof_roc_auc": 0.7394077610976861,
+      "runtime_seconds": 149.3886700409348,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "7168364ca546c1da28fb6ce74dc05a81eebefb33850ba2b785ba8e3966e1d9c7",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "7eb5f9160c39bb0c7fdf179f331e6d4af30d2232eeceef6f284b9d100743a123",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.22307088050169202,
+      "delta_pr_auc_vs_fixed_l2": 0.013699179496005298,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.39972149615734853,
+      "fold_pr_auc_sample_sd": 0.043677266106803024,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4692204684941395,
+          "roc_auc": 0.767359979952387,
+          "runtime_seconds": 16.027400624996517,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.4085448330909458,
+          "roc_auc": 0.7782733955573462,
+          "runtime_seconds": 20.865866084001027,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.40780746642103305,
+          "roc_auc": 0.7896016792955151,
+          "runtime_seconds": 25.22869833401637,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40683764688231516,
+          "roc_auc": 0.7241120133895362,
+          "runtime_seconds": 29.387025625037495,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.34455906083952403,
+          "roc_auc": 0.6614672957504115,
+          "runtime_seconds": 32.803647207969334,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.36135950121613364,
+          "roc_auc": 0.8028214764182761,
+          "runtime_seconds": 35.34059300000081,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.39535403142450243,
+      "pooled_oof_roc_auc": 0.7475267090743021,
+      "runtime_seconds": 159.65323087602155,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__006/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "5a865a7b59660e8a03f89294e710692fbaa6289f192f3bd48479a9aaf431ba47",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__006/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "8409f9d0f1bc3985d9f238998d8796e21df5885e13561aa7342b9a76b5528bd4",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__006",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21687064198595193,
+      "delta_pr_auc_vs_fixed_l2": 0.007498940980265212,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.3944011841915491,
+      "fold_pr_auc_sample_sd": 0.05277191489948497,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4721715557026315,
+          "roc_auc": 0.7659452563474616,
+          "runtime_seconds": 12.313059750013053,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.4125151678063548,
+          "roc_auc": 0.7760686958217824,
+          "runtime_seconds": 15.484648958023172,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4097236236141601,
+          "roc_auc": 0.7874061871318259,
+          "runtime_seconds": 18.77149554202333,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40293202758368735,
+          "roc_auc": 0.7158623646582362,
+          "runtime_seconds": 21.96393883402925,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3285355112634931,
+          "roc_auc": 0.6569058151279366,
+          "runtime_seconds": 24.985821832960937,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.34052921917896783,
+          "roc_auc": 0.790882189294118,
+          "runtime_seconds": 26.70310187502764,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38915379290876234,
+      "pooled_oof_roc_auc": 0.7419640067663065,
+      "runtime_seconds": 120.22206679207738,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__007/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "04a5ef459b2999107f5c70ed3265cf432059e6987c2e99ad4ce914effb87a60b",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__007/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "654748f875d3919fb9669174b889f5fbe91ed59390ec96597ace018b2a927ffa",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__007",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21185083682335573,
+      "delta_pr_auc_vs_fixed_l2": 0.0024791358176690093,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.3888781373971881,
+      "fold_pr_auc_sample_sd": 0.05516110408555002,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          16
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.48453804905833325,
+          "roc_auc": 0.7743937305646365,
+          "runtime_seconds": 5.415158582967706,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.38219627590100785,
+          "roc_auc": 0.7749415650650218,
+          "runtime_seconds": 6.035178500053007,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.39181656950940036,
+          "roc_auc": 0.7837259519822675,
+          "runtime_seconds": 6.986023416975513,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4016497250142427,
+          "roc_auc": 0.7174069137945285,
+          "runtime_seconds": 7.782878124970011,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.32299292035646976,
+          "roc_auc": 0.6502120585814753,
+          "runtime_seconds": 8.35595708398614,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3500752845436743,
+          "roc_auc": 0.7996789043582595,
+          "runtime_seconds": 8.946620874979999,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38413398774616614,
+      "pooled_oof_roc_auc": 0.7440318208769799,
+      "runtime_seconds": 43.52181658393238,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__008/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "3ecb58b3eff3518aceda672bb4a09725c8a7d91bcc59facd5d03fd1d280644c7",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__008/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "4d4b701eda8d3f412182da6dac31c47e4a6317504df1ca92df8c10a9d14a2113",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__008",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.2024942834582635,
+      "delta_pr_auc_vs_fixed_l2": -0.006877417547423215,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.3792011377914295,
+      "fold_pr_auc_sample_sd": 0.046162711178707974,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32,
+          16
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.001,
+        "weight_decay": 1e-05
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.45236307435612017,
+          "roc_auc": 0.7440409609185452,
+          "runtime_seconds": 6.517204167030286,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3646282400942977,
+          "roc_auc": 0.752282239936561,
+          "runtime_seconds": 7.854473249986768,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.36169367061764324,
+          "roc_auc": 0.7574463022972859,
+          "runtime_seconds": 9.270627667021472,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4183240668679131,
+          "roc_auc": 0.7245820935614513,
+          "runtime_seconds": 10.475855124997906,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3348300907732113,
+          "roc_auc": 0.6480166560676343,
+          "runtime_seconds": 11.697177624970209,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.34336768403939133,
+          "roc_auc": 0.7881810071772493,
+          "runtime_seconds": 12.510843457945157,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3747774343810739,
+      "pooled_oof_roc_auc": 0.7290054486718173,
+      "runtime_seconds": 58.3261812919518,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__009/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "b509d1fd4adff9b5450de149f7027393b61b3fd366c740e36d73f6d6f7805643",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__009/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "e6c1c57aa933ba04f653f378a8bc13e5da561a6ff6662f0ec6f729d121c56990",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__009",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20842425839543052,
+      "delta_pr_auc_vs_fixed_l2": -0.0009474426102561995,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.3868918108123233,
+      "fold_pr_auc_sample_sd": 0.04903925228026188,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 1e-05
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4578693255711606,
+          "roc_auc": 0.7674659133624177,
+          "runtime_seconds": 5.445903790998273,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3822037134667399,
+          "roc_auc": 0.7787450318314516,
+          "runtime_seconds": 6.39728108298732,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4055962233018775,
+          "roc_auc": 0.7846776330847719,
+          "runtime_seconds": 7.448322292009834,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40645886817825655,
+          "roc_auc": 0.7160612447309695,
+          "runtime_seconds": 8.242745791969355,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.31505067816632926,
+          "roc_auc": 0.6473807141253927,
+          "runtime_seconds": 9.089612458017655,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.354172056189576,
+          "roc_auc": 0.8018765289343541,
+          "runtime_seconds": 9.670581833983306,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38070740931824093,
+      "pooled_oof_roc_auc": 0.7431444260725465,
+      "runtime_seconds": 46.29444724996574,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__010/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "8d5eae6d02f7fe572a56d76bca8a23d67fb3f49a789f394d7699a7b4922f1bb7",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__010/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "52214cc619cb05bad5c298cc4f2046e4089f84421d2a8d3cf41f94854d3f2bcf",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__010",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21056588778623045,
+      "delta_pr_auc_vs_fixed_l2": 0.0011941867805437267,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.3893177532160563,
+      "fold_pr_auc_sample_sd": 0.05185679887095987,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.47003128165239544,
+          "roc_auc": 0.7703340889157203,
+          "runtime_seconds": 7.690674540994223,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.37889598864175844,
+          "roc_auc": 0.7776514751823392,
+          "runtime_seconds": 9.356781832990237,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.40595787701629127,
+          "roc_auc": 0.7891439086386141,
+          "runtime_seconds": 11.382935499947052,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.41032741065659506,
+          "roc_auc": 0.7221542069592529,
+          "runtime_seconds": 12.531796584022231,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.32354945781485867,
+          "roc_auc": 0.6483065707765973,
+          "runtime_seconds": 13.784323416999541,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.34714450351443876,
+          "roc_auc": 0.7968005445881553,
+          "runtime_seconds": 14.873949582979549,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38284903870904086,
+      "pooled_oof_roc_auc": 0.7436460569323766,
+      "runtime_seconds": 69.62046145793283,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__011/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "4efaedbf451190b7b2215f0a77e7c3458c8fa331c8e6640343ba3ccdcb353be7",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__011/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "c60c55cbaf8016473d7fd592be47c1fa99b8378a5737941ebbcb3f37a263e70a",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__011",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.18112151981565475,
+      "delta_pr_auc_vs_fixed_l2": -0.028250181190031975,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.35855268546594904,
+      "fold_pr_auc_sample_sd": 0.04258564584772515,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.003,
+        "weight_decay": 1e-05
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.3994647650990877,
+          "roc_auc": 0.7103062956339489,
+          "runtime_seconds": 12.52604462497402,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3225120734415949,
+          "roc_auc": 0.7244301194918479,
+          "runtime_seconds": 15.725554667005781,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.35455993791327245,
+          "roc_auc": 0.7405208345881872,
+          "runtime_seconds": 19.99917575001018,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.42161246883780534,
+          "roc_auc": 0.7251477394826019,
+          "runtime_seconds": 22.579656124988105,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.33198795797303804,
+          "roc_auc": 0.6424708682477929,
+          "runtime_seconds": 25.06875408295309,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.32117890953089556,
+          "roc_auc": 0.7891477133203404,
+          "runtime_seconds": 27.14948604197707,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.35340467073846515,
+      "pooled_oof_roc_auc": 0.7134900136377482,
+      "runtime_seconds": 123.04867129190825,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__012/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "c65ac05774573c96e3206019fffedb7dc39247a2e24c609f65e3969566c59a4c",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__012/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "770b0fa513f7c0470d4a887dd1d82760737c9c0a0bb45314bb50499812148aa5",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__012",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.16831817256360934,
+      "delta_pr_auc_vs_fixed_l2": -0.04105352844207738,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.3479444243435201,
+      "fold_pr_auc_sample_sd": 0.032378168169317274,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.3823597338632856,
+          "roc_auc": 0.6901914774863027,
+          "runtime_seconds": 17.173684791021515,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3241527294958457,
+          "roc_auc": 0.7056462056462056,
+          "runtime_seconds": 22.585977792041376,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.362413838089173,
+          "roc_auc": 0.7419423329438267,
+          "runtime_seconds": 27.354041250015143,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.37862760904279025,
+          "roc_auc": 0.7006544962393586,
+          "runtime_seconds": 32.972120208025444,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.300245261974341,
+          "roc_auc": 0.6266097280412988,
+          "runtime_seconds": 35.56109304202255,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3398673735956847,
+          "roc_auc": 0.7721759591683217,
+          "runtime_seconds": 38.881702708953526,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.34060132348641975,
+      "pooled_oof_roc_auc": 0.6967535284029465,
+      "runtime_seconds": 174.52861979207955,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "6154eb32c5d952b584987507c524ea2e66f016e3f8dda0b3ad1f0cefc6ad169b",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "d3d6f35a95cdf59e84e391a59fc1c0768c5dd3c3f5527b9721ff5209f1fa1136",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__001",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21782295956106942,
+      "delta_pr_auc_vs_fixed_l2": 0.008451258555382701,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.39679167673071064,
+      "fold_pr_auc_sample_sd": 0.0587283407566062,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4889166542456828,
+          "roc_auc": 0.7739563280974131,
+          "runtime_seconds": 6.743347291019745,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3701336487131851,
+          "roc_auc": 0.7644008940305236,
+          "runtime_seconds": 7.322297042002901,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.43417050775379323,
+          "roc_auc": 0.8011649058558505,
+          "runtime_seconds": 8.700609124964103,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40488554885824546,
+          "roc_auc": 0.7082868418877594,
+          "runtime_seconds": 9.811275416985154,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3266430040504872,
+          "roc_auc": 0.6639491059404459,
+          "runtime_seconds": 10.654696249985136,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.35600069676286994,
+          "roc_auc": 0.7917789568898793,
+          "runtime_seconds": 11.544596208957955,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.39010611048387983,
+      "pooled_oof_roc_auc": 0.7434410947294384,
+      "runtime_seconds": 54.776821333914995,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "f47c7a0009fc53ae7376604bbea916ce7dbaa10a89ffe0c300c9740494009386",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "dd0caf8f601ae62430dc4321b7931f8caca26b8e6c445e8ce415aa2d35b058ba",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__002",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.18338707463555884,
+      "delta_pr_auc_vs_fixed_l2": -0.025984626370127883,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.367367355023922,
+      "fold_pr_auc_sample_sd": 0.05144999347191902,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.43014088841752807,
+          "roc_auc": 0.7184882277226594,
+          "runtime_seconds": 6.423617791035213,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.32926184706149386,
+          "roc_auc": 0.6948513306537998,
+          "runtime_seconds": 7.236605292011518,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4236849596735225,
+          "roc_auc": 0.7604745154256666,
+          "runtime_seconds": 8.625242249981966,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.38077066786337344,
+          "roc_auc": 0.688063063063063,
+          "runtime_seconds": 9.709877167013474,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3244743512301722,
+          "roc_auc": 0.6420628834355828,
+          "runtime_seconds": 10.920355915965047,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3158714158974418,
+          "roc_auc": 0.7505245391049732,
+          "runtime_seconds": 12.345444499980658,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.35567022555836925,
+      "pooled_oof_roc_auc": 0.6981307033896497,
+      "runtime_seconds": 55.261142915987875,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "ddbda3cf83d12746e8b9d651ae16b81bbc18ae036c66a34b4829fa24da7d338e",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "f17f5bdfda2f8cfea9e2b1410d80fa5932632a206bf3e087a8b640bd5b86f8ba",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.2205728223750982,
+      "delta_pr_auc_vs_fixed_l2": 0.011201121369411482,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.39789464059189233,
+      "fold_pr_auc_sample_sd": 0.0568556017103155,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.49751781417820684,
+          "roc_auc": 0.7786652390336138,
+          "runtime_seconds": 5.526729250035714,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3882044772188685,
+          "roc_auc": 0.7719310867459015,
+          "runtime_seconds": 6.459061667032074,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.41042152686307265,
+          "roc_auc": 0.7914553492910578,
+          "runtime_seconds": 7.016731083043851,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4001971914041734,
+          "roc_auc": 0.7045184519381766,
+          "runtime_seconds": 7.966648083995096,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3297922298714675,
+          "roc_auc": 0.6625813631602574,
+          "runtime_seconds": 8.65933891700115,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.36123460401556506,
+          "roc_auc": 0.7966715468230803,
+          "runtime_seconds": 9.283627874974627,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3928559732979086,
+      "pooled_oof_roc_auc": 0.7455719211595369,
+      "runtime_seconds": 44.91213687608251,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__004/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "1bc0f5ccf017833f8821f46d914a5b02c32ecd12227d602b4504289a7da0cdf1",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__004/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "3f299571a222ee20958d42bedfe39077bc775c099445241714a31329ea2d8faf",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__004",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20805296631021578,
+      "delta_pr_auc_vs_fixed_l2": -0.0013187346954709467,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.3895528424474081,
+      "fold_pr_auc_sample_sd": 0.053657034033311686,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32,
+          16
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4572528200787536,
+          "roc_auc": 0.7584000637878598,
+          "runtime_seconds": 14.65647883299971,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3753802667761478,
+          "roc_auc": 0.7489679958815763,
+          "runtime_seconds": 19.147788292029873,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4415291299839617,
+          "roc_auc": 0.7907205069207696,
+          "runtime_seconds": 23.82676945795538,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.3942398452075049,
+          "roc_auc": 0.7144262955616166,
+          "runtime_seconds": 27.921622542024124,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.31424931922593524,
+          "roc_auc": 0.6565235485560378,
+          "runtime_seconds": 31.709590791957453,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3546656734121452,
+          "roc_auc": 0.7906630485124848,
+          "runtime_seconds": 33.84380225004861,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3803361172330262,
+      "pooled_oof_roc_auc": 0.7354034085418077,
+      "runtime_seconds": 151.10605216701515,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "98b917955c54196cd1fbd709c9f6ef139058ec7512b69415972ad9c01bc26015",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "dab90e5a25596565b733d15132e8cd398f9e4d457c28f5052bd2e8e051339324",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21108908491208553,
+      "delta_pr_auc_vs_fixed_l2": 0.0017173839063988061,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.39056461785139834,
+      "fold_pr_auc_sample_sd": 0.054825628582651775,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.47426431806022323,
+          "roc_auc": 0.768902279276919,
+          "runtime_seconds": 15.62287279200973,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.35841285306124127,
+          "roc_auc": 0.7591425492660061,
+          "runtime_seconds": 20.633275875006802,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4244512243155172,
+          "roc_auc": 0.7988369011335847,
+          "runtime_seconds": 24.750376250012778,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40726956936494313,
+          "roc_auc": 0.7097280767005539,
+          "runtime_seconds": 29.728237416944467,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3263366722853759,
+          "roc_auc": 0.6654524539877301,
+          "runtime_seconds": 32.06606062495848,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.35265307002108964,
+          "roc_auc": 0.7889161390191817,
+          "runtime_seconds": 35.881308583018836,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38337223583489594,
+      "pooled_oof_roc_auc": 0.7415200798110135,
+      "runtime_seconds": 158.6821315419511,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__006/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "bbe62ca1c466d1164818cb41a8eefc111dfb7836520984e69249f0302dacda2b",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__006/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "854a553bed446dc353b958a3603c55c1413a4699d840f2bf9a630bdff4dbd450",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__006",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.21373619402814634,
+      "delta_pr_auc_vs_fixed_l2": 0.004364493022459615,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.3900551155064951,
+      "fold_pr_auc_sample_sd": 0.05997135744988126,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4902598555604277,
+          "roc_auc": 0.7741317447118725,
+          "runtime_seconds": 12.587478582980111,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3818667051569826,
+          "roc_auc": 0.7588851477740367,
+          "runtime_seconds": 16.060730749974027,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4082017461920777,
+          "roc_auc": 0.791904085000783,
+          "runtime_seconds": 19.587369207991287,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.40084847517822714,
+          "roc_auc": 0.6977952723365566,
+          "runtime_seconds": 22.966870542033575,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3220348709196774,
+          "roc_auc": 0.6630887139009427,
+          "runtime_seconds": 25.702394749969244,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3371190400315779,
+          "roc_auc": 0.7894538887386504,
+          "runtime_seconds": 27.542789958009962,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38601934495095674,
+      "pooled_oof_roc_auc": 0.7392739029601099,
+      "runtime_seconds": 124.4476337909582,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__007/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "a3cb688638409a4d3881219b3ff5d33eaec9b0839da5ab70b14ea9f8b9ceb46a",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__007/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "634c9393113296f6bd37cd36a3ff29d7c71a583e34c73c7a038b9d3b9e88f85d",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__007",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.2054310512467162,
+      "delta_pr_auc_vs_fixed_l2": -0.003940649758970516,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.3815259872312266,
+      "fold_pr_auc_sample_sd": 0.061242739453305786,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          16
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4846765150231752,
+          "roc_auc": 0.7771867275688852,
+          "runtime_seconds": 5.50083687499864,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.39110287623133455,
+          "roc_auc": 0.771473839375074,
+          "runtime_seconds": 6.103490625042468,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3913523890804791,
+          "roc_auc": 0.7951325727915578,
+          "runtime_seconds": 7.115185500006191,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.3839732530807486,
+          "roc_auc": 0.6999390445491364,
+          "runtime_seconds": 7.921374875004403,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3117304245380548,
+          "roc_auc": 0.6504821001047434,
+          "runtime_seconds": 8.462781541980803,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3263204654335674,
+          "roc_auc": 0.7864232183543615,
+          "runtime_seconds": 9.21012016700115,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3777142021695266,
+      "pooled_oof_roc_auc": 0.741768800569108,
+      "runtime_seconds": 44.31378958403366,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__008/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "d5876419ef4c575030ad05f0afa43500501d4c2fcc401a7870d1dca52a7e8126",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__008/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "94c8ac62d175a06e4a98d2605f146806064df48986ac749b73a6097601b6a19c",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__008",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.19032981617328285,
+      "delta_pr_auc_vs_fixed_l2": -0.019041884832403877,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.37050323337376906,
+      "fold_pr_auc_sample_sd": 0.044759086563736804,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32,
+          16
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.001,
+        "weight_decay": 1e-05
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4433769607760062,
+          "roc_auc": 0.7392409244683397,
+          "runtime_seconds": 6.432899415958673,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.33813080193152034,
+          "roc_auc": 0.7301601005304709,
+          "runtime_seconds": 7.7771028749994,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3824891052776037,
+          "roc_auc": 0.752620134680946,
+          "runtime_seconds": 9.26139208296081,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.3916642041543894,
+          "roc_auc": 0.705941606744359,
+          "runtime_seconds": 10.359868041006848,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.32035901550596446,
+          "roc_auc": 0.6310367724076013,
+          "runtime_seconds": 12.096307458996307,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.34699931259713035,
+          "roc_auc": 0.7822300138944582,
+          "runtime_seconds": 13.06861595803639,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.36261296709609325,
+      "pooled_oof_roc_auc": 0.7147810488325963,
+      "runtime_seconds": 58.99618583195843,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__009/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "ffb2222af7126bd7e325a3378e6f2e94da58627c3e5a939c5eee1dedf2333888",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__009/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "e01943296dc7496f20ea668cf125ff18249fc2569075d96eb1f5f8c05e227fd3",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__009",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.2105016845112714,
+      "delta_pr_auc_vs_fixed_l2": 0.0011299835055846863,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.3884422472692513,
+      "fold_pr_auc_sample_sd": 0.05742762695697589,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 1e-05
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4785544239587326,
+          "roc_auc": 0.7749222585458646,
+          "runtime_seconds": 5.798836375004612,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3781944091579694,
+          "roc_auc": 0.7715249999200616,
+          "runtime_seconds": 6.5099056249600835,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.42172731745850073,
+          "roc_auc": 0.7936839695943911,
+          "runtime_seconds": 7.5638272920041345,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.3906486566941306,
+          "roc_auc": 0.7074396644350773,
+          "runtime_seconds": 8.618143625033554,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.31498155355800095,
+          "roc_auc": 0.6554012980697291,
+          "runtime_seconds": 9.234179250022862,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.34654712278817373,
+          "roc_auc": 0.7937807535334508,
+          "runtime_seconds": 9.915553666010965,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3827848354340818,
+      "pooled_oof_roc_auc": 0.7440934271838131,
+      "runtime_seconds": 47.64044583303621,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__010/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "c4f6a61d340a8aebb498f5569ec614f5980910c00434010a2e209ff6ebdcaeab",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__010/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "cf75d394c5b96087b2446bfe4ec613ae01a4900a589ac7483dde3f304e0661d0",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__010",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.19644896878368798,
+      "delta_pr_auc_vs_fixed_l2": -0.012922732221998745,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.375321482938297,
+      "fold_pr_auc_sample_sd": 0.06019076309993643,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4633002414874638,
+          "roc_auc": 0.7590094656627673,
+          "runtime_seconds": 7.666294374968857,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3609295886091681,
+          "roc_auc": 0.7563319168257439,
+          "runtime_seconds": 9.183643917029258,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4008890772223592,
+          "roc_auc": 0.7837033646143281,
+          "runtime_seconds": 10.928106374980416,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.4055315710423015,
+          "roc_auc": 0.715988924704521,
+          "runtime_seconds": 12.719260166981257,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.2998385852485072,
+          "roc_auc": 0.6345391291336226,
+          "runtime_seconds": 14.022492333024275,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3214398340199821,
+          "roc_auc": 0.7808530016070323,
+          "runtime_seconds": 15.313793000008445,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3687321197064984,
+      "pooled_oof_roc_auc": 0.7316218085522753,
+      "runtime_seconds": 69.83359016699251,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__011/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "75dad7c3e9c67c22102649d798e56a585b8b6af67898776b9b94f8fa11b8c769",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__011/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "33211d7da9cf792294c7a9c9e89252e578d58e147389b3515ab0c0c0ae837681",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__011",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.18159276381956632,
+      "delta_pr_auc_vs_fixed_l2": -0.0277789371861204,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.3617835594960659,
+      "fold_pr_auc_sample_sd": 0.05651264310452453,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          32
+        ],
+        "imbalance": "none",
+        "learning_rate": 0.003,
+        "weight_decay": 1e-05
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.42650406663874085,
+          "roc_auc": 0.7180382954972604,
+          "runtime_seconds": 12.828493958048057,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3096639994748007,
+          "roc_auc": 0.6948417380516146,
+          "runtime_seconds": 15.665863167028874,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4202768813300633,
+          "roc_auc": 0.7619231186228332,
+          "runtime_seconds": 19.462174875021446,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.388180104237309,
+          "roc_auc": 0.7091417679147038,
+          "runtime_seconds": 22.299401208001655,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3228546163850542,
+          "roc_auc": 0.6353948451294329,
+          "runtime_seconds": 25.366983417014126,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3032216889104273,
+          "roc_auc": 0.7602693100329176,
+          "runtime_seconds": 27.58655283402186,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.35387591474237673,
+      "pooled_oof_roc_auc": 0.7030792938304626,
+      "runtime_seconds": 123.20946945913602,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__012/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "c80c76ba043b059bacbb8a503f128270aa75638730ccd71a6af4df89b8cacbc1",
+      "canonical_oof_predictions": "candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__012/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "bc678f435016cf35b6c9961b5d9eb01d733cc55db3e1483ba2a03ea63c9a9489",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__012",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.1565444714551352,
+      "delta_pr_auc_vs_fixed_l2": -0.052827229550551524,
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.3373806627109233,
+      "fold_pr_auc_sample_sd": 0.05446925982001526,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "activation": "tanh",
+        "batch_size": 64,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64,
+          32
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.001,
+        "weight_decay": 0.0001
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.3637836943948258,
+          "roc_auc": 0.6330341378956841,
+          "runtime_seconds": 17.09821520798141,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.28989373357547793,
+          "roc_auc": 0.6831403621527078,
+          "runtime_seconds": 23.25209825002821,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3553856548171671,
+          "roc_auc": 0.7048162291744466,
+          "runtime_seconds": 27.830857791996095,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.42539239795209594,
+          "roc_auc": 0.7135532895280603,
+          "runtime_seconds": 33.02301029098453,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3050467382741305,
+          "roc_auc": 0.645525493790214,
+          "runtime_seconds": 36.56464879197301,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.2847817572518429,
+          "roc_auc": 0.7165841391808175,
+          "runtime_seconds": 39.051964582991786,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3288276223779456,
+      "pooled_oof_roc_auc": 0.669499064685991,
+      "runtime_seconds": 176.82079491595505,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    }
+  ],
+  "family": "pytorch_mlp",
+  "mode": "classical_mlp_coarse_search",
+  "schema_version": 1
+}

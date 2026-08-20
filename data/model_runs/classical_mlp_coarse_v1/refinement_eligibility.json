@@ -1,0 +1,33 @@
+{
+  "frozen_rule_applied": true,
+  "qualified_families": [
+    {
+      "boundary": true,
+      "distance_to_global_coarse_leader": 0.0,
+      "family": "xgboost",
+      "family_leader_configuration_id": "model_stage_v1__coarse__xgboost__004",
+      "feature_block": "L+D+R",
+      "runner_up_gap": 0.0007886610681532291
+    },
+    {
+      "boundary": true,
+      "distance_to_global_coarse_leader": 0.003867192532450381,
+      "family": "hist_gradient_boosting",
+      "family_leader_configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__007",
+      "feature_block": "L+D+R",
+      "runner_up_gap": 0.0016891496505946901
+    },
+    {
+      "boundary": true,
+      "distance_to_global_coarse_leader": 0.004286350941319017,
+      "family": "random_forest",
+      "family_leader_configuration_id": "model_stage_v1__coarse__random_forest__003",
+      "feature_block": "L+D+R",
+      "runner_up_gap": 0.0026189674772395533
+    }
+  ],
+  "refinement_performed": false,
+  "schema_version": 1,
+  "source": "coarse_seed_20260818_OOF_2015_2020_only",
+  "status": "QUALIFIED_NOT_EXECUTED"
+}

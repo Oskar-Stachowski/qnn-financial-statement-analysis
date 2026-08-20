@@ -1,0 +1,10 @@
+{
+  "classical_mlp_coarse_search_manifest_sha256": "5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43",
+  "mode": "classical_mlp_coarse_search",
+  "model_fit_performed": true,
+  "project_data_model_fit_performed": true,
+  "protected_feature_years_opened": false,
+  "runtime_metadata_sha256": "38a0237d0847dfaac702627740e93f1a1aa92b79d9c7a3b2aaad418f371a5788",
+  "schema_version": 1,
+  "status": "COMPLETE"
+}

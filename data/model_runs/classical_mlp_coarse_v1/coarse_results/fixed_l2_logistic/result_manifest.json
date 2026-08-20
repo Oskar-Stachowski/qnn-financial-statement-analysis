@@ -1,0 +1,559 @@
+{
+  "candidate_results": [
+    {
+      "candidate_manifest": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__001/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "d9ab907defb8e428e8a5b32540d8a806206a202f27a5f333efccc673030ac9c2",
+      "canonical_oof_predictions": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__001/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "abb0f52846cd89853aaa87d080927877cc3dd7ef75d8dcafbb75a4ea96cf0c78",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__001",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.19127006924365966,
+      "delta_pr_auc_vs_fixed_l2": -0.01810163176202706,
+      "failure_code": null,
+      "family": "fixed_l2_logistic",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.3642221065340279,
+      "fold_pr_auc_sample_sd": 0.04751735102443391,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "none"
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.43747982170960337,
+          "roc_auc": 0.7399163923409006,
+          "runtime_seconds": 1.7961100000538863,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.38023885347246433,
+          "roc_auc": 0.7685337068053117,
+          "runtime_seconds": 1.985125417006202,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.36175517240138166,
+          "roc_auc": 0.7723795641541482,
+          "runtime_seconds": 2.189004124957137,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.3803188452361941,
+          "roc_auc": 0.707421584428465,
+          "runtime_seconds": 1.8133970000199042,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.320064814347571,
+          "roc_auc": 0.6539891328744576,
+          "runtime_seconds": 1.8367077910224907,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3054751320369532,
+          "roc_auc": 0.7824786842849639,
+          "runtime_seconds": 1.8382160830078647,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.36355322016647007,
+      "pooled_oof_roc_auc": 0.7319698684041079,
+      "runtime_seconds": 11.458560416067485,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__002/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "8755e0390f3bef37f22bcb72278d24aa4de54e5ebc6866087723d976bca62238",
+      "canonical_oof_predictions": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__002/L/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "d786f499cae0acb1f494cdfc312edd36c42bd836fb812b79f37a7ce4415bd295",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__002",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.1926937830304525,
+      "delta_pr_auc_vs_fixed_l2": -0.016677917975234213,
+      "failure_code": null,
+      "family": "fixed_l2_logistic",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.3641990962559061,
+      "fold_pr_auc_sample_sd": 0.0475635434210286,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "sqrt"
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.43902822142470554,
+          "roc_auc": 0.7406226150744382,
+          "runtime_seconds": 1.75672524998663,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3787475965597168,
+          "roc_auc": 0.7687495403544786,
+          "runtime_seconds": 1.7791035000118427,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.36077894603873406,
+          "roc_auc": 0.7722952379805086,
+          "runtime_seconds": 1.9146900000050664,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.3799888526488515,
+          "roc_auc": 0.7073544301181917,
+          "runtime_seconds": 1.8415705829975195,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3189438908248331,
+          "roc_auc": 0.653362543019602,
+          "runtime_seconds": 1.995603375020437,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3077070700385953,
+          "roc_auc": 0.7840017904268115,
+          "runtime_seconds": 1.914693625003565,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3649769339532629,
+      "pooled_oof_roc_auc": 0.7331112062991201,
+      "runtime_seconds": 11.20238633302506,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__001/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "b2dfd7324271d6f99c9ab615cb86a24a34a0b5aea1c0f542d7313f0029bc6b5d",
+      "canonical_oof_predictions": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__001/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "41654ffea789cc205d06d8c849eee235e85535ddd6ea2ba280756250e876a710",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__001",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.19722428343931167,
+      "delta_pr_auc_vs_fixed_l2": -0.012147417566375052,
+      "failure_code": null,
+      "family": "fixed_l2_logistic",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.3734376351801478,
+      "fold_pr_auc_sample_sd": 0.04589689030264654,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "none"
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4432873551216257,
+          "roc_auc": 0.746048000364502,
+          "runtime_seconds": 1.864862209011335,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.38435828355296764,
+          "roc_auc": 0.7685560895437439,
+          "runtime_seconds": 1.8084095839876682,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3906508939816001,
+          "roc_auc": 0.7731520521376685,
+          "runtime_seconds": 1.8330795830115676,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.37728214517402037,
+          "roc_auc": 0.6971547235308703,
+          "runtime_seconds": 1.8487045409856364,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3181180319691716,
+          "roc_auc": 0.6489892731557685,
+          "runtime_seconds": 1.8758552079671063,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.32692910128150104,
+          "roc_auc": 0.7891321714209336,
+          "runtime_seconds": 1.8852143750409596,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.3695074343621221,
+      "pooled_oof_roc_auc": 0.7314793995626095,
+      "runtime_seconds": 11.116125500004273,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__002/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "5b20d3278b3fb61d8220cafb7934d6c3b1a0e15f49bdd2486dd9f6c101869012",
+      "canonical_oof_predictions": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__002/L_D/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "a3036884f51c725e7816e35b3d388fe48b07f36357365a6204b7b9b5fec39913",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__002",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.19841547669285384,
+      "delta_pr_auc_vs_fixed_l2": -0.010956224312832885,
+      "failure_code": null,
+      "family": "fixed_l2_logistic",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.37323522142215326,
+      "fold_pr_auc_sample_sd": 0.045006110375116384,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "sqrt"
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4434502971515465,
+          "roc_auc": 0.7463179596997415,
+          "runtime_seconds": 1.7546181660145521,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.38149430022185415,
+          "roc_auc": 0.7686408241963798,
+          "runtime_seconds": 1.8070821670116857,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.3886858367904589,
+          "roc_auc": 0.7734953801303441,
+          "runtime_seconds": 1.8366797500057146,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.37743371154467503,
+          "roc_auc": 0.6979450781056286,
+          "runtime_seconds": 1.8588641669484787,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.3187447471454592,
+          "roc_auc": 0.6488069074517433,
+          "runtime_seconds": 1.977241334039718,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.32960243567892566,
+          "roc_auc": 0.789983867508416,
+          "runtime_seconds": 1.9354738750262186,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.37069862761566424,
+      "pooled_oof_roc_auc": 0.7326820855172439,
+      "runtime_seconds": 11.169959459046368,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__001/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "65d4988c0d50a7a15c38f37dd9edf3df3ff03279fe2a3233c63aa697a3432633",
+      "canonical_oof_predictions": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__001/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "a03e592d93816384c8d0d4e36cca446e073c0ff726c2f747b2d216ba315a1fc0",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__001",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20849118816809306,
+      "delta_pr_auc_vs_fixed_l2": -0.0008805128375936611,
+      "failure_code": null,
+      "family": "fixed_l2_logistic",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.38324412418310455,
+      "fold_pr_auc_sample_sd": 0.05242777257797644,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "none"
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.4667076824963168,
+          "roc_auc": 0.7592611998952057,
+          "runtime_seconds": 1.8298032919992693,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3848805040824496,
+          "roc_auc": 0.7716097345726974,
+          "runtime_seconds": 2.060068249993492,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.4077460949965946,
+          "roc_auc": 0.7792250424642517,
+          "runtime_seconds": 2.142270332959015,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.38474378442181345,
+          "roc_auc": 0.69363687081577,
+          "runtime_seconds": 1.937445540970657,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.32795647529493366,
+          "roc_auc": 0.6590743303905432,
+          "runtime_seconds": 2.9674089580075815,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3274302038065194,
+          "roc_auc": 0.7889099222594191,
+          "runtime_seconds": 2.145897292008158,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38077433909090347,
+      "pooled_oof_roc_auc": 0.7377011200583248,
+      "runtime_seconds": 13.082893665938172,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    },
+    {
+      "candidate_manifest": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__002/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "853227df1cc0f8906e9c29f57c3019fb20454a49c9d6b736cfe0428326c12e38",
+      "canonical_oof_predictions": "candidate_results/coarse/fixed_l2_logistic/model_stage_v1__coarse__fixed_l2_logistic__002/L_D_R/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "497de684da9500ba54e9da7eb622c6c7018226c4d36c68e7ccb4265b654f4b9a",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__002",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.20937170100568672,
+      "delta_pr_auc_vs_fixed_l2": 0.0,
+      "failure_code": null,
+      "family": "fixed_l2_logistic",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.3825843800394651,
+      "fold_pr_auc_sample_sd": 0.05195766128627831,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "C": 1.0,
+        "imbalance": "sqrt"
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.46596792138931786,
+          "roc_auc": 0.7595322982993701,
+          "runtime_seconds": 1.8374144170084037,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.3798021208845178,
+          "roc_auc": 0.7715489814255246,
+          "runtime_seconds": 1.8391159170423634,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.40765992552565317,
+          "roc_auc": 0.7796888364192698,
+          "runtime_seconds": 1.846686500008218,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.38551459830979856,
+          "roc_auc": 0.6941560252913465,
+          "runtime_seconds": 1.899626791011542,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.32720323886586145,
+          "roc_auc": 0.6589644433637588,
+          "runtime_seconds": 1.9135400420054793,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.3293584752616417,
+          "roc_auc": 0.7894352384593626,
+          "runtime_seconds": 1.9665508749894798,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.38165485192849713,
+      "pooled_oof_roc_auc": 0.7387039226718324,
+      "runtime_seconds": 11.302934542065486,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    }
+  ],
+  "family": "fixed_l2_logistic",
+  "mode": "classical_mlp_coarse_search",
+  "schema_version": 1
+}

@@ -1,0 +1,99 @@
+{
+  "candidate_results": [
+    {
+      "candidate_manifest": "candidate_results/coarse/dummy_prior/model_stage_v1__coarse__dummy_prior__001/BLOCK_AGNOSTIC/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "4f515b207d89e3ccaaa693b7371b4f992a64733aadc0eeb78a93c2ad81b0bed1",
+      "canonical_oof_predictions": "candidate_results/coarse/dummy_prior/model_stage_v1__coarse__dummy_prior__001/BLOCK_AGNOSTIC/seed_20260818/canonical_oof_predictions.json",
+      "canonical_oof_predictions_sha256": "5ba3c54c2f86fc06cca050240a47a109787aafca09fef36c628073f99783cc04",
+      "canonical_prediction_keys_sha256": "355e71a362d209f7c24a1d1872b236c600bdf3633e0e3c1544dfd84787a78a20",
+      "configuration_id": "model_stage_v1__coarse__dummy_prior__001",
+      "convergence_status": "CONVERGED_NO_WARNINGS",
+      "delta_pr_auc_vs_dummy": 0.0,
+      "delta_pr_auc_vs_fixed_l2": -0.20937170100568672,
+      "failure_code": null,
+      "family": "dummy_prior",
+      "feature_block": "BLOCK_AGNOSTIC",
+      "fold_pr_auc_mean": 0.1835730031294409,
+      "fold_pr_auc_sample_sd": 0.036527119771290084,
+      "oof_key_count": 10760,
+      "oof_nonfinite_score_count": 0,
+      "oof_unique_key_count": 10760,
+      "parameters": {
+        "imbalance": "none",
+        "strategy": "prior"
+      },
+      "per_fold": [
+        {
+          "fold_id": "fold_2015",
+          "n": 2241,
+          "positive_n": 506,
+          "pr_auc": 0.22579205711735834,
+          "roc_auc": 0.5,
+          "runtime_seconds": 2.258635917038191,
+          "status": "COMPLETE",
+          "validation_feature_year": 2015
+        },
+        {
+          "fold_id": "fold_2016",
+          "n": 2133,
+          "positive_n": 351,
+          "pr_auc": 0.16455696202531644,
+          "roc_auc": 0.5,
+          "runtime_seconds": 1.7061182920006104,
+          "status": "COMPLETE",
+          "validation_feature_year": 2016
+        },
+        {
+          "fold_id": "fold_2017",
+          "n": 1549,
+          "positive_n": 257,
+          "pr_auc": 0.1659134925758554,
+          "roc_auc": 0.5,
+          "runtime_seconds": 1.7053719999967143,
+          "status": "COMPLETE",
+          "validation_feature_year": 2017
+        },
+        {
+          "fold_id": "fold_2018",
+          "n": 1511,
+          "positive_n": 327,
+          "pr_auc": 0.21641297154202516,
+          "roc_auc": 0.5,
+          "runtime_seconds": 1.7345419159973972,
+          "status": "COMPLETE",
+          "validation_feature_year": 2018
+        },
+        {
+          "fold_id": "fold_2019",
+          "n": 1638,
+          "positive_n": 326,
+          "pr_auc": 0.199023199023199,
+          "roc_auc": 0.5,
+          "runtime_seconds": 1.7116255409782752,
+          "status": "COMPLETE",
+          "validation_feature_year": 2019
+        },
+        {
+          "fold_id": "fold_2020",
+          "n": 1688,
+          "positive_n": 219,
+          "pr_auc": 0.129739336492891,
+          "roc_auc": 0.5,
+          "runtime_seconds": 2.0886628340231255,
+          "status": "COMPLETE",
+          "validation_feature_year": 2020
+        }
+      ],
+      "pooled_oof_n": 10760,
+      "pooled_oof_positive_n": 1986,
+      "pooled_oof_pr_auc": 0.1722831509228104,
+      "pooled_oof_roc_auc": 0.46256921886072344,
+      "runtime_seconds": 11.204956500034314,
+      "status": "COMPLETE",
+      "training_seed": 20260818
+    }
+  ],
+  "family": "dummy_prior",
+  "mode": "classical_mlp_coarse_search",
+  "schema_version": 1
+}
