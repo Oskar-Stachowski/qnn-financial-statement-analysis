@@ -1,0 +1,5 @@
+etap,n,pominiete_wobec_poprzedniego_etapu,udzial_w_raw_pct
+Aktualny raw X_t train-only,47938,0,100.0
+Po wymogu split=train i membership=eligible,47938,0,100.0
+Po wymogu dostępnego targetu,19784,28154,41.2699737160499
+Po wymogu zaakceptowanego X_t status,19671,113,41.03425257624431

@@ -1,0 +1,19 @@
+### Podsumowanie klasycznego EDA — train 2011–2020
+
+1. **Najważniejsze cechy próby.** Analiza obejmuje **19,671** obserwacji company-year z lat **2011–2020**, dotyczących **4,426** unikalnych spółek (CIK) i **4,418** grup ekonomicznych. Mediana liczby obserwacji na spółkę wynosi 4.0. Dla 5 obserwacji nie można było przypisać kwartyla wielkości z powodu braku lub niedodatniej wartości aktywów; wiersze te pozostały w próbie.
+
+2. **Niezbalansowanie targetu.** Klasa pozytywna obejmuje **3,623** obserwacji, czyli **18.42%** próby, wobec **16,048** obserwacji klasy negatywnej. Rozkład należy uwzględnić przy interpretacji późniejszych metryk modelowych, lecz EDA nie zmienia polityki próby ani strategii modelowania.
+
+3. **Missingness.** Najwyższy udział braków odnotowano dla: revenue_growth_1y (19.2), delta_roa_1y (13.0), delta_ocf_to_assets_1y (12.6) — wartości w nawiasach oznaczają procent braków. Rozkład liczby dostępnych cech oraz przekroje roczne, sektorowe, wielkościowe, targetowe i XBRL zostały zapisane w tabelach 20–29. Podstawowe statystyki nie wykorzystują imputacji.
+
+4. **Rozkłady cech.** Cechy z pomocniczą flagą silnej asymetrii `|skewness|≥2` to: `roa_t`, `ocf_to_assets_t`, `current_ratio_t`, `liabilities_to_assets_t`, `working_capital_to_assets_t`, `accruals_to_assets_t`, `asset_growth_1y`, `delta_roa_1y`, `delta_ocf_to_assets_1y`, `current_ratio_change_1y`, `delta_liabilities_to_assets_1y`, `profit_margin_t`, `ocf_margin_t`, `asset_turnover_t`, `revenue_growth_1y`. Obserwacje poza `1.5×IQR`, zera i wartości ujemne zostały policzone dla każdej cechy, bez automatycznego uznawania ich za błędne i bez usuwania lub winsoryzacji.
+
+5. **Najsilniejsze korelacje.** Najsilniejsza para Spearmana to `log_assets_t` i `log1p_revenues_t` (rho=0.957, n=18,172). Liczba par z |rho|>0,8 wyniosła 4, a z |rho|>0,9: 3. Korelacje mają charakter opisowy i nie są interpretowane przyczynowo.
+
+6. **Potencjalna współliniowość.** najwyższy skończony VIF: `roa_t` = 839174.35. Cechy stałe lub near-zero variance według jawnej diagnostyki: brak. VIF wykorzystuje wyłącznie techniczną, lokalną imputację medianą i nie zmienia właściwego preprocessingu.
+
+7. **Zmiany w czasie.** Pomocniczą flagę silnej zmiany rocznych median otrzymały: brak. Flagę zmiany dostępności danych otrzymały: `asset_growth_1y`, `delta_roa_1y`, `delta_ocf_to_assets_1y`, `current_ratio_change_1y`, `delta_liabilities_to_assets_1y`, `log1p_revenues_t`, `ocf_margin_t`, `asset_turnover_t`, `revenue_growth_1y`. Diagnostyka opisuje temporal drift w latach 2011–2020 i nie prowadzi do modyfikacji zestawu cech.
+
+8. **Jakość danych.** W finalnej próbie wykryto 0 wierszy ze zduplikowanym kluczem kanonicznym, 0 wierszy ze zduplikowanym kluczem `CIK×year` oraz łącznie 0 wartości `+inf/-inf` w 17 cechach. Wszystkie pominięcia wymagane przez konkretne statystyki zostały ujawnione w tabelach.
+
+9. **Ograniczenia interpretacyjne.** EDA jest analizą opisową próby warunkowej względem dostępnego targetu i zaakceptowanego statusu `X_t`. Dane mają strukturę panelową, rozkłady mogą być silnie skośne, a braki mogą nie być losowe. Wyniki nie dowodzą zależności przyczynowych, nie uzasadniają selekcji cech i nie zawierają żadnej informacji z lat 2021–2024.

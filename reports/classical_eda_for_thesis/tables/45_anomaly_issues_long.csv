@@ -1,0 +1,58 @@
+cecha,problem,liczba_obserwacji,udzial_pct,metryka_dodatkowa,lata_z_najwieksza_liczba,maksimum_w_jednym_roku
+delta_roa_1y,obserwacje poza 1.5 × IQR,4084,20.761527121142798,,2013,484.0
+ocf_margin_t,obserwacje poza 1.5 × IQR,3351,17.035229525697726,,2015,425.0
+delta_liabilities_to_assets_1y,obserwacje poza 1.5 × IQR,3270,16.623455848711302,,2014,405.0
+profit_margin_t,obserwacje poza 1.5 × IQR,3232,16.430278074322608,,2015,432.0
+delta_ocf_to_assets_1y,obserwacje poza 1.5 × IQR,3126,15.891413756290987,,2014,374.0
+roa_t,obserwacje poza 1.5 × IQR,2918,14.834019622794978,,2015,355.0
+accruals_to_assets_t,obserwacje poza 1.5 × IQR,2867,14.574754715062783,,2015,353.0
+ocf_to_assets_t,obserwacje poza 1.5 × IQR,2785,14.157897412434549,,2016,349.0
+asset_growth_1y,obserwacje poza 1.5 × IQR,2656,13.50210970464135,,2014,359.0
+revenue_growth_1y,obserwacje poza 1.5 × IQR,2206,11.214478165827868,,2015,290.0
+current_ratio_change_1y,obserwacje poza 1.5 × IQR,2100,10.675613847796248,,2014,264.0
+current_ratio_t,obserwacje poza 1.5 × IQR,1624,8.255808042295765,,2015,208.0
+liabilities_to_assets_t,obserwacje poza 1.5 × IQR,1588,8.072797519190686,,2015,187.0
+working_capital_to_assets_t,obserwacje poza 1.5 × IQR,1420,7.218748411366987,,2015,166.0
+asset_turnover_t,obserwacje poza 1.5 × IQR,979,4.976869503329775,,2014,135.0
+log1p_revenues_t,obserwacje poza 1.5 × IQR,317,1.6115093284530526,,2017,45.0
+log_assets_t,obserwacje poza 1.5 × IQR,275,1.3979970514971278,,2014,42.0
+liabilities_to_assets_t,silna asymetria |skewness| ≥ 2,19637,99.82715672817854,131.48176488124943,2019,39.771995111638425
+current_ratio_t,silna asymetria |skewness| ≥ 2,19596,99.61872807686441,26.29425381414237,2015,27.51035717754354
+working_capital_to_assets_t,silna asymetria |skewness| ≥ 2,19594,99.60856082558081,-131.7811965375517,2019,-39.75792927546137
+ocf_to_assets_t,silna asymetria |skewness| ≥ 2,19376,98.50033043566671,-89.75732649120279,2019,-28.53354612980028
+roa_t,silna asymetria |skewness| ≥ 2,19261,97.91571348685883,-123.67038576663357,2014,-45.251392158533854
+accruals_to_assets_t,silna asymetria |skewness| ≥ 2,19229,97.75303746632098,-124.34822379645891,2014,-46.04562439111449
+asset_turnover_t,silna asymetria |skewness| ≥ 2,18172,92.3796451629302,12.718334482285108,2014,17.51971122326511
+ocf_margin_t,silna asymetria |skewness| ≥ 2,18155,92.29322352701946,-37.14965670925208,2012,-40.463205153691966
+profit_margin_t,silna asymetria |skewness| ≥ 2,18037,91.69335570128615,-60.2748270751756,2014,-43.55971979456429
+asset_growth_1y,silna asymetria |skewness| ≥ 2,17555,89.24304814193482,75.07405211788394,2012,44.39147433909981
+delta_liabilities_to_assets_1y,silna asymetria |skewness| ≥ 2,17513,89.0295358649789,-61.25629600893114,2011,-43.47744320777774
+current_ratio_change_1y,silna asymetria |skewness| ≥ 2,17474,88.83127446494841,73.31806982946216,2013,45.05193210761871
+delta_ocf_to_assets_1y,silna asymetria |skewness| ≥ 2,17200,87.43836103909308,8.374792497308366,2015,42.288568809219946
+delta_roa_1y,silna asymetria |skewness| ≥ 2,17107,86.96558385440497,67.35470590570176,2011,42.90684507191934
+revenue_growth_1y,silna asymetria |skewness| ≥ 2,15892,80.78897869960856,112.92192285382436,2014,40.21139843144253
+accruals_to_assets_t,wartości ujemne,16218,82.44624065883788,,2013,1979.0
+current_ratio_change_1y,wartości ujemne,9130,46.413502109704645,,2015,1083.0
+delta_roa_1y,wartości ujemne,8790,44.68506939149001,,2012,1076.0
+delta_ocf_to_assets_1y,wartości ujemne,8653,43.98861267856235,,2014,1038.0
+roa_t,wartości ujemne,8346,42.427939606527374,,2015,1012.0
+delta_liabilities_to_assets_1y,wartości ujemne,8092,41.13669869350821,,2013,1109.0
+profit_margin_t,wartości ujemne,7676,39.02191042651619,,2015,953.0
+asset_growth_1y,wartości ujemne,6487,32.97747953840679,,2015,905.0
+ocf_to_assets_t,wartości ujemne,5775,29.357938081439684,,2014,681.0
+ocf_margin_t,wartości ujemne,5312,27.0042194092827,,2015,649.0
+revenue_growth_1y,wartości ujemne,5186,26.363682578414924,,2015,742.0
+working_capital_to_assets_t,wartości ujemne,3759,19.109348787555284,,2013,452.0
+revenue_growth_1y,zera,15,0.07625438462711606,,"2013, 2016, 2018",3.0
+accruals_to_assets_t,zera,3,0.015250876925423212,,2013,2.0
+delta_liabilities_to_assets_1y,zera,3,0.015250876925423212,,"2011, 2012, 2014",1.0
+asset_growth_1y,zera,2,0.010167251283615475,,"2018, 2020",1.0
+delta_roa_1y,zera,2,0.010167251283615475,,"2011, 2012",1.0
+profit_margin_t,zera,2,0.010167251283615475,,"2011, 2012",1.0
+roa_t,zera,2,0.010167251283615475,,"2011, 2012",1.0
+asset_turnover_t,zera,1,0.005083625641807738,,2018,1.0
+liabilities_to_assets_t,zera,1,0.005083625641807738,,2011,1.0
+log1p_revenues_t,zera,1,0.005083625641807738,,2018,1.0
+ocf_margin_t,zera,1,0.005083625641807738,,2014,1.0
+ocf_to_assets_t,zera,1,0.005083625641807738,,2014,1.0
+working_capital_to_assets_t,zera,1,0.005083625641807738,,2014,1.0

@@ -1,0 +1,16 @@
+,wartosc
+liczba obserwacji,19671
+liczba kolumn finalnego DataFrame,53
+minimalny rok,2011
+maksymalny rok,2020
+liczba zamrożonych cech,17
+liczba unikalnych CIK,4426
+liczba unikalnych economic_group_id,4418
+wiersze ze zduplikowanym kluczem kanonicznym,0
+wiersze ze zduplikowanym kluczem CIK × year,0
+unikalne wartości targetu,"[0, 1]"
+NaN w target,0
+NaN w całym finalnym DataFrame,22770
+NaN w 17 cechach,22766
++inf w 17 cechach,0
+-inf w 17 cechach,0

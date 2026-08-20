@@ -1,0 +1,3 @@
+artefakt,sciezka,wiersze,kolumny,MiB,sha256_ok,rows_ok,columns_ok
+x_t,data/processed/x_t_pit_v1_1_0_train.csv,47938,1072,565.9398164749146,True,True,True
+target_application,data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_2_0_train.csv,47938,833,269.9807348251343,True,True,True

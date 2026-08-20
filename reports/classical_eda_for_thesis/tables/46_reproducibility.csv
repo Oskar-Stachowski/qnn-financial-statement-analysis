@@ -1,0 +1,14 @@
+,wartosc
+Python,3.13.13
+pandas,3.0.3
+numpy,2.4.6
+scipy,1.18.0
+pipeline overlay,1.3.0
+X_t artifact,data/processed/x_t_pit_v1_1_0_train.csv
+X_t SHA-256,872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65
+target-application artifact,data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_2_0_train.csv
+target-application SHA-256,0f5d3bdefe13ed6ea6a1c6cdc94ae2c663f59175a7363dd8bffa26717069dd1b
+random seed,20260818
+minimalny rok EDA,2011
+maksymalny rok EDA,2020
+liczba cech,17
