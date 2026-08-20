@@ -1,0 +1,9 @@
+Rodzina,Wariant,Pooled OOF PR-AUC,ROC-AUC,Runtime [s],Status,configuration_id
+XGBoost,L+D+R,0.41167748793642267,0.75948605132209945,12.890178165922407,kandydat do refinementu,model_stage_v1__coarse__xgboost__004
+HistGradientBoosting,L+D+R,0.40781029540397229,0.7587946661506314,15.642676666029729,kandydat do refinementu,model_stage_v1__coarse__hist_gradient_boosting__007
+Random Forest,L+D+R,0.40739113699510365,0.75869960248293788,171.73377895896556,kandydat do refinementu,model_stage_v1__coarse__random_forest__003
+MLP (PyTorch),L+D,0.39548464852848403,0.74494308920134122,46.518136708938982,prowizoryczny lider rodziny,model_stage_v1__coarse__pytorch_mlp__epochs_200__003
+SVM RBF,L+D+R,0.39355767923246121,0.73602899806280153,37.028312749986071,prowizoryczny lider rodziny,model_stage_v1__coarse__rbf_svm__004
+Regresja logistyczna Elastic Net,L+D+R,0.38182471722566119,0.74013398094847205,11.293499415973201,prowizoryczny lider rodziny,model_stage_v1__coarse__elastic_net_logistic__003
+Regresja logistyczna fixed L2,L+D+R,0.38165485192849713,0.73870392267183238,11.302934542065486,baseline,model_stage_v1__coarse__fixed_l2_logistic__002
+Dummy (prior),BLOCK_AGNOSTIC,0.17228315092281041,0.46256921886072344,11.204956500034314,baseline,model_stage_v1__coarse__dummy_prior__001
