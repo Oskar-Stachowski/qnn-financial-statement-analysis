@@ -1,0 +1,165 @@
+schema_version: 1
+
+methodology_amendment:
+  id: model_stage_v1_3_0_neural_comparator_amendment
+  version: 1.3.0
+  status: post_coarse_pre_qnn_secondary_analysis_preregistration
+  created_on: "2026-08-21"
+  must_be_committed_before_first_refinement_or_qnn_fit: true
+  protected_feature_years_opened_at_creation: false
+  development_information_observed_at_creation:
+    coarse_search_2015_2020_oof_results: true
+    refinement_results: false
+    qnn_results: false
+    confirmation_seed_results: false
+    protected_year_results_2021_2024: false
+
+  authority:
+    base_execution_contract:
+      path: configs/model_execution_contract_v1_2_0_scientific_patch.yaml
+      sha256: 59490dc080176a4f5655539db78edeb035e9ce02a2b6a68d95fad5c428081f59
+    candidate_registry:
+      path: configs/model_stage_candidates_v1_scientific_patch.json
+      sha256: f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac
+    frozen_coarse_manifest:
+      path: data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json
+      sha256: 5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43
+
+  observed_coarse_context:
+    global_leader:
+      family: xgboost
+      configuration_id: model_stage_v1__coarse__xgboost__004
+      feature_block: L+D+R
+      pooled_oof_pr_auc: 0.41167748793642267
+    pytorch_mlp_leader:
+      configuration_id: model_stage_v1__coarse__pytorch_mlp__epochs_200__003
+      feature_block: L+D
+      pooled_oof_pr_auc: 0.39548464852848403
+      distance_to_global_leader: 0.01619283940793864
+    frozen_primary_refinement_qualifiers:
+      - xgboost
+      - hist_gradient_boosting
+      - random_forest
+    pytorch_mlp_qualified_under_frozen_primary_rule: false
+
+  scientific_rationale:
+    thesis_title_alignment: >-
+      The thesis explicitly studies hybrid quantum neural networks. A refined
+      classical neural network is therefore a direct architecture-class
+      comparator and improves the interpretability of the QNN result.
+    decision_basis: >-
+      The supplemental MLP track is added because of the classical-NN versus QNN
+      research comparison, not because it is expected to overtake the primary
+      classical leader.
+    post_hoc_status_relative_to_coarse_search: true
+    pre_qnn_status: true
+    claim_classification: secondary_exploratory_title_aligned_comparison
+
+  primary_track:
+    conditional_refinement_rule_changed: false
+    maximum_primary_refinement_families_changed: false
+    expected_primary_families_ordered:
+      - xgboost
+      - hist_gradient_boosting
+      - random_forest
+    expected_feature_blocks:
+      xgboost: L+D+R
+      hist_gradient_boosting: L+D+R
+      random_forest: L+D+R
+    supplemental_mlp_may_enter_primary_activation_manifest: false
+    supplemental_mlp_may_enter_primary_global_ranking: false
+    supplemental_mlp_may_change_primary_global_winner: false
+
+  supplemental_mlp_comparator:
+    family: pytorch_mlp
+    analysis_role: SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR
+    execution_timing: after_primary_refinement_and_before_qnn_q1
+    feature_block_binding_rule: exactly_best_coarse_mlp_block
+    frozen_feature_block: L+D
+    source_search_space: existing_candidate_registry_only
+    new_hyperparameter_values_added: false
+    refinement_configuration_ids:
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__001
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__002
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__003
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__004
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__005
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__006
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__007
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__008
+    training_seed: 20260818
+    temporal_folds:
+      - fold_2015
+      - fold_2016
+      - fold_2017
+      - fold_2018
+      - fold_2019
+      - fold_2020
+    selection_pool: coarse_mlp_plus_supplemental_mlp_refinement
+    selection_metric: pooled_oof_pr_auc_2015_2020
+    confirmation:
+      candidates: one_best_complete_mlp_comparator
+      additional_seeds: [20260819, 20260820]
+      score_aggregation: raw_scores_arithmetic_mean_then_single_pooled_pr_auc
+    reporting:
+      primary_ranking_eligible: false
+      separate_mlp_vs_qnn_table_required: true
+      disclose_post_coarse_amendment: true
+      disclose_no_causal_or_quantum_advantage_claim: true
+
+
+  neural_comparison_inference:
+    status: preregistered_after_coarse_and_before_refinement_qnn_results
+    execution_timing: after_three_seed_confirmation_and_before_thesis_claims
+    input_scope: aligned_seed_averaged_oof_predictions_2015_2020_only
+    primary_estimand: qnn_minus_refined_mlp_pooled_oof_pr_auc
+    secondary_estimand: qnn_minus_refined_mlp_pooled_oof_roc_auc
+    resampling_unit: economic_group_id
+    paired_cluster_draws_across_models: true
+    clusters_sampled_with_replacement: true
+    replicates: 2000
+    interval: 95_percent_percentile
+    percentiles: [2.5, 97.5]
+    random_seed: 20260818
+    invalid_replicate_policy: discard_only_if_resampled_target_has_one_class
+    minimum_valid_replicates: 1900
+    selection_adjusted_inference: false
+    interpretation: >-
+      The paired intervals describe development-set sampling uncertainty
+      conditional on the already selected configurations. They are not an
+      independent test-set estimate and do not correct for model selection.
+    bootstrap_probability_is_p_value: false
+    formal_quantum_superiority_claim_allowed: false
+    directional_stability_rule: paired_delta_interval_entirely_above_or_below_zero
+
+  qnn_track:
+    changed_by_this_amendment: false
+    run_only_after_refinement_phase_manifest_status_complete: true
+    q1:
+      ansatzes:
+        - ROT_CNOT_RING
+        - RY_RZ_CZ_BRICKWORK
+        - RY_CRX_RING
+      feature_blocks: [L, L+D, L+D+R]
+      logical_candidate_positions: 9
+      global_ansatz_selection_rule: frozen_qnn_q1_tie_breaker
+    q2:
+      use_selected_q1_ansatz_only: true
+      feature_blocks: [L, L+D, L+D+R]
+      configurations: [t0, t1, t2, t3]
+    confirmation:
+      one_best_q2_candidate_per_feature_block: true
+      additional_seeds: [20260819, 20260820]
+      slots: 3
+      additional_fold_fits: 36
+
+  data_and_claim_boundaries:
+    permitted_feature_years: [2011, 2020]
+    protected_feature_years: [2021, 2022, 2023, 2024]
+    protected_data_must_not_be_deserialized: true
+    all_model_selection_uses_oof_2015_2020_only: true
+    qnn_superiority_claim_requires_uncertainty_analysis: true
+    formal_qnn_superiority_claim_requires_independent_protected_evaluation: true
+    development_oof_allows_only_conditional_directional_comparison: true
+    no_quantum_advantage_claim_from_simulator_results_alone: true
+    negative_or_tied_qnn_result_is_scientifically_valid: true

@@ -1,0 +1,99 @@
+schema_version: 1
+
+post_coarse_execution:
+  id: post_coarse_refinement_qnn_controller
+  version: 1.0.0
+  status: executable_after_authority_commit
+  default_output_root: data/model_runs/post_coarse_v1_3_0
+
+  authority:
+    methodology_amendment:
+      path: configs/model_stage_v1_3_0_neural_comparator_amendment.yaml
+      sha256: 4e72c76a51c233212b6c7a5dd093c77a586d27250ff002df2aee2b107cf76f1c
+    base_execution_contract:
+      path: configs/model_execution_contract_v1_2_0_scientific_patch.yaml
+      sha256: 59490dc080176a4f5655539db78edeb035e9ce02a2b6a68d95fad5c428081f59
+    candidate_registry:
+      path: configs/model_stage_candidates_v1_scientific_patch.json
+      sha256: f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac
+
+  git_gate:
+    require_committed_authority_before_model_fit: true
+    authority_files:
+      - configs/model_stage_v1_3_0_neural_comparator_amendment.yaml
+      - configs/post_coarse_experiment_v1_0_0.yaml
+      - src/modeling/post_coarse_runner.py
+      - src/modeling/post_coarse_reporting.py
+      - src/modeling/neural_comparison_inference.py
+      - scripts/run_post_coarse.sh
+
+  coarse_source:
+    root: data/model_runs/classical_mlp_coarse_v1
+    manifest_name: classical_mlp_coarse_search_manifest.json
+    manifest_sha256: 5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43
+    training_seed: 20260818
+    expected_candidate_positions: 247
+    reuse_without_refit: true
+
+  primary_refinement:
+    frozen_activation_rule_changed: false
+    expected_qualified_families_ordered:
+      - xgboost
+      - hist_gradient_boosting
+      - random_forest
+    expected_feature_blocks:
+      xgboost: L+D+R
+      hist_gradient_boosting: L+D+R
+      random_forest: L+D+R
+    supplemental_mlp_may_change_primary_selection: false
+
+  supplemental_mlp_comparator:
+    family: pytorch_mlp
+    expected_best_coarse_block: L+D
+    expected_coarse_leader_configuration_id: model_stage_v1__coarse__pytorch_mlp__epochs_200__003
+    refinement_configuration_ids:
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__001
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__002
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__003
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__004
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__005
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__006
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__007
+      - model_stage_v1__refinement__pytorch_mlp__epochs_300__008
+    primary_ranking_eligible: false
+    run_before_qnn_q1: true
+
+  qnn:
+    feature_blocks: [L, L+D, L+D+R]
+    q1_ansatz_count: 3
+    q1_logical_positions: 9
+    q2_configurations_per_block: 4
+    q2_t0_reuses_q1_selected_ansatz_scores: true
+    confirmation_slots: 3
+    confirmation_additional_fold_fits: 36
+
+
+  inference:
+    command_mode: inference
+    requires_confirmation_manifest_status: COMPLETE
+    input_scope: confirmed_seed_averaged_oof_2015_2020
+    resampling_unit: economic_group_id
+    paired_cluster_draws_across_models: true
+    replicates: 2000
+    confidence_level: 0.95
+    interval: percentile
+    seed: 20260818
+    minimum_valid_replicates: 1900
+    report_point_estimates_and_paired_deltas: true
+    bootstrap_probability_is_p_value: false
+    selection_adjusted: false
+    protected_feature_years_opened: false
+
+  execution_gates:
+    qnn_requires_refinement_manifest_status: COMPLETE
+    confirmation_requires_refinement_manifest_status: COMPLETE
+    confirmation_requires_qnn_terminal_status:
+      - COMPLETE
+      - QNN_TECHNICALLY_INFEASIBLE
+    protected_feature_years_must_remain_closed: true
+    no_manual_candidate_override: true
