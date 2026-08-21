@@ -96,3 +96,6 @@ data/reports/target_candidate_v2_pit_b_final_revenue_resolver_*.csv
 
 # LEGACY is intentionally not ignored. Archived source and documentation must
 # be committed once so that moving them does not turn them into local-only files.
+
+# Named local Python virtual environments
+.venv-*/
