@@ -1749,8 +1749,10 @@ def _execution_paths(args: argparse.Namespace) -> tuple[Path, Path]:
         raise PostCoarseIntegrityError(
             "--classical-python and --qnn-python are required for model-fitting modes."
         )
-    classical = args.classical_python.resolve()
-    qnn = args.qnn_python.resolve()
+    # Preserve virtual-environment interpreter symlinks. Resolving them can
+    # bypass the venv and execute against the base pyenv installation.
+    classical = args.classical_python.absolute()
+    qnn = args.qnn_python.absolute()
     if not classical.is_file():
         raise PostCoarseIntegrityError(f"Classical interpreter does not exist: {classical}")
     if not qnn.is_file():

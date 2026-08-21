@@ -495,7 +495,10 @@ class SubprocessFoldExecutor:
             )
             if completed.returncode != 0:
                 raise RunnerIntegrityError(
-                    f"{role} environment audit failed before execution: {completed.stderr}"
+                    f"{role} environment audit failed before execution "
+                    f"(returncode={completed.returncode})\n"
+                    f"STDOUT:\n{completed.stdout}\n"
+                    f"STDERR:\n{completed.stderr}"
                 )
             report = json.loads(completed.stdout)
             if report.get("status") != "READY":
