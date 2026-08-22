@@ -14,7 +14,7 @@ MODE="${1:-plan}"
 COARSE_DIR="${COARSE_DIR:-$ROOT/data/model_runs/classical_mlp_coarse_v1}"
 OUTPUT_DIR="${POST_COARSE_OUTPUT_DIR:-$ROOT/data/model_runs/post_coarse_v1_3_0}"
 REPORT_DIR="${POST_COARSE_REPORT_DIR:-$ROOT/reports/post_coarse_v1_3_0}"
-CONFIG="${POST_COARSE_CONFIG:-$ROOT/configs/post_coarse_experiment_v1_0_1_lightning.yaml}"
+CONFIG="${POST_COARSE_CONFIG:-$ROOT/configs/post_coarse_experiment_v1_0_2_parallel.yaml}"
 CONTRACT="${POST_COARSE_CONTRACT:-$ROOT/configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml}"
 
 find_python() {

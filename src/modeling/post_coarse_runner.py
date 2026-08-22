@@ -23,6 +23,7 @@ environment verification to :mod:`src.modeling.production_runner`.
 from __future__ import annotations
 
 import argparse
+from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 import hashlib
 import json
@@ -229,8 +230,35 @@ def _metric_summary(result: CandidateExecutionResult) -> dict[str, Any]:
 
 def load_post_coarse_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
     config = load_yaml(path)
+    extension = config.get("extends")
+    if isinstance(extension, Mapping):
+        base_path = (ROOT / str(extension["path"])).resolve()
+        if not base_path.is_file() or file_sha256(base_path) != str(
+            extension["sha256"]
+        ):
+            raise PostCoarseIntegrityError(
+                "Post-coarse base configuration SHA-256 mismatch."
+            )
+        base = load_yaml(base_path)
+
+        def merge(base_value: Any, overlay_value: Any) -> Any:
+            if isinstance(base_value, Mapping) and isinstance(overlay_value, Mapping):
+                result = dict(base_value)
+                for key, value in overlay_value.items():
+                    result[key] = merge(result.get(key), value)
+                return result
+            return overlay_value
+
+        config = merge(
+            base,
+            {key: value for key, value in config.items() if key != "extends"},
+        )
     section = config.get("post_coarse_execution")
-    if not isinstance(section, dict) or str(section.get("version")) not in {"1.0.0", "1.0.1"}:
+    if not isinstance(section, dict) or str(section.get("version")) not in {
+        "1.0.0",
+        "1.0.1",
+        "1.0.2",
+    }:
         raise PostCoarseIntegrityError("Unexpected post-coarse configuration version.")
     return config
 
@@ -939,6 +967,63 @@ def build_runner_and_folds(
     return runner, folds
 
 
+def _execute_qnn_candidate_batch(
+    runner: ProductionExperimentRunner,
+    requests: Sequence[Mapping[str, Any]],
+) -> list[CandidateExecutionResult]:
+    """Execute independent QNN candidates concurrently and return frozen order."""
+
+    if not requests:
+        return []
+    scheduler = runner.runner_config.get("execution_scheduler", {})
+    maximum = int(scheduler.get("maximum_parallel_qnn_candidates", 1))
+    workers = max(1, min(maximum, len(requests)))
+    if workers == 1:
+        return [runner._execute_candidate(**dict(request)) for request in requests]
+
+    pool = ThreadPoolExecutor(
+        max_workers=workers,
+        thread_name_prefix="qnn-candidate",
+    )
+    futures = [
+        pool.submit(runner._execute_candidate, **dict(request))
+        for request in requests
+    ]
+    try:
+        return [future.result() for future in futures]
+    except BaseException:
+        request_shutdown = getattr(runner.executor, "request_shutdown", None)
+        if callable(request_shutdown):
+            request_shutdown()
+        for future in futures:
+            future.cancel()
+        raise
+    finally:
+        pool.shutdown(wait=True, cancel_futures=True)
+
+
+def _prewarm_qnn_fold_cache(
+    runner: ProductionExperimentRunner,
+    folds: Mapping[str, tuple[Any, Any, Any, Any]],
+    requests: Sequence[Mapping[str, Any]],
+) -> None:
+    identities = {
+        (
+            str(request["feature_block"]),
+            int(dict(request["candidate"])["qubits_pca"]),
+        )
+        for request in requests
+    }
+    required_folds = runner.contract["execution_failure_state_machine"]["required_folds"]
+    for block, qubits in sorted(identities):
+        for fold_id in required_folds:
+            runner._prepare_fold(
+                block=block,
+                fold_tuple=folds[str(fold_id)],
+                qubits=qubits,
+            )
+
+
 def require_phase_manifest(
     path: Path,
     *,
@@ -1281,21 +1366,26 @@ def run_qnn_phase(
 
     q1_results: list[CandidateExecutionResult] = []
     for block in runner.contract["canonical_ordering"]["feature_block_order"]:
+        requests: list[dict[str, Any]] = []
         for candidate_spec in runner.registry["qnn"]["stage_q1"]:
             candidate = runner._candidate_parameters(
                 "qnn_q1", "qnn", str(candidate_spec["configuration_id"])
             )
-            q1_results.append(
-                runner._execute_candidate(
-                    stage="qnn_q1",
-                    family="qnn",
-                    feature_block=str(block),
-                    candidate=candidate,
-                    training_seed=int(runner.contract["confirmation"]["coarse_seed"]),
-                    folds=folds,
-                    selected_ansatz_id=str(candidate["ansatz"]),
-                )
+            requests.append(
+                {
+                    "stage": "qnn_q1",
+                    "family": "qnn",
+                    "feature_block": str(block),
+                    "candidate": candidate,
+                    "training_seed": int(
+                        runner.contract["confirmation"]["coarse_seed"]
+                    ),
+                    "folds": folds,
+                    "selected_ansatz_id": str(candidate["ansatz"]),
+                }
             )
+        _prewarm_qnn_fold_cache(runner, folds, requests)
+        q1_results.extend(_execute_qnn_candidate_batch(runner, requests))
 
     ansatz_selection = select_qnn_ansatz(
         [result.row for result in q1_results], runner.contract
@@ -1324,11 +1414,32 @@ def run_qnn_phase(
                 "Selected Q1 ansatz is not represented in all three feature blocks."
             )
         for block in runner.contract["canonical_ordering"]["feature_block_order"]:
+            block_candidates: list[tuple[Mapping[str, Any], bool]] = []
+            requests = []
             for candidate_spec in runner.registry["qnn"]["stage_q2"]:
                 candidate = runner._candidate_parameters(
                     "qnn_q2", "qnn", str(candidate_spec["configuration_id"])
                 )
-                if bool(candidate.get("reuse_q1_winner")):
+                reuse = bool(candidate.get("reuse_q1_winner"))
+                block_candidates.append((candidate, reuse))
+                if not reuse:
+                    requests.append(
+                        {
+                            "stage": "qnn_q2",
+                            "family": "qnn",
+                            "feature_block": str(block),
+                            "candidate": candidate,
+                            "training_seed": int(
+                                runner.contract["confirmation"]["coarse_seed"]
+                            ),
+                            "folds": folds,
+                            "selected_ansatz_id": selected_ansatz,
+                        }
+                    )
+            _prewarm_qnn_fold_cache(runner, folds, requests)
+            executed = iter(_execute_qnn_candidate_batch(runner, requests))
+            for candidate, reuse in block_candidates:
+                if reuse:
                     q2_results.append(
                         runner._reuse_q1_as_q2_t0(
                             source=q1_by_block[str(block)],
@@ -1337,19 +1448,7 @@ def run_qnn_phase(
                         )
                     )
                 else:
-                    q2_results.append(
-                        runner._execute_candidate(
-                            stage="qnn_q2",
-                            family="qnn",
-                            feature_block=str(block),
-                            candidate=candidate,
-                            training_seed=int(
-                                runner.contract["confirmation"]["coarse_seed"]
-                            ),
-                            folds=folds,
-                            selected_ansatz_id=selected_ansatz,
-                        )
-                    )
+                    q2_results.append(next(executed))
 
     status = (
         "COMPLETE"

@@ -1,12 +1,15 @@
 from __future__ import annotations
 
 import copy
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import os
 from pathlib import Path
 import re
 import tempfile
+import threading
+import time
 import unittest
 from unittest import mock
 import warnings
@@ -35,7 +38,9 @@ from src.modeling.production_runner import (
     final_eligibility_pool,
     synthetic_dataset,
     synthetic_expectations,
+    load_runner_config,
 )
+from src.modeling.post_coarse_runner import _execute_qnn_candidate_batch
 from src.modeling.verify_environment_locks import verify as verify_environment_locks
 from src.modeling.production_worker import classical_fit_predict
 
@@ -451,6 +456,132 @@ class ProductionRunnerPolicyTests(unittest.TestCase):
                 [item["retry_reason"] for item in ledger["attempts"]],
                 ["INITIAL", "CHECKPOINT_RESUME_AFTER_WORKER_PROCESS_LOST_BY_OS_SIGNAL"],
             )
+
+    def test_qnn_ledger_parallel_updates_and_restart_reconciliation(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            ledger_path = Path(directory) / "ledger.json"
+            ledger = QNNResourceLedger(
+                ledger_path,
+                maximum_attempts=20,
+                maximum_runtime_seconds=3600.0,
+            )
+
+            def complete_attempt(index: int) -> int:
+                attempt = ledger.begin_attempt(f"PARALLEL_{index}")
+                self.assertIsNotNone(attempt)
+                ledger.finish_attempt(
+                    int(attempt), runtime_seconds=0.01, outcome="COMPLETE"
+                )
+                return int(attempt)
+
+            with ThreadPoolExecutor(max_workers=4) as pool:
+                attempts = list(pool.map(complete_attempt, range(8)))
+            self.assertEqual(len(set(attempts)), 8)
+
+            stale = ledger.begin_attempt("INTERRUPTED")
+            self.assertIsNotNone(stale)
+            reloaded = QNNResourceLedger(
+                ledger_path,
+                maximum_attempts=20,
+                maximum_runtime_seconds=3600.0,
+            )
+            self.assertEqual(reloaded.payload["completed_attempts"], 8)
+            self.assertEqual(reloaded.payload["interrupted_attempts"], 1)
+            self.assertEqual(reloaded.payload["attempts"][-1]["status"], "INTERRUPTED")
+
+    def test_existing_checkpoint_is_resumed_on_first_attempt(self) -> None:
+        class ResumeExecutor(SubprocessFoldExecutor):
+            def __init__(self) -> None:
+                self.calls: list[bool] = []
+
+            def _one_attempt(self, task, **kwargs):  # type: ignore[no-untyped-def]
+                self.calls.append(bool(kwargs["resume"]))
+                audit = {"attempt": 1, "resume": kwargs["resume"], "outcome": "COMPLETE"}
+                return (
+                    FoldExecution(
+                        status="COMPLETE",
+                        raw_scores=np.array([0.0]),
+                        failure_code=None,
+                        software_environment_sha256="synthetic",
+                        device_identity="cpu",
+                        attempts=[audit],
+                    ),
+                    audit,
+                )
+
+        from src.modeling.production_runner import FoldTask
+
+        task = FoldTask(
+            stage="qnn_q1",
+            family="qnn",
+            feature_block="L",
+            configuration_id="resume-qnn",
+            parameters={"epochs": 1},
+            training_seed=20260818,
+            fold_id="fold_2015",
+            validation_feature_year=2015,
+            selected_ansatz_id="ROT_CNOT_RING",
+            train_membership_sha256="a",
+            validation_membership_sha256="b",
+            preprocessing_sha256="c",
+            pca_sha256_if_applicable="d",
+            software_environment_role="qnn_mlp",
+            checkpoint_identity={},
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            checkpoint = Path(directory) / "checkpoint.pt"
+            checkpoint.write_bytes(b"checkpoint")
+            executor = ResumeExecutor()
+            result = executor.execute(
+                task,
+                x_train=np.zeros((2, 1)),
+                y_train=np.array([0, 1]),
+                x_validation=np.zeros((1, 1)),
+                sample_weight=np.ones(2),
+                checkpoint_path=checkpoint,
+                timeout_seconds=30,
+            )
+            self.assertEqual(result.status, "COMPLETE")
+            self.assertEqual(executor.calls, [True])
+
+    def test_parallel_qnn_candidate_batch_is_bounded_and_ordered(self) -> None:
+        class FakeRunner:
+            def __init__(self) -> None:
+                self.runner_config = {
+                    "execution_scheduler": {"maximum_parallel_qnn_candidates": 3}
+                }
+                self.executor = object()
+                self.lock = threading.Lock()
+                self.active = 0
+                self.maximum_active = 0
+
+            def _execute_candidate(self, **request):  # type: ignore[no-untyped-def]
+                with self.lock:
+                    self.active += 1
+                    self.maximum_active = max(self.maximum_active, self.active)
+                time.sleep(0.03)
+                with self.lock:
+                    self.active -= 1
+                return request["candidate"]["configuration_id"]
+
+        runner = FakeRunner()
+        requests = [
+            {"candidate": {"configuration_id": f"candidate-{index}"}}
+            for index in range(6)
+        ]
+        results = _execute_qnn_candidate_batch(runner, requests)  # type: ignore[arg-type]
+        self.assertEqual(results, [f"candidate-{index}" for index in range(6)])
+        self.assertEqual(runner.maximum_active, 3)
+
+    def test_parallel_runner_overlay_is_execution_schedule_only(self) -> None:
+        config = load_runner_config(
+            ROOT / "configs/production_experiment_runner_v1_0_2_parallel.yaml"
+        )
+        self.assertEqual(config["runner"]["version"], "1.0.2")
+        scheduler = config["execution_scheduler"]
+        self.assertEqual(scheduler["maximum_parallel_qnn_candidates"], 3)
+        self.assertFalse(scheduler["task_identity_changed"])
+        self.assertFalse(scheduler["model_hyperparameters_changed"])
 
     def test_q2_t0_reuse_propagates_q1_fold_failure(self) -> None:
         required_folds = [f"fold_{year}" for year in range(2015, 2021)]

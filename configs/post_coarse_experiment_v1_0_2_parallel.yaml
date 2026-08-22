@@ -1,0 +1,57 @@
+schema_version: 1
+
+extends:
+  path: configs/post_coarse_experiment_v1_0_1_lightning.yaml
+  sha256: fb17a5ce33a956cfd12277ab6005c9170ffc4ad8b75a09ae290779f4d73a1188
+
+post_coarse_execution:
+  id: post_coarse_refinement_qnn_controller_parallel
+  version: 1.0.2
+  status: executable_schedule_only_amendment_after_partial_q1
+
+  authority:
+    production_runner:
+      path: configs/production_experiment_runner_v1_0_2_parallel.yaml
+      sha256: 55fc0d4ab3f6a3eb63cb744078bf9f8db9f9e8049c86340cbed794b19d28f70a
+
+  git_gate:
+    require_committed_authority_before_model_fit: true
+    authority_files:
+      - configs/model_stage_v1_3_0_neural_comparator_amendment.yaml
+      - configs/model_execution_contract_v1_2_1_lightning_amendment.yaml
+      - configs/model_execution_contract_v1_2_1_lightning_base.yaml
+      - configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml
+      - configs/production_experiment_runner_v1_0_1_lightning.yaml
+      - configs/production_experiment_runner_v1_0_2_parallel.yaml
+      - configs/model_environments_v1_0_1_lightning.yaml
+      - configs/post_coarse_experiment_v1_0_1_lightning.yaml
+      - configs/post_coarse_experiment_v1_0_2_parallel.yaml
+      - src/modeling/post_coarse_runner.py
+      - src/modeling/post_coarse_reporting.py
+      - src/modeling/neural_comparison_inference.py
+      - src/modeling/environment_audit.py
+      - src/modeling/production_runner.py
+      - src/modeling/production_worker.py
+      - src/modeling/qnn_resource_smoke.py
+      - src/modeling/production_worker_smoke.py
+      - data/reports/classical_environment_smoke_v1_0_1_lightning.json
+      - data/reports/qnn_mlp_environment_smoke_v1_0_1_lightning.json
+      - data/reports/qnn_resource_smoke_v1_0_1_lightning.json
+      - data/reports/production_worker_synthetic_smoke_v1_0_1_lightning.json
+      - scripts/run_post_coarse.sh
+
+  execution_schedule_amendment:
+    created_on: "2026-08-22"
+    timing: after_42_of_54_q1_fold_fits_complete
+    observed_scope: execution_runtime_and_completed_q1_artifact_presence_only
+    performance_results_used_to_change_schedule: false
+    model_definition_changed: false
+    candidate_registry_changed: false
+    feature_blocks_changed: false
+    hyperparameters_changed: false
+    seeds_changed: false
+    simulator_backend_changed: false
+    maximum_parallel_qnn_candidates: 3
+    completed_fold_artifacts_reused_byte_for_byte: true
+    incomplete_attempt_43_result_eligible: false
+    protected_feature_years_opened: false

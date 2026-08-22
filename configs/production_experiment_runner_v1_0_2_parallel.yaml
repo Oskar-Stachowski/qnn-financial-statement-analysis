@@ -1,0 +1,29 @@
+schema_version: 1
+
+extends:
+  path: configs/production_experiment_runner_v1_0_1_lightning.yaml
+  sha256: 53d4919b3bb733b293d5e73403e06d0b2f12ab75b1ff1bdda491e90db61ecc27
+
+runner:
+  id: production_experiment_runner
+  version: 1.0.2
+  status: implemented_lightning_backend_bounded_parallel_qnn_candidates
+  implemented_on: "2026-08-22"
+  execution_contract_version: 1.2.1
+  policy_changes: true
+  policy_change_scope: execution_schedule_only_after_partial_q1_no_model_definition_change
+  project_data_model_fit_performed: false
+  protected_feature_years_opened: false
+
+execution_scheduler:
+  strategy: bounded_parallel_qnn_candidates
+  maximum_parallel_qnn_candidates: 3
+  worker_threads_per_process: 1
+  candidate_result_order: frozen_registry_order
+  fold_order_within_candidate: frozen_contract_order
+  task_identity_changed: false
+  model_hyperparameters_changed: false
+  random_seeds_changed: false
+  completed_fold_reuse_rule: exact_task_identity_and_artifact_hash_only
+  interrupted_checkpoint_resume_rule: exact_task_identity_only
+  shared_qnn_resource_ledger_requires_lock: true

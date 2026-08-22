@@ -22,6 +22,7 @@ import platform
 import subprocess
 import sys
 import tempfile
+import threading
 import time
 from typing import Any, Mapping, Protocol, Sequence
 import warnings
@@ -160,7 +161,7 @@ def atomic_write_json(path: Path, value: Any) -> str:
 
 
 class QNNResourceLedger:
-    """Small sequential ledger enforcing the preregistered global QNN caps."""
+    """Thread-safe ledger enforcing the preregistered global QNN caps."""
 
     def __init__(
         self,
@@ -170,6 +171,7 @@ class QNNResourceLedger:
         maximum_runtime_seconds: float,
     ) -> None:
         self.path = path
+        self._lock = threading.RLock()
         if path.is_file():
             payload = json.loads(path.read_text(encoding="utf-8"))
             if (
@@ -179,6 +181,17 @@ class QNNResourceLedger:
             ):
                 raise RunnerIntegrityError("Existing QNN resource ledger limits differ.")
             self.payload = payload
+            interrupted = 0
+            for entry in self.payload["attempts"]:
+                if entry.get("status") == "STARTED":
+                    entry["status"] = "INTERRUPTED"
+                    entry["outcome"] = "CONTROLLER_RESTART"
+                    interrupted += 1
+            if interrupted:
+                self.payload["interrupted_attempts"] = int(
+                    self.payload.get("interrupted_attempts", 0)
+                ) + interrupted
+                self._write()
         else:
             self.payload = {
                 "schema_version": 1,
@@ -186,6 +199,7 @@ class QNNResourceLedger:
                 "maximum_runtime_seconds": float(maximum_runtime_seconds),
                 "started_attempts": 0,
                 "completed_attempts": 0,
+                "interrupted_attempts": 0,
                 "total_runtime_seconds": 0.0,
                 "limit_reached": False,
                 "limit_reason": None,
@@ -195,46 +209,57 @@ class QNNResourceLedger:
 
     @property
     def remaining_runtime_seconds(self) -> float:
-        return max(
-            0.0,
-            float(self.payload["maximum_runtime_seconds"])
-            - float(self.payload["total_runtime_seconds"]),
-        )
+        with self._lock:
+            return max(
+                0.0,
+                float(self.payload["maximum_runtime_seconds"])
+                - float(self.payload["total_runtime_seconds"]),
+            )
 
     @property
     def limit_reached(self) -> bool:
-        return bool(self.payload.get("limit_reached", False))
+        with self._lock:
+            return bool(self.payload.get("limit_reached", False))
+
+    @property
+    def limit_reason(self) -> str | None:
+        with self._lock:
+            value = self.payload.get("limit_reason")
+            return str(value) if value is not None else None
 
     def _write(self) -> None:
-        atomic_write_json(self.path, self.payload)
+        with self._lock:
+            atomic_write_json(self.path, self.payload)
 
     def _mark_limit(self, reason: str) -> None:
-        self.payload["limit_reached"] = True
-        self.payload["limit_reason"] = reason
-        self._write()
+        with self._lock:
+            self.payload["limit_reached"] = True
+            self.payload["limit_reason"] = reason
+            self._write()
 
     def begin_attempt(self, retry_reason: str) -> int | None:
-        if int(self.payload["started_attempts"]) >= int(
-            self.payload["maximum_attempts"]
-        ):
-            self._mark_limit("MAXIMUM_TOTAL_FIT_ATTEMPTS")
-            return None
-        if self.remaining_runtime_seconds <= 0.0:
-            self._mark_limit("MAXIMUM_TOTAL_RUNTIME")
-            return None
-        global_attempt = int(self.payload["started_attempts"]) + 1
-        self.payload["started_attempts"] = global_attempt
-        self.payload["attempts"].append(
-            {
-                "global_attempt": global_attempt,
-                "retry_reason": retry_reason,
-                "status": "STARTED",
-                "runtime_seconds": None,
-                "outcome": None,
-            }
-        )
-        self._write()
-        return global_attempt
+        with self._lock:
+            if int(self.payload["started_attempts"]) >= int(
+                self.payload["maximum_attempts"]
+            ):
+                self._mark_limit("MAXIMUM_TOTAL_FIT_ATTEMPTS")
+                return None
+            if self.remaining_runtime_seconds <= 0.0:
+                self._mark_limit("MAXIMUM_TOTAL_RUNTIME")
+                return None
+            global_attempt = int(self.payload["started_attempts"]) + 1
+            self.payload["started_attempts"] = global_attempt
+            self.payload["attempts"].append(
+                {
+                    "global_attempt": global_attempt,
+                    "retry_reason": retry_reason,
+                    "status": "STARTED",
+                    "runtime_seconds": None,
+                    "outcome": None,
+                }
+            )
+            self._write()
+            return global_attempt
 
     def finish_attempt(
         self,
@@ -243,28 +268,29 @@ class QNNResourceLedger:
         runtime_seconds: float,
         outcome: str,
     ) -> None:
-        entry = next(
-            item
-            for item in self.payload["attempts"]
-            if int(item["global_attempt"]) == int(global_attempt)
-        )
-        if entry["status"] != "STARTED":
-            raise RunnerIntegrityError("QNN resource attempt was already finalized.")
-        entry["status"] = "COMPLETED"
-        entry["runtime_seconds"] = float(runtime_seconds)
-        entry["outcome"] = str(outcome)
-        self.payload["completed_attempts"] = int(
-            self.payload["completed_attempts"]
-        ) + 1
-        self.payload["total_runtime_seconds"] = float(
-            self.payload["total_runtime_seconds"]
-        ) + float(runtime_seconds)
-        if float(self.payload["total_runtime_seconds"]) > float(
-            self.payload["maximum_runtime_seconds"]
-        ):
-            self.payload["limit_reached"] = True
-            self.payload["limit_reason"] = "MAXIMUM_TOTAL_RUNTIME"
-        self._write()
+        with self._lock:
+            entry = next(
+                item
+                for item in self.payload["attempts"]
+                if int(item["global_attempt"]) == int(global_attempt)
+            )
+            if entry["status"] != "STARTED":
+                raise RunnerIntegrityError("QNN resource attempt was already finalized.")
+            entry["status"] = "COMPLETED"
+            entry["runtime_seconds"] = float(runtime_seconds)
+            entry["outcome"] = str(outcome)
+            self.payload["completed_attempts"] = int(
+                self.payload["completed_attempts"]
+            ) + 1
+            self.payload["total_runtime_seconds"] = float(
+                self.payload["total_runtime_seconds"]
+            ) + float(runtime_seconds)
+            if float(self.payload["total_runtime_seconds"]) > float(
+                self.payload["maximum_runtime_seconds"]
+            ):
+                self.payload["limit_reached"] = True
+                self.payload["limit_reason"] = "MAXIMUM_TOTAL_RUNTIME"
+            self._write()
 
 
 def membership_sha256(values: Sequence[Any] | pd.Series) -> str:
@@ -289,11 +315,31 @@ def canonical_timestamp(value: Any) -> str:
 
 def load_runner_config(path: Path = RUNNER_CONFIG_PATH) -> dict[str, Any]:
     parsed = yaml.safe_load(path.read_text(encoding="utf-8"))
+    extension = parsed.get("extends") if isinstance(parsed, dict) else None
+    if isinstance(extension, Mapping):
+        base_path = (ROOT / str(extension["path"])).resolve()
+        if not base_path.is_file() or file_sha256(base_path) != str(
+            extension["sha256"]
+        ):
+            raise RunnerIntegrityError("Runner base configuration SHA-256 mismatch.")
+        base = yaml.safe_load(base_path.read_text(encoding="utf-8"))
+        if not isinstance(base, dict):
+            raise RunnerIntegrityError("Runner base configuration is invalid.")
+
+        def merge(base_value: Any, overlay_value: Any) -> Any:
+            if isinstance(base_value, Mapping) and isinstance(overlay_value, Mapping):
+                result = dict(base_value)
+                for key, value in overlay_value.items():
+                    result[key] = merge(result.get(key), value)
+                return result
+            return overlay_value
+
+        parsed = merge(base, {key: value for key, value in parsed.items() if key != "extends"})
     runner = parsed.get("runner", {}) if isinstance(parsed, dict) else {}
     if (
         not isinstance(parsed, dict)
         or runner.get("id") != "production_experiment_runner"
-        or runner.get("version") not in {"1.0.0", "1.0.1"}
+        or runner.get("version") not in {"1.0.0", "1.0.1", "1.0.2"}
     ):
         raise RunnerIntegrityError("Unexpected production runner configuration.")
     return parsed
@@ -442,6 +488,7 @@ class SubprocessFoldExecutor:
         runner_config_path: Path = RUNNER_CONFIG_PATH,
         contract_path: Path | None = None,
     ) -> None:
+        self._shutdown_requested = threading.Event()
         self.root = root.resolve()
         self.runner_config_path = runner_config_path.resolve()
         runner_config = load_runner_config(self.runner_config_path)
@@ -580,6 +627,17 @@ class SubprocessFoldExecutor:
             maximum_attempts=maximum_attempts,
             maximum_runtime_seconds=maximum_runtime_seconds,
         )
+
+    def request_shutdown(self) -> None:
+        event = getattr(self, "_shutdown_requested", None)
+        if event is None:
+            event = threading.Event()
+            self._shutdown_requested = event
+        event.set()
+
+    def _is_shutdown_requested(self) -> bool:
+        event = getattr(self, "_shutdown_requested", None)
+        return bool(event is not None and event.is_set())
 
     def _one_attempt(
         self,
@@ -782,8 +840,7 @@ class SubprocessFoldExecutor:
                 if global_attempt is None:
                     reason = (
                         "QNN_GLOBAL_ATTEMPT_LIMIT"
-                        if ledger.payload.get("limit_reason")
-                        == "MAXIMUM_TOTAL_FIT_ATTEMPTS"
+                        if ledger.limit_reason == "MAXIMUM_TOTAL_FIT_ATTEMPTS"
                         else "QNN_GLOBAL_RUNTIME_LIMIT"
                     )
                     return resource_limit_result(reason)
@@ -822,12 +879,32 @@ class SubprocessFoldExecutor:
                 audit["qnn_attempt_runtime_seconds"] = elapsed
             return execution, audit
 
+        initial_resume = checkpoint_capable and checkpoint_path.is_file()
         execution, audit = run_attempt(
-            resume=False,
+            resume=initial_resume,
             attempt=1,
-            retry_reason="INITIAL",
+            retry_reason=(
+                "CHECKPOINT_RESUME_AFTER_CONTROLLER_RESTART"
+                if initial_resume
+                else "INITIAL"
+            ),
         )
         attempts.append(audit)
+        if self._is_shutdown_requested():
+            raise InterruptedError("Fold execution interrupted by controller shutdown.")
+        if initial_resume and execution.status == "CHECKPOINT_INVALID":
+            quarantine = checkpoint_path.with_suffix(
+                checkpoint_path.suffix + ".invalid-for-fresh-retry"
+            )
+            os.replace(checkpoint_path, quarantine)
+            execution, audit = run_attempt(
+                resume=False,
+                attempt=2,
+                retry_reason="FRESH_RETRY_AFTER_CHECKPOINT_IDENTITY_MISMATCH",
+            )
+            attempts.append(audit)
+            execution.attempts = attempts
+            return execution
         if execution.status != "INFRASTRUCTURE_FAILURE":
             execution.attempts = attempts
             return execution
@@ -839,6 +916,8 @@ class SubprocessFoldExecutor:
                 retry_reason=f"CHECKPOINT_RESUME_AFTER_{previous_reason}",
             )
             attempts.append(audit)
+            if self._is_shutdown_requested():
+                raise InterruptedError("Fold execution interrupted by controller shutdown.")
             if execution.status not in {
                 "INFRASTRUCTURE_FAILURE",
                 "CHECKPOINT_INVALID",
@@ -936,6 +1015,7 @@ class ProductionExperimentRunner:
         self.contract = load_contract(self.contract_path)
         self.registry = load_registry(self.registry_path)
         self._prepared_cache: dict[tuple[str, str, int | None], PreparedFold] = {}
+        self._state_lock = threading.RLock()
         self._environment_hashes: dict[str, str] = dict(
             getattr(executor, "environment_hashes", {})
         )
@@ -1560,9 +1640,10 @@ class ProductionExperimentRunner:
             fold_statuses[str(fold_id)] = status
             environment_hash = execution.software_environment_sha256
             if environment_hash:
-                previous = self._environment_hashes.setdefault(role, environment_hash)
-                if previous != environment_hash:
-                    raise RunnerIntegrityError("Runtime environment hash changed within role.")
+                with self._state_lock:
+                    previous = self._environment_hashes.setdefault(role, environment_hash)
+                    if previous != environment_hash:
+                        raise RunnerIntegrityError("Runtime environment hash changed within role.")
             prediction_sha: str | None = None
             if status == "COMPLETE":
                 scores = np.asarray(execution.raw_scores, dtype=np.float64)
