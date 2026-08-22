@@ -1,0 +1,58 @@
+schema_version: 1
+
+qnn_backend_amendment:
+  id: qnn_lightning_backend_amendment
+  version: 1.2.1
+  created_on: "2026-08-22"
+  status: pre_qnn_restart_execution_amendment
+
+  reason:
+    category: computational_feasibility
+    description: >-
+      The initial QNN execution using default.qubit was manually interrupted
+      because of excessive runtime before the QNN phase was completed.
+      No QNN result from that interrupted execution is eligible for model
+      selection, confirmation, inference, or thesis claims.
+
+  backend_change:
+    previous_device: default.qubit
+    new_device: lightning.qubit
+    execution: analytic
+    shots: null
+    interface: torch
+    differentiation: adjoint
+    dtype: float64
+
+  restart_policy:
+    previous_default_qubit_qnn_results_eligible: false
+    previous_default_qubit_checkpoints_reusable: false
+    qnn_q1_restart_from_scratch: true
+    qnn_q2_restart_from_scratch: true
+    confirmation_restart_from_scratch: true
+    classical_refinement_results_reused: true
+    supplemental_mlp_refinement_results_reused: true
+    preprocessing_artifacts_may_be_reused: true
+    pca_artifacts_may_be_reused: true
+
+  methodology_unchanged:
+    feature_blocks: true
+    temporal_folds: true
+    candidate_registry: true
+    q1_ansatzes: true
+    q2_candidates: true
+    training_seeds: true
+    epochs: true
+    batch_sizes: true
+    learning_rates: true
+    optimizer: true
+    weight_decay: true
+    imbalance_policy: true
+    pca_4_and_6_components: true
+    primary_metric: true
+    qnn_confirmation_rule: true
+
+  scientific_interpretation:
+    backend_change_may_change_numerical_roundoff: true
+    backend_change_changes_model_definition: false
+    quantum_hardware_claim_allowed: false
+    quantum_advantage_claim_allowed_from_simulator_only: false

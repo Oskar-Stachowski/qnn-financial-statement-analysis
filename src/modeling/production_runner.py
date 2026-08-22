@@ -289,7 +289,12 @@ def canonical_timestamp(value: Any) -> str:
 
 def load_runner_config(path: Path = RUNNER_CONFIG_PATH) -> dict[str, Any]:
     parsed = yaml.safe_load(path.read_text(encoding="utf-8"))
-    if not isinstance(parsed, dict) or parsed.get("runner", {}).get("version") != "1.0.0":
+    runner = parsed.get("runner", {}) if isinstance(parsed, dict) else {}
+    if (
+        not isinstance(parsed, dict)
+        or runner.get("id") != "production_experiment_runner"
+        or runner.get("version") not in {"1.0.0", "1.0.1"}
+    ):
         raise RunnerIntegrityError("Unexpected production runner configuration.")
     return parsed
 
@@ -434,9 +439,47 @@ class SubprocessFoldExecutor:
         root: Path,
         classical_python: Path,
         qnn_python: Path,
+        runner_config_path: Path = RUNNER_CONFIG_PATH,
+        contract_path: Path | None = None,
     ) -> None:
         self.root = root.resolve()
-        environment_config_path = self.root / "configs/model_environments_v1_0_0.yaml"
+        self.runner_config_path = runner_config_path.resolve()
+        runner_config = load_runner_config(self.runner_config_path)
+
+        contract_authority = runner_config["authority"]["execution_contract"]
+        configured_contract_path = (
+            self.root / str(contract_authority["path"])
+        ).resolve()
+        self.contract_path = (
+            contract_path or configured_contract_path
+        ).resolve()
+
+        if self.contract_path != configured_contract_path:
+            raise RunnerIntegrityError(
+                "Executor contract path differs from runner authority."
+            )
+        if (
+            not self.contract_path.is_file()
+            or file_sha256(self.contract_path)
+            != str(contract_authority["sha256"])
+        ):
+            raise RunnerIntegrityError(
+                "Executor execution-contract SHA-256 mismatch."
+            )
+
+        environment_authority = runner_config["authority"]["model_environments"]
+        environment_config_path = (
+            self.root / str(environment_authority["path"])
+        ).resolve()
+        if (
+            not environment_config_path.is_file()
+            or file_sha256(environment_config_path)
+            != str(environment_authority["sha256"])
+        ):
+            raise RunnerIntegrityError(
+                "Model-environments configuration SHA-256 mismatch."
+            )
+
         environment_config = yaml.safe_load(
             environment_config_path.read_text(encoding="utf-8")
         )
@@ -484,6 +527,8 @@ class SubprocessFoldExecutor:
                     "--role",
                     role,
                     "--smoke-imports",
+                    "--contract",
+                    str(self.contract_path),
                     "--lockfile",
                     str(self.lockfiles[role]),
                 ],
@@ -564,6 +609,7 @@ class SubprocessFoldExecutor:
         payload = {
             "task": task.identity,
             "task_identity_sha256": task.identity_sha256,
+            "contract_path": str(self.contract_path),
             "arrays_path": str(arrays_path),
             "checkpoint_path": str(checkpoint_path),
             "resume": resume,

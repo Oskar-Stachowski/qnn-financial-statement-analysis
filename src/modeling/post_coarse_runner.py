@@ -69,6 +69,8 @@ class PostCoarseIntegrityError(RuntimeError):
 class AuthorityContext:
     amendment_path: Path
     amendment_sha256: str
+    backend_amendment_path: Path
+    backend_amendment_sha256: str
     base_contract_path: Path
     base_contract_sha256: str
     candidate_registry_path: Path
@@ -82,6 +84,10 @@ class AuthorityContext:
             "methodology_amendment": {
                 "path": _relative_or_absolute(self.amendment_path, root),
                 "sha256": self.amendment_sha256,
+            },
+            "backend_amendment": {
+                "path": _relative_or_absolute(self.backend_amendment_path, root),
+                "sha256": self.backend_amendment_sha256,
             },
             "base_execution_contract": {
                 "path": _relative_or_absolute(self.base_contract_path, root),
@@ -224,7 +230,7 @@ def _metric_summary(result: CandidateExecutionResult) -> dict[str, Any]:
 def load_post_coarse_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
     config = load_yaml(path)
     section = config.get("post_coarse_execution")
-    if not isinstance(section, dict) or str(section.get("version")) != "1.0.0":
+    if not isinstance(section, dict) or str(section.get("version")) not in {"1.0.0", "1.0.1"}:
         raise PostCoarseIntegrityError("Unexpected post-coarse configuration version.")
     return config
 
@@ -275,6 +281,9 @@ def build_authority_context(
     section = config["post_coarse_execution"]
     authority = section["authority"]
     amendment_path = _resolve_from_root(root, authority["methodology_amendment"]["path"])
+    backend_amendment_path = _resolve_from_root(
+        root, authority["backend_amendment"]["path"]
+    )
     contract_path = _resolve_from_root(root, authority["base_execution_contract"]["path"])
     registry_path = _resolve_from_root(root, authority["candidate_registry"]["path"])
     coarse_manifest_path = coarse_dir / section["coarse_source"]["manifest_name"]
@@ -284,6 +293,11 @@ def build_authority_context(
             amendment_path,
             str(authority["methodology_amendment"]["sha256"]),
             "methodology amendment",
+        ),
+        (
+            backend_amendment_path,
+            str(authority["backend_amendment"]["sha256"]),
+            "QNN backend amendment",
         ),
         (
             contract_path,
@@ -316,6 +330,8 @@ def build_authority_context(
     return AuthorityContext(
         amendment_path=amendment_path,
         amendment_sha256=file_sha256(amendment_path),
+        backend_amendment_path=backend_amendment_path,
+        backend_amendment_sha256=file_sha256(backend_amendment_path),
         base_contract_path=contract_path,
         base_contract_sha256=file_sha256(contract_path),
         candidate_registry_path=registry_path,
@@ -713,6 +729,139 @@ def load_phase_results(
     return [load_result_reference(item, root=root) for item in references]
 
 
+def historical_refinement_reuse_enabled(
+    config: Mapping[str, Any],
+) -> bool:
+    reuse = config["post_coarse_execution"].get("historical_refinement_reuse")
+    return isinstance(reuse, Mapping) and bool(reuse.get("enabled"))
+
+
+def require_historical_refinement_reuse(
+    *,
+    config: Mapping[str, Any],
+    root: Path = ROOT,
+) -> dict[str, Any]:
+    reuse = config["post_coarse_execution"].get("historical_refinement_reuse")
+    if not isinstance(reuse, Mapping) or not bool(reuse.get("enabled")):
+        raise PostCoarseIntegrityError(
+            "Historical refinement reuse is not enabled."
+        )
+
+    source = reuse["source_manifest"]
+    manifest_path = _resolve_from_root(root, str(source["path"]))
+
+    if not manifest_path.is_file():
+        raise PostCoarseIntegrityError(
+            f"Historical refinement manifest is missing: {manifest_path}"
+        )
+
+    actual_sha = file_sha256(manifest_path)
+    expected_sha = str(source["sha256"])
+    if actual_sha != expected_sha:
+        raise PostCoarseIntegrityError(
+            "Historical refinement manifest SHA-256 mismatch."
+        )
+
+    manifest = load_json(manifest_path)
+
+    if str(manifest.get("status")) != str(reuse["required_status"]):
+        raise PostCoarseIntegrityError(
+            "Historical refinement manifest is not COMPLETE."
+        )
+
+    if manifest.get("protected_feature_years_opened") is not False:
+        raise PostCoarseIntegrityError(
+            "Historical refinement opened protected feature years."
+        )
+
+    primary_refs = list(manifest.get("primary_result_references") or [])
+    mlp_refs = list(manifest.get("supplemental_mlp_result_references") or [])
+
+    if len(primary_refs) != int(reuse["expected_primary_result_references"]):
+        raise PostCoarseIntegrityError(
+            "Historical primary refinement reference count mismatch."
+        )
+
+    if len(mlp_refs) != int(
+        reuse["expected_supplemental_mlp_result_references"]
+    ):
+        raise PostCoarseIntegrityError(
+            "Historical supplemental MLP reference count mismatch."
+        )
+
+    historical_authority = manifest.get("authority")
+    if not isinstance(historical_authority, Mapping):
+        raise PostCoarseIntegrityError(
+            "Historical refinement authority is missing."
+        )
+
+    expected_contract = dict(reuse["source_execution_contract"])
+    if historical_authority.get("base_execution_contract") != expected_contract:
+        raise PostCoarseIntegrityError(
+            "Historical refinement execution-contract authority mismatch."
+        )
+
+    expected_methodology = dict(reuse["source_methodology_amendment"])
+    if historical_authority.get("methodology_amendment") != expected_methodology:
+        raise PostCoarseIntegrityError(
+            "Historical refinement methodology authority mismatch."
+        )
+
+    # Deep verification of every referenced candidate/fold artifact.
+    primary_results = load_phase_results(
+        manifest, "primary_result_references", root=root
+    )
+    mlp_results = load_phase_results(
+        manifest, "supplemental_mlp_result_references", root=root
+    )
+
+    if len(primary_results) != len(primary_refs):
+        raise PostCoarseIntegrityError(
+            "Historical primary refinement artifact count mismatch."
+        )
+
+    if len(mlp_results) != len(mlp_refs):
+        raise PostCoarseIntegrityError(
+            "Historical MLP refinement artifact count mismatch."
+        )
+
+    return manifest
+
+
+def require_refinement_manifest_for_current_config(
+    path: Path,
+    *,
+    config: Mapping[str, Any],
+    authority: AuthorityContext,
+    root: Path,
+) -> dict[str, Any]:
+    if historical_refinement_reuse_enabled(config):
+        configured = _resolve_from_root(
+            root,
+            str(
+                config["post_coarse_execution"]
+                ["historical_refinement_reuse"]
+                ["source_manifest"]
+                ["path"]
+            ),
+        )
+        if path.resolve() != configured.resolve():
+            raise PostCoarseIntegrityError(
+                "Historical refinement path differs from configured source."
+            )
+        return require_historical_refinement_reuse(
+            config=config,
+            root=root,
+        )
+
+    return require_phase_manifest(
+        path,
+        allowed_statuses={"COMPLETE"},
+        authority=authority,
+        root=root,
+    )
+
+
 def _result_lookup(
     results: Iterable[CandidateExecutionResult],
 ) -> dict[tuple[str, str, str, int], CandidateExecutionResult]:
@@ -740,6 +889,8 @@ def _result_lookup(
 
 def build_runner_and_folds(
     *,
+    config: Mapping[str, Any],
+    authority: AuthorityContext,
     output_dir: Path,
     classical_python: Path,
     qnn_python: Path,
@@ -748,12 +899,38 @@ def build_runner_and_folds(
     ProductionExperimentRunner,
     Mapping[str, tuple[Any, Any, Any, Any]],
 ]:
+    production_runner_spec = (
+        config["post_coarse_execution"]["authority"]["production_runner"]
+    )
+    production_runner_path = _resolve_from_root(
+        ROOT, str(production_runner_spec["path"])
+    )
+
+    if not production_runner_path.is_file():
+        raise PostCoarseIntegrityError(
+            f"Missing production runner config: {production_runner_path}"
+        )
+    if file_sha256(production_runner_path) != str(
+        production_runner_spec["sha256"]
+    ):
+        raise PostCoarseIntegrityError(
+            "Production runner configuration SHA-256 mismatch."
+        )
+
     executor = SubprocessFoldExecutor(
         root=ROOT,
         classical_python=classical_python,
         qnn_python=qnn_python,
+        runner_config_path=production_runner_path,
+        contract_path=authority.base_contract_path,
     )
-    runner = ProductionExperimentRunner(output_dir=output_dir, executor=executor)
+    runner = ProductionExperimentRunner(
+        output_dir=output_dir,
+        executor=executor,
+        runner_config_path=production_runner_path,
+        contract_path=authority.base_contract_path,
+        registry_path=authority.candidate_registry_path,
+    )
     sample, expectations = runner.load_frozen_project_sample()
     folds = runner.verify_sample_and_folds(sample, expectations)
     runner._write_runtime_metadata(canonical_candidate_index(runner.contract, runner.registry))
@@ -935,6 +1112,13 @@ def run_refinement_phase(
     qnn_python: Path,
 ) -> dict[str, Any]:
     manifest_path = output_dir / "refinement_phase_manifest.json"
+
+    if historical_refinement_reuse_enabled(config):
+        return require_historical_refinement_reuse(
+            config=config,
+            root=ROOT,
+        )
+
     existing = _phase_manifest_existing(
         manifest_path,
         statuses={"COMPLETE"},
@@ -947,6 +1131,8 @@ def run_refinement_phase(
     started = time.monotonic()
     _, coarse_results = load_coarse_results(coarse_dir, config=config)
     runner, folds = build_runner_and_folds(
+        config=config,
+        authority=authority,
         output_dir=output_dir,
         classical_python=classical_python,
         qnn_python=qnn_python,
@@ -1075,9 +1261,9 @@ def run_qnn_phase(
     if existing is not None:
         return existing
 
-    require_phase_manifest(
+    require_refinement_manifest_for_current_config(
         output_dir / "refinement_phase_manifest.json",
-        allowed_statuses={"COMPLETE"},
+        config=config,
         authority=authority,
         root=ROOT,
     )
@@ -1085,6 +1271,8 @@ def run_qnn_phase(
     load_coarse_results(coarse_dir, config=config)
     started = time.monotonic()
     runner, folds = build_runner_and_folds(
+        config=config,
+        authority=authority,
         output_dir=output_dir,
         classical_python=classical_python,
         qnn_python=qnn_python,
@@ -1347,9 +1535,9 @@ def run_confirmation_phase(
     if existing is not None:
         return existing
 
-    refinement_manifest = require_phase_manifest(
+    refinement_manifest = require_refinement_manifest_for_current_config(
         output_dir / "refinement_phase_manifest.json",
-        allowed_statuses={"COMPLETE"},
+        config=config,
         authority=authority,
         root=ROOT,
     )
@@ -1370,6 +1558,8 @@ def run_confirmation_phase(
     q2_results = load_phase_results(qnn_manifest, "q2_result_references", root=ROOT)
 
     runner, folds = build_runner_and_folds(
+        config=config,
+        authority=authority,
         output_dir=output_dir,
         classical_python=classical_python,
         qnn_python=qnn_python,

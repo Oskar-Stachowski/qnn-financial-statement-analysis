@@ -15,6 +15,7 @@ from typing import Any
 import numpy as np
 
 from src.modeling.environment_audit import environment_report
+from src.modeling.model_execution_contract import load_contract
 from src.modeling.production_worker import build_qnn, torch_configuration
 
 
@@ -27,7 +28,12 @@ def peak_rss_bytes() -> int:
     return value if sys.platform == "darwin" else value * 1024
 
 
-def smoke() -> dict[str, Any]:
+def smoke(contract_path: Path) -> dict[str, Any]:
+    contract = load_contract(contract_path)
+    device_identity = dict(
+        contract["qnn_executable_identity"]["device_identity"]
+    )
+    device_name = str(device_identity["name"])
     torch = torch_configuration()
     seed = 20260818
     cases: list[dict[str, Any]] = []
@@ -48,7 +54,9 @@ def smoke() -> dict[str, Any]:
             labels = torch.tensor([0.0, 1.0, 0.0, 1.0], dtype=torch.float64)
             before_rss = peak_rss_bytes()
             started = time.perf_counter()
-            model = build_qnn(torch, parameters, ansatz, seed)
+            model = build_qnn(
+                torch, parameters, ansatz, seed, device_name=device_name
+            )
             logits = model(inputs)
             loss = torch.nn.functional.binary_cross_entropy_with_logits(logits, labels)
             loss.backward()
@@ -58,7 +66,9 @@ def smoke() -> dict[str, Any]:
                 for parameter in model.parameters()
             )
             outputs_finite = bool(torch.isfinite(logits).all() and torch.isfinite(loss))
-            replay_model = build_qnn(torch, parameters, ansatz, seed)
+            replay_model = build_qnn(
+                torch, parameters, ansatz, seed, device_name=device_name
+            )
             replay = replay_model(inputs).detach()
             replay_max_abs_difference = float(
                 torch.max(torch.abs(logits.detach() - replay))
@@ -77,7 +87,9 @@ def smoke() -> dict[str, Any]:
                 restored_payload = torch.load(
                     checkpoint_path, map_location="cpu", weights_only=False
                 )
-                restored = build_qnn(torch, parameters, ansatz, seed + 1)
+                restored = build_qnn(
+                    torch, parameters, ansatz, seed + 1, device_name=device_name
+                )
                 restored.load_state_dict(restored_payload["model_state"])
                 restored_scores = restored(inputs).detach()
                 checkpoint_max_abs_difference = float(
@@ -115,23 +127,27 @@ def smoke() -> dict[str, Any]:
                 else "FAIL"
             )
             cases.append(case)
-    environment = environment_report("qnn_mlp", smoke_imports=True)
+    environment = environment_report(
+        "qnn_mlp",
+        smoke_imports=True,
+        contract_path=contract_path,
+    )
     passed = environment["status"] == "READY" and all(
         case["status"] == "PASS" for case in cases
     )
     return {
         "schema_version": 1,
-        "id": "qnn_resource_smoke_v1_0_0",
+        "id": "qnn_resource_smoke_v1_0_1_lightning",
         "status": "PASS" if passed else "FAIL",
         "synthetic_only": True,
         "project_data_opened": False,
         "project_model_training_performed": False,
         "device": {
-            "name": "default.qubit",
-            "shots": None,
-            "differentiation": "adjoint",
-            "interface": "torch",
-            "dtype": "float64",
+            "name": device_name,
+            "shots": device_identity["shots"],
+            "differentiation": contract["qnn_executable_identity"]["circuit"]["differentiation"],
+            "interface": device_identity["interface"],
+            "dtype": contract["qnn_executable_identity"]["circuit"]["dtype"],
         },
         "environment": environment,
         "cases": cases,
@@ -140,9 +156,10 @@ def smoke() -> dict[str, Any]:
 
 def main() -> None:
     parser = argparse.ArgumentParser()
+    parser.add_argument("--contract", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
-    report = smoke()
+    report = smoke(args.contract)
     payload = json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(payload, encoding="utf-8")

@@ -1,0 +1,124 @@
+schema_version: 1
+
+runner:
+  id: production_experiment_runner
+  version: 1.0.1
+  status: implemented_timezone_pit_fixed_lightning_backend
+  implemented_on: "2026-08-22"
+  execution_contract_version: 1.2.1
+  policy_changes: true
+  policy_change_scope: qnn_simulator_backend_default_qubit_to_lightning_qubit
+  project_data_model_fit_performed: false
+  protected_feature_years_opened: false
+
+authority:
+  execution_contract:
+    path: configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml
+    sha256: 8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a
+  execution_contract_freeze_manifest:
+    path: configs/model_execution_contract_v1_2_0_freeze_manifest.yaml
+    sha256: 80c3e48b742ae679849872bf14715ee1e781024c5fdd9af3f26559a673c47df1
+  candidate_registry:
+    path: configs/model_stage_candidates_v1_scientific_patch.json
+    sha256: f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac
+  model_environments:
+    path: configs/model_environments_v1_0_1_lightning.yaml
+    sha256: 330c88dbaf6992fd4613dfaf44a877a70eaee917b454ac8a1946b97ece74972e
+  conflict_rule: no_runner_default_may_override_or_extend_the_frozen_execution_contract
+
+data:
+  permitted_feature_years: [2011, 2020]
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_path_policy: only_the_two_exact_sha_verified_train_projection_paths_may_be_deserialized
+  frozen_train_inputs:
+    raw_x_t_train:
+      path: data/processed/x_t_pit_v1_1_0_train.csv
+      sha256: 872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65
+    target_application_train:
+      path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_2_0_train.csv
+      sha256: 0f5d3bdefe13ed6ea6a1c6cdc94ae2c663f59175a7363dd8bffa26717069dd1b
+  timestamp_semantics:
+    authority: configs/timezone_pit_fix_v1_0_0.yaml
+    canonical_timezone_for_comparisons: UTC
+    own_observation_invariant: prediction_timestamp < target_available_at
+    fold_training_invariant: target_available_at <= fold_validation_cutoff
+  sample_policy:
+    required_membership_status: eligible
+    required_target_status: available
+    allowed_x_t_statuses: [available_core, partially_available]
+  canonical_observation_order: [feature_year_integer_ascending, research_universe_company_year_id_utf8_ascending]
+  canonical_prediction_key: [validation_feature_year, research_universe_company_year_id]
+  financial_predictor_allowlist:
+    - log_assets_t
+    - roa_t
+    - ocf_to_assets_t
+    - current_ratio_t
+    - liabilities_to_assets_t
+    - working_capital_to_assets_t
+    - accruals_to_assets_t
+    - asset_growth_1y
+    - delta_roa_1y
+    - delta_ocf_to_assets_1y
+    - current_ratio_change_1y
+    - delta_liabilities_to_assets_1y
+    - log1p_revenues_t
+    - profit_margin_t
+    - ocf_margin_t
+    - asset_turnover_t
+    - revenue_growth_1y
+  forbidden_predictors:
+    - economic_group_id
+    - feature_year
+    - prediction_timestamp
+    - target_available_at
+    - research_universe_company_year_id
+    - target_label
+
+determinism:
+  expanded_candidate_order_sha256: 67184eac4f62909e0717bfb2e8775de275cbf3842fc9cf4dfd316e42a3b20726
+  fold_order: [fold_2015, fold_2016, fold_2017, fold_2018, fold_2019, fold_2020]
+  feature_block_order: [L, L+D, L+D+R]
+  coarse_seed: 20260818
+  confirmation_seeds: [20260819, 20260820]
+  failure_state_machine_source: configs/model_execution_contract_v1_2_0.yaml#execution_failure_state_machine
+  no_manual_prompts_or_overrides: true
+
+worker_boundary:
+  controller_reads_project_data: true
+  workers_read_project_data: false
+  worker_input: already_folded_preprocessed_numeric_npz_plus_frozen_task_identity_json
+  classical_families: [dummy_prior, fixed_l2_logistic, elastic_net_logistic, rbf_svm, random_forest, hist_gradient_boosting, xgboost]
+  qnn_mlp_families: [pytorch_mlp, qnn]
+  full_installed_distribution_set_must_equal_lock_excluding_pip_bootstrap: true
+  runtime_environment_hash_required_before_first_task: true
+  runtime_environment_hash_must_be_constant_within_role: true
+
+artifacts:
+  serialization: canonical_pretty_JSON_UTF8_LF_and_float64_hex_for_executable_values
+  atomic_writes: true
+  per_fold_seed_configuration_result_manifest: true
+  candidate_manifest: true
+  refinement_activation_manifest: true
+  confirmation_selection_manifest: true
+  qnn_ansatz_identity_manifest: true
+  final_ranking_manifest: true
+  calibration_and_threshold_manifests: true
+  secondary_analysis_execution_plan: true
+  dry_run_plan_declares_model_fit_performed_false: true
+
+optional_quantum_backend_adapter_interface:
+  status: reserved_not_installed_not_executable
+  required_methods:
+    - backend_identity
+    - environment_identity
+    - execute_analytic_or_shot_task
+    - checkpoint_identity
+  required_result_fields:
+    - raw_scores_float64
+    - task_identity_sha256
+    - backend_identity
+    - resource_usage
+    - technical_status
+  ibm_plugin_installed: false
+  aws_braket_plugin_installed: false
+  activation_requires_new_explicit_preregistration_version: true

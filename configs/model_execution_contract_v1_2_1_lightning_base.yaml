@@ -1,0 +1,620 @@
+schema_version: 1
+
+execution_contract:
+  id: model_execution_contract
+  version: 1.2.1
+  status: frozen_pre_runner_execution_contract
+  frozen_on: "2026-08-19"
+  purpose: deterministic_execution_closure_after_resolver_correction
+  production_runner_implemented: false
+  model_training_performed: false
+  authorizes_model_training_by_itself: false
+  historical_v1_modified: false
+  protected_feature_years_opened: false
+  scope: model_development_and_internal_temporal_cv_2011_2020_only
+
+authority:
+  data_access_policy:
+    path: configs/data_access_policy_v1_1_0.yaml
+    version: 1.1.0
+    sha256: 7ce08bca9921ff72db6b3ec6dfd1dc28c7e751e1ca1ad3b6706180809b66cd9b
+  raw_x_t_manifest:
+    path: configs/x_t_pit_v1_1_0_train_freeze_manifest.yaml
+    version: 1.1.0
+    sha256: d0e83ead2090c6de3b8f52e2eca557764ef2131395e026824b26230a2fa62019
+  supervised_pipeline:
+    path: configs/supervised_ml_pipeline_v1_2_0.yaml
+    version: 1.2.0
+    sha256: 9c2608259c1a6d1f31af677a0f25343b9e7e0975857147157e377b1e76abfe60
+  supervised_pipeline_manifest:
+    path: configs/supervised_ml_pipeline_v1_2_0_freeze_manifest.yaml
+    sha256: 1da10ac56b2c77b294f92bdfecf22a4ff0f86aa29844d82898d8e7ae00d7fe02
+  model_stage_v1:
+    path: configs/model_stage_v1.yaml
+    version: 1.0.0
+    sha256: e9951acd7d81a15a6e60a49cc88bc3021bb20be9dd0afcad952b98cecbe62b25
+  access_amendment:
+    path: configs/model_stage_v1_1_0_access_amendment.yaml
+    version: 1.1.0
+    sha256: 24e7b066ab4fdd95fbd4013546ae8f172c6ead0f275061df156efd0c80fb58da
+  resolver_amendment:
+    path: configs/model_stage_v1_2_0_resolver_amendment.yaml
+    version: 1.2.0
+    sha256: 7ec0749d5ad2f9213cb344bf6d3665b4894bf1438d7f082afd919f8151e84dee
+  candidate_registry:
+    path: configs/model_stage_candidates_v1.json
+    version: 1.0.0
+    sha256: 857ed6361a55c4ff1183a56614a4058e132db7a8b49bb5742b187900cd9d7f58
+  conflict_rule: this_contract_controls_execution_order_operational_definitions_failure_states_artifact_schemas_and_integrity_gates
+  inheritance_rule: model_roster_candidate_values_budgets_feature_blocks_cv_metric_and_nonconflicting_v1_decisions_remain_unchanged
+
+data_boundary:
+  permitted_feature_years: [2011, 2020]
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_data_must_not_be_deserialized: true
+  opaque_hash_verification_only: true
+  validation_or_test_may_activate_any_decision: false
+
+canonical_ordering:
+  canonical_json: utf8_sort_keys_no_whitespace_ensure_ascii_false
+  candidate_registry_list_order: authoritative_JSON_array_order_with_unique_configuration_ids
+  feature_block_order: [L, L+D, L+D+R]
+  block_agnostic_token: BLOCK_AGNOSTIC
+  stage_order: [coarse, refinement, qnn_q1, qnn_q2]
+  family_order:
+    - dummy_prior
+    - fixed_l2_logistic
+    - elastic_net_logistic
+    - rbf_svm
+    - hist_gradient_boosting
+    - xgboost
+    - random_forest
+    - pytorch_mlp
+    - qnn
+  refinement_family_order:
+    - elastic_net_logistic
+    - rbf_svm
+    - hist_gradient_boosting
+    - xgboost
+    - random_forest
+    - pytorch_mlp
+  expansion:
+    dummy_prior: one_BLOCK_AGNOSTIC_entry
+    other_coarse: each_registry_candidate_cross_each_feature_block
+    refinement: each_registry_candidate_with_family_best_coarse_block_binding
+    qnn_q1: each_registry_candidate_cross_each_feature_block
+    qnn_q2: each_registry_candidate_cross_each_feature_block
+  key_fields: [stage, family, feature_block_or_binding, configuration_id]
+  expected_registry_configuration_ids: 142
+  expected_expanded_entries: 320
+  expanded_order_sha256: 263635db04d87466b182f3a853910e2cc6ca11a284deeb57969b5cbea43faf21
+
+metric_contract:
+  primary_metric: pooled_oof_pr_auc_2015_2020
+  implementation: sklearn.metrics.average_precision_score
+  positive_label: 1
+  sample_weight: null
+  comparison_value: raw_float64_metric
+  tie_quantization:
+    decimal_places: 6
+    input_conversion: Decimal_from_shortest_round_trip_float_string
+    rounding: ROUND_HALF_EVEN
+  distance_and_gap_values: unrounded_raw_float64_metrics
+  inclusive_tolerances: true
+
+complexity_units:
+  purpose: deterministic_operationalization_of_fewer_parameters_tie_break
+  input_dimensions_after_preprocessing_C: {L: 14, L+D: 24, L+D+R: 34}
+  maximum_train_rows_for_static_bounds: 16280
+  formulas:
+    dummy_prior: 1
+    fixed_l2_logistic: input_dimensions_plus_intercept
+    elastic_net_logistic: input_dimensions_plus_intercept
+    rbf_svm: maximum_train_rows_plus_intercept_upper_bound
+    random_forest: n_estimators_times_maximum_binary_tree_nodes_bounded_by_depth_leaf_size_and_max_samples
+    hist_gradient_boosting: max_iter_times_two_max_leaf_nodes_minus_one
+    xgboost: n_estimators_times_two_to_max_depth_plus_one_minus_one
+    pytorch_mlp: exact_dense_weights_and_biases_including_scalar_output
+    qnn: exact_variational_parameters_plus_linear_head_weights_plus_bias
+  fixed_family_parameters:
+    coarse_random_forest_n_estimators: 600
+    refinement_random_forest_n_estimators: 800
+  observed_tree_size_or_support_vector_count_used: false
+
+ranking:
+  eligible_status: COMPLETE
+  ineligible_rows_remain_in_common_table: true
+  ineligible_rows_rank_after_all_complete_rows: true
+  deterministic_key:
+    - complete_before_invalid
+    - pooled_oof_pr_auc_rounded_6_decimals_descending
+    - smaller_feature_block
+    - simpler_family_by_canonical_family_order
+    - imbalance_none_before_sqrt
+    - lower_complexity_units
+    - coarse_before_refinement
+    - lexicographic_configuration_id_utf8
+  exact_tie_after_full_key: forbidden_duplicate_identity_error
+
+boundary_hyperparameters:
+  reference_space: full_preregistered_coarse_space_not_sampled_candidate_list
+  definition: candidate_value_equals_first_or_last_value_of_any_applicable_ordered_domain
+  categorical_values_are_never_boundary: true
+  any_ordered_parameter_boundary_activates_boundary_condition: true
+  ordered_domains:
+    elastic_net_logistic:
+      C: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+      l1_ratio: [0.0, 0.25, 0.5, 0.75, 1.0]
+    rbf_svm:
+      C: [0.1, 1.0, 10.0, 100.0]
+      gamma: [0.01, 0.1]
+    random_forest:
+      max_depth: [6, 12, 24, null]
+      min_samples_leaf: [1, 5, 20]
+      max_features: [0.5, 1.0]
+      max_samples: [0.7, 1.0]
+    hist_gradient_boosting:
+      learning_rate: [0.03, 0.06, 0.1]
+      max_iter: [150, 300]
+      max_leaf_nodes: [7, 15, 31]
+      min_samples_leaf: [20, 50, 100]
+      l2_regularization: [0.0, 0.1, 1.0, 10.0]
+      max_features: [0.7, 1.0]
+    xgboost:
+      n_estimators: [200, 500, 800]
+      max_depth: [2, 3, 5, 8]
+      learning_rate: [0.02, 0.05, 0.1]
+      subsample: [0.7, 1.0]
+      colsample_bytree: [0.7, 1.0]
+      min_child_weight: [1, 5, 20]
+      reg_alpha: [0.0, 0.01, 0.1]
+      reg_lambda: [1.0, 5.0, 20.0]
+      gamma: [0.0, 0.1]
+    pytorch_mlp:
+      weight_decay: [0.00001, 0.0001, 0.001]
+      learning_rate: [0.0003, 0.001, 0.003]
+      batch_size: [64, 256]
+  explicitly_unordered:
+    - imbalance
+    - criterion
+    - activation
+    - hidden_layer_sizes
+    - rbf_svm.gamma_scale
+    - random_forest.max_features_sqrt
+
+conditional_refinement:
+  source_table: valid_coarse_seed_20260818_results_only
+  source_data: OOF_2015_2020_only
+  eligible_families: [elastic_net_logistic, rbf_svm, hist_gradient_boosting, xgboost, random_forest, pytorch_mlp]
+  coarse_leader: highest_ranked_complete_coarse_candidate_across_all_non_qnn_families_and_blocks
+  family_leader: highest_ranked_complete_coarse_candidate_within_family_across_all_blocks
+  best_feature_block: feature_block_of_family_leader
+  runner_up: second_ranked_complete_coarse_candidate_within_same_family_and_best_feature_block
+  missing_runner_up_gap: positive_infinity
+  distance_formula: max_0_global_coarse_leader_raw_metric_minus_family_leader_raw_metric
+  runner_up_gap_formula: max_0_family_leader_raw_metric_minus_runner_up_raw_metric
+  activation_expression: distance_le_0_010_AND_boundary_OR_runner_up_gap_le_0_003
+  activation_parentheses: distance_le_0_010_AND_(boundary_OR_runner_up_gap_le_0_003)
+  coarse_leader_pr_auc_distance_max: 0.010
+  runner_up_gap_max: 0.003
+  maximum_families: 3
+  selection_if_more_than_three:
+    - smaller_unrounded_distance_to_global_coarse_leader
+    - better_family_leader_deterministic_ranking
+    - canonical_refinement_family_order
+  refinement_feature_block: exactly_family_leader_best_feature_block
+  refinement_training_seed: 20260818
+  validation_or_test_may_activate: false
+  technical_failure_may_activate_extra_family: false
+  no_complete_global_coarse_leader_policy: activate_no_refinement_and_record_NO_COMPLETE_COARSE_LEADER
+
+coarse_refinement_merge:
+  table_schema_required:
+    - stage
+    - family
+    - feature_block
+    - configuration_id
+    - parameters
+    - training_seed
+    - fold_statuses
+    - status
+    - pooled_oof_pr_auc
+    - oof_prediction_artifact_sha256
+    - failure_code
+  merge_key: [family, feature_block, configuration_id, training_seed]
+  duplicate_key_policy: fatal_integrity_error
+  refinement_rows_allowed_only_for_activated_family_and_frozen_best_block: true
+  common_table_sort: canonical_candidate_order_then_training_seed
+  ranking_uses: deterministic_ranking_contract
+
+confirmation:
+  coarse_seed: 20260818
+  confirmation_seeds: [20260819, 20260820]
+  stochastic_classical_mlp_families: [elastic_net_logistic, random_forest, hist_gradient_boosting, xgboost, pytorch_mlp]
+  deterministic_exceptions: [dummy_prior, fixed_l2_logistic, rbf_svm]
+  classical_mlp_selection: top_2_complete_merged_candidates_per_family_per_feature_block
+  classical_mlp_confirmation_slots: 30
+  classical_mlp_additional_fold_fits: 360
+  qnn_selection: top_1_complete_q2_candidate_per_feature_block
+  qnn_confirmation_slots: 3
+  qnn_additional_fold_fits: 36
+  selection_metric_at_this_step: seed_20260818_pooled_oof_pr_auc
+  no_promotion_after_confirmation_failure: true
+  final_common_table:
+    stochastic_confirmed_rows: replace_seed_20260818_selection_metric_with_metric_computed_once_from_three_seed_averaged_raw_scores
+    unconfirmed_stochastic_rows: retained_with_NOT_SELECTED_FOR_CONFIRMATION_and_ineligible_for_final_ranking
+    deterministic_rows: retain_seed_20260818_metric_as_final_metric
+    mixed_single_seed_and_three_seed_stochastic_ranking_allowed: false
+  final_candidate_eligibility:
+    stochastic_classical_mlp: selected_for_confirmation_and_COMPLETE_for_all_three_seeds
+    deterministic_exception: COMPLETE_for_seed_20260818
+    qnn: selected_for_confirmation_and_COMPLETE_for_all_three_seeds
+  final_family_representative: highest_ranked_final_eligible_candidate_within_family_across_blocks
+  global_winner: highest_ranked_family_representative
+
+seed_aggregation:
+  canonical_prediction_key: [validation_feature_year, research_universe_company_year_id]
+  fold_id_is_derived_from_validation_feature_year: true
+  canonical_order: validation_feature_year_integer_ascending_then_company_year_id_utf8_ascending
+  required_alignment_fields:
+    - validation_feature_year
+    - research_universe_company_year_id
+    - fold_id
+    - target_label
+    - economic_group_id
+    - prediction_timestamp
+  duplicate_or_missing_key_policy: technical_invalidation
+  averaging_input: raw_scores_only
+  seed_order: [20260818, 20260819, 20260820]
+  arithmetic: math_fsum_in_seed_order_divided_by_3_then_float64
+  deterministic_exception_seed_order: [20260818]
+  probability_averaging_allowed: false
+  pooled_oof_pr_auc: calculate_once_on_canonical_aligned_averaged_raw_scores
+
+raw_score_interface:
+  clip_epsilon: 1.0e-7
+  families:
+    dummy_prior: logit_clip_fold_train_positive_prior
+    fixed_l2_logistic: sklearn_decision_function_positive_class
+    elastic_net_logistic: sklearn_decision_function_positive_class
+    rbf_svm: sklearn_decision_function_probability_false_positive_class
+    random_forest: logit_clip_predict_proba_positive_class
+    hist_gradient_boosting: sklearn_decision_function_positive_class
+    xgboost: booster_predict_output_margin_true
+    pytorch_mlp: direct_scalar_logit_before_sigmoid
+    qnn: direct_scalar_logit_before_sigmoid
+  required_dtype: float64
+  required_shape: one_dimensional_length_equals_evaluation_rows
+  positive_class_label: 1
+  positive_probability_column: index_where_estimator_classes_equals_integer_1
+  logit_definition: natural_log_of_clipped_p_divided_by_1_minus_clipped_p
+  nonfinite_score_policy: technical_invalidation
+
+execution_failure_state_machine:
+  required_folds: [fold_2015, fold_2016, fold_2017, fold_2018, fold_2019, fold_2020]
+  complete_candidate_requires_every_required_fold: true
+  partial_fold_metric_allowed: false
+  terminal_fold_statuses:
+    - COMPLETE
+    - NUMERICAL_INVALID
+    - CONVERGENCE_INVALID
+    - TIMEOUT_INVALID
+    - CHECKPOINT_INVALID
+    - EXCEPTION_INVALID
+    - INFRASTRUCTURE_EXHAUSTED
+  retryable_event: INFRASTRUCTURE_FAILURE_ONLY
+  infrastructure_failure_codes:
+    - WORKER_PROCESS_LOST_BY_OS_SIGNAL
+    - SCHEDULER_PREEMPTION
+    - TEMPORARY_FILESYSTEM_IO_FAILURE
+    - DEVICE_ALLOCATION_UNAVAILABLE_BEFORE_MODEL_STEP
+    - HOST_POWER_OR_PROCESS_INTERRUPTION
+  python_estimator_or_training_exception_is_infrastructure_failure: false
+  unrecognized_failure_code_policy: DETERMINISTIC_LIBRARY_EXCEPTION
+  nonretryable_events:
+    - NAN_OR_INF_INPUT
+    - NAN_OR_INF_PARAMETER
+    - NAN_OR_INF_RAW_SCORE
+    - CONVERGENCE_WARNING
+    - NUMERICAL_RUNTIME_WARNING
+    - TIMEOUT
+    - DETERMINISTIC_LIBRARY_EXCEPTION
+  fresh_retry_without_resume_events: [CHECKPOINT_IDENTITY_MISMATCH]
+  convergence_warning_policy: terminal_CONVERGENCE_INVALID_no_retry
+  unexpected_warning_policy: terminal_EXCEPTION_INVALID_no_manual_classification
+  warning_event_mapping:
+    sklearn_exceptions_ConvergenceWarning: CONVERGENCE_WARNING
+    builtins_RuntimeWarning: NUMERICAL_RUNTIME_WARNING
+    any_other_warning_during_fit_or_predict: UNEXPECTED_WARNING
+  nonfinite_checkpoints:
+    - post_preprocessing_input_matrix
+    - initialized_and_post_step_trainable_parameters
+    - fold_validation_raw_scores
+  partial_fold_failure_policy: candidate_TECHNICALLY_INVALID_no_partial_PR_AUC
+  confirmation_failure_policy: candidate_final_ineligible_no_promotion_of_unselected_candidate
+  timeouts_cumulative_wall_seconds_per_fold_fit:
+    dummy_prior: 300
+    fixed_l2_logistic: 1800
+    elastic_net_logistic: 3600
+    rbf_svm: 7200
+    random_forest: 7200
+    hist_gradient_boosting: 3600
+    xgboost: 7200
+    pytorch_mlp: 7200
+    qnn: 7200
+  timeout_clock: monotonic_cumulative_across_resume_attempts
+  checkpoint_capable_families: [pytorch_mlp, qnn]
+  checkpoint_every_epochs: 5
+  checkpoint_atomic_write_required: true
+  checkpoint_identity_fields:
+    - family
+    - configuration_id
+    - parameters_sha256
+    - feature_block
+    - fold_id
+    - training_seed
+    - train_membership_sha256
+    - validation_membership_sha256
+    - preprocessing_sha256
+    - pca_sha256_if_applicable
+    - software_environment_sha256
+    - device_identity
+  checkpoint_state_fields: [model_state, optimizer_state, completed_epoch, rng_states, cumulative_wall_seconds]
+  valid_checkpoint_resume_limit: 1
+  fresh_infrastructure_retry_limit: 1
+  retry_order: initial_then_one_valid_checkpoint_resume_then_one_fresh_retry_if_failure_remains_infrastructure_only
+  retry_seed_or_method_change_allowed: false
+  invalid_checkpoint_policy: discard_checkpoint_then_one_fresh_infrastructure_retry_if_available
+  candidate_terminal_codes:
+    classical_or_mlp: FAMILY_CANDIDATE_TECHNICALLY_INVALID
+    qnn: QNN_CANDIDATE_TECHNICALLY_INVALID
+  family_without_final_candidate:
+    qnn: QNN_TECHNICALLY_INFEASIBLE
+    other: FAMILY_TECHNICALLY_INVALID
+  manual_waiver_or_candidate_substitution_allowed: false
+
+qnn_executable_identity:
+  family: qnn
+  selected_ansatz_selection_stage: qnn_q1
+  selected_ansatz_scope: one_global_ansatz_for_all_q2_feature_blocks
+  q1_candidates_source: configs/model_stage_candidates_v1.json#qnn.stage_q1
+  q2_candidates_source: configs/model_stage_candidates_v1.json#qnn.stage_q2
+  q1_expansion: three_ansatz_candidates_cross_three_feature_blocks_cross_six_folds_seed_20260818
+  q1_ranking_key:
+    - pooled_oof_pr_auc_rounded_6_decimals_descending
+    - smaller_feature_block
+    - fewer_exact_qnn_trainable_parameters
+    - fixed_entangler_before_trainable_entangler
+    - lexicographic_ansatz_id
+    - lexicographic_configuration_id
+  selected_ansatz_artifact: artifacts/model_stage_v1_2_0/qnn_selected_ansatz.json
+  q2_t0_reuse_rule: reuse_corresponding_q1_selected_ansatz_scores_and_checkpoints_for_each_feature_block
+  q2_t1_t2_t3_rule: new_fits_with_selected_ansatz_id_and_exact_registry_settings
+  q2_table_per_feature_block: t0_reused_plus_t1_t2_t3_new
+  q2_ranking_key:
+    - pooled_oof_pr_auc_rounded_6_decimals_descending
+    - imbalance_none_before_sqrt
+    - fewer_exact_qnn_trainable_parameters
+    - lexicographic_q2_configuration_id
+  candidate_identity_fields:
+    - selected_ansatz_id
+    - q1_or_q2_configuration_id
+    - feature_block
+    - qubits_pca
+    - layers
+    - epochs
+    - learning_rate
+    - batch_size
+    - weight_decay
+    - imbalance
+    - optimizer_identity
+    - training_seed
+    - fold_id
+    - software_environment_sha256
+    - device_identity
+  optimizer_identity:
+    name: Adam
+    betas: [0.9, 0.999]
+    eps: 1.0e-8
+    amsgrad: false
+    gradient_clip_norm: 5.0
+  circuit:
+    encoding: ascending_wire_RY_angle_encoding_once
+    measurement: PauliZ_expectation_each_qubit
+    head: trainable_linear_to_one_logit
+    shots: null
+    differentiation: adjoint
+    dtype: float64
+  device_identity:
+    name: lightning.qubit
+    execution: analytic
+    shots: null
+    interface: torch
+    wires: equals_qubits_pca
+  selected_ansatz_id_must_be_present_before_q2_new_fit: true
+  stage_q2_may_change_ansatz: false
+
+software_environment_identity:
+  canonical_json: utf8_sort_keys_no_whitespace_ensure_ascii_false
+  hash_algorithm: sha256
+  required_runtime_fields:
+    - contract_version
+    - python_implementation
+    - python_version
+    - package_versions
+    - thread_environment
+    - os_name
+    - os_release
+    - machine_architecture
+    - device_identity
+  exact_package_version_match_required: true
+  classical_expected:
+    python: 3.13.13
+    packages: {numpy: 2.4.4, scipy: 1.17.1, pandas: 3.0.3, scikit-learn: 1.8.0, xgboost: 3.4.1, shap: 0.52.0, joblib: 1.5.3, threadpoolctl: 3.6.0}
+    expected_spec_sha256: 11fa28a6ee9599eeb0d8bc0ed459f75dfedaf506b8191649f114d98f4cf82a6c
+  qnn_mlp_expected:
+    python: 3.12.2
+    packages: {numpy: 2.4.4, scipy: 1.17.1, pandas: 3.0.3, scikit-learn: 1.8.0, torch: 2.13.0, PennyLane: 0.45.1, pennylane-lightning: 0.45.0, captum: 0.9.0}
+    expected_spec_sha256: 7ff0365d25d1ff2d5dc6bdcdfd926f454b2b080d11284e420c56ee2d1a2c44a3
+  thread_environment: {OMP_NUM_THREADS: 1, MKL_NUM_THREADS: 1, OPENBLAS_NUM_THREADS: 1, VECLIB_MAXIMUM_THREADS: 1, NUMEXPR_NUM_THREADS: 1, sklearn_n_jobs: 1, xgboost_n_jobs: 1, torch_num_threads: 1, torch_num_interop_threads: 1}
+  runtime_hash_recorded_per_fold_fit: true
+  runtime_hash_variation_within_one_environment_role_allowed: false
+
+calibration:
+  representative_scope: one_final_representative_per_noninvalid_family
+  ordering: canonical_OOF_order_from_seed_aggregation
+  inputs: [averaged_raw_score_float64, target_label_int_0_or_1]
+  weights: none
+  method: one_dimensional_Platt_logistic
+  constructor: {penalty: null, solver: lbfgs, tol: 1.0e-8, fit_intercept: true, class_weight: null, random_state: null, max_iter: 2000, n_jobs: 1}
+  normal_case_fit: sklearn_LogisticRegression_on_raw_score_reshaped_n_by_1
+  transform: scipy_special_expit(coef_times_raw_score_plus_intercept)
+  constant_score_detection: all_float64_scores_bitwise_equal
+  constant_score_policy:
+    mode: deterministic_intercept_only
+    coefficient: 0.0
+    intercept: logit_clip_unweighted_OOF_positive_prevalence_1e-7
+    sklearn_fit_called: false
+  degenerate_label_policy:
+    fewer_than_two_classes: CALIBRATION_TECHNICALLY_INVALID
+    calibrator_artifact_created: false
+    threshold_artifact_created: false
+  nonfinite_or_solver_failure_policy: CALIBRATION_TECHNICALLY_INVALID_no_alternative_method
+  convergence_warning_policy: CALIBRATION_TECHNICALLY_INVALID
+  invalid_calibration_may_replace_reselect_or_recalibrate_family: false
+  artifact_path_template: artifacts/model_stage_v1_2_0/calibration/{family}__{configuration_id}__{feature_block}.json
+  artifact_required_fields: [identity, coef_float64_hex, intercept_float64_hex, input_key_sha256, input_score_sha256, target_sha256, software_environment_sha256, fit_status]
+  may_change_primary_ranking: false
+
+threshold:
+  input: calibrated_probabilities_on_same_canonical_pooled_OOF
+  prediction_rule: positive_if_probability_greater_than_or_equal_to_threshold
+  candidate_thresholds:
+    - every_unique_finite_calibrated_probability_float64
+    - numpy_nextafter_max_probability_toward_positive_infinity_for_predict_none
+  f1_exact_counts: two_TP_divided_by_two_TP_plus_FP_plus_FN
+  f1_zero_denominator_value: 0.0
+  maximization_comparison: exact_integer_cross_multiplication_before_float_reporting
+  tie_break: numerically_higher_threshold
+  degenerate_label_policy: THRESHOLD_NOT_CREATED_CALIBRATION_INVALID
+  empty_input_policy: THRESHOLD_TECHNICALLY_INVALID
+  artifact_path_template: artifacts/model_stage_v1_2_0/thresholds/{family}__{configuration_id}__{feature_block}.json
+  artifact_required_fields: [identity, threshold_float64_hex, achieved_f1_numerator, achieved_f1_denominator, candidate_count, calibrated_input_sha256, selection_rule_id]
+  artifact_must_be_frozen_before_2021_2022_reopen_gate: true
+  may_change_primary_ranking: false
+
+interpretability_execution_scope:
+  selection_input: frozen_final_family_representatives_and_global_ranking_only
+  common_grouped_permutation:
+    mandatory_for: [fixed_l2_logistic, elastic_net_logistic, rbf_svm, random_forest, hist_gradient_boosting, xgboost, pytorch_mlp]
+    conditional_for: [qnn_if_technically_feasible]
+    dummy_prior_exempt: feature_independent_model
+    prediction_target: seed_averaged_raw_OOF_scores
+    repetitions: 20
+    permutation_seed: 20260818
+    rows: canonical_OOF_2015_2020
+    cluster: economic_group_id
+  detailed_representatives:
+    linear: highest_ranked_complete_representative_among_fixed_l2_and_elastic_net
+    tree_boosting: highest_ranked_complete_representative_among_random_forest_histgb_xgboost
+    mlp: pytorch_mlp_family_representative_if_complete
+    qnn: qnn_family_representative_if_technically_feasible
+  detailed_methods:
+    linear: standardized_coefficients_odds_ratios_sign_fold_seed_stability
+    tree_boosting: interventional_TreeSHAP_seed_20260818_models
+    mlp: Integrated_Gradients_on_logit_seed_20260818_models
+    qnn: PCA_loadings_explained_variance_encoded_sensitivity_fold_seed_stability
+  required_sampling_limits:
+    tree_background_train_rows_max: 512
+    tree_oof_rows_per_fold_max: 500
+    mlp_oof_rows_per_fold_max: 200
+    mlp_integrated_gradients_steps: 64
+    qnn_oof_rows_per_fold_max: 100
+  sampling_order: canonical_row_order_then_first_N_no_result_based_sampling
+  may_change_primary_ranking_or_roster: false
+  failure_policy: report_method_failure_without_model_substitution_or_reranking
+
+robustness_execution_scope:
+  global_winner_mandatory_pipeline_runs:
+    - B_without_missing_indicators
+    - complete_case
+    - no_winsorization
+    - purged_economic_group_cv
+    - sparse_row_available_features_at_least_11_of_17
+  global_winner_mandatory_label_runs:
+    - deterioration_score_at_least_2
+    - deterioration_score_at_least_4
+    - operating_performance_max_D1_D2_alternative_score_at_least_3
+  hyperparameters_feature_block_and_family_frozen: true
+  retuning_allowed: false
+  robustness_training_seed: 20260818
+  qnn_structural_runs_if_qnn_feasible:
+    - replace_entangling_gates_with_identity
+    - first_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings
+    - second_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings
+    - swap_4_and_6_qubit_PCA_at_fixed_other_settings
+  qnn_qubit_swap_rule: final_4_maps_to_6_and_final_6_maps_to_4
+  qnn_pca_matched_controls_if_qnn_feasible:
+    - fixed_l2_logistic_same_qnn_representation
+    - pytorch_mlp_same_qnn_representation
+  qnn_global_winner_additional_runs:
+    pipeline_runs: 5_times_6_fold_fits
+    label_runs: 3_times_6_fold_fits
+  conditional_runs_are_triggered_by_identity_or_feasibility_not_performance_magnitude: true
+  outputs_role: secondary_robustness_only
+  may_change_primary_ranking_roster_calibration_or_threshold: false
+  failure_policy: report_failed_robustness_run_no_reselection
+
+second_freeze_gate:
+  id: MODEL_EXECUTION_V1_2_SECOND_INTEGRITY_GATE
+  timing: after_controlled_2021_2022_spent_evaluation_and_before_any_2023_2024_access
+  nature: integrity_only
+  allowed_verdicts: [MODEL_EXECUTION_V1_2_INTEGRITY_PASS, MODEL_EXECUTION_V1_2_INTEGRITY_FAIL]
+  pass_requires_all:
+    - execution_contract_and_runner_hashes_match_committed_manifests
+    - all_required_2011_2020_candidate_fold_seed_statuses_accounted_for
+    - final_family_roster_identities_match_pre_2021_2022_freeze
+    - calibration_and_threshold_artifact_hashes_match_pre_2021_2022_freeze
+    - qnn_selected_ansatz_or_technical_infeasibility_identity_is_unchanged
+    - 2021_2022_prediction_and_report_files_exist_and_match_committed_hashes
+    - 2021_2022_is_declared_design_exposed_spent_development
+    - no_tuning_refinement_recalibration_rethresholding_or_roster_change_occurred
+    - required_execution_and_secondary_analysis_statuses_are_complete_or_terminally_accounted
+    - 2023_2024_remains_sealed
+    - no_manual_override_or_waiver
+  forbidden_gate_inputs:
+    - 2021_2022_PR_AUC_value
+    - 2021_2022_F1_value
+    - 2021_2022_calibration_value
+    - 2021_2022_confidence_interval
+    - performance_acceptance_threshold
+    - qualitative_interpretation_of_2021_2022_results
+  performance_report_handling: opaque_hash_and_schema_presence_only
+  performance_magnitude_may_change_verdict: false
+  failure_effect: keep_2023_2024_closed_and_issue_versioned_integrity_incident
+  pass_effect: permits_only_separate_DATA_ACCESS_GATE_2023_2024_FEATURE_APPLICATION_V1_prerequisite_evaluation
+
+required_future_frozen_artifacts:
+  before_model_training:
+    - production_runner_code_and_manifest
+    - actual_classical_and_qnn_mlp_environment_locks
+  after_q1_before_q2:
+    - qnn_selected_ansatz_artifact
+  after_model_selection_before_2021_2022_reopen:
+    - canonical_candidate_result_table
+    - refinement_activation_artifact
+    - confirmation_selection_artifact
+    - aligned_seed_averaged_OOF_predictions
+    - final_family_roster
+    - Platt_calibrator_artifacts
+    - max_F1_threshold_artifacts
+    - qnn_feasibility_and_executable_identity_artifact
+    - model_execution_freeze_manifest
+  artifact_serialization: canonical_JSON_with_float64_hex_for_executable_numeric_parameters
+  manual_fields_allowed: false
+
+change_control:
+  any_contract_change_requires_new_explicit_version: true
+  result_observation_may_not_change_this_contract: true
+  2021_2022_or_2023_2024_may_not_change_methodology: true
+  production_runner_may_not_add_defaults_fallbacks_or_manual_prompts: true

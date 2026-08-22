@@ -278,7 +278,14 @@ def apply_ansatz(qml: Any, ansatz: str, theta: Any, layer: int, qubits: int) -> 
         raise ValueError(f"Unknown ansatz: {ansatz}")
 
 
-def build_qnn(torch: Any, parameters: Mapping[str, Any], ansatz: str, seed: int) -> Any:
+def build_qnn(
+    torch: Any,
+    parameters: Mapping[str, Any],
+    ansatz: str,
+    seed: int,
+    *,
+    device_name: str,
+) -> Any:
     import pennylane as qml
 
     qubits = int(parameters["qubits_pca"])
@@ -296,7 +303,7 @@ def build_qnn(torch: Any, parameters: Mapping[str, Any], ansatz: str, seed: int)
             self.head = torch.nn.Linear(qubits, 1, bias=True, dtype=torch.float64)
             torch.nn.init.xavier_uniform_(self.head.weight, gain=1.0, generator=generator)
             torch.nn.init.zeros_(self.head.bias)
-            device = qml.device("default.qubit", wires=qubits, shots=None)
+            device = qml.device(device_name, wires=qubits, shots=None)
 
             @qml.qnode(device, interface="torch", diff_method="adjoint")
             def circuit(inputs: Any, trainable: Any) -> list[Any]:
@@ -346,7 +353,17 @@ def torch_fit_predict(
         epochs = int(parameters["epochs"])
     elif family == "qnn":
         ansatz = str(task["selected_ansatz_id"])
-        model = build_qnn(torch, parameters, ansatz, seed)
+        device_identity = task["checkpoint_identity"]["device_identity"]
+        if not isinstance(device_identity, Mapping):
+            raise ValueError("QNN device identity must be a mapping.")
+        device_name = str(device_identity["name"])
+        model = build_qnn(
+            torch,
+            parameters,
+            ansatz,
+            seed,
+            device_name=device_name,
+        )
         epochs = int(parameters["epochs"])
     else:
         raise ValueError(f"Unsupported torch family: {family}")
@@ -446,7 +463,12 @@ def run_task(payload: Mapping[str, Any]) -> dict[str, Any]:
     if canonical_sha256(task) != identity_sha:
         raise ValueError("Task JSON identity hash mismatch.")
     role = str(task["software_environment_role"])
-    environment = environment_report(role, smoke_imports=False)
+    contract_path = Path(str(payload["contract_path"]))
+    environment = environment_report(
+        role,
+        smoke_imports=False,
+        contract_path=contract_path,
+    )
     if environment["status"] != "READY":
         return {
             "task_identity_sha256": identity_sha,

@@ -25,9 +25,9 @@ def make_task(
     parameters: dict,
     role: str,
     environment_sha256: str,
+    contract: dict,
     selected_ansatz_id: str | None = None,
 ) -> FoldTask:
-    contract = load_contract()
     feature_block = "BLOCK_AGNOSTIC" if family == "dummy_prior" else "L"
     checkpoint_identity = {
         "family": family,
@@ -70,6 +70,8 @@ def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--classical-python", required=True, type=Path)
     parser.add_argument("--qnn-python", required=True, type=Path)
+    parser.add_argument("--runner-config", required=True, type=Path)
+    parser.add_argument("--contract", required=True, type=Path)
     parser.add_argument("--output", required=True, type=Path)
     args = parser.parse_args()
     root = Path(__file__).resolve().parents[2]
@@ -77,7 +79,10 @@ def main() -> None:
         root=root,
         classical_python=args.classical_python,
         qnn_python=args.qnn_python,
+        runner_config_path=args.runner_config,
+        contract_path=args.contract,
     )
+    contract = load_contract(args.contract)
     registry = load_registry()
     mlp_candidate = registry["coarse"]["pytorch_mlp"][0]
     qnn_candidate = registry["qnn"]["stage_q2"][1]
@@ -88,6 +93,7 @@ def main() -> None:
             parameters={"strategy": "prior", "imbalance": "none"},
             role="classical",
             environment_sha256=executor.environment_hashes["classical"],
+            contract=contract,
         ),
         make_task(
             family="pytorch_mlp",
@@ -95,6 +101,7 @@ def main() -> None:
             parameters=dict(mlp_candidate["parameters"]),
             role="qnn_mlp",
             environment_sha256=executor.environment_hashes["qnn_mlp"],
+            contract=contract,
         ),
         make_task(
             family="qnn",
@@ -106,6 +113,7 @@ def main() -> None:
             },
             role="qnn_mlp",
             environment_sha256=executor.environment_hashes["qnn_mlp"],
+            contract=contract,
             selected_ansatz_id="ROT_CNOT_RING",
         ),
     ]
@@ -161,7 +169,7 @@ def main() -> None:
     passed = all(row["status"] == "COMPLETE" for row in results)
     report = {
         "schema_version": 1,
-        "id": "production_worker_synthetic_smoke_v1_0_0",
+        "id": "production_worker_synthetic_smoke_v1_0_1_lightning",
         "status": "PASS" if passed else "FAIL",
         "synthetic_only": True,
         "project_data_opened": False,

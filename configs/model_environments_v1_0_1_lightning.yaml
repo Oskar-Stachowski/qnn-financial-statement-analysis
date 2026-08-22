@@ -1,0 +1,97 @@
+schema_version: 1
+
+model_environments:
+  id: model_execution_environments
+  version: 1.0.1
+  status: lightning_backend_and_worker_smoke_verified
+  verified_on: "2026-08-22"
+  execution_contract_version: 1.2.1
+  project_data_opened: false
+  model_fit_performed: false
+
+host:
+  os_name: Darwin
+  os_release: 24.5.0
+  os_distribution: macOS-15.5
+  architecture: arm64
+  processor: arm
+  logical_cpu_count: 8
+  ram_bytes: 8589934592
+  thread_environment:
+    OMP_NUM_THREADS: 1
+    MKL_NUM_THREADS: 1
+    OPENBLAS_NUM_THREADS: 1
+    VECLIB_MAXIMUM_THREADS: 1
+    NUMEXPR_NUM_THREADS: 1
+    sklearn_n_jobs: 1
+    xgboost_n_jobs: 1
+    torch_num_threads: 1
+    torch_num_interop_threads: 1
+  qnn_backend:
+    device: lightning.qubit
+    execution: analytic
+    shots: null
+    differentiation: adjoint
+    interface: torch
+    dtype: float64
+    torch_deterministic_algorithms: true
+    cuda_available: false
+    mps_available: false
+
+lock_generation:
+  tool: pip-tools
+  tool_version: 7.5.0
+  resolver_pip_version: 25.2
+  hashes: sha256_all_index_artifacts
+  transitive_dependencies_included: true
+  installation_enforcement: python_-m_pip_install_--require-hashes_-r_requirements.lock
+
+environments:
+  classical:
+    python: 3.13.13
+    python_version_file: environments/classical/.python-version
+    direct_requirements: environments/classical/requirements.in
+    direct_requirements_sha256: ccae745caa1edb1309b32e94e4cc7f3f691199fe2e261608ca7761d3d7383218
+    lockfile: environments/classical/requirements.lock
+    lockfile_sha256: de581076a1bb3fa47c9f3faa8361adba0b26d0300d99fce7054a5e3723f5b00d
+    locked_distribution_count: 17
+    fresh_install: passed
+    require_hashes_install: passed
+    import_smoke: passed
+    exact_installed_distribution_match_excluding_pip_bootstrap: passed
+    fresh_install_import_smoke_report: data/reports/classical_environment_smoke_v1_0_1_lightning.json
+    fresh_install_import_smoke_report_sha256: 5255fbf457ab819f2318cd5b80d26dbd92c802b9df525f1952aebc5309c9f002
+    software_environment_sha256: 27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da
+  qnn_mlp:
+    python: 3.12.2
+    python_version_file: environments/qnn_mlp/.python-version
+    direct_requirements: environments/qnn_mlp/requirements.in
+    direct_requirements_sha256: 18a60920e8ea44b5b76c3c679d089ea7e0c61a66adf756a3963c400babe3dfda
+    lockfile: environments/qnn_mlp/requirements.lock
+    lockfile_sha256: 91b2b56c4780b380d06bd2665ebd5c75871c688b644cdfd426d60fc11a261be6
+    locked_distribution_count: 46
+    fresh_install: passed
+    require_hashes_install: passed
+    import_smoke: passed
+    exact_installed_distribution_match_excluding_pip_bootstrap: passed
+    fresh_install_import_smoke_report: data/reports/qnn_mlp_environment_smoke_v1_0_1_lightning.json
+    fresh_install_import_smoke_report_sha256: ca9fe8a60a5cf0612cc51279b0939f01e95ef4dfb117ed182d3e5c0ca379fefe
+    software_environment_sha256: 0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195
+    qnn_resource_smoke_report: data/reports/qnn_resource_smoke_v1_0_1_lightning.json
+    qnn_resource_smoke_report_sha256: 6496d31f1afed681c3b1e50447bd6d080a9b2140d5de9d39a0067414dad76898
+    qnn_resource_smoke_status: PASS
+
+cross_environment_worker_smoke:
+  report: data/reports/production_worker_synthetic_smoke_v1_0_1_lightning.json
+  report_sha256: a61cfffffd4b4742ae5132ca937c50ac16871ac570800c61dfc3a60a6d609b48
+  status: PASS
+  synthetic_only: true
+  completed_families: [dummy_prior, pytorch_mlp, qnn]
+  project_data_opened: false
+  project_model_training_performed: false
+
+optional_backends:
+  ibm_quantum_plugin_installed: false
+  aws_braket_plugin_installed: false
+  adapter_interface: configs/production_experiment_runner_v1_0_0.yaml#optional_quantum_backend_adapter_interface
+  activation_requires_new_explicit_preregistration_version: true

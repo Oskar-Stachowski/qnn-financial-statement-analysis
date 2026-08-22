@@ -128,10 +128,11 @@ def environment_report(
     *,
     smoke_imports: bool = False,
     lockfile: Path | None = None,
+    contract_path: Path | None = None,
 ) -> dict[str, Any]:
     if role not in DISTRIBUTIONS:
         raise ValueError(f"Unknown environment role: {role}")
-    contract = load_contract()
+    contract = load_contract(contract_path) if contract_path is not None else load_contract()
     policy = contract["software_environment_identity"]
     expected = policy[f"{role}_expected"]
     expected_packages = {key: str(value) for key, value in expected["packages"].items()}
@@ -295,12 +296,14 @@ def main() -> None:
     parser.add_argument("--role", required=True, choices=tuple(DISTRIBUTIONS))
     parser.add_argument("--smoke-imports", action="store_true")
     parser.add_argument("--lockfile", type=Path)
+    parser.add_argument("--contract", type=Path)
     parser.add_argument("--output", type=Path)
     args = parser.parse_args()
     report = environment_report(
         args.role,
         smoke_imports=args.smoke_imports,
         lockfile=args.lockfile,
+        contract_path=args.contract,
     )
     payload = json.dumps(report, ensure_ascii=False, sort_keys=True, indent=2) + "\n"
     if args.output:

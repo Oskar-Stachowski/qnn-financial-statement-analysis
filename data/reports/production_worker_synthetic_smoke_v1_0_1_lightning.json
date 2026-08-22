@@ -1,0 +1,73 @@
+{
+  "id": "production_worker_synthetic_smoke_v1_0_1_lightning",
+  "project_data_opened": false,
+  "project_model_training_performed": false,
+  "results": [
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "command_sha256": "e58debdf623a4c8100683ca179a45cd960562a659b4d82d87b3ccd49b0f3282a",
+          "outcome": "COMPLETE",
+          "resume": false,
+          "retry_reason": "INITIAL",
+          "returncode": 0,
+          "runtime_seconds": 1.84644816594664,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "configuration_id": "model_stage_v1__coarse__dummy_prior__001",
+      "failure_code": null,
+      "family": "dummy_prior",
+      "raw_score_count": 2,
+      "raw_score_sha256": "374708fff7719dd5979ec875d56cd2286f6d3cf7ec317a3b25632aab28ec37bb",
+      "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+      "status": "COMPLETE"
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "command_sha256": "0d4de27993113faa9330790ee68dab7439f33cb0d8e08ca62f30af69573dcb6d",
+          "outcome": "COMPLETE",
+          "resume": false,
+          "retry_reason": "INITIAL",
+          "returncode": 0,
+          "runtime_seconds": 2.6634845840744674,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__001",
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "raw_score_count": 2,
+      "raw_score_sha256": "0d14e50f11a180e38b17aed8ac7eaeceb63b9bd65adf344691b7e173c77bc36d",
+      "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+      "status": "COMPLETE"
+    },
+    {
+      "attempts": [
+        {
+          "attempt": 1,
+          "command_sha256": "50b0bb82bf71b034e447b9222a57fcea5767be1f58fc9d527f7fbe9766365b4e",
+          "outcome": "COMPLETE",
+          "resume": false,
+          "retry_reason": "INITIAL",
+          "returncode": 0,
+          "runtime_seconds": 4.639969125040807,
+          "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        }
+      ],
+      "configuration_id": "model_stage_v1__qnn_q2__t1",
+      "failure_code": null,
+      "family": "qnn",
+      "raw_score_count": 2,
+      "raw_score_sha256": "db5fdb7d6db1da95448f15615f933cb9b6c6f21492a0fab594ad9236c620c767",
+      "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+      "status": "COMPLETE"
+    }
+  ],
+  "schema_version": 1,
+  "status": "PASS",
+  "synthetic_only": true
+}
