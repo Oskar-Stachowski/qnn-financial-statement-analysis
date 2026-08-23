@@ -153,14 +153,22 @@ production runner and contains the required score and D1–D5 signals for all
 or method. The amendment is documented in
 [`docs/12_3_secondary_development_execution_v1_1_3.md`](12_3_secondary_development_execution_v1_1_3.md).
 
-The next operational command, after the v1.1.3 amendment commit, is:
+The v1.1.3 package was committed as `725fb4e`. Its committed-clean verifier
+returned `SECONDARY_DEVELOPMENT_EXECUTION_V1_1_3_SIGNAL_SOURCE_INTEGRITY_PASS`.
+The real preflight then passed for the exact 19,671-row sample, feature years
+2011–2020, and folds `fold_2015` through `fold_2020`. It planned all 96 tasks,
+did not deserialize the interim target, did not fit a model, and did not open a
+protected feature year.
+
+The next operational command is:
 
 ```bash
-bash scripts/run_secondary_analyses_v1_1_3.sh preflight
+bash scripts/run_secondary_analyses_v1_1_3.sh pca-controls
 ```
 
-If it passes, use the same v1.1.3 script to execute `pca-controls`, `interpretability`,
-`robustness-classical`, `robustness-qnn`, and `report` in that order.
+After it completes, use the same v1.1.3 script to execute `interpretability`,
+`robustness-classical`, `robustness-qnn`, and `report` in that order. No
+secondary project-model fit has started yet.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
 `confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in
