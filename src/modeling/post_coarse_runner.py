@@ -268,6 +268,7 @@ def load_post_coarse_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
         "1.0.1",
         "1.0.2",
         "1.0.3",
+        "1.0.4",
     }:
         raise PostCoarseIntegrityError("Unexpected post-coarse configuration version.")
     return config
@@ -992,6 +993,206 @@ def require_qnn_manifest_for_current_config(
     )
 
 
+def historical_classical_confirmation_reuse_enabled(
+    config: Mapping[str, Any],
+) -> bool:
+    reuse = config["post_coarse_execution"].get(
+        "historical_classical_confirmation_reuse"
+    )
+    return isinstance(reuse, Mapping) and bool(reuse.get("enabled"))
+
+
+def _verify_embedded_fold_manifests(
+    references: Sequence[Mapping[str, Any]], *, root: Path
+) -> None:
+    """Verify that candidate manifests still bind the on-disk fold manifests."""
+
+    for reference in references:
+        if str(reference.get("kind")) != "candidate":
+            continue
+        candidate_path = _resolve_from_root(
+            root, str(reference["candidate_manifest"])
+        )
+        candidate = load_json(candidate_path)
+        embedded = list(candidate.get("fold_manifests") or [])
+        expected_folds = list(
+            dict(reference["row"].get("fold_statuses") or {}).keys()
+        )
+        actual_folds = [
+            str(item.get("task_identity", {}).get("fold_id")) for item in embedded
+        ]
+        if actual_folds != expected_folds:
+            raise PostCoarseIntegrityError(
+                "Historical candidate fold order differs from its frozen row."
+            )
+        for fold_id, expected in zip(expected_folds, embedded, strict=True):
+            fold_path = candidate_path.parent / fold_id / "result_manifest.json"
+            if not fold_path.is_file() or canonical_sha256(
+                load_json(fold_path)
+            ) != canonical_sha256(expected):
+                raise PostCoarseIntegrityError(
+                    "Historical fold manifest differs from its candidate manifest."
+                )
+
+
+def require_historical_classical_confirmation_reuse(
+    *,
+    config: Mapping[str, Any],
+    root: Path = ROOT,
+) -> dict[str, Any]:
+    """Deep-verify the classical confirmation gate frozen before v1.0.4."""
+
+    reuse = config["post_coarse_execution"].get(
+        "historical_classical_confirmation_reuse"
+    )
+    if not isinstance(reuse, Mapping) or not bool(reuse.get("enabled")):
+        raise PostCoarseIntegrityError(
+            "Historical classical confirmation reuse is not enabled."
+        )
+
+    source = reuse["source_manifest"]
+    manifest_path = _resolve_from_root(root, str(source["path"]))
+    if not manifest_path.is_file() or file_sha256(manifest_path) != str(
+        source["sha256"]
+    ):
+        raise PostCoarseIntegrityError(
+            "Historical classical confirmation manifest SHA-256 mismatch."
+        )
+    manifest = load_json(manifest_path)
+    if str(manifest.get("status")) != str(reuse["required_status"]):
+        raise PostCoarseIntegrityError(
+            "Historical classical confirmation is not COMPLETE."
+        )
+    if manifest.get("protected_feature_years_opened") is not False:
+        raise PostCoarseIntegrityError(
+            "Historical classical confirmation opened protected years."
+        )
+    if manifest.get("qnn_confirmation_started") is not False:
+        raise PostCoarseIntegrityError(
+            "Historical classical gate was not frozen before QNN confirmation."
+        )
+    if manifest.get("authority") != dict(reuse["source_authority"]):
+        raise PostCoarseIntegrityError(
+            "Historical classical confirmation authority mismatch."
+        )
+
+    selection = reuse["selection_artifact"]
+    selection_path = _resolve_from_root(root, str(selection["path"]))
+    if not selection_path.is_file() or file_sha256(selection_path) != str(
+        selection["sha256"]
+    ):
+        raise PostCoarseIntegrityError(
+            "Historical confirmation selection SHA-256 mismatch."
+        )
+    if manifest.get("confirmation_selection_sha256") != file_sha256(
+        selection_path
+    ):
+        raise PostCoarseIntegrityError(
+            "Historical classical-selection hash chain mismatch."
+        )
+    selection_payload = load_json(selection_path)
+    if (
+        selection_payload.get("status") != "FROZEN_BEFORE_CONFIRMATION_FITS"
+        or selection_payload.get("authority") != dict(reuse["source_authority"])
+        or selection_payload.get("protected_feature_years_opened") is not False
+    ):
+        raise PostCoarseIntegrityError(
+            "Historical confirmation selection identity is invalid."
+        )
+
+    source_qnn = reuse["source_qnn_phase_manifest"]
+    source_qnn_path = _resolve_from_root(root, str(source_qnn["path"]))
+    if not source_qnn_path.is_file() or file_sha256(source_qnn_path) != str(
+        source_qnn["sha256"]
+    ):
+        raise PostCoarseIntegrityError(
+            "Historical classical gate source-QNN manifest mismatch."
+        )
+    if manifest.get("source_qnn_phase_manifest_sha256") != file_sha256(
+        source_qnn_path
+    ):
+        raise PostCoarseIntegrityError(
+            "Historical classical source-QNN hash chain mismatch."
+        )
+
+    primary_refs = list(manifest.get("primary_confirmed_result_references") or [])
+    extra_refs = list(
+        manifest.get("classical_extra_seed_candidate_result_references") or []
+    )
+    if len(primary_refs) != int(reuse["expected_primary_result_references"]):
+        raise PostCoarseIntegrityError(
+            "Historical classical primary reference count mismatch."
+        )
+    if len(extra_refs) != int(reuse["expected_extra_seed_result_references"]):
+        raise PostCoarseIntegrityError(
+            "Historical classical extra-seed reference count mismatch."
+        )
+    supplemental_ref = manifest.get("supplemental_mlp_confirmed_result_reference")
+    if not isinstance(supplemental_ref, Mapping):
+        raise PostCoarseIntegrityError(
+            "Historical supplemental MLP confirmation reference is missing."
+        )
+
+    primary_results = load_phase_results(
+        manifest, "primary_confirmed_result_references", root=root
+    )
+    extra_results = load_phase_results(
+        manifest, "classical_extra_seed_candidate_result_references", root=root
+    )
+    supplemental_result = load_result_reference(supplemental_ref, root=root)
+    if any(result.row.get("status") != "COMPLETE" for result in primary_results):
+        raise PostCoarseIntegrityError(
+            "Historical classical primary confirmation is incomplete."
+        )
+    if any(result.row.get("status") != "COMPLETE" for result in extra_results):
+        raise PostCoarseIntegrityError(
+            "Historical classical extra-seed confirmation is incomplete."
+        )
+    if supplemental_result.row.get("status") != "COMPLETE":
+        raise PostCoarseIntegrityError(
+            "Historical supplemental MLP confirmation is incomplete."
+        )
+    expected_seeds = sorted(int(seed) for seed in reuse["confirmation_seeds"])
+    actual_seeds = sorted(
+        {int(result.row["training_seed"]) for result in extra_results}
+    )
+    if actual_seeds != expected_seeds:
+        raise PostCoarseIntegrityError(
+            "Historical classical confirmation seeds mismatch."
+        )
+    extra_lookup = _result_lookup(extra_results)
+    if len(extra_lookup) != len(extra_results):
+        raise PostCoarseIntegrityError(
+            "Historical classical extra-seed identities are not unique."
+        )
+    expected_per_seed = int(reuse["expected_primary_result_references"])
+    if any(
+        sum(
+            int(result.row["training_seed"]) == seed
+            for result in extra_results
+        )
+        != expected_per_seed
+        for seed in expected_seeds
+    ):
+        raise PostCoarseIntegrityError(
+            "Historical classical extra-seed coverage is incomplete."
+        )
+    _verify_embedded_fold_manifests(extra_refs, root=root)
+
+    schedule = config["post_coarse_execution"][
+        "confirmation_schedule_amendment"
+    ]
+    worker = schedule["frozen_qnn_worker"]
+    worker_path = _resolve_from_root(root, str(worker["path"]))
+    if not worker_path.is_file() or file_sha256(worker_path) != str(
+        worker["sha256"]
+    ):
+        raise PostCoarseIntegrityError(
+            "QNN worker changed under the confirmation-only schedule amendment."
+        )
+    return manifest
+
+
 def _result_lookup(
     results: Iterable[CandidateExecutionResult],
 ) -> dict[tuple[str, str, str, int], CandidateExecutionResult]:
@@ -1659,23 +1860,30 @@ def _confirm_qnn_candidates_parallel(
     confirmation_seeds: Sequence[int],
     maximum_workers: int,
 ) -> list[tuple[CandidateExecutionResult, list[CandidateExecutionResult]]]:
-    """Confirm independent QNN block representatives in frozen input order."""
+    """Confirm QNN representatives via a bounded global fold queue.
+
+    Fold processes may start in a different order, but candidate, seed and fold
+    results are assembled in the contract's frozen canonical order.
+    """
 
     if not jobs:
         return []
-    if maximum_workers < 1 or maximum_workers > 3:
+    if maximum_workers < 1 or maximum_workers > 4:
         raise PostCoarseIntegrityError(
-            "QNN confirmation parallelism must be between one and three."
+            "QNN confirmation fold parallelism must be between one and four."
         )
 
-    requests: list[dict[str, Any]] = []
+    prepared_jobs: list[
+        tuple[CandidateExecutionResult, Mapping[str, Any], dict[str, Any]]
+    ] = []
+    prewarm_requests: list[dict[str, Any]] = []
     for base, selection in jobs:
         candidate = runner._candidate_parameters(
             str(base.row["stage"]),
             str(base.row["family"]),
             str(base.row["configuration_id"]),
         )
-        requests.append(
+        prewarm_requests.append(
             {
                 "feature_block": str(base.row["feature_block"]),
                 "candidate": candidate,
@@ -1687,40 +1895,103 @@ def _confirm_qnn_candidates_parallel(
             raise PostCoarseIntegrityError(
                 "Frozen QNN confirmation ansatz differs from its Q2 source."
             )
-    _prewarm_qnn_fold_cache(runner, folds, requests)
+        if [int(seed) for seed in selection["confirmation_seeds"]] != [
+            int(seed) for seed in confirmation_seeds
+        ]:
+            raise PostCoarseIntegrityError(
+                "Frozen QNN confirmation seeds differ from the contract."
+            )
+        prepared_jobs.append((base, selection, candidate))
+    _prewarm_qnn_fold_cache(runner, folds, prewarm_requests)
 
-    def execute(
-        job: tuple[CandidateExecutionResult, Mapping[str, Any]],
-    ) -> tuple[CandidateExecutionResult, list[CandidateExecutionResult]]:
-        base, selection = job
-        return _confirm_candidate(
-            runner=runner,
-            folds=folds,
-            base=base,
-            confirmation_seeds=confirmation_seeds,
-            selected_ansatz_id=str(selection["selected_ansatz_id"]),
+    required_folds = [
+        str(item)
+        for item in runner.contract["execution_failure_state_machine"][
+            "required_folds"
+        ]
+    ]
+    if not required_folds or not confirmation_seeds:
+        raise PostCoarseIntegrityError(
+            "QNN confirmation requires non-empty frozen folds and seeds."
         )
+    work: list[tuple[int, int, int, dict[str, Any]]] = []
+    for job_index, (base, selection, candidate) in enumerate(prepared_jobs):
+        for seed_index, seed in enumerate(confirmation_seeds):
+            for fold_index, fold_id in enumerate(required_folds):
+                work.append(
+                    (
+                        job_index,
+                        seed_index,
+                        fold_index,
+                        {
+                            "stage": str(base.row["stage"]),
+                            "family": str(base.row["family"]),
+                            "feature_block": str(base.row["feature_block"]),
+                            "candidate": candidate,
+                            "training_seed": int(seed),
+                            "folds": folds,
+                            "fold_id": fold_id,
+                            "selected_ansatz_id": str(
+                                selection["selected_ansatz_id"]
+                            ),
+                        },
+                    )
+                )
 
-    workers = min(maximum_workers, len(jobs))
+    def execute(item: tuple[int, int, int, dict[str, Any]]) -> Any:
+        return runner._execute_candidate_fold(**item[3])
+
+    workers = min(maximum_workers, len(work))
     if workers == 1:
-        return [execute(job) for job in jobs]
+        completed_folds = [execute(item) for item in work]
+    else:
+        pool = ThreadPoolExecutor(
+            max_workers=workers,
+            thread_name_prefix="qnn-confirmation-fold",
+        )
+        futures = [pool.submit(execute, item) for item in work]
+        try:
+            # Reading futures in submission order preserves deterministic assembly.
+            completed_folds = [future.result() for future in futures]
+        except BaseException:
+            request_shutdown = getattr(runner.executor, "request_shutdown", None)
+            if callable(request_shutdown):
+                request_shutdown()
+            for future in futures:
+                future.cancel()
+            raise
+        finally:
+            pool.shutdown(wait=True, cancel_futures=True)
 
-    pool = ThreadPoolExecutor(
-        max_workers=workers,
-        thread_name_prefix="qnn-confirmation-candidate",
-    )
-    futures = [pool.submit(execute, job) for job in jobs]
-    try:
-        return [future.result() for future in futures]
-    except BaseException:
-        request_shutdown = getattr(runner.executor, "request_shutdown", None)
-        if callable(request_shutdown):
-            request_shutdown()
-        for future in futures:
-            future.cancel()
-        raise
-    finally:
-        pool.shutdown(wait=True, cancel_futures=True)
+    completed_by_identity = {
+        (job_index, seed_index, fold_index): result
+        for (job_index, seed_index, fold_index, _), result in zip(
+            work, completed_folds, strict=True
+        )
+    }
+    confirmed: list[
+        tuple[CandidateExecutionResult, list[CandidateExecutionResult]]
+    ] = []
+    for job_index, (base, selection, candidate) in enumerate(prepared_jobs):
+        extras: list[CandidateExecutionResult] = []
+        for seed_index, seed in enumerate(confirmation_seeds):
+            fold_results = [
+                completed_by_identity[(job_index, seed_index, fold_index)]
+                for fold_index in range(len(required_folds))
+            ]
+            extras.append(
+                runner._assemble_candidate_execution(
+                    stage=str(base.row["stage"]),
+                    family=str(base.row["family"]),
+                    feature_block=str(base.row["feature_block"]),
+                    candidate=candidate,
+                    training_seed=int(seed),
+                    fold_results=fold_results,
+                    selected_ansatz_id=str(selection["selected_ansatz_id"]),
+                )
+            )
+        confirmed.append((runner._aggregate_confirmed(base, extras), extras))
+    return confirmed
 
 
 def _configure_confirmation_qnn_ledger(
@@ -1986,12 +2257,38 @@ def run_confirmation_phase(
     }
     selection_path = output_dir / "post_coarse_confirmation_selection.json"
     classical_manifest_path = output_dir / "confirmation_classical_phase_manifest.json"
-    classical_existing = _phase_manifest_existing(
-        classical_manifest_path,
-        statuses={"COMPLETE"},
-        authority=authority,
-        root=ROOT,
+    historical_classical_reuse = historical_classical_confirmation_reuse_enabled(
+        config
     )
+    if historical_classical_reuse:
+        reuse = config["post_coarse_execution"][
+            "historical_classical_confirmation_reuse"
+        ]
+        configured_manifest_path = _resolve_from_root(
+            ROOT, str(reuse["source_manifest"]["path"])
+        )
+        configured_selection_path = _resolve_from_root(
+            ROOT, str(reuse["selection_artifact"]["path"])
+        )
+        if classical_manifest_path.resolve() != configured_manifest_path.resolve():
+            raise PostCoarseIntegrityError(
+                "Historical classical manifest path differs from configured output."
+            )
+        if selection_path.resolve() != configured_selection_path.resolve():
+            raise PostCoarseIntegrityError(
+                "Historical selection path differs from configured output."
+            )
+        classical_existing = require_historical_classical_confirmation_reuse(
+            config=config,
+            root=ROOT,
+        )
+    else:
+        classical_existing = _phase_manifest_existing(
+            classical_manifest_path,
+            statuses={"COMPLETE"},
+            authority=authority,
+            root=ROOT,
+        )
     if classical_existing is None:
         selection_sha = atomic_write_json(selection_path, selection_artifact)
     else:
@@ -2000,9 +2297,14 @@ def run_confirmation_phase(
             raise PostCoarseIntegrityError(
                 "Frozen confirmation selection artifact hash mismatch."
             )
-        if canonical_sha256(load_json(selection_path)) != canonical_sha256(
-            selection_artifact
-        ):
+        frozen_selection = load_json(selection_path)
+        comparable_frozen = dict(frozen_selection)
+        comparable_current = dict(selection_artifact)
+        if historical_classical_reuse:
+            # Authority changes with the schedule amendment; selection identity does not.
+            comparable_frozen.pop("authority", None)
+            comparable_current.pop("authority", None)
+        if canonical_sha256(comparable_frozen) != canonical_sha256(comparable_current):
             raise PostCoarseIntegrityError(
                 "Recomputed confirmation selection differs from the frozen artifact."
             )
@@ -2157,7 +2459,10 @@ def run_confirmation_phase(
             "confirmation_schedule_amendment", {}
         )
         maximum_workers = int(
-            schedule.get("maximum_parallel_qnn_confirmation_candidates", 1)
+            schedule.get(
+                "maximum_parallel_qnn_confirmation_folds",
+                schedule.get("maximum_parallel_qnn_confirmation_candidates", 1),
+            )
         )
         confirmed_jobs = _confirm_qnn_candidates_parallel(
             runner=runner,

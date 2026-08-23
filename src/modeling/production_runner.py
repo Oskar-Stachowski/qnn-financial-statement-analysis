@@ -965,6 +965,16 @@ class CandidateExecutionResult:
     predictions: list[dict[str, Any]]
 
 
+@dataclass
+class CandidateFoldExecutionResult:
+    """One terminal fold result, before canonical candidate assembly."""
+
+    fold_id: str
+    status: str
+    manifest: dict[str, Any]
+    predictions: list[dict[str, Any]]
+
+
 def final_eligibility_pool(
     merged_results: Sequence[CandidateExecutionResult],
     confirmed_results: Sequence[CandidateExecutionResult],
@@ -1534,13 +1544,57 @@ class ProductionExperimentRunner:
         folds: Mapping[str, tuple[Any, pd.DataFrame, pd.DataFrame, Any]],
         selected_ansatz_id: str | None = None,
     ) -> CandidateExecutionResult:
+        fold_results = [
+            self._execute_candidate_fold(
+                stage=stage,
+                family=family,
+                feature_block=feature_block,
+                candidate=candidate,
+                training_seed=training_seed,
+                folds=folds,
+                fold_id=str(fold_id),
+                selected_ansatz_id=selected_ansatz_id,
+            )
+            for fold_id in self.contract["execution_failure_state_machine"][
+                "required_folds"
+            ]
+        ]
+        return self._assemble_candidate_execution(
+            stage=stage,
+            family=family,
+            feature_block=feature_block,
+            candidate=candidate,
+            training_seed=training_seed,
+            fold_results=fold_results,
+            selected_ansatz_id=selected_ansatz_id,
+        )
+
+    def _execute_candidate_fold(
+        self,
+        *,
+        stage: str,
+        family: str,
+        feature_block: str,
+        candidate: Mapping[str, Any],
+        training_seed: int,
+        folds: Mapping[str, tuple[Any, pd.DataFrame, pd.DataFrame, Any]],
+        fold_id: str,
+        selected_ansatz_id: str | None = None,
+    ) -> CandidateFoldExecutionResult:
+        """Execute or exactly reuse one fold without assembling its candidate."""
+
+        required_folds = [
+            str(item)
+            for item in self.contract["execution_failure_state_machine"][
+                "required_folds"
+            ]
+        ]
+        if fold_id not in required_folds:
+            raise RunnerIntegrityError(f"Unknown candidate fold: {fold_id}")
         configuration_id = str(candidate["configuration_id"])
         parameters = dict(candidate.get("parameters") or {})
         if stage.startswith("qnn_"):
             parameters = {key: value for key, value in candidate.items() if key != "configuration_id"}
-        fold_statuses: dict[str, str] = {}
-        fold_manifests: list[dict[str, Any]] = []
-        predictions: list[dict[str, Any]] = []
         base_directory = self._artifact_directory(
             stage=stage,
             family=family,
@@ -1548,174 +1602,222 @@ class ProductionExperimentRunner:
             block=feature_block,
             seed=training_seed,
         )
-        for fold_id in self.contract["execution_failure_state_machine"]["required_folds"]:
-            fold_tuple = folds[str(fold_id)]
-            qubits = int(parameters["qubits_pca"]) if family == "qnn" else None
-            prepared = self._prepare_fold(
-                block=feature_block, fold_tuple=fold_tuple, qubits=qubits
-            )
-            role = "qnn_mlp" if family in {"pytorch_mlp", "qnn"} else "classical"
-            checkpoint_identity = {
-                "family": family,
-                "configuration_id": configuration_id,
-                "parameters_sha256": canonical_sha256(parameters),
-                "feature_block": feature_block,
-                "fold_id": fold_id,
-                "training_seed": training_seed,
-                "train_membership_sha256": prepared.train_membership_sha256,
-                "validation_membership_sha256": prepared.validation_membership_sha256,
-                "preprocessing_sha256": prepared.preprocessing_sha256,
-                "pca_sha256_if_applicable": prepared.pca_sha256,
-                "software_environment_sha256": self._environment_hashes[role],
-                "device_identity": self.contract["qnn_executable_identity"]["device_identity"]
-                if family == "qnn"
-                else "cpu",
-            }
-            if family == "pytorch_mlp":
-                checkpoint_identity["epochs"] = int(parameters["epochs"])
-            task = FoldTask(
-                stage=stage,
-                family=family,
-                feature_block=feature_block,
-                configuration_id=configuration_id,
-                parameters=parameters,
-                training_seed=int(training_seed),
-                fold_id=str(fold_id),
-                validation_feature_year=prepared.validation_feature_year,
-                selected_ansatz_id=selected_ansatz_id,
-                train_membership_sha256=prepared.train_membership_sha256,
-                validation_membership_sha256=prepared.validation_membership_sha256,
-                preprocessing_sha256=prepared.preprocessing_sha256,
-                pca_sha256_if_applicable=prepared.pca_sha256,
-                software_environment_role=role,
-                checkpoint_identity=checkpoint_identity,
-            )
-            fold_directory = base_directory / str(fold_id)
-            manifest_path = fold_directory / "result_manifest.json"
-            prediction_path = fold_directory / "oof_predictions.json"
-            # Completed fold results are the only resumable terminal artifacts.
-            if manifest_path.is_file():
-                existing = json.loads(manifest_path.read_text(encoding="utf-8"))
-                if existing.get("task_identity_sha256") != task.identity_sha256:
-                    raise RunnerIntegrityError("Existing result manifest identity mismatch.")
-                if existing.get("status") == "COMPLETE":
-                    if not prediction_path.is_file() or file_sha256(prediction_path) != existing.get(
-                        "oof_prediction_artifact_sha256"
-                    ):
-                        raise RunnerIntegrityError("Existing prediction artifact hash mismatch.")
-                    rows = json.loads(prediction_path.read_text(encoding="utf-8"))["rows"]
-                    predictions.extend(rows)
-                    fold_statuses[str(fold_id)] = "COMPLETE"
-                    fold_manifests.append(existing)
-                    continue
-                raise RunnerIntegrityError(
-                    "Terminal non-complete fold manifest cannot be rerun without a new run directory."
+        fold_tuple = folds[fold_id]
+        qubits = int(parameters["qubits_pca"]) if family == "qnn" else None
+        prepared = self._prepare_fold(
+            block=feature_block, fold_tuple=fold_tuple, qubits=qubits
+        )
+        role = "qnn_mlp" if family in {"pytorch_mlp", "qnn"} else "classical"
+        checkpoint_identity = {
+            "family": family,
+            "configuration_id": configuration_id,
+            "parameters_sha256": canonical_sha256(parameters),
+            "feature_block": feature_block,
+            "fold_id": fold_id,
+            "training_seed": training_seed,
+            "train_membership_sha256": prepared.train_membership_sha256,
+            "validation_membership_sha256": prepared.validation_membership_sha256,
+            "preprocessing_sha256": prepared.preprocessing_sha256,
+            "pca_sha256_if_applicable": prepared.pca_sha256,
+            "software_environment_sha256": self._environment_hashes[role],
+            "device_identity": self.contract["qnn_executable_identity"]["device_identity"]
+            if family == "qnn"
+            else "cpu",
+        }
+        if family == "pytorch_mlp":
+            checkpoint_identity["epochs"] = int(parameters["epochs"])
+        task = FoldTask(
+            stage=stage,
+            family=family,
+            feature_block=feature_block,
+            configuration_id=configuration_id,
+            parameters=parameters,
+            training_seed=int(training_seed),
+            fold_id=fold_id,
+            validation_feature_year=prepared.validation_feature_year,
+            selected_ansatz_id=selected_ansatz_id,
+            train_membership_sha256=prepared.train_membership_sha256,
+            validation_membership_sha256=prepared.validation_membership_sha256,
+            preprocessing_sha256=prepared.preprocessing_sha256,
+            pca_sha256_if_applicable=prepared.pca_sha256,
+            software_environment_role=role,
+            checkpoint_identity=checkpoint_identity,
+        )
+        fold_directory = base_directory / fold_id
+        manifest_path = fold_directory / "result_manifest.json"
+        prediction_path = fold_directory / "oof_predictions.json"
+        # Completed fold results are the only resumable terminal artifacts.
+        if manifest_path.is_file():
+            existing = json.loads(manifest_path.read_text(encoding="utf-8"))
+            if existing.get("task_identity_sha256") != task.identity_sha256:
+                raise RunnerIntegrityError("Existing result manifest identity mismatch.")
+            if existing.get("status") == "COMPLETE":
+                if not prediction_path.is_file() or file_sha256(
+                    prediction_path
+                ) != existing.get("oof_prediction_artifact_sha256"):
+                    raise RunnerIntegrityError("Existing prediction artifact hash mismatch.")
+                rows = json.loads(prediction_path.read_text(encoding="utf-8"))["rows"]
+                return CandidateFoldExecutionResult(
+                    fold_id=fold_id,
+                    status="COMPLETE",
+                    manifest=existing,
+                    predictions=[dict(row) for row in rows],
                 )
+            raise RunnerIntegrityError(
+                "Terminal non-complete fold manifest cannot be rerun without a new run directory."
+            )
 
-            y_train = prepared.train["target_label"].to_numpy(dtype=np.int64)
-            sample_weight = self._sample_weight(
-                y_train, str(parameters.get("imbalance", "none"))
-            )
-            timeout = int(
-                self.contract["execution_failure_state_machine"][
-                    "timeouts_cumulative_wall_seconds_per_fold_fit"
-                ][family]
-            )
-            checkpoint_path = fold_directory / "checkpoint.pt"
-            execution = self.executor.execute(
-                task,
-                x_train=prepared.x_train,
-                y_train=y_train,
-                x_validation=prepared.x_validation,
-                sample_weight=sample_weight,
-                checkpoint_path=checkpoint_path,
-                timeout_seconds=timeout,
-            )
-            status = execution.status
-            allowed_statuses = set(
-                self.contract["execution_failure_state_machine"]["terminal_fold_statuses"]
-            )
-            if status not in allowed_statuses:
-                raise RunnerIntegrityError(f"Executor returned unknown terminal status: {status}")
-            fold_statuses[str(fold_id)] = status
-            environment_hash = execution.software_environment_sha256
-            if environment_hash:
-                with self._state_lock:
-                    previous = self._environment_hashes.setdefault(role, environment_hash)
-                    if previous != environment_hash:
-                        raise RunnerIntegrityError("Runtime environment hash changed within role.")
-            prediction_sha: str | None = None
-            if status == "COMPLETE":
-                scores = np.asarray(execution.raw_scores, dtype=np.float64)
-                if scores.shape != (len(prepared.validation),) or not np.isfinite(scores).all():
-                    status = "NUMERICAL_INVALID"
-                    fold_statuses[str(fold_id)] = status
-                    execution.failure_code = "NAN_OR_INF_RAW_SCORE"
-                else:
-                    rows: list[dict[str, Any]] = []
-                    for (_, observation), score in zip(
-                        prepared.validation.iterrows(), scores, strict=True
-                    ):
-                        rows.append(
-                            {
-                                "validation_feature_year": int(observation["feature_year"]),
-                                "research_universe_company_year_id": str(
-                                    observation["research_universe_company_year_id"]
-                                ),
-                                "fold_id": str(fold_id),
-                                "target_label": int(observation["target_label"]),
-                                "economic_group_id": str(observation["economic_group_id"]),
-                                "prediction_timestamp": canonical_timestamp(
-                                    observation["prediction_timestamp"]
-                                ),
-                                "raw_score": float(score),
-                                "raw_score_float64_hex": float(score).hex(),
-                            }
-                        )
-                    rows.sort(
-                        key=lambda row: (
-                            row["validation_feature_year"],
-                            row["research_universe_company_year_id"].encode("utf-8"),
-                        )
-                    )
-                    prediction_sha = atomic_write_json(
-                        prediction_path,
+        y_train = prepared.train["target_label"].to_numpy(dtype=np.int64)
+        sample_weight = self._sample_weight(
+            y_train, str(parameters.get("imbalance", "none"))
+        )
+        timeout = int(
+            self.contract["execution_failure_state_machine"][
+                "timeouts_cumulative_wall_seconds_per_fold_fit"
+            ][family]
+        )
+        checkpoint_path = fold_directory / "checkpoint.pt"
+        execution = self.executor.execute(
+            task,
+            x_train=prepared.x_train,
+            y_train=y_train,
+            x_validation=prepared.x_validation,
+            sample_weight=sample_weight,
+            checkpoint_path=checkpoint_path,
+            timeout_seconds=timeout,
+        )
+        status = execution.status
+        allowed_statuses = set(
+            self.contract["execution_failure_state_machine"]["terminal_fold_statuses"]
+        )
+        if status not in allowed_statuses:
+            raise RunnerIntegrityError(f"Executor returned unknown terminal status: {status}")
+        environment_hash = execution.software_environment_sha256
+        if environment_hash:
+            with self._state_lock:
+                previous = self._environment_hashes.setdefault(role, environment_hash)
+                if previous != environment_hash:
+                    raise RunnerIntegrityError("Runtime environment hash changed within role.")
+        prediction_sha: str | None = None
+        predictions: list[dict[str, Any]] = []
+        if status == "COMPLETE":
+            scores = np.asarray(execution.raw_scores, dtype=np.float64)
+            if scores.shape != (len(prepared.validation),) or not np.isfinite(scores).all():
+                status = "NUMERICAL_INVALID"
+                execution.failure_code = "NAN_OR_INF_RAW_SCORE"
+            else:
+                for (_, observation), score in zip(
+                    prepared.validation.iterrows(), scores, strict=True
+                ):
+                    predictions.append(
                         {
-                            "schema_version": 1,
-                            "task_identity_sha256": task.identity_sha256,
-                            "canonical_key": list(
-                                self.contract["seed_aggregation"]["canonical_prediction_key"]
+                            "validation_feature_year": int(observation["feature_year"]),
+                            "research_universe_company_year_id": str(
+                                observation["research_universe_company_year_id"]
                             ),
-                            "rows": rows,
-                        },
+                            "fold_id": fold_id,
+                            "target_label": int(observation["target_label"]),
+                            "economic_group_id": str(observation["economic_group_id"]),
+                            "prediction_timestamp": canonical_timestamp(
+                                observation["prediction_timestamp"]
+                            ),
+                            "raw_score": float(score),
+                            "raw_score_float64_hex": float(score).hex(),
+                        }
                     )
-                    predictions.extend(rows)
-            manifest = {
-                "schema_version": 1,
-                "task_identity": task.identity,
-                "task_identity_sha256": task.identity_sha256,
-                "status": status,
-                "failure_code": execution.failure_code,
-                "configuration_id": configuration_id,
-                "training_seed": int(training_seed),
-                "epochs": int(parameters["epochs"])
-                if family == "pytorch_mlp"
-                else None,
-                "runtime_metadata_sha256": self._runtime_metadata_sha256,
-                "attempts": execution.attempts,
-                "train_rows": len(prepared.train),
-                "validation_rows": len(prepared.validation),
-                "predictor_names": list(prepared.predictor_names),
-                "predictor_order_sha256": canonical_sha256(list(prepared.predictor_names)),
-                "software_environment_sha256": execution.software_environment_sha256,
-                "device_identity": execution.device_identity,
-                "oof_prediction_artifact": str(prediction_path.relative_to(self.output_dir))
-                if prediction_sha
-                else None,
-                "oof_prediction_artifact_sha256": prediction_sha,
+                predictions.sort(
+                    key=lambda row: (
+                        row["validation_feature_year"],
+                        row["research_universe_company_year_id"].encode("utf-8"),
+                    )
+                )
+                prediction_sha = atomic_write_json(
+                    prediction_path,
+                    {
+                        "schema_version": 1,
+                        "task_identity_sha256": task.identity_sha256,
+                        "canonical_key": list(
+                            self.contract["seed_aggregation"]["canonical_prediction_key"]
+                        ),
+                        "rows": predictions,
+                    },
+                )
+        manifest = {
+            "schema_version": 1,
+            "task_identity": task.identity,
+            "task_identity_sha256": task.identity_sha256,
+            "status": status,
+            "failure_code": execution.failure_code,
+            "configuration_id": configuration_id,
+            "training_seed": int(training_seed),
+            "epochs": int(parameters["epochs"])
+            if family == "pytorch_mlp"
+            else None,
+            "runtime_metadata_sha256": self._runtime_metadata_sha256,
+            "attempts": execution.attempts,
+            "train_rows": len(prepared.train),
+            "validation_rows": len(prepared.validation),
+            "predictor_names": list(prepared.predictor_names),
+            "predictor_order_sha256": canonical_sha256(list(prepared.predictor_names)),
+            "software_environment_sha256": execution.software_environment_sha256,
+            "device_identity": execution.device_identity,
+            "oof_prediction_artifact": str(prediction_path.relative_to(self.output_dir))
+            if prediction_sha
+            else None,
+            "oof_prediction_artifact_sha256": prediction_sha,
+        }
+        atomic_write_json(manifest_path, manifest)
+        return CandidateFoldExecutionResult(
+            fold_id=fold_id,
+            status=status,
+            manifest=manifest,
+            predictions=predictions,
+        )
+
+    def _assemble_candidate_execution(
+        self,
+        *,
+        stage: str,
+        family: str,
+        feature_block: str,
+        candidate: Mapping[str, Any],
+        training_seed: int,
+        fold_results: Sequence[CandidateFoldExecutionResult],
+        selected_ansatz_id: str | None = None,
+    ) -> CandidateExecutionResult:
+        """Assemble folds only in the contract's frozen canonical order."""
+
+        required_folds = [
+            str(item)
+            for item in self.contract["execution_failure_state_machine"][
+                "required_folds"
+            ]
+        ]
+        actual_folds = [result.fold_id for result in fold_results]
+        if actual_folds != required_folds:
+            raise RunnerIntegrityError(
+                "Candidate fold results differ from frozen contract order."
+            )
+        configuration_id = str(candidate["configuration_id"])
+        parameters = dict(candidate.get("parameters") or {})
+        if stage.startswith("qnn_"):
+            parameters = {
+                key: value for key, value in candidate.items() if key != "configuration_id"
             }
-            atomic_write_json(manifest_path, manifest)
-            fold_manifests.append(manifest)
+        fold_statuses = {
+            result.fold_id: result.status for result in fold_results
+        }
+        fold_manifests = [result.manifest for result in fold_results]
+        predictions = [
+            row for result in fold_results for row in result.predictions
+        ]
+        base_directory = self._artifact_directory(
+            stage=stage,
+            family=family,
+            configuration_id=configuration_id,
+            block=feature_block,
+            seed=training_seed,
+        )
 
         aggregate_status = candidate_fold_aggregate_status(
             fold_statuses, self.contract, family="qnn" if family == "qnn" else "classical_or_mlp"

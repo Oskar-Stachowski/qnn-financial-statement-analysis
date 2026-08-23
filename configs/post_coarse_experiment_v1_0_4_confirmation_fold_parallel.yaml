@@ -1,0 +1,118 @@
+schema_version: 1
+
+extends:
+  path: configs/post_coarse_experiment_v1_0_3_confirmation_parallel.yaml
+  sha256: 54a9aacae3cfcf847a43c242e416ba6c905a8b9fde38ed0fb832e48f00380d70
+
+post_coarse_execution:
+  id: post_coarse_confirmation_controller_fold_parallel
+  version: 1.0.4
+  status: executable_schedule_only_amendment_after_complete_classical_before_qnn_confirmation
+
+  git_gate:
+    require_committed_authority_before_model_fit: true
+    authority_files:
+      - configs/model_stage_v1_3_0_neural_comparator_amendment.yaml
+      - configs/model_execution_contract_v1_2_1_lightning_amendment.yaml
+      - configs/model_execution_contract_v1_2_1_lightning_base.yaml
+      - configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml
+      - configs/production_experiment_runner_v1_0_1_lightning.yaml
+      - configs/production_experiment_runner_v1_0_2_parallel.yaml
+      - configs/model_environments_v1_0_1_lightning.yaml
+      - configs/post_coarse_experiment_v1_0_1_lightning.yaml
+      - configs/post_coarse_experiment_v1_0_2_parallel.yaml
+      - configs/post_coarse_experiment_v1_0_3_confirmation_parallel.yaml
+      - configs/post_coarse_experiment_v1_0_4_confirmation_fold_parallel.yaml
+      - src/modeling/post_coarse_runner.py
+      - src/modeling/post_coarse_reporting.py
+      - src/modeling/neural_comparison_inference.py
+      - src/modeling/environment_audit.py
+      - src/modeling/production_runner.py
+      - src/modeling/production_worker.py
+      - src/modeling/qnn_resource_smoke.py
+      - src/modeling/production_worker_smoke.py
+      - data/reports/classical_environment_smoke_v1_0_1_lightning.json
+      - data/reports/qnn_mlp_environment_smoke_v1_0_1_lightning.json
+      - data/reports/qnn_resource_smoke_v1_0_1_lightning.json
+      - data/reports/production_worker_synthetic_smoke_v1_0_1_lightning.json
+      - scripts/run_post_coarse.sh
+      - tests/test_post_coarse_confirmation_schedule.py
+
+  historical_classical_confirmation_reuse:
+    enabled: true
+    reason: confirmation_fold_schedule_only_change_after_complete_classical_before_qnn_confirmation
+    source_manifest:
+      path: data/model_runs/post_coarse_v1_3_0/confirmation_classical_phase_manifest.json
+      sha256: 273fb91813f6fdfecb125bfc6c6c84969519b586a471c784e032cf7a3ed2e2be
+    selection_artifact:
+      path: data/model_runs/post_coarse_v1_3_0/post_coarse_confirmation_selection.json
+      sha256: e2598f00c1b85bd4c91898b5df65336d38ae8cfeb61f845c86a9d95eb20c1b6d
+    source_qnn_phase_manifest:
+      path: data/model_runs/post_coarse_v1_3_0/qnn_phase_manifest.json
+      sha256: 0612c26faeb6dd4b7ed6bbc124cea41675bd826f8ce842e14513a994302f0187
+    required_status: COMPLETE
+    expected_primary_result_references: 30
+    expected_extra_seed_result_references: 60
+    confirmation_seeds: [20260819, 20260820]
+    qnn_confirmation_started_must_be: false
+    protected_feature_years_opened_must_be: false
+    source_authority:
+      authority_git_index_sha256: 32619b522a84f8c85d78b14bd3bef1fc6e4b42a12beb497de93eef39dee101cc
+      backend_amendment:
+        path: configs/model_execution_contract_v1_2_1_lightning_amendment.yaml
+        sha256: 2a70585074c9d9ca4d7097b3c7087ec334e94d88a658884b6038b45c4b2d3c91
+      base_execution_contract:
+        path: configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml
+        sha256: 8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a
+      candidate_registry:
+        path: configs/model_stage_candidates_v1_scientific_patch.json
+        sha256: f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac
+      coarse_manifest:
+        path: data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json
+        sha256: 5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43
+      methodology_amendment:
+        path: configs/model_stage_v1_3_0_neural_comparator_amendment.yaml
+        sha256: 4e72c76a51c233212b6c7a5dd093c77a586d27250ff002df2aee2b107cf76f1c
+    reuse_scope:
+      confirmation_selection: true
+      classical_primary_confirmation: true
+      supplemental_mlp_confirmation: true
+      qnn_confirmation_results: false
+      qnn_confirmation_checkpoints: false
+    completed_classical_artifacts_reused_byte_for_byte: true
+    selection_artifact_reused_byte_for_byte: true
+
+  confirmation_schedule_amendment:
+    created_on: "2026-08-23"
+    timing: after_complete_classical_confirmation_before_any_qnn_confirmation_fit
+    motivation: observed_runtime_and_independent_fold_task_structure_only
+    performance_results_used_to_change_schedule: false
+    model_definition_changed: false
+    candidate_registry_changed: false
+    confirmation_selection_rule_changed: false
+    feature_blocks_changed: false
+    hyperparameters_changed: false
+    seeds_changed: false
+    simulator_backend_changed: false
+    task_identity_changed: false
+    worker_implementation_changed: false
+    candidate_level_scheduler_replaced: true
+    strategy: global_bounded_qnn_confirmation_fold_queue
+    maximum_parallel_qnn_confirmation_candidates: 1
+    maximum_parallel_qnn_confirmation_folds: 4
+    worker_threads_per_process: 1
+    fold_start_order_changed: true
+    fold_order_within_candidate_changed: false
+    candidate_result_order: frozen_feature_block_order
+    seed_result_order: frozen_confirmation_seed_order
+    fold_result_order: frozen_contract_order
+    confirmation_seed_order_within_candidate: [20260819, 20260820]
+    completed_fold_reuse_rule: exact_task_identity_and_artifact_hash_only
+    interrupted_checkpoint_resume_rule: exact_task_identity_only
+    one_controller_required: true
+    shared_qnn_resource_ledger_requires_lock: true
+    qnn_confirmation_resource_ledger: data/model_runs/post_coarse_v1_3_0/qnn_confirmation_resource_ledger.json
+    frozen_qnn_worker:
+      path: src/modeling/production_worker.py
+      sha256: d1a792421d45013ef539e5c096a8bd591e479892fbe093a88e46df1bcad4010e
+    protected_feature_years_opened: false
