@@ -1,0 +1,44 @@
+schema_version: 1
+
+secondary_development_execution_launcher_freeze:
+  id: secondary_development_execution_launcher_v1_1_2
+  version: 1.1.2
+  frozen_on: "2026-08-23"
+  status: FROZEN
+  verdict: SECONDARY_DEVELOPMENT_EXECUTION_V1_1_2_SINGLE_IMPORT_LAUNCHER_PASS
+  scope: python_module_single_import_launcher_only
+  project_data_read_during_launcher_fix: false
+  project_model_fit_performed_during_launcher_fix: false
+  protected_feature_years_opened: false
+
+  inherited_execution:
+    config_version: 1.1.1
+    output_root: data/model_runs/secondary_development_v1_1_1
+    base_verdict: SECONDARY_DEVELOPMENT_EXECUTION_V1_1_1_INPUT_KEY_INTEGRITY_PASS
+    total_tasks: 96
+    configuration_changed: false
+    data_adapter_changed: false
+    target_values_changed: false
+    sample_membership_changed: false
+    methodology_changed: false
+
+  files:
+    - path: src/modeling/verify_secondary_analysis_launcher_v1_1_2.py
+      bytes: 4070
+      sha256: 0a3577e6aec601b77e16b12503124720dff1141f302456cf36f8fe0de6c8bf74
+    - path: scripts/run_secondary_analyses_v1_1_2.sh
+      bytes: 894
+      sha256: 718e36acabacab75d3177859132e8f6f024b0095699e02e5d68020f6382eadfe
+      executable: true
+    - path: docs/12_2_secondary_development_launcher_v1_1_2.md
+      bytes: 1768
+      sha256: 85c01ec626673e01a708de3812a6749330cb2bc303d603bcdca6777e26508548
+    - path: tests/test_secondary_analysis_launcher_v1_1_2.py
+      bytes: 1546
+      sha256: 0f7dc1a4257630d6716df8a31ca38d903a7789c242c56bed4a21975ebce77e3c
+
+  tests:
+    launcher_tests: 3
+    canonical_single_import: PASS
+    committed_clean_gate_before_real_modes: PASS
+    v1_1_1_configuration_unchanged: PASS

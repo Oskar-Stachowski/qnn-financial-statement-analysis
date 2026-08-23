@@ -137,13 +137,20 @@ preserves all 96 tasks, and is documented in
 [`docs/12_1_secondary_development_execution_v1_1_1.md`](12_1_secondary_development_execution_v1_1_1.md).
 No project model fit was performed and protected years remained closed.
 
-The next operational command, after the v1.1.1 amendment commit, is:
+The direct v1.1.1 `python -m` launcher subsequently stopped during package
+self-verification because Python loaded the amendment twice (`__main__` and its
+canonical module name). It stopped before creating an output identity and before
+opening project data. The frozen v1.1.2 launcher imports v1.1.1 exactly once and
+is documented in
+[`docs/12_2_secondary_development_launcher_v1_1_2.md`](12_2_secondary_development_launcher_v1_1_2.md).
+
+The next operational command, after the v1.1.2 launcher commit, is:
 
 ```bash
-bash scripts/run_secondary_analyses_v1_1_1.sh preflight
+bash scripts/run_secondary_analyses_v1_1_2.sh preflight
 ```
 
-If it passes, use the same v1.1.1 script to execute `pca-controls`, `interpretability`,
+If it passes, use the same v1.1.2 script to execute `pca-controls`, `interpretability`,
 `robustness-classical`, `robustness-qnn`, and `report` in that order.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
