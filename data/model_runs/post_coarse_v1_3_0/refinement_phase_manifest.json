@@ -1,0 +1,1346 @@
+{
+  "authority": {
+    "authority_git_index_sha256": "15a32c47388f0d80d9b4fc727bc4c4ac56693183628471a3345b7b1de3f602c5",
+    "base_execution_contract": {
+      "path": "configs/model_execution_contract_v1_2_0_scientific_patch.yaml",
+      "sha256": "59490dc080176a4f5655539db78edeb035e9ce02a2b6a68d95fad5c428081f59"
+    },
+    "candidate_registry": {
+      "path": "configs/model_stage_candidates_v1_scientific_patch.json",
+      "sha256": "f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac"
+    },
+    "coarse_manifest": {
+      "path": "data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json",
+      "sha256": "5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43"
+    },
+    "methodology_amendment": {
+      "path": "configs/model_stage_v1_3_0_neural_comparator_amendment.yaml",
+      "sha256": "4e72c76a51c233212b6c7a5dd093c77a586d27250ff002df2aee2b107cf76f1c"
+    }
+  },
+  "id": "post_coarse_refinement_phase_v1_0_0",
+  "primary_result_references": [
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__001/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "89608c5c7fe296a40e671cf9286d69a849250ce6a5b1ff8c9db2941bf148a194",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__001",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "2743fefc3e7fb272d321d6c2af9b1927d67b509cebda00ed9e0d217e45f744f9",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.03,
+          "imbalance": "none",
+          "learning_rate": 0.015,
+          "max_depth": 2,
+          "min_child_weight": 10,
+          "n_estimators": 650,
+          "reg_alpha": 0.03,
+          "reg_lambda": 2.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.41101357772042296,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__002/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "f8073c07d47631a88f27341ebc850e0f9cf9358f9eb4df673875525c772746ec",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__002",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "c3cf35ef02cd8fd083f8b167954e60eaa606ea79a5c4fb6d0be5839272885ef9",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.03,
+          "imbalance": "none",
+          "learning_rate": 0.075,
+          "max_depth": 4,
+          "min_child_weight": 2,
+          "n_estimators": 650,
+          "reg_alpha": 0.3,
+          "reg_lambda": 10.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.38037135059750266,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__003/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "a9fe077eae93bf6d64e82a5fd7828c8e50d01e5bbb20350faaec1d35534604b1",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__003",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "934a434c8a877e2e280784fb36e36ad9b070aac8e02d465caef874c1c2b329bb",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.03,
+          "imbalance": "none",
+          "learning_rate": 0.075,
+          "max_depth": 6,
+          "min_child_weight": 10,
+          "n_estimators": 350,
+          "reg_alpha": 0.3,
+          "reg_lambda": 10.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.38668775498525776,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__004/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "8ac1c8e42183e0ff9d8e7619d1203fb0153f92c40dcf31c6ed1b4ea1622680c7",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "879c3c9eaf626dc9c1a39f39c83a8588c00ccc0e54cdc426021412dfeb1bf554",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.03,
+          "imbalance": "sqrt",
+          "learning_rate": 0.075,
+          "max_depth": 4,
+          "min_child_weight": 10,
+          "n_estimators": 350,
+          "reg_alpha": 0.3,
+          "reg_lambda": 10.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.39154950521495047,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__005/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "4edc6dd76b31b74c781640ae115f69b94e5689e35137dcb9ef0a96bd2a12b5b8",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__005",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "8bd43840a1adba3a84a1e319be39226718b1b34f333f125efb25fae25d13ba57",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.3,
+          "imbalance": "none",
+          "learning_rate": 0.015,
+          "max_depth": 4,
+          "min_child_weight": 2,
+          "n_estimators": 1000,
+          "reg_alpha": 0.03,
+          "reg_lambda": 10.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.40337586808352466,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__006/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "2c9a8822c5bca08c590d777ef15f93759da5fa89b2abc0ea1066039519f1a363",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__006",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "8986dc704edaa85ff91daf60b16ddbef5e09d3ef48daf22d52bfbd410a3e32b1",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.3,
+          "imbalance": "none",
+          "learning_rate": 0.075,
+          "max_depth": 6,
+          "min_child_weight": 2,
+          "n_estimators": 350,
+          "reg_alpha": 0.3,
+          "reg_lambda": 10.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.3851339399990203,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__007/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "702563a69de04eeefffffa73da7021e2b2d2e5a30d721bb1bd4b42aeccffb213",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__007",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "8ec246626f827fee19e31882dbf801fce235a55a40a28ebed8534b86679389fe",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.3,
+          "imbalance": "sqrt",
+          "learning_rate": 0.035,
+          "max_depth": 4,
+          "min_child_weight": 10,
+          "n_estimators": 1000,
+          "reg_alpha": 0.3,
+          "reg_lambda": 10.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.3912876498410664,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__008/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "4435e90fca6df503d93bb7cfb649ed95d517250c8a62bc5f29c34f5d3f687543",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__008",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "68fc56a6ccd99c9843caf1ac006ffa377ec18f48cc287d290d91a97ec29242c0",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.3,
+          "imbalance": "sqrt",
+          "learning_rate": 0.075,
+          "max_depth": 2,
+          "min_child_weight": 2,
+          "n_estimators": 350,
+          "reg_alpha": 0.3,
+          "reg_lambda": 10.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.408461189309492,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__009/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "4d24a615e784d212b6fd32d9a88c43f73a3642a6a675ecd0bae4e98406ad1c1c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__009",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "dd8c27e2349bf06115e9a2c78ce3a7532d97db6a1769d8db05599906e37ba4ea",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.3,
+          "imbalance": "sqrt",
+          "learning_rate": 0.075,
+          "max_depth": 4,
+          "min_child_weight": 2,
+          "n_estimators": 650,
+          "reg_alpha": 0.3,
+          "reg_lambda": 10.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.37738405322631025,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__010/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "470addf40bb834e2ac84c41829a55dc270eb229dd69ccedb94bcb3ed0830e44c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__010",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "186ebae997c3b406f458118b77f1d461e1ef7e4d5e3baef44525974f5acbdf1e",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.3,
+          "imbalance": "sqrt",
+          "learning_rate": 0.075,
+          "max_depth": 6,
+          "min_child_weight": 10,
+          "n_estimators": 650,
+          "reg_alpha": 0.3,
+          "reg_lambda": 10.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.36944203534677067,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__001/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "176690e0b23e8aa38127bcd9ae96284c28a9800b814b12acb36f9cde208e220a",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__001",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "4148883c46678543f0f2957aa8ea79f715fde0814c1c5eaae811acd2e4bdf131",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 0.03,
+          "learning_rate": 0.045,
+          "max_features": 0.85,
+          "max_iter": 225,
+          "max_leaf_nodes": 23,
+          "min_samples_leaf": 75
+        },
+        "pooled_oof_pr_auc": 0.3990013112041391,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__002/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "c6efe5028c57bf0edc5841b4b2520abbf18ca14a60ab434bfca5f24e38a60605",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__002",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "83b674c0154690bebb15a19241adeb04fc9009b891da67a15e94269a8ea67eb0",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 0.3,
+          "learning_rate": 0.045,
+          "max_features": 0.85,
+          "max_iter": 225,
+          "max_leaf_nodes": 47,
+          "min_samples_leaf": 35
+        },
+        "pooled_oof_pr_auc": 0.3881158322303454,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__003/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "05c00629e24b0cf37bb24ca311c65442b4027cef9053e47f6d34c591211ecc3b",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__003",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "96682107349ca4eeae1ccad7721df530597b12dcee2973cce1bfb6c2998f6351",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 0.3,
+          "learning_rate": 0.08,
+          "max_features": 0.85,
+          "max_iter": 225,
+          "max_leaf_nodes": 11,
+          "min_samples_leaf": 75
+        },
+        "pooled_oof_pr_auc": 0.40092641828041964,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__004/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "859be7246f9632fa2dcafeae03678ef1cdd2bb853a0f443211d360680085ad1c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__004",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "1f46318962b903d9a784436ac9cb5ad0e6785fc5a51bd39501e57180991cf11d",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 3.0,
+          "learning_rate": 0.02,
+          "max_features": 0.85,
+          "max_iter": 450,
+          "max_leaf_nodes": 47,
+          "min_samples_leaf": 10
+        },
+        "pooled_oof_pr_auc": 0.394378488029655,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__005/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "daed60d063fbd74ed9cdf0698133d857ae382c03da629fd8595ca7287873e2d2",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__005",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "b1bea1959cb635fd8d09fe21877de7aed7aa6d974bc1b109e5ead63090a84038",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 3.0,
+          "learning_rate": 0.045,
+          "max_features": 0.85,
+          "max_iter": 225,
+          "max_leaf_nodes": 23,
+          "min_samples_leaf": 75
+        },
+        "pooled_oof_pr_auc": 0.3996257244208315,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__006/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "f6ad94ccb78cbe74072017d4db007eb79b89bd8cc46ee7a2414ffd5245e0d00b",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__006",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "f665bbcbef5f679d8ef5751bccee8a06bbcf7af4f7c212e8bc506174bae1cbbc",
+        "parameters": {
+          "imbalance": "sqrt",
+          "l2_regularization": 0.3,
+          "learning_rate": 0.02,
+          "max_features": 0.85,
+          "max_iter": 225,
+          "max_leaf_nodes": 47,
+          "min_samples_leaf": 10
+        },
+        "pooled_oof_pr_auc": 0.4035397264613551,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__007/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "f0168d6a2bf9b3ce8389c5720a4a1a1d9d128472b25873a4136c9b6cf325895c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__007",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "0bff7ff9f98b96f1bff61a74060d0e96116c113138789e5a9f12a28a8149a77e",
+        "parameters": {
+          "imbalance": "sqrt",
+          "l2_regularization": 0.3,
+          "learning_rate": 0.045,
+          "max_features": 0.85,
+          "max_iter": 225,
+          "max_leaf_nodes": 23,
+          "min_samples_leaf": 35
+        },
+        "pooled_oof_pr_auc": 0.397931357247462,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__008/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "4a75c18577256724696b13bbcf3162bbec8727b4929a98c1730e082067df18a0",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__008",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "301ef257ff6acad964c0e6cc3e0b0768eb0b25bd7c30598adbe2e78cd98ef9ac",
+        "parameters": {
+          "imbalance": "sqrt",
+          "l2_regularization": 0.3,
+          "learning_rate": 0.045,
+          "max_features": 0.85,
+          "max_iter": 450,
+          "max_leaf_nodes": 47,
+          "min_samples_leaf": 75
+        },
+        "pooled_oof_pr_auc": 0.37909170253549956,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__009/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "ec1d4b48ee9ef1237d44c0b61939ad130984fb9d0f8b6b741780566649410cb5",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__009",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "3f7fc575406dd5dc3024da292a2d662b3fb6e832b07b741300df222ae77a7d52",
+        "parameters": {
+          "imbalance": "sqrt",
+          "l2_regularization": 0.3,
+          "learning_rate": 0.08,
+          "max_features": 0.85,
+          "max_iter": 225,
+          "max_leaf_nodes": 11,
+          "min_samples_leaf": 75
+        },
+        "pooled_oof_pr_auc": 0.40240758048378267,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/hist_gradient_boosting/model_stage_v1__refinement__hist_gradient_boosting__010/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "d0ea5be72ecdeccb75006673134d79e558ed785c615ea8c4ef591608e92b3277",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__hist_gradient_boosting__010",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "81144b086b6a3d886eb3bf3c0d0208be5a1597fa568e5d4116995f3c41a11c4a",
+        "parameters": {
+          "imbalance": "sqrt",
+          "l2_regularization": 3.0,
+          "learning_rate": 0.08,
+          "max_features": 0.85,
+          "max_iter": 450,
+          "max_leaf_nodes": 11,
+          "min_samples_leaf": 75
+        },
+        "pooled_oof_pr_auc": 0.38943018210032343,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/random_forest/model_stage_v1__refinement__random_forest__001/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "76affd31aa9a2be96e66170c318f6ae8f7500ee6c1ee9ede9fc417cf741fe2dc",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__random_forest__001",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "e7d98cfecd025c07473f0875a3e2bc2052a8fb0524fe7d9beaf9801cbc89ebc6",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 32,
+          "max_features": 0.7,
+          "max_samples": 0.85,
+          "min_samples_leaf": 2
+        },
+        "pooled_oof_pr_auc": 0.3955736467775683,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/random_forest/model_stage_v1__refinement__random_forest__002/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "b48212dcf587f33cd1897492e5423914d177077e2520e46e089ce926fbf5c49d",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__random_forest__002",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "a5180baaceab3a8e3881e08a8cc38086dfcc514e69ebc9aba832939d8ab6e13f",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "sqrt",
+          "max_depth": 18,
+          "max_features": 0.35,
+          "max_samples": 0.85,
+          "min_samples_leaf": 35
+        },
+        "pooled_oof_pr_auc": 0.40311169654625895,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/random_forest/model_stage_v1__refinement__random_forest__003/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "660c77a73851eb8cb0b3723628c46019ca862557c7946e3d7568c9bb65effcae",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "2278efde3d118aa77101ddaf1445fed6540187055a2f8b15ba6f640b4590be1e",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "sqrt",
+          "max_depth": 18,
+          "max_features": 0.7,
+          "max_samples": 0.85,
+          "min_samples_leaf": 35
+        },
+        "pooled_oof_pr_auc": 0.39999433573525767,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/random_forest/model_stage_v1__refinement__random_forest__004/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "e39743189624108ade14486808332d200fdbf208709fbb3d8759ee01a51a0482",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__random_forest__004",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "8db51c46b67555fc8c0e833e82a6e3f26932c113e68af829a11e8f4871618b6b",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "sqrt",
+          "max_depth": 4,
+          "max_features": 0.35,
+          "max_samples": 0.85,
+          "min_samples_leaf": 35
+        },
+        "pooled_oof_pr_auc": 0.39654742561113465,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/random_forest/model_stage_v1__refinement__random_forest__005/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "ab7ec6e9e625bb0d592e11d13a61760b2d7bc207c9fe606bc04ed0ffe00c3974",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__random_forest__005",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "774936aec2fba927135d77f771ecaf3f26ad61084e9bf190fdbf1d646475cbc8",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "sqrt",
+          "max_depth": 9,
+          "max_features": 0.7,
+          "max_samples": 0.85,
+          "min_samples_leaf": 35
+        },
+        "pooled_oof_pr_auc": 0.4013657236477697,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/random_forest/model_stage_v1__refinement__random_forest__006/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "24ae77777b4bb8d1ef903da4821a3b9de7466a5209a98104d708f12c1cc2958e",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__random_forest__006",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "6f0c7700611d41f96c39280d28f8eca6caf380277c92cc170250efb662f6a4ca",
+        "parameters": {
+          "criterion": "log_loss",
+          "imbalance": "none",
+          "max_depth": 32,
+          "max_features": 0.35,
+          "max_samples": 0.85,
+          "min_samples_leaf": 2
+        },
+        "pooled_oof_pr_auc": 0.39853438315423484,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/random_forest/model_stage_v1__refinement__random_forest__007/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "3a92083bd8deeed6837c39dacf732b2a9ccb12f336f825bf5720ae4903f7620c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__random_forest__007",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "1ab74b4262c6a257b3c623d93b57fe9544c6b4e655a69d251c15dd7f0e50f0ae",
+        "parameters": {
+          "criterion": "log_loss",
+          "imbalance": "sqrt",
+          "max_depth": 4,
+          "max_features": 0.35,
+          "max_samples": 0.85,
+          "min_samples_leaf": 35
+        },
+        "pooled_oof_pr_auc": 0.3957641069328366,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_FROZEN_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/random_forest/model_stage_v1__refinement__random_forest__008/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "a4ffac0c9957185d49aed87ee3fff87a78778ea949da77ef2c1e50898a30b2d4",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__random_forest__008",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "c59fc945789d53d46d78e3ff87d57dec93ae1910f6f98f90f6ac471833411b60",
+        "parameters": {
+          "criterion": "log_loss",
+          "imbalance": "sqrt",
+          "max_depth": 9,
+          "max_features": 0.7,
+          "max_samples": 0.85,
+          "min_samples_leaf": 35
+        },
+        "pooled_oof_pr_auc": 0.40143440170218436,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    }
+  ],
+  "primary_track": {
+    "activation_rule_unchanged": true,
+    "activations": [
+      {
+        "boundary": true,
+        "distance_to_global_coarse_leader": 0.0,
+        "family": "xgboost",
+        "family_leader_configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "feature_block": "L+D+R",
+        "runner_up_gap": 0.0007886610681532291
+      },
+      {
+        "boundary": true,
+        "distance_to_global_coarse_leader": 0.003867192532450381,
+        "family": "hist_gradient_boosting",
+        "family_leader_configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__007",
+        "feature_block": "L+D+R",
+        "runner_up_gap": 0.0016891496505946901
+      },
+      {
+        "boundary": true,
+        "distance_to_global_coarse_leader": 0.004286350941319017,
+        "family": "random_forest",
+        "family_leader_configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "feature_block": "L+D+R",
+        "runner_up_gap": 0.0026189674772395533
+      }
+    ],
+    "counts": {
+      "candidate_positions": 28,
+      "complete": 28,
+      "technically_invalid": 0
+    },
+    "primary_global_ranking_eligible": true
+  },
+  "project_data_model_fit_performed": true,
+  "protected_feature_years_opened": false,
+  "qnn_performed": false,
+  "runtime_seconds": 2156.7569967920426,
+  "schema_version": 1,
+  "status": "COMPLETE",
+  "supplemental_mlp_comparator": {
+    "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+    "claim_role": "secondary_title_aligned_comparison_only",
+    "coarse_leader_configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+    "coarse_leader_pooled_oof_pr_auc": 0.39548464852848403,
+    "counts": {
+      "candidate_positions": 8,
+      "complete": 8,
+      "technically_invalid": 0
+    },
+    "family": "pytorch_mlp",
+    "feature_block": "L+D",
+    "primary_global_ranking_eligible": false
+  },
+  "supplemental_mlp_result_references": [
+    {
+      "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/pytorch_mlp/model_stage_v1__refinement__pytorch_mlp__epochs_300__001/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "b54474dc8474923ebc936c5a8fdf0bf3e1e819ac4a46976396677750ab6bae0c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__pytorch_mlp__epochs_300__001",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "27a53f1b639b5d4e3dc4d536a02583f91c738b1bb86741f56118a048cfaae7c7",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 128,
+          "epochs": 300,
+          "hidden_layer_sizes": [
+            48,
+            24
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0001,
+          "weight_decay": 0.0003
+        },
+        "pooled_oof_pr_auc": 0.39525648353767245,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/pytorch_mlp/model_stage_v1__refinement__pytorch_mlp__epochs_300__002/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "0e0a93095ce666b982d2a65d130fd2d233ed479207886b38fd28f8b0778f6c0e",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__pytorch_mlp__epochs_300__002",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "34ceaa559d8b37e26aada6a61953d01fc61af4e2add023fa661234c9b3a04fbe",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 128,
+          "epochs": 300,
+          "hidden_layer_sizes": [
+            48
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.002,
+          "weight_decay": 0.0003
+        },
+        "pooled_oof_pr_auc": 0.37487011302287016,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/pytorch_mlp/model_stage_v1__refinement__pytorch_mlp__epochs_300__003/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "7829da0bb748652c38451433f3aea3a09e39e77c3f8b942b8c988b1c3c97e62b",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__pytorch_mlp__epochs_300__003",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "694ccd44a551730adc3132241746a41ecdd1c1e48da9e1eca7c509f375340071",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 128,
+          "epochs": 300,
+          "hidden_layer_sizes": [
+            96
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.002,
+          "weight_decay": 3e-05
+        },
+        "pooled_oof_pr_auc": 0.35165661136056314,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/pytorch_mlp/model_stage_v1__refinement__pytorch_mlp__epochs_300__004/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "38542359db07366c3747466a817f6bac99a7c14276d44146dbdac5108e6ab841",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__pytorch_mlp__epochs_300__004",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "3222a255dbf5ea65cb709d37bbad0d16e8537d6b4bd83b3d6d4670721e76584f",
+        "parameters": {
+          "activation": "tanh",
+          "batch_size": 128,
+          "epochs": 300,
+          "hidden_layer_sizes": [
+            24
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0001,
+          "weight_decay": 3e-05
+        },
+        "pooled_oof_pr_auc": 0.3893513023294548,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/pytorch_mlp/model_stage_v1__refinement__pytorch_mlp__epochs_300__005/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "f20e336310ccb2d362d8c07dff89cc416c2a19c50a1ef0add8431adf74434ff3",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__pytorch_mlp__epochs_300__005",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "9aacaf3b46ac9916b52e989e3f4fb5c86f36662981b36f8b9db50e5c5d44916a",
+        "parameters": {
+          "activation": "tanh",
+          "batch_size": 128,
+          "epochs": 300,
+          "hidden_layer_sizes": [
+            48,
+            24
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.002,
+          "weight_decay": 0.003
+        },
+        "pooled_oof_pr_auc": 0.3786314208191177,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/pytorch_mlp/model_stage_v1__refinement__pytorch_mlp__epochs_300__006/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "e7fdccc55d91bc8480d9f7d938ecccf1ae002e631ca616665785b1c8f22c434a",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__pytorch_mlp__epochs_300__006",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "d683534c8d961a94a1eaea8d2f88d47c4f489e8466c529b0f7b418bc803a5133",
+        "parameters": {
+          "activation": "tanh",
+          "batch_size": 128,
+          "epochs": 300,
+          "hidden_layer_sizes": [
+            48
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0001,
+          "weight_decay": 0.003
+        },
+        "pooled_oof_pr_auc": 0.3905718333471089,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/pytorch_mlp/model_stage_v1__refinement__pytorch_mlp__epochs_300__007/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "a943fffb0aba1c4b263dc8c84e831ef79bff178e0023396ff30312daa6d2aff9",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__pytorch_mlp__epochs_300__007",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "fc45b6805e523a3d26f4ad9896615bed36ad2b4cb5a2c93e15b91a6b592127a3",
+        "parameters": {
+          "activation": "tanh",
+          "batch_size": 128,
+          "epochs": 300,
+          "hidden_layer_sizes": [
+            48
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.002,
+          "weight_decay": 0.003
+        },
+        "pooled_oof_pr_auc": 0.3851207397614054,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/pytorch_mlp/model_stage_v1__refinement__pytorch_mlp__epochs_300__008/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "a66d51a4d904a95adf5f174414442b491bc570b7f9097e0ec5c525b698deb819",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__pytorch_mlp__epochs_300__008",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "273192e79edc90c6486276951f99835a1d454f7a163c69b3bf157c925474f033",
+        "parameters": {
+          "activation": "tanh",
+          "batch_size": 128,
+          "epochs": 300,
+          "hidden_layer_sizes": [
+            96,
+            48
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0001,
+          "weight_decay": 0.0003
+        },
+        "pooled_oof_pr_auc": 0.3881968017604556,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    }
+  ]
+}

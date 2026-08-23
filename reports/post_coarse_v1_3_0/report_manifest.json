@@ -1,0 +1,24 @@
+{
+  "generated_tables": [
+    "01_primary_refinement_results.csv",
+    "02_mlp_comparator_refinement_results.csv",
+    "03_qnn_q1_ansatz_results.csv",
+    "04_qnn_q2_results.csv",
+    "05_primary_confirmation_results.csv",
+    "06_confirmed_mlp_vs_qnn.csv",
+    "07_final_primary_family_ranking.csv",
+    "08_neural_comparison_clustered_bootstrap.csv"
+  ],
+  "protected_feature_years_opened": false,
+  "schema_version": 1,
+  "source_manifest_sha256": {
+    "confirmation_phase_manifest.json": "1455abacb27d52b2a73c8bb87c84d69795501029616905fcb0f9ada30d289800",
+    "final_primary_development_ranking.json": "58d100a612902b0b6762b06521fea56b754959b69ffefbc3c50473e0d6d94130",
+    "neural_comparison_clustered_bootstrap.json": "c5dd8d837bab6690cb2676d91c221b74660142fb991f04cbb25ad86d0133d7fd",
+    "qnn_phase_manifest.json": "0612c26faeb6dd4b7ed6bbc124cea41675bd826f8ce842e14513a994302f0187",
+    "refinement_phase_manifest.json": "0e8cd37936e25bb23c04dca5eb42c453f6a9f0770de90d78ee7f54d949acb9cc"
+  },
+  "source_output_dir": "/Users/oskarstachowski/qnn-financial-statement-analysis/data/model_runs/post_coarse_v1_3_0",
+  "status": "COMPLETE",
+  "summary_md": "/Users/oskarstachowski/qnn-financial-statement-analysis/reports/post_coarse_v1_3_0/summary.md"
+}

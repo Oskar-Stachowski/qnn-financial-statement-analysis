@@ -1,0 +1,276 @@
+{
+  "authority": {
+    "authority_git_index_sha256": "4bd8ec368c10a1ebd159ea8f8fb32929b96f16d4dba761d83b12033f49779f37",
+    "backend_amendment": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_amendment.yaml",
+      "sha256": "2a70585074c9d9ca4d7097b3c7087ec334e94d88a658884b6038b45c4b2d3c91"
+    },
+    "base_execution_contract": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml",
+      "sha256": "8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a"
+    },
+    "candidate_registry": {
+      "path": "configs/model_stage_candidates_v1_scientific_patch.json",
+      "sha256": "f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac"
+    },
+    "coarse_manifest": {
+      "path": "data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json",
+      "sha256": "5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43"
+    },
+    "methodology_amendment": {
+      "path": "configs/model_stage_v1_3_0_neural_comparator_amendment.yaml",
+      "sha256": "4e72c76a51c233212b6c7a5dd093c77a586d27250ff002df2aee2b107cf76f1c"
+    }
+  },
+  "claim_guidance": {
+    "bootstrap_probability_is_p_value": false,
+    "directionally_stable_positive_difference_when": "paired delta PR-AUC 95% percentile interval is entirely above 0",
+    "formal_superiority_claim_allowed": false,
+    "independent_test_estimate": false,
+    "no_quantum_advantage_claim_from_analytic_simulator": true,
+    "paired_delta_ci_role": "descriptive development-set directional stability conditional on selected configurations",
+    "point_estimate_alone_is_not_sufficient": true,
+    "selection_adjusted": false
+  },
+  "id": "refined_mlp_vs_qnn_clustered_bootstrap_v1_0_0",
+  "input": {
+    "confirmation_phase_manifest": "/Users/oskarstachowski/qnn-financial-statement-analysis/data/model_runs/post_coarse_v1_3_0/confirmation_phase_manifest.json",
+    "confirmation_phase_manifest_sha256": "1455abacb27d52b2a73c8bb87c84d69795501029616905fcb0f9ada30d289800",
+    "economic_group_count": 3340,
+    "oof_years": [
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020
+    ],
+    "positive_n": 1986,
+    "positive_share": 0.1845724907063197,
+    "qnn_complete_block_count": 3,
+    "qnn_confirmed_reference_count": 3,
+    "qnn_invalid_blocks": [],
+    "rows": 10760
+  },
+  "method": {
+    "clusters_per_replicate": 3340,
+    "clusters_sampled_with_replacement": true,
+    "interval": "95_percent_percentile",
+    "minimum_valid_replicates": 1900,
+    "numpy_percentile_method": "linear",
+    "paired_cluster_draws_across_models": true,
+    "percentiles": [
+      2.5,
+      97.5
+    ],
+    "replicates_degenerate_discarded": 0,
+    "replicates_requested": 2000,
+    "replicates_valid": 2000,
+    "resampling_unit": "economic_group_id",
+    "seed": 20260818,
+    "selection_adjusted": false
+  },
+  "protected_feature_years_opened": false,
+  "reason": null,
+  "rows": [
+    {
+      "bootstrap_probability_delta_pr_auc_gt_0": null,
+      "bootstrap_probability_delta_roc_auc_gt_0": null,
+      "comparison_role": "REFINED_CLASSICAL_MLP",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+      "delta_pr_auc_ci": {
+        "lower_2_5": 0.0,
+        "median": 0.0,
+        "upper_97_5": 0.0,
+        "valid_replicates": 2000
+      },
+      "delta_roc_auc_ci": {
+        "lower_2_5": 0.0,
+        "median": 0.0,
+        "upper_97_5": 0.0,
+        "valid_replicates": 2000
+      },
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "point_delta_pr_auc_vs_mlp": 0.0,
+      "point_delta_roc_auc_vs_mlp": 0.0,
+      "point_pr_auc": 0.39626323334082664,
+      "point_roc_auc": 0.7464090151461414,
+      "pr_auc_ci": {
+        "lower_2_5": 0.3757715595966271,
+        "median": 0.39666601563193726,
+        "upper_97_5": 0.4194430675103049,
+        "valid_replicates": 2000
+      },
+      "roc_auc_ci": {
+        "lower_2_5": 0.733914229537018,
+        "median": 0.7466458301150165,
+        "upper_97_5": 0.7590926077519836,
+        "valid_replicates": 2000
+      },
+      "selected_ansatz_id": null,
+      "stage": "coarse",
+      "training_seed": "AVERAGED_20260818_20260819_20260820"
+    },
+    {
+      "bootstrap_probability_delta_pr_auc_gt_0": 0.0045,
+      "bootstrap_probability_delta_roc_auc_gt_0": 0.0,
+      "comparison_role": "QNN_CONFIRMED_BLOCK_REPRESENTATIVE",
+      "configuration_id": "model_stage_v1__qnn_q2__t0",
+      "delta_pr_auc_ci": {
+        "lower_2_5": -0.039401522276726594,
+        "median": -0.02307306352171659,
+        "upper_97_5": -0.006734545807574755,
+        "valid_replicates": 2000
+      },
+      "delta_roc_auc_ci": {
+        "lower_2_5": -0.019056167030409608,
+        "median": -0.014039604443783382,
+        "upper_97_5": -0.009229664508772618,
+        "valid_replicates": 2000
+      },
+      "family": "qnn",
+      "feature_block": "L",
+      "parameters": {
+        "batch_size": 128,
+        "epochs": 45,
+        "imbalance": "sqrt",
+        "layers": 2,
+        "learning_rate": 0.01,
+        "qubits_pca": 4,
+        "reuse_q1_winner": true,
+        "weight_decay": 0.0001
+      },
+      "point_delta_pr_auc_vs_mlp": -0.02329421415610128,
+      "point_delta_roc_auc_vs_mlp": -0.014078977965429673,
+      "point_pr_auc": 0.37296901918472536,
+      "point_roc_auc": 0.7323300371807118,
+      "pr_auc_ci": {
+        "lower_2_5": 0.3522879328219465,
+        "median": 0.3736330008726607,
+        "upper_97_5": 0.3957904734142549,
+        "valid_replicates": 2000
+      },
+      "roc_auc_ci": {
+        "lower_2_5": 0.7195338918391784,
+        "median": 0.7323555958892188,
+        "upper_97_5": 0.7454019289733914,
+        "valid_replicates": 2000
+      },
+      "selected_ansatz_id": "ROT_CNOT_RING",
+      "stage": "qnn_q2",
+      "training_seed": "AVERAGED_20260818_20260819_20260820"
+    },
+    {
+      "bootstrap_probability_delta_pr_auc_gt_0": 0.0025,
+      "bootstrap_probability_delta_roc_auc_gt_0": 0.0005,
+      "comparison_role": "QNN_CONFIRMED_BLOCK_REPRESENTATIVE",
+      "configuration_id": "model_stage_v1__qnn_q2__t2",
+      "delta_pr_auc_ci": {
+        "lower_2_5": -0.037102679144254545,
+        "median": -0.022282078438139535,
+        "upper_97_5": -0.008424499429455277,
+        "valid_replicates": 2000
+      },
+      "delta_roc_auc_ci": {
+        "lower_2_5": -0.011902295239918832,
+        "median": -0.007619081609973655,
+        "upper_97_5": -0.0033911967733440034,
+        "valid_replicates": 2000
+      },
+      "family": "qnn",
+      "feature_block": "L+D",
+      "parameters": {
+        "batch_size": 128,
+        "epochs": 45,
+        "imbalance": "sqrt",
+        "layers": 2,
+        "learning_rate": 0.01,
+        "qubits_pca": 6,
+        "reuse_q1_winner": false,
+        "weight_decay": 0.0001
+      },
+      "point_delta_pr_auc_vs_mlp": -0.02230187943061329,
+      "point_delta_roc_auc_vs_mlp": -0.007553903079477453,
+      "point_pr_auc": 0.37396135391021335,
+      "point_roc_auc": 0.738855112066664,
+      "pr_auc_ci": {
+        "lower_2_5": 0.3540565178081767,
+        "median": 0.37437171957727905,
+        "upper_97_5": 0.3959000170355211,
+        "valid_replicates": 2000
+      },
+      "roc_auc_ci": {
+        "lower_2_5": 0.7260027805349933,
+        "median": 0.7389969216721886,
+        "upper_97_5": 0.7520632359558058,
+        "valid_replicates": 2000
+      },
+      "selected_ansatz_id": "ROT_CNOT_RING",
+      "stage": "qnn_q2",
+      "training_seed": "AVERAGED_20260818_20260819_20260820"
+    },
+    {
+      "bootstrap_probability_delta_pr_auc_gt_0": 0.0555,
+      "bootstrap_probability_delta_roc_auc_gt_0": 0.009,
+      "comparison_role": "QNN_CONFIRMED_BLOCK_REPRESENTATIVE",
+      "configuration_id": "model_stage_v1__qnn_q2__t0",
+      "delta_pr_auc_ci": {
+        "lower_2_5": -0.026888604887633713,
+        "median": -0.012347220082962823,
+        "upper_97_5": 0.0030822912528780154,
+        "valid_replicates": 2000
+      },
+      "delta_roc_auc_ci": {
+        "lower_2_5": -0.010427376361345525,
+        "median": -0.005789581087604911,
+        "upper_97_5": -0.0009479350868148263,
+        "valid_replicates": 2000
+      },
+      "family": "qnn",
+      "feature_block": "L+D+R",
+      "parameters": {
+        "batch_size": 128,
+        "epochs": 45,
+        "imbalance": "sqrt",
+        "layers": 2,
+        "learning_rate": 0.01,
+        "qubits_pca": 4,
+        "reuse_q1_winner": true,
+        "weight_decay": 0.0001
+      },
+      "point_delta_pr_auc_vs_mlp": -0.012315585212893776,
+      "point_delta_roc_auc_vs_mlp": -0.005825167556528954,
+      "point_pr_auc": 0.38394764812793286,
+      "point_roc_auc": 0.7405838475896125,
+      "pr_auc_ci": {
+        "lower_2_5": 0.36432601498204126,
+        "median": 0.3843153425676147,
+        "upper_97_5": 0.4075184120164437,
+        "valid_replicates": 2000
+      },
+      "roc_auc_ci": {
+        "lower_2_5": 0.7278201738754653,
+        "median": 0.7407835114775904,
+        "upper_97_5": 0.7538220856833788,
+        "valid_replicates": 2000
+      },
+      "selected_ansatz_id": "ROT_CNOT_RING",
+      "stage": "qnn_q2",
+      "training_seed": "AVERAGED_20260818_20260819_20260820"
+    }
+  ],
+  "schema_version": 1,
+  "status": "COMPLETE"
+}

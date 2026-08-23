@@ -1,0 +1,181 @@
+manifest_schema_version: 1
+
+post_coarse_results_freeze:
+  id: post_coarse_development_results
+  version: 1.3.0
+  status: FROZEN
+  frozen_on: "2026-08-23"
+  formal_freeze_effected_by_this_manifest: true
+  verdict: POST_COARSE_V1_3_0_RESULTS_INTEGRITY_PASS
+  execution_code_commit: 4124d01b92b2146617c0f861394ff4964b0832e2
+  authority_git_index_sha256: 4bd8ec368c10a1ebd159ea8f8fb32929b96f16d4dba761d83b12033f49779f37
+  project_data_model_fit_performed: true
+  protected_feature_years_opened: false
+
+compact_model_run_artifacts:
+  - path: data/model_runs/post_coarse_v1_3_0/post_coarse_plan.json
+    sha256: 75777d87eefc889c4f2ef78ca862da4b0e2c032a48eb613e68d09d8b23e3008d
+    bytes: 3810
+    json_status: PLAN_ONLY_NO_MODEL_FIT
+  - path: data/model_runs/post_coarse_v1_3_0/refinement_phase_manifest.json
+    sha256: 0e8cd37936e25bb23c04dca5eb42c453f6a9f0770de90d78ee7f54d949acb9cc
+    bytes: 52806
+    json_status: COMPLETE
+  - path: data/model_runs/post_coarse_v1_3_0/qnn_phase_manifest.json
+    sha256: 0612c26faeb6dd4b7ed6bbc124cea41675bd826f8ce842e14513a994302f0187
+    bytes: 31430
+    json_status: COMPLETE
+  - path: data/model_runs/post_coarse_v1_3_0/qnn_selected_ansatz.json
+    sha256: f2c5a0aa94ee7d3fa7f89b8055b1364d7f20ab594c62fafd5d0b2f46858807b7
+    bytes: 1459
+    json_status: SELECTED
+  - path: data/model_runs/post_coarse_v1_3_0/qnn_resource_ledger.json
+    sha256: 7860a234105454c2178092bfa88b15d2efa5a84eb75beddc145bcc6fd05c2e1a
+    bytes: 19397
+  - path: data/model_runs/post_coarse_v1_3_0/qnn_resource_smoke.json
+    sha256: 6496d31f1afed681c3b1e50447bd6d080a9b2140d5de9d39a0067414dad76898
+    bytes: 6234
+    json_status: PASS
+  - path: data/model_runs/post_coarse_v1_3_0/runtime_metadata.json
+    sha256: 79701c982809bdd432759e21c876352da9b2bf1c6acbc4e5a711e98c0c358cca
+    bytes: 9049
+  - path: data/model_runs/post_coarse_v1_3_0/post_coarse_confirmation_selection.json
+    sha256: e2598f00c1b85bd4c91898b5df65336d38ae8cfeb61f845c86a9d95eb20c1b6d
+    bytes: 11102
+    json_status: FROZEN_BEFORE_CONFIRMATION_FITS
+  - path: data/model_runs/post_coarse_v1_3_0/confirmation_classical_phase_manifest.json
+    sha256: 273fb91813f6fdfecb125bfc6c6c84969519b586a471c784e032cf7a3ed2e2be
+    bytes: 139190
+    json_status: COMPLETE
+  - path: data/model_runs/post_coarse_v1_3_0/qnn_confirmation_resource_ledger.json
+    sha256: 2bb2e40e05b180957490d6ed75882843e3766f47987753b9ed46168a35f2befa
+    bytes: 25750
+  - path: data/model_runs/post_coarse_v1_3_0/confirmation_phase_manifest.json
+    sha256: 1455abacb27d52b2a73c8bb87c84d69795501029616905fcb0f9ada30d289800
+    bytes: 152516
+    json_status: COMPLETE
+  - path: data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json
+    sha256: 58d100a612902b0b6762b06521fea56b754959b69ffefbc3c50473e0d6d94130
+    bytes: 22883
+    json_status: COMPLETE
+  - path: data/model_runs/post_coarse_v1_3_0/neural_comparison_manifest.json
+    sha256: 560d06e9ec4eebc5b368970fe65d7493e89ca9c2becf8141916179d360f647f4
+    bytes: 7851
+    json_status: COMPLETE
+  - path: data/model_runs/post_coarse_v1_3_0/neural_comparison_clustered_bootstrap.json
+    sha256: c5dd8d837bab6690cb2676d91c221b74660142fb991f04cbb25ad86d0133d7fd
+    bytes: 9480
+    json_status: COMPLETE
+  - path: data/model_runs/post_coarse_v1_3_0/neural_comparison_clustered_bootstrap.csv
+    sha256: b2bae3b3fe6c8afd68702fb3a67350fcab1628259d44e2ca43dc4cb122695084
+    bytes: 1658
+    csv_data_rows: 4
+  - path: data/model_runs/post_coarse_v1_3_0/neural_comparison_clustered_bootstrap.md
+    sha256: a286270e8a148990ebc28979d24eff1f6bfd3a8bb023ceb93eed90fd71842f86
+    bytes: 909
+  - path: data/model_runs/post_coarse_v1_3_0/run_manifest.json
+    sha256: cbd67f90b4dffdeb98fbfcd8b2710521d067f27ebcdbd5c3b2c744fbc8e68771
+    bytes: 2311
+    json_status: COMPLETE
+
+report_artifacts:
+  - path: reports/post_coarse_v1_3_0/01_primary_refinement_results.csv
+    sha256: 2b1d9ef9d926c892784ea0da4ccb4fdd5de64acb32d6d3f7a0fbd57e7c98e5e0
+    bytes: 11584
+    csv_data_rows: 28
+  - path: reports/post_coarse_v1_3_0/02_mlp_comparator_refinement_results.csv
+    sha256: f15fa6a691b67466b212ab1dbc378978e54c2e2cbd5b8929c1a0f52df0230018
+    bytes: 3518
+    csv_data_rows: 8
+  - path: reports/post_coarse_v1_3_0/03_qnn_q1_ansatz_results.csv
+    sha256: 531750e2af97eea76177d290c4e1aa862127bb8b5ecdf3b47d612977ea17f07a
+    bytes: 3566
+    csv_data_rows: 9
+  - path: reports/post_coarse_v1_3_0/04_qnn_q2_results.csv
+    sha256: 45224e8a24140efbc243e8aa4bbf4cd4c8c3d03136e49fa0cfca89125fc8b01e
+    bytes: 4460
+    csv_data_rows: 12
+  - path: reports/post_coarse_v1_3_0/05_primary_confirmation_results.csv
+    sha256: 009bc8a2867ddbceef5f7f167889e2077122aaeb4a630a9a328d8854640ee1f0
+    bytes: 12385
+    csv_data_rows: 30
+  - path: reports/post_coarse_v1_3_0/06_confirmed_mlp_vs_qnn.csv
+    sha256: fd77127b4f7373da3698d0e9f623ea14cdfcfb9cf634675cae7081c1b2518ef8
+    bytes: 2076
+    csv_data_rows: 4
+  - path: reports/post_coarse_v1_3_0/07_final_primary_family_ranking.csv
+    sha256: 4e48aed3224dbe4745f969ba1dea0c6c91050f14cfd2e3e19bd8ef2ed5b8a73f
+    bytes: 2462
+    csv_data_rows: 9
+  - path: reports/post_coarse_v1_3_0/08_neural_comparison_clustered_bootstrap.csv
+    sha256: c526ab55621f5f74c8c3ab2cb09d11307f7a091ad0f2b24e3e0aa2455d4ae80f
+    bytes: 2033
+    csv_data_rows: 4
+  - path: reports/post_coarse_v1_3_0/summary.md
+    sha256: 38f39b0a02826febba781e07099444f521dc8d81225b65dca69f221dfd1e7e95
+    bytes: 2450
+  - path: reports/post_coarse_v1_3_0/report_manifest.json
+    sha256: 655eaed14ef0e37fc8dcb5441771d4b62a5972c0d4fb10a3e540d9e766bf62b8
+    bytes: 1257
+    json_status: COMPLETE
+
+verification_sources:
+  - path: src/modeling/verify_post_coarse_results_freeze.py
+    sha256: 17024a21bb62375a1839da7a839f0e1cc1805129b589c6a770f9c43200922110
+    bytes: 9761
+  - path: tests/test_post_coarse_v1_3_0_results_freeze.py
+    sha256: 12df48c9147b07dccd191ec72cae32dbbf86acd51b1be4684a69756b913b762b
+    bytes: 823
+  - path: docs/10_1_post_coarse_v1_3_0_results_freeze.md
+    sha256: c172694e66f2dab2d8766c2bfeb94090c273030e7887bbc001127aa705529bb5
+    bytes: 2845
+
+frozen_counts:
+  primary_confirmation_slots: 30
+  qnn_confirmation_slots: 3
+  extra_seed_candidate_results: 66
+  qnn_confirmation_first_global_attempt: 110
+  qnn_confirmation_fold_fits: 36
+  final_family_representatives: 9
+  primary_calibrations_and_thresholds: 9
+  neural_comparison_rows: 4
+  neural_calibrations_and_thresholds: 4
+  bootstrap_replicates: 2000
+  bootstrap_valid_replicates: 2000
+  bootstrap_degenerate_replicates: 0
+  bootstrap_rows: 4
+  report_tables: 8
+
+large_artifact_boundary:
+  fitted_objects_committed: false
+  row_level_oof_predictions_committed: false
+  fold_checkpoints_committed: false
+  numeric_worker_arrays_committed: false
+  local_model_run_artifacts_must_be_retained: true
+  external_byte_preserving_backup_required: true
+  compact_manifests_retain_opaque_paths_and_sha256_references: true
+
+result_interpretation_boundary:
+  development_oof_years: [2015, 2016, 2017, 2018, 2019, 2020]
+  results_may_change_frozen_model_roster: false
+  results_may_change_ansatz_or_hyperparameters: false
+  results_may_change_preprocessing: false
+  results_may_change_calibration_method_or_threshold_rule: false
+  bootstrap_is_selection_adjusted: false
+  bootstrap_is_independent_test_inference: false
+  no_quantum_advantage_claim_from_analytic_simulator: true
+
+access_boundary:
+  controlling_policy: configs/data_access_policy_v1_1_0.yaml
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_values_or_statistics_opened: false
+  this_freeze_authorizes_2021_2024_access: false
+  next_permitted_scope:
+    - pca_matched_controls_on_development_data
+    - interpretability_on_development_data
+    - preregistered_robustness_on_development_data
+
+notes:
+  - This manifest intentionally does not hash itself or its containing commit.
+  - The containing Git commit freezes the compact bundle and verifier together.
+  - Large local artifacts remain excluded from ordinary Git tracking and require a separate byte-preserving backup.

@@ -1,0 +1,829 @@
+{
+  "ansatz_selection": {
+    "q1_configuration_id": "model_stage_v1__qnn_q1__rot_cnot_ring",
+    "q1_feature_block": "L+D+R",
+    "q1_pooled_oof_pr_auc": 0.3837976698667534,
+    "selected_ansatz_id": "ROT_CNOT_RING",
+    "status": "SELECTED"
+  },
+  "authority": {
+    "authority_git_index_sha256": "754dc150fb9b6011b1a42d1e40e2d65b68f83b53de2d77673c6047d3fb812f68",
+    "backend_amendment": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_amendment.yaml",
+      "sha256": "2a70585074c9d9ca4d7097b3c7087ec334e94d88a658884b6038b45c4b2d3c91"
+    },
+    "base_execution_contract": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml",
+      "sha256": "8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a"
+    },
+    "candidate_registry": {
+      "path": "configs/model_stage_candidates_v1_scientific_patch.json",
+      "sha256": "f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac"
+    },
+    "coarse_manifest": {
+      "path": "data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json",
+      "sha256": "5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43"
+    },
+    "methodology_amendment": {
+      "path": "configs/model_stage_v1_3_0_neural_comparator_amendment.yaml",
+      "sha256": "4e72c76a51c233212b6c7a5dd093c77a586d27250ff002df2aee2b107cf76f1c"
+    }
+  },
+  "id": "post_coarse_qnn_phase_v1_0_0",
+  "project_data_model_fit_performed": true,
+  "protected_feature_years_opened": false,
+  "q1_counts": {
+    "candidate_positions": 9,
+    "complete": 9,
+    "technically_invalid": 0
+  },
+  "q1_result_references": [
+    {
+      "analysis_role": "QNN_Q1_ANSATZ_SELECTION",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__rot_cnot_ring/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "a1d4c697b838014258457bb0d777438cd734e581f5e4f971e6f6df9ae918dc56",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q1__rot_cnot_ring",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "5510f07edd00e1ba8f2fcb928ede656ef1cabaac59ae0b448aa047216a403c4b",
+        "parameters": {
+          "ansatz": "ROT_CNOT_RING",
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.36763376712456275,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q1",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q1_ANSATZ_SELECTION",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__ry_rz_cz_brickwork/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "16e856c2bf0f71fb64d8a0e7916d1dd7308d261f87d628287cc46298089a7530",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q1__ry_rz_cz_brickwork",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "344aac696bc2bce58353cdac8c3aeea1d69e9a89f2c924c039a4f5f52382cb70",
+        "parameters": {
+          "ansatz": "RY_RZ_CZ_BRICKWORK",
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.3690982315375506,
+        "selected_ansatz_id": "RY_RZ_CZ_BRICKWORK",
+        "stage": "qnn_q1",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q1_ANSATZ_SELECTION",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__ry_crx_ring/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "8f5148264cf8c287ef1ce4dde434014297f0a6ec8b066bef0e721da4e342eff7",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q1__ry_crx_ring",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "a497be7fcd3c67be0a7e7b1076cbb7aa69582617867b3074b2752eb1994c86ec",
+        "parameters": {
+          "ansatz": "RY_CRX_RING",
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.362942859335336,
+        "selected_ansatz_id": "RY_CRX_RING",
+        "stage": "qnn_q1",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q1_ANSATZ_SELECTION",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__rot_cnot_ring/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "16b22eab7c131fc017879865cf0cc390f713b4431d3f4d775645a6571e10d164",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q1__rot_cnot_ring",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "135ec2e784827b91244a04c01ec1d313ff5313d81595ee4b4c015478f34d7067",
+        "parameters": {
+          "ansatz": "ROT_CNOT_RING",
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.36043468900371284,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q1",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q1_ANSATZ_SELECTION",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__ry_rz_cz_brickwork/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "b27a947a84792bb69b7a93c2c9cf6220a882061b4c916a38e84ef5fe25101c46",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q1__ry_rz_cz_brickwork",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "56a2766011a710fdc39cdefa5de8ca035a5b23adfe2f5d48f6972c6b59e969fe",
+        "parameters": {
+          "ansatz": "RY_RZ_CZ_BRICKWORK",
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.37224781135395424,
+        "selected_ansatz_id": "RY_RZ_CZ_BRICKWORK",
+        "stage": "qnn_q1",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q1_ANSATZ_SELECTION",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__ry_crx_ring/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "b3c688e5a316e0e1fade8be6385a8ccb0828a495f5b4937a4796fcee56e7c7e0",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q1__ry_crx_ring",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "bffc42b6e1a31653aa482834eb51d1259a47c7f4a56c5496c597da02d9b4a8e9",
+        "parameters": {
+          "ansatz": "RY_CRX_RING",
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.3683272888595489,
+        "selected_ansatz_id": "RY_CRX_RING",
+        "stage": "qnn_q1",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q1_ANSATZ_SELECTION",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__rot_cnot_ring/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "d3ca98188a47a84e66a4a9d431dce6863d7f65d1b7b345855ed3043c89181e7c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q1__rot_cnot_ring",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "d4b96f2e947f1999ce38b91cf76557dbb5cb1b24c7c4a66d33fe9c9395f716af",
+        "parameters": {
+          "ansatz": "ROT_CNOT_RING",
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.3837976698667534,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q1",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q1_ANSATZ_SELECTION",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__ry_rz_cz_brickwork/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "944e9099bf98459b17449777d9bb3242d2007b9314db4eddc61bd18da5b6112c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q1__ry_rz_cz_brickwork",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "83f77cbebb9620a8e00782b87d4530dd6c834169cf47ae4a6776fe913e503a74",
+        "parameters": {
+          "ansatz": "RY_RZ_CZ_BRICKWORK",
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.37683476648098047,
+        "selected_ansatz_id": "RY_RZ_CZ_BRICKWORK",
+        "stage": "qnn_q1",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q1_ANSATZ_SELECTION",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__ry_crx_ring/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "6a06cd39f6e02ee3218691a4fb4cca5eadf240f9df355b8f8c5e53f707a529cb",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q1__ry_crx_ring",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "9e4e8c38d5306fb2ccda0edb8fc2f482f956ac6d5c71ad068d6d521298daa856",
+        "parameters": {
+          "ansatz": "RY_CRX_RING",
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.3777296015225091,
+        "selected_ansatz_id": "RY_CRX_RING",
+        "stage": "qnn_q1",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    }
+  ],
+  "q2_counts": {
+    "candidate_positions": 12,
+    "complete": 12,
+    "technically_invalid": 0
+  },
+  "q2_result_references": [
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "0b356c30f0600d74c8d0867e525329efb8d7a693448fd07c7b4d5055030fb5e0",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t0",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "5510f07edd00e1ba8f2fcb928ede656ef1cabaac59ae0b448aa047216a403c4b",
+        "parameters": {
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "reuse_q1_winner": true,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.36763376712456275,
+        "reuse_source": {
+          "configuration_id": "model_stage_v1__qnn_q1__rot_cnot_ring",
+          "oof_prediction_artifact_sha256": "5510f07edd00e1ba8f2fcb928ede656ef1cabaac59ae0b448aa047216a403c4b",
+          "stage": "qnn_q1"
+        },
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t1/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "ebbea9f80844b25e9fd3367522a2cc6309dab4f53ab7348207a5531685f37fbd",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t1",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "4294a377e2029f021577603a542483152d0a5dbf5f998d6b4c4d3324eb691ec4",
+        "parameters": {
+          "batch_size": 256,
+          "epochs": 30,
+          "imbalance": "none",
+          "layers": 1,
+          "learning_rate": 0.03,
+          "qubits_pca": 4,
+          "reuse_q1_winner": false,
+          "weight_decay": 0.0
+        },
+        "pooled_oof_pr_auc": 0.338812278167082,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t2/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "edd44ad275495a2b5d6ffa71fbadaf94223b6fac7bf6d8d922f299f247a8af15",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t2",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "448af7b876f68de987eaa4a343efb10e8b0fc3b12844183ebf885050fc3b1355",
+        "parameters": {
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 6,
+          "reuse_q1_winner": false,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.36503142353586915,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t3/L/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "1c268e4fa8aae0166bb120ad0ea2ed1b4e2cf9b8d80715819bc89dd5faa853a3",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t3",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "92413039cc3900404799a2776bc00b0caa2259f81aad5c75137d070460d19399",
+        "parameters": {
+          "batch_size": 256,
+          "epochs": 60,
+          "imbalance": "none",
+          "layers": 3,
+          "learning_rate": 0.003,
+          "qubits_pca": 6,
+          "reuse_q1_winner": false,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3371691305584695,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "b0ca608f4d097acffa1e70b8588f2f81c54201c0a10cdb3d81cebc04ea473901",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t0",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "135ec2e784827b91244a04c01ec1d313ff5313d81595ee4b4c015478f34d7067",
+        "parameters": {
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "reuse_q1_winner": true,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.36043468900371284,
+        "reuse_source": {
+          "configuration_id": "model_stage_v1__qnn_q1__rot_cnot_ring",
+          "oof_prediction_artifact_sha256": "135ec2e784827b91244a04c01ec1d313ff5313d81595ee4b4c015478f34d7067",
+          "stage": "qnn_q1"
+        },
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t1/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "adb616dd01659ac890f624106a0674883a920bf9db4b19d198683748769a2c91",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t1",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "f3a290e004174d00e8a776f66947ae3558aae8fe45d48074ce595f7f01a215ea",
+        "parameters": {
+          "batch_size": 256,
+          "epochs": 30,
+          "imbalance": "none",
+          "layers": 1,
+          "learning_rate": 0.03,
+          "qubits_pca": 4,
+          "reuse_q1_winner": false,
+          "weight_decay": 0.0
+        },
+        "pooled_oof_pr_auc": 0.35559813625329134,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t2/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "b9273849d95d32aabe74f041ffd54e665090422a8a286f1e7037c070921025a6",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t2",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "f70450cd867a098cac4afbc908ad18d0512ca791540030eef8c7904094197db4",
+        "parameters": {
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 6,
+          "reuse_q1_winner": false,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.38166505039008025,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t3/L_D/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "585ed3f08901211dc94e24ba7b5a7e9e7051dc9c0c9a26ce5190da3162385ff7",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t3",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "ff801c279c38d416f0b53fd2c4905df67c978fdc140ebebe53521ebc3ba93c3a",
+        "parameters": {
+          "batch_size": 256,
+          "epochs": 60,
+          "imbalance": "none",
+          "layers": 3,
+          "learning_rate": 0.003,
+          "qubits_pca": 6,
+          "reuse_q1_winner": false,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3574075853986783,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "09be7ae7941f23166ce2b8e33a3f544c12300b3410adaed4f93c25f10316a935",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t0",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "d4b96f2e947f1999ce38b91cf76557dbb5cb1b24c7c4a66d33fe9c9395f716af",
+        "parameters": {
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 4,
+          "reuse_q1_winner": true,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.3837976698667534,
+        "reuse_source": {
+          "configuration_id": "model_stage_v1__qnn_q1__rot_cnot_ring",
+          "oof_prediction_artifact_sha256": "d4b96f2e947f1999ce38b91cf76557dbb5cb1b24c7c4a66d33fe9c9395f716af",
+          "stage": "qnn_q1"
+        },
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t1/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "9b9da34bc902bc225aa6160a4738f07acf63f35a85613fb316ffa10bf1f2d954",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t1",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "5a1e8804a4d2e0e04de3619faae815b82c66864d9a7649d4b386a0c2abe26e17",
+        "parameters": {
+          "batch_size": 256,
+          "epochs": 30,
+          "imbalance": "none",
+          "layers": 1,
+          "learning_rate": 0.03,
+          "qubits_pca": 4,
+          "reuse_q1_winner": false,
+          "weight_decay": 0.0
+        },
+        "pooled_oof_pr_auc": 0.36834819586721274,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t2/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "29d16ec754a296305890655ca74a0ecbf039cf1341befbe3a37a3e9263e71f46",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t2",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "85544f78af2659672bd36be9668c84974afd0893f1536e6cc64a3efb5f06c583",
+        "parameters": {
+          "batch_size": 128,
+          "epochs": 45,
+          "imbalance": "sqrt",
+          "layers": 2,
+          "learning_rate": 0.01,
+          "qubits_pca": 6,
+          "reuse_q1_winner": false,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.37285409096320027,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    },
+    {
+      "analysis_role": "QNN_Q2_BLOCK_SPECIFIC_REFINEMENT",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t3/L_D_R/seed_20260818/candidate_manifest.json",
+      "candidate_manifest_sha256": "0c7aa0a5993a729af7cbcf124e4418e9f62d7bb63d207592cf1403967e348e00",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__qnn_q2__t3",
+        "failure_code": null,
+        "family": "qnn",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "20be709f23dd393a5a569ffed3587e6949360d5fdd6bdf4939cc9087d0e01661",
+        "parameters": {
+          "batch_size": 256,
+          "epochs": 60,
+          "imbalance": "none",
+          "layers": 3,
+          "learning_rate": 0.003,
+          "qubits_pca": 6,
+          "reuse_q1_winner": false,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3616387013228598,
+        "selected_ansatz_id": "ROT_CNOT_RING",
+        "stage": "qnn_q2",
+        "status": "COMPLETE",
+        "training_seed": 20260818
+      }
+    }
+  ],
+  "qnn_resource_ledger": {
+    "path": "data/model_runs/post_coarse_v1_3_0/qnn_resource_ledger.json",
+    "sha256": "7860a234105454c2178092bfa88b15d2efa5a84eb75beddc145bcc6fd05c2e1a"
+  },
+  "qnn_selected_ansatz_artifact_sha256": "f2c5a0aa94ee7d3fa7f89b8055b1364d7f20ab594c62fafd5d0b2f46858807b7",
+  "refinement_gate_passed": true,
+  "runtime_seconds": 48689.261878499994,
+  "schema_version": 1,
+  "status": "COMPLETE"
+}

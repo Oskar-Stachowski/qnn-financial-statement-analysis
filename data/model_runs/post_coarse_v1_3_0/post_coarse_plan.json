@@ -1,0 +1,110 @@
+{
+  "authority": {
+    "authority_git_index_sha256": "PLAN_ONLY",
+    "backend_amendment": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_amendment.yaml",
+      "sha256": "2a70585074c9d9ca4d7097b3c7087ec334e94d88a658884b6038b45c4b2d3c91"
+    },
+    "base_execution_contract": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml",
+      "sha256": "8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a"
+    },
+    "candidate_registry": {
+      "path": "configs/model_stage_candidates_v1_scientific_patch.json",
+      "sha256": "f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac"
+    },
+    "coarse_manifest": {
+      "path": "data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json",
+      "sha256": "5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43"
+    },
+    "methodology_amendment": {
+      "path": "configs/model_stage_v1_3_0_neural_comparator_amendment.yaml",
+      "sha256": "4e72c76a51c233212b6c7a5dd093c77a586d27250ff002df2aee2b107cf76f1c"
+    }
+  },
+  "coarse_source": {
+    "candidate_positions": 247,
+    "model_fit_reused_not_repeated": true,
+    "status": "COMPLETE"
+  },
+  "id": "post_coarse_execution_plan_v1_0_0",
+  "neural_comparison_inference": {
+    "confidence_level": 0.95,
+    "model_fit_performed": false,
+    "paired_cluster_draws_across_models": true,
+    "replicates": 2000,
+    "resampling_unit": "economic_group_id",
+    "seed": 20260818
+  },
+  "planned_output_dir": "data/model_runs/post_coarse_v1_3_0",
+  "primary_confirmation": {
+    "additional_fold_fits": 360,
+    "slots": 30
+  },
+  "primary_refinement": {
+    "activations": [
+      {
+        "boundary": true,
+        "distance_to_global_coarse_leader": 0.0,
+        "family": "xgboost",
+        "family_leader_configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "feature_block": "L+D+R",
+        "runner_up_gap": 0.0007886610681532291
+      },
+      {
+        "boundary": true,
+        "distance_to_global_coarse_leader": 0.003867192532450381,
+        "family": "hist_gradient_boosting",
+        "family_leader_configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__007",
+        "feature_block": "L+D+R",
+        "runner_up_gap": 0.0016891496505946901
+      },
+      {
+        "boundary": true,
+        "distance_to_global_coarse_leader": 0.004286350941319017,
+        "family": "random_forest",
+        "family_leader_configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "feature_block": "L+D+R",
+        "runner_up_gap": 0.0026189674772395533
+      }
+    ],
+    "candidate_positions": 28,
+    "fold_fits": 168,
+    "may_be_changed_by_mlp_supplement": false
+  },
+  "project_data_model_fit_performed": false,
+  "protected_feature_years_opened": false,
+  "qnn": {
+    "confirmation_additional_fold_fits": 36,
+    "confirmation_slots": 3,
+    "q1_candidate_positions": 9,
+    "q1_fold_fits": 54,
+    "q2_logical_candidate_positions": 12,
+    "q2_new_fold_fits": 54,
+    "q2_reused_q1_positions": 3
+  },
+  "schema_version": 1,
+  "stage_order": [
+    "refinement",
+    "qnn",
+    "confirmation",
+    "inference",
+    "report"
+  ],
+  "status": "PLAN_ONLY_NO_MODEL_FIT",
+  "supplemental_mlp_comparator": {
+    "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR",
+    "candidate_positions": 8,
+    "coarse_leader_configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+    "coarse_leader_pooled_oof_pr_auc": 0.39548464852848403,
+    "family": "pytorch_mlp",
+    "feature_block": "L+D",
+    "fold_fits": 48,
+    "primary_ranking_eligible": false
+  },
+  "supplemental_mlp_confirmation": {
+    "deduplicated_if_already_in_primary_confirmation": true,
+    "maximum_additional_fold_fits": 12,
+    "maximum_additional_slots": 1
+  }
+}

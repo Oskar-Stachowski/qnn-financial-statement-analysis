@@ -1,0 +1,3335 @@
+{
+  "authority": {
+    "authority_git_index_sha256": "32619b522a84f8c85d78b14bd3bef1fc6e4b42a12beb497de93eef39dee101cc",
+    "backend_amendment": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_amendment.yaml",
+      "sha256": "2a70585074c9d9ca4d7097b3c7087ec334e94d88a658884b6038b45c4b2d3c91"
+    },
+    "base_execution_contract": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml",
+      "sha256": "8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a"
+    },
+    "candidate_registry": {
+      "path": "configs/model_stage_candidates_v1_scientific_patch.json",
+      "sha256": "f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac"
+    },
+    "coarse_manifest": {
+      "path": "data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json",
+      "sha256": "5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43"
+    },
+    "methodology_amendment": {
+      "path": "configs/model_stage_v1_3_0_neural_comparator_amendment.yaml",
+      "sha256": "4e72c76a51c233212b6c7a5dd093c77a586d27250ff002df2aee2b107cf76f1c"
+    }
+  },
+  "classical_extra_seed_candidate_result_references": [
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__011/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "0aeb96920aa0186c14eafd795766cf9817d6d0b0d4f2a37600e0400e72295ea2",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__011",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "eee03a5e948a26ef37470f77faaab9ec86f5e1f37d146fe833deecf0ee70a893",
+        "parameters": {
+          "C": 100.0,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.0
+        },
+        "pooled_oof_pr_auc": 0.3659616208966845,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__011/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "d2f94bc114b9e47a52579ec928b7f04fcd3bf5920025800bb085a708d8f8cd26",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__011",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "c456e83a9c0159e406743b47dc25d91f95d358944c5cd22576262737bd7fbfeb",
+        "parameters": {
+          "C": 100.0,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.0
+        },
+        "pooled_oof_pr_auc": 0.3659568228662202,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__012/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "a9a1b261666df7fcc861df35db4a46b0cf20600a2f4addb72a2c8bcea66fe2cd",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__012",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "5e1b486c100cfa213c5ab89e0a1a9a698598d6308c771a94fc7a2ad31db3eea3",
+        "parameters": {
+          "C": 100.0,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.75
+        },
+        "pooled_oof_pr_auc": 0.3659334886502249,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__012/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "c80959298335dd60512ed123d3011459055787fe4feea1f74146433db52f7661",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__012",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "fa098c4a217f51ff57865873ea2fa2d50f155084341bb269488e627ef3a5526b",
+        "parameters": {
+          "C": 100.0,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.75
+        },
+        "pooled_oof_pr_auc": 0.36593002418379805,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__006/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "5776f354a94e7576874290eb0812989cb9722692df9f27d2353d5e2614c2e0b0",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__006",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "db54ded1e076ec25b4257a4bbc35d2d59d9fee47ee54be4d34739aba1ab08419",
+        "parameters": {
+          "C": 0.1,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.0
+        },
+        "pooled_oof_pr_auc": 0.37076937106082436,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__006/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "97c552115bf5303104594aec6d7835f9fe262d7479509ff7794719c9627bc85f",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__006",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "0662a87bbb1adb9798bd790ff9ca3e76d1086987b6c39322a493e285c0943ffb",
+        "parameters": {
+          "C": 0.1,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.0
+        },
+        "pooled_oof_pr_auc": 0.3707692848685287,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__009/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "7b18b34157ecae876d284e07ee12ed44ef32d382dac693c098c4510dd17b6bb7",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__009",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "49fa62dc3636f7b46ed725e185eb24f06ebe2418652cfbd383b27458369876c5",
+        "parameters": {
+          "C": 1.0,
+          "imbalance": "sqrt",
+          "l1_ratio": 1.0
+        },
+        "pooled_oof_pr_auc": 0.37039122369709426,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__009/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "0119694b8c9e688cf33a0b9e509250d5f5606b6312475b9f59eba902fda4f793",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__009",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "09963fb4ba2768ff6478da8e1738f34f62a86f509512b3fe4c46fb841d209965",
+        "parameters": {
+          "C": 1.0,
+          "imbalance": "sqrt",
+          "l1_ratio": 1.0
+        },
+        "pooled_oof_pr_auc": 0.3703901277464352,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__003/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "33b94a31e50a2664efb2b373be9a0ce05c8ddbb0068b742a197c18a3d02aa0de",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__003",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "99dbbd9ca2a6a90e2ebcef0f11470dbb2dfd9b517193c3c6886d997381b80fb1",
+        "parameters": {
+          "C": 0.01,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.25
+        },
+        "pooled_oof_pr_auc": 0.381824795267072,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__003/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "670a6140cfd64c5b7622fa0f01f172de3fcc9a4788c279bc31cf8b8b4b55ce80",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__003",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "a5f9cd59437c13ff9b1c7a9649acf99babf878a68208a91a548f2ea8ecdc5642",
+        "parameters": {
+          "C": 0.01,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.25
+        },
+        "pooled_oof_pr_auc": 0.3818256262255368,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__006/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "8f19603a8c731615d652e6141175127f883f425a12a06756c8e0fa376657f230",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__006",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "ae4dae481c808c9d395431c15fa15a9babac0347e13ff35751cccc1242f3d362",
+        "parameters": {
+          "C": 0.1,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.0
+        },
+        "pooled_oof_pr_auc": 0.38175520796795875,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__006/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "d0234dd8b4e4b0abe7d34f96e81b010f07840ad8a4e099d1c1eb729d38feeb2f",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__006",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "d4cce45dfb31e385fd2c6de12895db56a177efe1f8500317e5d4bd45ae63be1c",
+        "parameters": {
+          "C": 0.1,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.0
+        },
+        "pooled_oof_pr_auc": 0.38175542151657116,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__003/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "f3a92a0cb759fbe4b781b1d539915fa7ed59b20b7b0c296bd31101acac9d2f04",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "049b955c708b57d3af43006d7f592b23f6ce51bc2a03ee6d70adea509645cb06",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 6,
+          "max_features": 0.5,
+          "max_samples": 1.0,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.393602630010429,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__003/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "5264c8c8537ffd8b2cbb74f336a642d348cc4121a0bef3ebc907b7b1a3098d73",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "f9122ec862283bb8e51a7e44fa7ea9d9d15f6846a0851ef622cc0b82ca566c98",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 6,
+          "max_features": 0.5,
+          "max_samples": 1.0,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.3932231461718404,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__011/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "60b4dfe57d939f1ad4920214bac51a15e6ee2de9c0646c18253228e5be9b5ecd",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__011",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "575864bd53517f3077ebccba0c935e3048ad653767ee6b9364181f081a977c3e",
+        "parameters": {
+          "criterion": "log_loss",
+          "imbalance": "sqrt",
+          "max_depth": null,
+          "max_features": "sqrt",
+          "max_samples": 1.0,
+          "min_samples_leaf": 20
+        },
+        "pooled_oof_pr_auc": 0.39153632289285795,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__011/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "ee4626e6aa9c4f6887db0a37dd574be56c22428e5064a9309b23b5506386f0b0",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__011",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "23539166e8f0a17aab7671b7c47cdd3cc9eeee315037c243d0e967b8641fede2",
+        "parameters": {
+          "criterion": "log_loss",
+          "imbalance": "sqrt",
+          "max_depth": null,
+          "max_features": "sqrt",
+          "max_samples": 1.0,
+          "min_samples_leaf": 20
+        },
+        "pooled_oof_pr_auc": 0.39065489111189966,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__003/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "e04db857ab70859a117d6725f869eac24d8fe3b8731b43fc8b3c798f2dd821c3",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "d4d6dce509dc63d44e4756825fda9c9cce0217947b89b8a5957e4a0c86b77d02",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 6,
+          "max_features": 0.5,
+          "max_samples": 1.0,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.4028645468911834,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__003/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "0fe7e94031568376b7d5bde9675d88be469621cb79d315610504063f8f1c4afc",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "abb7bcbbc4fd770ecc00906ee263efae6746fb79cf7b9b31dd0e5ad4e71b4790",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 6,
+          "max_features": 0.5,
+          "max_samples": 1.0,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.40261592488209247,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__004/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "c5fd77b30d4d4ff7d8e0520bd8d24c84049be55fc4b63c8d7b06458ca81be22e",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__004",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "6f3243606c4fec645882f6445907729d90253db8da27c696b18916c2f7293625",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "sqrt",
+          "max_depth": 24,
+          "max_features": 1.0,
+          "max_samples": 0.7,
+          "min_samples_leaf": 20
+        },
+        "pooled_oof_pr_auc": 0.40064331448533874,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__004/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "00ce3137919069debaee4067b716048f0da2b868d39f3c4376b430d887b7edb1",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__004",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "5d00641fae1575d959bf144bd3a62f9eab4cf2e50794ee8a7c357dd0906d18b6",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "sqrt",
+          "max_depth": 24,
+          "max_features": 1.0,
+          "max_samples": 0.7,
+          "min_samples_leaf": 20
+        },
+        "pooled_oof_pr_auc": 0.39890093092489926,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__003/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "ff8d5f8f1eb461a5f2b27282d77ce9ddac90cf6d591bfb0455fcf88e57f422c3",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "e5003642d76ae18dde0745ffaf77f6a72ad75d785b5189885142e4e3aa4d16d5",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 6,
+          "max_features": 0.5,
+          "max_samples": 1.0,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.406102346800212,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__003/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "64bb800465134734ca43d56e98977a39257c77b0a1d9c494b7361714ea73fe8e",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "03bb8b4d36f334f24ae9be5b5084bd2d12bdaa14f25af70c06acab0ad157afd7",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 6,
+          "max_features": 0.5,
+          "max_samples": 1.0,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.4056807268881428,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__008/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "becb1214f67c0d639fe1c16248da269d33b5cb39c453e36c2157e643fdabe328",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__008",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "18fd22785f9ef471bd850a9ecadd13d49ef5524b5155578f868ea85719a9bb77",
+        "parameters": {
+          "criterion": "log_loss",
+          "imbalance": "sqrt",
+          "max_depth": 12,
+          "max_features": "sqrt",
+          "max_samples": 0.7,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.40364065987212705,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/random_forest/model_stage_v1__coarse__random_forest__008/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "150eb0f23a75ea0f6e9a38d3b25d5884b8bcf84ed9270f9fbbf18fb9bc5a07f3",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__008",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "587b1f990f6ab98dc26fcc3985cb49da352dc106750fb0c2bded431116d54e27",
+        "parameters": {
+          "criterion": "log_loss",
+          "imbalance": "sqrt",
+          "max_depth": 12,
+          "max_features": "sqrt",
+          "max_samples": 0.7,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.40413270073609275,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__005/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "5d9fed320427ca7cc58566eca5dde2740944e8c87125bc7b70b21976dabd2e2a",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__005",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "0af6936c7289eb43bd151282cd558a505e665cdb9908ea363ff1b28af84e7a24",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 1.0,
+          "learning_rate": 0.06,
+          "max_features": 0.7,
+          "max_iter": 150,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.39639024341514173,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__005/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "637b5b755ef402e3db455a0cac61f7e2472a29d8bc35c6bafec7f40de03f5bba",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__005",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "a627b8121b2eb7fdd51b24f33d37be3b586b587ce715e56156b62ed3a3c452e9",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 1.0,
+          "learning_rate": 0.06,
+          "max_features": 0.7,
+          "max_iter": 150,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.39563200387226194,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__010/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "9ccb047efda1227af61166f04ca3db00ab1965b5d58ebeeb1932b0cd3e01a297",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__010",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "02ce57ec560f8c753e0fa58063f4faa615e8aebea47be79678c236933296d09f",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 10.0,
+          "learning_rate": 0.03,
+          "max_features": 0.7,
+          "max_iter": 300,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.3962060903707082,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__010/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "6e932472255592e351443fddf6eee18c1ae11ced95a12ec555f720603fec9ead",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__010",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "8bffa43bba75cf2a21c25830c439278ca2022f0a969776b041923a0a753f3c4c",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 10.0,
+          "learning_rate": 0.03,
+          "max_features": 0.7,
+          "max_iter": 300,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.395964087875059,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__005/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "59c792d1e6ff6c1997f3c6f726f12040b957aee5fbc5ffe3e4a830c2b84e4d31",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__005",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "80477ab829519bdd08a42fda3b7d3c4e1c44d6bdabcbc67a6bae4ca994c905b4",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 1.0,
+          "learning_rate": 0.06,
+          "max_features": 0.7,
+          "max_iter": 150,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.40253417561888677,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__005/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "70d70e800a61fed4b18e268ddc5e1c959a6328c1c39e2487f94cf0f7c847221c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__005",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "48bfe309cbb0d43f0d68d24735295a8c8a4f745033da02422f544dca9a15688f",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 1.0,
+          "learning_rate": 0.06,
+          "max_features": 0.7,
+          "max_iter": 150,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.40090153123070743,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__004/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "837436c7906d3dd0a60f65d5e028372e7914fbe492fa98d63ab319fbc35f3308",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__004",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "e6286150d0247bdda923126403515bca88d9093493ed51d3412e50b74fbf97a7",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 0.1,
+          "learning_rate": 0.1,
+          "max_features": 0.7,
+          "max_iter": 150,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 100
+        },
+        "pooled_oof_pr_auc": 0.3977019953998715,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__004/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "23ea79686eceefce531a38a90003fc61e70c5f0cc9e021325e1db12567d5b81e",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__004",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "e3a8f21298abe34b04d907723ee22d88381040dc642f9530b2ef328377d4a8a8",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 0.1,
+          "learning_rate": 0.1,
+          "max_features": 0.7,
+          "max_iter": 150,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 100
+        },
+        "pooled_oof_pr_auc": 0.40014141263818975,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__007/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "d87978a07d06b2cfc8ea36e9d7d53280482c52ae3eb32cd16001c1953a10606b",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__007",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "3294ec57a70f06f2614f140c7e5f1ccf721ae1d04dda1621fd805efbe596a303",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 1.0,
+          "learning_rate": 0.06,
+          "max_features": 1.0,
+          "max_iter": 300,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.4078102954039723,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__007/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "2bc726e6212da1b3911909a421863084eae111cd9bc147e0ab48dc9a6294fa1b",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__007",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "3294ec57a70f06f2614f140c7e5f1ccf721ae1d04dda1621fd805efbe596a303",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 1.0,
+          "learning_rate": 0.06,
+          "max_features": 1.0,
+          "max_iter": 300,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.4078102954039723,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__010/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "91948bc1340fef3bb6f08ed54c57123d907ba123b41daa20f18f016e64ac9d01",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__010",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "6e75a56cf1d2ad820c96847bf8b29cfb64572e2d8e52b86bb50b2cf088f0c39b",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 10.0,
+          "learning_rate": 0.03,
+          "max_features": 0.7,
+          "max_iter": 300,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.40629127935859727,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__010/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "22327d241aa5e7fb27be118e48524c633c298e6e9e88373b7a5fae97df396363",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__010",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "7f3cb9511efdfdeb51bd07aaeaba557a5d5775c303ddcba92a1683f44d37644f",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 10.0,
+          "learning_rate": 0.03,
+          "max_features": 0.7,
+          "max_iter": 300,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.40729573012861714,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__004/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "d7c50096b437cb07ee0ff423c410e4c8751e54d38e699d70dcaa5bd50b7b4adc",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "b4494e21a880fb8f87021bc52b34b220533f63ce00b1dc99a13355a1eae30e67",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.02,
+          "max_depth": 2,
+          "min_child_weight": 20,
+          "n_estimators": 500,
+          "reg_alpha": 0.0,
+          "reg_lambda": 1.0,
+          "subsample": 1.0
+        },
+        "pooled_oof_pr_auc": 0.40269704584880456,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__004/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "c5e0bf28a643e30bddb5d6c308603027cb6728bdb715d547179e8d72e110f366",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "06b2adcfdac84e34f6a6318a0d4412251335073a0cc68dc5c15d13626724fa39",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.02,
+          "max_depth": 2,
+          "min_child_weight": 20,
+          "n_estimators": 500,
+          "reg_alpha": 0.0,
+          "reg_lambda": 1.0,
+          "subsample": 1.0
+        },
+        "pooled_oof_pr_auc": 0.4033703135237179,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__005/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "4e6a7703794284c359639d9a26582fc5273b4218e238e16f3cdad7f596f7d9d0",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__005",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "db44a0ab6668bb89e2316d81a3417dcd61b121653f00f2a492f1c92acbe4946e",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.05,
+          "max_depth": 2,
+          "min_child_weight": 5,
+          "n_estimators": 800,
+          "reg_alpha": 0.0,
+          "reg_lambda": 20.0,
+          "subsample": 0.7
+        },
+        "pooled_oof_pr_auc": 0.39382629505338085,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__005/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "054b86368c788889b43bf0e554162330dddd3639af902e7a48a5491bc691fd30",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__005",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "ebd2180cade75d29f970c4f9ee43b9e2bd6ee6c4e858e9e806c6d4b8ad1f9a12",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.05,
+          "max_depth": 2,
+          "min_child_weight": 5,
+          "n_estimators": 800,
+          "reg_alpha": 0.0,
+          "reg_lambda": 20.0,
+          "subsample": 0.7
+        },
+        "pooled_oof_pr_auc": 0.3942745327197998,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__009/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "897685b145c4b168af9240f62119173ee09a0536cadd66b3f72dd69eb9b4ab32",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__009",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "04125a24995c62ab6742a4ccb4b402d6f2c87cc45c98c4727c28b063837214a2",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.1,
+          "imbalance": "sqrt",
+          "learning_rate": 0.05,
+          "max_depth": 3,
+          "min_child_weight": 1,
+          "n_estimators": 200,
+          "reg_alpha": 0.0,
+          "reg_lambda": 5.0,
+          "subsample": 0.7
+        },
+        "pooled_oof_pr_auc": 0.40144528508317606,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__009/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "39db487f69a5afbe7bb8d5e704cf4f88a4b1f32cc3edda746bb25f77cab3020d",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__009",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "c3fe5bd2e6ebf3f8cfc7cbaed2dce9bc2b3b8e139ee1c26404489f58786d7795",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.1,
+          "imbalance": "sqrt",
+          "learning_rate": 0.05,
+          "max_depth": 3,
+          "min_child_weight": 1,
+          "n_estimators": 200,
+          "reg_alpha": 0.0,
+          "reg_lambda": 5.0,
+          "subsample": 0.7
+        },
+        "pooled_oof_pr_auc": 0.40428644870150143,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__004/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "a4e33837768a5dfcb1be1598a11ad2b6b384ae116c1e648f7d162eb3106fcb60",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "b14422a637a4c4cdbefa75036e31aa6f4753ca26fe5e1196eddb3ca42f99c6bc",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.02,
+          "max_depth": 2,
+          "min_child_weight": 20,
+          "n_estimators": 500,
+          "reg_alpha": 0.0,
+          "reg_lambda": 1.0,
+          "subsample": 1.0
+        },
+        "pooled_oof_pr_auc": 0.40431700442221036,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__004/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "83b0bdfc023a6f855f988f5bbe0c30ed61cf840557ad8322c52bac59349c8aed",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "f12fe9603e976b6bedad668729cfc3a59ff64370444ab9406d167361b9c92d43",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.02,
+          "max_depth": 2,
+          "min_child_weight": 20,
+          "n_estimators": 500,
+          "reg_alpha": 0.0,
+          "reg_lambda": 1.0,
+          "subsample": 1.0
+        },
+        "pooled_oof_pr_auc": 0.4041608628157209,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__004/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "b9b47fce5b977e7d21ab4389a9da166cd1c93b97029ecae4af6c6d307c3411ce",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "3ff667833a40935a9450ff020fd44076443612b288ea47f673a57a7e9a4686fd",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.02,
+          "max_depth": 2,
+          "min_child_weight": 20,
+          "n_estimators": 500,
+          "reg_alpha": 0.0,
+          "reg_lambda": 1.0,
+          "subsample": 1.0
+        },
+        "pooled_oof_pr_auc": 0.41317036611634056,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/xgboost/model_stage_v1__coarse__xgboost__004/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "8646fdedda245ce9d0baae6164ec91c792edba8db386d47a3c001d811f9cd21c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "e984edd176c401fc53c3082d33bc0f05281703afb1b552e6ed99c11b4ef26bb5",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.02,
+          "max_depth": 2,
+          "min_child_weight": 20,
+          "n_estimators": 500,
+          "reg_alpha": 0.0,
+          "reg_lambda": 1.0,
+          "subsample": 1.0
+        },
+        "pooled_oof_pr_auc": 0.4142413382247647,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__001/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "89863a9e5b2438e6bca84e68217ec8af204da264c25603d1987c2f1d0978d23f",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__001",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "b420607453372116b084641002badc87ae503b46bd259b042f470010766e1824",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.03,
+          "imbalance": "none",
+          "learning_rate": 0.015,
+          "max_depth": 2,
+          "min_child_weight": 10,
+          "n_estimators": 650,
+          "reg_alpha": 0.03,
+          "reg_lambda": 2.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.4116335191614654,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/refinement/xgboost/model_stage_v1__refinement__xgboost__001/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "37d910bb1d84bd44b23d2d7cbc4dc1d6f2e0cb79bf5fa032cf684886d3de3757",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__001",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "5634de7cf3eec7e23258620c2900f4793891d5535bb1064881167f8d2e154577",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.03,
+          "imbalance": "none",
+          "learning_rate": 0.015,
+          "max_depth": 2,
+          "min_child_weight": 10,
+          "n_estimators": 650,
+          "reg_alpha": 0.03,
+          "reg_lambda": 2.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.4130093639232849,
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "8c9efc012a3856112eea37acb5ae09531b571903cbae61b055ac4e9e6f769a44",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "cb477a358021d35519d4d54caac882b5fe62a4385f93a5027ee0f2f39a89bf79",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 64,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3802481137494013,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "97ed2c0ef8953f8c2c9a77e70954f24cd5dbb32845d298f29edf5eca8da8f701",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "07796a26e1518f77233dd532a96baf678903bf4d58b96fb79d31d6346af54615",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 64,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3845619394821781,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "92b4514089a021f52aa379763ef79d5c7a3fbe87bd37d0126a72262fbf5faddb",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__002",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "314b3a14107b11990291f6b4800c24d796406c9e8335a27c2fcafe4755a2dde2",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.001,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.37223761960604257,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "8251cf129750c4860b234a1e19f818a9475c1eddf4f59a21b3e200fe46eb4611",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__002",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "9075fe14f96b3197a74e673f76316caf48af798c6feb59704c50eeb059f72629",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.001,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.3803139134752017,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "f3f96794b55427caccaa029d8d4a46121804fa7ba361dd97bc1b527f7af79ebd",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "ac73a9934ec96a94d5e195f43fe0c258cef58fffc2ef2db6c2d13a626cbce909",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.39330811984126063,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "06f06a02571ec6890fc878eff4691e0a72b23a0ad695ae1bde0a5e811f9dbe68",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "a6a1cb137cc766bf2f30a6a8525102f5575841382cb981edc10b7c575ec07104",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3964712039125214,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L_D/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "3447a6187096dc9675d6c5214cdb3007e7d9c8e6447e5f50818179c904a1bd79",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "1c679f24db47a22f2c677df2554e0064b9238b2c941241acefe58ecd133dda34",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 64,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3877656950604581,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L_D/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "69364b8491b53d5458182f32c4c7897104aecaac10d93050f340d5177ae8b01f",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "2b4de09d5dc7ed6f56c2d2d46f8ee1c99e91983c78d0db7307e875ac0f86b253",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 64,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.38200979760796794,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "34cc562fa81554408164314dd619b3ecf9dbdc3940c6cfd7e1f33e4b8843703c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "fd01ec5866e92fa063c835cf741f99f723368e9939605b69dd56607356e2dd99",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3959173048656268,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "52c626508aec573a42e3c855c1005d255800f06b5d080bbedf71bd48cd836b16",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "30bd9ff6a46c359c6c4ac4b362aa1fa3f4011d5412168b024659f9aa8c9c58fe",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.39472379865718804,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L_D_R/seed_20260819/candidate_manifest.json",
+      "candidate_manifest_sha256": "b959958d9701a2aa32957c017d2731fdbf5ac261dcc67afd62278b1703b446ba",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__001",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "a5da4f1e68dc6410f524ae24059130dad33a85fa584573eafb6e647e0e5c617f",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.38860902733342273,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260819
+      }
+    },
+    {
+      "analysis_role": "CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+      "candidate_manifest": "data/model_runs/post_coarse_v1_3_0/candidate_results/coarse/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L_D_R/seed_20260820/candidate_manifest.json",
+      "candidate_manifest_sha256": "6712df899e59912af2b48d35a2e8305a03d9959f886a05d5c30aafa02990ac9c",
+      "kind": "candidate",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__001",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact_sha256": "3d44c0843725863c6f9e8ab24f4f7bcd2de11c1d703c352643a4823884b10c62",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.39291350295892374,
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": 20260820
+      }
+    }
+  ],
+  "confirmation_selection_sha256": "e2598f00c1b85bd4c91898b5df65336d38ae8cfeb61f845c86a9d95eb20c1b6d",
+  "id": "post_coarse_confirmation_classical_phase_v1_0_3",
+  "primary_confirmation_slots": 30,
+  "primary_confirmed_result_references": [
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__011/L/oof_predictions.json",
+      "prediction_artifact_sha256": "eb6f4544fb7ce98946fa78c1b13e667fc19f061f6b39bc95bdd2a48620cdcbf2",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__011",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__011/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "eb6f4544fb7ce98946fa78c1b13e667fc19f061f6b39bc95bdd2a48620cdcbf2",
+        "parameters": {
+          "C": 100.0,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.0
+        },
+        "pooled_oof_pr_auc": 0.36595812775685244,
+        "seed_component_prediction_sha256": {
+          "20260818": "015d3519cfeaad52c507f2cfa7fe5721cded5affb93ed4438b0b41e4c37f98ab",
+          "20260819": "eee03a5e948a26ef37470f77faaab9ec86f5e1f37d146fe833deecf0ee70a893",
+          "20260820": "c456e83a9c0159e406743b47dc25d91f95d358944c5cd22576262737bd7fbfeb"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__012/L/oof_predictions.json",
+      "prediction_artifact_sha256": "25556b42c584ba12350074ee4e8f02c2d9822d95117e5eabbf297de409776587",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__012",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__012/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "25556b42c584ba12350074ee4e8f02c2d9822d95117e5eabbf297de409776587",
+        "parameters": {
+          "C": 100.0,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.75
+        },
+        "pooled_oof_pr_auc": 0.36593299900311527,
+        "seed_component_prediction_sha256": {
+          "20260818": "82c8b41a9e730cf8d578d940ede15c605927351c8883d3314ab6fba14f2c59e6",
+          "20260819": "5e1b486c100cfa213c5ab89e0a1a9a698598d6308c771a94fc7a2ad31db3eea3",
+          "20260820": "fa098c4a217f51ff57865873ea2fa2d50f155084341bb269488e627ef3a5526b"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__006/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "adfa0afb797304bf45114a7429cdc5c39e73519c0f2c2b31de46763069a84054",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__006",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__006/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "adfa0afb797304bf45114a7429cdc5c39e73519c0f2c2b31de46763069a84054",
+        "parameters": {
+          "C": 0.1,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.0
+        },
+        "pooled_oof_pr_auc": 0.3707690397545122,
+        "seed_component_prediction_sha256": {
+          "20260818": "69d4fd88393b4ee5636368e1c92b2718b88267acd036d2ddb5bcd02c8a29d1c7",
+          "20260819": "db54ded1e076ec25b4257a4bbc35d2d59d9fee47ee54be4d34739aba1ab08419",
+          "20260820": "0662a87bbb1adb9798bd790ff9ca3e76d1086987b6c39322a493e285c0943ffb"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__009/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "6a65b2a85e3b93e103f03a8091842f956d4f0c1b5e07a80ee684095bef4d7bce",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__009",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__009/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "6a65b2a85e3b93e103f03a8091842f956d4f0c1b5e07a80ee684095bef4d7bce",
+        "parameters": {
+          "C": 1.0,
+          "imbalance": "sqrt",
+          "l1_ratio": 1.0
+        },
+        "pooled_oof_pr_auc": 0.3703908532030409,
+        "seed_component_prediction_sha256": {
+          "20260818": "379595e310b7f3dfcffc5454bbfc04ea4944d7188e0c9c35d812bc2367e628ea",
+          "20260819": "49fa62dc3636f7b46ed725e185eb24f06ebe2418652cfbd383b27458369876c5",
+          "20260820": "09963fb4ba2768ff6478da8e1738f34f62a86f509512b3fe4c46fb841d209965"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__003/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "050e527421d425d13e604cc24af1bacc780f7a92b2dd1f443623bb9204eb325c",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__003",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__003/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "050e527421d425d13e604cc24af1bacc780f7a92b2dd1f443623bb9204eb325c",
+        "parameters": {
+          "C": 0.01,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.25
+        },
+        "pooled_oof_pr_auc": 0.38182578577644466,
+        "seed_component_prediction_sha256": {
+          "20260818": "1500933c4c0ddc47ca9c70c90158ea8d105d73f67631043a17b1784d2fd2acce",
+          "20260819": "99dbbd9ca2a6a90e2ebcef0f11470dbb2dfd9b517193c3c6886d997381b80fb1",
+          "20260820": "a5f9cd59437c13ff9b1c7a9649acf99babf878a68208a91a548f2ea8ecdc5642"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__006/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "c03e4afadda5dd34e94cc2b390519107767579444a33844f0bd08d14417592b2",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__006",
+        "failure_code": null,
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/elastic_net_logistic/model_stage_v1__coarse__elastic_net_logistic__006/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "c03e4afadda5dd34e94cc2b390519107767579444a33844f0bd08d14417592b2",
+        "parameters": {
+          "C": 0.1,
+          "imbalance": "sqrt",
+          "l1_ratio": 0.0
+        },
+        "pooled_oof_pr_auc": 0.38175519811683034,
+        "seed_component_prediction_sha256": {
+          "20260818": "6f51424fa81aa6d958cebe7607bc5be970c39e5863bb250d7f79b1dddb348079",
+          "20260819": "ae4dae481c808c9d395431c15fa15a9babac0347e13ff35751cccc1242f3d362",
+          "20260820": "d4cce45dfb31e385fd2c6de12895db56a177efe1f8500317e5d4bd45ae63be1c"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__003/L/oof_predictions.json",
+      "prediction_artifact_sha256": "16aa4ca9e259ec97a06845cb96e0f4ddee7d6f770db3d5bee7a9609afd66fbdf",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__003/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "16aa4ca9e259ec97a06845cb96e0f4ddee7d6f770db3d5bee7a9609afd66fbdf",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 6,
+          "max_features": 0.5,
+          "max_samples": 1.0,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.39361203123337696,
+        "seed_component_prediction_sha256": {
+          "20260818": "19e0697b30460d7a4d788e3f54ddb419a1ace72962534c7ec317d363fc876644",
+          "20260819": "049b955c708b57d3af43006d7f592b23f6ce51bc2a03ee6d70adea509645cb06",
+          "20260820": "f9122ec862283bb8e51a7e44fa7ea9d9d15f6846a0851ef622cc0b82ca566c98"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__011/L/oof_predictions.json",
+      "prediction_artifact_sha256": "4d65794e1db521a0c62dbde2702ea5e1271098527a3a6939cc12310bf74c5ab8",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__011",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__011/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "4d65794e1db521a0c62dbde2702ea5e1271098527a3a6939cc12310bf74c5ab8",
+        "parameters": {
+          "criterion": "log_loss",
+          "imbalance": "sqrt",
+          "max_depth": null,
+          "max_features": "sqrt",
+          "max_samples": 1.0,
+          "min_samples_leaf": 20
+        },
+        "pooled_oof_pr_auc": 0.3916802800881278,
+        "seed_component_prediction_sha256": {
+          "20260818": "88645a41cf8eaadfc885700454361905d7c45ba4f35bf9cd5214ac7c139aeebc",
+          "20260819": "575864bd53517f3077ebccba0c935e3048ad653767ee6b9364181f081a977c3e",
+          "20260820": "23539166e8f0a17aab7671b7c47cdd3cc9eeee315037c243d0e967b8641fede2"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__003/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "b495abd762dc22b65b90b65a951a411355fa80927187222fb1d6867e4e59bc2e",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__003/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "b495abd762dc22b65b90b65a951a411355fa80927187222fb1d6867e4e59bc2e",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 6,
+          "max_features": 0.5,
+          "max_samples": 1.0,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.40280225036468376,
+        "seed_component_prediction_sha256": {
+          "20260818": "25f279c10c3d62ccdf47a4c34bbb657812d36de04a7527243acd562decd24220",
+          "20260819": "d4d6dce509dc63d44e4756825fda9c9cce0217947b89b8a5957e4a0c86b77d02",
+          "20260820": "abb7bcbbc4fd770ecc00906ee263efae6746fb79cf7b9b31dd0e5ad4e71b4790"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__004/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "a441aaaed40cd69cb71221260e5eb46f96b7f65f957d89815421cbdb2380dcc2",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__004",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__004/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "a441aaaed40cd69cb71221260e5eb46f96b7f65f957d89815421cbdb2380dcc2",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "sqrt",
+          "max_depth": 24,
+          "max_features": 1.0,
+          "max_samples": 0.7,
+          "min_samples_leaf": 20
+        },
+        "pooled_oof_pr_auc": 0.39997172971899764,
+        "seed_component_prediction_sha256": {
+          "20260818": "9f7538ad2af4a1a1e53cc978a95267845ea916f74ec6dbc5d1ebac533aaefa81",
+          "20260819": "6f3243606c4fec645882f6445907729d90253db8da27c696b18916c2f7293625",
+          "20260820": "5d00641fae1575d959bf144bd3a62f9eab4cf2e50794ee8a7c357dd0906d18b6"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__003/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "aa716b01febca4e1416eea4dffa743431aeadb7b86f75317537cc391503e9b25",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__003/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "aa716b01febca4e1416eea4dffa743431aeadb7b86f75317537cc391503e9b25",
+        "parameters": {
+          "criterion": "gini",
+          "imbalance": "none",
+          "max_depth": 6,
+          "max_features": 0.5,
+          "max_samples": 1.0,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.4066369584050779,
+        "seed_component_prediction_sha256": {
+          "20260818": "840fa937caadd3b8d505f5291260613a8f35a1b6b8aeda7c3388861f39f648f7",
+          "20260819": "e5003642d76ae18dde0745ffaf77f6a72ad75d785b5189885142e4e3aa4d16d5",
+          "20260820": "03bb8b4d36f334f24ae9be5b5084bd2d12bdaa14f25af70c06acab0ad157afd7"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__008/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "f811a1696ca484e8bd2af9a47cc9c031801dfed22b61699f4e1c970145603ece",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__008",
+        "failure_code": null,
+        "family": "random_forest",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__008/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "f811a1696ca484e8bd2af9a47cc9c031801dfed22b61699f4e1c970145603ece",
+        "parameters": {
+          "criterion": "log_loss",
+          "imbalance": "sqrt",
+          "max_depth": 12,
+          "max_features": "sqrt",
+          "max_samples": 0.7,
+          "min_samples_leaf": 5
+        },
+        "pooled_oof_pr_auc": 0.40426622843776583,
+        "seed_component_prediction_sha256": {
+          "20260818": "f6062a9899c653f90c4fb8771e07f4c14e760c98c8ebd74cdea7b53a1d9a2eef",
+          "20260819": "18fd22785f9ef471bd850a9ecadd13d49ef5524b5155578f868ea85719a9bb77",
+          "20260820": "587b1f990f6ab98dc26fcc3985cb49da352dc106750fb0c2bded431116d54e27"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__005/L/oof_predictions.json",
+      "prediction_artifact_sha256": "6d4be6abe16d82daf866fec7bc3aceb5b5d24acfb0f7c33c59392cc046e0c806",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__005",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__005/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "6d4be6abe16d82daf866fec7bc3aceb5b5d24acfb0f7c33c59392cc046e0c806",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 1.0,
+          "learning_rate": 0.06,
+          "max_features": 0.7,
+          "max_iter": 150,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.397482148457217,
+        "seed_component_prediction_sha256": {
+          "20260818": "a88804ac2d9a6d7bad14826fadd278ceff82bea9ff3b5f43074fb06e99638761",
+          "20260819": "0af6936c7289eb43bd151282cd558a505e665cdb9908ea363ff1b28af84e7a24",
+          "20260820": "a627b8121b2eb7fdd51b24f33d37be3b586b587ce715e56156b62ed3a3c452e9"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__010/L/oof_predictions.json",
+      "prediction_artifact_sha256": "c6eea4a51dff4f8c3e1ace6f4b3f97497f00e684a1bd1ae70d00302d5a522356",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__010",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__010/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "c6eea4a51dff4f8c3e1ace6f4b3f97497f00e684a1bd1ae70d00302d5a522356",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 10.0,
+          "learning_rate": 0.03,
+          "max_features": 0.7,
+          "max_iter": 300,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.39588741756582896,
+        "seed_component_prediction_sha256": {
+          "20260818": "4b85e3cc925ea84107da4fd67a3f1f29704763be1b39e56ec48d2150a9eb0c87",
+          "20260819": "02ce57ec560f8c753e0fa58063f4faa615e8aebea47be79678c236933296d09f",
+          "20260820": "8bffa43bba75cf2a21c25830c439278ca2022f0a969776b041923a0a753f3c4c"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__005/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "82babea373ad5b7b2b3886513892eeda772811e1abf423f468a7d24c8710a27b",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__005",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__005/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "82babea373ad5b7b2b3886513892eeda772811e1abf423f468a7d24c8710a27b",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 1.0,
+          "learning_rate": 0.06,
+          "max_features": 0.7,
+          "max_iter": 150,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.40237411205134144,
+        "seed_component_prediction_sha256": {
+          "20260818": "c9f9a323c4a43cbe06bb47c00aae6bd83dd7c48e01dbce2cd800fb33ec777186",
+          "20260819": "80477ab829519bdd08a42fda3b7d3c4e1c44d6bdabcbc67a6bae4ca994c905b4",
+          "20260820": "48bfe309cbb0d43f0d68d24735295a8c8a4f745033da02422f544dca9a15688f"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__004/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "6aba5f36433abf76d5b60c4e73a005fbb6c3d1bdf315d76bbacbeb6ca6bc8004",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__004",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__004/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "6aba5f36433abf76d5b60c4e73a005fbb6c3d1bdf315d76bbacbeb6ca6bc8004",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 0.1,
+          "learning_rate": 0.1,
+          "max_features": 0.7,
+          "max_iter": 150,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 100
+        },
+        "pooled_oof_pr_auc": 0.39978371606058627,
+        "seed_component_prediction_sha256": {
+          "20260818": "46ef665ed104dc1bad9cbc7c0542631ebafc5c0df6408809d951b11b59858482",
+          "20260819": "e6286150d0247bdda923126403515bca88d9093493ed51d3412e50b74fbf97a7",
+          "20260820": "e3a8f21298abe34b04d907723ee22d88381040dc642f9530b2ef328377d4a8a8"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__007/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "46cf2213c80d243b7caa6e5c873658f1da57ba01d7ac626f027b34cff426099c",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__007",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__007/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "46cf2213c80d243b7caa6e5c873658f1da57ba01d7ac626f027b34cff426099c",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 1.0,
+          "learning_rate": 0.06,
+          "max_features": 1.0,
+          "max_iter": 300,
+          "max_leaf_nodes": 7,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.4078102954039723,
+        "seed_component_prediction_sha256": {
+          "20260818": "7a3605da93d77eb832b96b5a205a47e1050f9d39721eeb0c76a6a40f8760e2cb",
+          "20260819": "3294ec57a70f06f2614f140c7e5f1ccf721ae1d04dda1621fd805efbe596a303",
+          "20260820": "3294ec57a70f06f2614f140c7e5f1ccf721ae1d04dda1621fd805efbe596a303"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__010/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "d3a7f193aed3ba5456e67be67e1aebf9ff19e0686df021b57a3a39ff35790068",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__010",
+        "failure_code": null,
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__010/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "d3a7f193aed3ba5456e67be67e1aebf9ff19e0686df021b57a3a39ff35790068",
+        "parameters": {
+          "imbalance": "none",
+          "l2_regularization": 10.0,
+          "learning_rate": 0.03,
+          "max_features": 0.7,
+          "max_iter": 300,
+          "max_leaf_nodes": 15,
+          "min_samples_leaf": 50
+        },
+        "pooled_oof_pr_auc": 0.40685995363444494,
+        "seed_component_prediction_sha256": {
+          "20260818": "0be02040b71c0e29cf67891945ed3a3219c2eec2579bbcf43cf668387c6c5a26",
+          "20260819": "6e75a56cf1d2ad820c96847bf8b29cfb64572e2d8e52b86bb50b2cf088f0c39b",
+          "20260820": "7f3cb9511efdfdeb51bd07aaeaba557a5d5775c303ddcba92a1683f44d37644f"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__004/L/oof_predictions.json",
+      "prediction_artifact_sha256": "023f75e37dc92c639687e76189e3af027dbbee2f6ab1061ae54eb45bb9b9c723",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__004/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "023f75e37dc92c639687e76189e3af027dbbee2f6ab1061ae54eb45bb9b9c723",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.02,
+          "max_depth": 2,
+          "min_child_weight": 20,
+          "n_estimators": 500,
+          "reg_alpha": 0.0,
+          "reg_lambda": 1.0,
+          "subsample": 1.0
+        },
+        "pooled_oof_pr_auc": 0.40308361753552135,
+        "seed_component_prediction_sha256": {
+          "20260818": "b79befd8bbb74159bef1316ca981519b15f1c35d78b4d328234fec18167d9f63",
+          "20260819": "b4494e21a880fb8f87021bc52b34b220533f63ce00b1dc99a13355a1eae30e67",
+          "20260820": "06b2adcfdac84e34f6a6318a0d4412251335073a0cc68dc5c15d13626724fa39"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__005/L/oof_predictions.json",
+      "prediction_artifact_sha256": "a74b60dbfe5b90f64bf43cb42f2d1de0a347a9786014bc46b24ec382c86c1864",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__005",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__005/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "a74b60dbfe5b90f64bf43cb42f2d1de0a347a9786014bc46b24ec382c86c1864",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.05,
+          "max_depth": 2,
+          "min_child_weight": 5,
+          "n_estimators": 800,
+          "reg_alpha": 0.0,
+          "reg_lambda": 20.0,
+          "subsample": 0.7
+        },
+        "pooled_oof_pr_auc": 0.3950437537484607,
+        "seed_component_prediction_sha256": {
+          "20260818": "7480788cdcb16b6f21e73c817bf9345a66fbe07eed10fe43618b3e4453890185",
+          "20260819": "db44a0ab6668bb89e2316d81a3417dcd61b121653f00f2a492f1c92acbe4946e",
+          "20260820": "ebd2180cade75d29f970c4f9ee43b9e2bd6ee6c4e858e9e806c6d4b8ad1f9a12"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__009/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "4381dadf62f9c7469222ad718113b438a0342df3001bc19b338942b6fd1b6e39",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__009",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__009/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "4381dadf62f9c7469222ad718113b438a0342df3001bc19b338942b6fd1b6e39",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.1,
+          "imbalance": "sqrt",
+          "learning_rate": 0.05,
+          "max_depth": 3,
+          "min_child_weight": 1,
+          "n_estimators": 200,
+          "reg_alpha": 0.0,
+          "reg_lambda": 5.0,
+          "subsample": 0.7
+        },
+        "pooled_oof_pr_auc": 0.4045710528721359,
+        "seed_component_prediction_sha256": {
+          "20260818": "64589f1f714f22eb3e49254e9e02c7ff2341eacc45fc4028b1584e8c67648953",
+          "20260819": "04125a24995c62ab6742a4ccb4b402d6f2c87cc45c98c4727c28b063837214a2",
+          "20260820": "c3fe5bd2e6ebf3f8cfc7cbaed2dce9bc2b3b8e139ee1c26404489f58786d7795"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__004/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "18946ec0ba5f33b76a91f21ff5393ca13f7fdd63e3daffd3ccac6fac0abd892f",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__004/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "18946ec0ba5f33b76a91f21ff5393ca13f7fdd63e3daffd3ccac6fac0abd892f",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.02,
+          "max_depth": 2,
+          "min_child_weight": 20,
+          "n_estimators": 500,
+          "reg_alpha": 0.0,
+          "reg_lambda": 1.0,
+          "subsample": 1.0
+        },
+        "pooled_oof_pr_auc": 0.4043692919496183,
+        "seed_component_prediction_sha256": {
+          "20260818": "547ef9dd9823e85bb1dbf7fe9669b42889ee2fdfd1c8b1fee29ecf0d14317e33",
+          "20260819": "b14422a637a4c4cdbefa75036e31aa6f4753ca26fe5e1196eddb3ca42f99c6bc",
+          "20260820": "f12fe9603e976b6bedad668729cfc3a59ff64370444ab9406d167361b9c92d43"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__004/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "cab55a216d118b40fe7947265c509095eb572c491d0f849d36d0378fcc6c5e33",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__004/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "cab55a216d118b40fe7947265c509095eb572c491d0f849d36d0378fcc6c5e33",
+        "parameters": {
+          "colsample_bytree": 0.7,
+          "gamma": 0.0,
+          "imbalance": "sqrt",
+          "learning_rate": 0.02,
+          "max_depth": 2,
+          "min_child_weight": 20,
+          "n_estimators": 500,
+          "reg_alpha": 0.0,
+          "reg_lambda": 1.0,
+          "subsample": 1.0
+        },
+        "pooled_oof_pr_auc": 0.41308893399384633,
+        "seed_component_prediction_sha256": {
+          "20260818": "261104f8e8dae8a964c2180b9891883ef18b807a894bb21df7ec8d872cea568b",
+          "20260819": "3ff667833a40935a9450ff020fd44076443612b288ea47f673a57a7e9a4686fd",
+          "20260820": "e984edd176c401fc53c3082d33bc0f05281703afb1b552e6ed99c11b4ef26bb5"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/xgboost/model_stage_v1__refinement__xgboost__001/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "566dccda2c8aa54af1cb27644d442854cd22bafdcb89e1ca70b3576926b6fd93",
+      "row": {
+        "configuration_id": "model_stage_v1__refinement__xgboost__001",
+        "failure_code": null,
+        "family": "xgboost",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/xgboost/model_stage_v1__refinement__xgboost__001/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "566dccda2c8aa54af1cb27644d442854cd22bafdcb89e1ca70b3576926b6fd93",
+        "parameters": {
+          "colsample_bytree": 0.85,
+          "gamma": 0.03,
+          "imbalance": "none",
+          "learning_rate": 0.015,
+          "max_depth": 2,
+          "min_child_weight": 10,
+          "n_estimators": 650,
+          "reg_alpha": 0.03,
+          "reg_lambda": 2.0,
+          "subsample": 0.85
+        },
+        "pooled_oof_pr_auc": 0.4119777132361338,
+        "seed_component_prediction_sha256": {
+          "20260818": "2743fefc3e7fb272d321d6c2af9b1927d67b509cebda00ed9e0d217e45f744f9",
+          "20260819": "b420607453372116b084641002badc87ae503b46bd259b042f470010766e1824",
+          "20260820": "5634de7cf3eec7e23258620c2900f4793891d5535bb1064881167f8d2e154577"
+        },
+        "stage": "refinement",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L/oof_predictions.json",
+      "prediction_artifact_sha256": "a831daf8963f1585ed5067c3de93d2d643430a7d1111c9dc23753af25c242374",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "a831daf8963f1585ed5067c3de93d2d643430a7d1111c9dc23753af25c242374",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 64,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.38601062296270894,
+        "seed_component_prediction_sha256": {
+          "20260818": "417619c0aa54c9cf783c336d34b6378a2297851e5a6b4603cc3147771fa17849",
+          "20260819": "cb477a358021d35519d4d54caac882b5fe62a4385f93a5027ee0f2f39a89bf79",
+          "20260820": "07796a26e1518f77233dd532a96baf678903bf4d58b96fb79d31d6346af54615"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L/oof_predictions.json",
+      "prediction_artifact_sha256": "b68d093ad7d293f487dc2857edfc37af258aa3d063c083edaa03f79e45f7b2f8",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__002",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__002/L/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "b68d093ad7d293f487dc2857edfc37af258aa3d063c083edaa03f79e45f7b2f8",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.001,
+          "weight_decay": 0.0001
+        },
+        "pooled_oof_pr_auc": 0.3831531750170299,
+        "seed_component_prediction_sha256": {
+          "20260818": "9285347a12ebd27d48d13edddfc1a221bafff3d3a9d7bcef84af3ac671c7ae65",
+          "20260819": "314b3a14107b11990291f6b4800c24d796406c9e8335a27c2fcafe4755a2dde2",
+          "20260820": "9075fe14f96b3197a74e673f76316caf48af798c6feb59704c50eeb059f72629"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "3296cb83fe69e4b1210704f0a31d4e0061abaa057a9132e137f0f9527bd48e15",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "3296cb83fe69e4b1210704f0a31d4e0061abaa057a9132e137f0f9527bd48e15",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.39626323334082664,
+        "seed_component_prediction_sha256": {
+          "20260818": "6884c6e9649f0121c61877d62a844e094cd2d590db14451ad4707445d49cdda5",
+          "20260819": "ac73a9934ec96a94d5e195f43fe0c258cef58fffc2ef2db6c2d13a626cbce909",
+          "20260820": "a6a1cb137cc766bf2f30a6a8525102f5575841382cb981edc10b7c575ec07104"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L_D/oof_predictions.json",
+      "prediction_artifact_sha256": "d3ba5b42cc81e3c229012dbe245bd01035e8cb004bbc9bfb69487a49a0c21cce",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__005/L_D/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "d3ba5b42cc81e3c229012dbe245bd01035e8cb004bbc9bfb69487a49a0c21cce",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 64,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.39202737756356043,
+        "seed_component_prediction_sha256": {
+          "20260818": "7eb5f9160c39bb0c7fdf179f331e6d4af30d2232eeceef6f284b9d100743a123",
+          "20260819": "1c679f24db47a22f2c677df2554e0064b9238b2c941241acefe58ecd133dda34",
+          "20260820": "2b4de09d5dc7ed6f56c2d2d46f8ee1c99e91983c78d0db7307e875ac0f86b253"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "1a0e9703dc627e63c9251e16a14a94ac20ee17351f69d3a9dc2ab7cf5928be5c",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "1a0e9703dc627e63c9251e16a14a94ac20ee17351f69d3a9dc2ab7cf5928be5c",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64
+          ],
+          "imbalance": "sqrt",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3970885127758261,
+        "seed_component_prediction_sha256": {
+          "20260818": "f17f5bdfda2f8cfea9e2b1410d80fa5932632a206bf3e087a8b640bd5b86f8ba",
+          "20260819": "fd01ec5866e92fa063c835cf741f99f723368e9939605b69dd56607356e2dd99",
+          "20260820": "30bd9ff6a46c359c6c4ac4b362aa1fa3f4011d5412168b024659f9aa8c9c58fe"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    },
+    {
+      "analysis_role": "PRIMARY_CONTRACT_CONFIRMATION",
+      "kind": "seed_averaged",
+      "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L_D_R/oof_predictions.json",
+      "prediction_artifact_sha256": "2929a91c477d6802cd141d8a5f1715964c952f6aaf1908b57fc3b493abd5734e",
+      "row": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__001",
+        "failure_code": null,
+        "family": "pytorch_mlp",
+        "feature_block": "L+D+R",
+        "fold_statuses": {
+          "fold_2015": "COMPLETE",
+          "fold_2016": "COMPLETE",
+          "fold_2017": "COMPLETE",
+          "fold_2018": "COMPLETE",
+          "fold_2019": "COMPLETE",
+          "fold_2020": "COMPLETE"
+        },
+        "oof_prediction_artifact": "seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__001/L_D_R/oof_predictions.json",
+        "oof_prediction_artifact_sha256": "2929a91c477d6802cd141d8a5f1715964c952f6aaf1908b57fc3b493abd5734e",
+        "parameters": {
+          "activation": "relu",
+          "batch_size": 256,
+          "epochs": 200,
+          "hidden_layer_sizes": [
+            64,
+            32
+          ],
+          "imbalance": "none",
+          "learning_rate": 0.0003,
+          "weight_decay": 0.001
+        },
+        "pooled_oof_pr_auc": 0.3940458278465622,
+        "seed_component_prediction_sha256": {
+          "20260818": "d3d6f35a95cdf59e84e391a59fc1c0768c5dd3c3f5527b9721ff5209f1fa1136",
+          "20260819": "a5da4f1e68dc6410f524ae24059130dad33a85fa584573eafb6e647e0e5c617f",
+          "20260820": "3d44c0843725863c6f9e8ab24f4f7bcd2de11c1d703c352643a4823884b10c62"
+        },
+        "stage": "coarse",
+        "status": "COMPLETE",
+        "training_seed": "AVERAGED_20260818_20260819_20260820"
+      }
+    }
+  ],
+  "project_data_model_fit_performed": true,
+  "protected_feature_years_opened": false,
+  "qnn_confirmation_slots_planned": 3,
+  "qnn_confirmation_started": false,
+  "runtime_seconds": 2069.1722932920093,
+  "schema_version": 1,
+  "source_qnn_phase_manifest_sha256": "0612c26faeb6dd4b7ed6bbc124cea41675bd826f8ce842e14513a994302f0187",
+  "status": "COMPLETE",
+  "supplemental_mlp_additional_fold_fits": 0,
+  "supplemental_mlp_confirmed_result_reference": {
+    "analysis_role": "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR_CONFIRMATION",
+    "kind": "seed_averaged",
+    "prediction_artifact": "data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D/oof_predictions.json",
+    "prediction_artifact_sha256": "3296cb83fe69e4b1210704f0a31d4e0061abaa057a9132e137f0f9527bd48e15",
+    "row": {
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+      "failure_code": null,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_statuses": {
+        "fold_2015": "COMPLETE",
+        "fold_2016": "COMPLETE",
+        "fold_2017": "COMPLETE",
+        "fold_2018": "COMPLETE",
+        "fold_2019": "COMPLETE",
+        "fold_2020": "COMPLETE"
+      },
+      "oof_prediction_artifact": "seed_averaged_oof/pytorch_mlp/model_stage_v1__coarse__pytorch_mlp__epochs_200__003/L_D/oof_predictions.json",
+      "oof_prediction_artifact_sha256": "3296cb83fe69e4b1210704f0a31d4e0061abaa057a9132e137f0f9527bd48e15",
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "pooled_oof_pr_auc": 0.39626323334082664,
+      "seed_component_prediction_sha256": {
+        "20260818": "6884c6e9649f0121c61877d62a844e094cd2d590db14451ad4707445d49cdda5",
+        "20260819": "ac73a9934ec96a94d5e195f43fe0c258cef58fffc2ef2db6c2d13a626cbce909",
+        "20260820": "a6a1cb137cc766bf2f30a6a8525102f5575841382cb981edc10b7c575ec07104"
+      },
+      "stage": "coarse",
+      "status": "COMPLETE",
+      "training_seed": "AVERAGED_20260818_20260819_20260820"
+    }
+  }
+}

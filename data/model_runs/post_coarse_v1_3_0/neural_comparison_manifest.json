@@ -1,0 +1,199 @@
+{
+  "analysis_role": "secondary_title_aligned_comparison",
+  "authority": {
+    "authority_git_index_sha256": "4bd8ec368c10a1ebd159ea8f8fb32929b96f16d4dba761d83b12033f49779f37",
+    "backend_amendment": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_amendment.yaml",
+      "sha256": "2a70585074c9d9ca4d7097b3c7087ec334e94d88a658884b6038b45c4b2d3c91"
+    },
+    "base_execution_contract": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml",
+      "sha256": "8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a"
+    },
+    "candidate_registry": {
+      "path": "configs/model_stage_candidates_v1_scientific_patch.json",
+      "sha256": "f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac"
+    },
+    "coarse_manifest": {
+      "path": "data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json",
+      "sha256": "5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43"
+    },
+    "methodology_amendment": {
+      "path": "configs/model_stage_v1_3_0_neural_comparator_amendment.yaml",
+      "sha256": "4e72c76a51c233212b6c7a5dd093c77a586d27250ff002df2aee2b107cf76f1c"
+    }
+  },
+  "calibration_and_threshold": [
+    {
+      "calibration_artifact": "calibration/pytorch_mlp__model_stage_v1__coarse__pytorch_mlp__epochs_200__003__L_D.json",
+      "calibration_sha256": "1ccc1742c44ca689b2f556bc8aed6309af32252220f28f7aaaa88ade8ca770e4",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+        "family": "pytorch_mlp",
+        "feature_block": "L+D"
+      },
+      "status": "COMPLETE",
+      "threshold_artifact": "thresholds/pytorch_mlp__model_stage_v1__coarse__pytorch_mlp__epochs_200__003__L_D.json",
+      "threshold_sha256": "19e50d2f66786dd23dd0262c93f98679d1ab2f4a9f68b7a91cbee17cd580e0ab"
+    },
+    {
+      "calibration_artifact": "calibration/qnn__model_stage_v1__qnn_q2__t0__L.json",
+      "calibration_sha256": "24598ec51e49c30ce94454f13ba4e91eaf90ba5637355f2cd4d7373ce5488461",
+      "identity": {
+        "configuration_id": "model_stage_v1__qnn_q2__t0",
+        "family": "qnn",
+        "feature_block": "L"
+      },
+      "status": "COMPLETE",
+      "threshold_artifact": "thresholds/qnn__model_stage_v1__qnn_q2__t0__L.json",
+      "threshold_sha256": "5bb198da98693a1592e2aed8a0dc6d4e3cc716382e23d2ecd801871161214dc7"
+    },
+    {
+      "calibration_artifact": "calibration/qnn__model_stage_v1__qnn_q2__t2__L_D.json",
+      "calibration_sha256": "3a4a5f4c6c5dba3e251c2450257049c2d89ba4f363b189f2ff1f978a7778c4e6",
+      "identity": {
+        "configuration_id": "model_stage_v1__qnn_q2__t2",
+        "family": "qnn",
+        "feature_block": "L+D"
+      },
+      "status": "COMPLETE",
+      "threshold_artifact": "thresholds/qnn__model_stage_v1__qnn_q2__t2__L_D.json",
+      "threshold_sha256": "8975d0cf97441e0ba250d7d2e94d8a42345fadef629a897086165ec2ade58b55"
+    },
+    {
+      "calibration_artifact": "calibration/qnn__model_stage_v1__qnn_q2__t0__L_D_R.json",
+      "calibration_sha256": "1275add2ae9c4a7c18bdc987f0f4af3f62036a4523d7ea7a7cd0b4daeb5f4758",
+      "identity": {
+        "configuration_id": "model_stage_v1__qnn_q2__t0",
+        "family": "qnn",
+        "feature_block": "L+D+R"
+      },
+      "status": "COMPLETE",
+      "threshold_artifact": "thresholds/qnn__model_stage_v1__qnn_q2__t0__L_D_R.json",
+      "threshold_sha256": "d189a7a7d47f0e9e6916814237926f08e1d7f6a10ecc4d99cd756c7f3847c991"
+    }
+  ],
+  "claim_limit": "The supplemental MLP refinement was declared after coarse-search results were known; it is excluded from the frozen primary ranking and is used only for the classical-NN versus QNN comparison.",
+  "id": "refined_mlp_vs_qnn_development_comparison_v1_0_0",
+  "protected_feature_years_opened": false,
+  "rows": [
+    {
+      "comparison_role": "REFINED_CLASSICAL_MLP_SECONDARY_COMPARATOR",
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+      "delta_pr_auc_vs_refined_mlp": 0.0,
+      "delta_roc_auc_vs_refined_mlp": 0.0,
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.40042980115574167,
+      "fold_pr_auc_sample_sd": 0.050953430546842676,
+      "n": 10760,
+      "parameters": {
+        "activation": "relu",
+        "batch_size": 256,
+        "epochs": 200,
+        "hidden_layer_sizes": [
+          64
+        ],
+        "imbalance": "sqrt",
+        "learning_rate": 0.0003,
+        "weight_decay": 0.001
+      },
+      "pooled_oof_pr_auc": 0.39626323334082664,
+      "pooled_oof_roc_auc": 0.7464090151461414,
+      "positive_n": 1986,
+      "positive_share": 0.1845724907063197,
+      "stage": "coarse",
+      "status": "COMPLETE",
+      "training_seed": "AVERAGED_20260818_20260819_20260820"
+    },
+    {
+      "comparison_role": "QNN_CONFIRMED_BLOCK_REPRESENTATIVE",
+      "configuration_id": "model_stage_v1__qnn_q2__t0",
+      "delta_pr_auc_vs_refined_mlp": -0.02329421415610128,
+      "delta_roc_auc_vs_refined_mlp": -0.014078977965429673,
+      "family": "qnn",
+      "feature_block": "L",
+      "fold_pr_auc_mean": 0.37337946011561174,
+      "fold_pr_auc_sample_sd": 0.05864936764968103,
+      "n": 10760,
+      "parameters": {
+        "batch_size": 128,
+        "epochs": 45,
+        "imbalance": "sqrt",
+        "layers": 2,
+        "learning_rate": 0.01,
+        "qubits_pca": 4,
+        "reuse_q1_winner": true,
+        "weight_decay": 0.0001
+      },
+      "pooled_oof_pr_auc": 0.37296901918472536,
+      "pooled_oof_roc_auc": 0.7323300371807118,
+      "positive_n": 1986,
+      "positive_share": 0.1845724907063197,
+      "selected_ansatz_id": "ROT_CNOT_RING",
+      "stage": "qnn_q2",
+      "status": "COMPLETE",
+      "training_seed": "AVERAGED_20260818_20260819_20260820"
+    },
+    {
+      "comparison_role": "QNN_CONFIRMED_BLOCK_REPRESENTATIVE",
+      "configuration_id": "model_stage_v1__qnn_q2__t2",
+      "delta_pr_auc_vs_refined_mlp": -0.02230187943061329,
+      "delta_roc_auc_vs_refined_mlp": -0.007553903079477453,
+      "family": "qnn",
+      "feature_block": "L+D",
+      "fold_pr_auc_mean": 0.3794557868353376,
+      "fold_pr_auc_sample_sd": 0.05062921042298156,
+      "n": 10760,
+      "parameters": {
+        "batch_size": 128,
+        "epochs": 45,
+        "imbalance": "sqrt",
+        "layers": 2,
+        "learning_rate": 0.01,
+        "qubits_pca": 6,
+        "reuse_q1_winner": false,
+        "weight_decay": 0.0001
+      },
+      "pooled_oof_pr_auc": 0.37396135391021335,
+      "pooled_oof_roc_auc": 0.738855112066664,
+      "positive_n": 1986,
+      "positive_share": 0.1845724907063197,
+      "selected_ansatz_id": "ROT_CNOT_RING",
+      "stage": "qnn_q2",
+      "status": "COMPLETE",
+      "training_seed": "AVERAGED_20260818_20260819_20260820"
+    },
+    {
+      "comparison_role": "QNN_CONFIRMED_BLOCK_REPRESENTATIVE",
+      "configuration_id": "model_stage_v1__qnn_q2__t0",
+      "delta_pr_auc_vs_refined_mlp": -0.012315585212893776,
+      "delta_roc_auc_vs_refined_mlp": -0.005825167556528954,
+      "family": "qnn",
+      "feature_block": "L+D+R",
+      "fold_pr_auc_mean": 0.38547716529437376,
+      "fold_pr_auc_sample_sd": 0.06846274629548799,
+      "n": 10760,
+      "parameters": {
+        "batch_size": 128,
+        "epochs": 45,
+        "imbalance": "sqrt",
+        "layers": 2,
+        "learning_rate": 0.01,
+        "qubits_pca": 4,
+        "reuse_q1_winner": true,
+        "weight_decay": 0.0001
+      },
+      "pooled_oof_pr_auc": 0.38394764812793286,
+      "pooled_oof_roc_auc": 0.7405838475896125,
+      "positive_n": 1986,
+      "positive_share": 0.1845724907063197,
+      "selected_ansatz_id": "ROT_CNOT_RING",
+      "stage": "qnn_q2",
+      "status": "COMPLETE",
+      "training_seed": "AVERAGED_20260818_20260819_20260820"
+    }
+  ],
+  "schema_version": 1,
+  "status": "COMPLETE"
+}

@@ -1,0 +1,406 @@
+{
+  "authority": {
+    "authority_git_index_sha256": "32619b522a84f8c85d78b14bd3bef1fc6e4b42a12beb497de93eef39dee101cc",
+    "backend_amendment": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_amendment.yaml",
+      "sha256": "2a70585074c9d9ca4d7097b3c7087ec334e94d88a658884b6038b45c4b2d3c91"
+    },
+    "base_execution_contract": {
+      "path": "configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml",
+      "sha256": "8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a"
+    },
+    "candidate_registry": {
+      "path": "configs/model_stage_candidates_v1_scientific_patch.json",
+      "sha256": "f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac"
+    },
+    "coarse_manifest": {
+      "path": "data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json",
+      "sha256": "5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43"
+    },
+    "methodology_amendment": {
+      "path": "configs/model_stage_v1_3_0_neural_comparator_amendment.yaml",
+      "sha256": "4e72c76a51c233212b6c7a5dd093c77a586d27250ff002df2aee2b107cf76f1c"
+    }
+  },
+  "primary_contract_selection": [
+    {
+      "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__011",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "elastic_net_logistic",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__012",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "elastic_net_logistic",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__006",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "elastic_net_logistic",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__009",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "elastic_net_logistic",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__003",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "elastic_net_logistic",
+      "feature_block": "L+D+R",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__006",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "elastic_net_logistic",
+      "feature_block": "L+D+R",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__random_forest__003",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "random_forest",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__random_forest__011",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "random_forest",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__random_forest__003",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "random_forest",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__random_forest__004",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "random_forest",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__random_forest__003",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "random_forest",
+      "feature_block": "L+D+R",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__random_forest__008",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "random_forest",
+      "feature_block": "L+D+R",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__005",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "hist_gradient_boosting",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__010",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "hist_gradient_boosting",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__005",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "hist_gradient_boosting",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__004",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "hist_gradient_boosting",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__007",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "hist_gradient_boosting",
+      "feature_block": "L+D+R",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__010",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "hist_gradient_boosting",
+      "feature_block": "L+D+R",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__xgboost__004",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "xgboost",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__xgboost__005",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "xgboost",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__xgboost__009",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "xgboost",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__xgboost__004",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "xgboost",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__xgboost__004",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "xgboost",
+      "feature_block": "L+D+R",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__refinement__xgboost__001",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "xgboost",
+      "feature_block": "L+D+R",
+      "source_stage": "refinement"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__002",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "pytorch_mlp",
+      "feature_block": "L",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__005",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "pytorch_mlp",
+      "feature_block": "L+D",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "source_stage": "coarse"
+    },
+    {
+      "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__001",
+      "confirmation_rank": 2,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "pytorch_mlp",
+      "feature_block": "L+D+R",
+      "source_stage": "coarse"
+    }
+  ],
+  "protected_feature_years_opened": false,
+  "qnn_selection": [
+    {
+      "configuration_id": "model_stage_v1__qnn_q2__t0",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "qnn",
+      "feature_block": "L",
+      "selected_ansatz_id": "ROT_CNOT_RING"
+    },
+    {
+      "configuration_id": "model_stage_v1__qnn_q2__t2",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "qnn",
+      "feature_block": "L+D",
+      "selected_ansatz_id": "ROT_CNOT_RING"
+    },
+    {
+      "configuration_id": "model_stage_v1__qnn_q2__t0",
+      "confirmation_rank": 1,
+      "confirmation_seeds": [
+        20260819,
+        20260820
+      ],
+      "family": "qnn",
+      "feature_block": "L+D+R",
+      "selected_ansatz_id": "ROT_CNOT_RING"
+    }
+  ],
+  "schema_version": 1,
+  "status": "FROZEN_BEFORE_CONFIRMATION_FITS",
+  "supplemental_mlp_selection": {
+    "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+    "confirmation_seeds": [
+      20260819,
+      20260820
+    ],
+    "family": "pytorch_mlp",
+    "feature_block": "L+D",
+    "primary_ranking_eligible": false,
+    "source_stage": "coarse"
+  }
+}
