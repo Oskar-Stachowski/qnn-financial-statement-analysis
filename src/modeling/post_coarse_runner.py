@@ -2731,14 +2731,32 @@ def run_confirmation_classical_phase(
 def run_confirmation_qnn_phase(
     **kwargs: Any,
 ) -> dict[str, Any]:
+    config = kwargs["config"]
     authority = kwargs["authority"]
     output_dir = kwargs["output_dir"]
-    require_phase_manifest(
-        output_dir / "confirmation_classical_phase_manifest.json",
-        allowed_statuses={"COMPLETE"},
-        authority=authority,
-        root=ROOT,
-    )
+    if historical_classical_confirmation_reuse_enabled(config):
+        reuse = config["post_coarse_execution"][
+            "historical_classical_confirmation_reuse"
+        ]
+        configured_path = _resolve_from_root(
+            ROOT, str(reuse["source_manifest"]["path"])
+        )
+        actual_path = output_dir / "confirmation_classical_phase_manifest.json"
+        if actual_path.resolve() != configured_path.resolve():
+            raise PostCoarseIntegrityError(
+                "Historical classical manifest path differs from configured output."
+            )
+        require_historical_classical_confirmation_reuse(
+            config=config,
+            root=ROOT,
+        )
+    else:
+        require_phase_manifest(
+            output_dir / "confirmation_classical_phase_manifest.json",
+            allowed_statuses={"COMPLETE"},
+            authority=authority,
+            root=ROOT,
+        )
     return run_confirmation_phase(
         **kwargs,
         stop_before_qnn_confirmation=False,

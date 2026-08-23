@@ -9,6 +9,7 @@ import time
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 
 from src.modeling.post_coarse_runner import (
     CandidateExecutionResult,
@@ -18,6 +19,7 @@ from src.modeling.post_coarse_runner import (
     load_post_coarse_config,
     require_historical_classical_confirmation_reuse,
     require_historical_qnn_reuse,
+    run_confirmation_qnn_phase,
 )
 from src.modeling.production_runner import (
     CandidateFoldExecutionResult,
@@ -102,6 +104,22 @@ class ConfirmationScheduleIntegrityTests(unittest.TestCase):
             len(manifest["classical_extra_seed_candidate_result_references"]),
             60,
         )
+
+    def test_confirmation_qnn_wrapper_accepts_historical_classical_gate(self) -> None:
+        expected = {"status": "SENTINEL_NO_MODEL_FIT"}
+        with patch(
+            "src.modeling.post_coarse_runner.run_confirmation_phase",
+            return_value=expected,
+        ) as run_phase:
+            actual = run_confirmation_qnn_phase(
+                config=self.config,
+                authority=object(),
+                output_dir=SOURCE_CLASSICAL_CONFIRMATION_MANIFEST.parent,
+            )
+
+        self.assertEqual(actual, expected)
+        run_phase.assert_called_once()
+        self.assertFalse(run_phase.call_args.kwargs["stop_before_qnn_confirmation"])
 
     def test_historical_qnn_source_is_exact_and_deeply_valid(self) -> None:
         source = self.section["historical_qnn_reuse"]["source_manifest"]
