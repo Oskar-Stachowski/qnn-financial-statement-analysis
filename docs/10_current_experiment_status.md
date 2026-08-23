@@ -144,13 +144,22 @@ opening project data. The frozen v1.1.2 launcher imports v1.1.1 exactly once and
 is documented in
 [`docs/12_2_secondary_development_launcher_v1_1_2.md`](12_2_secondary_development_launcher_v1_1_2.md).
 
-The next operational command, after the v1.1.2 launcher commit, is:
+The committed v1.1.2 preflight reached the permitted train-only join and then
+stopped before model fitting: the interim target source does not cover every
+row of the frozen supervised sample. Version 1.1.3 instead reuses the exact
+production target-application train file that is already pinned by the
+production runner and contains the required score and D1–D5 signals for all
+19,671 supervised rows. It changes no sample member, target value, fold, task,
+or method. The amendment is documented in
+[`docs/12_3_secondary_development_execution_v1_1_3.md`](12_3_secondary_development_execution_v1_1_3.md).
+
+The next operational command, after the v1.1.3 amendment commit, is:
 
 ```bash
-bash scripts/run_secondary_analyses_v1_1_2.sh preflight
+bash scripts/run_secondary_analyses_v1_1_3.sh preflight
 ```
 
-If it passes, use the same v1.1.2 script to execute `pca-controls`, `interpretability`,
+If it passes, use the same v1.1.3 script to execute `pca-controls`, `interpretability`,
 `robustness-classical`, `robustness-qnn`, and `report` in that order.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,

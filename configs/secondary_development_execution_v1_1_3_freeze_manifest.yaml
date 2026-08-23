@@ -1,0 +1,64 @@
+schema_version: 1
+
+secondary_development_signal_source_freeze:
+  id: secondary_development_execution_v1_1_3
+  version: 1.1.3
+  frozen_on: "2026-08-23"
+  status: FROZEN
+  verdict: SECONDARY_DEVELOPMENT_EXECUTION_V1_1_3_SIGNAL_SOURCE_INTEGRITY_PASS
+  amendment_scope: robustness_signal_source_only
+  project_model_fit_performed_during_amendment: false
+  protected_feature_years_opened: false
+
+  inherited_execution:
+    base_version: 1.1.1
+    launcher_control_version: 1.1.2
+    total_tasks: 96
+    roster_changed: false
+    methodology_changed: false
+
+  signal_source:
+    path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_2_0_train.csv
+    sha256: 0f5d3bdefe13ed6ea6a1c6cdc94ae2c663f59175a7363dd8bffa26717069dd1b
+    role: frozen_production_target_application_train
+    already_used_by_primary_sample_loader: true
+    join_key: research_universe_company_year_id
+    additional_interim_target_deserialization: false
+
+  invariants:
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    methodology_changed: false
+    permitted_feature_years: [2011, 2020]
+    protected_feature_years: [2021, 2022, 2023, 2024]
+
+  files:
+    - path: configs/secondary_development_execution_v1_1_3_signal_source_fix.yaml
+      bytes: 2791
+      sha256: 1159abbbee103ba290dc11346461eabb2058fd049933f9fa4f34ba9626dad498
+    - path: src/modeling/secondary_analysis_execution_v1_1_3.py
+      bytes: 13117
+      sha256: 7c1e0cacc56fb306e5e92b72cee1869c701ff9239fc900e4068792e971d9bcba
+    - path: src/modeling/verify_secondary_analysis_execution_v1_1_3.py
+      bytes: 5013
+      sha256: f96c8d14951cd082bf5f8ef546222ae3958b5f436c34ff53e85f4ec335a26e81
+    - path: scripts/run_secondary_analyses_v1_1_3.sh
+      bytes: 1061
+      sha256: 3d372771b45c9de3a53fddcb6ecfd639fc0f871079bdd3596b32723dd29c8f14
+      executable: true
+    - path: tests/test_secondary_analysis_execution_v1_1_3.py
+      bytes: 3173
+      sha256: cb3d9bb6695c6fcdda0f6ab2c67d08a7a9d1248a5d19ea69d77d0df0ca358b01
+    - path: docs/12_3_secondary_development_execution_v1_1_3.md
+      bytes: 2747
+      sha256: 4760dd3826db158f595055311a8203e9677537ead1385394ea371f4ce47f8691
+
+  tests:
+    amendment_tests: 6
+    production_signal_source_matches_runner_authority: PASS
+    additional_interim_deserialization_disabled: PASS
+    exact_96_task_roster_preserved: PASS
+    synthetic_smoke_project_data_free: PASS
+    single_import_launcher: PASS
