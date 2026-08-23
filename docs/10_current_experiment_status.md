@@ -176,15 +176,25 @@ changing any task identity, method, seed, sample, fold, parameter, or result
 policy. It is documented in
 [`docs/12_4_secondary_development_execution_v1_1_4.md`](12_4_secondary_development_execution_v1_1_4.md).
 
-The next operational command after the v1.1.4 package commit is:
+The v1.1.4 package was committed as `a681d4c`. Its committed-clean verifier
+returned
+`SECONDARY_DEVELOPMENT_EXECUTION_V1_1_4_PARALLEL_CHECKPOINT_INTEGRITY_PASS`.
+The real preflight then passed in approximately 25 seconds for the exact
+19,671-row 2011–2020 sample and six folds. It verified all 36 MLP/QNN
+checkpoint sources with canonical inventory SHA-256
+`af02eb87c67851919470bb46cb8a911e51c2f63c62196c5916d65cc40d6f8ea3`.
+It performed no model fit, started no QNN resource-ledger attempt, and opened no
+protected year.
+
+The next operational command is:
 
 ```bash
-bash scripts/run_secondary_analyses_v1_1_4.sh preflight
+bash scripts/run_secondary_analyses_v1_1_4.sh pca-controls
 ```
 
-If preflight passes, rerun the inexpensive `pca-controls` phase in the new
-v1.1.4 output root and then execute `interpretability`, `robustness-classical`,
-`robustness-qnn`, and `report` in that order.
+After that inexpensive rerun completes in the new v1.1.4 output root, execute
+`interpretability`, `robustness-classical`, `robustness-qnn`, and `report` in
+that order.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
 `confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in
