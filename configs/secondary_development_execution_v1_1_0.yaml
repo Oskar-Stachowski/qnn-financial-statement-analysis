@@ -1,0 +1,197 @@
+schema_version: 1
+
+secondary_development_execution:
+  id: secondary_development_execution_v1_1_0
+  version: 1.1.0
+  created_on: "2026-08-23"
+  status: executable_package_frozen
+  default_output_root: data/model_runs/secondary_development_v1_1_0
+
+  frozen_schedule:
+    config:
+      path: configs/secondary_development_analyses_v1_0_0.yaml
+      sha256: 81e50164f7936f9af14527822d49d044f91dd602c3054052a59b103b113e4966
+    freeze_manifest:
+      path: configs/secondary_development_analyses_v1_0_0_freeze_manifest.yaml
+      sha256: a4221213af8ca84c3af7885d6206738078219b8c194ebbcc30a1e8a5fdc35aaa
+    plan_builder:
+      path: src/modeling/secondary_analysis_runner.py
+      sha256: fc302b2733b098c591d91bb2771077b487cb0d53c1c4b81dc6bf56021822fb7c
+    schema_validator:
+      path: src/modeling/secondary_analysis_schemas.py
+      sha256: 7ae93a0d9541c922ae3768bcb2dc6d0c1e20d8ac49d406624e0493eecceedc13
+    task_count: 96
+    pca_control_fold_fits: 12
+    common_interpretability_methods: 8
+    detailed_interpretability_methods: 4
+    global_winner_robustness_fold_fits: 48
+    qnn_structural_fold_fits: 24
+
+  authority:
+    production_runner_config:
+      path: configs/production_experiment_runner_v1_0_1_lightning.yaml
+      sha256: 53d4919b3bb733b293d5e73403e06d0b2f12ab75b1ff1bdda491e90db61ecc27
+    timezone_pit_fix:
+      path: configs/timezone_pit_fix_v1_0_0.yaml
+      sha256: 364ad019a6a6b3e2eb4e0d5955b35e773adc6250484a1ecda2db1935638447b2
+    robustness_target_train:
+      path: data/interim/target_candidate_v2_pit_b_v1_2_0_train.csv
+      sha256: df68a31308d907d17a8efe63bd76641e88ed1b0010129cb166987527fa564e35
+    post_coarse_output:
+      path: data/model_runs/post_coarse_v1_3_0
+      compact_freeze_manifest: configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+
+  data_boundary:
+    permitted_feature_year_bounds: [2011, 2020]
+    oof_validation_years: [2015, 2016, 2017, 2018, 2019, 2020]
+    protected_feature_years: [2021, 2022, 2023, 2024]
+    only_exact_hash_verified_train_inputs_may_be_deserialized: true
+    automatic_raw_restore_allowed: false
+    raw_directory_may_be_read: false
+    robustness_target_columns:
+      - research_universe_company_year_id
+      - feature_year
+      - target_status
+      - deterioration_score_1y
+      - D1_roa
+      - D2_ocf_assets
+      - D3_current_ratio
+      - D4_liabilities_assets
+      - D5_revenues
+
+  execution:
+    stage_order:
+      - pca-controls
+      - interpretability
+      - robustness-classical
+      - robustness-qnn
+      - report
+    real_data_modes:
+      - preflight
+      - pca-controls
+      - interpretability
+      - robustness-classical
+      - robustness-qnn
+      - report
+      - all
+    planning_modes: [status, plan, smoke, verify]
+    project_read_requires_committed_clean_package: true
+    new_or_exact_identity_output_only: true
+    task_resume_rule: exact_frozen_task_and_execution_identity_only
+    terminal_task_results_are_immutable: true
+    task_result_write: canonical_atomic_json
+    prediction_write: canonical_atomic_json
+    temporary_numeric_arrays_deleted_after_terminal_result: true
+    worker_project_data_loader_present: false
+    primary_ranking_may_change: false
+    roster_may_change: false
+    hyperparameters_may_change: false
+    retuning_allowed: false
+
+  preprocessing_variants:
+    B_without_missing_indicators:
+      row_filter: main_sample
+      winsor_quantiles: [0.01, 0.99]
+      median_imputation: true
+      scaling: true
+      missing_indicators: false
+    complete_case:
+      row_filter: evaluated_block_complete_case
+      winsor_quantiles: [0.01, 0.99]
+      median_imputation: true
+      scaling: true
+      missing_indicators: true
+    no_winsorization:
+      row_filter: main_sample
+      winsor_quantiles: [0.0, 1.0]
+      median_imputation: true
+      scaling: true
+      missing_indicators: true
+    purged_economic_group_cv:
+      row_filter: remove_validation_groups_from_fold_train
+      winsor_quantiles: [0.01, 0.99]
+      median_imputation: true
+      scaling: true
+      missing_indicators: true
+    sparse_row_available_features_at_least_11_of_17:
+      row_filter: available_raw_features_at_least_11
+      available_threshold: 11
+      available_feature_total: 17
+      winsor_quantiles: [0.01, 0.99]
+      median_imputation: true
+      scaling: true
+      missing_indicators: true
+
+  label_variants:
+    deterioration_score_at_least_2: deterioration_score_1y >= 2
+    deterioration_score_at_least_4: deterioration_score_1y >= 4
+    operating_performance_max_D1_D2_alternative_score_at_least_3: max(D1_roa,D2_ocf_assets)+D3_current_ratio+D4_liabilities_assets+D5_revenues >= 3
+
+  qnn_structural_variants:
+    replace_entangling_gates_with_identity:
+      executable_ansatz_id: ROT_IDENTITY
+      preserve_local_rotations: true
+    first_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings:
+      executable_ansatz_id: RY_RZ_CZ_BRICKWORK
+    second_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings:
+      executable_ansatz_id: RY_CRX_RING
+    swap_4_and_6_qubit_PCA_at_fixed_other_settings:
+      qubit_mapping: {4: 6, 6: 4}
+
+  interpretation:
+    seed_rule: exact_final_representative_seed_or_20260818_20260819_20260820_average
+    common_permutation:
+      original_feature_with_own_missing_indicator: true
+      economic_group_cluster_permutation: true
+      require_one_row_per_economic_group_within_validation_fold: true
+      repetitions: 20
+      seed: 20260818
+      metric: pooled_oof_pr_auc_decrease
+    linear:
+      refit_exact_frozen_seed_identity: true
+    tree_shap:
+      feature_perturbation: interventional
+      model_output: raw
+      background_train_rows_max: 512
+      oof_rows_per_fold_max: 500
+    mlp_integrated_gradients:
+      checkpoint_reuse_required_if_exact_checkpoint_exists: true
+      baseline: fold_train_featurewise_mean
+      oof_rows_per_fold_max: 200
+      steps: 64
+    qnn_sensitivity:
+      checkpoint_reuse_required_if_exact_checkpoint_exists: true
+      oof_rows_per_fold_max: 100
+
+  resources:
+    worker_threads_per_process: 1
+    maximum_parallel_classical_folds: 4
+    maximum_parallel_mlp_folds: 2
+    maximum_parallel_qnn_folds: 4
+    qnn_structural_cumulative_wall_seconds_cap: 172800
+    checkpoint_every_epochs: 5
+    resume_limit: 1
+    fresh_retry_limit: 1
+    retain_interrupted_arrays_for_diagnosis_and_resume: true
+
+  git_gate:
+    package_files:
+      - configs/secondary_development_execution_v1_1_0.yaml
+      - src/modeling/secondary_analysis_execution.py
+      - src/modeling/secondary_analysis_execution_worker.py
+      - src/modeling/verify_secondary_analysis_execution_package.py
+      - scripts/run_secondary_analyses_v1_1.sh
+      - tests/test_secondary_analysis_execution.py
+      - docs/12_secondary_development_execution_v1_1_0.md
+      - configs/secondary_development_execution_v1_1_0_freeze_manifest.yaml
+    freeze_manifest: configs/secondary_development_execution_v1_1_0_freeze_manifest.yaml
+
+  terminal_statuses: [COMPLETE, TECHNICALLY_INVALID, METHOD_FAILED, RESOURCE_LIMIT_REACHED]
+  failure_codes:
+    protected_data: PROTECTED_DATA_ACCESS_BLOCKED
+    authority: AUTHORITY_INTEGRITY_FAIL
+    git_gate: UNCOMMITTED_EXECUTION_PACKAGE
+    output_identity: OUTPUT_IDENTITY_CONFLICT
+    missing_input: REQUIRED_DEVELOPMENT_INPUT_MISSING
+    missing_column: REQUIRED_DEVELOPMENT_COLUMN_MISSING
+    numerical: NUMERICAL_INVALID

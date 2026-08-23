@@ -1,0 +1,63 @@
+schema_version: 1
+
+secondary_development_execution_freeze:
+  id: secondary_development_execution_v1_1_0
+  version: 1.1.0
+  frozen_on: "2026-08-23"
+  status: FROZEN
+  verdict: SECONDARY_DEVELOPMENT_EXECUTION_V1_1_0_PACKAGE_INTEGRITY_PASS
+  project_data_read_during_package_freeze: false
+  project_model_fit_performed_during_package_freeze: false
+  protected_feature_years_opened: false
+
+  frozen_schedule:
+    source_version: secondary_development_analyses_v1_0_0
+    total_tasks: 96
+    pca_control_fold_fits: 12
+    common_interpretability_methods: 8
+    detailed_interpretability_methods: 4
+    global_winner_robustness_fold_fits: 48
+    qnn_structural_fold_fits: 24
+    roster_changed: false
+    primary_ranking_may_change: false
+
+  files:
+    - path: configs/secondary_development_execution_v1_1_0.yaml
+      bytes: 7384
+      sha256: 3ae596039a541bd93e1f9657f6a5096987061cbc9928ece8337e6e666e406541
+    - path: src/modeling/secondary_analysis_execution.py
+      bytes: 53396
+      sha256: 76745a1f53b5d36271e46ca6883c5e7c0451224d1313580240c4a7dac6cc37a1
+    - path: src/modeling/secondary_analysis_execution_worker.py
+      bytes: 18511
+      sha256: 9f535ae2805fb18705fadfa769f8fd0cb0d102b199a18681ed9e8faafea41748
+    - path: src/modeling/verify_secondary_analysis_execution_package.py
+      bytes: 3394
+      sha256: 3c0d293c801c97bfc886a876a6733ac2a9592f2b7be8e1d8b3fa7ef411b23e5e
+    - path: scripts/run_secondary_analyses_v1_1.sh
+      bytes: 665
+      sha256: ebee0904d7ef5b3a9b25d226b185bf012c8e3bf4d5c8f0140dac0920b53fbb57
+      executable: true
+    - path: tests/test_secondary_analysis_execution.py
+      bytes: 9293
+      sha256: 10b1d11d6541f3af4124885b8a757a4833da8e30bbc34b670ced7104367472e1
+    - path: docs/12_secondary_development_execution_v1_1_0.md
+      bytes: 4791
+      sha256: 82afd044d275557664ab2df1f27b2a590c0af818da9ebf774844364b81062b10
+
+  tests:
+    unit_test_count: 8
+    synthetic_preprocessing_routes: 5
+    synthetic_fold_fit_tasks_completed: 84
+    synthetic_exact_resume_tasks_completed: 84
+    qnn_identity_entangler_worker_smoke: PASS
+    pre_execution_v1_0_0_regression_tests: 5
+    static_authority_files_verified: 7
+
+  execution_boundary:
+    real_data_requires_committed_clean_package: true
+    exact_train_input_hashes_required: true
+    workers_load_project_files: false
+    protected_feature_years: [2021, 2022, 2023, 2024]
+    automatic_raw_restore_allowed: false
+    temporary_numeric_arrays_deleted_after_terminal_result: true

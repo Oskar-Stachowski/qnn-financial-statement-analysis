@@ -111,20 +111,33 @@ analyses on OOF 2015–2020:
 3. mandatory pipeline, label-definition, and QNN structural robustness runs
    with frozen configurations and no retuning.
 
-Before any of these runs, their executable controller, configuration, output
-schemas, synthetic tests, resource policy, and failure states must be versioned,
-tested, committed, and frozen. Secondary results cannot change the primary
-ranking, model roster, ansatz, feature blocks, hyperparameters, preprocessing,
-calibration method, or threshold rule.
+Their executable controller, configuration, output schemas, synthetic tests,
+resource policy, and failure states are now versioned and frozen as
+`secondary_development_execution_v1_1_0`, documented in
+[`docs/12_secondary_development_execution_v1_1_0.md`](12_secondary_development_execution_v1_1_0.md).
+Secondary results cannot change the primary ranking, model roster, ansatz,
+feature blocks, hyperparameters, preprocessing, calibration method, or threshold
+rule.
 
 The schedule and interfaces have now been frozen in the synthetic-only
 pre-execution package `secondary_development_analyses_v1_0_0`, documented in
 [`docs/11_secondary_development_analyses_v1_0_0.md`](11_secondary_development_analyses_v1_0_0.md).
 It deterministically accounts for 96 tasks and exposes `status`, `plan`,
 `smoke`, and `verify`. It intentionally cannot read project rows or fit project
-models. The next explicit version must add the project executor while preserving
-the frozen task roster, authority hashes, access boundary, resource caps, and
-failure policy.
+models. The v1.1.0 executable package preserves its roster, authority hashes,
+access boundary, resource caps, and failure policy. Package tests covered all 84
+fold-fit routes and exact resume on generated data plus the new identity-entangler
+path in the pinned QNN environment; no project-data execution was performed.
+
+The next operational command, after the v1.1.0 package commit, is the read-only
+project-input and environment gate:
+
+```bash
+bash scripts/run_secondary_analyses_v1_1.sh preflight
+```
+
+If it passes, execute `pca-controls`, `interpretability`,
+`robustness-classical`, `robustness-qnn`, and `report` in that order.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
 `confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in
