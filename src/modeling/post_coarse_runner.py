@@ -238,9 +238,24 @@ def _metric_summary(result: CandidateExecutionResult) -> dict[str, Any]:
 
 
 def load_post_coarse_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
-    config = load_yaml(path)
-    extension = config.get("extends")
-    if isinstance(extension, Mapping):
+    def merge(base_value: Any, overlay_value: Any) -> Any:
+        if isinstance(base_value, Mapping) and isinstance(overlay_value, Mapping):
+            result = dict(base_value)
+            for key, value in overlay_value.items():
+                result[key] = merge(result.get(key), value)
+            return result
+        return overlay_value
+
+    def load_layer(layer_path: Path, stack: tuple[Path, ...]) -> dict[str, Any]:
+        resolved = layer_path.resolve()
+        if resolved in stack:
+            raise PostCoarseIntegrityError(
+                "Post-coarse configuration inheritance contains a cycle."
+            )
+        layer = load_yaml(resolved)
+        extension = layer.get("extends")
+        if not isinstance(extension, Mapping):
+            return layer
         base_path = (ROOT / str(extension["path"])).resolve()
         if not base_path.is_file() or file_sha256(base_path) != str(
             extension["sha256"]
@@ -248,20 +263,13 @@ def load_post_coarse_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
             raise PostCoarseIntegrityError(
                 "Post-coarse base configuration SHA-256 mismatch."
             )
-        base = load_yaml(base_path)
-
-        def merge(base_value: Any, overlay_value: Any) -> Any:
-            if isinstance(base_value, Mapping) and isinstance(overlay_value, Mapping):
-                result = dict(base_value)
-                for key, value in overlay_value.items():
-                    result[key] = merge(result.get(key), value)
-                return result
-            return overlay_value
-
-        config = merge(
+        base = load_layer(base_path, (*stack, resolved))
+        return merge(
             base,
-            {key: value for key, value in config.items() if key != "extends"},
+            {key: value for key, value in layer.items() if key != "extends"},
         )
+
+    config = load_layer(path, ())
     section = config.get("post_coarse_execution")
     if not isinstance(section, dict) or str(section.get("version")) not in {
         "1.0.0",

@@ -58,6 +58,9 @@ class ConfirmationScheduleIntegrityTests(unittest.TestCase):
 
     def test_schedule_amendment_changes_execution_only(self) -> None:
         self.assertEqual(self.section["version"], "1.0.4")
+        self.assertIn("methodology_amendment", self.section["authority"])
+        self.assertIn("base_execution_contract", self.section["authority"])
+        self.assertIn("coarse_source", self.section)
         schedule = self.section["confirmation_schedule_amendment"]
         self.assertTrue(schedule["classical_and_qnn_confirmation_split"])
         self.assertTrue(
