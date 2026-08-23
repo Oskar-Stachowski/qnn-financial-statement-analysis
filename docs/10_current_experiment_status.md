@@ -1,78 +1,144 @@
 # Current experiment status
 
-Status date: 2026-08-20
+Status date: 2026-08-23
 
-## Last completed stage
+## Current state
 
-The preregistered classical/MLP coarse search on the six PIT-safe temporal CV folds for 2015–2020 is complete. The run executed 247 candidate positions and 1,482 fold fits with training seed `20260818`. Of these, 238 candidate positions completed successfully. Nine RBF SVM positions were excluded fail-closed after convergence warnings; their fold attempts and terminal statuses remain recorded in the manifests.
+The complete post-coarse development sequence is finished and frozen. It includes:
 
-No conditional refinement, QNN execution, final calibration or thresholding, robustness, interpretability, or external validation/test execution has been performed as part of this stage.
+- conditional refinement of XGBoost, HistGradientBoosting, and Random Forest;
+- the supplemental PyTorch MLP refinement track;
+- QNN Q1 ansatz selection and Q2 block-specific selection;
+- classical/MLP confirmation and QNN confirmation;
+- final family ranking, seed aggregation, calibration, and threshold fitting;
+- a 2,000-replicate paired clustered bootstrap over `economic_group_id`;
+- the compact eight-table post-coarse report.
 
-## Git anchors and result locations
+The authoritative frozen boundary is
+[`docs/10_1_post_coarse_v1_3_0_results_freeze.md`](10_1_post_coarse_v1_3_0_results_freeze.md),
+with machine-readable identities in
+`configs/post_coarse_v1_3_0_results_freeze_manifest.yaml`. The containing freeze
+commit is `34c195822ba9bd0b9f91303f15ed827e4906dddd`.
 
-- Coarse-search execution code commit: `39a0a841e51ddfeb5402aeadf9e6a2864b637ac9`.
-- Commit recording the coarse-search manifests in Git: `409c1789ba673885779cae01e9b2cfa36c2401a0`.
-- Local run root: `data/model_runs/classical_mlp_coarse_v1/`.
-- Canonical OOF prediction root: `data/model_runs/classical_mlp_coarse_v1/candidate_results/coarse/`.
-- Canonical aggregate manifest: `data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json`.
-- Canonical aggregate manifest SHA-256: `5f8029810811d443dbb363cd8dc341fd147d563d7d65d0a824c8c1929e7bfc43`.
-- Per-family result manifests: `data/model_runs/classical_mlp_coarse_v1/coarse_results/<family>/result_manifest.json`.
-- Refinement qualification manifest: `data/model_runs/classical_mlp_coarse_v1/refinement_eligibility.json`.
-- Refinement qualification manifest SHA-256: `236517a5a9297c3fb0db603b0fe9983cf7769a8ecda3684a07ca41bc1566cad0`.
-- Runtime and environment record: `data/model_runs/classical_mlp_coarse_v1/runtime_metadata.json`.
-- Runtime and environment record SHA-256: `38a0237d0847dfaac702627740e93f1a1aa92b79d9c7a3b2aaad418f371a5788`.
+The read-only verifier:
 
-The aggregate, per-family, refinement, run, and runtime manifests are tracked by Git in commit `409c1789...`. Row-level OOF predictions, fitted objects, and checkpoints remain in the local run directory and are intentionally not tracked because of their size. Their paths and SHA-256 integrity references are recorded in the tracked manifests. The coarse-search outputs and existing candidate IDs must not be rewritten.
+```bash
+.venv-classical/bin/python -m src.modeling.verify_post_coarse_results_freeze
+```
 
-## Current artifact versions
+returns `POST_COARSE_V1_3_0_RESULTS_INTEGRITY_PASS`. It verifies 30 frozen
+files, all 36 QNN confirmation fold fits, 2,000 valid bootstrap replicates, and
+the eight report tables. Feature years 2021–2024 were not opened by the
+post-coarse execution or by this status update.
 
-| Artifact | Current version or identity |
+## Canonical result locations
+
+- Post-coarse run root: `data/model_runs/post_coarse_v1_3_0/`.
+- Final primary development ranking:
+  `data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json`.
+- Neural comparison manifest:
+  `data/model_runs/post_coarse_v1_3_0/neural_comparison_manifest.json`.
+- Clustered-bootstrap result:
+  `data/model_runs/post_coarse_v1_3_0/neural_comparison_clustered_bootstrap.json`.
+- Compact report: `reports/post_coarse_v1_3_0/`.
+- Human-readable report summary:
+  [`reports/post_coarse_v1_3_0/summary.md`](../reports/post_coarse_v1_3_0/summary.md).
+- Coarse-search run retained as an immutable upstream dependency:
+  `data/model_runs/classical_mlp_coarse_v1/`.
+
+Large fitted objects, row-level OOF predictions, fold checkpoints, and worker
+arrays remain intentionally outside Git. They must not be rewritten or mixed
+with artifacts from another execution.
+
+## Frozen development outcome
+
+The final primary development leader is:
+
+| Field | Value |
 |---|---|
-| Timezone/PIT interpretation | `timezone_pit_fix_v1_0_0`, SEC acceptance timestamps canonicalized to UTC |
-| Frozen X_t train projection | `x_t_pit_v1_1_0_train.csv`, SHA-256 `872cb551a0855d658c52276e5e7594efb05da167718709ab76b386ebfa917d65` |
-| Frozen target-application train overlay | `research_universe_pit_v1_1_0_target_pit_b_v1_2_0_train.csv`, SHA-256 `0f5d3bdefe13ed6ea6a1c6cdc94ae2c663f59175a7363dd8bffa26717069dd1b` |
-| Model-stage candidate registry | `model_stage_candidates_v1`, scientific-correctness patch `1.0.1`, SHA-256 `f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac` |
-| Expanded coarse candidate index | SHA-256 `8351b6400246db5a5e973ac7da34d36e0db5bb2af3637c3ef2273006d04c33aa` |
-| Model execution contract | base `1.2.0` plus scientific-correctness overlay `1.0.0`, SHA-256 `59490dc080176a4f5655539db78edeb035e9ce02a2b6a68d95fad5c428081f59` |
-| Production experiment runner | `1.0.0`, timezone/PIT-fixed, config SHA-256 `0ee0f55f86050bcbe249de5127a21c04c1bfd390cf4e97cd8ce378df5035afed` |
-| Frozen supervised sample membership | SHA-256 `864af3d9aac6ea239d993ea48cd819c2185f3249957d8b81f6d8d4c3c9f3d680` |
+| Family | XGBoost |
+| Configuration | `model_stage_v1__coarse__xgboost__004` |
+| Feature block | `L+D+R` |
+| Seed treatment | average of `20260818`, `20260819`, and `20260820` |
+| Pooled OOF PR-AUC | `0.41308893399384633` |
+| Pooled OOF ROC-AUC | `0.7598701797010347` |
 
-## Coarse-search result
+The globally selected QNN ansatz is `ROT_CNOT_RING`. The confirmed neural
+comparison is:
 
-The frozen pooled OOF PR-AUC ranking identifies the following global coarse leader:
+| Representative | Block | Pooled OOF PR-AUC | Pooled OOF ROC-AUC | PR-AUC difference vs MLP |
+|---|---:|---:|---:|---:|
+| Refined MLP comparator | `L+D` | `0.396263` | `0.746409` | reference |
+| QNN | `L` | `0.372969` | `0.732330` | `-0.023294` |
+| QNN | `L+D` | `0.373961` | `0.738855` | `-0.022302` |
+| QNN | `L+D+R` | `0.383948` | `0.740584` | `-0.012316` |
 
-- family: XGBoost;
-- configuration: `model_stage_v1__coarse__xgboost__004`;
-- feature block: `L+D+R`;
-- pooled OOF PR-AUC: `0.41167748793642267`;
-- secondary pooled OOF ROC-AUC: `0.7594860513220995`.
+These are development-only OOF results for validation years 2015–2020. The
+bootstrap is conditional on the selected configurations, is not
+selection-adjusted, and is not an independent test. Results from an analytic
+simulator do not support a claim of quantum advantage.
 
-Reference results are:
+## Backup and local-storage state
 
-- Dummy prior pooled OOF PR-AUC: `0.1722831509228104`;
-- best fixed-L2 logistic pooled OOF PR-AUC: `0.38165485192849713`;
-- XGBoost leader improvement over Dummy: `0.23939433701361226`;
-- XGBoost leader improvement over fixed L2: `0.03002263600792554`.
+Two separate byte-preserving snapshots exist in the same Amazon S3 bucket:
 
-All complete candidates have 10,760 canonical OOF keys and 1,986 positive observations. OOF keys are unique within each complete candidate, scores are finite, and only validation years 2015–2020 occur in the coarse run.
+1. `data/raw` snapshot:
+   `qnn-financial-statement-analysis/raw-sec-snapshots/20260823T153845Z_git-34c19582`;
+2. `data/model_runs` plus `data/processed` snapshot:
+   `qnn-financial-statement-analysis/project-artifact-snapshots/20260823T165347Z_git-34c19582`.
 
-## Families qualified for conditional refinement
+Both snapshots passed checksum-enabled S3 downloads, streamed Zstandard
+decompression, TAR enumeration, and per-file SHA-256 comparison against their
+source manifests. The artifact snapshot validated 18,463 files and
+13,397,282,957 logical bytes with zero mismatch. Its terminal record is
+`RESTORE_VALIDATION_COMPLETE.json`.
 
-The frozen qualification rule selected exactly these families; refinement has not yet been executed:
+The large `data/raw` payload was removed locally only after successful restore
+validation. The local `data/model_runs` and `data/processed` sources are still
+retained because the pending secondary analyses depend on them. The operational
+record and restore instructions are in
+[`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](INSTRUKCJA_BACKUP_AMAZON_S3.md).
 
-1. XGBoost — leader `model_stage_v1__coarse__xgboost__004`, block `L+D+R`;
-2. HistGradientBoosting — leader `model_stage_v1__coarse__hist_gradient_boosting__007`, block `L+D+R`;
-3. Random Forest — leader `model_stage_v1__coarse__random_forest__003`, block `L+D+R`.
+## Next permitted work
 
-## Next steps
+The next scientific stage is restricted to preregistered secondary development
+analyses on OOF 2015–2020:
 
-1. Execute only the preregistered conditional-refinement candidate IDs for the three qualified families.
-2. Rank the common pool of coarse candidates and activated refinement candidates according to the frozen execution contract.
-3. Perform the preregistered seed-confirmation stage when required by that contract, without changing candidate identities or search spaces.
-4. Execute the separately preregistered QNN stages under the frozen resource ledger when that stage is authorized.
-5. Defer final calibration/thresholding, interpretability, robustness, and thesis reporting analyses to their preregistered stages.
-6. Keep external validation 2021–2022 and test 2023–2024 closed until their explicitly authorized stages.
+1. PCA-matched fixed-L2 and PyTorch MLP controls using exactly the final QNN
+   representation and rows;
+2. common grouped permutation importance and the frozen family-specific
+   interpretability methods;
+3. mandatory pipeline, label-definition, and QNN structural robustness runs
+   with frozen configurations and no retuning.
 
-## Access status
+Before any of these runs, their executable controller, configuration, output
+schemas, synthetic tests, resource policy, and failure states must be versioned,
+tested, committed, and frozen. Secondary results cannot change the primary
+ranking, model roster, ansatz, feature blocks, hyperparameters, preprocessing,
+calibration method, or threshold rule.
 
-Feature years 2021–2024 remain closed. The coarse search did not open external validation or test data, and no subsequent step is authorized by this status document to access those periods.
+Do not rerun `refinement`, `qnn`, `confirmation-classical`,
+`confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in
+the frozen output directories. The existing results are terminal evidence, not
+scratch space.
+
+## Protected-period boundary
+
+Feature years 2021–2024 remain closed under
+[`docs/09_1_data_access_policy_v1_1_0.md`](09_1_data_access_policy_v1_1_0.md).
+
+- 2021–2022 are a design-exposed, spent development period and may later be
+  reopened only through `DATA_ACCESS_GATE_2021_2022_REOPEN_V1`. Any result must
+  be labelled secondary spent-period evidence and cannot activate tuning.
+- 2023–2024 remain a temporal model-performance holdout with documented prior
+  aggregate-target exposure. Blind feature application requires
+  `DATA_ACCESS_GATE_2023_2024_FEATURE_APPLICATION_V1`; labels require the later
+  `DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_V1`.
+- The contained access incident in
+  [`docs/09_2_data_access_incident_v1_0_0.md`](09_2_data_access_incident_v1_0_0.md)
+  still requires an independent review and explicit resolution before a
+  protected-period gate is relied upon.
+
+Before a gate, protected-period artifacts may be checked only for existence or
+by opaque byte-level hashing. Their values, schemas, row counts, distributions,
+predictions, and performance must not be inspected.

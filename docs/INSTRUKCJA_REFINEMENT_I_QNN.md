@@ -1,5 +1,26 @@
 # Instrukcja: refinement modeli klasycznych, dodatkowy MLP i eksperyment QNN
 
+> **Status procedury — zakończona 2026-08-23.** Wszystkie opisane poniżej etapy
+> refinementu, QNN Q1/Q2, confirmation, inference i raportowania zostały
+> wykonane, a wyniki zamrożono w wersji post-coarse `v1.3.0`. Ten dokument jest
+> instrukcją odtworzeniową i zapisem kolejności wykonania; nie jest poleceniem do
+> ponownego uruchomienia etapów w istniejącym katalogu wynikowym. Aktualny stan
+> opisuje [`10_current_experiment_status.md`](10_current_experiment_status.md), a
+> integralność zamrożonego wyniku określa
+> [`10_1_post_coarse_v1_3_0_results_freeze.md`](10_1_post_coarse_v1_3_0_results_freeze.md).
+
+Przed jakąkolwiek pracą na istniejących wynikach uruchom wyłącznie odczytowy
+verifier:
+
+```bash
+.venv-classical/bin/python -m src.modeling.verify_post_coarse_results_freeze
+```
+
+Oczekiwany werdykt to `POST_COARSE_V1_3_0_RESULTS_INTEGRITY_PASS`. Następnym
+dozwolonym etapem są osobno wersjonowane analizy wtórne na OOF 2015–2020:
+PCA-matched controls, interpretowalność i robustness. Ta instrukcja nie
+autoryzuje dostępu do lat 2021–2024.
+
 ## 1. Co robi ta paczka
 
 Paczka uruchamia dalszą część eksperymentu **bez ponownego wykonywania coarse searchu**. Wykorzystuje gotowy i zamrożony katalog:

@@ -4,7 +4,7 @@ A point-in-time, leakage-controlled research pipeline for classifying one-year m
 
 > Master's thesis research project by **Oskar Stachowski**.
 >
-> Repository state reflected in this README: **20 August 2026**.
+> Repository state reflected in this README: **23 August 2026**.
 
 ## Research objective
 
@@ -21,44 +21,43 @@ The outcome is **not** a bankruptcy, fraud, insolvency, or accounting-manipulati
 | Train-only point-in-time feature projection | **Frozen**, `x_t_pit_v1_1_0_train.csv` |
 | Supervised ML pipeline | **Frozen**, with versioned access and resolver amendments |
 | Model-stage preregistration and candidate registry | **Frozen**, with a scientific-correctness patch |
-| Production execution contract | **Frozen**, version `1.2.0` plus scientific overlay |
+| Production execution contract | **Frozen**, version `1.2.1` Lightning with scientific patch |
 | Classical and PyTorch MLP coarse search | **Complete** |
-| Conditional classical refinement | **Pending** for XGBoost, HistGradientBoosting, and Random Forest |
-| Confirmation-seed stage | **Pending** |
-| QNN Stage Q1 and Stage Q2 | **Pending** |
-| Final calibration, thresholding, robustness, and interpretability | **Pending** |
+| Conditional classical refinement and supplemental MLP refinement | **Complete** |
+| QNN Stage Q1 and Stage Q2 | **Complete**; selected ansatz `ROT_CNOT_RING` |
+| Classical/MLP and QNN confirmation | **Complete** |
+| Final development ranking, calibration, thresholds, bootstrap, and compact report | **Complete and frozen**, post-coarse `v1.3.0` |
+| PCA-matched controls, robustness, and interpretability | **Pending** as secondary development analyses |
+| Large raw-data and model-artifact backup | **Complete and restore-validated** in Amazon S3 |
 | Evaluation using feature years 2021–2024 | **Closed under the frozen access policy** |
 
 The authoritative progress record is [`docs/10_current_experiment_status.md`](docs/10_current_experiment_status.md).
 
 ## Latest development result
 
-The completed coarse search evaluated **247 candidate positions** over six point-in-time-safe temporal folds, corresponding to **1,482 fold fits**. Of these, **238 candidates completed successfully**. Nine RBF SVM candidate positions were excluded fail-closed after convergence warnings; their attempts and terminal statuses remain recorded in the manifests.
+The complete post-coarse sequence comprises conditional refinement, QNN Q1/Q2, classical/MLP and QNN confirmation, seed aggregation, calibration and threshold fitting, a 2,000-replicate paired clustered bootstrap, and compact reporting. The frozen bundle passes the read-only integrity verifier with verdict `POST_COARSE_V1_3_0_RESULTS_INTEGRITY_PASS`.
 
-The current global coarse-search leader is:
+The final primary development ranking is led by:
 
 | Field | Value |
 |---|---|
 | Model family | XGBoost |
 | Configuration | `model_stage_v1__coarse__xgboost__004` |
 | Feature block | `L+D+R` |
-| Pooled OOF PR-AUC | **0.411677** |
-| Pooled OOF ROC-AUC | **0.759486** |
+| Seed treatment | averaged seeds `20260818`, `20260819`, and `20260820` |
+| Pooled OOF PR-AUC | **0.413089** |
+| Pooled OOF ROC-AUC | **0.759870** |
 
-Best completed coarse-search result by family:
+The separate neural comparison is:
 
-| Family | Best block | Pooled OOF PR-AUC | ROC-AUC | Current interpretation |
-|---|---:|---:|---:|---|
-| XGBoost | `L+D+R` | **0.411677** | 0.759486 | Qualified for refinement |
-| HistGradientBoosting | `L+D+R` | 0.407810 | 0.758795 | Qualified for refinement |
-| Random Forest | `L+D+R` | 0.407391 | 0.758700 | Qualified for refinement |
-| PyTorch MLP | `L+D` | 0.395485 | 0.744943 | Provisional family leader |
-| RBF SVM | `L+D+R` | 0.393558 | 0.736029 | Provisional family leader |
-| Elastic-net logistic regression | `L+D+R` | 0.381825 | 0.740134 | Provisional family leader |
-| Fixed-L2 logistic regression | `L+D+R` | 0.381655 | 0.738704 | Reference baseline |
-| Dummy prior | block-agnostic | 0.172283 | 0.462569 | Prevalence baseline |
+| Representative | Block | Pooled OOF PR-AUC | 95% clustered-bootstrap CI | Difference vs MLP |
+|---|---:|---:|---:|---:|
+| Refined MLP comparator | `L+D` | **0.396263** | [0.375772, 0.419443] | reference |
+| QNN | `L` | 0.372969 | [0.352288, 0.395790] | -0.023294 |
+| QNN | `L+D` | 0.373961 | [0.354057, 0.395900] | -0.022302 |
+| QNN | `L+D+R` | **0.383948** | [0.364326, 0.407518] | -0.012316 |
 
-These are **development-only out-of-fold coarse-search results**, not final generalization estimates. Conditional refinement, confirmation seeds, QNN experiments, calibration, threshold selection, robustness analyses, and protected-period evaluation have not yet been completed. Full tables, figures, integrity checks, and interpretation are available under [`reports/coarse_search_thesis/`](reports/coarse_search_thesis/).
+These remain **development-only OOF results for 2015–2020**. The bootstrap is conditional on the selected configurations and is not an independent test or a selection-adjusted inferential claim. The analytic-simulator experiment does not establish quantum advantage. Full results and interpretation are in [`reports/post_coarse_v1_3_0/`](reports/post_coarse_v1_3_0/), and the exact frozen boundary is documented in [`docs/10_1_post_coarse_v1_3_0_results_freeze.md`](docs/10_1_post_coarse_v1_3_0_results_freeze.md).
 
 ## Data and point-in-time design
 
@@ -270,7 +269,9 @@ LEGACY/        superseded pre-PIT and pre-freeze implementations retained for pr
 
 Large SEC downloads, generated row-level datasets, fitted objects, checkpoints, and complete model-run directories are intentionally excluded from ordinary Git tracking. Their canonical paths are under `data/`, while compact reports, manifests, schemas, counts, provenance, and SHA-256 references are versioned where appropriate.
 
-Consequently, cloning the repository provides the code, specifications, tests, and compact evidence package, but not every large local input or execution artifact. Reproduction requires rebuilding or supplying the exact frozen SEC-derived inputs and passing all manifest and hash checks. The controller fails closed when an expected path, file identity, sample membership, fold membership, candidate identity, or environment identity differs from the frozen contract.
+The full `data/raw` payload and the large `data/model_runs` plus `data/processed` artifacts have separate byte-preserving Amazon S3 snapshots. Both snapshots passed checksum-enabled downloads, streamed decompression, TAR enumeration, and per-file SHA-256 validation. Large `data/raw` payloads were removed locally only after that restore validation; the model-run and processed-data sources remain local because they are needed for the pending secondary analyses. Operational details are recorded in [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](docs/INSTRUKCJA_BACKUP_AMAZON_S3.md).
+
+Consequently, cloning the repository provides the code, specifications, tests, and compact evidence package, but not every large input or execution artifact. Reproduction requires restoring or rebuilding the exact frozen SEC-derived inputs and passing all manifest and hash checks. The controller fails closed when an expected path, file identity, sample membership, fold membership, candidate identity, or environment identity differs from the frozen contract.
 
 ## Key documentation
 
@@ -284,12 +285,17 @@ Consequently, cloning the repository provides the code, specifications, tests, a
 | Supervised ML pipeline | [`docs/07_1_supervised_ml_pipeline_v1_frozen_specification.md`](docs/07_1_supervised_ml_pipeline_v1_frozen_specification.md) |
 | Model-stage preregistration | [`docs/08_1_model_stage_v1_frozen_specification.md`](docs/08_1_model_stage_v1_frozen_specification.md) |
 | Production runner and environments | [`docs/08_4_production_runner_and_environments_v1_0_0.md`](docs/08_4_production_runner_and_environments_v1_0_0.md) |
+| Post-coarse frozen result boundary | [`docs/10_1_post_coarse_v1_3_0_results_freeze.md`](docs/10_1_post_coarse_v1_3_0_results_freeze.md) |
+| Post-coarse result summary | [`reports/post_coarse_v1_3_0/summary.md`](reports/post_coarse_v1_3_0/summary.md) |
+| S3 backup and restore record | [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](docs/INSTRUKCJA_BACKUP_AMAZON_S3.md) |
 | Coarse-search summary | [`reports/coarse_search_thesis/summary.md`](reports/coarse_search_thesis/summary.md) |
 | Coarse-search family table | [`reports/coarse_search_thesis/tables/07_thesis_family_summary.csv`](reports/coarse_search_thesis/tables/07_thesis_family_summary.csv) |
 
 ## Next stages
 
-The next contract-bound steps are to execute the frozen conditional refinement for XGBoost, HistGradientBoosting, and Random Forest; rank the combined coarse/refinement pool; perform required confirmation-seed runs; execute QNN Stage Q1 and Q2 with matched controls; and then complete calibration, thresholding, robustness, and interpretability analyses. Protected-period evaluation may begin only after the applicable access gates have been committed.
+The next permitted work is restricted to the preregistered secondary analyses on development OOF 2015–2020: PCA-matched fixed-L2 and MLP controls, interpretability, and robustness/sensitivity runs with frozen hyperparameters and no reselection. Their controller, output schemas, synthetic tests, resource policy, and failure states must be versioned and frozen before execution.
+
+Feature years 2021–2024 remain closed. Reopening 2021–2022 requires the committed spent-development access gate and cannot activate tuning. The 2023–2024 holdout requires separate blind-feature-application and label-reveal gates.
 
 ## Citation and disclaimer
 
