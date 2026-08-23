@@ -1,0 +1,59 @@
+schema_version: 1
+
+extends:
+  path: configs/secondary_development_execution_v1_1_0.yaml
+  sha256: 3ae596039a541bd93e1f9657f6a5096987061cbc9928ece8337e6e666e406541
+
+secondary_development_execution:
+  id: secondary_development_execution_v1_1_1
+  version: 1.1.1
+  created_on: "2026-08-23"
+  status: executable_input_key_amendment_frozen
+  default_output_root: data/model_runs/secondary_development_v1_1_1
+
+  input_key_amendment:
+    scope: robustness_target_join_key_only
+    reason: source_train_target_uses_cik10_and_feature_year_not_research_universe_company_year_id
+    source_columns: [cik10, feature_year]
+    canonical_model_sample_key: research_universe_company_year_id
+    construction: zero_pad_cik10_to_10_ascii_digits_then_hyphen_then_base10_feature_year
+    example_shape: CIK10-YYYY
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    methodology_changed: false
+
+  data_boundary:
+    robustness_target_columns:
+      - cik10
+      - feature_year
+      - target_status
+      - deterioration_score_1y
+      - D1_roa
+      - D2_ocf_assets
+      - D3_current_ratio
+      - D4_liabilities_assets
+      - D5_revenues
+
+  git_gate:
+    package_files:
+      - configs/secondary_development_execution_v1_1_1_input_key_fix.yaml
+      - src/modeling/secondary_analysis_execution_v1_1_1.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_1.py
+      - scripts/run_secondary_analyses_v1_1_1.sh
+      - tests/test_secondary_analysis_execution_v1_1_1.py
+      - docs/12_1_secondary_development_execution_v1_1_1.md
+      - configs/secondary_development_execution_v1_1_1_freeze_manifest.yaml
+    freeze_manifest: configs/secondary_development_execution_v1_1_1_freeze_manifest.yaml
+
+  amendment_authority:
+    base_execution_config:
+      path: configs/secondary_development_execution_v1_1_0.yaml
+      sha256: 3ae596039a541bd93e1f9657f6a5096987061cbc9928ece8337e6e666e406541
+    base_execution_freeze:
+      path: configs/secondary_development_execution_v1_1_0_freeze_manifest.yaml
+      sha256: cb2b845532346a190cf58534b215f3c394ad00741b58ab168702e74dcdfa2173
+    base_execution_controller:
+      path: src/modeling/secondary_analysis_execution.py
+      sha256: 76745a1f53b5d36271e46ca6883c5e7c0451224d1313580240c4a7dac6cc37a1

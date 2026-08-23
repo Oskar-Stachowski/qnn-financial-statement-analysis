@@ -27,7 +27,7 @@ The outcome is **not** a bankruptcy, fraud, insolvency, or accounting-manipulati
 | QNN Stage Q1 and Stage Q2 | **Complete**; selected ansatz `ROT_CNOT_RING` |
 | Classical/MLP and QNN confirmation | **Complete** |
 | Final development ranking, calibration, thresholds, bootstrap, and compact report | **Complete and frozen**, post-coarse `v1.3.0` |
-| PCA-matched controls, robustness, and interpretability | **Executable package frozen**, v1.1.0; project runs not started |
+| PCA-matched controls, robustness, and interpretability | **Executable package frozen**, v1.1.1 input-key amendment; project fits not started |
 | Large raw-data and model-artifact backup | **Complete and restore-validated** in Amazon S3 |
 | Evaluation using feature years 2021–2024 | **Closed under the frozen access policy** |
 
@@ -295,7 +295,7 @@ Consequently, cloning the repository provides the code, specifications, tests, a
 
 The next permitted work is the preregistered secondary analysis sequence on development OOF 2015–2020: PCA-matched fixed-L2 and MLP controls, interpretability, and robustness/sensitivity runs with frozen hyperparameters and no reselection.
 
-The pre-execution schedule remains frozen as `secondary_development_analyses_v1_0_0`; see [`docs/11_secondary_development_analyses_v1_0_0.md`](docs/11_secondary_development_analyses_v1_0_0.md). Its separate executable implementation is now frozen as `secondary_development_execution_v1_1_0`; see [`docs/12_secondary_development_execution_v1_1_0.md`](docs/12_secondary_development_execution_v1_1_0.md). The v1.1.0 verifier passes, all 84 fold-fit routes and exact resume were exercised on generated data, and the identity-entangler QNN path passed in the pinned QNN environment. No project-data execution has started.
+The pre-execution schedule remains frozen as `secondary_development_analyses_v1_0_0`; see [`docs/11_secondary_development_analyses_v1_0_0.md`](docs/11_secondary_development_analyses_v1_0_0.md). Its separate executable implementation is frozen as `secondary_development_execution_v1_1_0`; see [`docs/12_secondary_development_execution_v1_1_0.md`](docs/12_secondary_development_execution_v1_1_0.md). The first real-data preflight stopped before model fitting because the additional target projection exposes `(cik10, feature_year)` rather than the equivalent combined sample key. The minimal, roster-preserving v1.1.1 input-key amendment is frozen in [`docs/12_1_secondary_development_execution_v1_1_1.md`](docs/12_1_secondary_development_execution_v1_1_1.md) and must be used for subsequent commands. No project model fit has started.
 
 Feature years 2021–2024 remain closed. Reopening 2021–2022 requires the committed spent-development access gate and cannot activate tuning. The 2023–2024 holdout requires separate blind-feature-application and label-reveal gates.
 

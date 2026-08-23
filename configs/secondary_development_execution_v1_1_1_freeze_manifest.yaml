@@ -1,0 +1,57 @@
+schema_version: 1
+
+secondary_development_execution_amendment_freeze:
+  id: secondary_development_execution_v1_1_1
+  version: 1.1.1
+  frozen_on: "2026-08-23"
+  status: FROZEN
+  verdict: SECONDARY_DEVELOPMENT_EXECUTION_V1_1_1_INPUT_KEY_INTEGRITY_PASS
+  amendment_scope: robustness_target_join_key_only
+  project_model_fit_performed_during_amendment: false
+  protected_feature_years_opened: false
+
+  inherited_base:
+    execution_version: 1.1.0
+    execution_config_sha256: 3ae596039a541bd93e1f9657f6a5096987061cbc9928ece8337e6e666e406541
+    execution_freeze_sha256: cb2b845532346a190cf58534b215f3c394ad00741b58ab168702e74dcdfa2173
+    controller_sha256: 76745a1f53b5d36271e46ca6883c5e7c0451224d1313580240c4a7dac6cc37a1
+    base_verdict: SECONDARY_DEVELOPMENT_EXECUTION_V1_1_0_PACKAGE_INTEGRITY_PASS
+
+  invariants:
+    total_tasks: 96
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    methodology_changed: false
+    permitted_feature_years: [2011, 2020]
+    protected_feature_years: [2021, 2022, 2023, 2024]
+
+  files:
+    - path: configs/secondary_development_execution_v1_1_1_input_key_fix.yaml
+      bytes: 2318
+      sha256: ca681a00a7227ccf6a9c579cdc2d507e275e0a8591dd9ecbdf69eb3a7e2fa382
+    - path: src/modeling/secondary_analysis_execution_v1_1_1.py
+      bytes: 13228
+      sha256: 0a4f7641222646a9812a0a95333d845c72311de94e7cbe9cfe8e7c83d856b0c6
+    - path: src/modeling/verify_secondary_analysis_execution_v1_1_1.py
+      bytes: 3338
+      sha256: bcf767db463389814bb1f347c219cfdf15e551af389c2ead21a50da64303d37a
+    - path: scripts/run_secondary_analyses_v1_1_1.sh
+      bytes: 671
+      sha256: d3dd8fbeebc16269c32cda8b275c241e7bbc966ecd2a2017fed9f5523af4b8bd
+      executable: true
+    - path: tests/test_secondary_analysis_execution_v1_1_1.py
+      bytes: 3119
+      sha256: c340fd1475612c5849c5cf8fee351584ca4eefcc552e16003de54183b96bcada
+    - path: docs/12_1_secondary_development_execution_v1_1_1.md
+      bytes: 2318
+      sha256: fe7a58a9dfa7ad50a19e4afa74442739209a5244aa558078e250e54327f08432
+
+  tests:
+    amendment_unit_tests: 5
+    canonical_key_examples: PASS
+    protected_year_rejection: PASS
+    base_v1_1_0_freeze_regression: PASS
+    synthetic_smoke_project_data_free: PASS
+    exact_96_task_roster_preserved: PASS

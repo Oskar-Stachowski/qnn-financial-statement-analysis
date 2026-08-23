@@ -112,7 +112,7 @@ analyses on OOF 2015–2020:
    with frozen configurations and no retuning.
 
 Their executable controller, configuration, output schemas, synthetic tests,
-resource policy, and failure states are now versioned and frozen as
+resource policy, and failure states are versioned and frozen as
 `secondary_development_execution_v1_1_0`, documented in
 [`docs/12_secondary_development_execution_v1_1_0.md`](12_secondary_development_execution_v1_1_0.md).
 Secondary results cannot change the primary ranking, model roster, ansatz,
@@ -129,14 +129,21 @@ access boundary, resource caps, and failure policy. Package tests covered all 84
 fold-fit routes and exact resume on generated data plus the new identity-entangler
 path in the pinned QNN environment; no project-data execution was performed.
 
-The next operational command, after the v1.1.0 package commit, is the read-only
-project-input and environment gate:
+The first v1.1.0 project-input preflight stopped before model fitting because
+the additional target projection uses `(cik10, feature_year)` instead of the
+equivalent combined sample key. The frozen v1.1.0 files remain unchanged. The
+minimal v1.1.1 input-key amendment constructs the canonical `CIK10-YYYY` key,
+preserves all 96 tasks, and is documented in
+[`docs/12_1_secondary_development_execution_v1_1_1.md`](12_1_secondary_development_execution_v1_1_1.md).
+No project model fit was performed and protected years remained closed.
+
+The next operational command, after the v1.1.1 amendment commit, is:
 
 ```bash
-bash scripts/run_secondary_analyses_v1_1.sh preflight
+bash scripts/run_secondary_analyses_v1_1_1.sh preflight
 ```
 
-If it passes, execute `pca-controls`, `interpretability`,
+If it passes, use the same v1.1.1 script to execute `pca-controls`, `interpretability`,
 `robustness-classical`, `robustness-qnn`, and `report` in that order.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
