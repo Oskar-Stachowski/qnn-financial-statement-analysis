@@ -117,6 +117,15 @@ tested, committed, and frozen. Secondary results cannot change the primary
 ranking, model roster, ansatz, feature blocks, hyperparameters, preprocessing,
 calibration method, or threshold rule.
 
+The schedule and interfaces have now been frozen in the synthetic-only
+pre-execution package `secondary_development_analyses_v1_0_0`, documented in
+[`docs/11_secondary_development_analyses_v1_0_0.md`](11_secondary_development_analyses_v1_0_0.md).
+It deterministically accounts for 96 tasks and exposes `status`, `plan`,
+`smoke`, and `verify`. It intentionally cannot read project rows or fit project
+models. The next explicit version must add the project executor while preserving
+the frozen task roster, authority hashes, access boundary, resource caps, and
+failure policy.
+
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
 `confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in
 the frozen output directories. The existing results are terminal evidence, not

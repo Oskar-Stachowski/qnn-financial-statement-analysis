@@ -1,0 +1,273 @@
+schema_version: 1
+
+secondary_development_analyses:
+  id: secondary_development_analyses_v1_0_0
+  version: 1.0.0
+  created_on: "2026-08-23"
+  status: pre_execution_package_frozen_before_project_data_analysis
+  default_output_root: data/model_runs/secondary_development_v1_0_0
+
+  scientific_role:
+    scope: secondary_development_only
+    oof_validation_years: [2015, 2016, 2017, 2018, 2019, 2020]
+    permitted_feature_year_bounds: [2011, 2020]
+    protected_feature_years: [2021, 2022, 2023, 2024]
+    may_change_primary_ranking: false
+    may_change_roster: false
+    may_change_ansatz: false
+    may_change_hyperparameters: false
+    may_change_preprocessing_or_target_definition: false
+    may_change_calibration_or_threshold: false
+    quantum_advantage_claim_allowed: false
+
+  authority:
+    post_coarse_results_freeze:
+      path: configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+      sha256: 3af5a01de5ff4e4fe3d5177ceffc3ccead3b52cab8eb8c369222c594528534bb
+    execution_contract:
+      path: configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml
+      sha256: 8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a
+    execution_contract_base:
+      path: configs/model_execution_contract_v1_2_1_lightning_base.yaml
+      sha256: 51bd484c51616429703170a99d57f7f4b6d412e3927584511d8814edd66df27e
+    qnn_backend_amendment:
+      path: configs/model_execution_contract_v1_2_1_lightning_amendment.yaml
+      sha256: 2a70585074c9d9ca4d7097b3c7087ec334e94d88a658884b6038b45c4b2d3c91
+    candidate_registry:
+      path: configs/model_stage_candidates_v1_scientific_patch.json
+      sha256: f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac
+    supervised_pipeline:
+      path: configs/supervised_ml_pipeline_v1_2_0.yaml
+      sha256: 9c2608259c1a6d1f31af677a0f25343b9e7e0975857147157e377b1e76abfe60
+    data_access_policy:
+      path: configs/data_access_policy_v1_1_0.yaml
+      sha256: 7ce08bca9921ff72db6b3ec6dfd1dc28c7e751e1ca1ad3b6706180809b66cd9b
+    model_environments:
+      path: configs/model_environments_v1_0_1_lightning.yaml
+      sha256: 330c88dbaf6992fd4613dfaf44a877a70eaee917b454ac8a1946b97ece74972e
+    classical_lock:
+      path: environments/classical/requirements.lock
+      sha256: de581076a1bb3fa47c9f3faa8361adba0b26d0300d99fce7054a5e3723f5b00d
+    qnn_mlp_lock:
+      path: environments/qnn_mlp/requirements.lock
+      sha256: 91b2b56c4780b380d06bd2665ebd5c75871c688b644cdfd426d60fc11a261be6
+    production_runner:
+      path: src/modeling/production_runner.py
+      sha256: 04df7a2307bc2efa1cf9b9965720650bbd0e932adb65236bf1755e1ffb904cd4
+    production_worker:
+      path: src/modeling/production_worker.py
+      sha256: d1a792421d45013ef539e5c096a8bd591e479892fbe093a88e46df1bcad4010e
+    preprocessing:
+      path: src/modeling/preprocessing.py
+      sha256: 96eb5f6fa54a51926f7186481a34276b31f39b1c4dfdf87cf27ea2258a8434f7
+    temporal_cv:
+      path: src/modeling/temporal_cv.py
+      sha256: 9e56d07f467378c06ab017a1481d0dd0ce12aae8f6d18a213fe6f8ec8b17c540
+    final_primary_ranking:
+      path: data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json
+      sha256: 58d100a612902b0b6762b06521fea56b754959b69ffefbc3c50473e0d6d94130
+    neural_comparison:
+      path: data/model_runs/post_coarse_v1_3_0/neural_comparison_manifest.json
+      sha256: 560d06e9ec4eebc5b368970fe65d7493e89ca9c2becf8141916179d360f647f4
+    qnn_phase:
+      path: data/model_runs/post_coarse_v1_3_0/qnn_phase_manifest.json
+      sha256: 0612c26faeb6dd4b7ed6bbc124cea41675bd826f8ce842e14513a994302f0187
+    post_coarse_run:
+      path: data/model_runs/post_coarse_v1_3_0/run_manifest.json
+      sha256: cbd67f90b4dffdeb98fbfcd8b2710521d067f27ebcdbd5c3b2c744fbc8e68771
+
+  git_gate:
+    require_clean_committed_package_before_project_execution: true
+    package_files:
+      - configs/secondary_development_analyses_v1_0_0.yaml
+      - src/modeling/secondary_analysis_runner.py
+      - src/modeling/secondary_analysis_schemas.py
+      - src/modeling/secondary_analysis_smoke.py
+      - src/modeling/verify_secondary_analysis_package.py
+      - scripts/run_secondary_analyses.sh
+      - tests/test_secondary_analysis_package.py
+      - docs/11_secondary_development_analyses_v1_0_0.md
+      - configs/secondary_development_analyses_v1_0_0_freeze_manifest.yaml
+    planning_and_synthetic_modes_require_clean_git: false
+    project_execution_requires_separate_user_command: true
+
+  stage_order:
+    - pca_matched_controls
+    - interpretability
+    - robustness
+    - compact_report
+    - results_freeze
+
+  pca_matched_controls:
+    trigger: final_qnn_family_representative_is_complete
+    representation_source: final_ranked_qnn_representative
+    use_exact_qnn_feature_block_rows_preprocessing_pca_scaler_clipping_and_angles: true
+    training_seed: 20260818
+    controls_ordered:
+      - id: fixed_l2_logistic_same_qnn_representation
+        family: fixed_l2_logistic
+        hyperparameters_source: frozen_final_fixed_l2_family_representative
+      - id: pytorch_mlp_same_qnn_representation
+        family: pytorch_mlp
+        hyperparameters_source: frozen_final_pytorch_mlp_family_representative
+    required_folds: [fold_2015, fold_2016, fold_2017, fold_2018, fold_2019, fold_2020]
+    maximum_fold_fits: 12
+    output_role: diagnostic_only
+    may_enter_primary_ranking: false
+
+  interpretability:
+    common_grouped_permutation:
+      families_ordered:
+        - fixed_l2_logistic
+        - elastic_net_logistic
+        - rbf_svm
+        - random_forest
+        - hist_gradient_boosting
+        - xgboost
+        - pytorch_mlp
+        - qnn_if_technically_feasible
+      prediction_target: seed_averaged_raw_OOF_scores
+      repetitions: 20
+      permutation_seed: 20260818
+      rows: canonical_OOF_2015_2020
+      permutation_unit: economic_group_id
+      original_feature_groups: frozen_financial_features_with_own_missing_indicator
+    detailed_representatives:
+      linear: highest_ranked_complete_representative_among_fixed_l2_and_elastic_net
+      tree_boosting: highest_ranked_complete_representative_among_random_forest_histgb_xgboost
+      mlp: pytorch_mlp_family_representative_if_complete
+      qnn: qnn_family_representative_if_technically_feasible
+    detailed_methods:
+      linear: standardized_coefficients_odds_ratios_sign_fold_seed_stability
+      tree_boosting: interventional_TreeSHAP_seed_20260818_models
+      mlp: Integrated_Gradients_on_logit_seed_20260818_models
+      qnn: PCA_loadings_explained_variance_encoded_sensitivity_fold_seed_stability
+    sampling_limits:
+      tree_background_train_rows_max: 512
+      tree_oof_rows_per_fold_max: 500
+      mlp_oof_rows_per_fold_max: 200
+      mlp_integrated_gradients_steps: 64
+      qnn_oof_rows_per_fold_max: 100
+    sampling_order: canonical_row_order_then_first_N_no_result_based_sampling
+    fitted_artifact_policy: reuse_exact_frozen_artifact_else_exact_seed_refit_and_record
+    failure_policy: report_method_failure_without_model_substitution_or_reranking
+
+  robustness:
+    global_winner_source: rank_1_final_primary_development_ranking
+    training_seed: 20260818
+    required_folds: [fold_2015, fold_2016, fold_2017, fold_2018, fold_2019, fold_2020]
+    pipeline_runs_ordered:
+      - B_without_missing_indicators
+      - complete_case
+      - no_winsorization
+      - purged_economic_group_cv
+      - sparse_row_available_features_at_least_11_of_17
+    label_runs_ordered:
+      - deterioration_score_at_least_2
+      - deterioration_score_at_least_4
+      - operating_performance_max_D1_D2_alternative_score_at_least_3
+    qnn_structural_runs_ordered:
+      - replace_entangling_gates_with_identity
+      - first_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings
+      - second_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings
+      - swap_4_and_6_qubit_PCA_at_fixed_other_settings
+    expected_global_winner_fold_fits: 48
+    expected_qnn_structural_fold_fits_if_feasible: 24
+    qnn_pipeline_and_label_runs_required_only_if_qnn_is_global_winner: true
+    qnn_is_global_winner_in_frozen_ranking: false
+    retuning_allowed: false
+    failure_policy: report_failed_robustness_run_no_reselection
+
+  resource_policy:
+    worker_threads_per_process: 1
+    maximum_parallel_classical_folds: 4
+    maximum_parallel_mlp_folds: 2
+    maximum_parallel_qnn_folds: 4
+    pca_matched_control_fit_cap: 12
+    global_winner_robustness_fit_cap: 48
+    qnn_structural_fit_cap: 24
+    qnn_structural_cumulative_wall_seconds_cap: 172800
+    interpretation_refit_requires_exact_frozen_identity: true
+    checkpoint_every_epochs: 5
+    resume_limit: 1
+    fresh_retry_limit: 1
+    retries_may_change_methodology: false
+    automatic_raw_data_restore_allowed: false
+
+  failure_states:
+    terminal_task_statuses:
+      - COMPLETE
+      - TECHNICALLY_INVALID
+      - METHOD_FAILED
+      - RESOURCE_LIMIT_REACHED
+    stage_complete_requires_every_planned_task_terminal: true
+    partial_metrics_may_be_reported_descriptively: true
+    failed_task_may_be_replaced: false
+    failed_task_may_trigger_reselection: false
+    protected_period_detected: PROTECTED_DATA_ACCESS_BLOCKED
+    authority_mismatch: AUTHORITY_INTEGRITY_FAIL
+    existing_nonempty_output_with_different_identity: OUTPUT_IDENTITY_CONFLICT
+    missing_development_input: REQUIRED_DEVELOPMENT_INPUT_MISSING
+    missing_required_development_column: REQUIRED_DEVELOPMENT_COLUMN_MISSING
+    nonfinite_result: NUMERICAL_INVALID
+
+  output_schemas:
+    plan:
+      path: secondary_analysis_plan.json
+      required_fields:
+        - schema_version
+        - id
+        - status
+        - authority
+        - frozen_representatives
+        - stages
+        - task_counts
+        - protected_feature_years_opened
+        - project_data_read
+        - project_model_fit_performed
+    synthetic_smoke:
+      path: secondary_analysis_synthetic_smoke.json
+      required_fields:
+        - schema_version
+        - status
+        - checks
+        - protected_feature_years_opened
+        - project_data_read
+    task_result:
+      required_fields:
+        - schema_version
+        - task_identity
+        - task_identity_sha256
+        - status
+        - failure_code
+        - source_authority_sha256
+        - protected_feature_years_opened
+    phase_manifest:
+      required_fields:
+        - schema_version
+        - phase
+        - status
+        - planned_tasks
+        - terminal_tasks
+        - complete_tasks
+        - failed_tasks
+        - task_result_references
+        - protected_feature_years_opened
+        - may_change_primary_selection
+    run_manifest:
+      required_fields:
+        - schema_version
+        - id
+        - status
+        - authority
+        - phase_manifest_sha256
+        - final_primary_ranking_unchanged
+        - protected_feature_years_opened
+
+  pre_execution_boundary:
+    this_package_may_read_project_data: false
+    this_package_may_fit_project_models: false
+    planning_reads_compact_2015_2020_manifests_only: true
+    synthetic_smoke_uses_generated_data_only: true
+    project_execution_requires_new_explicit_mode_after_this_freeze: true
+    protected_period_access_authorized: false

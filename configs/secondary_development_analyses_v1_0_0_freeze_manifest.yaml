@@ -1,0 +1,77 @@
+schema_version: 1
+
+secondary_analysis_package_freeze:
+  id: secondary_development_analyses_v1_0_0_pre_execution_freeze
+  version: 1.0.0
+  created_on: "2026-08-23"
+  status: FROZEN
+  verdict: SECONDARY_DEVELOPMENT_V1_0_0_PACKAGE_INTEGRITY_PASS
+  scope: planning_schemas_synthetic_smoke_resources_failures_and_access_boundary
+  project_execution_available: false
+  project_data_read: false
+  project_model_fit_performed: false
+  protected_feature_years_opened: false
+
+package_files:
+  - path: configs/secondary_development_analyses_v1_0_0.yaml
+    bytes: 11160
+    sha256: 81e50164f7936f9af14527822d49d044f91dd602c3054052a59b103b113e4966
+  - path: src/modeling/secondary_analysis_runner.py
+    bytes: 14733
+    sha256: fc302b2733b098c591d91bb2771077b487cb0d53c1c4b81dc6bf56021822fb7c
+  - path: src/modeling/secondary_analysis_schemas.py
+    bytes: 9334
+    sha256: 7ae93a0d9541c922ae3768bcb2dc6d0c1e20d8ac49d406624e0493eecceedc13
+  - path: src/modeling/secondary_analysis_smoke.py
+    bytes: 7298
+    sha256: a1c2be863979f9423e5746ec24598fbb5dd6bdf4fb44b47964f9b3f926594297
+  - path: src/modeling/verify_secondary_analysis_package.py
+    bytes: 4314
+    sha256: 216f29ca12aa5d00521f9aa3561b5c74464c158b68331f46cac8d4f1fcbd9d6f
+  - path: scripts/run_secondary_analyses.sh
+    bytes: 1613
+    sha256: fc06217ebe9ede7fdc97b37bcd5f5969f3db4edd796e35f5407832f7964ae840
+    executable: true
+  - path: tests/test_secondary_analysis_package.py
+    bytes: 3978
+    sha256: 0f85041b29eedd5dab2d1251658fe36f1d2951f66f5d483abd254690c4c0b0f8
+  - path: docs/11_secondary_development_analyses_v1_0_0.md
+    bytes: 6173
+    sha256: 4869fcea369bfd594f73f2df477f06f5d3f5789f913311d2d98744bcebde93ab
+
+frozen_counts:
+  verified_package_files: 8
+  verified_upstream_authority_files: 18
+  total_planned_tasks: 96
+  pca_matched_control_fold_fits: 12
+  common_grouped_permutation_methods: 8
+  detailed_interpretability_methods: 4
+  global_winner_robustness_fold_fits: 48
+  qnn_structural_fold_fits: 24
+
+frozen_invariants:
+  final_primary_family: xgboost
+  selected_qnn_ansatz_id: ROT_CNOT_RING
+  oof_validation_years: [2015, 2016, 2017, 2018, 2019, 2020]
+  permitted_feature_year_bounds: [2011, 2020]
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  result_magnitudes_used_for_schedule: false
+  retuning_allowed: false
+  reselection_allowed: false
+  automatic_raw_data_restore_allowed: false
+  planning_modes: [status, plan, smoke, verify]
+  project_execution_modes_fail_closed: true
+
+transition_boundary:
+  next_required_version: project_execution_implementation_after_pre_execution_freeze
+  must_preserve_task_roster_and_authority: true
+  must_add_exact_project_executor_hashes: true
+  must_pass_synthetic_tests_before_first_project_data_read: true
+  must_require_clean_committed_git_authority: true
+  must_use_new_empty_output_directory: true
+  must_block_feature_years_2021_2024: true
+
+notes:
+  - This manifest intentionally does not hash itself or its containing commit.
+  - Compact frozen 2015-2020 manifests were used only to derive identities and schedule.
+  - No row-level project data, protected-period values, or project model fit was used to create this freeze.

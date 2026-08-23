@@ -295,6 +295,8 @@ Consequently, cloning the repository provides the code, specifications, tests, a
 
 The next permitted work is restricted to the preregistered secondary analyses on development OOF 2015–2020: PCA-matched fixed-L2 and MLP controls, interpretability, and robustness/sensitivity runs with frozen hyperparameters and no reselection. Their controller, output schemas, synthetic tests, resource policy, and failure states must be versioned and frozen before execution.
 
+The pre-execution schedule and interfaces are now frozen as `secondary_development_analyses_v1_0_0`; see [`docs/11_secondary_development_analyses_v1_0_0.md`](docs/11_secondary_development_analyses_v1_0_0.md). This version provides hash-exact `status`, `plan`, `smoke`, and `verify` modes and intentionally performs no project-data read or model fit. The next version must add the project executor without changing the frozen 96-task roster.
+
 Feature years 2021–2024 remain closed. Reopening 2021–2022 requires the committed spent-development access gate and cannot activate tuning. The 2023–2024 holdout requires separate blind-feature-application and label-reveal gates.
 
 ## Citation and disclaimer
