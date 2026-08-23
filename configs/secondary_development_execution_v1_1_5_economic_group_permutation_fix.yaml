@@ -1,0 +1,83 @@
+schema_version: 1
+
+extends:
+  path: configs/secondary_development_execution_v1_1_4_parallel_checkpoint_fix.yaml
+  sha256: 318cbd66d39b3bf954915b857efda208200f501116dc16c228e52ab3b18900e1
+
+secondary_development_execution:
+  id: secondary_development_execution_v1_1_5
+  version: 1.1.5
+  created_on: "2026-08-23"
+  status: executable_economic_group_permutation_amendment_frozen
+  default_output_root: data/model_runs/secondary_development_v1_1_5
+
+  economic_group_permutation_amendment:
+    scope:
+      - common_grouped_permutation_duplicate_economic_groups
+      - deterministic_within_group_label_validation
+    reason:
+      - frozen_validation_rows_are_not_strictly_unique_by_economic_group_id
+      - v1_1_4_failed_closed_on_folds_2015_2016_2019
+    permutation_unit: economic_group_id
+    canonical_representative_rule: first_row_in_frozen_validation_order
+    feature_aggregation: none
+    synthetic_rows_created: false
+    require_consistent_label_within_economic_group: true
+    observed_excess_rows_by_fold:
+      fold_2015: 2
+      fold_2016: 2
+      fold_2017: 0
+      fold_2018: 0
+      fold_2019: 1
+      fold_2020: 0
+    observed_total_excess_rows: 5
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    task_identity_changed: false
+    model_parameters_changed: false
+    interpretation_method_changed: true
+    robustness_method_changed: false
+    methodology_changed: true
+
+  interpretation:
+    common_permutation:
+      economic_group_cluster_permutation: true
+      require_one_row_per_economic_group_within_validation_fold: false
+      economic_group_duplicate_policy: canonical_first_row_per_economic_group_v1
+      require_consistent_label_within_economic_group: true
+      canonical_representative_order: frozen_validation_row_order
+      feature_aggregation: none
+
+  git_gate:
+    package_files:
+      - configs/secondary_development_execution_v1_1_5_economic_group_permutation_fix.yaml
+      - src/modeling/secondary_analysis_execution_v1_1_5.py
+      - src/modeling/secondary_analysis_execution_worker_v1_1_5.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_5.py
+      - scripts/run_secondary_analyses_v1_1_5.sh
+      - tests/test_secondary_analysis_execution_v1_1_5.py
+      - docs/12_5_secondary_development_execution_v1_1_5.md
+      - configs/secondary_development_execution_v1_1_5_freeze_manifest.yaml
+    freeze_manifest: configs/secondary_development_execution_v1_1_5_freeze_manifest.yaml
+
+  amendment_authority_v1_1_5:
+    v1_1_4_config:
+      path: configs/secondary_development_execution_v1_1_4_parallel_checkpoint_fix.yaml
+      sha256: 318cbd66d39b3bf954915b857efda208200f501116dc16c228e52ab3b18900e1
+    v1_1_4_freeze:
+      path: configs/secondary_development_execution_v1_1_4_freeze_manifest.yaml
+      sha256: aca5a890e45e181fa336eada1433c785245ba383db60dc59379e535a5f8d9e21
+    v1_1_4_controller:
+      path: src/modeling/secondary_analysis_execution_v1_1_4.py
+      sha256: 831c70f4ca8f65547a8595f7f2e718b9a452904fc00394954c34f0c661c64a08
+    v1_1_4_verifier:
+      path: src/modeling/verify_secondary_analysis_execution_v1_1_4.py
+      sha256: 0889469754049d77e766b492f5f3f21cc2a8548f96a6b4c6c8993057e5e1f592
+    inherited_numeric_worker:
+      path: src/modeling/secondary_analysis_execution_worker.py
+      sha256: 9f535ae2805fb18705fadfa769f8fd0cb0d102b199a18681ed9e8faafea41748
+    post_coarse_results_freeze:
+      path: configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+      sha256: 3af5a01de5ff4e4fe3d5177ceffc3ccead3b52cab8eb8c369222c594528534bb

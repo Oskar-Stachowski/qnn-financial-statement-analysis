@@ -1,0 +1,87 @@
+schema_version: 1
+
+secondary_development_economic_group_permutation_freeze:
+  id: secondary_development_execution_v1_1_5
+  version: 1.1.5
+  frozen_on: "2026-08-23"
+  status: FROZEN
+  verdict: SECONDARY_DEVELOPMENT_EXECUTION_V1_1_5_ECONOMIC_GROUP_PERMUTATION_INTEGRITY_PASS
+  amendment_scope:
+    - common_grouped_permutation_duplicate_economic_groups
+    - deterministic_within_group_label_validation
+  project_model_fit_performed_during_amendment: false
+  protected_feature_years_opened: false
+
+  inherited_execution:
+    base_version: 1.1.4
+    total_tasks: 96
+    roster_changed: false
+    task_identities_changed: false
+    model_parameters_changed: false
+    robustness_method_changed: false
+    interpretation_method_changed: true
+    methodology_changed: true
+
+  economic_group_permutation:
+    policy: canonical_first_row_per_economic_group_v1
+    permutation_unit: economic_group_id
+    canonical_representative_order: frozen_validation_row_order
+    require_consistent_label_within_economic_group: true
+    feature_aggregation: none
+    synthetic_rows_created: false
+    observed_excess_rows_by_fold:
+      fold_2015: 2
+      fold_2016: 2
+      fold_2017: 0
+      fold_2018: 0
+      fold_2019: 1
+      fold_2020: 0
+    observed_total_excess_rows: 5
+    real_fold_2015_numeric_diagnostic: PASS
+
+  invariants:
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    task_identity_changed: false
+    model_parameters_changed: false
+    robustness_method_changed: false
+    permitted_feature_years: [2011, 2020]
+    protected_feature_years: [2021, 2022, 2023, 2024]
+
+  files:
+    - path: configs/secondary_development_execution_v1_1_5_economic_group_permutation_fix.yaml
+      bytes: 3604
+      sha256: a13e4874eb95e8c24d9ff4227fdaed6a6b09881bbcc94f400958913df5c2ff76
+    - path: src/modeling/secondary_analysis_execution_v1_1_5.py
+      bytes: 19492
+      sha256: 861e8b460c071f50dceac924aa33655bbb99ae9fcc0e50924c6404c95ee751df
+    - path: src/modeling/secondary_analysis_execution_worker_v1_1_5.py
+      bytes: 4862
+      sha256: 79d9136e19f20f743d1774dbdc551912b8e222c598715bec652bdcf1f656c6ff
+    - path: src/modeling/verify_secondary_analysis_execution_v1_1_5.py
+      bytes: 7109
+      sha256: 1a94e2bcd5fd02e1913482bbb25e1fdaf2aa1db42e67f3f175dc1bba271ef6cf
+    - path: scripts/run_secondary_analyses_v1_1_5.sh
+      bytes: 1061
+      sha256: d2b1f6cee02ee49c7155bbad14db09053aa7455eec64f3d71010ad5e227154f6
+      executable: true
+    - path: tests/test_secondary_analysis_execution_v1_1_5.py
+      bytes: 6974
+      sha256: be2081885253c116df0689c098ceaa8dd0625c2ba242d3f434a22b14041785c6
+    - path: docs/12_5_secondary_development_execution_v1_1_5.md
+      bytes: 3001
+      sha256: db8ff61813da6f98e59afaf689a4eba23b9f52fae9a6f1c325143c5680fc94df
+
+  tests:
+    amendment_tests: 10
+    inherited_and_amendment_tests: 22
+    exact_96_task_identity_preservation: PASS
+    deterministic_canonical_group_selection: PASS
+    within_group_label_conflict_fail_closed: PASS
+    repeated_group_numeric_completion: PASS
+    unique_group_numeric_equivalence: PASS
+    controller_to_amended_worker_route: PASS
+    real_fold_2015_duplicate_numeric_diagnostic: PASS
+    single_import_committed_launcher: PASS

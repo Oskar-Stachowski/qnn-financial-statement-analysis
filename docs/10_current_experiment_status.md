@@ -186,15 +186,36 @@ checkpoint sources with canonical inventory SHA-256
 It performed no model fit, started no QNN resource-ledger attempt, and opened no
 protected year.
 
-The next operational command is:
+The v1.1.4 `pca-controls` phase subsequently completed all 12 tasks. During
+`interpretability`, the common grouped-permutation worker correctly exposed an
+unmet data assumption: validation folds 2015, 2016, and 2019 contain,
+respectively, 2, 2, and 1 rows in excess of one row per `economic_group_id`.
+The first two logical interpretation tasks became `METHOD_FAILED`; the third
+was interrupted after the same deterministic condition appeared. No protected
+feature year was opened. The partial v1.1.4 output is retained as audit
+evidence and must not be resumed.
+
+Version 1.1.5 provides the explicit methodological remediation. Common
+permutation now uses the first observed row per economic group in frozen
+canonical validation order, requires label agreement within every repeated
+group, performs no feature aggregation, and records the original-row and
+unique-group counts. The 96-task roster, task identities, model parameters,
+folds, robustness methods, checkpoint resolution, and parallel limits remain
+unchanged. The amendment is documented in
+[`docs/12_5_secondary_development_execution_v1_1_5.md`](12_5_secondary_development_execution_v1_1_5.md).
+
+The next operational commands are:
 
 ```bash
-bash scripts/run_secondary_analyses_v1_1_4.sh pca-controls
+bash scripts/run_secondary_analyses_v1_1_5.sh verify
+bash scripts/run_secondary_analyses_v1_1_5.sh preflight
+bash scripts/run_secondary_analyses_v1_1_5.sh pca-controls
+bash scripts/run_secondary_analyses_v1_1_5.sh interpretability
 ```
 
-After that inexpensive rerun completes in the new v1.1.4 output root, execute
-`interpretability`, `robustness-classical`, `robustness-qnn`, and `report` in
-that order.
+After successful interpretation, execute `robustness-classical`,
+`robustness-qnn`, and `report` in that order. v1.1.5 writes to its own
+`data/model_runs/secondary_development_v1_1_5` output root.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
 `confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in
