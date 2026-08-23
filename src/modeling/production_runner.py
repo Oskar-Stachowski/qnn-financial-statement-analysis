@@ -1052,7 +1052,7 @@ class ProductionExperimentRunner:
         )
         return self._runtime_metadata_sha256
 
-    def _configure_qnn_ledger(self) -> None:
+    def _configure_qnn_ledger(self, ledger_path: Path | None = None) -> None:
         configure = getattr(self.executor, "configure_qnn_ledger", None)
         if not callable(configure):
             return
@@ -1062,7 +1062,7 @@ class ProductionExperimentRunner:
         model_stage = yaml.safe_load(model_stage_path.read_text(encoding="utf-8"))
         policy = model_stage["qnn"]["resource_policy"]
         configure(
-            self.output_dir / "qnn_resource_ledger.json",
+            ledger_path or self.output_dir / "qnn_resource_ledger.json",
             maximum_attempts=int(policy["maximum_total_fit_attempts"]),
             maximum_runtime_seconds=float(policy["maximum_total_cpu_hours"])
             * 3600.0,

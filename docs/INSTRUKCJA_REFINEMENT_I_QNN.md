@@ -233,21 +233,39 @@ Najważniejsze nowe tabele:
 
 ## 8. Etap C — confirmation i wynik końcowy
 
-Uruchom:
+Confirmation jest rozdzielone na dwie jawne, wznawialne fazy. Najpierw uruchom
+wyłącznie modele klasyczne i dodatkowy komparator MLP:
 
 ```bash
-bash scripts/run_post_coarse.sh confirmation
+bash scripts/run_post_coarse.sh confirmation-classical
 ```
 
 Przed rozpoczęciem dodatkowych seedów skrypt zapisuje zamrożony wybór do:
 
 `data/model_runs/post_coarse_v1_3_0/post_coarse_confirmation_selection.json`
 
-Następnie wykonuje:
+Po ukończeniu tej fazy zapisuje bramkę
+`confirmation_classical_phase_manifest.json` z polem
+`qnn_confirmation_started: false`. Na tym etapie można bezpiecznie się zatrzymać.
 
-- confirmation modeli klasycznych zgodnie z pierwotnym kontraktem;
-- confirmation najlepszego dodatkowego komparatora MLP, o ile nie jest już objęty głównym confirmation;
+Po osobnej kontroli bramki uruchom confirmation QNN:
+
+```bash
+bash scripts/run_post_coarse.sh confirmation-qnn
+```
+
+Druga komenda wznawia zamrożoną selekcję i wykonuje:
+
 - confirmation jednej najlepszej konfiguracji Q2 na każdy z trzech bloków, czyli 36 dodatkowych fold fits QNN.
+
+Trzy niezależne reprezentanty bloków QNN mogą pracować równolegle, ale
+seedy `20260819`, `20260820` i foldy wewnątrz każdego kandydata zachowują
+zamrożoną kolejność. Wyniki są zapisywane w zamrożonej kolejności bloków.
+Confirmation używa osobnego `qnn_confirmation_resource_ledger.json`, aby nie
+zmieniać hasha ukończonej fazy QNN.
+
+Tryb `confirmation` nadal wykonuje obie części po kolei, lecz nie daje punktu
+kontrolnego przed pierwszym fitem QNN.
 
 Po zakończeniu najpierw wykonaj zamrożoną analizę niepewności:
 
@@ -320,7 +338,9 @@ Tryb:
 bash scripts/run_post_coarse.sh all
 ```
 
-jest dostępny, ale zalecane jest wykonywanie `refinement`, `qnn` i `confirmation` osobno, z kontrolą manifestu po każdej fazie.
+jest dostępny, ale zalecane jest wykonywanie `refinement`, `qnn`,
+`confirmation-classical` i `confirmation-qnn` osobno, z kontrolą manifestu po
+każdej fazie.
 
 
 ## 12. Co pozostaje po tej paczce

@@ -12,8 +12,10 @@ The controller is phase-gated:
 1. ``plan``          – integrity checks and an execution plan; no model fitting.
 2. ``refinement``    – the three frozen primary families plus secondary MLP.
 3. ``qnn``           – Q1, frozen ansatz selection and Q2; requires refinement.
-4. ``confirmation``  – confirmation seeds and final development-only summaries.
-5. ``all``           – stages 2–4 in sequence (staged execution is recommended).
+4. ``confirmation-classical`` – classical/MLP confirmation only; stops before QNN.
+5. ``confirmation-qnn`` – QNN confirmation after the classical confirmation gate.
+6. ``confirmation``  – both confirmation parts and final development summaries.
+7. ``all``           – stages 2–6 in sequence (staged execution is recommended).
 
 Protected feature years 2021–2024 are never opened by this module.  It delegates
 all preprocessing, fold construction, estimator execution, checkpointing and
@@ -58,7 +60,14 @@ from src.modeling.production_runner import (
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_CONFIG_PATH = ROOT / "configs/post_coarse_experiment_v1_0_0.yaml"
 BLOCKS = ("L", "L+D", "L+D+R")
-EXECUTION_MODES = {"refinement", "qnn", "confirmation", "all"}
+EXECUTION_MODES = {
+    "refinement",
+    "qnn",
+    "confirmation-classical",
+    "confirmation-qnn",
+    "confirmation",
+    "all",
+}
 TERMINAL_QNN_PHASE_STATUSES = {"COMPLETE", "QNN_TECHNICALLY_INFEASIBLE"}
 
 
@@ -258,6 +267,7 @@ def load_post_coarse_config(path: Path = DEFAULT_CONFIG_PATH) -> dict[str, Any]:
         "1.0.0",
         "1.0.1",
         "1.0.2",
+        "1.0.3",
     }:
         raise PostCoarseIntegrityError("Unexpected post-coarse configuration version.")
     return config
@@ -890,6 +900,98 @@ def require_refinement_manifest_for_current_config(
     )
 
 
+def historical_qnn_reuse_enabled(config: Mapping[str, Any]) -> bool:
+    reuse = config["post_coarse_execution"].get("historical_qnn_reuse")
+    return isinstance(reuse, Mapping) and bool(reuse.get("enabled"))
+
+
+def require_historical_qnn_reuse(
+    *,
+    config: Mapping[str, Any],
+    root: Path = ROOT,
+) -> dict[str, Any]:
+    """Deep-verify the completed QNN phase frozen before a schedule amendment."""
+
+    reuse = config["post_coarse_execution"].get("historical_qnn_reuse")
+    if not isinstance(reuse, Mapping) or not bool(reuse.get("enabled")):
+        raise PostCoarseIntegrityError("Historical QNN reuse is not enabled.")
+
+    source = reuse["source_manifest"]
+    manifest_path = _resolve_from_root(root, str(source["path"]))
+    if not manifest_path.is_file():
+        raise PostCoarseIntegrityError(
+            f"Historical QNN manifest is missing: {manifest_path}"
+        )
+    if file_sha256(manifest_path) != str(source["sha256"]):
+        raise PostCoarseIntegrityError("Historical QNN manifest SHA-256 mismatch.")
+
+    manifest = load_json(manifest_path)
+    if str(manifest.get("status")) != str(reuse["required_status"]):
+        raise PostCoarseIntegrityError("Historical QNN manifest is not COMPLETE.")
+    if manifest.get("protected_feature_years_opened") is not False:
+        raise PostCoarseIntegrityError("Historical QNN phase opened protected years.")
+    if manifest.get("authority") != dict(reuse["source_authority"]):
+        raise PostCoarseIntegrityError("Historical QNN authority mismatch.")
+
+    q1_refs = list(manifest.get("q1_result_references") or [])
+    q2_refs = list(manifest.get("q2_result_references") or [])
+    if len(q1_refs) != int(reuse["expected_q1_result_references"]):
+        raise PostCoarseIntegrityError("Historical QNN Q1 reference count mismatch.")
+    if len(q2_refs) != int(reuse["expected_q2_result_references"]):
+        raise PostCoarseIntegrityError("Historical QNN Q2 reference count mismatch.")
+
+    q1_results = load_phase_results(manifest, "q1_result_references", root=root)
+    q2_results = load_phase_results(manifest, "q2_result_references", root=root)
+    if any(result.row.get("status") != "COMPLETE" for result in q1_results):
+        raise PostCoarseIntegrityError("Historical QNN Q1 contains a non-complete result.")
+    if any(result.row.get("status") != "COMPLETE" for result in q2_results):
+        raise PostCoarseIntegrityError("Historical QNN Q2 contains a non-complete result.")
+
+    ansatz_path = _resolve_from_root(root, str(reuse["selected_ansatz_artifact"]["path"]))
+    if file_sha256(ansatz_path) != str(reuse["selected_ansatz_artifact"]["sha256"]):
+        raise PostCoarseIntegrityError("Historical QNN ansatz artifact mismatch.")
+    if manifest.get("qnn_selected_ansatz_artifact_sha256") != file_sha256(ansatz_path):
+        raise PostCoarseIntegrityError("Historical QNN ansatz hash chain mismatch.")
+
+    ledger = manifest.get("qnn_resource_ledger")
+    if not isinstance(ledger, Mapping) or not ledger.get("path") or not ledger.get("sha256"):
+        raise PostCoarseIntegrityError("Historical QNN ledger reference is missing.")
+    ledger_path = _resolve_from_root(root, str(ledger["path"]))
+    if file_sha256(ledger_path) != str(ledger["sha256"]):
+        raise PostCoarseIntegrityError("Historical QNN ledger hash mismatch.")
+    return manifest
+
+
+def require_qnn_manifest_for_current_config(
+    path: Path,
+    *,
+    config: Mapping[str, Any],
+    authority: AuthorityContext,
+    root: Path,
+) -> dict[str, Any]:
+    if historical_qnn_reuse_enabled(config):
+        configured = _resolve_from_root(
+            root,
+            str(
+                config["post_coarse_execution"]
+                ["historical_qnn_reuse"]
+                ["source_manifest"]
+                ["path"]
+            ),
+        )
+        if path.resolve() != configured.resolve():
+            raise PostCoarseIntegrityError(
+                "Historical QNN path differs from configured source."
+            )
+        return require_historical_qnn_reuse(config=config, root=root)
+    return require_phase_manifest(
+        path,
+        allowed_statuses=TERMINAL_QNN_PHASE_STATUSES,
+        authority=authority,
+        root=root,
+    )
+
+
 def _result_lookup(
     results: Iterable[CandidateExecutionResult],
 ) -> dict[tuple[str, str, str, int], CandidateExecutionResult]:
@@ -923,6 +1025,7 @@ def build_runner_and_folds(
     classical_python: Path,
     qnn_python: Path,
     configure_qnn_ledger: bool,
+    qnn_ledger_path: Path | None = None,
 ) -> tuple[
     ProductionExperimentRunner,
     Mapping[str, tuple[Any, Any, Any, Any]],
@@ -963,7 +1066,7 @@ def build_runner_and_folds(
     folds = runner.verify_sample_and_folds(sample, expectations)
     runner._write_runtime_metadata(canonical_candidate_index(runner.contract, runner.registry))
     if configure_qnn_ledger:
-        runner._configure_qnn_ledger()
+        runner._configure_qnn_ledger(ledger_path=qnn_ledger_path)
     return runner, folds
 
 
@@ -1336,6 +1439,9 @@ def run_qnn_phase(
     classical_python: Path,
     qnn_python: Path,
 ) -> dict[str, Any]:
+    if historical_qnn_reuse_enabled(config):
+        return require_historical_qnn_reuse(config=config, root=ROOT)
+
     manifest_path = output_dir / "qnn_phase_manifest.json"
     existing = _phase_manifest_existing(
         manifest_path,
@@ -1545,6 +1651,137 @@ def _confirm_candidate(
     return runner._aggregate_confirmed(base, extras), extras
 
 
+def _confirm_qnn_candidates_parallel(
+    *,
+    runner: ProductionExperimentRunner,
+    folds: Mapping[str, tuple[Any, Any, Any, Any]],
+    jobs: Sequence[tuple[CandidateExecutionResult, Mapping[str, Any]]],
+    confirmation_seeds: Sequence[int],
+    maximum_workers: int,
+) -> list[tuple[CandidateExecutionResult, list[CandidateExecutionResult]]]:
+    """Confirm independent QNN block representatives in frozen input order."""
+
+    if not jobs:
+        return []
+    if maximum_workers < 1 or maximum_workers > 3:
+        raise PostCoarseIntegrityError(
+            "QNN confirmation parallelism must be between one and three."
+        )
+
+    requests: list[dict[str, Any]] = []
+    for base, selection in jobs:
+        candidate = runner._candidate_parameters(
+            str(base.row["stage"]),
+            str(base.row["family"]),
+            str(base.row["configuration_id"]),
+        )
+        requests.append(
+            {
+                "feature_block": str(base.row["feature_block"]),
+                "candidate": candidate,
+            }
+        )
+        if str(selection["selected_ansatz_id"]) != str(
+            base.row.get("selected_ansatz_id")
+        ):
+            raise PostCoarseIntegrityError(
+                "Frozen QNN confirmation ansatz differs from its Q2 source."
+            )
+    _prewarm_qnn_fold_cache(runner, folds, requests)
+
+    def execute(
+        job: tuple[CandidateExecutionResult, Mapping[str, Any]],
+    ) -> tuple[CandidateExecutionResult, list[CandidateExecutionResult]]:
+        base, selection = job
+        return _confirm_candidate(
+            runner=runner,
+            folds=folds,
+            base=base,
+            confirmation_seeds=confirmation_seeds,
+            selected_ansatz_id=str(selection["selected_ansatz_id"]),
+        )
+
+    workers = min(maximum_workers, len(jobs))
+    if workers == 1:
+        return [execute(job) for job in jobs]
+
+    pool = ThreadPoolExecutor(
+        max_workers=workers,
+        thread_name_prefix="qnn-confirmation-candidate",
+    )
+    futures = [pool.submit(execute, job) for job in jobs]
+    try:
+        return [future.result() for future in futures]
+    except BaseException:
+        request_shutdown = getattr(runner.executor, "request_shutdown", None)
+        if callable(request_shutdown):
+            request_shutdown()
+        for future in futures:
+            future.cancel()
+        raise
+    finally:
+        pool.shutdown(wait=True, cancel_futures=True)
+
+
+def _configure_confirmation_qnn_ledger(
+    *,
+    runner: ProductionExperimentRunner,
+    config: Mapping[str, Any],
+    source_qnn_manifest: Mapping[str, Any],
+    output_dir: Path,
+) -> Path:
+    """Fork the frozen QNN ledger before recording confirmation attempts."""
+
+    schedule = config["post_coarse_execution"].get(
+        "confirmation_schedule_amendment"
+    )
+    if not isinstance(schedule, Mapping):
+        raise PostCoarseIntegrityError(
+            "QNN confirmation requires a versioned schedule amendment."
+        )
+    configured_path = schedule.get("qnn_confirmation_resource_ledger")
+    if not configured_path:
+        raise PostCoarseIntegrityError(
+            "QNN confirmation ledger path is not configured."
+        )
+    confirmation_path = _resolve_from_root(ROOT, str(configured_path))
+    if confirmation_path.parent.resolve() != output_dir.resolve():
+        raise PostCoarseIntegrityError(
+            "QNN confirmation ledger must live in the configured output directory."
+        )
+
+    source = source_qnn_manifest.get("qnn_resource_ledger")
+    if not isinstance(source, Mapping):
+        raise PostCoarseIntegrityError("Source QNN ledger reference is missing.")
+    source_path = _resolve_from_root(ROOT, str(source["path"]))
+    if source_path.resolve() == confirmation_path.resolve():
+        raise PostCoarseIntegrityError(
+            "QNN confirmation must not mutate the frozen source ledger."
+        )
+    if file_sha256(source_path) != str(source["sha256"]):
+        raise PostCoarseIntegrityError("Frozen source QNN ledger hash mismatch.")
+    source_payload = load_json(source_path)
+
+    if not confirmation_path.exists():
+        atomic_write_json(confirmation_path, source_payload)
+    else:
+        confirmation_payload = load_json(confirmation_path)
+        source_attempts = list(source_payload.get("attempts") or [])
+        confirmation_attempts = list(confirmation_payload.get("attempts") or [])
+        if confirmation_attempts[: len(source_attempts)] != source_attempts:
+            raise PostCoarseIntegrityError(
+                "QNN confirmation ledger does not preserve the frozen attempt prefix."
+            )
+        for key in ("maximum_attempts", "maximum_runtime_seconds"):
+            if confirmation_payload.get(key) != source_payload.get(key):
+                raise PostCoarseIntegrityError(
+                    f"QNN confirmation ledger changed resource policy: {key}"
+                )
+
+    runner._configure_qnn_ledger(ledger_path=confirmation_path)
+    return confirmation_path
+
+
 def _final_primary_representatives(
     *,
     merged_primary_results: Sequence[CandidateExecutionResult],
@@ -1623,6 +1860,7 @@ def run_confirmation_phase(
     authority: AuthorityContext,
     classical_python: Path,
     qnn_python: Path,
+    stop_before_qnn_confirmation: bool = False,
 ) -> dict[str, Any]:
     manifest_path = output_dir / "confirmation_phase_manifest.json"
     existing = _phase_manifest_existing(
@@ -1640,9 +1878,9 @@ def run_confirmation_phase(
         authority=authority,
         root=ROOT,
     )
-    qnn_manifest = require_phase_manifest(
+    qnn_manifest = require_qnn_manifest_for_current_config(
         output_dir / "qnn_phase_manifest.json",
-        allowed_statuses=TERMINAL_QNN_PHASE_STATUSES,
+        config=config,
         authority=authority,
         root=ROOT,
     )
@@ -1662,7 +1900,7 @@ def run_confirmation_phase(
         output_dir=output_dir,
         classical_python=classical_python,
         qnn_python=qnn_python,
-        configure_qnn_ledger=True,
+        configure_qnn_ledger=False,
     )
     activations = derive_primary_activations(
         coarse_results, runner, config=config
@@ -1746,49 +1984,156 @@ def run_confirmation_phase(
         "qnn_selection": qnn_selection,
         "protected_feature_years_opened": False,
     }
-    selection_sha = atomic_write_json(
-        output_dir / "post_coarse_confirmation_selection.json", selection_artifact
+    selection_path = output_dir / "post_coarse_confirmation_selection.json"
+    classical_manifest_path = output_dir / "confirmation_classical_phase_manifest.json"
+    classical_existing = _phase_manifest_existing(
+        classical_manifest_path,
+        statuses={"COMPLETE"},
+        authority=authority,
+        root=ROOT,
     )
-
-    primary_confirmed: list[CandidateExecutionResult] = []
-    extra_seed_results: list[CandidateExecutionResult] = []
-    confirmed_by_key: dict[
-        tuple[str, str, str, int], CandidateExecutionResult
-    ] = {}
-    for selection in primary_selection:
-        key = (
-            str(selection["family"]),
-            str(selection["feature_block"]),
-            str(selection["configuration_id"]),
-            int(runner.contract["confirmation"]["coarse_seed"]),
-        )
-        base = primary_lookup[key]
-        aggregate, extras = _confirm_candidate(
-            runner=runner,
-            folds=folds,
-            base=base,
-            confirmation_seeds=confirmation_seeds,
-        )
-        confirmed_by_key[key] = aggregate
-        primary_confirmed.append(aggregate)
-        extra_seed_results.extend(extras)
-
-    mlp_key = _base_key(mlp_leader)
-    if mlp_key in confirmed_by_key:
-        supplemental_mlp_confirmed = confirmed_by_key[mlp_key]
-        supplemental_mlp_extra_fits = 0
+    if classical_existing is None:
+        selection_sha = atomic_write_json(selection_path, selection_artifact)
     else:
-        supplemental_mlp_confirmed, extras = _confirm_candidate(
-            runner=runner,
-            folds=folds,
-            base=mlp_leader,
-            confirmation_seeds=confirmation_seeds,
+        selection_sha = str(classical_existing["confirmation_selection_sha256"])
+        if not selection_path.is_file() or file_sha256(selection_path) != selection_sha:
+            raise PostCoarseIntegrityError(
+                "Frozen confirmation selection artifact hash mismatch."
+            )
+        if canonical_sha256(load_json(selection_path)) != canonical_sha256(
+            selection_artifact
+        ):
+            raise PostCoarseIntegrityError(
+                "Recomputed confirmation selection differs from the frozen artifact."
+            )
+
+    if classical_existing is None:
+        primary_confirmed: list[CandidateExecutionResult] = []
+        classical_extra_seed_results: list[CandidateExecutionResult] = []
+        confirmed_by_key: dict[
+            tuple[str, str, str, int], CandidateExecutionResult
+        ] = {}
+        for selection in primary_selection:
+            key = (
+                str(selection["family"]),
+                str(selection["feature_block"]),
+                str(selection["configuration_id"]),
+                int(runner.contract["confirmation"]["coarse_seed"]),
+            )
+            base = primary_lookup[key]
+            aggregate, extras = _confirm_candidate(
+                runner=runner,
+                folds=folds,
+                base=base,
+                confirmation_seeds=confirmation_seeds,
+            )
+            confirmed_by_key[key] = aggregate
+            primary_confirmed.append(aggregate)
+            classical_extra_seed_results.extend(extras)
+
+        mlp_key = _base_key(mlp_leader)
+        if mlp_key in confirmed_by_key:
+            supplemental_mlp_confirmed = confirmed_by_key[mlp_key]
+            supplemental_mlp_extra_fits = 0
+        else:
+            supplemental_mlp_confirmed, extras = _confirm_candidate(
+                runner=runner,
+                folds=folds,
+                base=mlp_leader,
+                confirmation_seeds=confirmation_seeds,
+            )
+            classical_extra_seed_results.extend(extras)
+            supplemental_mlp_extra_fits = len(extras) * len(folds)
+
+        classical_manifest = {
+            "schema_version": 1,
+            "id": "post_coarse_confirmation_classical_phase_v1_0_3",
+            "status": "COMPLETE",
+            "authority": authority.as_dict(ROOT),
+            "confirmation_selection_sha256": selection_sha,
+            "source_qnn_phase_manifest_sha256": file_sha256(
+                output_dir / "qnn_phase_manifest.json"
+            ),
+            "primary_confirmed_result_references": [
+                result_reference(
+                    result,
+                    output_dir=output_dir,
+                    root=ROOT,
+                    analysis_role="PRIMARY_CONTRACT_CONFIRMATION",
+                )
+                for result in primary_confirmed
+            ],
+            "supplemental_mlp_confirmed_result_reference": result_reference(
+                supplemental_mlp_confirmed,
+                output_dir=output_dir,
+                root=ROOT,
+                analysis_role=(
+                    "SECONDARY_TITLE_ALIGNED_NEURAL_COMPARATOR_CONFIRMATION"
+                ),
+            ),
+            "classical_extra_seed_candidate_result_references": [
+                result_reference(
+                    result,
+                    output_dir=output_dir,
+                    root=ROOT,
+                    analysis_role="CONFIRMATION_SEED_COMPONENT_CLASSICAL_OR_MLP",
+                )
+                for result in classical_extra_seed_results
+            ],
+            "primary_confirmation_slots": len(primary_selection),
+            "qnn_confirmation_slots_planned": len(qnn_selection),
+            "supplemental_mlp_additional_fold_fits": supplemental_mlp_extra_fits,
+            "qnn_confirmation_started": False,
+            "runtime_seconds": float(time.monotonic() - started),
+            "protected_feature_years_opened": False,
+            "project_data_model_fit_performed": True,
+        }
+        atomic_write_json(classical_manifest_path, classical_manifest)
+    else:
+        classical_manifest = classical_existing
+        if classical_manifest.get("qnn_confirmation_started") is not False:
+            raise PostCoarseIntegrityError(
+                "Classical confirmation gate has an invalid QNN-started flag."
+            )
+        if classical_manifest.get("source_qnn_phase_manifest_sha256") != file_sha256(
+            output_dir / "qnn_phase_manifest.json"
+        ):
+            raise PostCoarseIntegrityError(
+                "Classical confirmation source-QNN hash mismatch."
+            )
+        primary_confirmed = load_phase_results(
+            classical_manifest, "primary_confirmed_result_references", root=ROOT
         )
-        extra_seed_results.extend(extras)
-        supplemental_mlp_extra_fits = len(extras) * len(folds)
+        classical_extra_seed_results = load_phase_results(
+            classical_manifest,
+            "classical_extra_seed_candidate_result_references",
+            root=ROOT,
+        )
+        supplemental_mlp_confirmed = load_result_reference(
+            classical_manifest["supplemental_mlp_confirmed_result_reference"],
+            root=ROOT,
+        )
+        supplemental_mlp_extra_fits = int(
+            classical_manifest["supplemental_mlp_additional_fold_fits"]
+        )
+        if len(primary_confirmed) != len(primary_selection):
+            raise PostCoarseIntegrityError(
+                "Classical confirmation result count differs from frozen selection."
+            )
+
+    if stop_before_qnn_confirmation:
+        return classical_manifest
 
     qnn_confirmed: list[CandidateExecutionResult] = []
+    qnn_extra_seed_results: list[CandidateExecutionResult] = []
+    qnn_confirmation_ledger_path: Path | None = None
     if qnn_selection:
+        qnn_confirmation_ledger_path = _configure_confirmation_qnn_ledger(
+            runner=runner,
+            config=config,
+            source_qnn_manifest=qnn_manifest,
+            output_dir=output_dir,
+        )
         q2_lookup = {
             (
                 str(result.row["feature_block"]),
@@ -1796,22 +2141,39 @@ def run_confirmation_phase(
             ): result
             for result in q2_results
         }
-        for selection in qnn_selection:
-            base = q2_lookup[
-                (
-                    str(selection["feature_block"]),
-                    str(selection["configuration_id"]),
-                )
-            ]
-            aggregate, extras = _confirm_candidate(
-                runner=runner,
-                folds=folds,
-                base=base,
-                confirmation_seeds=confirmation_seeds,
-                selected_ansatz_id=str(selection["selected_ansatz_id"]),
+        jobs = [
+            (
+                q2_lookup[
+                    (
+                        str(selection["feature_block"]),
+                        str(selection["configuration_id"]),
+                    )
+                ],
+                selection,
             )
+            for selection in qnn_selection
+        ]
+        schedule = config["post_coarse_execution"].get(
+            "confirmation_schedule_amendment", {}
+        )
+        maximum_workers = int(
+            schedule.get("maximum_parallel_qnn_confirmation_candidates", 1)
+        )
+        confirmed_jobs = _confirm_qnn_candidates_parallel(
+            runner=runner,
+            folds=folds,
+            jobs=jobs,
+            confirmation_seeds=confirmation_seeds,
+            maximum_workers=maximum_workers,
+        )
+        for aggregate, extras in confirmed_jobs:
             qnn_confirmed.append(aggregate)
-            extra_seed_results.extend(extras)
+            qnn_extra_seed_results.extend(extras)
+
+    extra_seed_results = [
+        *classical_extra_seed_results,
+        *qnn_extra_seed_results,
+    ]
 
     representatives = _final_primary_representatives(
         merged_primary_results=merged_primary_results,
@@ -1962,6 +2324,9 @@ def run_confirmation_phase(
         "status": "COMPLETE",
         "authority": authority.as_dict(ROOT),
         "confirmation_selection_sha256": selection_sha,
+        "confirmation_classical_phase_manifest_sha256": file_sha256(
+            classical_manifest_path
+        ),
         "primary_confirmed_result_references": [
             result_reference(
                 result,
@@ -1997,10 +2362,23 @@ def run_confirmation_phase(
         ],
         "primary_confirmation_slots": len(primary_selection),
         "qnn_confirmation_slots": len(qnn_selection),
+        "qnn_confirmation_resource_ledger": (
+            {
+                "path": _relative_or_absolute(qnn_confirmation_ledger_path, ROOT),
+                "sha256": file_sha256(qnn_confirmation_ledger_path),
+            }
+            if qnn_confirmation_ledger_path is not None
+            else None
+        ),
         "supplemental_mlp_additional_fold_fits": supplemental_mlp_extra_fits,
         "final_primary_development_ranking_sha256": primary_ranking_sha,
         "neural_comparison_manifest_sha256": neural_sha,
-        "runtime_seconds": float(time.monotonic() - started),
+        "runtime_seconds": float(time.monotonic() - started)
+        + (
+            float(classical_manifest["runtime_seconds"])
+            if classical_existing is not None
+            else 0.0
+        ),
         "protected_feature_years_opened": False,
         "project_data_model_fit_performed": True,
     }
@@ -2018,6 +2396,14 @@ def run_confirmation_phase(
             "qnn_phase_manifest_sha256": file_sha256(
                 output_dir / "qnn_phase_manifest.json"
             ),
+            "confirmation_classical_phase_manifest_sha256": file_sha256(
+                classical_manifest_path
+            ),
+            "qnn_confirmation_resource_ledger_sha256": (
+                file_sha256(qnn_confirmation_ledger_path)
+                if qnn_confirmation_ledger_path is not None
+                else None
+            ),
             "confirmation_phase_manifest_sha256": file_sha256(manifest_path),
             "final_primary_development_ranking_sha256": primary_ranking_sha,
             "neural_comparison_manifest_sha256": neural_sha,
@@ -2026,6 +2412,32 @@ def run_confirmation_phase(
         },
     )
     return manifest
+
+
+def run_confirmation_classical_phase(
+    **kwargs: Any,
+) -> dict[str, Any]:
+    return run_confirmation_phase(
+        **kwargs,
+        stop_before_qnn_confirmation=True,
+    )
+
+
+def run_confirmation_qnn_phase(
+    **kwargs: Any,
+) -> dict[str, Any]:
+    authority = kwargs["authority"]
+    output_dir = kwargs["output_dir"]
+    require_phase_manifest(
+        output_dir / "confirmation_classical_phase_manifest.json",
+        allowed_statuses={"COMPLETE"},
+        authority=authority,
+        root=ROOT,
+    )
+    return run_confirmation_phase(
+        **kwargs,
+        stop_before_qnn_confirmation=False,
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -2054,7 +2466,16 @@ def main() -> None:
         description="Run post-coarse refinement and QNN without repeating coarse search."
     )
     parser.add_argument(
-        "mode", choices=("plan", "refinement", "qnn", "confirmation", "all")
+        "mode",
+        choices=(
+            "plan",
+            "refinement",
+            "qnn",
+            "confirmation-classical",
+            "confirmation-qnn",
+            "confirmation",
+            "all",
+        ),
     )
     parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG_PATH)
     parser.add_argument("--coarse-dir", type=Path)
@@ -2106,6 +2527,24 @@ def main() -> None:
             )
         elif args.mode == "qnn":
             result = run_qnn_phase(
+                config=config,
+                coarse_dir=coarse_dir,
+                output_dir=output_dir,
+                authority=authority,
+                classical_python=classical_python,
+                qnn_python=qnn_python,
+            )
+        elif args.mode == "confirmation-classical":
+            result = run_confirmation_classical_phase(
+                config=config,
+                coarse_dir=coarse_dir,
+                output_dir=output_dir,
+                authority=authority,
+                classical_python=classical_python,
+                qnn_python=qnn_python,
+            )
+        elif args.mode == "confirmation-qnn":
+            result = run_confirmation_qnn_phase(
                 config=config,
                 coarse_dir=coarse_dir,
                 output_dir=output_dir,

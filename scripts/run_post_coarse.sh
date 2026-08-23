@@ -14,7 +14,7 @@ MODE="${1:-plan}"
 COARSE_DIR="${COARSE_DIR:-$ROOT/data/model_runs/classical_mlp_coarse_v1}"
 OUTPUT_DIR="${POST_COARSE_OUTPUT_DIR:-$ROOT/data/model_runs/post_coarse_v1_3_0}"
 REPORT_DIR="${POST_COARSE_REPORT_DIR:-$ROOT/reports/post_coarse_v1_3_0}"
-CONFIG="${POST_COARSE_CONFIG:-$ROOT/configs/post_coarse_experiment_v1_0_2_parallel.yaml}"
+CONFIG="${POST_COARSE_CONFIG:-$ROOT/configs/post_coarse_experiment_v1_0_3_confirmation_parallel.yaml}"
 CONTRACT="${POST_COARSE_CONTRACT:-$ROOT/configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml}"
 
 find_python() {
@@ -80,7 +80,9 @@ mkdir -p "$OUTPUT_DIR" "$REPORT_DIR"
 case "$MODE" in
   test)
     require_classical
-    "$CLASSICAL_PYTHON" -m unittest tests.test_post_coarse_runner
+    "$CLASSICAL_PYTHON" -m unittest \
+      tests.test_post_coarse_runner \
+      tests.test_post_coarse_confirmation_schedule
     ;;
   smoke)
     require_qnn
@@ -96,7 +98,7 @@ case "$MODE" in
       --coarse-dir "$COARSE_DIR" \
       --output-dir "$OUTPUT_DIR"
     ;;
-  refinement|qnn|confirmation|all)
+  refinement|qnn|confirmation-classical|confirmation-qnn|confirmation|all)
     require_interpreters
     "$CLASSICAL_PYTHON" -m src.modeling.post_coarse_runner "$MODE" \
       --config "$CONFIG" \
@@ -131,6 +133,7 @@ case "$MODE" in
       post_coarse_plan.json \
       refinement_phase_manifest.json \
       qnn_phase_manifest.json \
+      confirmation_classical_phase_manifest.json \
       confirmation_phase_manifest.json \
       neural_comparison_clustered_bootstrap.json \
       run_manifest.json; do
@@ -142,7 +145,7 @@ case "$MODE" in
     done
     ;;
   *)
-    echo "Usage: bash scripts/run_post_coarse.sh {status|test|smoke|plan|refinement|qnn|confirmation|inference|all|report}" >&2
+    echo "Usage: bash scripts/run_post_coarse.sh {status|test|smoke|plan|refinement|qnn|confirmation-classical|confirmation-qnn|confirmation|inference|all|report}" >&2
     exit 2
     ;;
 esac
