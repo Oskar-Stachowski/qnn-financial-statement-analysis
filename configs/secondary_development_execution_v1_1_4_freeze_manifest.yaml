@@ -1,0 +1,86 @@
+schema_version: 1
+
+secondary_development_parallel_checkpoint_freeze:
+  id: secondary_development_execution_v1_1_4
+  version: 1.1.4
+  frozen_on: "2026-08-23"
+  status: FROZEN
+  verdict: SECONDARY_DEVELOPMENT_EXECUTION_V1_1_4_PARALLEL_CHECKPOINT_INTEGRITY_PASS
+  amendment_scope:
+    - interpretation_checkpoint_source_resolution
+    - ordered_parallel_fold_execution
+  project_model_fit_performed_during_amendment: false
+  protected_feature_years_opened: false
+
+  inherited_execution:
+    base_version: 1.1.3
+    total_tasks: 96
+    roster_changed: false
+    task_identities_changed: false
+    methodology_changed: false
+
+  checkpoint_resolution:
+    families: [pytorch_mlp, qnn]
+    seeds: [20260818, 20260819, 20260820]
+    folds: [fold_2015, fold_2016, fold_2017, fold_2018, fold_2019, fold_2020]
+    expected_checkpoint_count: 36
+    diagnostic_inventory_status: PASS
+    diagnostic_inventory_sha256: af02eb87c67851919470bb46cb8a911e51c2f63c62196c5916d65cc40d6f8ea3
+    exact_three_seed_mlp_loader_smoke: PASS
+    exact_three_seed_qnn_loader_smoke: PASS
+
+  parallel_execution:
+    strategy: ordered_tasks_parallel_independent_folds
+    parallel_across_analysis_variants: false
+    maximum_parallel_classical_folds: 4
+    maximum_parallel_mlp_folds: 2
+    maximum_parallel_qnn_folds: 4
+    worker_threads_per_process: 1
+    shared_qnn_resource_ledger: true
+    frozen_result_order_preserved: true
+
+  invariants:
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    task_identity_changed: false
+    model_parameters_changed: false
+    interpretation_method_changed: false
+    robustness_method_changed: false
+    methodology_changed: false
+    permitted_feature_years: [2011, 2020]
+    protected_feature_years: [2021, 2022, 2023, 2024]
+
+  files:
+    - path: configs/secondary_development_execution_v1_1_4_parallel_checkpoint_fix.yaml
+      bytes: 4451
+      sha256: 318cbd66d39b3bf954915b857efda208200f501116dc16c228e52ab3b18900e1
+    - path: src/modeling/secondary_analysis_execution_v1_1_4.py
+      bytes: 30775
+      sha256: 831c70f4ca8f65547a8595f7f2e718b9a452904fc00394954c34f0c661c64a08
+    - path: src/modeling/verify_secondary_analysis_execution_v1_1_4.py
+      bytes: 6487
+      sha256: 0889469754049d77e766b492f5f3f21cc2a8548f96a6b4c6c8993057e5e1f592
+    - path: scripts/run_secondary_analyses_v1_1_4.sh
+      bytes: 1061
+      sha256: 6572fe5ad98147d041f3da121ec6f201e8b4d29cd0b00d42255f01a7a9013095
+      executable: true
+    - path: tests/test_secondary_analysis_execution_v1_1_4.py
+      bytes: 11479
+      sha256: 6e991ea8ff32057f210a9eb66fc9d2f5a23258b5163d74ad0d9712adc4d8abcb
+    - path: docs/12_4_secondary_development_execution_v1_1_4.md
+      bytes: 4264
+      sha256: 9691c09697050fb47d3e4ef3dace7310ee53eca04ca9392abf67811a4eff28ce
+
+  tests:
+    amendment_tests: 12
+    exact_96_task_identity_preservation: PASS
+    bounded_ordered_parallel_map: PASS
+    analysis_variant_order_preservation: PASS
+    concurrent_qnn_resource_ledger: PASS
+    all_84_parallel_fold_fit_routes_synthetic: PASS
+    all_12_interpretation_routes_synthetic_orchestration: PASS
+    exact_pca_resume: PASS
+    synthetic_smoke_project_data_free: PASS
+    single_import_committed_launcher: PASS

@@ -160,15 +160,31 @@ The real preflight then passed for the exact 19,671-row sample, feature years
 did not deserialize the interim target, did not fit a model, and did not open a
 protected feature year.
 
-The next operational command is:
+The v1.1.3 `pca-controls` phase then completed in approximately 59 seconds:
+all 12 planned fold fits were `COMPLETE` on their first attempt, comprising six
+fixed-L2 logistic controls and six PyTorch MLP controls. All 21,520 prediction
+rows and six MLP checkpoints passed independent identity, hash, finite-float64,
+and fold-membership validation. The phase cannot change primary selection and
+did not open a protected year.
+
+Before interpretation, a read-only path audit found that seed-`20260818` MLP
+and QNN checkpoints remain in their immutable origin directories rather than
+the post-coarse projection used for confirmation seeds. It also confirmed that
+the inherited 4/2/4 parallel-fold limits were not used by the sequential
+controller loops. Version 1.1.4 corrects both operational issues without
+changing any task identity, method, seed, sample, fold, parameter, or result
+policy. It is documented in
+[`docs/12_4_secondary_development_execution_v1_1_4.md`](12_4_secondary_development_execution_v1_1_4.md).
+
+The next operational command after the v1.1.4 package commit is:
 
 ```bash
-bash scripts/run_secondary_analyses_v1_1_3.sh pca-controls
+bash scripts/run_secondary_analyses_v1_1_4.sh preflight
 ```
 
-After it completes, use the same v1.1.3 script to execute `interpretability`,
-`robustness-classical`, `robustness-qnn`, and `report` in that order. No
-secondary project-model fit has started yet.
+If preflight passes, rerun the inexpensive `pca-controls` phase in the new
+v1.1.4 output root and then execute `interpretability`, `robustness-classical`,
+`robustness-qnn`, and `report` in that order.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
 `confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in

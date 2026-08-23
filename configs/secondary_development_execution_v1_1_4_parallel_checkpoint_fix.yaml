@@ -1,0 +1,102 @@
+schema_version: 1
+
+extends:
+  path: configs/secondary_development_execution_v1_1_3_signal_source_fix.yaml
+  sha256: 1159abbbee103ba290dc11346461eabb2058fd049933f9fa4f34ba9626dad498
+
+secondary_development_execution:
+  id: secondary_development_execution_v1_1_4
+  version: 1.1.4
+  created_on: "2026-08-23"
+  status: executable_parallel_checkpoint_amendment_frozen
+  default_output_root: data/model_runs/secondary_development_v1_1_4
+
+  parallel_checkpoint_amendment:
+    scope:
+      - interpretation_checkpoint_source_resolution
+      - ordered_parallel_fold_execution
+    reason:
+      - seed_20260818_checkpoints_remain_in_frozen_origin_directories
+      - inherited_parallel_fold_limits_were_not_operationalized
+    task_order_preserved: true
+    fold_result_order_preserved: true
+    parallelism_unit: independent_fold
+    parallel_across_analysis_variants: false
+    resource_ledger_shared_and_thread_safe: true
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    task_identity_changed: false
+    model_parameters_changed: false
+    interpretation_method_changed: false
+    robustness_method_changed: false
+    methodology_changed: false
+
+  parallel_execution:
+    ordered_map: true
+    maximum_parallel_classical_folds: 4
+    maximum_parallel_mlp_folds: 2
+    maximum_parallel_qnn_folds: 4
+    worker_threads_per_process: 1
+    collect_results_in_frozen_order: true
+    preserve_analysis_variant_order: true
+
+  interpretation_checkpoint_sources:
+    base_seed: 20260818
+    confirmation_seeds: [20260819, 20260820]
+    frozen_post_coarse_root: data/model_runs/post_coarse_v1_3_0/candidate_results
+    pytorch_mlp_base_seed:
+      root: data/model_runs/classical_mlp_coarse_v1/candidate_results
+      stage: coarse
+      family: pytorch_mlp
+      configuration_id: model_stage_v1__coarse__pytorch_mlp__epochs_200__003
+    qnn_base_seed:
+      root: data/model_runs/post_coarse_v1_3_0/candidate_results
+      stage: qnn_q1
+      family: qnn
+      configuration_id: model_stage_v1__qnn_q1__rot_cnot_ring
+      selected_ansatz_id: ROT_CNOT_RING
+      q2_reuse_configuration_id: model_stage_v1__qnn_q2__t0
+    expected_families: [pytorch_mlp, qnn]
+    expected_folds: [fold_2015, fold_2016, fold_2017, fold_2018, fold_2019, fold_2020]
+    expected_checkpoint_count: 36
+    verify_manifest_and_checkpoint_sha256_during_real_preflight: true
+    worker_checkpoint_identity_validation_preserved: true
+
+  git_gate:
+    package_files:
+      - configs/secondary_development_execution_v1_1_4_parallel_checkpoint_fix.yaml
+      - src/modeling/secondary_analysis_execution_v1_1_4.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_4.py
+      - scripts/run_secondary_analyses_v1_1_4.sh
+      - tests/test_secondary_analysis_execution_v1_1_4.py
+      - docs/12_4_secondary_development_execution_v1_1_4.md
+      - configs/secondary_development_execution_v1_1_4_freeze_manifest.yaml
+    freeze_manifest: configs/secondary_development_execution_v1_1_4_freeze_manifest.yaml
+
+  amendment_authority_v1_1_4:
+    v1_1_3_config:
+      path: configs/secondary_development_execution_v1_1_3_signal_source_fix.yaml
+      sha256: 1159abbbee103ba290dc11346461eabb2058fd049933f9fa4f34ba9626dad498
+    v1_1_3_freeze:
+      path: configs/secondary_development_execution_v1_1_3_freeze_manifest.yaml
+      sha256: afe4037826fb4025afa73feddf9ddd3621e2703357bcd32250e093ae64f55b51
+    v1_1_3_controller:
+      path: src/modeling/secondary_analysis_execution_v1_1_3.py
+      sha256: 7c1e0cacc56fb306e5e92b72cee1869c701ff9239fc900e4068792e971d9bcba
+    v1_1_3_verifier:
+      path: src/modeling/verify_secondary_analysis_execution_v1_1_3.py
+      sha256: f96c8d14951cd082bf5f8ef546222ae3958b5f436c34ff53e85f4ec335a26e81
+    inherited_controller:
+      path: src/modeling/secondary_analysis_execution.py
+      sha256: 76745a1f53b5d36271e46ca6883c5e7c0451224d1313580240c4a7dac6cc37a1
+    inherited_numeric_worker:
+      path: src/modeling/secondary_analysis_execution_worker.py
+      sha256: 9f535ae2805fb18705fadfa769f8fd0cb0d102b199a18681ed9e8faafea41748
+    inherited_resource_ledger:
+      path: src/modeling/production_runner.py
+      sha256: 04df7a2307bc2efa1cf9b9965720650bbd0e932adb65236bf1755e1ffb904cd4
+    post_coarse_results_freeze:
+      path: configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+      sha256: 3af5a01de5ff4e4fe3d5177ceffc3ccead3b52cab8eb8c369222c594528534bb
