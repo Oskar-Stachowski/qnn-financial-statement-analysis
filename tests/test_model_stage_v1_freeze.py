@@ -16,6 +16,7 @@ CONFIG_PATH = ROOT / "configs/model_stage_v1.yaml"
 CANDIDATES_PATH = ROOT / "configs/model_stage_candidates_v1.json"
 NOTEBOOK_PATH = ROOT / "notebooks/05_model_stage_preregistration.ipynb"
 REPORT_PATH = ROOT / "data/reports/model_stage_preregistration_freeze_gate_execution.json"
+COMPATIBILITY_PATH = ROOT / "configs/historical_test_compatibility_v1_0_0.yaml"
 
 
 def file_sha256(path: Path) -> str:
@@ -30,6 +31,7 @@ class ModelStageV1FreezeTests(unittest.TestCase):
         cls.candidates = json.loads(CANDIDATES_PATH.read_text())
         cls.notebook = json.loads(NOTEBOOK_PATH.read_text())
         cls.report = json.loads(REPORT_PATH.read_text())
+        cls.compatibility = yaml.safe_load(COMPATIBILITY_PATH.read_text())
 
     def test_frozen_identity_and_access_declaration(self) -> None:
         stage = self.manifest["model_stage"]
@@ -82,7 +84,22 @@ class ModelStageV1FreezeTests(unittest.TestCase):
 
     def test_protected_implementation_contracts_are_byte_identical(self) -> None:
         for item in self.manifest["protected_implementation_and_audit_components"]:
-            self.assertEqual(file_sha256(ROOT / item["path"]), item["sha256"], item["path"])
+            relative = item["path"]
+            actual = file_sha256(ROOT / relative)
+            if actual == item["sha256"]:
+                continue
+            declaration = self.compatibility["declarations"].get(relative)
+            self.assertIsNotNone(declaration, f"Undeclared historical drift: {relative}")
+            self.assertEqual(
+                declaration["historical_authority"],
+                "configs/model_stage_v1_freeze_manifest.yaml",
+            )
+            self.assertEqual(
+                declaration["historical_authority_sha256"],
+                file_sha256(MANIFEST_PATH),
+            )
+            self.assertEqual(declaration["historical_expected_sha256"], item["sha256"])
+            self.assertEqual(actual, declaration["current_compatible_sha256"], relative)
 
     def test_every_materialized_id_and_candidate_list_is_frozen(self) -> None:
         self.assertEqual(self.candidates, materialized_registry())

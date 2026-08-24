@@ -118,11 +118,22 @@ def validate_manifest(manifest: Mapping[str, Any], *, root: Path = ROOT) -> dict
     _require(manifest.get("schema_version") == 1, "Unsupported test-access schema")
     identity = manifest.get("test_access_manifest") or {}
     _require(identity.get("id") == "test_access_manifest", "Unexpected manifest id")
-    _require(str(identity.get("version")) == "1.0.0", "Unexpected manifest version")
-    _require(
-        identity.get("execution_authorized") is False,
-        "The v1.0.0 manifest must remain fail-closed after incident v1.2.0",
-    )
+    version = str(identity.get("version"))
+    _require(version in {"1.0.0", "1.0.1"}, "Unexpected manifest version")
+    if version == "1.0.0":
+        _require(
+            identity.get("execution_authorized") is False,
+            "The v1.0.0 manifest must remain fail-closed after incident v1.2.0",
+        )
+    else:
+        _require(
+            identity.get("execution_authorized") is True,
+            "The v1.0.1 successor must explicitly authorize execution",
+        )
+        override = manifest.get("same_session_override") or {}
+        _require(override.get("authorized_by_user") is True, "Missing user override")
+        _require(override.get("incident_resolved") is False, "Override may not relabel the incident")
+        _require(override.get("protected_tests_remain_blocked") is True, "Override may not open protected tests")
 
     exception = manifest.get("procedural_exception") or {}
     _require(exception.get("authorized_by_user") is True, "Same-session exception is not explicit")
@@ -178,7 +189,17 @@ def validate_manifest(manifest: Mapping[str, Any], *, root: Path = ROOT) -> dict
         else:
             _require(item.get("enabled") is True, f"Runnable test must be enabled: {test_id}")
 
-    _require(sorted(manifest_paths) == tracked_test_paths(root), "Manifest does not exactly cover tracked test inventory")
+    current_inventory = tracked_test_paths(root)
+    if version == "1.0.0":
+        _require(
+            set(manifest_paths).issubset(current_inventory),
+            "Aborted manifest references a missing tracked test",
+        )
+    else:
+        _require(
+            sorted(manifest_paths) == current_inventory,
+            "Manifest does not exactly cover tracked test inventory",
+        )
 
     profiles = manifest.get("profiles") or {}
     _require(isinstance(profiles, dict) and profiles, "No run profiles declared")
@@ -203,7 +224,7 @@ def validate_manifest(manifest: Mapping[str, Any], *, root: Path = ROOT) -> dict
     review_payload = _load_yaml(root / review_allowlist)
     review_identity = review_payload.get("test_access_review_allowlist") or {}
     _require(review_identity.get("id") == "test_access_review_allowlist", "Unexpected review allowlist id")
-    _require(str(review_identity.get("version")) == "1.0.0", "Unexpected review allowlist version")
+    _require(str(review_identity.get("version")) == version, "Review allowlist version mismatch")
     content_paths = review_payload.get("exact_content_paths") or []
     _require(isinstance(content_paths, list) and content_paths, "Review content allowlist is empty")
     normalized_review_paths = [
@@ -292,7 +313,13 @@ def run_profile(
 
     temp_parent = Path(str(manifest["output_policy"]["temporary_parent"]))
     _require(temp_parent == Path("/private/tmp"), "Only /private/tmp is permitted for suite outputs")
-    temp_root = Path(tempfile.mkdtemp(prefix="qnn-safe-suite-v1-0-0-", dir=temp_parent))
+    temporary_prefix = str(manifest["output_policy"]["temporary_prefix"])
+    _require(
+        temporary_prefix.startswith("qnn-safe-suite-")
+        and temporary_prefix.endswith("-"),
+        "Invalid temporary output prefix",
+    )
+    temp_root = Path(tempfile.mkdtemp(prefix=temporary_prefix, dir=temp_parent))
     print(f"TEST_ACCESS_TEMP_ROOT={temp_root}")
     try:
         return_code = 0

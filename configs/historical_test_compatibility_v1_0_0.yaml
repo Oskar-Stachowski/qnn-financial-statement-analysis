@@ -1,0 +1,40 @@
+schema_version: 1
+
+historical_test_compatibility:
+  id: historical_test_compatibility
+  version: 1.0.0
+  status: active_successor_declaration
+  effective_on: "2026-08-24"
+  purpose: >-
+    Preserve historical freeze manifests byte-identically while treating two
+    later, committed maintenance changes as explicit green compatibility cases.
+  historical_manifests_modified: false
+  frozen_data_or_model_artifacts_modified: false
+  protected_feature_years_opened: false
+  project_model_fit_performed: false
+
+declarations:
+  tests/test_model_stage_preregistration.py:
+    historical_authority: configs/model_stage_v1_freeze_manifest.yaml
+    historical_authority_sha256: f7525bc4943d233a71a2bacdc17a90c2e6ca13361ad523a0a4ee8ba33579e189
+    historical_expected_sha256: e5139db3d3cd76bc1ad381f5b0e4d3ecdd3976436914c96288634fb7415534ce
+    current_compatible_sha256: ac935980f7fb81c96350ac1d9140084c1d40692c195a09bac485e69fd735d68e
+    superseding_commit: 505f2af796eacfc78e217e5e5ff919858c873347
+    change_class: pre_fit_scientific_correctness_test_patch
+    compatibility_rule: accept_only_the_exact_historical_or_exact_declared_successor_hash
+
+  requirements.txt:
+    historical_authority: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+    historical_authority_sha256: 52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb
+    historical_expected_sha256: 8b29fed7bed21fa1202c6f692e040474ab536dc67aef0e3fc63897ecf28a3327
+    current_compatible_sha256: 539ab0fe834a61d07f8995cfe04be3de8873fc2c1db11b310640f00fd5606bff
+    superseding_commit: 1b039c1dd458302a721e204c47c46a679d3eb9c2
+    change_class: reporting_dependency_addition
+    compatibility_rule: accept_only_the_exact_historical_or_exact_declared_successor_hash
+
+failure_policy:
+  undeclared_hash_difference: fail
+  authority_hash_difference: fail
+  declaration_path_mismatch: fail
+  historical_manifest_rewrite: fail
+

@@ -9,6 +9,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 MANIFEST_PATH = ROOT / "configs/target_candidate_v2_pit_b_freeze_manifest.yaml"
+COMPATIBILITY_PATH = ROOT / "configs/historical_test_compatibility_v1_0_0.yaml"
 
 
 def sha256(path: Path) -> str:
@@ -23,6 +24,9 @@ class FrozenTargetManifestTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls) -> None:
         cls.manifest = yaml.safe_load(MANIFEST_PATH.read_text(encoding="utf-8"))
+        cls.compatibility = yaml.safe_load(
+            COMPATIBILITY_PATH.read_text(encoding="utf-8")
+        )
 
     def test_manifest_identifies_the_frozen_target(self) -> None:
         target = self.manifest["target"]
@@ -42,7 +46,33 @@ class FrozenTargetManifestTests(unittest.TestCase):
                 path = ROOT / component["path"]
                 with self.subTest(path=component["path"]):
                     self.assertTrue(path.is_file())
-                    self.assertEqual(sha256(path), component["sha256"])
+                    actual = sha256(path)
+                    if actual == component["sha256"]:
+                        continue
+                    declaration = self.compatibility["declarations"].get(
+                        component["path"]
+                    )
+                    self.assertIsNotNone(
+                        declaration,
+                        f"Undeclared historical drift: {component['path']}",
+                    )
+                    self.assertEqual(
+                        declaration["historical_authority"],
+                        "configs/target_candidate_v2_pit_b_freeze_manifest.yaml",
+                    )
+                    self.assertEqual(
+                        declaration["historical_authority_sha256"],
+                        sha256(MANIFEST_PATH),
+                    )
+                    self.assertEqual(
+                        declaration["historical_expected_sha256"],
+                        component["sha256"],
+                    )
+                    self.assertEqual(
+                        actual,
+                        declaration["current_compatible_sha256"],
+                        component["path"],
+                    )
 
     def test_development_scope_excludes_test_years(self) -> None:
         scope = self.manifest["development_scope"]
