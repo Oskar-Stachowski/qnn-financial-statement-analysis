@@ -30,9 +30,12 @@ no-network and output caps are unchanged. The only substantive process change
 is that a search accidentally scoped to a nonsensitive code/config/document
 root, with no unlisted content rendered, stops only that command and must be
 retried on enumerated exact paths; it no longer discards the entire audit. The
-committed Step 5 review now records `ALLOWLIST_REVIEW_PASS` after a complete
-subject read and **15/15** passing structural tests. The next action is Step 6
-against unchanged v1.0.5 in this same session. This status does not infer
+committed Step 5 review records `ALLOWLIST_REVIEW_PASS` after a complete subject
+read and **15/15** passing structural tests. Step 6 is now complete against
+unchanged v1.0.5 with `BASELINE_AUDIT_FAIL`: both frozen result verifiers pass,
+but five blockers remain in the thesis package and chapters. The next action is
+to close those documented blockers and confirm them in a successor audit; no
+model rerun or protected-period access is needed. This status does not infer
 completion of the author, promoter, or AI-compliance gates.
 
 ## Current state

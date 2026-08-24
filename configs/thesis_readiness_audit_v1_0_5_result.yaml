@@ -1,0 +1,262 @@
+schema_version: 1
+
+thesis_readiness_audit_result:
+  id: thesis_readiness_audit_result
+  version: 1.0.5
+  recorded_on: "2026-08-24"
+  status: AUDIT_COMPLETE
+  readiness_verdict: BASELINE_AUDIT_FAIL
+  controlling_runbook:
+    path: docs/CODEX_REMAINING_WORK_PROMPTS.md
+    step: 6
+
+authorization:
+  allowlist:
+    path: configs/thesis_readiness_audit_v1_0_5_allowlist.yaml
+    subject_git_commit: 1416e4f941632890f2f945a311c8c15ae1c2a652
+    sha256: b6c79a296e88dab37ccd049f97b8e69516247c9e63486b8bf2256c4ef6019359
+    sha256_verified_before_audit: true
+    modified_during_audit: false
+  review:
+    path: configs/thesis_readiness_audit_allowlist_review_v1_0_5.yaml
+    review_git_commit: 48301abe72da735fe5dfaac078600b99f334c7a8
+    sha256: 7767eb335fe9f42adbb40c01259dbab3034bec1a793b0fa92bd2d8d6758d4152
+    verdict: ALLOWLIST_REVIEW_PASS
+    mode: same_session_technical_review
+    unresolved_review_findings: 0
+  entry_head: 48301abe72da735fe5dfaac078600b99f334c7a8
+  entry_worktree_clean: true
+  same_session_after_separate_step_4_and_step_5_commits: true
+
+scope_and_exposure:
+  analytical_boundary: development_only_oof_2015_2020
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_period_content_read: false
+  protected_schema_row_count_distribution_sample_or_value_read: false
+  unlisted_data_reports_or_notebooks_content_read: false
+  model_fit_refit_inference_prediction_or_reporting_performed: false
+  network_or_external_storage_accessed: false
+  unexpected_protected_or_analytical_content_exposure_incident: false
+  incident_declaration_required: false
+  predecessor_broad_search_output_used_as_audit_evidence: false
+  exact_path_evidence_used: true
+
+safe_verifiers:
+  allowlist_structure:
+    status: PASS
+    tests_run: 15
+  post_coarse_v1_3_0_results_integrity:
+    status: PASS
+    verdict: POST_COARSE_V1_3_0_RESULTS_INTEGRITY_PASS
+    verified_files: 30
+    report_tables: 8
+    qnn_confirmation_fold_fits: 36
+    bootstrap_valid_replicates: 2000
+    protected_feature_years_opened: false
+  secondary_development_v1_1_7_results_integrity:
+    status: PASS
+    verdict: SECONDARY_DEVELOPMENT_V1_1_7_RESULTS_INTEGRITY_PASS
+    verified_compact_files: 16
+    verified_inventory_files: 585
+    inventory_logical_bytes: 51253022
+    complete_tasks: 96
+    task_results: 96
+    prediction_artifacts: 84
+    qnn_attempts: 24
+    project_model_fit_performed_by_verifier: false
+    protected_feature_years_opened: false
+
+readiness_checks:
+  pit_population_target_x_t_preprocessing_pca_temporal_cv:
+    status: PASS_WITH_DOCUMENTATION_REMEDIATION
+    summary: >-
+      Filing-first historical membership, exact-accession PIT target and X_t,
+      train-fold-only preprocessing and PCA, expanding temporal CV, embargo and
+      target-availability cutoffs are specified and supported by static tests.
+  leakage_survivorship_censoring_estimand:
+    status: PASS_WITH_DECLARED_LIMITATIONS
+    summary: >-
+      Historical membership materially reduces current-snapshot survivorship
+      bias; informative target availability and conditional estimand remain
+      explicit limitations and IPW is rejected for documented support failures.
+  model_selection_seeds_calibration_threshold_statistical_reporting:
+    status: IMPORTANT_GAPS
+    summary: >-
+      Selection, confirmation seeds, Platt calibration and max-F1 threshold are
+      frozen and integrity-pinned, but the thesis-facing probabilistic and
+      threshold reporting contract remains incomplete.
+  primary_and_secondary_development_integrity:
+    status: PASS
+    summary: >-
+      Both committed safe verifiers passed without fits or protected-period access.
+  xgboost_mlp_pca_controls_qnn_comparisons:
+    status: PASS_WITH_INFERENCE_LIMITATIONS
+    summary: >-
+      Results and deltas reconcile; PCA controls and structural QNN checks are
+      descriptive, and the bootstrap is conditional rather than selection-adjusted.
+  chapter_readme_documentation_gaps:
+    status: FAIL_BLOCKERS
+    summary: >-
+      README is current, but the thesis master and several chapters are stale,
+      incomplete or inconsistent with the frozen methodology and results.
+  existing_tests_and_reproducibility:
+    status: PASS_FOR_FROZEN_BUNDLES_FULL_SUITE_NOT_ESTABLISHED
+    summary: >-
+      Freeze verifiers and the allowlist test pass; the broader suite was not
+      authorized in this step, so no global pass/fail count is asserted.
+  unsupported_independent_test_holdout_or_quantum_advantage_claims:
+    status: PASS_WITH_EDITORIAL_CLEANUP
+    summary: >-
+      Current README and result reports correctly deny independent-test and
+      quantum-advantage interpretations; stale thesis wording still requires cleanup.
+
+development_results_summary:
+  primary_winner:
+    family: xgboost
+    configuration_id: model_stage_v1__coarse__xgboost__004
+    feature_block: L+D+R
+    pooled_oof_pr_auc: 0.41308893399384633
+    pooled_oof_roc_auc: 0.7598701797010347
+  refined_mlp_comparator:
+    pooled_oof_pr_auc: 0.39626323334082664
+  qnn_L_D_R:
+    selected_ansatz_id: ROT_CNOT_RING
+    pooled_oof_pr_auc: 0.38394764812793286
+    delta_pr_auc_vs_refined_mlp: -0.012315585212893776
+    paired_clustered_ci_95: [-0.026888604887633713, 0.0030822912528780154]
+  pca_matched_controls:
+    mlp_single_seed_pr_auc: 0.393226725051
+    fixed_l2_logistic_single_seed_pr_auc: 0.381590445516
+    frozen_qnn_three_seed_reference_pr_auc: 0.383947648128
+    direct_seed_matched_comparison: false
+  inference_boundary:
+    development_only: true
+    bootstrap_selection_adjusted: false
+    bootstrap_probability_is_p_value: false
+    quantum_advantage_supported: false
+
+findings:
+  blocker:
+    - id: BLOCKER-001
+      area: final_thesis_package
+      evidence: >-
+        thesis/Praca Magisterska Oskar Stachowski os109908.docx contains only
+        the title page, table of contents and empty section headings (442 words
+        in extracted text); chapters, introduction, conclusion, bibliography,
+        lists and abstract are not integrated.
+      required_closure: >-
+        Assemble a submission candidate and verify its rendered pagination,
+        cross-references, tables, figures, bibliography and required front/back matter.
+    - id: BLOCKER-002
+      area: results_chapter
+      evidence: >-
+        Rozdzial_5_Ewaluacja_modeli.docx states that refinement, QNN,
+        confirmation, calibration, robustness and interpretability are not yet
+        complete and contains multiple DO UZUPEŁNIENIA blocks, while all those
+        development stages are now frozen and verified.
+      required_closure: >-
+        Replace the stale status and placeholders with author-written analysis
+        based strictly on the frozen primary and secondary evidence packages.
+    - id: BLOCKER-003
+      area: target_definition_in_thesis
+      evidence: >-
+        Chapter 1 describes a positive label as deterioration in at least two
+        of three dimensions, inconsistent with the frozen D1-D5 rule requiring
+        deterioration_score_1y >= 3.
+      required_closure: >-
+        Align every conceptual and methodological target description to the
+        exact frozen five-signal definition without changing the frozen target.
+    - id: BLOCKER-004
+      area: methodology_chapter
+      evidence: >-
+        Chapter 4 says the repository still lacks a complete ranking,
+        calibrators and thresholds and describes the runner as not yet fully
+        executed; those statements are superseded by verified v1.3.0 and v1.1.7 results.
+      required_closure: >-
+        Update the chapter to the executed frozen state, preserve development-only
+        limitations and remove obsolete current-state assertions.
+    - id: BLOCKER-005
+      area: qnn_chapter_editorial_completeness
+      evidence: >-
+        The current Chapter 3 PDF still contains the instruction that VQC must
+        be defined, and identifies an AI-generated illustration rather than a
+        finished author-controlled passage and final figure record.
+      required_closure: >-
+        Finish the VQC section and resolve the illustration under the separate
+        author/AI-compliance process; this audit does not infer that gate's status.
+  important:
+    - id: IMPORTANT-001
+      area: statistical_reporting_contract
+      evidence: >-
+        Calibration and threshold identities and hashes are complete, but the
+        current thesis methodology itself says the full Brier/log-loss,
+        calibration intercept/slope, confusion-matrix, precision, recall,
+        specificity and F1 reporting contract is not yet frozen or integrated.
+      recommendation: >-
+        Freeze a thesis-facing reporting schema before later-period gates and
+        populate it from already authorized evidence or mark unavailable fields explicitly.
+    - id: IMPORTANT-002
+      area: inference_limits
+      evidence: >-
+        The paired 2,000-replicate clustered bootstrap covers the neural
+        comparison but is conditional on selected configurations and does not
+        adjust for model selection or multiple comparisons.
+      recommendation: >-
+        Keep claims descriptive/conditional and avoid p-value or definitive
+        superiority language; do not retrofit a post-hoc significance claim.
+    - id: IMPORTANT-003
+      area: test_baseline
+      evidence: >-
+        Step 6 authorizes only named safe verifiers. It therefore establishes
+        no current full-suite count and does not reuse the invalid historical
+        14-failures/305-passed baseline.
+      recommendation: >-
+        Use the next test-access-manifest step before a complete release test run.
+    - id: IMPORTANT-004
+      area: superseded_period_terminology
+      evidence: >-
+        Older frozen pipeline documentation still calls 2021-2022 one-shot
+        external validation, while the controlling policy and current README
+        correctly classify it as design-exposed spent development.
+      recommendation: >-
+        Make the supersession explicit wherever older documents are cited and
+        use only the controlling period terminology in the thesis.
+  optional:
+    - id: OPTIONAL-001
+      area: neural_comparator_naming
+      recommendation: >-
+        Explain that the supplemental MLP was selected from the combined coarse
+        plus refinement pool even though the winning configuration identity has stage coarse.
+    - id: OPTIONAL-002
+      area: evidence_integration
+      recommendation: >-
+        Add provenance notes linking each final table and figure to the frozen
+        report/manifest version and keep single-seed versus three-seed comparisons labelled descriptive.
+
+unsupported_claims_review:
+  independent_test_claim_found_in_current_results: false
+  fully_unseen_holdout_claim_found_in_current_results: false
+  quantum_advantage_claim_found_in_current_results: false
+  generic_or_stale_thesis_language_requires_editorial_alignment: true
+
+boundary_test:
+  path: tests/test_thesis_readiness_audit_boundary_v1_0_5.py
+  preauthorized_safe_verifier: true
+  execution_status: PASS_8_TESTS
+
+decision:
+  blocker_count: 5
+  important_count: 4
+  optional_count: 2
+  baseline_audit_pass_asserted: false
+  baseline_audit_fail_asserted: true
+  step_6_completed: true
+  successor_report_required_to_close_blockers: true
+  subsequent_runbook_steps_authorized: false
+
+attestation:
+  author_promoter_or_ai_compliance_status_inferred: false
+  frozen_or_historical_input_modified: false
+  protected_feature_years_opened: false
+  project_model_fit_performed: false
+  readiness_verdict_based_only_on_reviewed_allowlist_evidence: true
