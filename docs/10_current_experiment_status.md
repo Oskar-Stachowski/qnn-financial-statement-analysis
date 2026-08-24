@@ -232,6 +232,16 @@ After successful repair, execute `robustness-classical`, `robustness-qnn`, and
 `data/model_runs/secondary_development_v1_1_6` output root. The v1.1.5 output
 remains unchanged as source evidence.
 
+All v1.1.6 phases subsequently completed: 12/12 PCA controls, 12/12
+interpretability tasks, 48/48 classical robustness fits, and 24/24 QNN
+robustness fits. The compact report accounted for all 96 tasks as `COMPLETE`,
+but exposed a report-only integrity defect: amendment metadata was added after
+the report SHA-256 had already been recorded in `run_manifest.json`. Version
+1.1.7 preserves the complete v1.1.6 execution as immutable source evidence and
+writes a corrected report under
+`data/model_runs/secondary_development_v1_1_7`. It is documented in
+[`docs/12_7_secondary_development_execution_v1_1_7.md`](12_7_secondary_development_execution_v1_1_7.md).
+
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
 `confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in
 the frozen output directories. The existing results are terminal evidence, not

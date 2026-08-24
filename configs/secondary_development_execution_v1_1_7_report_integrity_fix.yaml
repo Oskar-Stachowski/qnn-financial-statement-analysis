@@ -1,0 +1,85 @@
+schema_version: 1
+
+extends:
+  path: configs/secondary_development_execution_v1_1_6_treeshap_fix.yaml
+  sha256: 644a4419ad7abfd2edb8c9d59b4d8df7ba141ac3ad183702160a113865f9e998
+
+secondary_development_execution:
+  id: secondary_development_execution_v1_1_7
+  version: 1.1.7
+  created_on: "2026-08-24"
+  status: executable_report_integrity_amendment_frozen
+  default_output_root: data/model_runs/secondary_development_v1_1_7
+
+  report_integrity_amendment:
+    scope:
+      - final_report_serialization_before_sha256
+      - corrected_run_manifest_report_reference
+      - exact_v1_1_6_result_inventory_validation
+    reason:
+      - v1_1_6_amendment_metadata_was_added_after_report_sha256_was_recorded
+    source_output_mutated: false
+    source_results_copied: false
+    source_results_changed: false
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    task_identity_changed: false
+    model_parameters_changed: false
+    interpretation_method_changed: false
+    robustness_method_changed: false
+    methodology_changed: false
+    project_data_read: false
+    project_model_fit_performed: false
+    protected_feature_years_opened: false
+
+  report_source:
+    output_root: data/model_runs/secondary_development_v1_1_6
+    execution_id: secondary_development_execution_v1_1_6
+    execution_config_sha256: 644a4419ad7abfd2edb8c9d59b4d8df7ba141ac3ad183702160a113865f9e998
+    package_git_index_sha256: cc4d6b2786d0a6869a56fb3957804b1f1bc57f7970383442cec1e1f991fed80d
+    execution_identity_sha256: 1acfa5ec33c5e8c2441d096385d407dd374842ca476d84fdac6b643fe89359a7
+    preflight_manifest_sha256: 91af8be07bcead4d180f62e09190695d52e3ec1e83f53365deec12ce5356d8b9
+    run_manifest_sha256: d3931203e9e2e382875c2540715e9b3a5f48324c15c452bf4c275088ad49255d
+    report_actual_sha256: 64d30f1196db268af61ea1569f5a1c83eb81956b22365ff9a146a6230779a444
+    report_recorded_stale_sha256: d9f141e0cf3ddb73a941ac57f52d484eb960296eb58077bd8d14dbb8183fd356
+    task_result_inventory_sha256: 25d5be297e8bc142e3e06cc96b6d58ff008a97be2053a3536cbae816d8dd556d
+    expected_tasks: 96
+    expected_complete_tasks: 96
+    phase_manifest_sha256:
+      interpretability.json: 503ac62db9e32783e8c292ecb96b74b8c71c2287b911279b0afba7563cc63daa
+      pca_matched_controls.json: fa9c43451c20ec97c61f95602e5368d1d76beb5b1988153b610dbe81c852a7cd
+      robustness_classical.json: 591f229a98d290b7c89853b30ab714cea113d64760f789456d61ed007a0b447d
+      robustness_qnn.json: 198da0e186c6ffcfc265ca38052dd0091cdb2004ff414ac9d230b35d267d37c5
+
+  git_gate:
+    package_files:
+      - configs/secondary_development_execution_v1_1_7_report_integrity_fix.yaml
+      - src/modeling/secondary_analysis_execution_v1_1_7.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_7.py
+      - scripts/run_secondary_analyses_v1_1_7.sh
+      - tests/test_secondary_analysis_execution_v1_1_7.py
+      - docs/12_7_secondary_development_execution_v1_1_7.md
+      - configs/secondary_development_execution_v1_1_7_freeze_manifest.yaml
+    freeze_manifest: configs/secondary_development_execution_v1_1_7_freeze_manifest.yaml
+
+  amendment_authority_v1_1_7:
+    v1_1_6_config:
+      path: configs/secondary_development_execution_v1_1_6_treeshap_fix.yaml
+      sha256: 644a4419ad7abfd2edb8c9d59b4d8df7ba141ac3ad183702160a113865f9e998
+    v1_1_6_freeze:
+      path: configs/secondary_development_execution_v1_1_6_freeze_manifest.yaml
+      sha256: 1b8f51ac371eb653aac10c51452de618a12a8a836d87a4e390cfcbc2bbb13c59
+    v1_1_6_controller:
+      path: src/modeling/secondary_analysis_execution_v1_1_6.py
+      sha256: cff78e01a05b354f14112a2031a1f113f105431778658a862fd76d3314076e43
+    v1_1_6_verifier:
+      path: src/modeling/verify_secondary_analysis_execution_v1_1_6.py
+      sha256: 931fbdb4d6e983e7341cff7d59991fa48019afe118b527884d0e882f4857f661
+    v1_1_6_documentation:
+      path: docs/12_6_secondary_development_execution_v1_1_6.md
+      sha256: 8854c3dfafaf0afec6ca6023aa520f78d7dbccc9d13db1873e44e2cec1201ef9
+    inherited_atomic_json_writer:
+      path: src/modeling/production_runner.py
+      sha256: 04df7a2307bc2efa1cf9b9965720650bbd0e932adb65236bf1755e1ffb904cd4
