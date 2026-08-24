@@ -1,0 +1,162 @@
+manifest_schema_version: 1
+
+secondary_development_results_freeze:
+  id: secondary_development_results_v1_1_7
+  version: 1.1.7
+  status: FROZEN
+  frozen_on: "2026-08-24"
+  formal_freeze_effected_by_this_manifest: true
+  verdict: SECONDARY_DEVELOPMENT_V1_1_7_RESULTS_INTEGRITY_PASS
+  execution_code_commit: d0d59856fdab67f524a3eab15de28ab6a2574eb1
+  reporting_package_git_index_sha256: 7045c12dab19a6713df2182a916246d6c2195d3d4572936e5c6046f82fde83ec
+  project_data_model_fit_performed: true
+  project_model_fit_performed_by_freeze: false
+  protected_feature_years_opened: false
+
+compact_result_artifacts:
+  - path: data/model_runs/secondary_development_v1_1_6/carry_forward_manifest.json
+    bytes: 1136
+    sha256: f8d25ae308334378a8f7adf4a48dc2b006d279afac9d9b501a39bb502607acca
+    json_status: COMPLETE
+  - path: data/model_runs/secondary_development_v1_1_6/execution_artifacts/runtime_metadata.json
+    bytes: 1483
+    sha256: 55dcbb205f6e6767682f7fa48b51ef2953edcba46d16ecf512aa24674bdd52dd
+  - path: data/model_runs/secondary_development_v1_1_6/execution_identity.json
+    bytes: 678
+    sha256: 1acfa5ec33c5e8c2441d096385d407dd374842ca476d84fdac6b643fe89359a7
+  - path: data/model_runs/secondary_development_v1_1_6/phase_manifests/interpretability.json
+    bytes: 1371
+    sha256: 503ac62db9e32783e8c292ecb96b74b8c71c2287b911279b0afba7563cc63daa
+    json_status: COMPLETE
+  - path: data/model_runs/secondary_development_v1_1_6/phase_manifests/pca_matched_controls.json
+    bytes: 1472
+    sha256: fa9c43451c20ec97c61f95602e5368d1d76beb5b1988153b610dbe81c852a7cd
+    json_status: COMPLETE
+  - path: data/model_runs/secondary_development_v1_1_6/phase_manifests/robustness_classical.json
+    bytes: 4615
+    sha256: 591f229a98d290b7c89853b30ab714cea113d64760f789456d61ed007a0b447d
+    json_status: COMPLETE
+  - path: data/model_runs/secondary_development_v1_1_6/phase_manifests/robustness_qnn.json
+    bytes: 2449
+    sha256: 198da0e186c6ffcfc265ca38052dd0091cdb2004ff414ac9d230b35d267d37c5
+    json_status: COMPLETE
+  - path: data/model_runs/secondary_development_v1_1_6/preflight_manifest.json
+    bytes: 3667
+    sha256: 91af8be07bcead4d180f62e09190695d52e3ec1e83f53365deec12ce5356d8b9
+    json_status: PASS
+  - path: data/model_runs/secondary_development_v1_1_6/qnn_structural_resource_ledger.json
+    bytes: 4490
+    sha256: db4fee9263391fee06f2d53c64cce9244faf569c13cdf36be11856418a33e4e3
+  - path: data/model_runs/secondary_development_v1_1_6/run_manifest.json
+    bytes: 1721
+    sha256: d3931203e9e2e382875c2540715e9b3a5f48324c15c452bf4c275088ad49255d
+    json_status: COMPLETE
+  - path: data/model_runs/secondary_development_v1_1_6/secondary_analysis_execution_plan.json
+    bytes: 48288
+    sha256: 0390704225589bce2565053f6e09d300530b7a2022a50506960b48a27171dc3f
+    json_status: PLAN_ONLY_NO_PROJECT_DATA_ACCESS
+  - path: data/model_runs/secondary_development_v1_1_6/secondary_development_report.json
+    bytes: 858
+    sha256: 64d30f1196db268af61ea1569f5a1c83eb81956b22365ff9a146a6230779a444
+    json_status: COMPLETE
+  - path: data/model_runs/secondary_development_v1_1_6/treeshap_repair_manifest.json
+    bytes: 570
+    sha256: 1fe7e5e233e87ea4b2c1d713dd6f7f5d9f57e909dc5a590fdf0a56a86f362b8e
+    json_status: COMPLETE
+  - path: data/model_runs/secondary_development_v1_1_7/run_manifest.json
+    bytes: 2002
+    sha256: 61507fa5dc8763d271e0c883cb8677e5abf82de51a48adc450e94d7e41bd023f
+    json_status: COMPLETE
+  - path: data/model_runs/secondary_development_v1_1_7/secondary_development_report.json
+    bytes: 1436
+    sha256: 2f6a412d1b809c54e3061f3b8c1c80aef37e2a46dd518bd83ca6bdaa65f4fe19
+    json_status: COMPLETE
+  - path: reports/secondary_development_v1_1_7/artifact_inventory.json
+    bytes: 164523
+    sha256: 41c66b92212f63759b97800f63faace3b5865ce6b9dddb84d20af70cf8c8e6ec
+    json_status: COMPLETE
+
+verification_sources:
+  - path: src/modeling/build_secondary_development_results_freeze_inventory_v1_1_7.py
+    bytes: 3692
+    sha256: 3a3e81eb3166226a75c66c8baf5b560d544c8a10b6b3f865ccfce2f28ee17043
+  - path: src/modeling/verify_secondary_development_results_freeze_v1_1_7.py
+    bytes: 15283
+    sha256: cbef849c351efefe711523178cce108c25d19427d75473c21542d21020736417
+  - path: tests/test_secondary_development_results_freeze_v1_1_7.py
+    bytes: 1726
+    sha256: 1bcddb0fa7ee388f93cd31ee2917a63f7728e974941bd5121a62dff00ab0b9e8
+  - path: docs/12_8_secondary_development_results_freeze_v1_1_7.md
+    bytes: 2416
+    sha256: aa9b673c71b9b3804e16265e121d620dcb5b2891e7c70d7ebc27e918af836f3d
+
+frozen_inventory:
+  file_count: 585
+  logical_bytes: 51253022
+  files_sha256: 85c43bf19f5cac0d0c06576fb5e428a0fd6ec746bbc3476f13f786303a9490ed
+  roots:
+    - id: secondary_development_execution_v1_1_6
+      path: data/model_runs/secondary_development_v1_1_6
+      file_count: 583
+      logical_bytes: 51249584
+      files_sha256: 4b4ba208a9d9b84e1a6a19aad4879757d23a7520abffc5ea770a68ca0e8f118a
+    - id: secondary_development_report_v1_1_7
+      path: data/model_runs/secondary_development_v1_1_7
+      file_count: 2
+      logical_bytes: 3438
+      files_sha256: 1958500e92b82c6569f7a815c47e5ce1a0f55ef6702c7c88c61dd1f712e1fade
+
+frozen_counts:
+  planned_tasks: 96
+  complete_tasks: 96
+  failed_tasks: 0
+  tasks_by_stage:
+    pca_matched_controls: 12
+    interpretability: 12
+    robustness: 72
+  tasks_by_phase:
+    pca_matched_controls: 12
+    interpretability: 12
+    robustness_classical: 48
+    robustness_qnn: 24
+  prediction_artifacts: 84
+  checkpoint_files: 30
+  qnn_attempts: 24
+  qnn_retries: 0
+  qnn_interrupted_attempts: 0
+  treeshap_recomputed_folds: 6
+  carried_pca_tasks: 12
+  carried_interpretability_tasks: 11
+
+large_artifact_boundary:
+  fitted_objects_committed: false
+  row_level_oof_predictions_committed: false
+  fold_checkpoints_committed: false
+  numeric_worker_arrays_committed: false
+  deterministic_byte_inventory_committed: true
+  local_model_run_artifacts_must_be_retained: true
+  external_byte_preserving_backup_required: true
+
+result_interpretation_boundary:
+  development_oof_years: [2015, 2016, 2017, 2018, 2019, 2020]
+  results_may_change_frozen_primary_family_ranking: false
+  results_may_change_ansatz_or_hyperparameters: false
+  results_may_change_preprocessing: false
+  results_may_change_calibration_method_or_threshold_rule: false
+  no_quantum_advantage_claim_from_analytic_simulator: true
+  secondary_results_are_independent_protected_period_evaluation: false
+
+access_boundary:
+  controlling_policy: configs/data_access_policy_v1_1_0.yaml
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  protected_values_or_statistics_opened: false
+  this_freeze_authorizes_2021_2024_access: false
+  next_permitted_scope:
+    - derivative_reporting_from_frozen_results
+    - incremental_byte_preserving_backup
+    - access_incident_resolution_without_opening_protected_values
+
+notes:
+  - This manifest intentionally does not hash itself or its containing commit.
+  - The containing Git commit freezes the compact bundle, full inventory and verifier together.
+  - Full local outputs remain outside ordinary Git tracking and must match the committed inventory exactly.

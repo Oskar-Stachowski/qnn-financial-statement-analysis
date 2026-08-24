@@ -4,7 +4,7 @@ A point-in-time, leakage-controlled research pipeline for classifying one-year m
 
 > Master's thesis research project by **Oskar Stachowski**.
 >
-> Repository state reflected in this README: **23 August 2026**.
+> Repository state reflected in this README: **24 August 2026**.
 
 ## Research objective
 
@@ -27,7 +27,7 @@ The outcome is **not** a bankruptcy, fraud, insolvency, or accounting-manipulati
 | QNN Stage Q1 and Stage Q2 | **Complete**; selected ansatz `ROT_CNOT_RING` |
 | Classical/MLP and QNN confirmation | **Complete** |
 | Final development ranking, calibration, thresholds, bootstrap, and compact report | **Complete and frozen**, post-coarse `v1.3.0` |
-| PCA-matched controls, robustness, and interpretability | **v1.1.4 preflight passed**; PCA controls complete in v1.1.3 and pending inexpensive v1.1.4 rerun |
+| PCA-matched controls, robustness, and interpretability | **Complete and frozen**, 96/96 tasks through report `v1.1.7` |
 | Large raw-data and model-artifact backup | **Complete and restore-validated** in Amazon S3 |
 | Evaluation using feature years 2021–2024 | **Closed under the frozen access policy** |
 
@@ -58,6 +58,12 @@ The separate neural comparison is:
 | QNN | `L+D+R` | **0.383948** | [0.364326, 0.407518] | -0.012316 |
 
 These remain **development-only OOF results for 2015–2020**. The bootstrap is conditional on the selected configurations and is not an independent test or a selection-adjusted inferential claim. The analytic-simulator experiment does not establish quantum advantage. Full results and interpretation are in [`reports/post_coarse_v1_3_0/`](reports/post_coarse_v1_3_0/), and the exact frozen boundary is documented in [`docs/10_1_post_coarse_v1_3_0_results_freeze.md`](docs/10_1_post_coarse_v1_3_0_results_freeze.md).
+
+The preregistered secondary sequence is likewise complete: 12 PCA-matched
+controls, 12 interpretability tasks, 48 classical robustness fits, and 24 QNN
+structural-robustness fits. Its formal result freeze verifies 96/96 complete
+task results and an exact 585-file inventory. See
+[`docs/12_8_secondary_development_results_freeze_v1_1_7.md`](docs/12_8_secondary_development_results_freeze_v1_1_7.md).
 
 ## Data and point-in-time design
 
@@ -269,7 +275,7 @@ LEGACY/        superseded pre-PIT and pre-freeze implementations retained for pr
 
 Large SEC downloads, generated row-level datasets, fitted objects, checkpoints, and complete model-run directories are intentionally excluded from ordinary Git tracking. Their canonical paths are under `data/`, while compact reports, manifests, schemas, counts, provenance, and SHA-256 references are versioned where appropriate.
 
-The full `data/raw` payload and the large `data/model_runs` plus `data/processed` artifacts have separate byte-preserving Amazon S3 snapshots. Both snapshots passed checksum-enabled downloads, streamed decompression, TAR enumeration, and per-file SHA-256 validation. Large `data/raw` payloads were removed locally only after that restore validation; the model-run and processed-data sources remain local because they are needed for the pending secondary analyses. Operational details are recorded in [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](docs/INSTRUKCJA_BACKUP_AMAZON_S3.md).
+The full `data/raw` payload and the large `data/model_runs` plus `data/processed` artifacts have separate byte-preserving Amazon S3 snapshots. Both snapshots passed checksum-enabled downloads, streamed decompression, TAR enumeration, and per-file SHA-256 validation. Large `data/raw` payloads were removed locally only after that restore validation. The completed secondary v1.1.6/v1.1.7 outputs postdate the existing model-artifact snapshot and remain local pending an incremental byte-preserving backup. Operational details are recorded in [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](docs/INSTRUKCJA_BACKUP_AMAZON_S3.md).
 
 Consequently, cloning the repository provides the code, specifications, tests, and compact evidence package, but not every large input or execution artifact. Reproduction requires restoring or rebuilding the exact frozen SEC-derived inputs and passing all manifest and hash checks. The controller fails closed when an expected path, file identity, sample membership, fold membership, candidate identity, or environment identity differs from the frozen contract.
 
@@ -287,15 +293,17 @@ Consequently, cloning the repository provides the code, specifications, tests, a
 | Production runner and environments | [`docs/08_4_production_runner_and_environments_v1_0_0.md`](docs/08_4_production_runner_and_environments_v1_0_0.md) |
 | Post-coarse frozen result boundary | [`docs/10_1_post_coarse_v1_3_0_results_freeze.md`](docs/10_1_post_coarse_v1_3_0_results_freeze.md) |
 | Post-coarse result summary | [`reports/post_coarse_v1_3_0/summary.md`](reports/post_coarse_v1_3_0/summary.md) |
+| Secondary-development result freeze | [`docs/12_8_secondary_development_results_freeze_v1_1_7.md`](docs/12_8_secondary_development_results_freeze_v1_1_7.md) |
 | S3 backup and restore record | [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](docs/INSTRUKCJA_BACKUP_AMAZON_S3.md) |
 | Coarse-search summary | [`reports/coarse_search_thesis/summary.md`](reports/coarse_search_thesis/summary.md) |
 | Coarse-search family table | [`reports/coarse_search_thesis/tables/07_thesis_family_summary.csv`](reports/coarse_search_thesis/tables/07_thesis_family_summary.csv) |
 
 ## Next stages
 
-The next permitted work is the preregistered secondary analysis sequence on development OOF 2015–2020: PCA-matched fixed-L2 and MLP controls, interpretability, and robustness/sensitivity runs with frozen hyperparameters and no reselection.
-
-The pre-execution schedule remains frozen as `secondary_development_analyses_v1_0_0`; see [`docs/11_secondary_development_analyses_v1_0_0.md`](docs/11_secondary_development_analyses_v1_0_0.md). Its executable implementation is frozen as `secondary_development_execution_v1_1_0`; see [`docs/12_secondary_development_execution_v1_1_0.md`](docs/12_secondary_development_execution_v1_1_0.md). The first real-data preflight stopped before model fitting because the additional target projection exposes `(cik10, feature_year)` rather than the equivalent combined sample key; the roster-preserving v1.1.1 correction is documented in [`docs/12_1_secondary_development_execution_v1_1_1.md`](docs/12_1_secondary_development_execution_v1_1_1.md). Its initial `python -m` launcher then stopped inside self-verification before opening project data; the single-import launcher v1.1.2 is documented in [`docs/12_2_secondary_development_launcher_v1_1_2.md`](docs/12_2_secondary_development_launcher_v1_1_2.md). The v1.1.2 preflight then reached the permitted 2011–2020 join and established that the interim target source is narrower than the frozen supervised sample. Version 1.1.3 reuses the already pinned production target-application file, which contains the required D1–D5 signals for all supervised rows; see [`docs/12_3_secondary_development_execution_v1_1_3.md`](docs/12_3_secondary_development_execution_v1_1_3.md). Its real preflight passed for all 19,671 rows and six folds, and `pca-controls` subsequently completed all 12 tasks without error. Version 1.1.4 corrects interpretation checkpoint sources and operationalizes the already frozen parallel-fold limits without changing any of the 96 task identities; see [`docs/12_4_secondary_development_execution_v1_1_4.md`](docs/12_4_secondary_development_execution_v1_1_4.md). Its committed real preflight passed with all 36 checkpoint sources verified. The next command is `bash scripts/run_secondary_analyses_v1_1_4.sh pca-controls`.
+The immediate operational priority is an incremental byte-preserving backup of
+the frozen secondary v1.1.6/v1.1.7 outputs. The next scientific work may create
+derivative thesis tables, figures, and narrative interpretation from the frozen
+results, but must not rerun models or alter the frozen primary decisions.
 
 Feature years 2021–2024 remain closed. Reopening 2021–2022 requires the committed spent-development access gate and cannot activate tuning. The 2023–2024 holdout requires separate blind-feature-application and label-reveal gates.
 

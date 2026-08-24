@@ -1,6 +1,6 @@
 # Current experiment status
 
-Status date: 2026-08-23
+Status date: 2026-08-24
 
 ## Current state
 
@@ -13,6 +13,13 @@ The complete post-coarse development sequence is finished and frozen. It include
 - final family ranking, seed aggregation, calibration, and threshold fitting;
 - a 2,000-replicate paired clustered bootstrap over `economic_group_id`;
 - the compact eight-table post-coarse report.
+
+The full preregistered secondary-development sequence is also finished and
+formally frozen through report version 1.1.7. All 96 tasks are `COMPLETE`:
+12 PCA-matched controls, 12 interpretability tasks, 48 classical robustness
+fits, and 24 QNN structural-robustness fits. The result freeze verifies all 585
+files (51,253,022 logical bytes) below the v1.1.6 execution and v1.1.7 report
+roots against a committed byte-level inventory.
 
 The authoritative frozen boundary is
 [`docs/10_1_post_coarse_v1_3_0_results_freeze.md`](10_1_post_coarse_v1_3_0_results_freeze.md),
@@ -45,6 +52,12 @@ post-coarse execution or by this status update.
   [`reports/post_coarse_v1_3_0/summary.md`](../reports/post_coarse_v1_3_0/summary.md).
 - Coarse-search run retained as an immutable upstream dependency:
   `data/model_runs/classical_mlp_coarse_v1/`.
+- Secondary execution evidence:
+  `data/model_runs/secondary_development_v1_1_6/`.
+- Corrected secondary compact report:
+  `data/model_runs/secondary_development_v1_1_7/`.
+- Secondary result-freeze inventory:
+  `reports/secondary_development_v1_1_7/artifact_inventory.json`.
 
 Large fitted objects, row-level OOF predictions, fold checkpoints, and worker
 arrays remain intentionally outside Git. They must not be rewritten or mixed
@@ -95,21 +108,19 @@ source manifests. The artifact snapshot validated 18,463 files and
 
 The large `data/raw` payload was removed locally only after successful restore
 validation. The local `data/model_runs` and `data/processed` sources are still
-retained because the pending secondary analyses depend on them. The operational
+retained. The validated 2026-08-23 snapshot predates the completed secondary
+execution, so the newly frozen v1.1.6/v1.1.7 outputs require an incremental
+byte-preserving backup before local removal is considered. The operational
 record and restore instructions are in
 [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](INSTRUKCJA_BACKUP_AMAZON_S3.md).
 
 ## Next permitted work
 
-The next scientific stage is restricted to preregistered secondary development
-analyses on OOF 2015–2020:
-
-1. PCA-matched fixed-L2 and PyTorch MLP controls using exactly the final QNN
-   representation and rows;
-2. common grouped permutation importance and the frozen family-specific
-   interpretability methods;
-3. mandatory pipeline, label-definition, and QNN structural robustness runs
-   with frozen configurations and no retuning.
+The preregistered secondary-development analyses on OOF 2015–2020 are complete.
+The immediate operational priority is an incremental byte-preserving backup of
+the newly frozen v1.1.6/v1.1.7 outputs. Derivative thesis tables, figures, and
+narrative reporting may then be generated from the frozen results without
+rerunning models or changing the scientific boundary.
 
 Their executable controller, configuration, output schemas, synthetic tests,
 resource policy, and failure states are versioned and frozen as
@@ -220,18 +231,6 @@ complete PCA tasks and 11 complete interpretation tasks by verified hard link,
 then recomputes only the six failed TreeSHAP folds. It is documented in
 [`docs/12_6_secondary_development_execution_v1_1_6.md`](12_6_secondary_development_execution_v1_1_6.md).
 
-The next operational commands are:
-
-```bash
-bash scripts/run_secondary_analyses_v1_1_6.sh verify
-bash scripts/run_secondary_analyses_v1_1_6.sh repair-treeshap
-```
-
-After successful repair, execute `robustness-classical`, `robustness-qnn`, and
-`report` in that order using only the v1.1.6 launcher. v1.1.6 writes to its own
-`data/model_runs/secondary_development_v1_1_6` output root. The v1.1.5 output
-remains unchanged as source evidence.
-
 All v1.1.6 phases subsequently completed: 12/12 PCA controls, 12/12
 interpretability tasks, 48/48 classical robustness fits, and 24/24 QNN
 robustness fits. The compact report accounted for all 96 tasks as `COMPLETE`,
@@ -241,6 +240,16 @@ the report SHA-256 had already been recorded in `run_manifest.json`. Version
 writes a corrected report under
 `data/model_runs/secondary_development_v1_1_7`. It is documented in
 [`docs/12_7_secondary_development_execution_v1_1_7.md`](12_7_secondary_development_execution_v1_1_7.md).
+
+The formal result boundary is documented in
+[`docs/12_8_secondary_development_results_freeze_v1_1_7.md`](12_8_secondary_development_results_freeze_v1_1_7.md)
+and controlled by
+`configs/secondary_development_v1_1_7_results_freeze_manifest.yaml`. Its
+read-only verifier returns
+`SECONDARY_DEVELOPMENT_V1_1_7_RESULTS_INTEGRITY_PASS` for all 96 task results,
+84 OOF prediction artifacts, 30 checkpoints, 24 successful initial QNN
+attempts, and the exact 585-file inventory. The freeze itself performed no
+model fit and opened no protected-period data.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
 `confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in
