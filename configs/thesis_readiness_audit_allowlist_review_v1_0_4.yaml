@@ -1,0 +1,72 @@
+schema_version: 1
+
+thesis_readiness_audit_allowlist_review:
+  id: thesis_readiness_audit_allowlist_review
+  version: 1.0.4
+  reviewed_on: "2026-08-24"
+  review_mode: same_session_technical_review
+  independent_review_performed: false
+  verdict: ALLOWLIST_REVIEW_PASS
+  substantive_review_completed: true
+  allowlist_gate_authorizes_step_6: true
+
+review_subject:
+  path: configs/thesis_readiness_audit_v1_0_4_allowlist.yaml
+  version: 1.0.4
+  git_commit: dac8625b52fd8b686d6d73f3b5e90997034a61d2
+  sha256: 183b29d5438e538ebc715c8b795b0822f42d44c40fefb84fe30a7b4ac654f1c5
+  committed_before_review: true
+  modified_during_review: false
+
+scope_and_exposure:
+  readiness_audit_performed: false
+  allowlist_expanded_or_modified: false
+  analytical_content_read: false
+  protected_period_content_read: false
+  protected_schema_row_count_distribution_sample_or_value_read: false
+  data_reports_or_notebooks_content_read: false
+  model_fit_refit_inference_or_prediction_performed: false
+  network_or_external_storage_accessed: false
+  incident_declaration_required: false
+
+verification:
+  complete_review_subject_read: PASS
+  structural_test:
+    command: python -m unittest tests/test_thesis_readiness_audit_allowlist_v1_0_4.py
+    status: PASS
+    tests_run: 15
+  authority_pin_sha256_matches: true
+  exact_path_scope: PASS
+  allowed_operations: PASS
+  prohibitions: PASS
+  protected_2021_2024_boundary: PASS
+  schema_and_row_count_disclosure_protection: PASS
+  search_restrictions: PASS
+  stop_policy: PASS
+  same_session_step_sequence_policy: PASS
+  retryable_review_and_audit_output_handling: PASS
+  generated_boundary_test_safe_verifier_route: PASS
+  output_limit_nonconformance_during_review: false
+
+findings: []
+
+predecessor_audit_disposition:
+  status: SUPERSEDED_PROCESS_ONLY_NO_READINESS_VERDICT
+  git_commit: 874f9172fbb452e1f0cd81030a5847a6527da7c9
+  substantive_readiness_finding_established: false
+  protected_or_analytical_content_exposed: false
+
+decision:
+  required_allowlist_review_verdict_met: true
+  unresolved_review_findings: 0
+  step_6_may_start_before_this_review_commit: false
+  step_6_may_start_in_same_conversation_after_this_review_commit: true
+  step_6_must_use_subject_git_commit: dac8625b52fd8b686d6d73f3b5e90997034a61d2
+  step_6_must_use_subject_sha256: 183b29d5438e538ebc715c8b795b0822f42d44c40fefb84fe30a7b4ac654f1c5
+  any_allowlist_change_requires_new_review: true
+
+attestation:
+  verdict_is_allowlist_gate_only: true
+  project_global_readiness_asserted: false
+  author_promoter_or_ai_compliance_status_inferred: false
+  readiness_audit_not_performed: true

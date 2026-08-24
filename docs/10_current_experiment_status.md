@@ -4,26 +4,25 @@ Status date: 2026-08-24
 
 ## Thesis-completion runbook status
 
-Step 6 against allowlist v1.0.3 ended as
-`AUDIT_ABORTED_NO_READINESS_VERDICT` before analytical audit access because a
-320-line control read exceeded the 240-line command cap. The committed abort
-record `874f9172fbb452e1f0cd81030a5847a6527da7c9` established no substantive
-readiness finding and no protected-content exposure.
+Steps 4 and 5 are complete for exact read-only thesis-readiness audit allowlist
+v1.0.4. Step 4 committed the subject as
+`dac8625b52fd8b686d6d73f3b5e90997034a61d2`; its SHA-256 is
+`183b29d5438e538ebc715c8b795b0822f42d44c40fefb84fe30a7b4ac654f1c5`.
+The subsequent `same_session_technical_review` records
+`ALLOWLIST_REVIEW_PASS` after a complete subject read and **15/15** passing
+structural tests. The review is intentionally not represented as independent.
 
-Step 4 has now prepared, but not approved, successor allowlist v1.0.4. It keeps
-the exact-path, protected-period, no-fit and no-network boundaries, raises the
-global output cap to 2,000 lines, makes corrected output-limit errors retryable
-in both review and audit, and permits the committed sequence Steps 4→5→6 in one
-session with a separate commit per step. Version 1.0.4 has status
-`PREPARED_AWAITING_ALLOWLIST_REVIEW`; its preparation did not execute the
-readiness audit or open content under `data/`, `reports/`, or `notebooks/`.
+The v1.0.4 changes preserve exact paths, protected-period controls, no-fit and
+no-network boundaries while raising the command cap to 2,000 lines and making
+non-exposure output-limit errors retryable in review and audit. The earlier
+v1.0.3 abort remains a process-only record without a readiness verdict or
+protected-content exposure. The v1.0.0 allowlist and structural test remain
+byte-identical.
 
-The next action is a `same_session_technical_review` of the separately
-committed v1.0.4 allowlist. After a committed `ALLOWLIST_REVIEW_PASS`, Step 6
-may continue in this same conversation context against unchanged v1.0.4. The
-v1.0.0 allowlist and structural test remain byte-identical. This status does
-not assert project readiness or completion of the author, promoter, or
-AI-compliance gates from earlier runbook steps.
+The next action is Step 6 in this same conversation context after the separate
+review commit, against unchanged v1.0.4. No readiness conclusion is asserted
+before that audit, and this status does not infer completion of the author,
+promoter, or AI-compliance gates from earlier runbook steps.
 
 ## Current state
 
