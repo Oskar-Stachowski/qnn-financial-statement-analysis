@@ -1,0 +1,11 @@
+{
+  "access_manifest_sha256": "7e4382c155af67781180060d9d2a883768fc0a768debe1c03ffc252e2044c307",
+  "gate_manifest_sha256": "8a01725826e6c042cc5ac226278b3afd9fa19dbecf73068794e4cb780124b65c",
+  "opened_scope": "spent_post_gate_execution_scope_only",
+  "protected_row_counts_read": false,
+  "protected_values_deserialized": false,
+  "schema_version": 1,
+  "scope_id": "SPENT_GATE_VERIFIER_SCOPE_V1_0_0",
+  "scope_sha256": "90312774dd33621ad68e59906c9081b884fcdbbf57e1ef1d49af69befa99d0a4",
+  "verdict": "DATA_ACCESS_GATE_2021_2022_REOPEN_PASS"
+}
