@@ -301,10 +301,17 @@ Feature years 2021–2024 remain closed under
   aggregate-target exposure. Blind feature application requires
   `DATA_ACCESS_GATE_2023_2024_FEATURE_APPLICATION_V1`; labels require the later
   `DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_V1`.
-- The contained access incident in
+- The historical access incidents in
   [`docs/09_2_data_access_incident_v1_0_0.md`](09_2_data_access_incident_v1_0_0.md)
-  still requires an independent review and explicit resolution before a
-  protected-period gate is relied upon.
+  and
+  [`docs/09_3_data_access_incident_v1_1_0.md`](09_3_data_access_incident_v1_1_0.md)
+  remain preserved. The fresh independent
+  [`review v1.0.0`](09_5_data_access_incident_v1_1_0_independent_review_v1_0_0.md)
+  returned `REVIEW_PASS`; both containment records are now `RESOLVED —
+  CONTAINED — INDEPENDENT REVIEW COMPLETE`. This resolution grants no
+  protected-period access. The affected thesis-readiness audit remains invalid
+  and must not resume until a separate committed exact allowlist is reviewed
+  and applied in a fresh context or by an independent reviewer.
 
 Before a gate, protected-period artifacts may be checked only for existence or
 by opaque byte-level hashing. Their values, schemas, row counts, distributions,

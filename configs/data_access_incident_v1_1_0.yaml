@@ -1,0 +1,107 @@
+schema_version: 1
+
+data_access_incident:
+  id: data_access_incident
+  version: 1.1.0
+  status: open_contained_requires_fresh_independent_review
+  declaration_type: successor_record_for_additional_access_event
+  occurred_on: "2026-08-24"
+  detected_on: "2026-08-24"
+  controlling_policy:
+    path: configs/data_access_policy_v1_1_0.yaml
+    version: 1.1.0
+    sha256: 7ce08bca9921ff72db6b3ec6dfd1dc28c7e751e1ca1ad3b6706180809b66cd9b
+    accidental_access_policy: stop_record_scope_do_not_continue_and_issue_new_versioned_incident_declaration
+  prior_declaration:
+    path: configs/data_access_incident_v1_0_0.yaml
+    version: 1.0.0
+    sha256: d84a72f5344379c0f923329410f122f6f49b9003b617c34547ba6e03da227f57
+    remains_historical_and_unresolved: true
+  affected_process: whole_project_methodology_results_and_thesis_readiness_audit
+  affected_process_result: invalidated_stopped_without_formal_readiness_verdict
+
+trigger:
+  mechanism: scoped_text_search_broadened_to_include_data_reports_with_rendered_matches
+  intent: locate_documentation_of_selection_bias_and_informative_censoring
+  cause: multiple_repository_subtrees_were_passed_without_an_exact_file_allowlist
+  analytical_query_on_protected_data_intended: false
+  model_execution_involved: false
+
+conservatively_recorded_scope:
+  protected_feature_years_rendered_in_tool_output: [2021, 2022, 2023]
+  known_source_paths:
+    - data/reports/sec_facts_sanity_warnings.csv
+  potentially_exposed_categories:
+    - row_level_company_year_identity
+    - registrant_identity
+    - financial_primitive_values
+    - resolver_or_audit_status_and_reason
+  explicitly_not_observed_or_used:
+    - model_predictions
+    - model_performance
+    - hyperparameter_results
+    - calibration_results
+    - threshold_results
+  exact_rendered_record_count: not_reopened_to_determine
+  scope_limit_reason: further_inspection_is_forbidden_and_would_compound_the_incident
+  additional_protected_matches_ruled_out: false
+
+decision_contamination:
+  protected_values_used_for_methodology: false
+  protected_values_used_for_model_selection: false
+  protected_values_used_for_preprocessing_or_sample_design: false
+  protected_values_used_for_results_interpretation: false
+  new_methodological_decisions_taken_after_exposure: false
+  models_trained_on_project_data: false
+  project_files_modified_before_incident_declaration: false
+  formal_readiness_verdict_may_be_passed_in_affected_process: false
+  pre_incident_findings_status: provisional_only_not_formal_readiness_evidence
+
+containment:
+  offending_search_stopped: true
+  all_parallel_audit_work_stopped: true
+  further_protected_content_inspection_executed: false
+  project_model_training_executed: false
+  protected_period_remains_closed: true
+  frozen_result_artifacts_modified: false
+  methodology_modified: false
+  protected_values_reproduced_in_declaration: false
+  declaration_preparation_restricted_to_exact_policy_incident_status_and_test_files: true
+
+independent_review_control:
+  allowlist_path: configs/data_access_incident_v1_1_0_review_allowlist.yaml
+  review_must_use_fresh_context_or_independent_reviewer: true
+  current_exposed_context_may_self_close_incident: false
+  review_completed: false
+  review_evidence_path: not_yet_created
+
+required_resolution:
+  - review_and_commit_this_successor_incident_declaration
+  - verify_the_declaration_in_a_fresh_context_or_by_an_independent_reviewer
+  - use_only_the_exact_files_and_operations_in_the_committed_review_allowlist
+  - do_not_read_data_or_reports_content_during_incident_review
+  - do_not_reuse_protected_values_revealed_in_either_incident
+  - keep_2021_2024_closed_until_their_applicable_data_access_gates
+  - issue_a_separate_allowlist_before_repeating_the_thesis_readiness_audit
+  - record_the_independent_review_outcome_in_a_new_versioned_artifact
+
+resolution_state:
+  containment_complete: true
+  successor_declaration_created: true
+  independent_review_complete: false
+  incident_resolved: false
+  thesis_readiness_audit_may_resume: false
+  protected_period_gate_may_be_relied_upon: false
+
+change_control:
+  this_declaration_changes_methodology: false
+  this_declaration_authorizes_protected_data_access: false
+  this_declaration_authorizes_model_training: false
+  this_declaration_resolves_prior_incident_v1_0_0: false
+  any_scope_correction_requires_new_incident_version: true
+  historical_declarations_and_frozen_artifacts_may_be_edited_in_place: false
+
+notes:
+  - No protected values are reproduced in this declaration.
+  - Scope is intentionally conservative because further inspection would compound the incident.
+  - This declaration records and contains the event; a fresh independent review is still required for resolution.
