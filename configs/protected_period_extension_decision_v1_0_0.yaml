@@ -1,0 +1,76 @@
+schema_version: 1
+
+decision:
+  id: protected_period_extension_decision
+  version: 1.0.0
+  decided_on: "2026-08-24"
+  status: AUTHOR_SCOPE_APPROVED
+  execution_authorized: true
+  source: author_instruction_in_current_codex_session
+
+governance:
+  author_is_project_decision_authority: true
+  promoter_approval_required_by_author: false
+  promoter_approval_claimed: false
+  runbook_promoter_gate_overridden_by_author: true
+  override_scope: protected_period_extension_execution
+  statement: >-
+    The author explicitly confirmed all scope decisions and directed that
+    promoter approval is not a prerequisite for executing this optional path.
+    This record does not attribute an approval or action to the promoter.
+
+selected_scope: GATED_PROTECTED_PERIOD_EXTENSION
+terminal_variant:
+  id: GATED_FULL_HOLDOUT
+  version: 1.0.0
+  canonical_identity: qnn-financial-statement-analysis:GATED_FULL_HOLDOUT:v1.0.0:2026-08-24
+  canonical_identity_sha256: 3f305ec51baf9a75a12cfb49ad192093a34560529d2cea802a660cdea675a2b4
+  selected_before_first_authorized_protected_content_access: true
+  switch_to_spent_only_after_performance_access_allowed: false
+
+scientific_scope:
+  development_period: [2011, 2020]
+  spent_development_feature_years: [2021, 2022]
+  final_temporal_holdout_feature_years: [2023, 2024]
+  target_construction_support_years: [2025]
+  spent_period_label: design-exposed/spent development
+  holdout_fully_unseen_claim_allowed: false
+  final_roster_source: frozen_committed_model_and_post_coarse_authority
+  tuning_after_protected_access_allowed: false
+  reselection_after_protected_access_allowed: false
+  recalibration_after_protected_access_allowed: false
+  rethresholding_after_protected_access_allowed: false
+
+continuation_rule:
+  after_spent_report_freeze_pass: continue_to_second_integrity_gate
+  allowed_inputs:
+    - formal_gate_verdicts
+    - identity_integrity_verdicts
+    - hash_integrity_verdicts
+    - completeness_integrity_verdicts
+  forbidden_inputs:
+    - performance_magnitude_2021_2022
+    - performance_interpretation_2021_2022
+    - comparison_favorability_2021_2022
+  on_integrity_fail: stop_protected_extension_and_record_versioned_failure
+  on_integrity_pass: continue_precommitted_gated_full_holdout
+
+ai_execution_scope:
+  codex_technical_implementation_allowed: true
+  codex_gate_and_verifier_execution_allowed: true
+  codex_model_refit_and_prediction_execution_allowed: true
+  codex_one_shot_evaluation_allowed: true
+  codex_freeze_and_integrity_reporting_allowed: true
+  codex_thesis_result_interpretation_allowed: false
+  author_retains_scientific_interpretation_and_final_claims: true
+
+entry_evidence:
+  safe_test_suite_result: configs/safe_test_suite_v1_0_2_result.yaml
+  safe_test_suite_verdict: SAFE_TEST_SUITE_PASS
+  repository_head_before_decision: fc70ca6a7d14d84c4b9605c9172f3681ebb859f5
+  protected_content_opened_during_decision: false
+
+transition:
+  next_step: P1A
+  author_decision_complete: true
+  material_variant_decision_remaining: false
