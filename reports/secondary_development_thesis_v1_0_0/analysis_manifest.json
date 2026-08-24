@@ -1,0 +1,186 @@
+{
+  "descriptive_deltas_only": true,
+  "generated_figures": [
+    "figures/01_pca_matched_controls_pr_auc.png",
+    "figures/01_pca_matched_controls_pr_auc.svg",
+    "figures/02_xgboost_robustness_pr_auc.png",
+    "figures/02_xgboost_robustness_pr_auc.svg",
+    "figures/03_qnn_structural_robustness_pr_auc.png",
+    "figures/03_qnn_structural_robustness_pr_auc.svg",
+    "figures/04_common_permutation_importance_heatmap.png",
+    "figures/04_common_permutation_importance_heatmap.svg",
+    "figures/05_detailed_feature_importance.png",
+    "figures/05_detailed_feature_importance.svg",
+    "figures/06_qnn_encoded_sensitivity.png",
+    "figures/06_qnn_encoded_sensitivity.svg"
+  ],
+  "generated_files": [
+    {
+      "bytes": 49151,
+      "path": "figures/01_pca_matched_controls_pr_auc.png",
+      "sha256": "ae383fdde5ae419b79da00ff1060e067fd33048b9f2c0f98ea77bb682705edf0"
+    },
+    {
+      "bytes": 53816,
+      "path": "figures/01_pca_matched_controls_pr_auc.svg",
+      "sha256": "24d37366c3ae557be1e25837d41b3986cc7f5b4fdc17d85f4a80bd4940ac5174"
+    },
+    {
+      "bytes": 89756,
+      "path": "figures/02_xgboost_robustness_pr_auc.png",
+      "sha256": "6a6d09e86fcb092a59a82138d8d69fd4467c329df64e5125469bd74a831f7303"
+    },
+    {
+      "bytes": 69566,
+      "path": "figures/02_xgboost_robustness_pr_auc.svg",
+      "sha256": "c47b69d984b9438640444e8e2e2228cb39c8ed9f8819f8a0a6a8b2b4fd4aa6d1"
+    },
+    {
+      "bytes": 59482,
+      "path": "figures/03_qnn_structural_robustness_pr_auc.png",
+      "sha256": "297ef24efc4692aa20f30428f283103641949e6cbc334b6f1b6a85c9204e24dd"
+    },
+    {
+      "bytes": 54523,
+      "path": "figures/03_qnn_structural_robustness_pr_auc.svg",
+      "sha256": "d6dd7b2dc1168ae79f462185520f5d4bc4a8426b57ae9233b9f4f30b91a9ec8e"
+    },
+    {
+      "bytes": 174850,
+      "path": "figures/04_common_permutation_importance_heatmap.png",
+      "sha256": "c6d687815025361792fb64fa3061d76def4ec8d066b8e1c9a22b481c3f3e90fd"
+    },
+    {
+      "bytes": 114344,
+      "path": "figures/04_common_permutation_importance_heatmap.svg",
+      "sha256": "d1b6b5d0121ef4ba7508b46c5f746b773f04bd64ddaf71e199f9846e77c55b7f"
+    },
+    {
+      "bytes": 124266,
+      "path": "figures/05_detailed_feature_importance.png",
+      "sha256": "9096ce1c9120104cb3da5b0b5f71a52b5a20d1a6fca5ec85955f5d1563d67680"
+    },
+    {
+      "bytes": 101108,
+      "path": "figures/05_detailed_feature_importance.svg",
+      "sha256": "775c06fe2e428ae10924a7f36f38d48354642b0e20aaaa0b9b3fdd5209ea4664"
+    },
+    {
+      "bytes": 50159,
+      "path": "figures/06_qnn_encoded_sensitivity.png",
+      "sha256": "ce00d43c78052ac61cc1b64179307e88305bc15e5b70f719df2d975f8c3fa530"
+    },
+    {
+      "bytes": 46903,
+      "path": "figures/06_qnn_encoded_sensitivity.svg",
+      "sha256": "27668d6cd93f9b7503a9e68bedfc928cedf181192bd08ad8bb83a2d0776865f4"
+    },
+    {
+      "bytes": 2775,
+      "path": "summary.md",
+      "sha256": "ece17c66e878a09cc0d47b984f2ba4d00be3f75a3edd59989e60c6e12084c611"
+    },
+    {
+      "bytes": 279,
+      "path": "tables/01_execution_completeness.csv",
+      "sha256": "866d6b21d1457f8946cc3fa4d4f4398a5d0337df1eab9703fa062e6e6d580b5e"
+    },
+    {
+      "bytes": 1370,
+      "path": "tables/02_pca_matched_controls.csv",
+      "sha256": "98e0b6a72b10d14592a778cc98591fab6030323991c3927504410e5c4f9507a0"
+    },
+    {
+      "bytes": 3545,
+      "path": "tables/03_xgboost_robustness.csv",
+      "sha256": "63616b9d23503f51350fbfd52abb65cc7e06d0242d73a6c45666a5f54f817f3c"
+    },
+    {
+      "bytes": 2126,
+      "path": "tables/04_qnn_structural_robustness.csv",
+      "sha256": "dcdccf26e3321a387aa541ffd830dd59113a4e04d99d7f97d7d3d7c82d6887ae"
+    },
+    {
+      "bytes": 14790,
+      "path": "tables/05_variant_fold_metrics.csv",
+      "sha256": "2d2bd742acc57a13779c2b0655c452c4e2be58a1316e788ea9415879f23e1eb4"
+    },
+    {
+      "bytes": 20506,
+      "path": "tables/06_common_permutation_importance.csv",
+      "sha256": "b0a8a62aee3f32de7c67f93cc0306807e1829a0480d8922170ed3276a855fbb3"
+    },
+    {
+      "bytes": 6005,
+      "path": "tables/07_common_permutation_top5_by_family.csv",
+      "sha256": "ba0c717264b804b2d87ca93b7ffddaed168f51be93ffc06ae9f7f6f42d4568fd"
+    },
+    {
+      "bytes": 12937,
+      "path": "tables/08_detailed_feature_importance.csv",
+      "sha256": "4623d0f19fb4ab3273386fd945eae0184836129e0af631179aa23da7f0652464"
+    },
+    {
+      "bytes": 391,
+      "path": "tables/09_qnn_encoded_sensitivity.csv",
+      "sha256": "11582f89caf059e9b6f41acac6a1286bb15b7da193e6a94c2316969ad566b016"
+    },
+    {
+      "bytes": 11921,
+      "path": "tables/10_qnn_pca_loadings.csv",
+      "sha256": "18f519d9c4736eabf1f9ed1afe45dc299cb902bcb2da61ce3c1071cbb4226ac7"
+    }
+  ],
+  "generated_files_sha256": "10746d7e18e9124f8399a5d2e5dd851d7f313dcae522da2d60cf1bb3ee2a0a73",
+  "generated_tables": [
+    "tables/01_execution_completeness.csv",
+    "tables/02_pca_matched_controls.csv",
+    "tables/03_xgboost_robustness.csv",
+    "tables/04_qnn_structural_robustness.csv",
+    "tables/05_variant_fold_metrics.csv",
+    "tables/06_common_permutation_importance.csv",
+    "tables/07_common_permutation_top5_by_family.csv",
+    "tables/08_detailed_feature_importance.csv",
+    "tables/09_qnn_encoded_sensitivity.csv",
+    "tables/10_qnn_pca_loadings.csv"
+  ],
+  "id": "secondary_development_thesis_report_v1_0_0",
+  "prediction_artifacts_read": 84,
+  "primary_selection_changed": false,
+  "project_model_fit_performed": false,
+  "protected_feature_years_opened": false,
+  "reporting_package_git_index_sha256": "94af189f289072813fcfecc0d827d09a9fd8a74de3bc35212504aeae38b33653",
+  "schema_version": 1,
+  "source_authority": [
+    {
+      "path": "configs/secondary_development_v1_1_7_results_freeze_manifest.yaml",
+      "sha256": "8e55fd9b519636f4907dc570fc7c3c032608568413e7e308eeb23a98abf86260"
+    },
+    {
+      "path": "reports/secondary_development_v1_1_7/artifact_inventory.json",
+      "sha256": "41c66b92212f63759b97800f63faace3b5865ce6b9dddb84d20af70cf8c8e6ec"
+    },
+    {
+      "path": "data/model_runs/secondary_development_v1_1_6/preflight_manifest.json",
+      "sha256": "91af8be07bcead4d180f62e09190695d52e3ec1e83f53365deec12ce5356d8b9"
+    },
+    {
+      "path": "data/model_runs/secondary_development_v1_1_7/secondary_development_report.json",
+      "sha256": "2f6a412d1b809c54e3061f3b8c1c80aef37e2a46dd518bd83ca6bdaa65f4fe19"
+    },
+    {
+      "path": "data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json",
+      "sha256": "58d100a612902b0b6762b06521fea56b754959b69ffefbc3c50473e0d6d94130"
+    },
+    {
+      "path": "data/model_runs/post_coarse_v1_3_0/neural_comparison_manifest.json",
+      "sha256": "560d06e9ec4eebc5b368970fe65d7493e89ca9c2becf8141916179d360f647f4"
+    }
+  ],
+  "source_execution_id": "secondary_development_execution_v1_1_6",
+  "source_git_commit": "dddcf39e72487b0d11d78bf4f96f1b37099af414",
+  "source_report_id": "secondary_development_execution_v1_1_7",
+  "source_task_result_inventory_sha256": "25d5be297e8bc142e3e06cc96b6d58ff008a97be2053a3536cbae816d8dd556d",
+  "status": "COMPLETE",
+  "task_results": 96
+}

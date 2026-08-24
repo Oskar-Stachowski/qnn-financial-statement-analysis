@@ -1,0 +1,5 @@
+component,mean_abs_encoded_sensitivity_across_folds,fold_sample_sd,mean_pca_eigenvalue_across_folds,evaluation_rows_per_fold,sensitivity_rank
+pca_angle_1,1.24780887226,0.168169430577,5.33411902466,100,1
+pca_angle_3,0.622650385666,0.161015928915,1.85136412448,100,2
+pca_angle_4,0.337052861805,0.0468852321434,1.18615274334,100,3
+pca_angle_2,0.335748972943,0.0546886638752,2.86720366061,100,4

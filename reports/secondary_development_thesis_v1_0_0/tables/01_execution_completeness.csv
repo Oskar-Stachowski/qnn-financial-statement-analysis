@@ -1,0 +1,5 @@
+phase,status,planned_tasks,complete_tasks,failed_tasks,expected_tasks,protected_feature_years_opened
+pca_matched_controls,COMPLETE,12,12,0,12,False
+interpretability,COMPLETE,12,12,0,12,False
+robustness_classical,COMPLETE,48,48,0,48,False
+robustness_qnn,COMPLETE,24,24,0,24,False

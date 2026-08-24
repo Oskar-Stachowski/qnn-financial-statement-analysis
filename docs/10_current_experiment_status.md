@@ -21,6 +21,12 @@ fits, and 24 QNN structural-robustness fits. The result freeze verifies all 585
 files (51,253,022 logical bytes) below the v1.1.6 execution and v1.1.7 report
 roots against a committed byte-level inventory.
 
+The derivative secondary thesis report v1.0.0 is also complete. Its read-only
+generator consumed 96 task results and 84 OOF prediction artifacts, performed
+no fit, opened no protected feature year, and emitted ten CSV tables plus six
+figures in both PNG and SVG. The 24-file output bundle passed the independent
+verifier and a manual visual-layout review.
+
 The authoritative frozen boundary is
 [`docs/10_1_post_coarse_v1_3_0_results_freeze.md`](10_1_post_coarse_v1_3_0_results_freeze.md),
 with machine-readable identities in
@@ -58,6 +64,12 @@ post-coarse execution or by this status update.
   `data/model_runs/secondary_development_v1_1_7/`.
 - Secondary result-freeze inventory:
   `reports/secondary_development_v1_1_7/artifact_inventory.json`.
+- Secondary thesis report:
+  `reports/secondary_development_thesis_v1_0_0/`.
+- Human-readable secondary report summary:
+  [`reports/secondary_development_thesis_v1_0_0/summary.md`](../reports/secondary_development_thesis_v1_0_0/summary.md).
+- Machine-readable secondary report manifest:
+  `reports/secondary_development_thesis_v1_0_0/analysis_manifest.json`.
 
 Large fitted objects, row-level OOF predictions, fold checkpoints, and worker
 arrays remain intentionally outside Git. They must not be rewritten or mixed
@@ -91,6 +103,23 @@ bootstrap is conditional on the selected configurations, is not
 selection-adjusted, and is not an independent test. Results from an analytic
 simulator do not support a claim of quantum advantage.
 
+## Secondary reporting outcome
+
+The PCA-matched controls achieved pooled OOF PR-AUC `0.393227` for the MLP
+control and `0.381590` for fixed-L2 logistic regression, compared descriptively
+with the three-seed QNN reference `0.383948`. Structural QNN variants ranged
+from `0.372854` to `0.377730` PR-AUC, below that frozen reference. These are
+single-seed versus three-seed descriptive comparisons, not selection-adjusted
+tests.
+
+Across the common permutation analysis, revenue scale, asset scale,
+profitability, liquidity, accruals, and operating-cash-flow measures recur as
+important signals. For QNN, the first encoded PCA component has the greatest
+mean sensitivity, but it must be interpreted jointly with its PCA loadings and
+not as a direct economic-feature attribution. Label-robustness variants alter
+the label definition and class prevalence, so their PR-AUC levels are not
+directly comparable with the primary target.
+
 ## Backup and local-storage state
 
 Three separate byte-preserving snapshots exist in the same Amazon S3 bucket:
@@ -119,11 +148,12 @@ record and restore instructions are in
 
 ## Next permitted work
 
-The preregistered secondary-development analyses on OOF 2015–2020 are complete.
-The incremental byte-preserving backup of the newly frozen v1.1.6/v1.1.7
-outputs is complete. Derivative thesis tables, figures, and narrative reporting
-may now be generated from the frozen results without rerunning models or
-changing the scientific boundary.
+The preregistered secondary-development analyses on OOF 2015–2020 and their
+derivative thesis report are complete. The next permitted work is editorial:
+integrate the frozen tables, figures, interpretation, and limitations into the
+thesis chapters without rerunning models or changing the scientific boundary.
+The incremental byte-preserving backup of the v1.1.6/v1.1.7 source outputs is
+complete.
 
 Their executable controller, configuration, output schemas, synthetic tests,
 resource policy, and failure states are versioned and frozen as

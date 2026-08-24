@@ -28,6 +28,7 @@ The outcome is **not** a bankruptcy, fraud, insolvency, or accounting-manipulati
 | Classical/MLP and QNN confirmation | **Complete** |
 | Final development ranking, calibration, thresholds, bootstrap, and compact report | **Complete and frozen**, post-coarse `v1.3.0` |
 | PCA-matched controls, robustness, and interpretability | **Complete and frozen**, 96/96 tasks through report `v1.1.7` |
+| Thesis-ready secondary tables, figures, and interpretation | **Complete and frozen**, report `v1.0.0` |
 | Large raw-data, model-artifact, and secondary-result backups | **Complete and restore-validated** in Amazon S3 |
 | Evaluation using feature years 2021–2024 | **Closed under the frozen access policy** |
 
@@ -64,6 +65,13 @@ controls, 12 interpretability tasks, 48 classical robustness fits, and 24 QNN
 structural-robustness fits. Its formal result freeze verifies 96/96 complete
 task results and an exact 585-file inventory. See
 [`docs/12_8_secondary_development_results_freeze_v1_1_7.md`](docs/12_8_secondary_development_results_freeze_v1_1_7.md).
+
+The read-only thesis-reporting package converted that frozen evidence into ten
+CSV tables, six figures in PNG and SVG, and a concise interpretation. The
+24-file bundle passes its independent output verifier and is available in
+[`reports/secondary_development_thesis_v1_0_0/`](reports/secondary_development_thesis_v1_0_0/).
+The secondary variants are descriptive development evidence: they do not
+change the frozen primary ranking and do not establish quantum advantage.
 
 ## Data and point-in-time design
 
@@ -294,16 +302,19 @@ Consequently, cloning the repository provides the code, specifications, tests, a
 | Post-coarse frozen result boundary | [`docs/10_1_post_coarse_v1_3_0_results_freeze.md`](docs/10_1_post_coarse_v1_3_0_results_freeze.md) |
 | Post-coarse result summary | [`reports/post_coarse_v1_3_0/summary.md`](reports/post_coarse_v1_3_0/summary.md) |
 | Secondary-development result freeze | [`docs/12_8_secondary_development_results_freeze_v1_1_7.md`](docs/12_8_secondary_development_results_freeze_v1_1_7.md) |
+| Secondary thesis-reporting contract | [`docs/12_9_secondary_development_thesis_reporting_v1_0_0.md`](docs/12_9_secondary_development_thesis_reporting_v1_0_0.md) |
+| Secondary thesis-report summary | [`reports/secondary_development_thesis_v1_0_0/summary.md`](reports/secondary_development_thesis_v1_0_0/summary.md) |
 | S3 backup and restore record | [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](docs/INSTRUKCJA_BACKUP_AMAZON_S3.md) |
 | Coarse-search summary | [`reports/coarse_search_thesis/summary.md`](reports/coarse_search_thesis/summary.md) |
 | Coarse-search family table | [`reports/coarse_search_thesis/tables/07_thesis_family_summary.csv`](reports/coarse_search_thesis/tables/07_thesis_family_summary.csv) |
 
 ## Next stages
 
-The next scientific work may create derivative thesis tables, figures, and
-narrative interpretation from the frozen secondary results, but must not rerun
-models or alter the frozen primary decisions. The incremental byte-preserving
-backup of v1.1.6/v1.1.7 is complete and restore-validated.
+The next scientific work is thesis integration: incorporate the already frozen
+primary and secondary tables, figures, limitations, and narrative into the
+final chapters. It must not rerun models, reinterpret label variants as direct
+comparisons, or alter the frozen primary decisions. The incremental
+byte-preserving backup of v1.1.6/v1.1.7 is complete and restore-validated.
 
 Feature years 2021–2024 remain closed. Reopening 2021–2022 requires the committed spent-development access gate and cannot activate tuning. The 2023–2024 holdout requires separate blind-feature-application and label-reveal gates.
 

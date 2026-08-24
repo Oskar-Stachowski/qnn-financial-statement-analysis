@@ -1,0 +1,85 @@
+analysis_id,display_label,family,variant_kind,fold_id,training_seed,train_rows,validation_rows,positive_n,positive_share,pr_auc,roc_auc,status
+deterioration_score_at_least_2,Target: score ≥2,xgboost,label_definition,fold_2015,20260818,6468,2241,863,0.385095939313,0.676893950019,0.774064634288,COMPLETE
+deterioration_score_at_least_2,Target: score ≥2,xgboost,label_definition,fold_2016,20260818,8761,2133,682,0.319737458978,0.545466156632,0.726885695172,COMPLETE
+deterioration_score_at_least_2,Target: score ≥2,xgboost,label_definition,fold_2017,20260818,11089,1549,484,0.312459651388,0.597536036395,0.759513832305,COMPLETE
+deterioration_score_at_least_2,Target: score ≥2,xgboost,label_definition,fold_2018,20260818,13221,1511,577,0.3818663137,0.614837927874,0.721994811827,COMPLETE
+deterioration_score_at_least_2,Target: score ≥2,xgboost,label_definition,fold_2019,20260818,14783,1638,627,0.382783882784,0.521200853142,0.64403128584,COMPLETE
+deterioration_score_at_least_2,Target: score ≥2,xgboost,label_definition,fold_2020,20260818,16280,1688,473,0.280213270142,0.481698146648,0.725486562437,COMPLETE
+deterioration_score_at_least_4,Target: score ≥4,xgboost,label_definition,fold_2015,20260818,6468,2241,240,0.107095046854,0.36429339614,0.837890429785,COMPLETE
+deterioration_score_at_least_4,Target: score ≥4,xgboost,label_definition,fold_2016,20260818,8761,2133,174,0.0815752461322,0.278939431216,0.826268973732,COMPLETE
+deterioration_score_at_least_4,Target: score ≥4,xgboost,label_definition,fold_2017,20260818,11089,1549,130,0.0839251129761,0.282815088105,0.830471079308,COMPLETE
+deterioration_score_at_least_4,Target: score ≥4,xgboost,label_definition,fold_2018,20260818,13221,1511,155,0.102581072138,0.274372121391,0.783947092968,COMPLETE
+deterioration_score_at_least_4,Target: score ≥4,xgboost,label_definition,fold_2019,20260818,14783,1638,132,0.0805860805861,0.178677389992,0.720906776933,COMPLETE
+deterioration_score_at_least_4,Target: score ≥4,xgboost,label_definition,fold_2020,20260818,16280,1688,91,0.0539099526066,0.211065409032,0.82899254784,COMPLETE
+operating_performance_max_D1_D2_alternative_score_at_least_3,"Target: max(D1,D2)+D3+D4+D5 ≥3",xgboost,label_definition,fold_2015,20260818,6468,2241,371,0.165551093262,0.459696935271,0.81191965637,COMPLETE
+operating_performance_max_D1_D2_alternative_score_at_least_3,"Target: max(D1,D2)+D3+D4+D5 ≥3",xgboost,label_definition,fold_2016,20260818,8761,2133,255,0.119549929677,0.338168101741,0.809335129153,COMPLETE
+operating_performance_max_D1_D2_alternative_score_at_least_3,"Target: max(D1,D2)+D3+D4+D5 ≥3",xgboost,label_definition,fold_2017,20260818,11089,1549,182,0.117495158167,0.373128855419,0.828743860382,COMPLETE
+operating_performance_max_D1_D2_alternative_score_at_least_3,"Target: max(D1,D2)+D3+D4+D5 ≥3",xgboost,label_definition,fold_2018,20260818,13221,1511,239,0.158173395103,0.351208833502,0.752212112839,COMPLETE
+operating_performance_max_D1_D2_alternative_score_at_least_3,"Target: max(D1,D2)+D3+D4+D5 ≥3",xgboost,label_definition,fold_2019,20260818,14783,1638,215,0.131257631258,0.284113996646,0.728326986877,COMPLETE
+operating_performance_max_D1_D2_alternative_score_at_least_3,"Target: max(D1,D2)+D3+D4+D5 ≥3",xgboost,label_definition,fold_2020,20260818,16280,1688,140,0.0829383886256,0.253073264037,0.797236064969,COMPLETE
+fixed_l2_logistic_same_qnn_representation,Logistic fixed L2 — PCA QNN,fixed_l2_logistic,pca_matched_control,fold_2015,20260818,6468,2241,506,0.225792057117,0.47054769475,0.756238680503,COMPLETE
+fixed_l2_logistic_same_qnn_representation,Logistic fixed L2 — PCA QNN,fixed_l2_logistic,pca_matched_control,fold_2016,20260818,8761,2133,351,0.164556962025,0.403576230031,0.780396558174,COMPLETE
+fixed_l2_logistic_same_qnn_representation,Logistic fixed L2 — PCA QNN,fixed_l2_logistic,pca_matched_control,fold_2017,20260818,11089,1549,257,0.165913492576,0.394898177036,0.780944694077,COMPLETE
+fixed_l2_logistic_same_qnn_representation,Logistic fixed L2 — PCA QNN,fixed_l2_logistic,pca_matched_control,fold_2018,20260818,13221,1511,327,0.216412971542,0.387731309512,0.703270931482,COMPLETE
+fixed_l2_logistic_same_qnn_representation,Logistic fixed L2 — PCA QNN,fixed_l2_logistic,pca_matched_control,fold_2019,20260818,14783,1638,326,0.199023199023,0.308062211346,0.646055055738,COMPLETE
+fixed_l2_logistic_same_qnn_representation,Logistic fixed L2 — PCA QNN,fixed_l2_logistic,pca_matched_control,fold_2020,20260818,16280,1688,219,0.129739336493,0.318884856403,0.793155969177,COMPLETE
+pytorch_mlp_same_qnn_representation,MLP — PCA QNN,pytorch_mlp,pca_matched_control,fold_2015,20260818,6468,2241,506,0.225792057117,0.493888959313,0.76851214817,COMPLETE
+pytorch_mlp_same_qnn_representation,MLP — PCA QNN,pytorch_mlp,pca_matched_control,fold_2016,20260818,8761,2133,351,0.164556962025,0.404063920775,0.781069639094,COMPLETE
+pytorch_mlp_same_qnn_representation,MLP — PCA QNN,pytorch_mlp,pca_matched_control,fold_2017,20260818,11089,1549,257,0.165913492576,0.422228517207,0.790175398441,COMPLETE
+pytorch_mlp_same_qnn_representation,MLP — PCA QNN,pytorch_mlp,pca_matched_control,fold_2018,20260818,13221,1511,327,0.216412971542,0.402786586113,0.699282998595,COMPLETE
+pytorch_mlp_same_qnn_representation,MLP — PCA QNN,pytorch_mlp,pca_matched_control,fold_2019,20260818,14783,1638,326,0.199023199023,0.298996319006,0.645678634221,COMPLETE
+pytorch_mlp_same_qnn_representation,MLP — PCA QNN,pytorch_mlp,pca_matched_control,fold_2020,20260818,16280,1688,219,0.129739336493,0.348708277525,0.792403741246,COMPLETE
+B_without_missing_indicators,Bez wskaźników braków,xgboost,pipeline_robustness,fold_2015,20260818,6468,2241,506,0.225792057117,0.531367687201,0.8013452404,COMPLETE
+B_without_missing_indicators,Bez wskaźników braków,xgboost,pipeline_robustness,fold_2016,20260818,8761,2133,351,0.164556962025,0.391218728646,0.777429246565,COMPLETE
+B_without_missing_indicators,Bez wskaźników braków,xgboost,pipeline_robustness,fold_2017,20260818,11089,1549,257,0.165913492576,0.43907161776,0.803777511414,COMPLETE
+B_without_missing_indicators,Bez wskaźników braków,xgboost,pipeline_robustness,fold_2018,20260818,13221,1511,327,0.216412971542,0.427832549765,0.730762872965,COMPLETE
+B_without_missing_indicators,Bez wskaźników braków,xgboost,pipeline_robustness,fold_2019,20260818,14783,1638,326,0.199023199023,0.329383214701,0.67302764477,COMPLETE
+B_without_missing_indicators,Bez wskaźników braków,xgboost,pipeline_robustness,fold_2020,20260818,16280,1688,219,0.129739336493,0.365535850365,0.794203493197,COMPLETE
+complete_case,Complete case,xgboost,pipeline_robustness,fold_2015,20260818,5279,1811,408,0.225289895086,0.516681520161,0.796517965704,COMPLETE
+complete_case,Complete case,xgboost,pipeline_robustness,fold_2016,20260818,7074,1698,288,0.16961130742,0.399206525216,0.782826044129,COMPLETE
+complete_case,Complete case,xgboost,pipeline_robustness,fold_2017,20260818,8944,1253,211,0.16839584996,0.452313181402,0.818618042226,COMPLETE
+complete_case,Complete case,xgboost,pipeline_robustness,fold_2018,20260818,10637,1152,239,0.207465277778,0.442489148116,0.767344768958,COMPLETE
+complete_case,Complete case,xgboost,pipeline_robustness,fold_2019,20260818,11900,1238,239,0.193053311793,0.333435050785,0.700866138105,COMPLETE
+complete_case,Complete case,xgboost,pipeline_robustness,fold_2020,20260818,13040,1325,171,0.129056603774,0.359377633155,0.791602055398,COMPLETE
+no_winsorization,Bez winsoryzacji,xgboost,pipeline_robustness,fold_2015,20260818,6468,2241,506,0.225792057117,0.526788257526,0.800384435762,COMPLETE
+no_winsorization,Bez winsoryzacji,xgboost,pipeline_robustness,fold_2016,20260818,8761,2133,351,0.164556962025,0.390306762489,0.778206247342,COMPLETE
+no_winsorization,Bez winsoryzacji,xgboost,pipeline_robustness,fold_2017,20260818,11089,1549,257,0.165913492576,0.438455706065,0.803777511414,COMPLETE
+no_winsorization,Bez winsoryzacji,xgboost,pipeline_robustness,fold_2018,20260818,13221,1511,327,0.216412971542,0.430819138218,0.730394815687,COMPLETE
+no_winsorization,Bez winsoryzacji,xgboost,pipeline_robustness,fold_2019,20260818,14783,1638,326,0.199023199023,0.330083626665,0.674120669984,COMPLETE
+no_winsorization,Bez winsoryzacji,xgboost,pipeline_robustness,fold_2020,20260818,16280,1688,219,0.129739336493,0.360420793996,0.794094699901,COMPLETE
+purged_economic_group_cv,Purged economic-group CV,xgboost,pipeline_robustness,fold_2015,20260818,2157,2241,506,0.225792057117,0.524437532258,0.789759770364,COMPLETE
+purged_economic_group_cv,Purged economic-group CV,xgboost,pipeline_robustness,fold_2016,20260818,3316,2133,351,0.164556962025,0.385630291385,0.773533051311,COMPLETE
+purged_economic_group_cv,Purged economic-group CV,xgboost,pipeline_robustness,fold_2017,20260818,6327,1549,257,0.165913492576,0.425684389209,0.800195154859,COMPLETE
+purged_economic_group_cv,Purged economic-group CV,xgboost,pipeline_robustness,fold_2018,20260818,7853,1511,327,0.216412971542,0.423669899873,0.733596268287,COMPLETE
+purged_economic_group_cv,Purged economic-group CV,xgboost,pipeline_robustness,fold_2019,20260818,8185,1638,326,0.199023199023,0.335588113165,0.674048191306,COMPLETE
+purged_economic_group_cv,Purged economic-group CV,xgboost,pipeline_robustness,fold_2020,20260818,8935,1688,219,0.129739336493,0.385447501421,0.796214614981,COMPLETE
+sparse_row_available_features_at_least_11_of_17,Wiersze ≥11/17 cech,xgboost,pipeline_robustness,fold_2015,20260818,6191,2208,498,0.225543478261,0.523529977934,0.800095117311,COMPLETE
+sparse_row_available_features_at_least_11_of_17,Wiersze ≥11/17 cech,xgboost,pipeline_robustness,fold_2016,20260818,8454,2106,345,0.163817663818,0.391026799468,0.781114979137,COMPLETE
+sparse_row_available_features_at_least_11_of_17,Wiersze ≥11/17 cech,xgboost,pipeline_robustness,fold_2017,20260818,10742,1532,252,0.164490861619,0.445108804057,0.806499565972,COMPLETE
+sparse_row_available_features_at_least_11_of_17,Wiersze ≥11/17 cech,xgboost,pipeline_robustness,fold_2018,20260818,12846,1481,318,0.21471978393,0.428919170016,0.730646722584,COMPLETE
+sparse_row_available_features_at_least_11_of_17,Wiersze ≥11/17 cech,xgboost,pipeline_robustness,fold_2019,20260818,14391,1603,316,0.197130380536,0.327698829558,0.672856854819,COMPLETE
+sparse_row_available_features_at_least_11_of_17,Wiersze ≥11/17 cech,xgboost,pipeline_robustness,fold_2020,20260818,15860,1666,213,0.127851140456,0.365933024312,0.800492101496,COMPLETE
+first_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_RZ_CZ_BRICKWORK,qnn,qnn_structural,fold_2015,20260818,6468,2241,506,0.225792057117,0.468583080848,0.759614311262,COMPLETE
+first_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_RZ_CZ_BRICKWORK,qnn,qnn_structural,fold_2016,20260818,8761,2133,351,0.164556962025,0.377659708929,0.77730294397,COMPLETE
+first_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_RZ_CZ_BRICKWORK,qnn,qnn_structural,fold_2017,20260818,11089,1549,257,0.165913492576,0.38193393899,0.783679271422,COMPLETE
+first_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_RZ_CZ_BRICKWORK,qnn,qnn_structural,fold_2018,20260818,13221,1511,327,0.216412971542,0.396464500687,0.700044941731,COMPLETE
+first_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_RZ_CZ_BRICKWORK,qnn,qnn_structural,fold_2019,20260818,14783,1638,326,0.199023199023,0.295611618677,0.642206671779,COMPLETE
+first_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_RZ_CZ_BRICKWORK,qnn,qnn_structural,fold_2020,20260818,16280,1688,219,0.129739336493,0.356787676643,0.794321611633,COMPLETE
+replace_entangling_gates_with_identity,Brak splątania (identity),qnn,qnn_structural,fold_2015,20260818,6468,2241,506,0.225792057117,0.481125885243,0.760995432334,COMPLETE
+replace_entangling_gates_with_identity,Brak splątania (identity),qnn,qnn_structural,fold_2016,20260818,8761,2133,351,0.164556962025,0.367114599601,0.776946418922,COMPLETE
+replace_entangling_gates_with_identity,Brak splątania (identity),qnn,qnn_structural,fold_2017,20260818,11089,1549,257,0.165913492576,0.430041866911,0.784941152377,COMPLETE
+replace_entangling_gates_with_identity,Brak splątania (identity),qnn,qnn_structural,fold_2018,20260818,13221,1511,327,0.216412971542,0.374242418543,0.699724667328,COMPLETE
+replace_entangling_gates_with_identity,Brak splątania (identity),qnn,qnn_structural,fold_2019,20260818,14783,1638,326,0.199023199023,0.295274803333,0.642839106689,COMPLETE
+replace_entangling_gates_with_identity,Brak splątania (identity),qnn,qnn_structural,fold_2020,20260818,16280,1688,219,0.129739336493,0.30595746958,0.791051595998,COMPLETE
+second_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_CRX_RING,qnn,qnn_structural,fold_2015,20260818,6468,2241,506,0.225792057117,0.471526908653,0.766492578966,COMPLETE
+second_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_CRX_RING,qnn,qnn_structural,fold_2016,20260818,8761,2133,351,0.164556962025,0.378046465236,0.777985617492,COMPLETE
+second_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_CRX_RING,qnn,qnn_structural,fold_2017,20260818,11089,1549,257,0.165913492576,0.406251245949,0.788332269217,COMPLETE
+second_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_CRX_RING,qnn,qnn_structural,fold_2018,20260818,13221,1511,327,0.216412971542,0.398570572767,0.697462083643,COMPLETE
+second_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_CRX_RING,qnn,qnn_structural,fold_2019,20260818,14783,1638,326,0.199023199023,0.288351647832,0.641201322385,COMPLETE
+second_nonselected_ansatz_in_Q1_registry_order_at_fixed_final_settings,RY_CRX_RING,qnn,qnn_structural,fold_2020,20260818,16280,1688,219,0.129739336493,0.353008645908,0.794532981465,COMPLETE
+swap_4_and_6_qubit_PCA_at_fixed_other_settings,PCA 6 qubitów,qnn,qnn_structural,fold_2015,20260818,6468,2241,506,0.225792057117,0.466709441004,0.758836327186,COMPLETE
+swap_4_and_6_qubit_PCA_at_fixed_other_settings,PCA 6 qubitów,qnn,qnn_structural,fold_2016,20260818,8761,2133,351,0.164556962025,0.381090751974,0.771226030485,COMPLETE
+swap_4_and_6_qubit_PCA_at_fixed_other_settings,PCA 6 qubitów,qnn,qnn_structural,fold_2017,20260818,11089,1549,257,0.165913492576,0.379141914147,0.783603980195,COMPLETE
+swap_4_and_6_qubit_PCA_at_fixed_other_settings,PCA 6 qubitów,qnn,qnn_structural,fold_2018,20260818,13221,1511,327,0.216412971542,0.406911887746,0.702940325647,COMPLETE
+swap_4_and_6_qubit_PCA_at_fixed_other_settings,PCA 6 qubitów,qnn,qnn_structural,fold_2019,20260818,14783,1638,326,0.199023199023,0.297195937282,0.637043150531,COMPLETE
+swap_4_and_6_qubit_PCA_at_fixed_other_settings,PCA 6 qubitów,qnn,qnn_structural,fold_2020,20260818,16280,1688,219,0.129739336493,0.329864061381,0.787461417235,COMPLETE

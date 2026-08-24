@@ -1,0 +1,103 @@
+family,method,feature_name,mean_value_across_folds,mean_abs_value_across_folds,fold_sample_sd,direction,mean_within_fold_sign_stability,rank_within_method
+elastic_net_logistic,Elastic Net standardized coefficient,log_assets_t,-0.478437274749,0.478437274749,0.0265007128361,negative,1.0,1
+elastic_net_logistic,Elastic Net standardized coefficient,log1p_revenues_t,-0.428911376455,0.428911376455,0.0226315676109,negative,1.0,2
+elastic_net_logistic,Elastic Net standardized coefficient,current_ratio_t,0.121814674232,0.121814674232,0.0148256944592,positive,1.0,3
+elastic_net_logistic,Elastic Net standardized coefficient,asset_turnover_t,-0.101998708722,0.101998708722,0.0154093166249,negative,1.0,4
+elastic_net_logistic,Elastic Net standardized coefficient,current_ratio_change_1y,0.076935635213,0.076935635213,0.00672649518602,positive,1.0,5
+elastic_net_logistic,Elastic Net standardized coefficient,revenue_growth_1y,0.0723608338867,0.0723608338867,0.0119434477348,positive,1.0,6
+elastic_net_logistic,Elastic Net standardized coefficient,delta_ocf_to_assets_1y__missing,-0.0663279537823,0.0663279537823,0.0535004821352,negative,0.6666666666666666,7
+elastic_net_logistic,Elastic Net standardized coefficient,profit_margin_t__missing,0.0640762669218,0.0640762669218,0.0247598671549,positive,1.0,8
+elastic_net_logistic,Elastic Net standardized coefficient,asset_turnover_t__missing,0.0504208890113,0.0504208890113,0.0239230270864,positive,1.0,9
+elastic_net_logistic,Elastic Net standardized coefficient,profit_margin_t,0.0405276227477,0.0405276227477,0.0203122008065,positive,0.8333333333333334,10
+elastic_net_logistic,Elastic Net standardized coefficient,log1p_revenues_t__missing,0.0318166842704,0.0318166842704,0.010586096017,positive,1.0,11
+elastic_net_logistic,Elastic Net standardized coefficient,liabilities_to_assets_t,-0.0247665730693,0.0247665730693,0.0174737975814,negative,0.8333333333333334,12
+elastic_net_logistic,Elastic Net standardized coefficient,roa_t,0.0190204318006,0.0190204318006,0.0163598645389,positive,0.8333333333333334,13
+elastic_net_logistic,Elastic Net standardized coefficient,ocf_margin_t__missing,0.0184136840691,0.0184136840691,0.00981263431111,positive,1.0,14
+elastic_net_logistic,Elastic Net standardized coefficient,delta_liabilities_to_assets_1y,0.0126656976325,0.0126656976325,0.00469020665725,positive,1.0,15
+elastic_net_logistic,Elastic Net standardized coefficient,delta_ocf_to_assets_1y,0.00950585550292,0.00950585550292,0.00536910885848,positive,0.8333333333333334,16
+elastic_net_logistic,Elastic Net standardized coefficient,asset_growth_1y,0.00785947140662,0.00785947140662,0.00637515956719,positive,0.8333333333333334,17
+elastic_net_logistic,Elastic Net standardized coefficient,ocf_to_assets_t,-0.00601726987294,0.00601726987294,0.00670405870482,negative,0.6666666666666666,18
+elastic_net_logistic,Elastic Net standardized coefficient,delta_roa_1y,-0.00437933315192,0.00437933315192,0.00440032087253,negative,0.6666666666666666,19
+elastic_net_logistic,Elastic Net standardized coefficient,delta_roa_1y__missing,-0.00363702050959,0.00363702050959,0.00418247951609,negative,0.5,20
+elastic_net_logistic,Elastic Net standardized coefficient,working_capital_to_assets_t,0.00274900607484,0.00274900607484,0.00673366218318,positive,0.16666666666666666,21
+elastic_net_logistic,Elastic Net standardized coefficient,ocf_margin_t,0.0026453255197,0.0026453255197,0.00647969772682,positive,0.16666666666666666,22
+elastic_net_logistic,Elastic Net standardized coefficient,delta_liabilities_to_assets_1y__missing,-0.00255453765118,0.00255453765118,0.00454784227678,negative,0.3333333333333333,23
+elastic_net_logistic,Elastic Net standardized coefficient,asset_growth_1y__missing,-0.00148729096206,0.00148729096206,0.00364310395611,negative,0.16666666666666666,24
+elastic_net_logistic,Elastic Net standardized coefficient,accruals_to_assets_t,0,0,0,unsigned,0.0,25
+elastic_net_logistic,Elastic Net standardized coefficient,log_assets_t__missing,0,0,0,unsigned,0.0,26
+elastic_net_logistic,Elastic Net standardized coefficient,roa_t__missing,0,0,0,unsigned,0.0,27
+elastic_net_logistic,Elastic Net standardized coefficient,ocf_to_assets_t__missing,0,0,0,unsigned,0.0,28
+elastic_net_logistic,Elastic Net standardized coefficient,current_ratio_t__missing,0,0,0,unsigned,0.0,29
+elastic_net_logistic,Elastic Net standardized coefficient,liabilities_to_assets_t__missing,0,0,0,unsigned,0.0,30
+elastic_net_logistic,Elastic Net standardized coefficient,working_capital_to_assets_t__missing,0,0,0,unsigned,0.0,31
+elastic_net_logistic,Elastic Net standardized coefficient,accruals_to_assets_t__missing,0,0,0,unsigned,0.0,32
+elastic_net_logistic,Elastic Net standardized coefficient,current_ratio_change_1y__missing,0,0,0,unsigned,0.0,33
+elastic_net_logistic,Elastic Net standardized coefficient,revenue_growth_1y__missing,0,0,0,unsigned,0.0,34
+xgboost,XGBoost interventional TreeSHAP,log1p_revenues_t,0.32072235577,0.32072235577,0.0333791421174,unsigned,,1
+xgboost,XGBoost interventional TreeSHAP,log_assets_t,0.223888487676,0.223888487676,0.0381117365042,unsigned,,2
+xgboost,XGBoost interventional TreeSHAP,roa_t,0.156424447038,0.156424447038,0.0279896737448,unsigned,,3
+xgboost,XGBoost interventional TreeSHAP,ocf_to_assets_t,0.101096501852,0.101096501852,0.0105999529301,unsigned,,4
+xgboost,XGBoost interventional TreeSHAP,revenue_growth_1y,0.089494062356,0.089494062356,0.0329829924936,unsigned,,5
+xgboost,XGBoost interventional TreeSHAP,accruals_to_assets_t,0.0831112701992,0.0831112701992,0.0268767142311,unsigned,,6
+xgboost,XGBoost interventional TreeSHAP,current_ratio_t,0.0710132783659,0.0710132783659,0.0173803586951,unsigned,,7
+xgboost,XGBoost interventional TreeSHAP,ocf_margin_t,0.069367849919,0.069367849919,0.0264380529897,unsigned,,8
+xgboost,XGBoost interventional TreeSHAP,delta_roa_1y,0.0684740766218,0.0684740766218,0.0114356899338,unsigned,,9
+xgboost,XGBoost interventional TreeSHAP,profit_margin_t,0.0541253898918,0.0541253898918,0.0246313302269,unsigned,,10
+xgboost,XGBoost interventional TreeSHAP,current_ratio_change_1y,0.0531412644039,0.0531412644039,0.010066920324,unsigned,,11
+xgboost,XGBoost interventional TreeSHAP,asset_growth_1y,0.0349902260928,0.0349902260928,0.0247440071608,unsigned,,12
+xgboost,XGBoost interventional TreeSHAP,working_capital_to_assets_t,0.027068738369,0.027068738369,0.0115507840187,unsigned,,13
+xgboost,XGBoost interventional TreeSHAP,delta_ocf_to_assets_1y,0.0251809134803,0.0251809134803,0.0153255633445,unsigned,,14
+xgboost,XGBoost interventional TreeSHAP,asset_turnover_t,0.0168804186894,0.0168804186894,0.0119559488606,unsigned,,15
+xgboost,XGBoost interventional TreeSHAP,liabilities_to_assets_t,0.00966098506542,0.00966098506542,0.00466731406711,unsigned,,16
+xgboost,XGBoost interventional TreeSHAP,profit_margin_t__missing,0.00928375393338,0.00928375393338,0.00312510988238,unsigned,,17
+xgboost,XGBoost interventional TreeSHAP,delta_liabilities_to_assets_1y,0.00725495363398,0.00725495363398,0.00281961881302,unsigned,,18
+xgboost,XGBoost interventional TreeSHAP,asset_growth_1y__missing,0.00299282755866,0.00299282755866,0.00733090040685,unsigned,,19
+xgboost,XGBoost interventional TreeSHAP,delta_roa_1y__missing,0.00297738311744,0.00297738311744,0.00709728603485,unsigned,,20
+xgboost,XGBoost interventional TreeSHAP,delta_liabilities_to_assets_1y__missing,0.000908688388937,0.000908688388937,0.000944998522253,unsigned,,21
+xgboost,XGBoost interventional TreeSHAP,accruals_to_assets_t__missing,0.000531615015573,0.000531615015573,0.000664229842985,unsigned,,22
+xgboost,XGBoost interventional TreeSHAP,roa_t__missing,0.000216304918951,0.000216304918951,0.000440205751091,unsigned,,23
+xgboost,XGBoost interventional TreeSHAP,current_ratio_change_1y__missing,9.20432010062e-05,9.20432010062e-05,0.000148821055491,unsigned,,24
+xgboost,XGBoost interventional TreeSHAP,revenue_growth_1y__missing,3.32374578476e-05,3.32374578476e-05,8.14148120738e-05,unsigned,,25
+xgboost,XGBoost interventional TreeSHAP,delta_ocf_to_assets_1y__missing,9.14606317464e-07,9.14606317464e-07,2.24031879331e-06,unsigned,,26
+xgboost,XGBoost interventional TreeSHAP,asset_turnover_t__missing,1.71855105438e-07,1.71855105438e-07,4.20957318016e-07,unsigned,,27
+xgboost,XGBoost interventional TreeSHAP,log_assets_t__missing,0,0,0,unsigned,,28
+xgboost,XGBoost interventional TreeSHAP,ocf_to_assets_t__missing,0,0,0,unsigned,,29
+xgboost,XGBoost interventional TreeSHAP,current_ratio_t__missing,0,0,0,unsigned,,30
+xgboost,XGBoost interventional TreeSHAP,liabilities_to_assets_t__missing,0,0,0,unsigned,,31
+xgboost,XGBoost interventional TreeSHAP,working_capital_to_assets_t__missing,0,0,0,unsigned,,32
+xgboost,XGBoost interventional TreeSHAP,log1p_revenues_t__missing,0,0,0,unsigned,,33
+xgboost,XGBoost interventional TreeSHAP,ocf_margin_t__missing,0,0,0,unsigned,,34
+pytorch_mlp,MLP Integrated Gradients,log1p_revenues_t,0.449436254193,0.449436254193,0.0537618836106,unsigned,,1
+pytorch_mlp,MLP Integrated Gradients,log_assets_t,0.343944159208,0.343944159208,0.0520086150697,unsigned,,2
+pytorch_mlp,MLP Integrated Gradients,accruals_to_assets_t,0.241812073052,0.241812073052,0.0335627382933,unsigned,,3
+pytorch_mlp,MLP Integrated Gradients,current_ratio_t,0.184609908544,0.184609908544,0.0277171234617,unsigned,,4
+pytorch_mlp,MLP Integrated Gradients,asset_turnover_t,0.122891790639,0.122891790639,0.0254946463826,unsigned,,5
+pytorch_mlp,MLP Integrated Gradients,current_ratio_change_1y,0.10052301737,0.10052301737,0.024693236885,unsigned,,6
+pytorch_mlp,MLP Integrated Gradients,asset_growth_1y,0.10030554443,0.10030554443,0.0114034646205,unsigned,,7
+pytorch_mlp,MLP Integrated Gradients,ocf_to_assets_t,0.0888548935231,0.0888548935231,0.0150150423662,unsigned,,8
+pytorch_mlp,MLP Integrated Gradients,revenue_growth_1y,0.0840358413338,0.0840358413338,0.0310297602908,unsigned,,9
+pytorch_mlp,MLP Integrated Gradients,delta_ocf_to_assets_1y__missing,0.0813354567642,0.0813354567642,0.032225607068,unsigned,,10
+pytorch_mlp,MLP Integrated Gradients,roa_t,0.0768186594134,0.0768186594134,0.0199080674194,unsigned,,11
+pytorch_mlp,MLP Integrated Gradients,working_capital_to_assets_t,0.048811121474,0.048811121474,0.00490938260403,unsigned,,12
+pytorch_mlp,MLP Integrated Gradients,profit_margin_t,0.0466545173491,0.0466545173491,0.0185956674438,unsigned,,13
+pytorch_mlp,MLP Integrated Gradients,current_ratio_change_1y__missing,0.0358629386073,0.0358629386073,0.0130074431893,unsigned,,14
+pytorch_mlp,MLP Integrated Gradients,liabilities_to_assets_t,0.0348612421191,0.0348612421191,0.00557549913542,unsigned,,15
+pytorch_mlp,MLP Integrated Gradients,revenue_growth_1y__missing,0.0312866941296,0.0312866941296,0.00888510804677,unsigned,,16
+pytorch_mlp,MLP Integrated Gradients,delta_liabilities_to_assets_1y__missing,0.0286038909405,0.0286038909405,0.00916927055786,unsigned,,17
+pytorch_mlp,MLP Integrated Gradients,asset_growth_1y__missing,0.0275195684867,0.0275195684867,0.0103623850298,unsigned,,18
+pytorch_mlp,MLP Integrated Gradients,delta_roa_1y__missing,0.0264607471687,0.0264607471687,0.00846699276847,unsigned,,19
+pytorch_mlp,MLP Integrated Gradients,delta_ocf_to_assets_1y,0.0261223699508,0.0261223699508,0.00724782445114,unsigned,,20
+pytorch_mlp,MLP Integrated Gradients,ocf_margin_t,0.0238910841811,0.0238910841811,0.00646747644174,unsigned,,21
+pytorch_mlp,MLP Integrated Gradients,profit_margin_t__missing,0.0229381559055,0.0229381559055,0.00370804908168,unsigned,,22
+pytorch_mlp,MLP Integrated Gradients,asset_turnover_t__missing,0.0140036034209,0.0140036034209,0.00295597638728,unsigned,,23
+pytorch_mlp,MLP Integrated Gradients,delta_roa_1y,0.0127104462394,0.0127104462394,0.00363703086479,unsigned,,24
+pytorch_mlp,MLP Integrated Gradients,log1p_revenues_t__missing,0.0115322240496,0.0115322240496,0.00426578928907,unsigned,,25
+pytorch_mlp,MLP Integrated Gradients,ocf_margin_t__missing,0.00986179861846,0.00986179861846,0.00698416624581,unsigned,,26
+pytorch_mlp,MLP Integrated Gradients,delta_liabilities_to_assets_1y,0.00831214193843,0.00831214193843,0.00205372142232,unsigned,,27
+pytorch_mlp,MLP Integrated Gradients,roa_t__missing,0.00296732620407,0.00296732620407,0.000561245652807,unsigned,,28
+pytorch_mlp,MLP Integrated Gradients,accruals_to_assets_t__missing,0.0029386592099,0.0029386592099,0.00116361637157,unsigned,,29
+pytorch_mlp,MLP Integrated Gradients,ocf_to_assets_t__missing,0.00120027985089,0.00120027985089,0.000545799491958,unsigned,,30
+pytorch_mlp,MLP Integrated Gradients,working_capital_to_assets_t__missing,0.000953816299115,0.000953816299115,0.000434986254114,unsigned,,31
+pytorch_mlp,MLP Integrated Gradients,liabilities_to_assets_t__missing,0.000872799383549,0.000872799383549,0.000160871393276,unsigned,,32
+pytorch_mlp,MLP Integrated Gradients,current_ratio_t__missing,0.000437257286883,0.000437257286883,0.000431114996494,unsigned,,33
+pytorch_mlp,MLP Integrated Gradients,log_assets_t__missing,8.45018401755e-05,8.45018401755e-05,0.000146187560011,unsigned,,34
