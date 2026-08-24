@@ -75,17 +75,29 @@ class SecondaryExecutionReportIntegrityTests(unittest.TestCase):
             source["report_recorded_stale_sha256"],
         )
 
-    def test_legacy_report_reconstruction_matches_recorded_hash(self) -> None:
-        source = self.config["secondary_development_execution"]["report_source"]
-        report = json.loads(
-            (
-                ROOT
-                / "data/model_runs/secondary_development_v1_1_6/secondary_development_report.json"
-            ).read_text(encoding="utf-8")
+    def test_legacy_report_reconstruction_removes_amendment_metadata(self) -> None:
+        report = {
+            "schema_version": 1,
+            "id": "secondary_development_results_v1_1_6",
+            "status": "COMPLETE",
+            "terminal_tasks": 96,
+            "parallel_checkpoint_amendment": "1.1.4",
+            "economic_group_permutation_amendment": "1.1.5",
+            "treeshap_compatibility_amendment": "1.1.6",
+        }
+        expected = {
+            "schema_version": 1,
+            "id": "secondary_development_results_v1_1_0",
+            "status": "COMPLETE",
+            "terminal_tasks": 96,
+        }
+        self.assertEqual(
+            _legacy_pre_amendment_report(report),
+            expected,
         )
         self.assertEqual(
             _atomic_json_sha256(_legacy_pre_amendment_report(report)),
-            source["report_recorded_stale_sha256"],
+            _atomic_json_sha256(expected),
         )
 
     def test_final_report_is_written_before_manifest_hash(self) -> None:

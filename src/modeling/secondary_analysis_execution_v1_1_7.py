@@ -266,6 +266,7 @@ def create_report(config_path: Path, output_dir: Path) -> dict[str, Any]:
         "treeshap_compatibility_amendment": "1.1.6",
         "report_integrity_amendment": "1.1.7",
         "source_execution_id": source["execution_id"],
+        "source_results_changed": False,
         "source_task_result_inventory_sha256": validated[
             "task_result_inventory_sha256"
         ],
@@ -298,6 +299,7 @@ def create_report(config_path: Path, output_dir: Path) -> dict[str, Any]:
         "report_integrity_amendment": "1.1.7",
         "source_output_mutated": False,
         "source_results_copied": False,
+        "source_results_changed": False,
         "project_data_read": False,
         "project_model_fit_performed": False,
         "final_primary_ranking_unchanged": True,
@@ -327,6 +329,7 @@ def verify_generated_report(output_dir: Path = DEFAULT_OUTPUT) -> dict[str, Any]
         "v1.1.7 report does not contain 96 complete tasks.",
     )
     for payload in (manifest, report):
+        base._require(payload.get("source_results_changed") is False, "v1.1.7 changed source results.")
         base._require(payload.get("project_model_fit_performed") is False, "v1.1.7 performed a model fit.")
         base._require(payload.get("protected_feature_years_opened") is False, "v1.1.7 opened a protected year.")
     return {
