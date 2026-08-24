@@ -20,6 +20,7 @@ AUDIT_PATH = ROOT / "data/reports/resolver_x_t_v1_1_0_impact_audit.json"
 CAUSAL_CONTROL_PATH = (
     ROOT / "data/reports/resolver_x_t_v1_1_0_causal_control.json"
 )
+COMPATIBILITY_PATH = ROOT / "configs/historical_test_compatibility_v1_0_1.yaml"
 
 
 def sha256(path: Path) -> str:
@@ -50,6 +51,9 @@ class ResolverXtV11FreezeTests(unittest.TestCase):
         cls.causal_control = json.loads(
             CAUSAL_CONTROL_PATH.read_text(encoding="utf-8")
         )
+        cls.compatibility = yaml.safe_load(
+            COMPATIBILITY_PATH.read_text(encoding="utf-8")
+        )
 
     def test_historical_v1_artifacts_are_unchanged(self) -> None:
         self.assertEqual(
@@ -71,7 +75,39 @@ class ResolverXtV11FreezeTests(unittest.TestCase):
         ):
             for item in manifest.get("versioned_components", []):
                 with self.subTest(path=item["path"]):
-                    self.assertEqual(sha256(ROOT / item["path"]), item["sha256"])
+                    actual = sha256(ROOT / item["path"])
+                    if actual == item["sha256"]:
+                        continue
+                    declaration = self.compatibility["declarations"].get(
+                        item["path"]
+                    )
+                    self.assertIsNotNone(
+                        declaration,
+                        f"Undeclared historical drift: {item['path']}",
+                    )
+                    self.assertEqual(
+                        declaration["historical_expected_sha256"], item["sha256"]
+                    )
+                    self.assertEqual(
+                        actual,
+                        declaration["current_compatible_sha256"],
+                        item["path"],
+                    )
+                    authorities = {
+                        entry["path"]: entry["sha256"]
+                        for entry in declaration["historical_authorities"]
+                    }
+                    manifest_path = next(
+                        path
+                        for path in (X_MANIFEST, TARGET_MANIFEST, PIPELINE_MANIFEST)
+                        if manifest is self.x_manifest and path == X_MANIFEST
+                        or manifest is self.target_manifest and path == TARGET_MANIFEST
+                        or manifest is self.pipeline_manifest and path == PIPELINE_MANIFEST
+                    )
+                    relative_manifest = str(manifest_path.relative_to(ROOT))
+                    self.assertEqual(
+                        authorities[relative_manifest], sha256(manifest_path)
+                    )
         for item in self.x_manifest["audit_evidence"]:
             with self.subTest(path=item["path"]):
                 self.assertEqual(sha256(ROOT / item["path"]), item["sha256"])

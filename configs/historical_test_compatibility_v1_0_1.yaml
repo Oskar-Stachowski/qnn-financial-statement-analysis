@@ -1,0 +1,42 @@
+schema_version: 1
+
+historical_test_compatibility:
+  id: historical_test_compatibility
+  version: 1.0.1
+  status: active_successor_declaration
+  effective_on: "2026-08-24"
+  extends:
+    path: configs/historical_test_compatibility_v1_0_0.yaml
+    sha256: 2564f4699bffb33e681f40424932518d75e961e3df80854885a43ffbd534ed5f
+  historical_manifests_modified: false
+  frozen_data_or_model_artifacts_modified: false
+  protected_feature_years_opened: false
+  project_model_fit_performed: false
+
+declarations:
+  tests/test_primitive_resolver_v1_1.py:
+    historical_authorities:
+      - path: configs/x_t_pit_v1_1_0_train_freeze_manifest.yaml
+        sha256: d0e83ead2090c6de3b8f52e2eca557764ef2131395e026824b26230a2fa62019
+      - path: configs/target_candidate_v2_pit_b_v1_1_0_train_freeze_manifest.yaml
+        sha256: d1006d07d1fc310982f6c713945549cc928f1da5e5d30824677d712ddaa0648b
+    historical_expected_sha256: 7f365949baa3c79c1a897d37b2b00c8be9a7824b9454cf99ef621a008ce63dc0
+    current_compatible_sha256: 9eb365b875a6e2d94b800630e39d690361f5fc837db7dbe3902c1d5b7a71931a
+    superseding_commit: 505f2af796eacfc78e217e5e5ff919858c873347
+    change_class: pre_fit_scientific_correctness_test_patch
+    compatibility_rule: accept_only_the_exact_historical_or_exact_declared_successor_hash
+
+  tests/test_resolver_x_t_v1_1_freeze.py:
+    historical_authorities:
+      - path: configs/supervised_ml_pipeline_v1_2_0_freeze_manifest.yaml
+        sha256: 1da10ac56b2c77b294f92bdfecf22a4ff0f86aa29844d82898d8e7ae00d7fe02
+    historical_expected_sha256: 82696b5c85371864df10487cf7254bf30e5e8838ef1a2711b6f7b37b227575b5
+    current_compatible_sha256: 706d94586a62b8fa1c0d1bc65bf826e876eff074d9fe2ea0e923e144b47a3f96
+    change_class: step_7c_compatibility_aware_freeze_test_successor
+    compatibility_rule: accept_only_the_exact_historical_or_exact_declared_successor_hash
+
+failure_policy:
+  undeclared_hash_difference: fail
+  authority_hash_difference: fail
+  declaration_path_mismatch: fail
+  historical_manifest_rewrite: fail

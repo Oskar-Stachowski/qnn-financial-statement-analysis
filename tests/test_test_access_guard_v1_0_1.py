@@ -18,6 +18,7 @@ from src.testing.test_access_guard import (
 
 
 MANIFEST_PATH = ROOT / "configs/test_access_manifest_v1_0_1.yaml"
+SUCCESSOR_MANIFEST_PATH = ROOT / "configs/test_access_manifest_v1_0_2.yaml"
 ABORTED_MANIFEST_PATH = ROOT / "configs/test_access_manifest_v1_0_0.yaml"
 
 
@@ -56,6 +57,12 @@ class TestAccessGuardV101Tests(unittest.TestCase):
         )
         with self.assertRaisesRegex(TestAccessGuardError, "Missing regular file"):
             _require_review_pass(MANIFEST_PATH, manifest, root=ROOT)
+
+    def test_v102_repair_successor_is_valid(self) -> None:
+        manifest = load(SUCCESSOR_MANIFEST_PATH)
+        validate_manifest(manifest)
+        self.assertEqual(manifest["test_access_manifest"]["version"], "1.0.2")
+        self.assertIs(manifest["test_access_manifest"]["execution_authorized"], True)
 
 
 if __name__ == "__main__":

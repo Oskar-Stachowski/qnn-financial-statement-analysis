@@ -119,7 +119,7 @@ def validate_manifest(manifest: Mapping[str, Any], *, root: Path = ROOT) -> dict
     identity = manifest.get("test_access_manifest") or {}
     _require(identity.get("id") == "test_access_manifest", "Unexpected manifest id")
     version = str(identity.get("version"))
-    _require(version in {"1.0.0", "1.0.1"}, "Unexpected manifest version")
+    _require(version in {"1.0.0", "1.0.1", "1.0.2"}, "Unexpected manifest version")
     if version == "1.0.0":
         _require(
             identity.get("execution_authorized") is False,
@@ -128,7 +128,7 @@ def validate_manifest(manifest: Mapping[str, Any], *, root: Path = ROOT) -> dict
     else:
         _require(
             identity.get("execution_authorized") is True,
-            "The v1.0.1 successor must explicitly authorize execution",
+            "The successor manifest must explicitly authorize execution",
         )
         override = manifest.get("same_session_override") or {}
         _require(override.get("authorized_by_user") is True, "Missing user override")
