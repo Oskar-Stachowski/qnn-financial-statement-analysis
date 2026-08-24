@@ -28,7 +28,7 @@ The outcome is **not** a bankruptcy, fraud, insolvency, or accounting-manipulati
 | Classical/MLP and QNN confirmation | **Complete** |
 | Final development ranking, calibration, thresholds, bootstrap, and compact report | **Complete and frozen**, post-coarse `v1.3.0` |
 | PCA-matched controls, robustness, and interpretability | **Complete and frozen**, 96/96 tasks through report `v1.1.7` |
-| Large raw-data and model-artifact backup | **Complete and restore-validated** in Amazon S3 |
+| Large raw-data, model-artifact, and secondary-result backups | **Complete and restore-validated** in Amazon S3 |
 | Evaluation using feature years 2021–2024 | **Closed under the frozen access policy** |
 
 The authoritative progress record is [`docs/10_current_experiment_status.md`](docs/10_current_experiment_status.md).
@@ -275,7 +275,7 @@ LEGACY/        superseded pre-PIT and pre-freeze implementations retained for pr
 
 Large SEC downloads, generated row-level datasets, fitted objects, checkpoints, and complete model-run directories are intentionally excluded from ordinary Git tracking. Their canonical paths are under `data/`, while compact reports, manifests, schemas, counts, provenance, and SHA-256 references are versioned where appropriate.
 
-The full `data/raw` payload and the large `data/model_runs` plus `data/processed` artifacts have separate byte-preserving Amazon S3 snapshots. Both snapshots passed checksum-enabled downloads, streamed decompression, TAR enumeration, and per-file SHA-256 validation. Large `data/raw` payloads were removed locally only after that restore validation. The completed secondary v1.1.6/v1.1.7 outputs postdate the existing model-artifact snapshot and remain local pending an incremental byte-preserving backup. Operational details are recorded in [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](docs/INSTRUKCJA_BACKUP_AMAZON_S3.md).
+The full `data/raw` payload, the large `data/model_runs` plus `data/processed` artifacts, and the completed secondary v1.1.6/v1.1.7 outputs have separate byte-preserving Amazon S3 snapshots. All three snapshots passed checksum-enabled downloads, streamed decompression, TAR enumeration, and per-file SHA-256 validation. Large `data/raw` payloads were removed locally only after that restore validation. The secondary outputs remain local; their backup does not itself authorize deletion. Operational details are recorded in [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](docs/INSTRUKCJA_BACKUP_AMAZON_S3.md).
 
 Consequently, cloning the repository provides the code, specifications, tests, and compact evidence package, but not every large input or execution artifact. Reproduction requires restoring or rebuilding the exact frozen SEC-derived inputs and passing all manifest and hash checks. The controller fails closed when an expected path, file identity, sample membership, fold membership, candidate identity, or environment identity differs from the frozen contract.
 
@@ -300,10 +300,10 @@ Consequently, cloning the repository provides the code, specifications, tests, a
 
 ## Next stages
 
-The immediate operational priority is an incremental byte-preserving backup of
-the frozen secondary v1.1.6/v1.1.7 outputs. The next scientific work may create
-derivative thesis tables, figures, and narrative interpretation from the frozen
-results, but must not rerun models or alter the frozen primary decisions.
+The next scientific work may create derivative thesis tables, figures, and
+narrative interpretation from the frozen secondary results, but must not rerun
+models or alter the frozen primary decisions. The incremental byte-preserving
+backup of v1.1.6/v1.1.7 is complete and restore-validated.
 
 Feature years 2021–2024 remain closed. Reopening 2021–2022 requires the committed spent-development access gate and cannot activate tuning. The 2023–2024 holdout requires separate blind-feature-application and label-reveal gates.
 

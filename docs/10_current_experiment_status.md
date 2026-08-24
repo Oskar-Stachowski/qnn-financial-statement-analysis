@@ -93,14 +93,16 @@ simulator do not support a claim of quantum advantage.
 
 ## Backup and local-storage state
 
-Two separate byte-preserving snapshots exist in the same Amazon S3 bucket:
+Three separate byte-preserving snapshots exist in the same Amazon S3 bucket:
 
 1. `data/raw` snapshot:
    `qnn-financial-statement-analysis/raw-sec-snapshots/20260823T153845Z_git-34c19582`;
 2. `data/model_runs` plus `data/processed` snapshot:
-   `qnn-financial-statement-analysis/project-artifact-snapshots/20260823T165347Z_git-34c19582`.
+   `qnn-financial-statement-analysis/project-artifact-snapshots/20260823T165347Z_git-34c19582`;
+3. secondary v1.1.6/v1.1.7 result snapshot:
+   `qnn-financial-statement-analysis/secondary-result-snapshots/20260824T070936Z_git-e3a75230`.
 
-Both snapshots passed checksum-enabled S3 downloads, streamed Zstandard
+All three snapshots passed checksum-enabled S3 downloads, streamed Zstandard
 decompression, TAR enumeration, and per-file SHA-256 comparison against their
 source manifests. The artifact snapshot validated 18,463 files and
 13,397,282,957 logical bytes with zero mismatch. Its terminal record is
@@ -108,19 +110,20 @@ source manifests. The artifact snapshot validated 18,463 files and
 
 The large `data/raw` payload was removed locally only after successful restore
 validation. The local `data/model_runs` and `data/processed` sources are still
-retained. The validated 2026-08-23 snapshot predates the completed secondary
-execution, so the newly frozen v1.1.6/v1.1.7 outputs require an incremental
-byte-preserving backup before local removal is considered. The operational
+retained. A separate incremental snapshot of the newly frozen v1.1.6/v1.1.7
+outputs was completed and restore-validated on 2026-08-24. It covers all 585
+files and 51,253,022 logical bytes with zero checksum mismatch. Local deletion
+remains unauthorized pending a separate dependency audit. The operational
 record and restore instructions are in
 [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](INSTRUKCJA_BACKUP_AMAZON_S3.md).
 
 ## Next permitted work
 
 The preregistered secondary-development analyses on OOF 2015–2020 are complete.
-The immediate operational priority is an incremental byte-preserving backup of
-the newly frozen v1.1.6/v1.1.7 outputs. Derivative thesis tables, figures, and
-narrative reporting may then be generated from the frozen results without
-rerunning models or changing the scientific boundary.
+The incremental byte-preserving backup of the newly frozen v1.1.6/v1.1.7
+outputs is complete. Derivative thesis tables, figures, and narrative reporting
+may now be generated from the frozen results without rerunning models or
+changing the scientific boundary.
 
 Their executable controller, configuration, output schemas, synthetic tests,
 resource policy, and failure states are versioned and frozen as

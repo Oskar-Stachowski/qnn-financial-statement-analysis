@@ -1,17 +1,18 @@
 # Backup i kontrolowane przenoszenie dużych danych do Amazon S3
 
-Stan i decyzja: 2026-08-23.
+Stan i decyzja: 2026-08-24.
 
 ## Stan końcowy
 
-Dokument obejmuje dwie zakończone operacje w tym samym bucketcie S3:
+Dokument obejmuje trzy zakończone operacje w tym samym bucketcie S3:
 
 | Snapshot | Zakres | Stan lokalny | Walidacja odtworzenia |
 |---|---|---|---|
 | `raw-sec-snapshots/20260823T153845Z_git-34c19582` | całe pierwotne `data/raw` | duże payloady usunięte po walidacji; pozostawiono dwa pliki śledzone przez Git | `PASS`, 170 482 pliki |
 | `project-artifact-snapshots/20260823T165347Z_git-34c19582` | całe `data/model_runs` i `data/processed` | źródła zachowane lokalnie | `PASS`, 18 463 pliki |
+| `secondary-result-snapshots/20260824T070936Z_git-e3a75230` | zamrożone wyniki secondary v1.1.6 i raport v1.1.7 | źródła zachowane lokalnie | `PASS`, 585 plików |
 
-Oba snapshoty przeszły checksum-enabled download, strumieniową dekompresję,
+Wszystkie trzy snapshoty przeszły checksum-enabled download, strumieniową dekompresję,
 pełne wyliczenie elementów TAR i porównanie SHA-256 każdego pliku z manifestem.
 Nie włączono wersjonowania ani własnej konfiguracji KMS/SSE. Pole `AES256`
 zwracane przez S3 oznacza automatyczne bazowe SSE-S3 stosowane przez usługę, a
@@ -710,3 +711,116 @@ Ewentualne późniejsze czyszczenie należy wykonać dopiero po zakończeniu i
 zamrożeniu analiz wtórnych, po osobnym audycie zależności oraz po wykonaniu
 nowego backupu ich wyników. Nie używaj rekurencyjnego usuwania całego
 `data/model_runs` ani `data/processed`.
+
+## Część C — inkrementalny backup zamrożonych wyników secondary
+
+### C.1. Zakres i lokalizacja
+
+Po formalnym result freeze wykonano osobny, inkrementalny snapshot dokładnie
+dwóch katalogów:
+
+```text
+data/model_runs/secondary_development_v1_1_6
+data/model_runs/secondary_development_v1_1_7
+```
+
+Docelowy prefiks:
+
+```text
+s3://qnn-fs-analysis-raw-data-498283326935-eu-central-1-an/qnn-financial-statement-analysis/secondary-result-snapshots/20260824T070936Z_git-e3a75230
+```
+
+Snapshot jest związany z commitem result freeze
+`e3a75230e51c7d3714164e3178f81671b7408788`. Zakres obejmuje 585 plików i
+51 253 022 bajty logiczne. Pełny inwentarz źródła ma zbiorczy SHA-256
+`85c43bf19f5cac0d0c06576fb5e428a0fd6ec746bbc3476f13f786303a9490ed`.
+
+### C.2. Upload
+
+Źródła przesłano bez lokalnego pliku archiwum potokiem `tar → zstd → aws s3
+cp`. Pojedynczy obiekt
+`archives/secondary_development_v1_1_6_v1_1_7.tar.zst` ma 5 502 128 bajtów,
+a jego SHA-256 to
+`4fbfa9eb6d01b023a14efc3562bcd087423150cd5b21c11841d3b5cbff6cb0b4`.
+Upload trwał 32 sekundy.
+
+Nie ustawiono wersjonowania, KMS, SSE-C ani jawnej opcji `--sse`. Pole
+`AES256` zwrócone przez `head-object` jest automatycznym bazowym SSE-S3.
+Wszystkie ustawienia Block Public Access pozostały aktywne.
+
+Snapshot zawiera 19 obiektów o łącznym rozmiarze 6 059 424 bajtów i nie ma
+niedokończonych multipart uploadów. Oprócz archiwum zawiera manifesty,
+inwentarz result freeze, rekordy kontroli oraz markery `BACKUP_COMPLETE.json`
+i `RESTORE_VALIDATION_COMPLETE.json`.
+
+### C.3. Pełna walidacja odtworzenia
+
+Archiwum pobrano ponownie z `--checksum-mode ENABLED`, strumieniowo
+zdekompresowano i odczytano parserem TAR bez wypakowania. Każdy regularny plik
+został ponownie zhashowany i porównany z `PAYLOAD_SHA256SUMS`. Wynik:
+
+- 585/585 plików zgodnych;
+- 51 253 022/51 253 022 bajtów logicznych;
+- zero brakujących, dodatkowych i zduplikowanych plików;
+- zero niezgodności SHA-256;
+- zero deserializacji danych i zero dostępu do lat chronionych;
+- czas pełnej walidacji: 29 sekund.
+
+Katalog kontrolny został niezależnie pobrany z kontrolą checksum S3, a jego
+`CONTROL_SHA256SUMS` przeszedł w całości. Terminalny marker został pobrany
+ponownie i porównany bajt po bajcie. SHA-256 markera końcowego:
+
+```text
+1f90df24fe8ee0650bd5861895de04738e545585d4eca455f71c0e1b33692f93
+```
+
+Maszynowy rekord operacji znajduje się w
+`reports/secondary_development_v1_1_7/s3_backup_receipt.json`.
+
+### C.4. Odtworzenie
+
+Najpierw pobierz katalog kontrolny i sprawdź jego sumy:
+
+```bash
+export QNN_SECONDARY_S3_PREFIX="s3://qnn-fs-analysis-raw-data-498283326935-eu-central-1-an/qnn-financial-statement-analysis/secondary-result-snapshots/20260824T070936Z_git-e3a75230"
+export QNN_SECONDARY_RESTORE_ROOT="/pełna/ścieżka/do/nowego-pustego-katalogu"
+
+test -d "$QNN_SECONDARY_RESTORE_ROOT"
+test -z "$(find "$QNN_SECONDARY_RESTORE_ROOT" -mindepth 1 -print -quit)"
+mkdir -p "$QNN_SECONDARY_RESTORE_ROOT/control"
+
+aws s3 cp "$QNN_SECONDARY_S3_PREFIX/control/" \
+  "$QNN_SECONDARY_RESTORE_ROOT/control/" \
+  --recursive \
+  --region eu-central-1 \
+  --checksum-mode ENABLED \
+  --only-show-errors
+
+(cd "$QNN_SECONDARY_RESTORE_ROOT/control" && \
+  shasum -a 256 -c CONTROL_SHA256SUMS)
+```
+
+Następnie odtwórz wyłącznie do tego pustego katalogu:
+
+```bash
+aws s3 cp \
+  "$QNN_SECONDARY_S3_PREFIX/archives/secondary_development_v1_1_6_v1_1_7.tar.zst" - \
+  --region eu-central-1 \
+  --checksum-mode ENABLED \
+  --only-show-errors | \
+  zstd -d | \
+  tar -C "$QNN_SECONDARY_RESTORE_ROOT" -xf -
+
+(cd "$QNN_SECONDARY_RESTORE_ROOT" && \
+  shasum -a 256 -c control/PAYLOAD_SHA256SUMS)
+```
+
+Nie wypakowuj bezpośrednio na istniejące `data/model_runs`. Poprawny wynik to
+585 rekordów `OK`.
+
+### C.5. Stan lokalny
+
+Backup nie zezwala automatycznie na lokalne usunięcie. Oba katalogi zachowano,
+a markery mają `local_delete_authorized: false`. Ewentualne zwalnianie miejsca
+wymaga osobnego audytu zależności i dokładnie wskazanych ścieżek; nie należy
+usuwać całego `data/model_runs`.
