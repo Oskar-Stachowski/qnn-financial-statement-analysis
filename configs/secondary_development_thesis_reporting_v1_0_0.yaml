@@ -1,0 +1,51 @@
+schema_version: 1
+
+secondary_development_thesis_reporting:
+  id: secondary_development_thesis_reporting_v1_0_0
+  version: 1.0.0
+  status: REPORTING_ONLY
+  source_execution_root: data/model_runs/secondary_development_v1_1_6
+  source_report_root: data/model_runs/secondary_development_v1_1_7
+  output_root: reports/secondary_development_thesis_v1_0_0
+  expected_task_results: 96
+  expected_prediction_artifacts: 84
+  expected_development_oof_years: [2015, 2016, 2017, 2018, 2019, 2020]
+  project_model_fit_permitted: false
+  protected_feature_years_permitted: false
+
+source_authority:
+  - path: configs/secondary_development_v1_1_7_results_freeze_manifest.yaml
+    sha256: 8e55fd9b519636f4907dc570fc7c3c032608568413e7e308eeb23a98abf86260
+  - path: reports/secondary_development_v1_1_7/artifact_inventory.json
+    sha256: 41c66b92212f63759b97800f63faace3b5865ce6b9dddb84d20af70cf8c8e6ec
+  - path: data/model_runs/secondary_development_v1_1_6/preflight_manifest.json
+    sha256: 91af8be07bcead4d180f62e09190695d52e3ec1e83f53365deec12ce5356d8b9
+  - path: data/model_runs/secondary_development_v1_1_7/secondary_development_report.json
+    sha256: 2f6a412d1b809c54e3061f3b8c1c80aef37e2a46dd518bd83ca6bdaa65f4fe19
+  - path: data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json
+    sha256: 58d100a612902b0b6762b06521fea56b754959b69ffefbc3c50473e0d6d94130
+  - path: data/model_runs/post_coarse_v1_3_0/neural_comparison_manifest.json
+    sha256: 560d06e9ec4eebc5b368970fe65d7493e89ca9c2becf8141916179d360f647f4
+
+frozen_references:
+  xgboost_three_seed_average:
+    family: xgboost
+    feature_block: L+D+R
+    pooled_oof_pr_auc: 0.41308893399384633
+    pooled_oof_roc_auc: 0.7598701797010347
+    n: 10760
+    positive_n: 1986
+  qnn_three_seed_average:
+    family: qnn
+    feature_block: L+D+R
+    pooled_oof_pr_auc: 0.38394764812793286
+    pooled_oof_roc_auc: 0.7405838475896125
+    n: 10760
+    positive_n: 1986
+
+interpretation_boundary:
+  descriptive_deltas_only: true
+  single_seed_variants_may_be_reranked: false
+  secondary_results_may_change_primary_selection: false
+  no_quantum_advantage_claim: true
+  independent_protected_period_evaluation: false
