@@ -1,0 +1,92 @@
+schema_version: 1
+
+thesis_readiness_audit_result:
+  id: thesis_readiness_audit_result
+  version: 1.0.3
+  recorded_on: "2026-08-24"
+  status: AUDIT_ABORTED_NO_READINESS_VERDICT
+  readiness_verdict: null
+  controlling_runbook:
+    path: docs/CODEX_REMAINING_WORK_PROMPTS.md
+    step: 6
+
+authorization:
+  allowlist:
+    path: configs/thesis_readiness_audit_v1_0_3_allowlist.yaml
+    subject_git_commit: 2a08d0935e7bb49c33b1df0a0da9470d6d0748ae
+    sha256: d05e8e647c2d6b4207b4272255fb2d2d50b89d9892145478332589b4ac09238f
+    sha256_verified_before_audit_content_access: true
+    modified_in_this_session: false
+  review:
+    path: configs/thesis_readiness_audit_allowlist_review_v1_0_3.yaml
+    review_git_commit: b5ff66e2b937e85813e955f5d64954a99f4252ed
+    sha256: ebd3844d4c32fa3b3a68a5cdd5d14cec717c0cbdebbd22e4f1882ee9f49cad29
+    verdict: ALLOWLIST_REVIEW_PASS
+    allowlist_gate_authorizes_step_6: true
+    unresolved_review_findings: 0
+  fresh_context_after_review: true
+  entry_head: b5ff66e2b937e85813e955f5d64954a99f4252ed
+  entry_worktree_clean: true
+
+process_nonconformance:
+  classification: non_analytical_process_nonconformance
+  trigger: output_cap_exceeded_without_content_exposure
+  exact_operation: >-
+    A combined exact-path read requested lines 1-320 of the allowlist followed
+    by the committed review YAML and Markdown.
+  configured_maximum_rendered_lines_per_command: 240
+  requested_allowlist_lines_in_command: 320
+  detected_before_analytical_audit_content_access: true
+  current_operation_stopped: true
+  route: stop_policy.mandatory_trigger_routes.audit_executor_after_review_pass.output_cap_exceeded_without_content_exposure
+  required_record_status_applied: AUDIT_ABORTED_NO_READINESS_VERDICT
+  scope_expansion_performed: false
+
+scope_and_exposure:
+  analytical_content_read: false
+  development_only_analytical_artifact_read: false
+  protected_period_content_read: false
+  protected_schema_row_count_distribution_sample_or_value_read: false
+  data_reports_or_notebooks_content_read: false
+  model_fit_refit_inference_prediction_or_reporting_performed: false
+  network_or_external_storage_accessed: false
+  unexpected_content_exposure_incident: false
+  incident_declaration_required: false
+
+readiness_checks:
+  pit_population_target_x_t_preprocessing_pca_temporal_cv: NOT_EVALUATED
+  leakage_survivorship_censoring_estimand: NOT_EVALUATED
+  model_selection_seeds_calibration_threshold_statistical_reporting: NOT_EVALUATED
+  primary_and_secondary_development_integrity: NOT_EVALUATED
+  xgboost_mlp_pca_controls_qnn_comparisons: NOT_EVALUATED
+  chapter_readme_documentation_gaps: NOT_EVALUATED
+  existing_tests_and_reproducibility: NOT_EVALUATED
+  unsupported_independent_test_holdout_or_quantum_advantage_claims: NOT_EVALUATED
+
+findings:
+  blocker: []
+  important: []
+  optional: []
+  finding_lists_are_empty_because_audit_was_not_performed: true
+
+boundary_test:
+  path: tests/test_thesis_readiness_audit_boundary_v1_0_3.py
+  execution_status: NOT_EXECUTED_NOT_LISTED_AS_SAFE_VERIFIER
+  rationale: >-
+    The reviewed allowlist authorizes writing this boundary test but prohibits
+    executing any test not already named as a safe verifier.
+
+decision:
+  baseline_audit_pass_asserted: false
+  baseline_audit_fail_asserted: false
+  step_6_completed: false
+  step_6_may_be_retried_in_this_context: false
+  retry_requires_new_fresh_context: true
+  retry_must_use_same_reviewed_allowlist_if_unchanged: true
+  any_allowlist_change_requires_new_review: true
+  subsequent_runbook_steps_authorized: false
+
+attestation:
+  no_readiness_conclusion_inferred_from_partial_control_checks: true
+  author_promoter_or_ai_compliance_status_inferred: false
+  frozen_or_historical_input_modified: false
