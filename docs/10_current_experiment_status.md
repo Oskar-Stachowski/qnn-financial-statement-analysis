@@ -24,9 +24,14 @@ non-sensitive `rg` command targeted the `configs/` directory rather than an
 enumerated exact-path list. No protected or analytical content was exposed;
 both primary and secondary safe integrity verifiers had already passed. The
 v1.0.4 stop route nevertheless classifies that search-scope mistake as fatal.
-The next action is a successor Step 4/5/6 sequence whose data boundary remains
-unchanged but whose no-exposure search-scope error is retryable. This status
-does not infer completion of the author, promoter, or AI-compliance gates.
+Successor Step 4 is now prepared as allowlist v1.0.5 with **15/15** passing
+structural tests. Its exact data boundary, protected-period controls, no-fit,
+no-network and output caps are unchanged. The only substantive process change
+is that a search accidentally scoped to a nonsensitive code/config/document
+root, with no unlisted content rendered, stops only that command and must be
+retried on enumerated exact paths; it no longer discards the entire audit. The
+next action is committed review in Step 5. This status does not infer
+completion of the author, promoter, or AI-compliance gates.
 
 ## Current state
 
