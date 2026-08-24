@@ -19,10 +19,14 @@ v1.0.3 abort remains a process-only record without a readiness verdict or
 protected-content exposure. The v1.0.0 allowlist and structural test remain
 byte-identical.
 
-The next action is Step 6 in this same conversation context after the separate
-review commit, against unchanged v1.0.4. No readiness conclusion is asserted
-before that audit, and this status does not infer completion of the author,
-promoter, or AI-compliance gates from earlier runbook steps.
+Step 6 v1.0.4 was subsequently stopped without a readiness verdict after one
+non-sensitive `rg` command targeted the `configs/` directory rather than an
+enumerated exact-path list. No protected or analytical content was exposed;
+both primary and secondary safe integrity verifiers had already passed. The
+v1.0.4 stop route nevertheless classifies that search-scope mistake as fatal.
+The next action is a successor Step 4/5/6 sequence whose data boundary remains
+unchanged but whose no-exposure search-scope error is retryable. This status
+does not infer completion of the author, promoter, or AI-compliance gates.
 
 ## Current state
 

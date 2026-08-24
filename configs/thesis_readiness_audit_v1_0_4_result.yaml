@@ -1,0 +1,101 @@
+schema_version: 1
+
+thesis_readiness_audit_result:
+  id: thesis_readiness_audit_result
+  version: 1.0.4
+  recorded_on: "2026-08-24"
+  status: AUDIT_ABORTED_NO_READINESS_VERDICT
+  readiness_verdict: null
+  controlling_runbook:
+    path: docs/CODEX_REMAINING_WORK_PROMPTS.md
+    step: 6
+
+authorization:
+  allowlist:
+    path: configs/thesis_readiness_audit_v1_0_4_allowlist.yaml
+    subject_git_commit: dac8625b52fd8b686d6d73f3b5e90997034a61d2
+    sha256: 183b29d5438e538ebc715c8b795b0822f42d44c40fefb84fe30a7b4ac654f1c5
+    sha256_verified_before_audit_content_access: true
+    modified_during_audit: false
+  review:
+    path: configs/thesis_readiness_audit_allowlist_review_v1_0_4.yaml
+    review_git_commit: 3babb85d5b4d2d87e26a0a3cb56ca9ec2b546bf0
+    sha256: 90c6d5aa7b79cdf7713ccf41aedb58476f1f066c43da95d4f1ecdda6ccd3b444
+    verdict: ALLOWLIST_REVIEW_PASS
+    mode: same_session_technical_review
+    allowlist_gate_authorizes_step_6: true
+    unresolved_review_findings: 0
+  same_session_after_review: true
+  entry_head: 3babb85d5b4d2d87e26a0a3cb56ca9ec2b546bf0
+  entry_worktree_clean: true
+
+process_nonconformance:
+  classification: non_analytical_process_nonconformance
+  trigger: allowlist_violation_without_protected_or_analytical_exposure
+  exact_operation: >-
+    An rg methodology search was scoped to the configs directory instead of
+    enumerating only the exact allowlisted configuration paths.
+  rendered_matches_contained_only_non_sensitive_configuration_text: true
+  protected_or_analytical_content_exposed: false
+  current_operation_stopped: true
+  route: stop_policy.mandatory_trigger_routes.audit_executor_after_review_pass.allowlist_violation_without_content_exposure
+  required_record_status_applied: AUDIT_ABORTED_NO_READINESS_VERDICT
+  scope_expansion_performed_after_detection: false
+
+scope_and_exposure:
+  permitted_development_only_analytical_content_read_before_abort: true
+  protected_period_content_read: false
+  protected_schema_row_count_distribution_sample_or_value_read: false
+  unlisted_data_reports_or_notebooks_content_read: false
+  model_fit_refit_inference_prediction_or_reporting_performed: false
+  network_or_external_storage_accessed: false
+  unexpected_protected_or_analytical_content_exposure_incident: false
+  incident_declaration_required: false
+
+safe_verifiers_completed_before_abort:
+  post_coarse_v1_3_0_results_integrity:
+    verdict: POST_COARSE_V1_3_0_RESULTS_INTEGRITY_PASS
+    verified_files: 30
+    qnn_confirmation_fold_fits: 36
+    bootstrap_valid_replicates: 2000
+    protected_feature_years_opened: false
+  secondary_development_v1_1_7_results_integrity:
+    verdict: SECONDARY_DEVELOPMENT_V1_1_7_RESULTS_INTEGRITY_PASS
+    verified_compact_files: 16
+    verified_inventory_files: 585
+    complete_tasks: 96
+    protected_feature_years_opened: false
+
+readiness_checks:
+  pit_population_target_x_t_preprocessing_pca_temporal_cv: PARTIAL_NO_VERDICT
+  leakage_survivorship_censoring_estimand: PARTIAL_NO_VERDICT
+  model_selection_seeds_calibration_threshold_statistical_reporting: PARTIAL_NO_VERDICT
+  primary_and_secondary_development_integrity: VERIFIED_BEFORE_ABORT_NO_READINESS_VERDICT
+  xgboost_mlp_pca_controls_qnn_comparisons: PARTIAL_NO_VERDICT
+  chapter_readme_documentation_gaps: PARTIAL_NO_VERDICT
+  existing_tests_and_reproducibility: PARTIAL_NO_VERDICT
+  unsupported_independent_test_holdout_or_quantum_advantage_claims: PARTIAL_NO_VERDICT
+
+findings:
+  blocker: []
+  important: []
+  optional: []
+  finding_lists_withheld_because_fatal_process_route_forbids_readiness_verdict: true
+
+boundary_test:
+  path: tests/test_thesis_readiness_audit_boundary_v1_0_4.py
+  preauthorized_safe_verifier: true
+  execution_status: PASS_6_TESTS
+
+decision:
+  baseline_audit_pass_asserted: false
+  baseline_audit_fail_asserted: false
+  step_6_completed: false
+  retry_requires_successor_allowlist_and_review: true
+  subsequent_runbook_steps_authorized: false
+
+attestation:
+  no_readiness_conclusion_inferred_from_partial_checks: true
+  author_promoter_or_ai_compliance_status_inferred: false
+  frozen_or_historical_input_modified: false
+  protected_feature_years_opened: false
