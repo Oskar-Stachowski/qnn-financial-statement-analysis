@@ -204,18 +204,33 @@ folds, robustness methods, checkpoint resolution, and parallel limits remain
 unchanged. The amendment is documented in
 [`docs/12_5_secondary_development_execution_v1_1_5.md`](12_5_secondary_development_execution_v1_1_5.md).
 
+The v1.1.5 preflight and all 12 PCA controls passed. Common permutation then
+completed for all eight families, including all 24 corrected family/fold cases
+containing repeated economic groups. Eleven of twelve logical interpretation
+tasks and 66 of 72 interpretation folds completed. The sole failure was
+detailed interventional TreeSHAP for XGBoost on all six folds. XGBoost 3.4.1
+exposes categorical-enable estimator metadata for the numeric booster, which
+SHAP 0.52.0 rejects. The v1.1.5 phase manifest is terminal but is not a
+scientifically complete interpretation result.
+
+Version 1.1.6 normalizes only that post-fit estimator metadata, proves that the
+booster bytes and raw scores remain exact, and supplies all 512 canonical
+background rows to an explicit independent SHAP masker. It carries forward 12
+complete PCA tasks and 11 complete interpretation tasks by verified hard link,
+then recomputes only the six failed TreeSHAP folds. It is documented in
+[`docs/12_6_secondary_development_execution_v1_1_6.md`](12_6_secondary_development_execution_v1_1_6.md).
+
 The next operational commands are:
 
 ```bash
-bash scripts/run_secondary_analyses_v1_1_5.sh verify
-bash scripts/run_secondary_analyses_v1_1_5.sh preflight
-bash scripts/run_secondary_analyses_v1_1_5.sh pca-controls
-bash scripts/run_secondary_analyses_v1_1_5.sh interpretability
+bash scripts/run_secondary_analyses_v1_1_6.sh verify
+bash scripts/run_secondary_analyses_v1_1_6.sh repair-treeshap
 ```
 
-After successful interpretation, execute `robustness-classical`,
-`robustness-qnn`, and `report` in that order. v1.1.5 writes to its own
-`data/model_runs/secondary_development_v1_1_5` output root.
+After successful repair, execute `robustness-classical`, `robustness-qnn`, and
+`report` in that order using only the v1.1.6 launcher. v1.1.6 writes to its own
+`data/model_runs/secondary_development_v1_1_6` output root. The v1.1.5 output
+remains unchanged as source evidence.
 
 Do not rerun `refinement`, `qnn`, `confirmation-classical`,
 `confirmation-qnn`, `inference`, `report`, or the legacy full `execute` mode in

@@ -1,0 +1,97 @@
+schema_version: 1
+
+extends:
+  path: configs/secondary_development_execution_v1_1_5_economic_group_permutation_fix.yaml
+  sha256: a13e4874eb95e8c24d9ff4227fdaed6a6b09881bbcc94f400958913df5c2ff76
+
+secondary_development_execution:
+  id: secondary_development_execution_v1_1_6
+  version: 1.1.6
+  created_on: "2026-08-24"
+  status: executable_treeshap_compatibility_amendment_frozen
+  default_output_root: data/model_runs/secondary_development_v1_1_6
+
+  treeshap_compatibility_amendment:
+    scope:
+      - numeric_xgboost_categorical_metadata_normalization
+      - explicit_full_canonical_background_masker
+      - exact_completed_result_carry_forward
+    reason:
+      - xgboost_3_4_1_reports_enable_categorical_true_for_numeric_booster
+      - shap_0_52_0_rejects_interventional_mode_from_estimator_metadata
+      - shap_default_independent_masker_subsamples_512_rows_to_100
+    failed_source_task_identity_sha256: fb495db9591e3ac313b53e0818cde0043e9335e9c91562b68811efcb269382c0
+    failed_source_folds: 6
+    fitted_booster_may_change: false
+    fitted_predictions_may_change: false
+    common_permutation_may_change: false
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    task_identity_changed: false
+    model_parameters_changed: false
+    interpretation_method_changed: false
+    robustness_method_changed: false
+    methodology_changed: false
+
+  interpretation:
+    tree_shap:
+      runtime_compatibility:
+        policy_id: numeric_xgboost_interventional_all_canonical_background_v1
+        require_numeric_booster_feature_types_none: true
+        normalize_estimator_enable_categorical_after_fit_to: false
+        verify_booster_bytes_unchanged: true
+        verify_raw_scores_unchanged: true
+        feature_perturbation: interventional
+        model_output: raw
+        masker: Independent
+        masker_max_samples: exact_background_rows
+        background_subsampling: false
+        additivity_max_abs_tolerance: 0.0001
+        fitted_booster_may_change: false
+
+  carry_forward:
+    source_output_root: data/model_runs/secondary_development_v1_1_5
+    source_execution_id: secondary_development_execution_v1_1_5
+    source_execution_config_sha256: a13e4874eb95e8c24d9ff4227fdaed6a6b09881bbcc94f400958913df5c2ff76
+    source_package_git_index_sha256: 3573fe7c5c7876045a2f2de3ab36472bbc8be0f753223ed4fb1c9d22c3a487af
+    required_complete_pca_tasks: 12
+    required_complete_interpretation_tasks: 11
+    required_failed_interpretation_tasks: 1
+    excluded_failed_task_identity_sha256: fb495db9591e3ac313b53e0818cde0043e9335e9c91562b68811efcb269382c0
+    artifact_strategy: verified_hardlink_same_filesystem
+    carried_task_methods_must_be_unchanged: true
+    protected_feature_years_opened: false
+
+  git_gate:
+    package_files:
+      - configs/secondary_development_execution_v1_1_6_treeshap_fix.yaml
+      - src/modeling/secondary_analysis_execution_v1_1_6.py
+      - src/modeling/secondary_analysis_execution_worker_v1_1_6.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_6.py
+      - scripts/run_secondary_analyses_v1_1_6.sh
+      - tests/test_secondary_analysis_execution_v1_1_6.py
+      - docs/12_6_secondary_development_execution_v1_1_6.md
+      - configs/secondary_development_execution_v1_1_6_freeze_manifest.yaml
+    freeze_manifest: configs/secondary_development_execution_v1_1_6_freeze_manifest.yaml
+
+  amendment_authority_v1_1_6:
+    v1_1_5_config:
+      path: configs/secondary_development_execution_v1_1_5_economic_group_permutation_fix.yaml
+      sha256: a13e4874eb95e8c24d9ff4227fdaed6a6b09881bbcc94f400958913df5c2ff76
+    v1_1_5_freeze:
+      path: configs/secondary_development_execution_v1_1_5_freeze_manifest.yaml
+      sha256: 90c1ef9acd928321a1972a4fb9ae35436f131afbfdec60fb431931babb249118
+    v1_1_5_controller:
+      path: src/modeling/secondary_analysis_execution_v1_1_5.py
+      sha256: 861e8b460c071f50dceac924aa33655bbb99ae9fcc0e50924c6404c95ee751df
+    v1_1_5_worker:
+      path: src/modeling/secondary_analysis_execution_worker_v1_1_5.py
+      sha256: 79d9136e19f20f743d1774dbdc551912b8e222c598715bec652bdcf1f656c6ff
+    v1_1_5_verifier:
+      path: src/modeling/verify_secondary_analysis_execution_v1_1_5.py
+      sha256: 1a94e2bcd5fd02e1913482bbb25e1fdaf2aa1db42e67f3f175dc1bba271ef6cf
+    v1_1_5_documentation:
+      path: docs/12_5_secondary_development_execution_v1_1_5.md
+      sha256: db8ff61813da6f98e59afaf689a4eba23b9f52fae9a6f1c325143c5680fc94df

@@ -1,0 +1,101 @@
+schema_version: 1
+
+secondary_development_treeshap_freeze:
+  id: secondary_development_execution_v1_1_6
+  version: 1.1.6
+  frozen_on: "2026-08-24"
+  status: FROZEN
+  verdict: SECONDARY_DEVELOPMENT_EXECUTION_V1_1_6_TREESHAP_INTEGRITY_PASS
+  amendment_scope:
+    - numeric_xgboost_categorical_metadata_normalization
+    - explicit_full_canonical_background_masker
+    - exact_completed_result_carry_forward
+  project_model_fit_performed_during_amendment: false
+  protected_feature_years_opened: false
+
+  inherited_execution:
+    base_version: 1.1.5
+    total_tasks: 96
+    roster_changed: false
+    task_identities_changed: false
+    model_parameters_changed: false
+    interpretation_method_changed: false
+    robustness_method_changed: false
+    methodology_changed: false
+
+  treeshap_compatibility:
+    policy: numeric_xgboost_interventional_all_canonical_background_v1
+    feature_perturbation: interventional
+    model_output: raw
+    masker: Independent
+    masker_max_samples: exact_background_rows
+    background_subsampling: false
+    numeric_booster_required: true
+    post_fit_estimator_enable_categorical: false
+    booster_bytes_must_remain_exact: true
+    raw_scores_must_remain_exact: true
+    additivity_max_abs_tolerance: 0.0001
+    real_fold_2015_numeric_diagnostic: PASS
+    real_fold_2015_background_rows: 512
+    real_fold_2015_evaluation_rows: 500
+    real_fold_2015_features: 34
+    real_fold_2015_seeds: 3
+    real_fold_2015_max_additivity_error_less_than: 0.000004
+
+  carry_forward:
+    source_execution_id: secondary_development_execution_v1_1_5
+    carried_pca_tasks: 12
+    carried_interpretation_tasks: 11
+    excluded_failed_tasks: 1
+    excluded_failed_task_identity_sha256: fb495db9591e3ac313b53e0818cde0043e9335e9c91562b68811efcb269382c0
+    recomputed_tasks: 1
+    recomputed_folds: 6
+    artifact_strategy: verified_hardlink_same_filesystem
+
+  invariants:
+    target_values_changed: false
+    sample_membership_changed: false
+    fold_policy_changed: false
+    task_roster_changed: false
+    task_identity_changed: false
+    model_parameters_changed: false
+    interpretation_method_changed: false
+    robustness_method_changed: false
+    permitted_feature_years: [2011, 2020]
+    protected_feature_years: [2021, 2022, 2023, 2024]
+
+  files:
+    - path: configs/secondary_development_execution_v1_1_6_treeshap_fix.yaml
+      bytes: 4503
+      sha256: 644a4419ad7abfd2edb8c9d59b4d8df7ba141ac3ad183702160a113865f9e998
+    - path: src/modeling/secondary_analysis_execution_v1_1_6.py
+      bytes: 21535
+      sha256: cff78e01a05b354f14112a2031a1f113f105431778658a862fd76d3314076e43
+    - path: src/modeling/secondary_analysis_execution_worker_v1_1_6.py
+      bytes: 5262
+      sha256: b19e1397115e9ff2c3fd3925e5224311188fac10c9cc23261435218654529e79
+    - path: src/modeling/verify_secondary_analysis_execution_v1_1_6.py
+      bytes: 8413
+      sha256: 931fbdb4d6e983e7341cff7d59991fa48019afe118b527884d0e882f4857f661
+    - path: scripts/run_secondary_analyses_v1_1_6.sh
+      bytes: 1023
+      sha256: ec3c16ee20395edfddbe435685891f4663868c798740bd24e6e5708a09a9468b
+      executable: true
+    - path: tests/test_secondary_analysis_execution_v1_1_6.py
+      bytes: 9242
+      sha256: d57c6bc4ef8e730568d94d7430bf4f076ab6d87cc317a02e295c80488a25f844
+    - path: docs/12_6_secondary_development_execution_v1_1_6.md
+      bytes: 3177
+      sha256: 8854c3dfafaf0afec6ca6023aa520f78d7dbccc9d13db1873e44e2cec1201ef9
+
+  tests:
+    amendment_tests: 10
+    v1_1_5_and_v1_1_6_tests: 20
+    exact_96_task_identity_preservation: PASS
+    pinned_xgboost_shap_worker_route: PASS
+    fitted_booster_byte_preservation: PASS
+    raw_score_exact_preservation: PASS
+    explicit_full_background_masker: PASS
+    finite_attributions_and_additivity: PASS
+    hardlink_identity_and_content: PASS
+    launcher_single_import_committed_gate: PASS
