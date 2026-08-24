@@ -30,7 +30,9 @@ no-network and output caps are unchanged. The only substantive process change
 is that a search accidentally scoped to a nonsensitive code/config/document
 root, with no unlisted content rendered, stops only that command and must be
 retried on enumerated exact paths; it no longer discards the entire audit. The
-next action is committed review in Step 5. This status does not infer
+committed Step 5 review now records `ALLOWLIST_REVIEW_PASS` after a complete
+subject read and **15/15** passing structural tests. The next action is Step 6
+against unchanged v1.0.5 in this same session. This status does not infer
 completion of the author, promoter, or AI-compliance gates.
 
 ## Current state
