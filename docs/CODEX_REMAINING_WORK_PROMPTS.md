@@ -320,7 +320,10 @@ utworzenia schema lub skryptu nie zalicza bramki.
 
 ### Krok 4. Exact allowlista audytu gotowości
 
-Uruchomić w świeżej sesji.
+Domyślnie uruchomić w świeżej sesji. Dla szybkiej iteracji Krok 4 i Krok 5
+mogą działać w tej samej sesji, jeżeli allowlista zostanie najpierw committed,
+review otrzyma osobny późniejszy commit i w tej sesji nie zostanie wykonany
+Krok 6.
 
 ```text
 Przygotuj bezpieczną, wersjonowaną exact allowlistę dla read-only audytu
@@ -340,30 +343,46 @@ niezbędnych do oceny samej allowlisty. Reviewer nie może dziedziczyć szerszeg
 zakresu wykonawcy.
 
 Nie wykonuj audytu. Dodaj test strukturalny allowlisty, zaktualizuj wyłącznie
-status planu i zrób commit. Podaj hash oraz instrukcję dla niezależnego review.
+status planu i zrób commit. Podaj hash oraz instrukcję dla dopuszczonego trybu
+review.
+
+Jeżeli wybrano iterację w jednej sesji, instrukcja może prowadzić do
+`same_session_technical_review` zamiast review niezależnego. Wymagania
+merytoryczne werdyktu pozostają takie same, a committed allowlista nie może być
+zmieniana podczas review.
 ```
 
 Warunek przejścia: allowlista jest committed, test przechodzi i nie odczytano
 treści analitycznej.
 
-### Krok 5. Niezależny review allowlisty audytu
+### Krok 5. Review allowlisty audytu
 
-Uruchomić w innej świeżej sesji albo przez niezależnego reviewera.
+Uruchomić jako `same_session_technical_review` po osobnym commicie Kroku 4 albo
+w innej świeżej sesji przez niezależnego reviewera. W obu trybach review musi
+dotyczyć niezmienionej committed allowlisty i otrzymać osobny commit.
 
 ```text
-Wykonaj wyłącznie niezależny review committed exact allowlisty audytu
-gotowości. Czytaj tylko politykę, kontrolne dokumenty incydentowe i pliki
-dozwolone dla review. Nie wykonuj właściwego audytu, nie otwieraj wyników i nie
-rozszerzaj allowlisty w tej sesji.
+Wykonaj wyłącznie review committed exact allowlisty audytu gotowości w jednym z
+dopuszczonych trybów. Czytaj tylko politykę, kontrolne dokumenty incydentowe i
+pliki dozwolone dla review. Nie wykonuj właściwego audytu, nie otwieraj wyników
+i nie rozszerzaj allowlisty w tej sesji.
 
 Sprawdź exact-path scope, dozwolone operacje, zakazy, boundary 2021–2024,
 ochronę przed schema/row-count disclosure, ograniczenie wyszukiwania oraz stop
 policy. Zapisz wersjonowany werdykt ALLOWLIST_REVIEW_PASS albo
 ALLOWLIST_REVIEW_FAIL z uzasadnieniem i zrób commit niezależnie od wyniku.
+
+Zwykłe przekroczenie limitu wyjścia narzędzia bez ekspozycji chronionej lub
+analitycznej treści nie jest defektem allowlisty i nie wymaga nowej wersji.
+Zatrzymaj tylko bieżącą komendę, ponów ten sam exact-path z mniejszym wyjściem i
+kontynuuj review. `ALLOWLIST_REVIEW_FAIL` stosuj dla merytorycznego defektu
+allowlisty albo ekspozycji, która unieważnia review, a nie dla poprawionego
+błędu porcjowania wyjścia.
 ```
 
-Warunek przejścia: tylko `ALLOWLIST_REVIEW_PASS`. Po `FAIL` wróć do Kroku 4 z
-nową wersją i ponów niezależny review.
+Warunek przejścia: tylko `ALLOWLIST_REVIEW_PASS`. Po merytorycznym `FAIL` wróć
+do Kroku 4 z nową wersją. Po retryowalnym błędzie technicznym ponów Krok 5 na
+tej samej niezmienionej committed wersji.
 
 ### Krok 6. Read-only audyt gotowości projektu
 

@@ -1,0 +1,786 @@
+schema_version: 1
+
+thesis_readiness_audit_allowlist:
+  id: thesis_readiness_audit_allowlist
+  version: 1.0.3
+  status: PREPARED_AWAITING_ALLOWLIST_REVIEW
+  prepared_on: "2026-08-24"
+  purpose: read_only_baseline_thesis_readiness_audit_without_protected_period_access
+  controlling_runbook:
+    path: docs/CODEX_REMAINING_WORK_PROMPTS.md
+    step: 4
+  preparation_result:
+    analytical_content_read: false
+    readiness_audit_performed: false
+    allowlist_review_performed: false
+    protected_period_access_authorized: false
+    model_fit_refit_or_prediction_performed: false
+
+remediation_basis:
+  predecessor_allowlist:
+    path: configs/thesis_readiness_audit_v1_0_2_allowlist.yaml
+    version: 1.0.2
+    git_commit: 9993afc0edaf93e2384ade93ab307199b9aa669a
+    sha256: 01974799239b0c20acf07424eeff965546dac6eb278dc116d484d38b4947e0b2
+    remains_byte_identical: true
+    audit_use_prohibited_by_review: true
+  failed_independent_review:
+    verdict: ALLOWLIST_REVIEW_FAIL
+    git_commit: d9840d3cd5189aa2b2350929ae8646e216de64f5
+    yaml_path: configs/thesis_readiness_audit_allowlist_review_v1_0_2.yaml
+    yaml_sha256: b6a705c0c441f5fae1b9870d2d5baae35de7e67700e579b2e3a2aeef79b6f694
+    markdown_path: docs/13_thesis_readiness_audit_allowlist_review_v1_0_2.md
+    markdown_sha256: 277491e0f995ce05e85c65e176f5079c7dd6f3c406afc60ce13793fd61991ed0
+    substantive_review_completed: false
+    process_nonconformance_only: true
+  immutable_v1_0_0_ancestor:
+    allowlist_path: configs/thesis_readiness_audit_v1_0_0_allowlist.yaml
+    allowlist_sha256: 6b3059fd9ebc7ff943a3cc0123a7550ca89676ba5263aa487b745600577ff22b
+    structural_test_path: tests/test_thesis_readiness_audit_allowlist_v1_0_0.py
+    structural_test_sha256: 023d983c6d349d92e6bb5485e3e21e3ef658b68cf9d7792bc14034547be5a7d2
+    remains_byte_identical: true
+    audit_use_prohibited_by_review: true
+  preserved_prior_remediations:
+    - ALLOWLIST-REVIEW-001
+    - ALLOWLIST-REVIEW-002
+  remediated_findings:
+    - ALLOWLIST-REVIEW-003
+    - ALLOWLIST-REVIEW-004
+  predecessor_review_established_allowlist_defect: false
+  successor_required_only_by_prior_runbook_route: true
+  successor_changes_only:
+    - committed_v1_0_2_failed_review_added_to_control_only_review_surface
+    - same_session_or_independent_review_modes
+    - single_240_line_global_render_limit_with_200_line_read_guidance
+    - retryable_non_exposure_output_limit_handling
+    - substantive_failures_only_require_new_allowlist_version
+    - versioned_review_incident_audit_and_structural_test_routes
+
+entry_conditions_for_audit:
+  required_allowlist_review_verdict: ALLOWLIST_REVIEW_PASS
+  review_evidence_must_be_committed: true
+  audit_requires_new_fresh_context_after_review: true
+  audit_must_use_this_committed_version_without_changes: true
+  any_scope_or_operation_change_requires_new_allowlist_version_and_review: true
+  unresolved_review_finding_blocks_audit: true
+  this_preparation_context_may_execute_audit: false
+
+allowlist_review_execution_policy:
+  accepted_review_modes:
+    - same_session_technical_review
+    - independent_review
+  same_session_iteration_allowed: true
+  review_requires_subject_committed_before_review: true
+  review_requires_separate_commit_after_subject_commit: true
+  review_may_modify_committed_subject: false
+  review_may_execute_readiness_audit: false
+  independent_reviewer_required: false
+  substantive_pass_requirements_identical_across_review_modes: true
+  non_exposure_tool_output_nonconformance:
+    invalidates_allowlist_subject: false
+    requires_new_allowlist_version: false
+    invalidates_review_if_corrected_before_substantive_verdict: false
+    stop_current_command_only: true
+    retry_same_exact_path_with_smaller_output_allowed: true
+    scope_expansion_allowed: false
+  new_allowlist_version_required_after:
+    - substantive_allowlist_scope_defect
+    - substantive_allowed_operation_defect
+    - substantive_prohibition_or_stop_policy_defect
+    - substantive_protected_period_boundary_defect
+    - protected_or_analytical_content_exposure
+
+authority_pins:
+  - role: controlling_access_policy
+    path: configs/data_access_policy_v1_1_0.yaml
+    sha256: 7ce08bca9921ff72db6b3ec6dfd1dc28c7e751e1ca1ad3b6706180809b66cd9b
+  - role: first_incident_declaration
+    path: configs/data_access_incident_v1_0_0.yaml
+    sha256: d84a72f5344379c0f923329410f122f6f49b9003b617c34547ba6e03da227f57
+  - role: successor_incident_declaration
+    path: configs/data_access_incident_v1_1_0.yaml
+    sha256: 8d02609d8622a417a4f08f8d2c7cbd207cab4ddfeb51a588c6de4bfdb1b38a82
+  - role: incident_review_allowlist
+    path: configs/data_access_incident_v1_1_0_review_allowlist.yaml
+    sha256: 734f6b074ef281020576f310fadd4b7c86892983a9f034a755a78d67e23fd97b
+  - role: incident_review_outcome
+    path: docs/09_5_data_access_incident_v1_1_0_independent_review_v1_0_0.md
+    sha256: 1e5beb877cdb86be28b4327d684e7d96d86aa7b7ce859280bfa06eca643913c0
+
+protected_period_boundary:
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  default_deny_content_roots:
+    - data
+    - reports
+    - notebooks
+    - artifacts
+    - outputs
+  exact_development_only_exceptions_must_be_listed_below: true
+  notebooks_have_no_exceptions: true
+  path_not_exactly_allowed_is_denied: true
+  symlink_targets_are_denied: true
+  path_inventory_does_not_authorize_content_read: true
+  protected_schema_row_count_distribution_or_sample_access_allowed: false
+  exact_existence_or_opaque_sha256_only:
+    - path: data/reports/x_t_pit_v1_revenue_manual_review.csv
+      reason: known_incident_v1_0_0_source_may_contain_protected_rows
+      permitted_operations: [file_exists, opaque_byte_level_sha256]
+    - path: data/reports/sec_facts_sanity_warnings.csv
+      reason: known_incident_v1_0_0_and_v1_1_0_source_may_contain_protected_rows
+      permitted_operations: [file_exists, opaque_byte_level_sha256]
+
+audit_scope:
+  exact_content_read_allowlist:
+    project_and_environment:
+      - README.md
+      - requirements.txt
+      - environments/README.md
+      - environments/classical/.python-version
+      - environments/classical/requirements.in
+      - environments/classical/requirements.lock
+      - environments/qnn_mlp/.python-version
+      - environments/qnn_mlp/requirements.in
+      - environments/qnn_mlp/requirements.lock
+    documentation:
+      - docs/01 Karta Tematu QNN.docx
+      - docs/02_konspekt_pracy_magisterskiej_QNN.docx
+      - docs/03_dane_do_pracy_magisterskiej_QNN.docx
+      - docs/04_10_target_resolver_v1_1_0_train_correction.md
+      - docs/04_2_target_candidate_v1_definicja_i_audyt.md
+      - docs/04_3_target_candidate_v2_definicja.md
+      - docs/04_4_target_candidate_v2_diagnostyka.md
+      - docs/04_5_target_candidate_v2_analiza_wrazliwosci.md
+      - docs/04_6_target_candidate_v2_odpornosc_bloku_roa_ocf.md
+      - docs/04_7_target_candidate_v2_audyt_brakujacych_targetow.md
+      - docs/04_8_pre_registered_methodological_target_specification.md
+      - docs/04_9_target_candidate_v2_pit_b_frozen_specification.md
+      - docs/05_1_historical_research_universe_pit_frozen_specification.md
+      - docs/06_1_point_in_time_x_t_feature_pipeline_audit_and_policy.md
+      - docs/06_2_raw_point_in_time_x_t_v1_frozen_specification.md
+      - docs/06_3_raw_x_t_v1_1_0_resolver_correction.md
+      - docs/07_1_supervised_ml_pipeline_v1_frozen_specification.md
+      - docs/07_2_supervised_ml_pipeline_v1_1_0_access_amendment.md
+      - docs/07_3_supervised_ml_pipeline_v1_2_0_resolver_correction.md
+      - docs/07_4_timezone_pit_fix_v1_0_0.md
+      - docs/08_1_model_stage_v1_frozen_specification.md
+      - docs/08_2_model_stage_v1_1_0_access_amendment.md
+      - docs/08_3_model_execution_contract_v1_2_0.md
+      - docs/08_4_production_runner_and_environments_v1_0_0.md
+      - docs/09_1_data_access_policy_v1_1_0.md
+      - docs/09_2_data_access_incident_v1_0_0.md
+      - docs/09_3_data_access_incident_v1_1_0.md
+      - docs/09_4_data_access_incident_v1_1_0_independent_review_template.md
+      - docs/09_5_data_access_incident_v1_1_0_independent_review_v1_0_0.md
+      - docs/13_thesis_readiness_audit_allowlist_review_v1_0_0.md
+      - docs/13_thesis_readiness_audit_allowlist_review_v1_0_1.md
+      - docs/13_thesis_readiness_audit_allowlist_review_v1_0_2.md
+      - docs/10_1_post_coarse_v1_3_0_results_freeze.md
+      - docs/10_current_experiment_status.md
+      - docs/11_secondary_development_analyses_v1_0_0.md
+      - docs/12_secondary_development_execution_v1_1_0.md
+      - docs/12_1_secondary_development_execution_v1_1_1.md
+      - docs/12_2_secondary_development_launcher_v1_1_2.md
+      - docs/12_3_secondary_development_execution_v1_1_3.md
+      - docs/12_4_secondary_development_execution_v1_1_4.md
+      - docs/12_5_secondary_development_execution_v1_1_5.md
+      - docs/12_6_secondary_development_execution_v1_1_6.md
+      - docs/12_7_secondary_development_execution_v1_1_7.md
+      - docs/12_8_secondary_development_results_freeze_v1_1_7.md
+      - docs/12_9_secondary_development_thesis_reporting_v1_0_0.md
+      - docs/CODEX_REMAINING_WORK_PROMPTS.md
+      - docs/INSTRUKCJA_BACKUP_AMAZON_S3.md
+      - docs/INSTRUKCJA_REFINEMENT_I_QNN.md
+      - docs/UZASADNIENIE_MLP_JAKO_DODATKOWEGO_KOMPARATORA.md
+    configurations:
+      - configs/data_access_incident_v1_0_0.yaml
+      - configs/data_access_incident_v1_1_0.yaml
+      - configs/data_access_incident_v1_1_0_review_allowlist.yaml
+      - configs/thesis_readiness_audit_allowlist_review_v1_0_0.yaml
+      - configs/thesis_readiness_audit_allowlist_review_v1_0_1.yaml
+      - configs/thesis_readiness_audit_allowlist_review_v1_0_2.yaml
+      - configs/data_access_policy_v1_1_0.yaml
+      - configs/data_access_policy_v1_1_0_freeze_manifest.yaml
+      - configs/dataset_config.yaml
+      - configs/model_environments_v1_0_0.yaml
+      - configs/model_environments_v1_0_1_lightning.yaml
+      - configs/model_execution_contract_v1_2_0.yaml
+      - configs/model_execution_contract_v1_2_0_freeze_manifest.yaml
+      - configs/model_execution_contract_v1_2_0_scientific_patch.yaml
+      - configs/model_execution_contract_v1_2_1_lightning_amendment.yaml
+      - configs/model_execution_contract_v1_2_1_lightning_base.yaml
+      - configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml
+      - configs/model_stage_candidates_v1.json
+      - configs/model_stage_candidates_v1_scientific_patch.json
+      - configs/model_stage_v1.yaml
+      - configs/model_stage_v1_1_0_access_amendment.yaml
+      - configs/model_stage_v1_2_0_resolver_amendment.yaml
+      - configs/model_stage_v1_3_0_neural_comparator_amendment.yaml
+      - configs/model_stage_v1_freeze_manifest.yaml
+      - configs/post_coarse_experiment_v1_0_0.yaml
+      - configs/post_coarse_experiment_v1_0_1_lightning.yaml
+      - configs/post_coarse_experiment_v1_0_2_parallel.yaml
+      - configs/post_coarse_experiment_v1_0_3_confirmation_parallel.yaml
+      - configs/post_coarse_experiment_v1_0_4_confirmation_fold_parallel.yaml
+      - configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+      - configs/production_experiment_runner_v1_0_0.yaml
+      - configs/production_experiment_runner_v1_0_1_lightning.yaml
+      - configs/production_experiment_runner_v1_0_2_parallel.yaml
+      - configs/production_runner_and_environments_v1_0_0_freeze_gate_manifest.yaml
+      - configs/research_universe_pit.yaml
+      - configs/research_universe_pit_freeze_manifest.yaml
+      - configs/research_universe_registrant_role_manual.yaml
+      - configs/research_universe_target_application.yaml
+      - configs/sec_tags.yaml
+      - configs/secondary_development_analyses_v1_0_0.yaml
+      - configs/secondary_development_analyses_v1_0_0_freeze_manifest.yaml
+      - configs/secondary_development_execution_v1_1_0.yaml
+      - configs/secondary_development_execution_v1_1_0_freeze_manifest.yaml
+      - configs/secondary_development_execution_v1_1_1_freeze_manifest.yaml
+      - configs/secondary_development_execution_v1_1_1_input_key_fix.yaml
+      - configs/secondary_development_execution_v1_1_2_launcher_freeze_manifest.yaml
+      - configs/secondary_development_execution_v1_1_3_freeze_manifest.yaml
+      - configs/secondary_development_execution_v1_1_3_signal_source_fix.yaml
+      - configs/secondary_development_execution_v1_1_4_freeze_manifest.yaml
+      - configs/secondary_development_execution_v1_1_4_parallel_checkpoint_fix.yaml
+      - configs/secondary_development_execution_v1_1_5_economic_group_permutation_fix.yaml
+      - configs/secondary_development_execution_v1_1_5_freeze_manifest.yaml
+      - configs/secondary_development_execution_v1_1_6_freeze_manifest.yaml
+      - configs/secondary_development_execution_v1_1_6_treeshap_fix.yaml
+      - configs/secondary_development_execution_v1_1_7_freeze_manifest.yaml
+      - configs/secondary_development_execution_v1_1_7_report_integrity_fix.yaml
+      - configs/secondary_development_thesis_reporting_v1_0_0.yaml
+      - configs/secondary_development_v1_1_7_results_freeze_manifest.yaml
+      - configs/supervised_ml_pipeline_v1.yaml
+      - configs/supervised_ml_pipeline_v1_1_0_access_amendment.yaml
+      - configs/supervised_ml_pipeline_v1_2_0.yaml
+      - configs/supervised_ml_pipeline_v1_2_0_freeze_manifest.yaml
+      - configs/supervised_ml_pipeline_v1_3_0_timezone_fix.yaml
+      - configs/supervised_ml_pipeline_v1_freeze_manifest.yaml
+      - configs/target_candidate_v2_pit.yaml
+      - configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+      - configs/target_candidate_v2_pit_b_v1_1_0_train_freeze_manifest.yaml
+      - configs/thesis_readiness_audit_v1_0_3_allowlist.yaml
+      - configs/timezone_pit_fix_v1_0_0.yaml
+      - configs/x_t_pit_v1.yaml
+      - configs/x_t_pit_v1_1_0.yaml
+      - configs/x_t_pit_v1_1_0_train_freeze_manifest.yaml
+      - configs/x_t_pit_v1_freeze_manifest.yaml
+      - configs/x_t_pit_v1_negative_sign_review.yaml
+    source_code:
+      - src/__init__.py
+      - src/data/__init__.py
+      - src/data/historical_research_universe.py
+      - src/data/primitive_resolver_v1_1.py
+      - src/data/registrant_role_resolution.py
+      - src/data/research_universe_target_application.py
+      - src/data/revenue_statement_resolver.py
+      - src/data/sec_timestamps.py
+      - src/data/target_candidate_v2_pit.py
+      - src/data/target_resolver_v1_1.py
+      - src/data/x_t_pit.py
+      - src/data/x_t_pit_v1_1.py
+      - src/modeling/build_secondary_development_results_freeze_inventory_v1_1_7.py
+      - src/modeling/__init__.py
+      - src/modeling/coarse_search_reporting.py
+      - src/modeling/environment_audit.py
+      - src/modeling/model_execution_contract.py
+      - src/modeling/model_stage_preregistration.py
+      - src/modeling/model_stage_preregistration_scientific_patch.py
+      - src/modeling/neural_comparison_inference.py
+      - src/modeling/post_coarse_reporting.py
+      - src/modeling/post_coarse_runner.py
+      - src/modeling/preprocessing.py
+      - src/modeling/production_runner.py
+      - src/modeling/production_worker.py
+      - src/modeling/secondary_analysis_execution.py
+      - src/modeling/secondary_analysis_execution_v1_1_1.py
+      - src/modeling/secondary_analysis_execution_v1_1_3.py
+      - src/modeling/secondary_analysis_execution_v1_1_4.py
+      - src/modeling/secondary_analysis_execution_v1_1_5.py
+      - src/modeling/secondary_analysis_execution_v1_1_6.py
+      - src/modeling/secondary_analysis_execution_v1_1_7.py
+      - src/modeling/secondary_analysis_execution_worker.py
+      - src/modeling/secondary_analysis_execution_worker_v1_1_5.py
+      - src/modeling/secondary_analysis_execution_worker_v1_1_6.py
+      - src/modeling/secondary_analysis_runner.py
+      - src/modeling/secondary_analysis_schemas.py
+      - src/modeling/secondary_development_thesis_reporting_v1_0_0.py
+      - src/modeling/temporal_cv.py
+      - src/modeling/verify_environment_locks.py
+      - src/modeling/verify_post_coarse_results_freeze.py
+      - src/modeling/verify_secondary_analysis_execution_package.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_1.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_3.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_4.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_5.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_6.py
+      - src/modeling/verify_secondary_analysis_execution_v1_1_7.py
+      - src/modeling/verify_secondary_analysis_launcher_v1_1_2.py
+      - src/modeling/verify_secondary_analysis_package.py
+      - src/modeling/verify_secondary_development_results_freeze_v1_1_7.py
+      - src/modeling/verify_secondary_development_thesis_report_v1_0_0.py
+    tests_static_read_only:
+      - tests/test_coarse_search_reporting.py
+      - tests/test_data_access_incident_v1_1_0.py
+      - tests/test_data_access_policy_v1_1_0.py
+      - tests/test_historical_research_universe.py
+      - tests/test_historical_research_universe_freeze.py
+      - tests/test_model_execution_contract_v1_2_0.py
+      - tests/test_model_stage_preregistration.py
+      - tests/test_model_stage_v1_freeze.py
+      - tests/test_post_coarse_confirmation_schedule.py
+      - tests/test_post_coarse_runner.py
+      - tests/test_post_coarse_v1_3_0_results_freeze.py
+      - tests/test_preprocessing.py
+      - tests/test_primitive_resolver_v1_1.py
+      - tests/test_production_runner_v1_0_0.py
+      - tests/test_registrant_role_economic_entity.py
+      - tests/test_research_universe_target_application.py
+      - tests/test_resolver_x_t_v1_1_freeze.py
+      - tests/test_revenue_manual_review.py
+      - tests/test_sec_timestamps.py
+      - tests/test_secondary_analysis_execution.py
+      - tests/test_secondary_analysis_execution_v1_1_1.py
+      - tests/test_secondary_analysis_execution_v1_1_3.py
+      - tests/test_secondary_analysis_execution_v1_1_4.py
+      - tests/test_secondary_analysis_execution_v1_1_5.py
+      - tests/test_secondary_analysis_execution_v1_1_6.py
+      - tests/test_secondary_analysis_execution_v1_1_7.py
+      - tests/test_secondary_analysis_launcher_v1_1_2.py
+      - tests/test_secondary_analysis_package.py
+      - tests/test_secondary_development_results_freeze_v1_1_7.py
+      - tests/test_secondary_development_thesis_reporting_v1_0_0.py
+      - tests/test_supervised_ml_pipeline_v1_freeze.py
+      - tests/test_target_candidate_v2_pit.py
+      - tests/test_target_candidate_v2_pit_freeze.py
+      - tests/test_temporal_cv.py
+      - tests/test_thesis_readiness_audit_allowlist_v1_0_3.py
+      - tests/test_timezone_pit_fix_v1_0_0.py
+      - tests/test_x_t_pit_v1.py
+      - tests/test_x_t_pit_v1_1_invariance.py
+      - tests/test_x_t_pit_v1_freeze.py
+    thesis_documents_text_only:
+      - thesis/Spis treści.docx
+      - thesis/Praca Magisterska Oskar Stachowski os109908.docx
+      - thesis/chapters/Bibliografia_Rozdzial_3.docx
+      - thesis/chapters/Rozdzial_1_Ryzyko_finansowo_sprawozdawcze_wersja_robocza (1).docx
+      - thesis/chapters/Rozdzial_3_QNN_SGH.docx
+      - thesis/chapters/Rozdzial_3_QNN_nowy.pdf
+      - thesis/chapters/Rozdzial_4_Metodyka_badania_empirycznego.docx
+      - thesis/chapters/Rozdzial_5_Ewaluacja_modeli.docx
+      - thesis/chapters/rozdzial_2_klasyczne_metody_ML_finanse_SGH.docx
+
+  exact_development_only_content_allowlist:
+    primary_post_coarse_v1_3_0:
+      declared_year_boundary: [2015, 2016, 2017, 2018, 2019, 2020]
+      paths:
+        - data/model_runs/post_coarse_v1_3_0/post_coarse_plan.json
+        - data/model_runs/post_coarse_v1_3_0/refinement_phase_manifest.json
+        - data/model_runs/post_coarse_v1_3_0/qnn_phase_manifest.json
+        - data/model_runs/post_coarse_v1_3_0/qnn_selected_ansatz.json
+        - data/model_runs/post_coarse_v1_3_0/qnn_resource_ledger.json
+        - data/model_runs/post_coarse_v1_3_0/qnn_resource_smoke.json
+        - data/model_runs/post_coarse_v1_3_0/runtime_metadata.json
+        - data/model_runs/post_coarse_v1_3_0/post_coarse_confirmation_selection.json
+        - data/model_runs/post_coarse_v1_3_0/confirmation_classical_phase_manifest.json
+        - data/model_runs/post_coarse_v1_3_0/qnn_confirmation_resource_ledger.json
+        - data/model_runs/post_coarse_v1_3_0/confirmation_phase_manifest.json
+        - data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json
+        - data/model_runs/post_coarse_v1_3_0/neural_comparison_manifest.json
+        - data/model_runs/post_coarse_v1_3_0/neural_comparison_clustered_bootstrap.json
+        - data/model_runs/post_coarse_v1_3_0/neural_comparison_clustered_bootstrap.csv
+        - data/model_runs/post_coarse_v1_3_0/neural_comparison_clustered_bootstrap.md
+        - data/model_runs/post_coarse_v1_3_0/run_manifest.json
+        - reports/post_coarse_v1_3_0/01_primary_refinement_results.csv
+        - reports/post_coarse_v1_3_0/02_mlp_comparator_refinement_results.csv
+        - reports/post_coarse_v1_3_0/03_qnn_q1_ansatz_results.csv
+        - reports/post_coarse_v1_3_0/04_qnn_q2_results.csv
+        - reports/post_coarse_v1_3_0/05_primary_confirmation_results.csv
+        - reports/post_coarse_v1_3_0/06_confirmed_mlp_vs_qnn.csv
+        - reports/post_coarse_v1_3_0/07_final_primary_family_ranking.csv
+        - reports/post_coarse_v1_3_0/08_neural_comparison_clustered_bootstrap.csv
+        - reports/post_coarse_v1_3_0/report_manifest.json
+        - reports/post_coarse_v1_3_0/summary.md
+    secondary_compact_v1_1_7:
+      declared_year_boundary: [2015, 2016, 2017, 2018, 2019, 2020]
+      paths:
+        - data/model_runs/secondary_development_v1_1_6/carry_forward_manifest.json
+        - data/model_runs/secondary_development_v1_1_6/execution_artifacts/runtime_metadata.json
+        - data/model_runs/secondary_development_v1_1_6/execution_identity.json
+        - data/model_runs/secondary_development_v1_1_6/phase_manifests/interpretability.json
+        - data/model_runs/secondary_development_v1_1_6/phase_manifests/pca_matched_controls.json
+        - data/model_runs/secondary_development_v1_1_6/phase_manifests/robustness_classical.json
+        - data/model_runs/secondary_development_v1_1_6/phase_manifests/robustness_qnn.json
+        - data/model_runs/secondary_development_v1_1_6/preflight_manifest.json
+        - data/model_runs/secondary_development_v1_1_6/qnn_structural_resource_ledger.json
+        - data/model_runs/secondary_development_v1_1_6/run_manifest.json
+        - data/model_runs/secondary_development_v1_1_6/secondary_analysis_execution_plan.json
+        - data/model_runs/secondary_development_v1_1_6/secondary_development_report.json
+        - data/model_runs/secondary_development_v1_1_6/treeshap_repair_manifest.json
+        - data/model_runs/secondary_development_v1_1_7/run_manifest.json
+        - data/model_runs/secondary_development_v1_1_7/secondary_development_report.json
+    secondary_thesis_report_v1_0_0:
+      declared_year_boundary: [2015, 2016, 2017, 2018, 2019, 2020]
+      paths:
+        - reports/secondary_development_thesis_v1_0_0/analysis_manifest.json
+        - reports/secondary_development_thesis_v1_0_0/figures/01_pca_matched_controls_pr_auc.png
+        - reports/secondary_development_thesis_v1_0_0/figures/01_pca_matched_controls_pr_auc.svg
+        - reports/secondary_development_thesis_v1_0_0/figures/02_xgboost_robustness_pr_auc.png
+        - reports/secondary_development_thesis_v1_0_0/figures/02_xgboost_robustness_pr_auc.svg
+        - reports/secondary_development_thesis_v1_0_0/figures/03_qnn_structural_robustness_pr_auc.png
+        - reports/secondary_development_thesis_v1_0_0/figures/03_qnn_structural_robustness_pr_auc.svg
+        - reports/secondary_development_thesis_v1_0_0/figures/04_common_permutation_importance_heatmap.png
+        - reports/secondary_development_thesis_v1_0_0/figures/04_common_permutation_importance_heatmap.svg
+        - reports/secondary_development_thesis_v1_0_0/figures/05_detailed_feature_importance.png
+        - reports/secondary_development_thesis_v1_0_0/figures/05_detailed_feature_importance.svg
+        - reports/secondary_development_thesis_v1_0_0/figures/06_qnn_encoded_sensitivity.png
+        - reports/secondary_development_thesis_v1_0_0/figures/06_qnn_encoded_sensitivity.svg
+        - reports/secondary_development_thesis_v1_0_0/summary.md
+        - reports/secondary_development_thesis_v1_0_0/tables/01_execution_completeness.csv
+        - reports/secondary_development_thesis_v1_0_0/tables/02_pca_matched_controls.csv
+        - reports/secondary_development_thesis_v1_0_0/tables/03_xgboost_robustness.csv
+        - reports/secondary_development_thesis_v1_0_0/tables/04_qnn_structural_robustness.csv
+        - reports/secondary_development_thesis_v1_0_0/tables/05_variant_fold_metrics.csv
+        - reports/secondary_development_thesis_v1_0_0/tables/06_common_permutation_importance.csv
+        - reports/secondary_development_thesis_v1_0_0/tables/07_common_permutation_top5_by_family.csv
+        - reports/secondary_development_thesis_v1_0_0/tables/08_detailed_feature_importance.csv
+        - reports/secondary_development_thesis_v1_0_0/tables/09_qnn_encoded_sensitivity.csv
+        - reports/secondary_development_thesis_v1_0_0/tables/10_qnn_pca_loadings.csv
+
+  cryptographically_pinned_exact_inventories:
+    - id: secondary_development_v1_1_7_full_inventory
+      inventory_path: reports/secondary_development_v1_1_7/artifact_inventory.json
+      inventory_sha256: 41c66b92212f63759b97800f63faace3b5865ce6b9dddb84d20af70cf8c8e6ec
+      entries_field: files
+      entry_path_field: path
+      exact_file_count: 585
+      logical_bytes: 51253022
+      files_sha256: 85c43bf19f5cac0d0c06576fb5e428a0fd6ec746bbc3476f13f786303a9490ed
+      exact_allowed_roots:
+        - data/model_runs/secondary_development_v1_1_6
+        - data/model_runs/secondary_development_v1_1_7
+      content_access_requires_inventory_sha256_match_first: true
+      content_access_requires_safe_verifier: secondary_development_v1_1_7_freeze
+      inventory_mismatch_action: stop_without_parsing_analytical_files
+
+  exact_content_read_allowlist_for_review:
+    - configs/data_access_policy_v1_1_0.yaml
+    - configs/data_access_incident_v1_0_0.yaml
+    - configs/data_access_incident_v1_1_0.yaml
+    - configs/data_access_incident_v1_1_0_review_allowlist.yaml
+    - configs/thesis_readiness_audit_allowlist_review_v1_0_0.yaml
+    - docs/13_thesis_readiness_audit_allowlist_review_v1_0_0.md
+    - configs/thesis_readiness_audit_allowlist_review_v1_0_1.yaml
+    - docs/13_thesis_readiness_audit_allowlist_review_v1_0_1.md
+    - configs/thesis_readiness_audit_allowlist_review_v1_0_2.yaml
+    - docs/13_thesis_readiness_audit_allowlist_review_v1_0_2.md
+    - configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+    - configs/model_execution_contract_v1_2_0.yaml
+    - configs/model_execution_contract_v1_2_0_scientific_patch.yaml
+    - configs/secondary_development_analyses_v1_0_0.yaml
+    - configs/secondary_development_execution_v1_1_0.yaml
+    - configs/secondary_development_execution_v1_1_1_input_key_fix.yaml
+    - configs/secondary_development_execution_v1_1_3_signal_source_fix.yaml
+    - configs/secondary_development_execution_v1_1_4_parallel_checkpoint_fix.yaml
+    - configs/secondary_development_execution_v1_1_5_economic_group_permutation_fix.yaml
+    - configs/secondary_development_execution_v1_1_6_treeshap_fix.yaml
+    - configs/secondary_development_execution_v1_1_7_report_integrity_fix.yaml
+    - configs/secondary_development_v1_1_7_results_freeze_manifest.yaml
+    - configs/thesis_readiness_audit_v1_0_3_allowlist.yaml
+    - docs/09_1_data_access_policy_v1_1_0.md
+    - docs/09_2_data_access_incident_v1_0_0.md
+    - docs/09_3_data_access_incident_v1_1_0.md
+    - docs/09_5_data_access_incident_v1_1_0_independent_review_v1_0_0.md
+    - docs/CODEX_REMAINING_WORK_PROMPTS.md
+    - src/__init__.py
+    - src/modeling/build_secondary_development_results_freeze_inventory_v1_1_7.py
+    - src/modeling/__init__.py
+    - src/modeling/model_execution_contract.py
+    - src/modeling/preprocessing.py
+    - src/modeling/production_runner.py
+    - src/modeling/production_worker.py
+    - src/modeling/secondary_analysis_execution.py
+    - src/modeling/secondary_analysis_execution_v1_1_1.py
+    - src/modeling/secondary_analysis_execution_v1_1_3.py
+    - src/modeling/secondary_analysis_execution_v1_1_4.py
+    - src/modeling/secondary_analysis_execution_v1_1_5.py
+    - src/modeling/secondary_analysis_execution_v1_1_6.py
+    - src/modeling/secondary_analysis_execution_v1_1_7.py
+    - src/modeling/secondary_analysis_execution_worker.py
+    - src/modeling/secondary_analysis_execution_worker_v1_1_5.py
+    - src/modeling/secondary_analysis_execution_worker_v1_1_6.py
+    - src/modeling/secondary_analysis_runner.py
+    - src/modeling/secondary_analysis_schemas.py
+    - src/modeling/temporal_cv.py
+    - src/modeling/verify_post_coarse_results_freeze.py
+    - src/modeling/verify_secondary_analysis_execution_package.py
+    - src/modeling/verify_secondary_analysis_execution_v1_1_1.py
+    - src/modeling/verify_secondary_analysis_execution_v1_1_3.py
+    - src/modeling/verify_secondary_analysis_execution_v1_1_4.py
+    - src/modeling/verify_secondary_analysis_execution_v1_1_5.py
+    - src/modeling/verify_secondary_analysis_execution_v1_1_6.py
+    - src/modeling/verify_secondary_analysis_execution_v1_1_7.py
+    - src/modeling/verify_secondary_analysis_package.py
+    - src/modeling/verify_secondary_development_results_freeze_v1_1_7.py
+    - tests/test_thesis_readiness_audit_allowlist_v1_0_3.py
+
+  exact_write_allowlist_for_review:
+    - configs/thesis_readiness_audit_allowlist_review_v1_0_3.yaml
+    - docs/13_thesis_readiness_audit_allowlist_review_v1_0_3.md
+    - docs/10_current_experiment_status.md
+  exact_write_allowlist_for_unexpected_content_incident:
+    - configs/thesis_readiness_audit_access_incident_v1_0_3.yaml
+    - docs/13_1_thesis_readiness_audit_access_incident_v1_0_3.md
+  exact_write_allowlist_for_audit:
+    - configs/thesis_readiness_audit_v1_0_3_result.yaml
+    - docs/14_thesis_readiness_audit_v1_0_3.md
+    - tests/test_thesis_readiness_audit_boundary_v1_0_3.py
+  existing_input_files_may_be_modified: false
+  review_plan_status_existing_file_exception: docs/10_current_experiment_status.md
+  frozen_artifacts_may_be_modified: false
+
+allowed_operations:
+  step_4_preparation:
+    - read_exact_authority_and_incident_control_file
+    - list_tracked_path_names_only_in_named_non_analytical_roots
+    - file_exists_for_exact_path
+    - opaque_byte_level_sha256_for_exact_path
+    - write_allowlist_structural_test_and_plan_status_only
+    - run_safe_verifier_thesis_readiness_allowlist_structure
+    - git_status_short
+    - git_diff_exact_step_4_files
+    - commit_exact_step_4_files
+  allowlist_review:
+    - read_exact_review_allowlisted_file
+    - parse_exact_review_allowlisted_yaml
+    - static_inspect_exact_review_allowlisted_source
+    - opaque_byte_level_sha256_for_exact_path
+    - run_safe_verifier_thesis_readiness_allowlist_structure
+    - git_status_short
+    - stop_current_operation
+    - write_exact_review_output_file
+    - git_diff_exact_review_output_files
+    - commit_exact_review_output_files
+    - write_exact_unexpected_content_incident_output_file
+    - git_diff_exact_unexpected_content_incident_output_files
+    - commit_exact_unexpected_content_incident_output_files
+  audit_executor_after_review_pass:
+    - read_exact_allowlisted_text_or_binary_document
+    - parse_exact_allowlisted_yaml_json_or_csv
+    - extract_text_only_from_exact_allowlisted_docx_or_pdf
+    - render_exact_allowlisted_development_only_figure_for_visual_qa
+    - static_inspect_exact_allowlisted_source_or_test
+    - file_exists_for_exact_path
+    - opaque_byte_level_sha256_for_exact_path
+    - run_safe_verifier_by_exact_id_and_command
+    - git_status_short
+    - stop_current_operation
+    - write_exact_audit_output_file
+    - git_diff_exact_audit_output_files
+    - commit_exact_audit_output_files
+    - write_exact_unexpected_content_incident_output_file
+    - git_diff_exact_unexpected_content_incident_output_files
+    - commit_exact_unexpected_content_incident_output_files
+
+operation_constraints:
+  read_exact_review_allowlisted_file:
+    allowed_contexts: [allowlist_review]
+    exact_paths_reference: audit_scope.exact_content_read_allowlist_for_review
+    maximum_rendered_lines_per_command: 240
+    retry_with_smaller_output_after_non_exposure_limit_error: true
+  commit_exact_review_output_files:
+    allowed_contexts: [allowlist_review]
+    exact_paths_reference: audit_scope.exact_write_allowlist_for_review
+    exact_path_count: 3
+    broad_staging_allowed: false
+    additional_paths_may_be_staged_or_committed: false
+  commit_exact_unexpected_content_incident_output_files:
+    allowed_contexts: [allowlist_review, audit_executor_after_review_pass]
+    exact_paths_reference: audit_scope.exact_write_allowlist_for_unexpected_content_incident
+    exact_path_count: 2
+    broad_staging_allowed: false
+    additional_paths_may_be_staged_or_committed: false
+  commit_exact_audit_output_files:
+    allowed_contexts: [audit_executor_after_review_pass]
+    exact_paths_reference: audit_scope.exact_write_allowlist_for_audit
+    exact_path_count: 3
+    broad_staging_allowed: false
+    additional_paths_may_be_staged_or_committed: false
+
+review_subject_read_guidance:
+  exact_path: configs/thesis_readiness_audit_v1_0_3_allowlist.yaml
+  applies_to_contexts: [allowlist_review]
+  line_count_probe_required: false
+  full_file_render_in_one_command_allowed: false
+  maximum_rendered_lines_per_command: 240
+  recommended_chunk_lines: 200
+  recommended_command_template:
+      - sed
+      - -n
+      - "{start},{end}p"
+      - configs/thesis_readiness_audit_v1_0_3_allowlist.yaml
+  complete_subject_read_required_before_substantive_verdict: true
+  output_limit_error_handling_reference: >-
+    allowlist_review_execution_policy.non_exposure_tool_output_nonconformance
+
+safe_verifiers:
+  - id: thesis_readiness_allowlist_structure
+    allowed_contexts: [step_4_preparation, allowlist_review, audit_executor_after_review_pass]
+    command:
+      - python
+      - -m
+      - unittest
+      - tests/test_thesis_readiness_audit_allowlist_v1_0_3.py
+    exact_inputs:
+      - configs/thesis_readiness_audit_v1_0_3_allowlist.yaml
+      - tests/test_thesis_readiness_audit_allowlist_v1_0_3.py
+    analytical_content_access: false
+    writes_project_files: false
+  - id: post_coarse_v1_3_0_freeze
+    allowed_contexts: [audit_executor_after_review_pass]
+    command:
+      - .venv-classical/bin/python
+      - -m
+      - src.modeling.verify_post_coarse_results_freeze
+    verifier_sha256: 17024a21bb62375a1839da7a839f0e1cc1805129b589c6a770f9c43200922110
+    manifest_path: configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+    manifest_sha256: 3af5a01de5ff4e4fe3d5177ceffc3ccead3b52cab8eb8c369222c594528534bb
+    exact_inputs_reference: audit_scope.exact_development_only_content_allowlist.primary_post_coarse_v1_3_0.paths
+    controlled_filename_inventory_only:
+      - reports/post_coarse_v1_3_0
+    analytical_boundary: development_only_oof_2015_2020
+    writes_project_files: false
+  - id: secondary_development_v1_1_7_freeze
+    allowed_contexts: [audit_executor_after_review_pass]
+    command:
+      - .venv-classical/bin/python
+      - -m
+      - src.modeling.verify_secondary_development_results_freeze_v1_1_7
+      - --require-committed
+    verifier_sha256: cbef849c351efefe711523178cce108c25d19427d75473c21542d21020736417
+    manifest_path: configs/secondary_development_v1_1_7_results_freeze_manifest.yaml
+    manifest_sha256: 8e55fd9b519636f4907dc570fc7c3c032608568413e7e308eeb23a98abf86260
+    exact_inputs_reference: audit_scope.cryptographically_pinned_exact_inventories.secondary_development_v1_1_7_full_inventory
+    required_preconditions:
+      - inventory_sha256_matches_before_analytical_file_parsing
+      - inventory_paths_remain_under_both_exact_allowed_roots
+      - inventory_file_count_and_files_sha256_match
+      - git_worktree_clean_for_frozen_package
+    analytical_boundary: development_only_oof_2015_2020
+    writes_project_files: false
+
+output_limits:
+  max_tool_output_bytes_per_command: 32768
+  max_rendered_lines_per_command: 240
+  max_exact_files_per_review_content_read_command: 1
+  max_exact_files_per_content_read_command: 12
+  max_csv_rows_rendered_per_file: 120
+  max_json_array_items_rendered_per_file: 120
+  protected_content_rendered_rows: 0
+  rerun_with_broader_scope_after_cap_allowed: false
+  truncate_or_summarize_without_expanding_scope: true
+
+explicitly_forbidden_operations:
+  - repository_wide_text_search
+  - git_grep_without_exact_allowlisted_paths
+  - recursive_search_from_workspace_root
+  - wildcard_or_glob_content_read_outside_safe_verifier
+  - directory_content_read_under_data_reports_or_notebooks_outside_exact_development_exceptions
+  - follow_symlink_for_content_read
+  - deserialize_unlisted_analytical_artifact
+  - inspect_protected_schema_row_count_distribution_sample_or_value
+  - inspect_protected_target_prediction_model_performance_or_metric
+  - render_or_reproduce_protected_value
+  - execute_test_not_explicitly_named_as_safe_verifier
+  - execute_training_fit_refit_inference_prediction_reporting_or_production_pipeline
+  - import_or_execute_notebook
+  - access_network_or_external_storage
+  - modify_existing_input_configuration_code_test_document_or_artifact_outside_exact_plan_status_exception
+  - change_model_method_selection_seed_calibration_threshold_or_reporting_contract
+  - expand_allowlist_during_review_or_audit
+  - write_stage_or_commit_file_outside_exact_context_output_route
+
+stop_policy:
+  classifications:
+    non_analytical_process_nonconformance:
+      protected_or_analytical_content_exposed: false
+      new_data_access_incident_declaration_required: false
+      scope_expansion_allowed: false
+    unexpected_protected_or_analytical_content_exposure:
+      protected_or_analytical_content_exposed: true
+      new_data_access_incident_declaration_required: true
+      scope_expansion_allowed: false
+  route_definitions:
+    review_process_nonconformance:
+      allowed_contexts: [allowlist_review]
+      classification: non_analytical_process_nonconformance
+      exact_output_route_reference: audit_scope.exact_write_allowlist_for_review
+      mandatory_operations:
+        - stop_current_operation
+        - write_exact_review_output_file
+        - git_diff_exact_review_output_files
+        - commit_exact_review_output_files
+      required_record_status: ALLOWLIST_REVIEW_FAIL
+      existing_allowlist_input_modified: false
+    retryable_review_output_nonconformance:
+      allowed_contexts: [allowlist_review]
+      classification: non_analytical_process_nonconformance
+      mandatory_operations:
+        - stop_current_operation
+      invalidates_allowlist_subject: false
+      invalidates_review_after_compliant_retry: false
+      new_allowlist_version_required: false
+      retry_same_exact_path_with_smaller_output_allowed: true
+      scope_expansion_allowed: false
+    audit_process_nonconformance:
+      allowed_contexts: [audit_executor_after_review_pass]
+      classification: non_analytical_process_nonconformance
+      exact_output_route_reference: audit_scope.exact_write_allowlist_for_audit
+      mandatory_operations:
+        - stop_current_operation
+        - write_exact_audit_output_file
+        - git_diff_exact_audit_output_files
+        - commit_exact_audit_output_files
+      required_record_status: AUDIT_ABORTED_NO_READINESS_VERDICT
+      existing_allowlist_input_modified: false
+    unexpected_content_exposure_incident:
+      allowed_contexts: [allowlist_review, audit_executor_after_review_pass]
+      classification: unexpected_protected_or_analytical_content_exposure
+      exact_output_route_reference: audit_scope.exact_write_allowlist_for_unexpected_content_incident
+      mandatory_operations:
+        - stop_current_operation
+        - write_exact_unexpected_content_incident_output_file
+        - git_diff_exact_unexpected_content_incident_output_files
+        - commit_exact_unexpected_content_incident_output_files
+      required_record_status: INCIDENT_DECLARATION_REQUIRED_REVIEW_OR_AUDIT_INVALIDATED
+      review_or_audit_verdict_output_may_be_written: false
+      protected_content_may_be_reopened_to_complete_record: false
+  mandatory_trigger_routes:
+    allowlist_review:
+      unexpected_protected_or_analytical_content: unexpected_content_exposure_incident
+      unlisted_path_required_without_content_exposure: review_process_nonconformance
+      hash_or_inventory_mismatch_without_content_exposure: review_process_nonconformance
+      schema_or_row_count_disclosure_risk_before_exposure: review_process_nonconformance
+      allowlist_violation_without_content_exposure: review_process_nonconformance
+      allowlist_violation_with_content_exposure: unexpected_content_exposure_incident
+      ambiguous_period_boundary_without_content_exposure: review_process_nonconformance
+      output_cap_exceeded_without_content_exposure: retryable_review_output_nonconformance
+    audit_executor_after_review_pass:
+      unexpected_protected_or_analytical_content: unexpected_content_exposure_incident
+      unlisted_path_required_without_content_exposure: audit_process_nonconformance
+      hash_or_inventory_mismatch_without_content_exposure: audit_process_nonconformance
+      schema_or_row_count_disclosure_risk_before_exposure: audit_process_nonconformance
+      allowlist_violation_without_content_exposure: audit_process_nonconformance
+      allowlist_violation_with_content_exposure: unexpected_content_exposure_incident
+      ambiguous_period_boundary_without_content_exposure: audit_process_nonconformance
+      output_cap_exceeded_without_content_exposure: audit_process_nonconformance
+  incident_record_may_include_values: false
+  incident_record_minimum_fields:
+    - timestamp
+    - exact_path
+    - exact_operation
+    - exposure_category_without_values
+    - containment_actions
+  nonconformance_record_may_include_protected_or_analytical_values: false
+  readiness_verdict_after_fatal_stop_allowed: false
+  readiness_verdict_after_retryable_command_stop_and_compliant_retry_allowed: true
