@@ -1,0 +1,417 @@
+schema_version: 1
+
+test_access_manifest:
+  id: test_access_manifest
+  version: 1.0.0
+  status: aborted_due_data_access_incident_v1_2_0
+  execution_authorized: false
+  incident:
+    path: configs/data_access_incident_v1_2_0.yaml
+    effect: restart_step_7a_with_a_successor_after_independent_incident_review
+  created_on: "2026-08-24"
+  execution_mode: BASE_DEVELOPMENT_ONLY
+  protected_feature_years: [2021, 2022, 2023, 2024]
+
+procedural_exception:
+  authorized_by_user: true
+  authorization_recorded_on: "2026-08-24"
+  authorized_sequence: [step_7a, step_7b, step_7c]
+  same_session_allowed: true
+  review_kind: same_session_technical_review
+  independent_review_claimed: false
+  step_6_verdict: BASELINE_AUDIT_FAIL
+  step_6_blockers_waived: false
+  effect: sequencing_exception_only
+  statement: >-
+    The user explicitly authorized Steps 7A-7C to run sequentially in this
+    session with a same-session technical review despite the Step 6 blockers.
+    This does not cure, waive, or relabel those thesis-readiness blockers.
+
+data_boundary:
+  policy: configs/data_access_policy_v1_1_0.yaml
+  full_or_mixed_2011_2024_content_read_allowed: false
+  protected_row_or_aggregate_value_read_allowed: false
+  protected_opaque_sha256_allowed: true
+  project_model_fit_allowed: false
+  new_prediction_generation_allowed: false
+  network_allowed: false
+
+environments:
+  classical:
+    owner: environments/classical/requirements.lock
+    interpreter: .venv-classical/bin/python
+    purpose: Python tests that do not require a QNN runtime
+  qnn_mlp:
+    owner: environments/qnn_mlp/requirements.lock
+    interpreter: .venv-qnn-mlp/bin/python
+    purpose: reserved; no Step 7 safe profile currently selects this environment
+
+output_policy:
+  temporary_parent: /private/tmp
+  temporary_prefix: qnn-safe-suite-v1-0-0-
+  project_tree_writes_allowed: false
+  cleanup_after_each_guarded_run: true
+
+input_contracts:
+  none:
+    exact_repository_paths: []
+    allowed_operations: [python_import, synthetic_in_memory_operations]
+
+  test_access_control:
+    exact_repository_paths:
+      - configs/test_access_manifest_v1_0_0.yaml
+      - configs/test_access_review_allowlist_v1_0_0.yaml
+      - src/testing/compat_test_runner.py
+      - src/testing/test_access_guard.py
+    allowed_operations: [yaml_deserialize, static_validation, temporary_synthetic_fixture]
+
+  coarse_reporting_synthetic:
+    exact_repository_paths:
+      - src/modeling/coarse_search_reporting.py
+      - notebooks/08_coarse_search_results_for_thesis.ipynb
+    allowed_operations: [source_text_read, notebook_json_read, temporary_synthetic_fixture]
+
+  data_access_declarations:
+    exact_repository_paths:
+      - configs/data_access_policy_v1_1_0.yaml
+      - configs/data_access_policy_v1_1_0_freeze_manifest.yaml
+      - configs/data_access_incident_v1_0_0.yaml
+      - configs/data_access_incident_v1_1_0.yaml
+      - configs/data_access_incident_v1_1_0_review_allowlist.yaml
+      - configs/supervised_ml_pipeline_v1_1_0_access_amendment.yaml
+      - configs/model_stage_v1_1_0_access_amendment.yaml
+      - docs/09_1_data_access_policy_v1_1_0.md
+      - docs/09_3_data_access_incident_v1_1_0.md
+      - docs/07_2_supervised_ml_pipeline_v1_1_0_access_amendment.md
+      - docs/08_2_model_stage_v1_1_0_access_amendment.md
+    allowed_operations: [yaml_deserialize, text_read, opaque_sha256]
+
+  historical_universe_synthetic:
+    exact_repository_paths:
+      - configs/research_universe_pit.yaml
+    allowed_operations: [yaml_deserialize, temporary_synthetic_fixture]
+
+  model_contract_static:
+    exact_repository_paths:
+      - configs/model_execution_contract_v1_2_0_freeze_manifest.yaml
+      - configs/model_stage_v1.yaml
+      - configs/model_stage_v1_freeze_manifest.yaml
+      - notebooks/05_model_stage_preregistration.ipynb
+      - src/modeling/model_execution_contract.py
+    pinned_path_authority:
+      path: configs/model_execution_contract_v1_2_0_freeze_manifest.yaml
+      sha256: 80c3e48b742ae679849872bf14715ee1e781024c5fdd9af3f26559a673c47df1
+    allowed_operations: [yaml_deserialize, source_text_read, manifest_declared_opaque_sha256, synthetic_in_memory_operations]
+
+  model_preregistration_static:
+    exact_repository_paths:
+      - notebooks/05_model_stage_preregistration.ipynb
+      - configs/model_stage_candidates_v1.json
+      - configs/model_stage_candidates_v1_scientific_patch.json
+      - configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+      - configs/research_universe_pit_freeze_manifest.yaml
+      - configs/x_t_pit_v1_freeze_manifest.yaml
+      - configs/supervised_ml_pipeline_v1.yaml
+      - configs/supervised_ml_pipeline_v1_freeze_manifest.yaml
+    allowed_operations: [json_deserialize, yaml_deserialize, opaque_sha256, source_text_absence_assertion]
+
+  model_stage_static:
+    exact_repository_paths:
+      - configs/model_stage_v1_freeze_manifest.yaml
+      - configs/model_stage_v1.yaml
+      - configs/model_stage_candidates_v1.json
+      - notebooks/05_model_stage_preregistration.ipynb
+      - data/reports/model_stage_preregistration_freeze_gate_execution.json
+    pinned_path_authority:
+      path: configs/model_stage_v1_freeze_manifest.yaml
+      sha256: f7525bc4943d233a71a2bacdc17a90c2e6ca13361ad523a0a4ee8ba33579e189
+    allowed_operations: [yaml_deserialize, json_deserialize, manifest_declared_opaque_sha256]
+
+  primitive_synthetic:
+    exact_repository_paths:
+      - configs/target_candidate_v2_pit.yaml
+      - configs/x_t_pit_v1.yaml
+      - configs/x_t_pit_v1_1_0.yaml
+    allowed_operations: [yaml_deserialize, temporary_synthetic_fixture]
+
+  source_contract_static:
+    exact_repository_paths:
+      - src/data/25_prepare_research_universe_target_inputs.py
+    allowed_operations: [source_text_read, synthetic_in_memory_operations]
+
+  secondary_synthetic:
+    exact_repository_paths:
+      - configs/secondary_development_analyses_v1_0_0.yaml
+      - configs/secondary_development_execution_v1_1_0.yaml
+      - configs/secondary_development_execution_v1_1_1_input_key_fix.yaml
+      - configs/secondary_development_execution_v1_1_3_signal_source_fix.yaml
+      - configs/secondary_development_execution_v1_1_4_parallel_checkpoint_fix.yaml
+      - configs/secondary_development_execution_v1_1_5_economic_group_permutation_fix.yaml
+      - configs/secondary_development_execution_v1_1_6_treeshap_fix.yaml
+      - configs/secondary_development_execution_v1_1_7_report_integrity_fix.yaml
+      - configs/production_experiment_runner_v1_0_1_lightning.yaml
+      - configs/secondary_development_thesis_reporting_v1_0_0.yaml
+      - scripts/run_secondary_analyses_v1_1_2.sh
+      - scripts/run_secondary_analyses_v1_1_3.sh
+      - scripts/run_secondary_analyses_v1_1_4.sh
+      - scripts/run_secondary_analyses_v1_1_5.sh
+      - scripts/run_secondary_analyses_v1_1_6.sh
+      - scripts/run_secondary_analyses_v1_1_7.sh
+    allowed_operations: [yaml_deserialize, source_text_read, temporary_synthetic_fixture, synthetic_subprocess]
+
+  target_candidate_synthetic:
+    exact_repository_paths:
+      - configs/target_candidate_v2_pit.yaml
+    allowed_operations: [yaml_deserialize, temporary_synthetic_fixture]
+
+  target_freeze_opaque:
+    exact_repository_paths:
+      - configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+    pinned_path_authority:
+      path: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+      sha256: 52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb
+    allowed_operations: [yaml_deserialize, manifest_declared_opaque_sha256]
+
+  thesis_audit_structural:
+    exact_repository_paths:
+      - configs/thesis_readiness_audit_v1_0_0_allowlist.yaml
+      - configs/thesis_readiness_audit_v1_0_1_allowlist.yaml
+      - configs/thesis_readiness_audit_v1_0_2_allowlist.yaml
+      - configs/thesis_readiness_audit_v1_0_3_allowlist.yaml
+      - configs/thesis_readiness_audit_v1_0_4_allowlist.yaml
+      - configs/thesis_readiness_audit_v1_0_5_allowlist.yaml
+      - configs/thesis_readiness_audit_allowlist_review_v1_0_0.yaml
+      - configs/thesis_readiness_audit_allowlist_review_v1_0_1.yaml
+      - configs/thesis_readiness_audit_allowlist_review_v1_0_2.yaml
+      - configs/thesis_readiness_audit_allowlist_review_v1_0_3.yaml
+      - configs/thesis_readiness_audit_allowlist_review_v1_0_4.yaml
+      - configs/thesis_readiness_audit_allowlist_review_v1_0_5.yaml
+      - configs/thesis_readiness_audit_v1_0_3_result.yaml
+      - configs/thesis_readiness_audit_v1_0_4_result.yaml
+      - configs/thesis_readiness_audit_v1_0_5_result.yaml
+      - docs/10_current_experiment_status.md
+      - docs/13_thesis_readiness_audit_allowlist_review_v1_0_0.md
+      - docs/13_thesis_readiness_audit_allowlist_review_v1_0_1.md
+      - docs/13_thesis_readiness_audit_allowlist_review_v1_0_2.md
+      - docs/13_thesis_readiness_audit_allowlist_review_v1_0_3.md
+      - docs/13_thesis_readiness_audit_allowlist_review_v1_0_4.md
+      - docs/13_thesis_readiness_audit_allowlist_review_v1_0_5.md
+      - docs/14_thesis_readiness_audit_v1_0_3.md
+      - docs/14_thesis_readiness_audit_v1_0_4.md
+      - docs/14_thesis_readiness_audit_v1_0_5.md
+    allowed_operations: [yaml_deserialize, text_read, manifest_declared_opaque_sha256, structural_assertion]
+
+  post_coarse_static_development:
+    exact_repository_paths:
+      - configs/post_coarse_experiment_v1_0_0.yaml
+      - configs/model_stage_v1_3_0_neural_comparator_amendment.yaml
+      - configs/model_execution_contract_v1_2_0_scientific_patch.yaml
+      - configs/model_stage_candidates_v1_scientific_patch.json
+      - configs/model_stage_v1.yaml
+      - src/modeling/neural_comparison_inference.py
+      - data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json
+    allowed_operations: [yaml_deserialize, json_deserialize, source_text_read, opaque_sha256]
+
+  post_coarse_confirmation_development:
+    exact_repository_paths:
+      - configs/post_coarse_experiment_v1_0_4_confirmation_fold_parallel.yaml
+      - data/model_runs/post_coarse_v1_3_0/qnn_phase_manifest.json
+      - data/model_runs/post_coarse_v1_3_0/confirmation_classical_phase_manifest.json
+      - data/model_runs/post_coarse_v1_3_0/post_coarse_confirmation_selection.json
+    allowed_operations: [yaml_deserialize, development_json_deserialize, opaque_sha256, temporary_synthetic_fixture]
+
+  post_coarse_freeze_development:
+    exact_repository_paths:
+      - configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+    pinned_path_authority:
+      path: configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+      sha256: 3af5a01de5ff4e4fe3d5177ceffc3ccead3b52cab8eb8c369222c594528534bb
+    allowed_operations: [yaml_deserialize, manifest_declared_development_deserialize, manifest_declared_opaque_sha256]
+
+  resolver_train_development:
+    exact_repository_paths:
+      - configs/x_t_pit_v1_1_0_train_freeze_manifest.yaml
+      - configs/target_candidate_v2_pit_b_v1_1_0_train_freeze_manifest.yaml
+      - configs/supervised_ml_pipeline_v1_2_0.yaml
+      - configs/supervised_ml_pipeline_v1_2_0_freeze_manifest.yaml
+      - data/reports/resolver_x_t_v1_1_0_impact_audit.json
+      - data/reports/resolver_x_t_v1_1_0_causal_control.json
+      - data/processed/x_t_pit_v1_raw.csv
+      - data/interim/target_candidate_v2_pit_b.csv
+    allowed_operations: [yaml_deserialize, development_json_deserialize, train_2011_2020_csv_deserialize, historical_artifact_opaque_sha256]
+
+  secondary_freeze_development:
+    exact_repository_paths:
+      - configs/secondary_development_v1_1_7_results_freeze_manifest.yaml
+      - reports/secondary_development_v1_1_7/artifact_inventory.json
+    pinned_path_authority:
+      path: configs/secondary_development_v1_1_7_results_freeze_manifest.yaml
+      sha256: 8e55fd9b519636f4907dc570fc7c3c032608568413e7e308eeb23a98abf86260
+    allowed_operations: [yaml_deserialize, manifest_declared_development_deserialize, manifest_declared_opaque_sha256, tracked_inventory_metadata]
+
+  timezone_train_development:
+    exact_repository_paths:
+      - configs/timezone_pit_fix_v1_0_0.yaml
+    allowed_operations: [yaml_deserialize, config_declared_train_2011_2020_csv_deserialize, development_json_deserialize, temporary_synthetic_fixture]
+
+  x_t_invariance_train_development:
+    exact_repository_paths:
+      - configs/x_t_pit_v1_1_0.yaml
+      - data/interim/x_t_pit_v1_0_0_train_access_projection.csv
+      - data/interim/x_t_pit_v1_1_0_train_source_rebuild_candidate.csv
+      - data/processed/x_t_pit_v1_1_0_train.csv
+    allowed_operations: [yaml_deserialize, train_2011_2020_csv_deserialize, temporary_train_replay]
+
+  blocked:
+    exact_repository_paths: []
+    allowed_operations: [none_guard_refuses_execution]
+
+profiles:
+  synthetic-config-only:
+    description: Synthetic, configuration, source-contract, and opaque-hash checks only
+    requires_review_pass: false
+    test_ids:
+      - test_access_guard_v1_0_0
+      - coarse_search_reporting
+      - data_access_incident_v1_1_0
+      - data_access_policy_v1_1_0
+      - historical_research_universe
+      - model_execution_contract_v1_2_0
+      - model_stage_preregistration
+      - model_stage_v1_freeze
+      - preprocessing
+      - primitive_resolver_v1_1
+      - registrant_role_economic_entity
+      - revenue_manual_review
+      - sec_timestamps
+      - secondary_analysis_execution
+      - secondary_analysis_execution_v1_1_1
+      - secondary_analysis_execution_v1_1_3
+      - secondary_analysis_execution_v1_1_4
+      - secondary_analysis_execution_v1_1_5
+      - secondary_analysis_execution_v1_1_6
+      - secondary_analysis_execution_v1_1_7
+      - secondary_analysis_launcher_v1_1_2
+      - secondary_analysis_package
+      - secondary_development_thesis_reporting_v1_0_0
+      - target_candidate_v2_pit
+      - target_candidate_v2_pit_freeze
+      - temporal_cv
+      - thesis_readiness_audit_allowlist_v1_0_0
+      - thesis_readiness_audit_allowlist_v1_0_1
+      - thesis_readiness_audit_allowlist_v1_0_2
+      - thesis_readiness_audit_allowlist_v1_0_3
+      - thesis_readiness_audit_allowlist_v1_0_4
+      - thesis_readiness_audit_allowlist_v1_0_5
+      - thesis_readiness_audit_boundary_v1_0_3
+      - thesis_readiness_audit_boundary_v1_0_4
+      - thesis_readiness_audit_boundary_v1_0_5
+
+  canonical-safe:
+    description: Reviewed synthetic/config-only plus exact development-only tests
+    requires_review_pass: true
+    test_ids:
+      - test_access_guard_v1_0_0
+      - coarse_search_reporting
+      - data_access_incident_v1_1_0
+      - data_access_policy_v1_1_0
+      - historical_research_universe
+      - model_execution_contract_v1_2_0
+      - model_stage_preregistration
+      - model_stage_v1_freeze
+      - preprocessing
+      - primitive_resolver_v1_1
+      - registrant_role_economic_entity
+      - revenue_manual_review
+      - sec_timestamps
+      - secondary_analysis_execution
+      - secondary_analysis_execution_v1_1_1
+      - secondary_analysis_execution_v1_1_3
+      - secondary_analysis_execution_v1_1_4
+      - secondary_analysis_execution_v1_1_5
+      - secondary_analysis_execution_v1_1_6
+      - secondary_analysis_execution_v1_1_7
+      - secondary_analysis_launcher_v1_1_2
+      - secondary_analysis_package
+      - secondary_development_thesis_reporting_v1_0_0
+      - target_candidate_v2_pit
+      - target_candidate_v2_pit_freeze
+      - temporal_cv
+      - thesis_readiness_audit_allowlist_v1_0_0
+      - thesis_readiness_audit_allowlist_v1_0_1
+      - thesis_readiness_audit_allowlist_v1_0_2
+      - thesis_readiness_audit_allowlist_v1_0_3
+      - thesis_readiness_audit_allowlist_v1_0_4
+      - thesis_readiness_audit_allowlist_v1_0_5
+      - thesis_readiness_audit_boundary_v1_0_3
+      - thesis_readiness_audit_boundary_v1_0_4
+      - thesis_readiness_audit_boundary_v1_0_5
+      - post_coarse_confirmation_schedule
+      - post_coarse_runner
+      - post_coarse_v1_3_0_results_freeze
+      - resolver_x_t_v1_1_freeze
+      - secondary_development_results_freeze_v1_1_7
+      - timezone_pit_fix_v1_0_0
+      - x_t_pit_v1_1_invariance
+
+canonical_command:
+  status: blocked_by_data_access_incident_v1_2_0
+  forward: .venv-classical/bin/python -m src.testing.test_access_guard --manifest configs/test_access_manifest_v1_0_0.yaml run --profile canonical-safe --order manifest
+  reverse: .venv-classical/bin/python -m src.testing.test_access_guard --manifest configs/test_access_manifest_v1_0_0.yaml run --profile canonical-safe --order reverse
+
+review:
+  exact_allowlist: configs/test_access_review_allowlist_v1_0_0.yaml
+  result_path: configs/test_access_review_v1_0_0_result.yaml
+  required_verdict: TEST_ACCESS_REVIEW_PASS
+  suite_execution_during_review_allowed: false
+  review_kind: same_session_technical_review
+
+test_modules:
+  - {id: test_access_guard_v1_0_0, path: tests/test_test_access_guard_v1_0_0.py, pytest_target: tests/test_test_access_guard_v1_0_0.py, category: synthetic/config-only, environment: classical, input_contract: test_access_control, operations: [static_validation, synthetic_guard_bypass_regression], enabled: true}
+  - {id: coarse_search_reporting, path: tests/test_coarse_search_reporting.py, pytest_target: tests/test_coarse_search_reporting.py, category: synthetic/config-only, environment: qnn_mlp, input_contract: coarse_reporting_synthetic, operations: [temporary_synthetic_fixture, static_source_contract], enabled: true}
+  - {id: data_access_incident_v1_1_0, path: tests/test_data_access_incident_v1_1_0.py, pytest_target: tests/test_data_access_incident_v1_1_0.py, category: synthetic/config-only, environment: classical, input_contract: data_access_declarations, operations: [configuration_structure, opaque_hash], enabled: true}
+  - {id: data_access_policy_v1_1_0, path: tests/test_data_access_policy_v1_1_0.py, pytest_target: tests/test_data_access_policy_v1_1_0.py, category: synthetic/config-only, environment: classical, input_contract: data_access_declarations, operations: [configuration_structure, opaque_hash], enabled: true}
+  - {id: historical_research_universe, path: tests/test_historical_research_universe.py, pytest_target: tests/test_historical_research_universe.py, category: synthetic/config-only, environment: classical, input_contract: historical_universe_synthetic, operations: [temporary_synthetic_fixture], enabled: true}
+  - {id: historical_research_universe_freeze, path: tests/test_historical_research_universe_freeze.py, pytest_target: tests/test_historical_research_universe_freeze.py, category: protected/gated, environment: classical, input_contract: blocked, operations: [refused_full_panel_deserialize], enabled: false}
+  - {id: model_execution_contract_v1_2_0, path: tests/test_model_execution_contract_v1_2_0.py, pytest_target: tests/test_model_execution_contract_v1_2_0.py, category: synthetic/config-only, environment: classical, input_contract: model_contract_static, operations: [configuration_structure, opaque_hash, synthetic_in_memory_operations], enabled: true}
+  - {id: model_stage_preregistration, path: tests/test_model_stage_preregistration.py, pytest_target: tests/test_model_stage_preregistration.py, category: synthetic/config-only, environment: classical, input_contract: model_preregistration_static, operations: [configuration_structure, opaque_hash, source_absence_assertion], enabled: true}
+  - {id: model_stage_v1_freeze, path: tests/test_model_stage_v1_freeze.py, pytest_target: tests/test_model_stage_v1_freeze.py, category: synthetic/config-only, environment: classical, input_contract: model_stage_static, operations: [configuration_structure, manifest_declared_opaque_hash], enabled: true}
+  - {id: post_coarse_confirmation_schedule, path: tests/test_post_coarse_confirmation_schedule.py, pytest_target: tests/test_post_coarse_confirmation_schedule.py, category: development-only, environment: classical, input_contract: post_coarse_confirmation_development, operations: [development_manifest_read, temporary_synthetic_fixture], enabled: true}
+  - {id: post_coarse_runner, path: tests/test_post_coarse_runner.py, pytest_target: tests/test_post_coarse_runner.py, category: development-only, environment: classical, input_contract: post_coarse_static_development, operations: [development_manifest_read, configuration_structure], enabled: true}
+  - {id: post_coarse_v1_3_0_results_freeze, path: tests/test_post_coarse_v1_3_0_results_freeze.py, pytest_target: tests/test_post_coarse_v1_3_0_results_freeze.py, category: development-only, environment: classical, input_contract: post_coarse_freeze_development, operations: [development_result_verification], enabled: true}
+  - {id: preprocessing, path: tests/test_preprocessing.py, pytest_target: tests/test_preprocessing.py, category: synthetic/config-only, environment: classical, input_contract: none, operations: [synthetic_in_memory_preprocessing], enabled: true}
+  - {id: primitive_resolver_v1_1, path: tests/test_primitive_resolver_v1_1.py, pytest_target: tests/test_primitive_resolver_v1_1.py, category: synthetic/config-only, environment: classical, input_contract: primitive_synthetic, operations: [temporary_synthetic_fixture], enabled: true}
+  - {id: production_runner_v1_0_0, path: tests/test_production_runner_v1_0_0.py, pytest_target: tests/test_production_runner_v1_0_0.py, category: protected/gated, environment: classical, input_contract: blocked, operations: [refused_model_execution_capable_module], enabled: false}
+  - {id: registrant_role_economic_entity, path: tests/test_registrant_role_economic_entity.py, pytest_target: tests/test_registrant_role_economic_entity.py, category: synthetic/config-only, environment: classical, input_contract: none, operations: [synthetic_in_memory_operations], enabled: true}
+  - {id: research_universe_target_application, path: tests/test_research_universe_target_application.py, pytest_target: tests/test_research_universe_target_application.py, category: protected/gated, environment: classical, input_contract: blocked, operations: [refused_full_universe_metadata_deserialize], enabled: false}
+  - {id: resolver_x_t_v1_1_freeze, path: tests/test_resolver_x_t_v1_1_freeze.py, pytest_target: tests/test_resolver_x_t_v1_1_freeze.py, category: development-only, environment: classical, input_contract: resolver_train_development, operations: [train_only_deserialize, historical_opaque_hash], enabled: true}
+  - {id: revenue_manual_review, path: tests/test_revenue_manual_review.py, pytest_target: tests/test_revenue_manual_review.py, category: synthetic/config-only, environment: classical, input_contract: none, operations: [temporary_synthetic_fixture], enabled: true}
+  - {id: sec_timestamps, path: tests/test_sec_timestamps.py, pytest_target: tests/test_sec_timestamps.py, category: synthetic/config-only, environment: classical, input_contract: none, operations: [synthetic_in_memory_operations], enabled: true}
+  - {id: secondary_analysis_execution, path: tests/test_secondary_analysis_execution.py, pytest_target: tests/test_secondary_analysis_execution.py, category: synthetic/config-only, environment: classical, input_contract: secondary_synthetic, operations: [temporary_synthetic_fixture], enabled: true}
+  - {id: secondary_analysis_execution_v1_1_1, path: tests/test_secondary_analysis_execution_v1_1_1.py, pytest_target: tests/test_secondary_analysis_execution_v1_1_1.py, category: synthetic/config-only, environment: classical, input_contract: secondary_synthetic, operations: [temporary_synthetic_fixture], enabled: true}
+  - {id: secondary_analysis_execution_v1_1_3, path: tests/test_secondary_analysis_execution_v1_1_3.py, pytest_target: tests/test_secondary_analysis_execution_v1_1_3.py, category: synthetic/config-only, environment: classical, input_contract: secondary_synthetic, operations: [temporary_synthetic_fixture, static_source_contract], enabled: true}
+  - {id: secondary_analysis_execution_v1_1_4, path: tests/test_secondary_analysis_execution_v1_1_4.py, pytest_target: tests/test_secondary_analysis_execution_v1_1_4.py, category: synthetic/config-only, environment: classical, input_contract: secondary_synthetic, operations: [temporary_synthetic_fixture, synthetic_execution_routes], enabled: true}
+  - {id: secondary_analysis_execution_v1_1_5, path: tests/test_secondary_analysis_execution_v1_1_5.py, pytest_target: tests/test_secondary_analysis_execution_v1_1_5.py, category: synthetic/config-only, environment: classical, input_contract: secondary_synthetic, operations: [temporary_synthetic_fixture, static_source_contract], enabled: true}
+  - {id: secondary_analysis_execution_v1_1_6, path: tests/test_secondary_analysis_execution_v1_1_6.py, pytest_target: tests/test_secondary_analysis_execution_v1_1_6.py, category: synthetic/config-only, environment: classical, input_contract: secondary_synthetic, operations: [temporary_synthetic_fixture, synthetic_subprocess], enabled: true}
+  - {id: secondary_analysis_execution_v1_1_7, path: tests/test_secondary_analysis_execution_v1_1_7.py, pytest_target: tests/test_secondary_analysis_execution_v1_1_7.py, category: synthetic/config-only, environment: classical, input_contract: secondary_synthetic, operations: [temporary_synthetic_fixture, static_source_contract], enabled: true}
+  - {id: secondary_analysis_launcher_v1_1_2, path: tests/test_secondary_analysis_launcher_v1_1_2.py, pytest_target: tests/test_secondary_analysis_launcher_v1_1_2.py, category: synthetic/config-only, environment: classical, input_contract: secondary_synthetic, operations: [configuration_structure, static_source_contract], enabled: true}
+  - {id: secondary_analysis_package, path: tests/test_secondary_analysis_package.py, pytest_target: tests/test_secondary_analysis_package.py, category: synthetic/config-only, environment: classical, input_contract: secondary_synthetic, operations: [temporary_synthetic_fixture], enabled: true}
+  - {id: secondary_development_results_freeze_v1_1_7, path: tests/test_secondary_development_results_freeze_v1_1_7.py, pytest_target: tests/test_secondary_development_results_freeze_v1_1_7.py, category: development-only, environment: classical, input_contract: secondary_freeze_development, operations: [development_result_verification], enabled: true}
+  - {id: secondary_development_thesis_reporting_v1_0_0, path: tests/test_secondary_development_thesis_reporting_v1_0_0.py, pytest_target: tests/test_secondary_development_thesis_reporting_v1_0_0.py, category: synthetic/config-only, environment: qnn_mlp, input_contract: secondary_synthetic, operations: [temporary_synthetic_fixture, static_source_contract], enabled: true}
+  - {id: supervised_ml_pipeline_v1_freeze, path: tests/test_supervised_ml_pipeline_v1_freeze.py, pytest_target: tests/test_supervised_ml_pipeline_v1_freeze.py, category: protected/gated, environment: classical, input_contract: blocked, operations: [refused_2011_2022_deserialize_before_filter], enabled: false}
+  - {id: target_candidate_v2_pit, path: tests/test_target_candidate_v2_pit.py, pytest_target: tests/test_target_candidate_v2_pit.py, category: synthetic/config-only, environment: qnn_mlp, input_contract: target_candidate_synthetic, operations: [temporary_synthetic_fixture], enabled: true}
+  - {id: target_candidate_v2_pit_freeze, path: tests/test_target_candidate_v2_pit_freeze.py, pytest_target: tests/test_target_candidate_v2_pit_freeze.py, category: synthetic/config-only, environment: classical, input_contract: target_freeze_opaque, operations: [configuration_structure, manifest_declared_opaque_hash], enabled: true}
+  - {id: temporal_cv, path: tests/test_temporal_cv.py, pytest_target: tests/test_temporal_cv.py, category: synthetic/config-only, environment: classical, input_contract: none, operations: [synthetic_in_memory_operations], enabled: true}
+  - {id: thesis_readiness_audit_allowlist_v1_0_0, path: tests/test_thesis_readiness_audit_allowlist_v1_0_0.py, pytest_target: tests/test_thesis_readiness_audit_allowlist_v1_0_0.py, category: synthetic/config-only, environment: classical, input_contract: thesis_audit_structural, operations: [structural_assertion, opaque_hash], enabled: true}
+  - {id: thesis_readiness_audit_allowlist_v1_0_1, path: tests/test_thesis_readiness_audit_allowlist_v1_0_1.py, pytest_target: tests/test_thesis_readiness_audit_allowlist_v1_0_1.py, category: synthetic/config-only, environment: classical, input_contract: thesis_audit_structural, operations: [structural_assertion, opaque_hash], enabled: true}
+  - {id: thesis_readiness_audit_allowlist_v1_0_2, path: tests/test_thesis_readiness_audit_allowlist_v1_0_2.py, pytest_target: tests/test_thesis_readiness_audit_allowlist_v1_0_2.py, category: synthetic/config-only, environment: classical, input_contract: thesis_audit_structural, operations: [structural_assertion, opaque_hash], enabled: true}
+  - {id: thesis_readiness_audit_allowlist_v1_0_3, path: tests/test_thesis_readiness_audit_allowlist_v1_0_3.py, pytest_target: tests/test_thesis_readiness_audit_allowlist_v1_0_3.py, category: synthetic/config-only, environment: classical, input_contract: thesis_audit_structural, operations: [structural_assertion, opaque_hash], enabled: true}
+  - {id: thesis_readiness_audit_allowlist_v1_0_4, path: tests/test_thesis_readiness_audit_allowlist_v1_0_4.py, pytest_target: tests/test_thesis_readiness_audit_allowlist_v1_0_4.py, category: synthetic/config-only, environment: classical, input_contract: thesis_audit_structural, operations: [structural_assertion, opaque_hash], enabled: true}
+  - {id: thesis_readiness_audit_allowlist_v1_0_5, path: tests/test_thesis_readiness_audit_allowlist_v1_0_5.py, pytest_target: tests/test_thesis_readiness_audit_allowlist_v1_0_5.py, category: synthetic/config-only, environment: classical, input_contract: thesis_audit_structural, operations: [structural_assertion, opaque_hash], enabled: true}
+  - {id: thesis_readiness_audit_boundary_v1_0_3, path: tests/test_thesis_readiness_audit_boundary_v1_0_3.py, pytest_target: tests/test_thesis_readiness_audit_boundary_v1_0_3.py, category: synthetic/config-only, environment: classical, input_contract: thesis_audit_structural, operations: [structural_assertion], enabled: true}
+  - {id: thesis_readiness_audit_boundary_v1_0_4, path: tests/test_thesis_readiness_audit_boundary_v1_0_4.py, pytest_target: tests/test_thesis_readiness_audit_boundary_v1_0_4.py, category: synthetic/config-only, environment: classical, input_contract: thesis_audit_structural, operations: [structural_assertion], enabled: true}
+  - {id: thesis_readiness_audit_boundary_v1_0_5, path: tests/test_thesis_readiness_audit_boundary_v1_0_5.py, pytest_target: tests/test_thesis_readiness_audit_boundary_v1_0_5.py, category: synthetic/config-only, environment: classical, input_contract: thesis_audit_structural, operations: [structural_assertion], enabled: true}
+  - {id: timezone_pit_fix_v1_0_0, path: tests/test_timezone_pit_fix_v1_0_0.py, pytest_target: tests/test_timezone_pit_fix_v1_0_0.py, category: development-only, environment: classical, input_contract: timezone_train_development, operations: [train_only_deserialize, temporary_synthetic_fixture], enabled: true}
+  - {id: x_t_pit_v1, path: tests/test_x_t_pit_v1.py, pytest_target: tests/test_x_t_pit_v1.py, category: protected/gated, environment: classical, input_contract: blocked, operations: [refused_repository_tree_temporary_write], enabled: false}
+  - {id: x_t_pit_v1_1_invariance, path: tests/test_x_t_pit_v1_1_invariance.py, pytest_target: tests/test_x_t_pit_v1_1_invariance.py, category: development-only, environment: classical, input_contract: x_t_invariance_train_development, operations: [train_only_deserialize, temporary_train_replay], enabled: true}
+  - {id: x_t_pit_v1_freeze, path: tests/test_x_t_pit_v1_freeze.py, pytest_target: tests/test_x_t_pit_v1_freeze.py, category: protected/gated, environment: classical, input_contract: blocked, operations: [refused_full_2011_2024_deserialize], enabled: false}

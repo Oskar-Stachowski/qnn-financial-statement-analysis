@@ -1,0 +1,64 @@
+schema_version: 1
+
+incident_review_allowlist:
+  id: data_access_incident_v1_2_0_review_allowlist
+  version: 1.0.0
+  status: frozen_for_fresh_independent_review
+  effective_on: "2026-08-24"
+  incident:
+    path: configs/data_access_incident_v1_2_0.yaml
+    version: 1.2.0
+  purpose: verify_test_access_incident_scope_containment_and_stop_state_without_reopening_data
+
+exact_content_read_allowlist:
+  - configs/data_access_policy_v1_1_0.yaml
+  - configs/data_access_incident_v1_1_0.yaml
+  - configs/data_access_incident_v1_2_0.yaml
+  - configs/data_access_incident_v1_2_0_review_allowlist.yaml
+  - configs/test_access_manifest_v1_0_0.yaml
+  - configs/test_access_review_allowlist_v1_0_0.yaml
+  - docs/09_3_data_access_incident_v1_1_0.md
+  - docs/09_5_data_access_incident_v1_1_0_independent_review_v1_0_0.md
+  - docs/09_6_data_access_incident_v1_2_0.md
+  - docs/09_7_data_access_incident_v1_2_0_independent_review_template.md
+  - src/data/research_universe_target_application.py
+  - src/testing/test_access_guard.py
+  - tests/test_research_universe_target_application.py
+
+allowed_operations:
+  - read_exact_allowlisted_file
+  - compare_policy_incident_manifest_guard_and_test_declarations
+  - parse_allowlisted_yaml
+  - verify_offending_test_is_disabled_and_absent_from_runnable_profiles
+  - python_syntax_check_of_exact_allowlisted_python_files_without_importing_them
+  - git_status_short
+  - git_diff_for_exact_allowlisted_files_only
+  - opaque_sha256_for_exact_allowlisted_files_only
+
+explicitly_forbidden_content_roots: [data, reports, notebooks, artifacts, outputs]
+
+explicitly_forbidden_operations:
+  - run_any_test_profile
+  - import_or_execute_the_offending_test_module
+  - repository_wide_text_search
+  - git_grep_without_exact_allowlisted_paths
+  - recursive_search_from_workspace_root
+  - wildcard_content_read_outside_exact_allowlist
+  - deserialize_any_data_or_report_artifact
+  - inspect_schema_row_count_distribution_or_sample_rows
+  - execute_training_inference_reporting_or_production_pipeline
+  - reproduce_or_summarize_protected_values
+
+review_requirements:
+  fresh_context_or_independent_reviewer: true
+  current_exposed_context_may_act_as_reviewer: false
+  review_must_not_expand_scope_silently: true
+  scope_change_requires_new_committed_allowlist_version: true
+  review_outcome_requires_new_versioned_artifact: true
+  protected_period_must_remain_closed: true
+
+failure_policy:
+  on_unexpected_content_or_scope: stop_without_further_inspection
+  on_allowlist_violation: issue_new_versioned_incident_declaration
+  on_ambiguity: record_unresolved_and_do_not_resume_step_7
+

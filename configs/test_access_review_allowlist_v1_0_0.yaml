@@ -1,0 +1,148 @@
+schema_version: 1
+
+test_access_review_allowlist:
+  id: test_access_review_allowlist
+  version: 1.0.0
+  status: aborted_subject_for_incident_forensics_only
+  incident: configs/data_access_incident_v1_2_0.yaml
+  review_kind: same_session_technical_review
+  independent_review_claimed: false
+
+permitted_operations:
+  - read_exact_content_paths_below
+  - git_ls_files_tracked_test_metadata
+  - git_status_and_commit_metadata
+  - static_python_syntax_check_without_test_execution
+  - recompute_sha256_of_manifest_guard_and_review_allowlist
+  - exercise_guard_refusal_only_with_temporary_synthetic_manifests
+
+forbidden_operations:
+  - execute_synthetic_config_profile
+  - execute_development_only_tests
+  - execute_protected_gated_tests
+  - read_data_directory_content
+  - read_reports_directory_content
+  - model_fit_or_refit
+  - prediction_generation
+  - network_access
+
+tracked_inventory_command: git ls-files tests/test_*.py
+tracked_fixture_paths: []
+fixture_declaration: >-
+  There are no tracked fixture files. Runnable tests use inline values or
+  TemporaryDirectory outputs; repository artifacts are inputs, not fixtures.
+
+exact_content_paths:
+  - configs/test_access_manifest_v1_0_0.yaml
+  - configs/test_access_review_allowlist_v1_0_0.yaml
+  - configs/data_access_policy_v1_1_0.yaml
+  - configs/model_execution_contract_v1_2_0_freeze_manifest.yaml
+  - configs/model_stage_v1_freeze_manifest.yaml
+  - configs/post_coarse_v1_3_0_results_freeze_manifest.yaml
+  - configs/secondary_development_v1_1_7_results_freeze_manifest.yaml
+  - configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+  - docs/CODEX_REMAINING_WORK_PROMPTS.md
+  - docs/10_current_experiment_status.md
+  - environments/classical/requirements.lock
+  - environments/qnn_mlp/requirements.lock
+  - scripts/run_secondary_analyses_v1_1_2.sh
+  - scripts/run_secondary_analyses_v1_1_3.sh
+  - scripts/run_secondary_analyses_v1_1_4.sh
+  - scripts/run_secondary_analyses_v1_1_5.sh
+  - scripts/run_secondary_analyses_v1_1_6.sh
+  - scripts/run_secondary_analyses_v1_1_7.sh
+  - src/data/25_prepare_research_universe_target_inputs.py
+  - src/data/37_fix_target_timezone_pit_train.py
+  - src/data/historical_research_universe.py
+  - src/data/primitive_resolver_v1_1.py
+  - src/data/registrant_role_resolution.py
+  - src/data/research_universe_target_application.py
+  - src/data/revenue_manual_review.py
+  - src/data/revenue_statement_resolver.py
+  - src/data/sec_timestamps.py
+  - src/data/target_candidate_v2_pit.py
+  - src/data/x_t_pit.py
+  - src/data/x_t_pit_v1_1.py
+  - src/modeling/build_secondary_development_results_freeze_inventory_v1_1_7.py
+  - src/modeling/coarse_search_reporting.py
+  - src/modeling/model_execution_contract.py
+  - src/modeling/model_stage_preregistration.py
+  - src/modeling/model_stage_preregistration_scientific_patch.py
+  - src/modeling/neural_comparison_inference.py
+  - src/modeling/post_coarse_runner.py
+  - src/modeling/preprocessing.py
+  - src/modeling/production_runner.py
+  - src/modeling/production_worker.py
+  - src/modeling/secondary_analysis_execution.py
+  - src/modeling/secondary_analysis_execution_v1_1_1.py
+  - src/modeling/secondary_analysis_execution_v1_1_3.py
+  - src/modeling/secondary_analysis_execution_v1_1_4.py
+  - src/modeling/secondary_analysis_execution_v1_1_5.py
+  - src/modeling/secondary_analysis_execution_v1_1_6.py
+  - src/modeling/secondary_analysis_execution_v1_1_7.py
+  - src/modeling/secondary_analysis_execution_worker.py
+  - src/modeling/secondary_analysis_execution_worker_v1_1_5.py
+  - src/modeling/secondary_analysis_execution_worker_v1_1_6.py
+  - src/modeling/secondary_analysis_runner.py
+  - src/modeling/secondary_analysis_schemas.py
+  - src/modeling/secondary_analysis_smoke.py
+  - src/modeling/secondary_development_thesis_reporting_v1_0_0.py
+  - src/modeling/temporal_cv.py
+  - src/modeling/verify_environment_locks.py
+  - src/modeling/verify_post_coarse_results_freeze.py
+  - src/modeling/verify_secondary_analysis_execution_package.py
+  - src/modeling/verify_secondary_analysis_execution_v1_1_1.py
+  - src/modeling/verify_secondary_analysis_execution_v1_1_7.py
+  - src/modeling/verify_secondary_analysis_package.py
+  - src/modeling/verify_secondary_development_results_freeze_v1_1_7.py
+  - src/modeling/verify_secondary_development_thesis_report_v1_0_0.py
+  - src/testing/compat_test_runner.py
+  - src/testing/test_access_guard.py
+  - tests/test_coarse_search_reporting.py
+  - tests/test_data_access_incident_v1_1_0.py
+  - tests/test_data_access_policy_v1_1_0.py
+  - tests/test_historical_research_universe.py
+  - tests/test_historical_research_universe_freeze.py
+  - tests/test_model_execution_contract_v1_2_0.py
+  - tests/test_model_stage_preregistration.py
+  - tests/test_model_stage_v1_freeze.py
+  - tests/test_post_coarse_confirmation_schedule.py
+  - tests/test_post_coarse_runner.py
+  - tests/test_post_coarse_v1_3_0_results_freeze.py
+  - tests/test_preprocessing.py
+  - tests/test_primitive_resolver_v1_1.py
+  - tests/test_production_runner_v1_0_0.py
+  - tests/test_registrant_role_economic_entity.py
+  - tests/test_research_universe_target_application.py
+  - tests/test_resolver_x_t_v1_1_freeze.py
+  - tests/test_revenue_manual_review.py
+  - tests/test_sec_timestamps.py
+  - tests/test_secondary_analysis_execution.py
+  - tests/test_secondary_analysis_execution_v1_1_1.py
+  - tests/test_secondary_analysis_execution_v1_1_3.py
+  - tests/test_secondary_analysis_execution_v1_1_4.py
+  - tests/test_secondary_analysis_execution_v1_1_5.py
+  - tests/test_secondary_analysis_execution_v1_1_6.py
+  - tests/test_secondary_analysis_execution_v1_1_7.py
+  - tests/test_secondary_analysis_launcher_v1_1_2.py
+  - tests/test_secondary_analysis_package.py
+  - tests/test_secondary_development_results_freeze_v1_1_7.py
+  - tests/test_secondary_development_thesis_reporting_v1_0_0.py
+  - tests/test_supervised_ml_pipeline_v1_freeze.py
+  - tests/test_target_candidate_v2_pit.py
+  - tests/test_target_candidate_v2_pit_freeze.py
+  - tests/test_temporal_cv.py
+  - tests/test_test_access_guard_v1_0_0.py
+  - tests/test_thesis_readiness_audit_allowlist_v1_0_0.py
+  - tests/test_thesis_readiness_audit_allowlist_v1_0_1.py
+  - tests/test_thesis_readiness_audit_allowlist_v1_0_2.py
+  - tests/test_thesis_readiness_audit_allowlist_v1_0_3.py
+  - tests/test_thesis_readiness_audit_allowlist_v1_0_4.py
+  - tests/test_thesis_readiness_audit_allowlist_v1_0_5.py
+  - tests/test_thesis_readiness_audit_boundary_v1_0_3.py
+  - tests/test_thesis_readiness_audit_boundary_v1_0_4.py
+  - tests/test_thesis_readiness_audit_boundary_v1_0_5.py
+  - tests/test_timezone_pit_fix_v1_0_0.py
+  - tests/test_x_t_pit_v1.py
+  - tests/test_x_t_pit_v1_1_invariance.py
+  - tests/test_x_t_pit_v1_freeze.py

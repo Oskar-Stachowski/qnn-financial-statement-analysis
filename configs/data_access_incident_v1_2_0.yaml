@@ -1,0 +1,150 @@
+schema_version: 1
+
+data_access_incident:
+  id: data_access_incident
+  version: 1.2.0
+  status: open_contained_requires_fresh_independent_review
+  declaration_type: successor_record_for_test_access_manifest_misclassification
+  occurred_on: "2026-08-24"
+  detected_on: "2026-08-24"
+  controlling_policy:
+    path: configs/data_access_policy_v1_1_0.yaml
+    version: 1.1.0
+    sha256: 7ce08bca9921ff72db6b3ec6dfd1dc28c7e751e1ca1ad3b6706180809b66cd9b
+    accidental_access_policy: stop_record_scope_do_not_continue_and_issue_new_versioned_incident_declaration
+  prior_declaration:
+    path: configs/data_access_incident_v1_1_0.yaml
+    version: 1.1.0
+    sha256: 8d02609d8622a417a4f08f8d2c7cbd207cab4ddfeb51a588c6de4bfdb1b38a82
+    independent_review_record: docs/09_5_data_access_incident_v1_1_0_independent_review_v1_0_0.md
+    remains_historical_and_unchanged: true
+  affected_process: step_7a_synthetic_config_only_baseline_run
+  affected_process_result: invalidated_stopped_before_step_7a_commit
+
+trigger:
+  mechanism: test_module_misclassified_as_synthetic_config_only
+  guard_profile: synthetic-config-only
+  guard_manifest: configs/test_access_manifest_v1_0_0.yaml
+  test_id: research_universe_target_application
+  test_path: tests/test_research_universe_target_application.py
+  data_read_function: src/data/research_universe_target_application.py:load_eligible_universe
+  cause: full_universe_csv_read_was_not_traced_before_profile_execution
+  unsafe_pattern: full_artifact_deserialized_before_any_period_restriction
+  analytical_query_on_protected_data_intended: false
+  model_execution_involved: false
+
+conservatively_recorded_scope:
+  protected_feature_years_potentially_deserialized: [2021, 2022, 2023, 2024]
+  known_source_path_from_configuration: data/processed/research_universe_pit.csv
+  known_read_columns_from_source_code:
+    - research_universe_company_year_id
+    - accession
+    - cik10
+    - feature_year
+    - company_name_historical
+    - historical_sic
+    - historical_sic_description
+    - historical_sic_source
+    - research_sector
+    - membership_status
+    - membership_reason
+    - filed
+    - accepted_at
+    - membership_available_at
+    - registrant_role_resolved
+    - economic_statement_scope_id
+    - economic_group_id
+    - representative_cik
+    - linked_co_registrant_ciks
+    - resolution_evidence
+    - in_old_current_snapshot_universe
+    - recovered_vs_old_universe
+    - later_inactive_delisted_or_unmapped_proxy
+    - development_or_test
+    - xbrl_submission_available
+  known_test_operations:
+    - full_csv_deserialization
+    - eligible_membership_filter
+    - total_eligible_row_count_assertion
+    - duplicate_identity_check
+    - sort_and_head_one_after_full_deserialization
+  exact_protected_row_count: not_reopened_to_determine
+  exact_protected_values_rendered_to_agent_output: false
+  potentially_exposed_in_process_categories:
+    - row_level_company_year_identity
+    - historical_entity_and_industry_metadata
+    - membership_status_and_reason
+    - filing_and_availability_timestamps
+    - economic_entity_resolution_metadata
+    - xbrl_availability
+    - development_or_test_partition_label
+  explicitly_not_observed_or_used:
+    - financial_feature_values
+    - target_values_or_class_labels
+    - model_predictions
+    - model_performance
+    - hyperparameter_results
+    - calibration_or_threshold_results
+  scope_limit_reason: further_data_inspection_is_forbidden_and_would_compound_the_incident
+
+decision_contamination:
+  protected_values_used_for_methodology: false
+  protected_values_used_for_model_selection: false
+  protected_values_used_for_preprocessing_or_sample_design: false
+  protected_values_used_for_results_interpretation: false
+  new_methodological_decisions_taken_after_exposure: false
+  models_trained_on_project_data: false
+  new_predictions_generated: false
+  formal_step_7_verdict_may_be_passed_in_affected_run: false
+
+containment:
+  guarded_suite_stopped: true
+  development_only_suite_started: false
+  protected_test_reexecuted: false
+  further_protected_content_inspection_executed: false
+  offending_test_reclassified_as_protected_gated: true
+  offending_test_removed_from_all_runnable_profiles: true
+  project_model_training_executed: false
+  frozen_manifests_or_result_artifacts_modified: false
+  methodology_modified: false
+  protected_values_reproduced_in_declaration: false
+  step_7b_or_step_7c_started_after_detection: false
+
+independent_review_control:
+  allowlist_path: configs/data_access_incident_v1_2_0_review_allowlist.yaml
+  review_must_use_fresh_context_or_independent_reviewer: true
+  current_exposed_context_may_self_close_incident: false
+  review_completed: false
+  review_evidence_path: not_yet_created
+  user_same_session_step_7_review_exception_does_not_cover_incident_resolution: true
+
+required_resolution:
+  - commit_this_successor_incident_declaration_and_review_allowlist
+  - verify_the_declaration_in_a_fresh_context_or_by_an_independent_reviewer
+  - use_only_the_exact_files_and_operations_in_the_committed_review_allowlist
+  - do_not_read_data_or_reports_content_during_incident_review
+  - keep_the_offending_test_protected_gated_until_a_new_reviewed_train_only_fixture_exists
+  - restart_step_7a_from_a_clean_committed_baseline_after_incident_review
+  - do_not_reuse_any_protected_metadata_deserialized_by_the_affected_process
+
+resolution_state:
+  containment_complete: true
+  successor_declaration_created: true
+  independent_review_complete: false
+  incident_resolved: false
+  step_7_may_resume: false
+  protected_period_gate_may_be_relied_upon: false
+
+change_control:
+  this_declaration_changes_methodology: false
+  this_declaration_authorizes_protected_data_access: false
+  this_declaration_authorizes_model_training: false
+  this_declaration_resolves_prior_incidents: false
+  any_scope_correction_requires_new_incident_version: true
+  historical_declarations_manifests_and_frozen_artifacts_may_be_edited_in_place: false
+
+notes:
+  - No protected values are reproduced in this declaration.
+  - Column and operation scope comes only from the already-authorized test and source-code inspection.
+  - This declaration records containment; it cannot be self-reviewed in the exposed session.
+

@@ -4,10 +4,9 @@ import hashlib
 import json
 from pathlib import Path
 import sys
-
-import nbformat
-import pytest
-
+import tempfile
+import unittest
+from unittest import mock
 
 BUNDLE_ROOT = Path(__file__).resolve().parents[1]
 if str(BUNDLE_ROOT) not in sys.path:
@@ -208,94 +207,110 @@ def _write_run(root: Path, run_id: str, payload: dict) -> Path:
     return manifest
 
 
-def test_build_report_generates_requested_outputs(
-    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
-) -> None:
-    # The compact fixture intentionally contains one candidate per family/block
-    # (22 positions), not the project's full frozen 247-position coarse registry.
-    # Patch only the test's frozen-count lookup so production integrity checks
-    # remain strict when the reporting code is run against the real repository.
-    import src.modeling.coarse_search_reporting as reporting
+class CoarseSearchReportingTests(unittest.TestCase):
+    def test_build_report_generates_requested_outputs(self) -> None:
+        # The compact fixture intentionally contains one candidate per
+        # family/block, not the full frozen coarse registry.
+        import src.modeling.coarse_search_reporting as reporting
 
-    fixture_expected_positions = 1 + (len(FAMILIES) - 1) * len(BLOCKS)
-    monkeypatch.setattr(
-        reporting,
-        "_expected_coarse_positions_from_frozen_registry",
-        lambda: fixture_expected_positions,
-    )
+        fixture_expected_positions = 1 + (len(FAMILIES) - 1) * len(BLOCKS)
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        with mock.patch.object(
+            reporting,
+            "_expected_coarse_positions_from_frozen_registry",
+            return_value=fixture_expected_positions,
+        ):
+            root = _make_root(Path(temporary.name))
+            _write_run(root, "coarse_fixture", _manifest_payload())
+            report = build_coarse_search_report(
+                project_root=root,
+                output_dir=root / "reports/coarse_search_thesis",
+                verify_oof_hashes=False,
+            )
 
-    root = _make_root(tmp_path)
-    _write_run(root, "coarse_fixture", _manifest_payload())
-
-    report = build_coarse_search_report(
-        project_root=root,
-        output_dir=root / "reports/coarse_search_thesis",
-        verify_oof_hashes=False,
-    )
-
-    assert report.source.run_manifest_verified is True
-    assert len(report.tables["best_by_family"]) == len(FAMILIES)
-    assert len(report.tables["top20"]) == 20
-    assert set(report.tables["feature_blocks_overall"]["feature_block"]) == set(BLOCKS)
-    assert set(report.tables["yearly_pr_auc"]["year"]) == set(YEARS)
-    assert report.tables["thesis_family_summary"]["Status"].isin(
-        {"baseline", "kandydat do refinementu", "prowizoryczny lider rodziny"}
-    ).all()
-    assert all(path.is_file() for path in report.figures.values())
-    assert report.analysis_manifest_path.is_file()
-    analysis_manifest = json.loads(report.analysis_manifest_path.read_text(encoding="utf-8"))
-    assert analysis_manifest["model_fit_performed"] is False
-    assert analysis_manifest["protected_feature_years_opened"] is False
-    assert "prowizoryczny lider" in report.summary_markdown
-    assert "wynik nie jest finalny" in report.summary_markdown
-
-
-def test_smoke_mode_is_rejected_as_source(tmp_path: Path) -> None:
-    root = _make_root(tmp_path)
-    payload = _manifest_payload()
-    payload["mode"] = "real_data_execution_smoke_not_model_selection"
-    _write_run(root, "smoke", payload)
-
-    with pytest.raises(CoarseSearchArtifactNotFound):
-        select_canonical_manifest(root)
-
-
-def test_distinct_verified_runs_are_not_selected_arbitrarily(tmp_path: Path) -> None:
-    root = _make_root(tmp_path)
-    _write_run(root, "run_a", _manifest_payload(quality_offset=0.0))
-    _write_run(root, "run_b", _manifest_payload(quality_offset=0.001))
-
-    with pytest.raises(AmbiguousCoarseSearchSource):
-        select_canonical_manifest(root)
-
-
-def test_duplicate_candidate_identity_fails_integrity(tmp_path: Path) -> None:
-    root = _make_root(tmp_path)
-    payload = _manifest_payload()
-    payload["candidate_results"].append(dict(payload["candidate_results"][0]))
-    payload["executed_candidate_positions"] += 1
-    _write_run(root, "duplicates", payload)
-
-    with pytest.raises(CoarseSearchIntegrityError, match="DUPLICATE_CANDIDATE_IDENTITY"):
-        build_coarse_search_report(
-            project_root=root,
-            output_dir=root / "reports/coarse_search_thesis",
-            verify_oof_hashes=False,
+        self.assertIs(report.source.run_manifest_verified, True)
+        self.assertEqual(len(report.tables["best_by_family"]), len(FAMILIES))
+        self.assertEqual(len(report.tables["top20"]), 20)
+        self.assertEqual(
+            set(report.tables["feature_blocks_overall"]["feature_block"]),
+            set(BLOCKS),
         )
+        self.assertEqual(set(report.tables["yearly_pr_auc"]["year"]), set(YEARS))
+        self.assertTrue(
+            report.tables["thesis_family_summary"]["Status"]
+            .isin(
+                {
+                    "baseline",
+                    "kandydat do refinementu",
+                    "prowizoryczny lider rodziny",
+                }
+            )
+            .all()
+        )
+        self.assertTrue(all(path.is_file() for path in report.figures.values()))
+        self.assertTrue(report.analysis_manifest_path.is_file())
+        analysis_manifest = json.loads(
+            report.analysis_manifest_path.read_text(encoding="utf-8")
+        )
+        self.assertIs(analysis_manifest["model_fit_performed"], False)
+        self.assertIs(analysis_manifest["protected_feature_years_opened"], False)
+        self.assertIn("prowizoryczny lider", report.summary_markdown)
+        self.assertIn("wynik nie jest finalny", report.summary_markdown)
+
+    def test_smoke_mode_is_rejected_as_source(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = _make_root(Path(directory))
+            payload = _manifest_payload()
+            payload["mode"] = "real_data_execution_smoke_not_model_selection"
+            _write_run(root, "smoke", payload)
+            with self.assertRaises(CoarseSearchArtifactNotFound):
+                select_canonical_manifest(root)
+
+    def test_distinct_verified_runs_are_not_selected_arbitrarily(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = _make_root(Path(directory))
+            _write_run(root, "run_a", _manifest_payload(quality_offset=0.0))
+            _write_run(root, "run_b", _manifest_payload(quality_offset=0.001))
+            with self.assertRaises(AmbiguousCoarseSearchSource):
+                select_canonical_manifest(root)
+
+    def test_duplicate_candidate_identity_fails_integrity(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = _make_root(Path(directory))
+            payload = _manifest_payload()
+            payload["candidate_results"].append(dict(payload["candidate_results"][0]))
+            payload["executed_candidate_positions"] += 1
+            _write_run(root, "duplicates", payload)
+            with self.assertRaisesRegex(
+                CoarseSearchIntegrityError, "DUPLICATE_CANDIDATE_IDENTITY"
+            ):
+                build_coarse_search_report(
+                    project_root=root,
+                    output_dir=root / "reports/coarse_search_thesis",
+                    verify_oof_hashes=False,
+                )
+
+    def test_reporting_code_contains_no_training_invocation(self) -> None:
+        module_path = BUNDLE_ROOT / "src/modeling/coarse_search_reporting.py"
+        module_text = module_path.read_text(encoding="utf-8")
+        self.assertNotIn(".fit(", module_text)
+        self.assertNotIn("run_classical_mlp_coarse_search(", module_text)
+        self.assertNotIn("ProductionExperimentRunner(", module_text)
+
+        notebook_path = (
+            BUNDLE_ROOT / "notebooks/08_coarse_search_results_for_thesis.ipynb"
+        )
+        notebook = json.loads(notebook_path.read_text(encoding="utf-8"))
+        code = "\n".join(
+            "".join(cell.get("source", []))
+            for cell in notebook.get("cells", [])
+            if cell.get("cell_type") == "code"
+        )
+        self.assertNotIn(".fit(", code)
+        self.assertNotIn("run_classical_mlp_coarse_search(", code)
+        self.assertNotIn("ProductionExperimentRunner(", code)
 
 
-def test_reporting_code_contains_no_training_invocation() -> None:
-    module_path = BUNDLE_ROOT / "src/modeling/coarse_search_reporting.py"
-    module_text = module_path.read_text(encoding="utf-8")
-    assert ".fit(" not in module_text
-    assert "run_classical_mlp_coarse_search(" not in module_text
-    assert "ProductionExperimentRunner(" not in module_text
-
-    notebook_path = BUNDLE_ROOT / "notebooks/08_coarse_search_results_for_thesis.ipynb"
-    notebook = nbformat.read(notebook_path, as_version=4)
-    code = "\n".join(
-        cell.source for cell in notebook.cells if cell.cell_type == "code"
-    )
-    assert ".fit(" not in code
-    assert "run_classical_mlp_coarse_search(" not in code
-    assert "ProductionExperimentRunner(" not in code
+if __name__ == "__main__":
+    unittest.main()
