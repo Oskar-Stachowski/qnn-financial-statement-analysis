@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "review": {
+    "id": "protected_period_spent_access_repair_review",
+    "version": "1.0.1",
+    "performed_at_utc": "2026-08-24T21:13:14Z",
+    "review_kind": "same_session_technical_review",
+    "independent_review_claimed": false,
+    "same_session_author_override": true,
+    "promoter_approval_claimed": false
+  },
+  "verdict": "SPENT_ACCESS_MANIFEST_REVIEW_PASS",
+  "subject_commit": "ec2ed548e191b8b1e82115904d554a16d0d562bf",
+  "subject_manifest": "configs/protected_period_access_manifest_v1_0_0.yaml",
+  "subject_manifest_sha256": "7e4382c155af67781180060d9d2a883768fc0a768debe1c03ffc252e2044c307",
+  "authorities": {
+    "prior_review_sha256": "7120f5dd30a4bbe0e9eeb6a8e9e3043c2c502d0b2726e83f9b9cfb78b809bc3c",
+    "execution_repair_sha256": "cdfb21fb5aac74cba6987dfd65591e77afff13d44eba77001a1bad1a705740f4",
+    "repair_review_allowlist_sha256": "92b4cc5904fd283439a0856a4bd238965277db300213de1a1d574953cb7fb42c",
+    "repaired_runner_sha256": "8711d03b95bd15ef95d697f8036933d79e889e5e5fb1638f09a8df91bda5388b"
+  },
+  "repair_checks": {
+    "failure_occurred_before_first_model_fit": true,
+    "fit_artifacts_created": 0,
+    "prediction_artifacts_created": 0,
+    "performance_values_created_or_read": false,
+    "exact_change_is_overlay_expansion_only": true,
+    "frozen_timeout_values_are_loaded_without_change": true,
+    "roster_preprocessing_seeds_calibration_threshold_reporting_unchanged": true,
+    "data_and_year_scope_unchanged": true,
+    "failed_started_state_archived_without_overwrite": true,
+    "synthetic_tests_passed": 6
+  },
+  "scopes": {
+    "spent_gate_verifier_scope": {
+      "id": "SPENT_GATE_VERIFIER_SCOPE_V1_0_0",
+      "definition_sha256": "90312774dd33621ad68e59906c9081b884fcdbbf57e1ef1d49af69befa99d0a4",
+      "verdict": "PASS"
+    },
+    "spent_post_gate_execution_scope": {
+      "id": "SPENT_POST_GATE_EXECUTION_SCOPE_V1_0_0",
+      "definition_sha256": "1bfaf3523f9322e786c06e0d5269766d6994ec8d965e7084eedab4db46587f27",
+      "verdict": "PASS"
+    },
+    "spent_post_execution_freeze_scope": {
+      "id": "SPENT_POST_EXECUTION_FREEZE_SCOPE_V1_0_0",
+      "definition_sha256": "8875ab71c4e008d0a964c3032c2a1ce22163d85f5c346bc2cb647e9195c0cea0",
+      "verdict": "PASS"
+    }
+  },
+  "global_checks": {
+    "protected_content_read_during_repair_review": false,
+    "gate_executed_during_repair_review": false,
+    "model_fit_executed_during_repair_review": false,
+    "methodology_changed": false
+  },
+  "limitations": [
+    "This is an author-authorized same-session technical repair review, not an independent review.",
+    "The repeated gate result is versioned separately and the prior committed gate result is preserved."
+  ]
+}
