@@ -1,0 +1,68 @@
+schema_version: 1
+
+thesis_readiness_audit_allowlist_review:
+  id: thesis_readiness_audit_allowlist_review
+  version: 1.0.1
+  reviewed_on: "2026-08-24"
+  status: ALLOWLIST_REVIEW_FAIL
+  review_kind: independent_re_review
+  substantive_review_completed: false
+  readiness_audit_performed: false
+  protected_or_analytical_content_exposed: false
+  data_access_incident_declaration_required: false
+
+reviewed_subject:
+  path: configs/thesis_readiness_audit_v1_0_1_allowlist.yaml
+  version: 1.0.1
+  git_commit: da4d76913930240e4f04190df8a4b0cc322fa74b
+  sha256: 3410fed5c8d31d90c3cc2f1bb97700b773fda3975ec533d2ab68780bfb19c54c
+  committed_before_review: true
+  modified_during_review: false
+
+review_scope:
+  controlling_runbook:
+    path: docs/CODEX_REMAINING_WORK_PROMPTS.md
+    step: 5
+  candidate_exact_content_read_allowlist_for_review_used: true
+  allowlist_expanded_during_review: false
+  analytical_results_opened: false
+  protected_period_content_opened: false
+  model_fit_refit_or_prediction_performed: false
+
+verdict:
+  value: ALLOWLIST_REVIEW_FAIL
+  pass_condition_met: false
+  reason: >-
+    The independent review process exceeded the candidate allowlist's maximum
+    of 240 rendered lines in one command. The stop policy therefore requires a
+    non-analytical process-nonconformance failure and prohibits continuation to
+    a substantive allowlist verdict.
+
+findings:
+  - id: ALLOWLIST-REVIEW-003
+    severity: BLOCKER
+    classification: non_analytical_process_nonconformance
+    requirement: output_limits.max_rendered_lines_per_command
+    expected: 240
+    observed: 300
+    triggering_operation: read_exact_review_allowlisted_file
+    exact_path: configs/thesis_readiness_audit_v1_0_1_allowlist.yaml
+    exposure_category: no_protected_or_analytical_content_exposed
+    containment:
+      - stopped_substantive_review_immediately_after_detection
+      - did_not_execute_readiness_audit
+      - did_not_open_analytical_results
+      - did_not_expand_allowlist
+      - wrote_only_the_two_predeclared_review_verdict_outputs
+    disposition: OPEN_BLOCKS_ALLOWLIST_REVIEW_PASS
+
+required_next_action:
+  runbook_route: return_to_step_4_with_a_new_allowlist_version_then_repeat_step_5
+  next_review_requires_fresh_context: true
+  per_command_rendered_line_limit_must_not_exceed: 240
+  audit_may_start: false
+
+attestation:
+  verdict_is_technical_only: true
+  author_or_promoter_status_inferred: false
+  existing_input_files_modified: false
