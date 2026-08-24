@@ -5,22 +5,27 @@ Status date: 2026-08-24
 ## Thesis-completion runbook status
 
 Step 4 of `docs/CODEX_REMAINING_WORK_PROMPTS.md` has prepared, but not approved,
-the successor exact read-only thesis-readiness audit allowlist v1.0.1. It
-remediates `ALLOWLIST-REVIEW-001` and `ALLOWLIST-REVIEW-002` from the committed
-v1.0.0 review, whose verdict was `ALLOWLIST_REVIEW_FAIL`. The v1.0.0 allowlist
-and its structural test remain byte-identical and v1.0.0 must not be used for
-the readiness audit. Version 1.0.1 has status
+the successor exact read-only thesis-readiness audit allowlist v1.0.2. It
+preserves the v1.0.1 remediations for `ALLOWLIST-REVIEW-001` and
+`ALLOWLIST-REVIEW-002` and remediates the process-only
+`ALLOWLIST-REVIEW-003` from the committed v1.0.1 review, whose verdict was
+`ALLOWLIST_REVIEW_FAIL` before substantive review began. The v1.0.0 allowlist
+and structural test remain byte-identical and v1.0.0 must not be used for the
+readiness audit. Version 1.0.2 has status
 `PREPARED_AWAITING_INDEPENDENT_REVIEW`; its preparation did not execute the
-audit, open analytical content, run a model, or authorize access to feature
-years 2021–2024.
+audit, open content under `data/`, `reports/`, or `notebooks/`, run a model, or
+authorize access to feature years 2021–2024.
 
 The next action for this package is Step 5: a fresh independent review limited
 to `exact_content_read_allowlist_for_review` in
-`configs/thesis_readiness_audit_v1_0_1_allowlist.yaml`. The readiness audit must
-not start unless a separate committed review records `ALLOWLIST_REVIEW_PASS`,
-and it must then run in another fresh context against the unchanged committed
-v1.0.1 allowlist. This plan-status update does not assert completion of the
-author, promoter, or AI-compliance gates from earlier runbook steps.
+`configs/thesis_readiness_audit_v1_0_2_allowlist.yaml`. The v1.0.2 allowlist
+itself must be read with its mandatory exact closed-line-range protocol: at
+most 120 subject lines per command and at most 200 rendered lines globally.
+The readiness audit must not start unless a separate committed review records
+`ALLOWLIST_REVIEW_PASS`, and it must then run in another fresh context against
+the unchanged committed v1.0.2 allowlist. This plan-status update does not
+assert completion of the author, promoter, or AI-compliance gates from earlier
+runbook steps.
 
 ## Current state
 
