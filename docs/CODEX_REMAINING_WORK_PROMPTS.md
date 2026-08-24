@@ -250,6 +250,25 @@ Warunek przejścia: committed decision sheet ma status `AUTHOR_SCOPE_APPROVED`
 i `PROMOTER_SCOPE_APPROVED`. Jawna lista nierozwiązanych decyzji oznacza, że
 bramka pozostaje niezaliczona.
 
+#### Interpretacja podziału czasowego danych
+
+Podział okresów należy interpretować przez pryzmat danych czasowych, a nie jako prosty losowy podział train/validation/test.
+
+**Lata 2011–2020 stanowią okres development i model selection.** Funkcję zbioru walidacyjnego pełni w nim PIT-safe temporal cross-validation z walidacyjnymi latami 2015–2020. Wyniki OOF z tych foldów służą do porównywania modeli, selekcji konfiguracji, confirmation oraz pozostałych decyzji dopuszczonych przez zamrożony kontrakt. Nie jest więc wymagane wydzielenie dodatkowego, statycznego validation set tylko po to, aby zachować klasyczny schemat train/validation/test.
+
+**Lata 2021–2022 nie są niezależnym zbiorem walidacyjnym ani finalnym testem.** Pierwotnie były przeznaczone do zewnętrznej walidacji, jednak podczas wcześniejszego projektowania pipeline'u zostały ujawnione ich wybrane charakterystyki, m.in. statystyki targetu, cech, missingness i retencji. Z tego powodu są konserwatywnie klasyfikowane jako `design-exposed / spent development period`. Ich późniejsza ocena może służyć wyłącznie jako dodatkowy dowód czasowej stabilności zamrożonego rozwiązania i nie może uruchamiać ponownej selekcji, tuningu, zmiany cech, preprocessingu, kalibracji ani progu.
+
+Po zamrożeniu metodologii dane z 2021–2022 mogą również wejść do historii używanej przy prerejestrowanym reficie modelu dla późniejszych punktów predykcji. Należy odróżnić taki refit zamrożonego modelu na informacjach dostępnych w danym momencie od ponownego tuningu lub zmiany metodologii.
+
+**Lata 2023–2024 stanowią finalny temporal model-performance holdout.** Mogą zostać użyte dopiero po zamrożeniu całej procedury modelowej i przejściu odpowiednich bram dostępu. Wynik holdoutu nie może wpłynąć na wybór modelu ani metodologię. Ze względu na wcześniejsze ujawnienie wyłącznie agregatów targetu okres ten nie powinien być określany jako `fully unseen`, lecz pozostaje właściwym końcowym testem zachowania modeli na późniejszym okresie.
+
+Dane z roku 2025 mogą być potrzebne wyłącznie jako `t+1` do konstrukcji targetu dla obserwacji z feature year 2024; rok 2025 nie stanowi osobnego feature year ani dodatkowego zbioru testowego.
+
+W uproszczeniu:
+
+`2011–2020: development + temporal validation → freeze → 2021–2022: secondary temporal evaluation / późniejsza historia refitu → 2023–2024: final temporal holdout`.
+
+
 ### Krok 3. Rejestr dotychczasowego wykorzystania AI
 
 ```text
