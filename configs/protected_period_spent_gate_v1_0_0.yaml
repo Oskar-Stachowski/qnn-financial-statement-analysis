@@ -1,0 +1,33 @@
+schema_version: 1
+
+gate:
+  id: DATA_ACCESS_GATE_2021_2022_REOPEN_V1
+  version: 1.0.0
+  status: committed_candidate_not_executed
+  period_status: design-exposed/spent development
+  feature_years: [2021, 2022]
+  later_feature_years_remain_sealed: [2023, 2024]
+
+authority:
+  decision_path: configs/protected_period_extension_decision_v1_0_0.yaml
+  decision_sha256: 864cd99661a6afbbb44e1c3096d5400e46b6f1062c00f843324c56d7e41bba23
+  terminal_variant: GATED_FULL_HOLDOUT
+  contract_path: configs/protected_period_execution_contract_v1_0_0.yaml
+  contract_sha256: 3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b
+  access_manifest_path: configs/protected_period_access_manifest_v1_0_0.yaml
+  access_manifest_sha256: 7e4382c155af67781180060d9d2a883768fc0a768debe1c03ffc252e2044c307
+
+prerequisites:
+  corrected_versioned_data_pipeline_frozen: true
+  production_model_execution_code_frozen_and_hashed: true
+  search_selection_seed_calibration_threshold_and_reporting_contract_frozen: true
+  model_selection_on_2011_2020_complete: true
+  one_representative_per_family_locked: true
+  environment_locks_and_runtime_identity_frozen: true
+  exact_spent_status_committed: true
+
+verifier:
+  command: .venv-classical/bin/python -m src.modeling.protected_period_extension verify-spent-gate
+  protected_content_deserialization_allowed: false
+  protected_row_count_or_schema_allowed: false
+  pass_unlocks_only: SPENT_POST_GATE_EXECUTION_SCOPE_V1_0_0

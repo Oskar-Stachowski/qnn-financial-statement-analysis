@@ -1,0 +1,16 @@
+schema_version: 1
+review_allowlist:
+  id: protected_period_spent_access_review_allowlist
+  version: 1.0.0
+  exact_content_paths:
+    - configs/protected_period_extension_decision_v1_0_0.yaml
+    - configs/protected_period_execution_contract_v1_0_0.yaml
+    - configs/protected_period_access_manifest_v1_0_0.yaml
+    - configs/protected_period_spent_gate_v1_0_0.yaml
+    - src/modeling/protected_period_extension.py
+    - tests/test_protected_period_extension.py
+  allowed_operations: [text_read, yaml_deserialize, source_review, synthetic_test_review, git_tracked_metadata]
+  protected_content_paths: []
+  protected_content_read_allowed: false
+  model_fit_allowed: false
+  gate_execution_allowed: false

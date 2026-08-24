@@ -1,0 +1,165 @@
+schema_version: 1
+
+protected_period_execution_contract:
+  id: protected_period_execution_contract
+  version: 1.0.0
+  status: frozen_before_first_authorized_protected_result
+  frozen_on: "2026-08-24"
+  historical_artifacts_modified: false
+  arbitrary_input_or_output_options_allowed: false
+
+decision:
+  path: configs/protected_period_extension_decision_v1_0_0.yaml
+  sha256: 864cd99661a6afbbb44e1c3096d5400e46b6f1062c00f843324c56d7e41bba23
+  author_status: AUTHOR_SCOPE_APPROVED
+  promoter_approval_claimed: false
+terminal_variant: GATED_FULL_HOLDOUT
+continuation_after_spent: integrity_verdicts_only_never_performance_magnitude
+
+authority:
+  data_access_policy:
+    path: configs/data_access_policy_v1_1_0.yaml
+    sha256: 7ce08bca9921ff72db6b3ec6dfd1dc28c7e751e1ca1ad3b6706180809b66cd9b
+  x_t_freeze:
+    path: configs/x_t_pit_v1_freeze_manifest.yaml
+    sha256: 9b59e812bfb1b34a2f72c78ce4fc0ba484249d0a1d48cdea8f94506a403a9023
+  target_freeze:
+    path: configs/target_candidate_v2_pit_b_freeze_manifest.yaml
+    sha256: 52fd67d360e486e45615330a869f8b7d5810eb08d957432b4c2da7cc146b66bb
+  model_execution_contract:
+    path: configs/model_execution_contract_v1_2_1_lightning_scientific_patch.yaml
+    sha256: 8689915dae030f025fa7a791624c3e509f8ca3a46a9cf37a9572479a6aabac1a
+  candidate_registry:
+    path: configs/model_stage_candidates_v1_scientific_patch.json
+    sha256: f8135f6037012c13656e2a37187a47dfd3373b109b70c49f65095a27c58940ac
+  model_environments:
+    path: configs/model_environments_v1_0_1_lightning.yaml
+    sha256: 330c88dbaf6992fd4613dfaf44a877a70eaee917b454ac8a1946b97ece74972e
+  production_runner_config:
+    path: configs/production_experiment_runner_v1_0_1_lightning.yaml
+    sha256: 53d4919b3bb733b293d5e73403e06d0b2f12ab75b1ff1bdda491e90db61ecc27
+
+implementation:
+  successor_runner_evaluator_and_verifiers:
+    path: src/modeling/protected_period_extension.py
+    sha256: b6947140f9dbfa7e59d95976f517d8a79b8f2ca4c387ff7b024d8dc499e49d4c
+  synthetic_structural_tests:
+    path: tests/test_protected_period_extension.py
+    sha256: e3e3b99ec0ecc176e20de7fe7e2d1b9b1684173f1827acec477177a814e47c47
+    command: env QNN_TEST_ACCESS_GUARD=1 .venv-classical/bin/python -m src.testing.compat_test_runner tests/test_protected_period_extension.py
+    result: 6_passed
+  exact_test_runner:
+    path: src/testing/compat_test_runner.py
+    sha256: 42301f5ec713d587177d17f299a79f1cbe3708e6e3947eda9f2fb60f81e601ee
+
+data_sources:
+  full_x_t_v1:
+    path: data/processed/x_t_pit_v1_raw.csv
+    sha256: 0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f
+    pre_gate_operation: opaque_sha256_only
+  full_target_application_v1:
+    path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv
+    sha256: ea42eb43018b2c8e238e2c4757260bb692e27edd5429628e28892f360f0f7f7d
+    pre_gate_operation: opaque_sha256_only
+  frozen_target_v1:
+    path: data/interim/target_candidate_v2_pit_b.csv
+    sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff
+    pre_gate_operation: opaque_sha256_only
+  historical_research_universe:
+    path: data/processed/research_universe_pit.csv
+    sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182
+    pre_gate_operation: opaque_sha256_only
+
+opaque_pre_gate_files:
+  - {path: data/processed/x_t_pit_v1_raw.csv, sha256: 0f1b35b9ffbb1fb1c1cdfb7dff12e3efd8fb38f60b33407ff2b2a8fb6b88397f}
+  - {path: data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv, sha256: ea42eb43018b2c8e238e2c4757260bb692e27edd5429628e28892f360f0f7f7d}
+  - {path: data/interim/target_candidate_v2_pit_b.csv, sha256: 473aa403dfd15822a15ce985f7698efe4a4e3a66bcf30b7634f0ca646805e0ff}
+  - {path: data/processed/research_universe_pit.csv, sha256: a449c8145d1f46f954f12b1dfc079bb0b367c4f7f5edf3332a983ad7c1fb8182}
+
+required_source_directories:
+  - data/raw/research_universe_target_application/companyfacts
+  - data/raw/research_universe_target_application/sec_submissions
+  - data/raw/sec_filings/revenue_statement_evidence
+  - data/raw/companyfacts
+  - data/raw/sec_submissions
+
+corrected_pipeline:
+  policy: fail_closed_v1_1_resolver_correction_without_historical_rewrite
+  base_x_t_code: {path: src/data/x_t_pit.py, sha256: e04790d670742936d606d0c8536c8662d469fc95b1368542a779bed2bd93f418}
+  x_t_successor_code: {path: src/data/x_t_pit_v1_1.py, sha256: c5846d1a6dc2751f5190b0edf55ceaf8523fe8ad5a58e7ff40961516e8ac8285}
+  resolver_code: {path: src/data/primitive_resolver_v1_1.py, sha256: 922efaa2ab947a35ba0a418d03e546bc30e872bdea732c6ac377ce39fa2bc2e0}
+  target_base_code: {path: src/data/target_candidate_v2_pit.py, sha256: efad99c1f7376cbad9ad009fff417f6ec342482b8d9b2acf5f52b60165327cac}
+  target_successor_code: {path: src/data/target_resolver_v1_1.py, sha256: 20818cdfbdbc27bd6c99c12eb40b8c7b3ac9de1ef5042bfef78e30e8ebb20bfe}
+  historical_files_rewritten: false
+
+roster:
+  source:
+    path: data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json
+    sha256: 58d100a612902b0b6762b06521fea56b754959b69ffefbc3c50473e0d6d94130
+  qnn_ansatz:
+    path: data/model_runs/post_coarse_v1_3_0/qnn_selected_ansatz.json
+    sha256: f2c5a0aa94ee7d3fa7f89b8055b1364d7f20ab594c62fafd5d0b2f46858807b7
+  representatives: 9
+  family_order:
+    - xgboost
+    - hist_gradient_boosting
+    - random_forest
+    - pytorch_mlp
+    - rbf_svm
+    - qnn
+    - elastic_net_logistic
+    - fixed_l2_logistic
+    - dummy_prior
+  stochastic_seeds: [20260818, 20260819, 20260820]
+  deterministic_exceptions: [dummy_prior, fixed_l2_logistic, rbf_svm]
+  calibration_and_threshold_source: same_frozen_roster_artifact
+
+refit_schedule:
+  prediction_2021: {train_feature_years: [2011, 2019], embargo_feature_year: 2020}
+  prediction_2022: {train_feature_years: [2011, 2020], embargo_feature_year: 2021}
+  prediction_2023: {train_feature_years: [2011, 2021], embargo_feature_year: 2022}
+  prediction_2024:
+    train_feature_years: [2011, 2022]
+    embargo_feature_year: 2023
+    label_2023_may_enter_training: false
+  target_available_at_cutoff_required: true
+  preprocessing_refit_from_scratch: true
+  pca_refit_from_scratch_for_qnn: true
+
+sealed_modes:
+  feature_application:
+    target_columns_read_allowed: false
+    outputs_include_target: false
+  one_shot_evaluation:
+    requires_hashed_blind_predictions: true
+    target_read_allowed_only_after_label_gate: true
+    rerun_after_terminal_state_allowed: false
+
+evaluation:
+  metrics:
+    - pr_auc
+    - roc_auc
+    - f1_frozen_threshold
+    - precision_frozen_threshold
+    - recall_frozen_threshold
+    - brier_score
+  calibration: frozen_platt_coefficients_from_development_oof
+  classification_threshold: frozen_exact_max_f1_threshold_from_development_oof
+  bootstrap_unit: economic_group_id
+  bootstrap_replicates: 2000
+  bootstrap_seed: 20260818
+  interval: percentile_95
+  rounding: full_float64_in_machine_report
+  performance_may_change_methodology: false
+  spent_label: design-exposed/spent development
+  holdout_fully_unseen_claim_allowed: false
+
+failure_policy:
+  unexpected_identity_hash_schema_or_alignment_difference: fail_closed
+  incomplete_roster_or_seed: fail_closed
+  model_fit_terminal_failure: stop_and_version_repair
+  one_shot_evaluation_failure: stop_and_record_failure_without_rerun
+  manual_override_or_fallback_allowed: false
+
+transition:
+  p1a_complete_when_committed_with_runner_manifest_gate_verifier_and_synthetic_tests: true

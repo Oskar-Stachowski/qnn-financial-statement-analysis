@@ -1,0 +1,127 @@
+schema_version: 1
+
+access_manifest:
+  id: protected_period_spent_access_manifest
+  version: 1.0.0
+  gate: DATA_ACCESS_GATE_2021_2022_REOPEN_V1
+  protected_feature_years: [2021, 2022]
+  later_years_remain_sealed: [2023, 2024]
+  arbitrary_paths_allowed: false
+  directory_globs_allowed: false
+
+authority:
+  decision: configs/protected_period_extension_decision_v1_0_0.yaml
+  contract: configs/protected_period_execution_contract_v1_0_0.yaml
+  gate_manifest: configs/protected_period_spent_gate_v1_0_0.yaml
+
+scopes:
+  spent_gate_verifier_scope:
+    id: SPENT_GATE_VERIFIER_SCOPE_V1_0_0
+    definition_sha256: 90312774dd33621ad68e59906c9081b884fcdbbf57e1ef1d49af69befa99d0a4
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.protected_period_extension verify-spent-gate
+      content_reads:
+        - configs/protected_period_extension_decision_v1_0_0.yaml
+        - configs/protected_period_execution_contract_v1_0_0.yaml
+        - configs/protected_period_access_manifest_v1_0_0.yaml
+        - configs/protected_period_spent_gate_v1_0_0.yaml
+        - configs/protected_period_access_review_v1_0_0_result.json
+        - data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json
+        - data/model_runs/post_coarse_v1_3_0/qnn_selected_ansatz.json
+      opaque_sha256_only:
+        - data/processed/x_t_pit_v1_raw.csv
+        - data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv
+        - data/interim/target_candidate_v2_pit_b.csv
+        - data/processed/research_universe_pit.csv
+      exact_directory_existence_only:
+        - data/raw/research_universe_target_application/companyfacts
+        - data/raw/research_universe_target_application/sec_submissions
+        - data/raw/sec_filings/revenue_statement_evidence
+        - data/raw/companyfacts
+        - data/raw/sec_submissions
+      output: configs/protected_period_spent_gate_v1_0_0_result.json
+      forbidden:
+        - protected_csv_deserialization
+        - protected_row_count_or_schema_read
+        - model_fit
+        - prediction
+        - metric_evaluation
+
+  spent_post_gate_execution_scope:
+    id: SPENT_POST_GATE_EXECUTION_SCOPE_V1_0_0
+    definition_sha256: 1bfaf3523f9322e786c06e0d5269766d6994ec8d965e7084eedab4db46587f27
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.protected_period_extension run-spent
+      exact_inputs:
+        - configs/protected_period_extension_decision_v1_0_0.yaml
+        - configs/protected_period_execution_contract_v1_0_0.yaml
+        - configs/protected_period_access_manifest_v1_0_0.yaml
+        - configs/protected_period_access_review_v1_0_0_result.json
+        - configs/protected_period_spent_gate_v1_0_0.yaml
+        - configs/protected_period_spent_gate_v1_0_0_result.json
+        - data/processed/x_t_pit_v1_raw.csv
+        - data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_0_0.csv
+        - data/processed/x_t_pit_v1_1_0_train.csv
+        - data/processed/research_universe_pit_v1_1_0_target_pit_b_v1_2_0_train.csv
+        - data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json
+        - data/model_runs/post_coarse_v1_3_0/qnn_selected_ansatz.json
+        - data/raw/research_universe_target_application/companyfacts
+        - data/raw/research_universe_target_application/sec_submissions
+        - data/raw/sec_filings/revenue_statement_evidence
+      allowed_operations:
+        - byte_route_feature_year_through_2022
+        - corrected_v1_1_x_t_rebuild_through_2022
+        - target_application_resolver_correction_through_2022
+        - deserialize_spent_2021_2022_after_gate
+        - preregistered_refits_for_prediction_2021_2022
+        - frozen_calibration_and_threshold_application
+        - frozen_aggregate_evaluation_and_cluster_bootstrap
+      exact_output_roots:
+        - data/protected_period_extension_v1/spent
+        - data/model_runs/protected_period_extension_v1/spent
+        - reports/protected_period_extension_v1/spent_report_v1_0_0.json
+      exact_committed_evidence_output: configs/protected_period_spent_execution_v1_0_0_result.json
+      forbidden:
+        - deserialize_feature_year_2023_or_2024
+        - tuning
+        - reselection
+        - recalibration
+        - rethresholding
+        - arbitrary_input_or_output
+
+  spent_post_execution_freeze_scope:
+    id: SPENT_POST_EXECUTION_FREEZE_SCOPE_V1_0_0
+    definition_sha256: 8875ab71c4e008d0a964c3032c2a1ce22163d85f5c346bc2cb647e9195c0cea0
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.protected_period_extension verify-spent-freeze
+      exact_inputs:
+        - configs/protected_period_execution_contract_v1_0_0.yaml
+        - configs/protected_period_access_manifest_v1_0_0.yaml
+        - configs/protected_period_access_review_v1_0_0_result.json
+        - configs/protected_period_spent_execution_v1_0_0_result.json
+        - reports/protected_period_extension_v1/spent_report_v1_0_0.json
+        - data/model_runs/protected_period_extension_v1/spent/execution_evidence.json
+        - data/model_runs/protected_period_extension_v1/spent/predictions
+      allowed_operations:
+        - json_deserialize
+        - exact_hash_verification
+        - roster_seed_schedule_and_schema_completeness_check
+        - spent_disclosure_check
+      output: configs/protected_period_spent_freeze_v1_0_0_result.json
+      forbidden:
+        - output_repair
+        - model_fit
+        - new_prediction
+        - tuning
+        - deserialize_feature_year_2023_or_2024
+
+review_scope:
+  exact_content_paths:
+    - configs/protected_period_extension_decision_v1_0_0.yaml
+    - configs/protected_period_execution_contract_v1_0_0.yaml
+    - configs/protected_period_access_manifest_v1_0_0.yaml
+    - configs/protected_period_spent_gate_v1_0_0.yaml
+    - src/modeling/protected_period_extension.py
+    - tests/test_protected_period_extension.py
+  tracked_inventory_metadata_allowed: true
+  protected_content_read_allowed: false
