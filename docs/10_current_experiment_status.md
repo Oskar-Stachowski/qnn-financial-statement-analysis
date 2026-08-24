@@ -2,6 +2,22 @@
 
 Status date: 2026-08-24
 
+## Thesis-completion runbook status
+
+Step 4 of `docs/CODEX_REMAINING_WORK_PROMPTS.md` has prepared, but not approved,
+the exact read-only thesis-readiness audit allowlist v1.0.0. Its status is
+`PREPARED_AWAITING_INDEPENDENT_REVIEW`; preparation did not execute the audit,
+open analytical content, run a model, or authorize access to feature years
+2021–2024.
+
+The next action for this package is Step 5: a fresh independent review limited
+to `exact_content_read_allowlist_for_review` in
+`configs/thesis_readiness_audit_v1_0_0_allowlist.yaml`. The readiness audit must
+not start unless a separate committed review records `ALLOWLIST_REVIEW_PASS`,
+and it must then run in another fresh context against the unchanged committed
+allowlist. This plan-status update does not assert completion of the author,
+promoter, or AI-compliance gates from earlier runbook steps.
+
 ## Current state
 
 The complete post-coarse development sequence is finished and frozen. It includes:
