@@ -320,10 +320,10 @@ utworzenia schema lub skryptu nie zalicza bramki.
 
 ### Krok 4. Exact allowlista audytu gotowości
 
-Domyślnie uruchomić w świeżej sesji. Dla szybkiej iteracji Krok 4 i Krok 5
-mogą działać w tej samej sesji, jeżeli allowlista zostanie najpierw committed,
-review otrzyma osobny późniejszy commit i w tej sesji nie zostanie wykonany
-Krok 6.
+Domyślnie uruchomić w świeżej sesji. Dla szybkiej iteracji Kroki 4, 5 i 6 mogą
+działać kolejno w tej samej sesji, jeżeli każdy krok otrzyma osobny commit,
+Krok 5 oceni niezmienioną committed allowlistę, a Krok 6 rozpocznie się dopiero
+po committed `ALLOWLIST_REVIEW_PASS`.
 
 ```text
 Przygotuj bezpieczną, wersjonowaną exact allowlistę dla read-only audytu
@@ -386,8 +386,9 @@ tej samej niezmienionej committed wersji.
 
 ### Krok 6. Read-only audyt gotowości projektu
 
-Uruchomić w kolejnej świeżej sesji i zastosować zatwierdzoną allowlistę bez
-zmian.
+Uruchomić po osobnym commicie Kroku 5: w tej samej sesji co Kroki 4 i 5 albo w
+nowej świeżej sesji. Zastosować zatwierdzoną committed allowlistę bez zmian i
+zapisać wynik Kroku 6 w osobnym commicie.
 
 ```text
 Przeprowadź końcowy read-only audyt gotowości technicznej i naukowej materiału
@@ -412,6 +413,12 @@ obserwacje z tej prawidłowej sesji. Zapisz raport BLOCKER/IMPORTANT/OPTIONAL i
 werdykt BASELINE_AUDIT_PASS albo BASELINE_AUDIT_FAIL. Raport oraz boundary test
 zacommituj także przy FAIL. Przy incydencie dostępu zatrzymaj pracę i zastosuj
 procedurę incydentową zamiast kończyć audyt.
+
+Zwykłe przekroczenie limitu wyjścia narzędzia bez ekspozycji chronionej lub
+analitycznej treści nie unieważnia audytu. Zatrzymaj tylko bieżącą komendę,
+ponów ten sam exact-path z mniejszym wyjściem i kontynuuj w tym samym kontekście
+bez zmiany allowlisty. Przerwij cały audyt wyłącznie przy merytorycznym
+naruszeniu zakresu albo ekspozycji wymagającej trasy incydentowej.
 ```
 
 Warunek przejścia: wszystkie BLOCKER-y są faktycznie zamknięte i potwierdzone

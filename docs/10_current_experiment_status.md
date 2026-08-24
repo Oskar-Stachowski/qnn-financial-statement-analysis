@@ -4,26 +4,25 @@ Status date: 2026-08-24
 
 ## Thesis-completion runbook status
 
-Steps 4 and 5 of `docs/CODEX_REMAINING_WORK_PROMPTS.md` are complete for the
-exact read-only thesis-readiness audit allowlist v1.0.3. Step 4 committed the
-subject as `2a08d0935e7bb49c33b1df0a0da9470d6d0748ae`; its SHA-256 is
-`d05e8e647c2d6b4207b4272255fb2d2d50b89d9892145478332589b4ac09238f`.
-The subsequent `same_session_technical_review` recorded
-`ALLOWLIST_REVIEW_PASS` after a complete subject read and **15/15** passing
-structural tests. The review was intentionally not represented as independent.
+Step 6 against allowlist v1.0.3 ended as
+`AUDIT_ABORTED_NO_READINESS_VERDICT` before analytical audit access because a
+320-line control read exceeded the 240-line command cap. The committed abort
+record `874f9172fbb452e1f0cd81030a5847a6527da7c9` established no substantive
+readiness finding and no protected-content exposure.
 
-There are no unresolved allowlist-review findings. `ALLOWLIST-REVIEW-001` and
-`ALLOWLIST-REVIEW-002` remain structurally remediated;
-`ALLOWLIST-REVIEW-003` and `ALLOWLIST-REVIEW-004` were process-only failures
-without an allowlist defect or protected-content exposure. The v1.0.0
-allowlist and structural test remain byte-identical and v1.0.0 must not be used
-for the readiness audit.
+Step 4 has now prepared, but not approved, successor allowlist v1.0.4. It keeps
+the exact-path, protected-period, no-fit and no-network boundaries, raises the
+global output cap to 2,000 lines, makes corrected output-limit errors retryable
+in both review and audit, and permits the committed sequence Steps 4→5→6 in one
+session with a separate commit per step. Version 1.0.4 has status
+`PREPARED_AWAITING_ALLOWLIST_REVIEW`; its preparation did not execute the
+readiness audit or open content under `data/`, `reports/`, or `notebooks/`.
 
-The next action is Step 6 in a new fresh context against the unchanged v1.0.3
-commit and SHA-256 above. Neither preparation nor review executed the readiness
-audit, opened content under `data/`, `reports/`, or `notebooks/`, ran a model,
-or authorized feature-year access beyond the allowlist. This status does not
-assert project readiness or completion of the author, promoter, or
+The next action is a `same_session_technical_review` of the separately
+committed v1.0.4 allowlist. After a committed `ALLOWLIST_REVIEW_PASS`, Step 6
+may continue in this same conversation context against unchanged v1.0.4. The
+v1.0.0 allowlist and structural test remain byte-identical. This status does
+not assert project readiness or completion of the author, promoter, or
 AI-compliance gates from earlier runbook steps.
 
 ## Current state
