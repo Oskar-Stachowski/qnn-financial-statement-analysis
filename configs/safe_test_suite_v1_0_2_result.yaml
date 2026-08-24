@@ -1,0 +1,167 @@
+schema_version: 1
+
+verdict: SAFE_TEST_SUITE_PASS
+completed_on: "2026-08-24"
+execution_mode: BASE_DEVELOPMENT_ONLY
+protected_feature_years: [2021, 2022, 2023, 2024]
+
+authority:
+  execution_commit: 9559755ff707f6ff75cc322be59b4e0d039a3d79
+  manifest:
+    path: configs/test_access_manifest_v1_0_2.yaml
+    version: 1.0.2
+    sha256: 09953ec93d45a3852df0e752db9ec95e5d76eeaa414eeeaa9757269fa4c8b32b
+  review:
+    path: configs/test_access_review_v1_0_2_result.yaml
+    commit: 9559755ff707f6ff75cc322be59b4e0d039a3d79
+    verdict: TEST_ACCESS_REVIEW_PASS
+    review_kind: same_session_technical_review
+    independent_review_claimed: false
+    sha256: fa112f58f2581b02a98848060b3526ca3173f1929f0399cc59f4ab3b3ecd77c3
+  guard:
+    path: src/testing/test_access_guard.py
+    sha256: 47037d7c4f450049b8aed7fde008f03fab3c0a8b4e9bc2e86a29d99cfd1077ef
+  compatibility_runner:
+    path: src/testing/compat_test_runner.py
+    sha256: 42301f5ec713d587177d17f299a79f1cbe3708e6e3947eda9f2fb60f81e601ee
+
+procedural_context:
+  same_session_sequence_authorized_by_user: true
+  progression_despite_step_6_blockers_authorized_by_user: true
+  step_6_blockers_marked_resolved: false
+  incident_v1_2_0_marked_resolved: false
+  protected_period_opened: false
+  independent_review_claimed: false
+
+baseline_and_repair:
+  predecessor_manifest: configs/test_access_manifest_v1_0_1.yaml
+  predecessor_profile: canonical-safe
+  predecessor_order: manifest
+  predecessor_result: FAIL
+  unexpected_failure_test_id: resolver_x_t_v1_1_freeze
+  cause: historical_test_hash_difference_not_yet_declared_in_successor_compatibility
+  historical_manifest_or_frozen_artifact_rewritten: false
+  repair_commit: dec1a6fe62dc625ecbbc7478d3ec8e04a3a2c468
+  repair_manifest: configs/test_access_manifest_v1_0_2.yaml
+  compatibility_declaration:
+    path: configs/historical_test_compatibility_v1_0_1.yaml
+    sha256: bf1599269b08787ad18bc723e41cd86a2b897fbe7d87163e32b0ad7ccde81799
+  isolated_repair_command: >-
+    .venv-classical/bin/python -m src.testing.compat_test_runner
+    tests/test_resolver_x_t_v1_1_freeze.py
+  isolated_repair_result:
+    verdict: PASS
+    tests_run: 8
+    failures: 0
+    errors: 0
+    skips: 0
+
+canonical_execution:
+  profile: canonical-safe
+  required_orders: [manifest, reverse]
+  fresh_interpreter_process_per_module: true
+  temporary_parent: /private/tmp
+  project_tree_temporary_writes: false
+  environments:
+    classical:
+      interpreter: .venv-classical/bin/python
+      owner: environments/classical/requirements.lock
+      default_for_listed_test_ids: true
+    qnn_mlp:
+      interpreter: .venv-qnn-mlp/bin/python
+      owner: environments/qnn_mlp/requirements.lock
+      test_ids:
+        - coarse_search_reporting
+        - secondary_development_thesis_reporting_v1_0_0
+        - target_candidate_v2_pit
+      model_fit_performed: false
+  executions:
+    - order: manifest
+      command: >-
+        .venv-classical/bin/python -m src.testing.test_access_guard
+        --manifest configs/test_access_manifest_v1_0_2.yaml run
+        --profile canonical-safe --order manifest
+      exit_code: 0
+      verdict: PASS
+      modules_run: 43
+      unexpected_failures: 0
+      unexpected_skips: 0
+    - order: reverse
+      command: >-
+        .venv-classical/bin/python -m src.testing.test_access_guard
+        --manifest configs/test_access_manifest_v1_0_2.yaml run
+        --profile canonical-safe --order reverse
+      exit_code: 0
+      verdict: PASS
+      modules_run: 43
+      unexpected_failures: 0
+      unexpected_skips: 0
+  order_independence: PASS
+
+executed_test_ids:
+  synthetic_config_only:
+    - test_access_guard_v1_0_0
+    - test_access_guard_v1_0_1
+    - coarse_search_reporting
+    - data_access_incident_v1_1_0
+    - data_access_policy_v1_1_0
+    - historical_research_universe
+    - model_execution_contract_v1_2_0
+    - model_stage_preregistration
+    - model_stage_v1_freeze
+    - preprocessing
+    - primitive_resolver_v1_1
+    - registrant_role_economic_entity
+    - revenue_manual_review
+    - sec_timestamps
+    - secondary_analysis_execution
+    - secondary_analysis_execution_v1_1_1
+    - secondary_analysis_execution_v1_1_3
+    - secondary_analysis_execution_v1_1_4
+    - secondary_analysis_execution_v1_1_5
+    - secondary_analysis_execution_v1_1_6
+    - secondary_analysis_execution_v1_1_7
+    - secondary_analysis_launcher_v1_1_2
+    - secondary_analysis_package
+    - secondary_development_thesis_reporting_v1_0_0
+    - target_candidate_v2_pit
+    - target_candidate_v2_pit_freeze
+    - temporal_cv
+    - thesis_readiness_audit_allowlist_v1_0_0
+    - thesis_readiness_audit_allowlist_v1_0_1
+    - thesis_readiness_audit_allowlist_v1_0_2
+    - thesis_readiness_audit_allowlist_v1_0_3
+    - thesis_readiness_audit_allowlist_v1_0_4
+    - thesis_readiness_audit_allowlist_v1_0_5
+    - thesis_readiness_audit_boundary_v1_0_3
+    - thesis_readiness_audit_boundary_v1_0_4
+    - thesis_readiness_audit_boundary_v1_0_5
+  development_only:
+    - post_coarse_confirmation_schedule
+    - post_coarse_runner
+    - post_coarse_v1_3_0_results_freeze
+    - resolver_x_t_v1_1_freeze
+    - secondary_development_results_freeze_v1_1_7
+    - timezone_pit_fix_v1_0_0
+    - x_t_pit_v1_1_invariance
+
+not_executed_protected_gated_test_ids:
+  - historical_research_universe_freeze
+  - production_runner_v1_0_0
+  - research_universe_target_application
+  - supervised_ml_pipeline_v1_freeze
+  - x_t_pit_v1
+  - x_t_pit_v1_freeze
+
+boundary_result:
+  protected_gated_tests_executed: false
+  protected_row_or_aggregate_content_read: false
+  project_model_fit_performed: false
+  new_predictions_generated: false
+  network_access_performed: false
+  thesis_readiness_audit_performed: false
+  historical_manifests_or_frozen_artifacts_modified: false
+
+transition:
+  step_7c_complete: true
+  next_step: step_8
