@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review": {
+    "id": "protected_period_spent_access_review",
+    "version": "1.0.0",
+    "performed_at_utc": "2026-08-24T20:32:56Z",
+    "review_kind": "same_session_technical_review",
+    "independent_review_claimed": false,
+    "same_session_author_override": true,
+    "promoter_approval_claimed": false
+  },
+  "verdict": "SPENT_ACCESS_MANIFEST_REVIEW_PASS",
+  "subject_commit": "8db014063cdb94b010523385ea47e9e6e9a6a077",
+  "subject_manifest": "configs/protected_period_access_manifest_v1_0_0.yaml",
+  "subject_manifest_sha256": "7e4382c155af67781180060d9d2a883768fc0a768debe1c03ffc252e2044c307",
+  "authorities": {
+    "decision_sha256": "864cd99661a6afbbb44e1c3096d5400e46b6f1062c00f843324c56d7e41bba23",
+    "contract_sha256": "3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b",
+    "gate_manifest_sha256": "8a01725826e6c042cc5ac226278b3afd9fa19dbecf73068794e4cb780124b65c",
+    "review_allowlist_sha256": "05e0e889bd0d21797c94baaef96c4535658a9ac895480241868f69f64498cc7e",
+    "runner_evaluator_verifier_sha256": "b6947140f9dbfa7e59d95976f517d8a79b8f2ca4c387ff7b024d8dc499e49d4c",
+    "synthetic_structural_tests_sha256": "e3e3b99ec0ecc176e20de7fe7e2d1b9b1684173f1827acec477177a814e47c47"
+  },
+  "scopes": {
+    "spent_gate_verifier_scope": {
+      "id": "SPENT_GATE_VERIFIER_SCOPE_V1_0_0",
+      "definition_sha256": "90312774dd33621ad68e59906c9081b884fcdbbf57e1ef1d49af69befa99d0a4",
+      "verdict": "PASS",
+      "checks": {
+        "exact_paths_and_command": true,
+        "opaque_hash_boundary_before_gate": true,
+        "protected_deserialization_forbidden": true,
+        "model_fit_and_metric_evaluation_forbidden": true
+      }
+    },
+    "spent_post_gate_execution_scope": {
+      "id": "SPENT_POST_GATE_EXECUTION_SCOPE_V1_0_0",
+      "definition_sha256": "1bfaf3523f9322e786c06e0d5269766d6994ec8d965e7084eedab4db46587f27",
+      "verdict": "PASS",
+      "checks": {
+        "exact_inputs_outputs_and_command": true,
+        "byte_routing_seals_2023_2024": true,
+        "roster_schedule_seeds_calibration_threshold_frozen": true,
+        "tuning_reselection_recalibration_rethresholding_forbidden": true
+      }
+    },
+    "spent_post_execution_freeze_scope": {
+      "id": "SPENT_POST_EXECUTION_FREEZE_SCOPE_V1_0_0",
+      "definition_sha256": "8875ab71c4e008d0a964c3032c2a1ce22163d85f5c346bc2cb647e9195c0cea0",
+      "verdict": "PASS",
+      "checks": {
+        "exact_inputs_output_and_command": true,
+        "identity_hash_roster_schedule_checks_only": true,
+        "output_repair_and_new_prediction_forbidden": true,
+        "later_year_deserialization_forbidden": true
+      }
+    }
+  },
+  "global_checks": {
+    "terminal_variant_is_gated_full_holdout": true,
+    "arbitrary_cli_paths_absent": true,
+    "three_scopes_are_named_and_disjoint": true,
+    "implementation_and_tests_are_hash_frozen": true,
+    "one_shot_terminal_failure_is_fail_closed": true,
+    "protected_content_read_during_review": false,
+    "gate_executed_during_review": false,
+    "model_fit_executed_during_review": false
+  },
+  "limitations": [
+    "This is an author-authorized same-session technical review, not an independent review.",
+    "No promoter approval is claimed or required by the author's procedural override."
+  ]
+}
