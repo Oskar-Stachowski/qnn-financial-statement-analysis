@@ -1,0 +1,72 @@
+schema_version: 1
+
+thesis_readiness_audit_allowlist_review:
+  id: thesis_readiness_audit_allowlist_review
+  version: 1.0.2
+  reviewed_on: "2026-08-24"
+  review_type: independent_read_only_review
+  verdict: ALLOWLIST_REVIEW_FAIL
+  substantive_review_completed: false
+  audit_authorized: false
+
+review_subject:
+  path: configs/thesis_readiness_audit_v1_0_2_allowlist.yaml
+  version: 1.0.2
+  git_commit: 9993afc0edaf93e2384ade93ab307199b9aa669a
+
+scope_and_exposure:
+  readiness_audit_performed: false
+  allowlist_expanded_or_modified: false
+  analytical_content_read: false
+  protected_period_content_read: false
+  protected_schema_row_count_distribution_sample_or_value_read: false
+  data_reports_or_notebooks_content_read: false
+  model_fit_refit_inference_or_prediction_performed: false
+  incident_declaration_required: false
+  classification: non_analytical_process_nonconformance
+
+process_review:
+  required_line_count_probe_performed_before_subject_read: false
+  maximum_review_subject_lines_per_command: 120
+  maximum_global_rendered_lines_per_command: 200
+  first_subject_read:
+    command: sed -n 1,240p configs/thesis_readiness_audit_v1_0_2_allowlist.yaml
+    requested_closed_line_count: 240
+    compliant: false
+  mandatory_stop_observed_immediately: false
+  subsequent_noncompliant_subject_reads:
+    - sed -n 241,480p configs/thesis_readiness_audit_v1_0_2_allowlist.yaml
+    - sed -n 481,720p configs/thesis_readiness_audit_v1_0_2_allowlist.yaml
+
+findings:
+  - id: ALLOWLIST-REVIEW-004
+    severity: BLOCKER
+    category: review_process_nonconformance
+    status: OPEN
+    summary: >-
+      The reviewer did not execute the mandatory line-count probe before the
+      substantive subject read, requested 240 subject lines in a command whose
+      limits were 120 subject lines and 200 global rendered lines, and did not
+      stop immediately after that first nonconformance.
+    consequence: >-
+      The v1.0.2 substantive review is invalid and cannot authorize the
+      readiness audit, irrespective of any partial observations made before
+      containment.
+    protected_or_analytical_content_exposed: false
+
+substantive_checkpoints:
+  exact_path_scope: NOT_REVIEWED_DUE_TO_MANDATORY_STOP
+  allowed_operations: NOT_REVIEWED_DUE_TO_MANDATORY_STOP
+  prohibitions: NOT_REVIEWED_DUE_TO_MANDATORY_STOP
+  protected_2021_2024_boundary: NOT_REVIEWED_DUE_TO_MANDATORY_STOP
+  schema_and_row_count_disclosure_protection: NOT_REVIEWED_DUE_TO_MANDATORY_STOP
+  search_limits: NOT_REVIEWED_DUE_TO_MANDATORY_STOP
+  stop_policy: NOT_REVIEWED_DUE_TO_MANDATORY_STOP
+
+containment:
+  current_operation_stopped: true
+  review_outputs_only_written: true
+  existing_inputs_modified: false
+  next_step: >-
+    Keep the v1.0.2 audit unauthorized. Return to Step 4 for a committed
+    successor allowlist and repeat Step 5 in a fresh independent context.
