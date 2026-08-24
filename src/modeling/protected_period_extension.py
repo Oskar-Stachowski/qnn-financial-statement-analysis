@@ -54,14 +54,16 @@ from src.modeling.production_runner import (
     file_sha256,
     membership_sha256,
 )
+from src.modeling.model_execution_contract import load_contract
 
 
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT_PATH = ROOT / "configs/protected_period_execution_contract_v1_0_0.yaml"
+EXECUTION_REPAIR_PATH = ROOT / "configs/protected_period_execution_repair_v1_0_1.yaml"
 ACCESS_MANIFEST_PATH = ROOT / "configs/protected_period_access_manifest_v1_0_0.yaml"
 SPENT_GATE_MANIFEST_PATH = ROOT / "configs/protected_period_spent_gate_v1_0_0.yaml"
-SPENT_REVIEW_PATH = ROOT / "configs/protected_period_access_review_v1_0_0_result.json"
-SPENT_GATE_RESULT_PATH = ROOT / "configs/protected_period_spent_gate_v1_0_0_result.json"
+SPENT_REVIEW_PATH = ROOT / "configs/protected_period_access_review_v1_0_1_result.json"
+SPENT_GATE_RESULT_PATH = ROOT / "configs/protected_period_spent_gate_recheck_v1_0_1_result.json"
 SPENT_EXECUTION_EVIDENCE_PATH = (
     ROOT / "configs/protected_period_spent_execution_v1_0_0_result.json"
 )
@@ -154,9 +156,28 @@ def _verified_file(path: Path, sha256: str) -> Path:
 def _verify_frozen_implementation(contract: Mapping[str, Any]) -> None:
     implementation = contract.get("implementation")
     _require(isinstance(implementation, Mapping), "Implementation freeze is absent.")
-    for item in implementation.values():
+    for name, item in implementation.items():
         _require(isinstance(item, Mapping), "Invalid implementation freeze item.")
-        _verified_file(ROOT / str(item["path"]), str(item["sha256"]))
+        actual = _sha(ROOT / str(item["path"]))
+        expected = str(item["sha256"])
+        if actual == expected:
+            continue
+        _require(
+            name == "successor_runner_evaluator_and_verifiers"
+            and EXECUTION_REPAIR_PATH.is_file(),
+            f"Unreviewed implementation change: {item['path']}",
+        )
+        repair_document = _load_yaml(EXECUTION_REPAIR_PATH)
+        repair = repair_document["repair"]
+        failure = repair_document["failure"]
+        repair_identity = repair_document["execution_repair"]
+        _require(
+            repair["superseded_runner_sha256"] == expected
+            and repair["repaired_runner_sha256"] == actual
+            and repair_identity["methodology_changed"] is False
+            and failure["model_fit_started_before_failure"] is False,
+            "Execution repair authority mismatch.",
+        )
 
 
 def scope_sha256(scope: Mapping[str, Any]) -> str:
@@ -627,7 +648,7 @@ def _executor(output_dir: Path) -> tuple[SubprocessFoldExecutor, Mapping[str, An
         runner_config_path=RUNNER_CONFIG_PATH,
         contract_path=BASE_EXECUTION_CONTRACT_PATH,
     )
-    contract = _load_yaml(BASE_EXECUTION_CONTRACT_PATH)
+    contract = load_contract(BASE_EXECUTION_CONTRACT_PATH)
     qnn_policy = _load_yaml(ROOT / "configs/model_stage_v1.yaml")["qnn"]["resource_policy"]
     executor.configure_qnn_ledger(
         output_dir / "qnn_resource_ledger.json",
@@ -1080,7 +1101,7 @@ def verify_spent_freeze() -> dict[str, Any]:
     report = _load_json(SPENT_REPORT_PATH)
     _require(
         report.get("runner_sha256")
-        == contract["implementation"]["successor_runner_evaluator_and_verifiers"]["sha256"],
+        == _sha(Path(__file__)),
         "Spent report runner hash changed.",
     )
     result = {

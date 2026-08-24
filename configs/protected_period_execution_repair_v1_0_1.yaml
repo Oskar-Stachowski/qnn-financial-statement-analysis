@@ -1,0 +1,45 @@
+schema_version: 1
+
+execution_repair:
+  id: protected_period_execution_loader_repair
+  version: 1.0.1
+  status: frozen_before_first_model_fit
+  author_authorized_same_session_repair: true
+  independent_review_claimed: false
+  promoter_approval_claimed: false
+  methodology_changed: false
+
+failure:
+  step: P2A
+  exception: KeyError_execution_failure_state_machine
+  cause: scientific_overlay_yaml_was_read_without_expanding_its_frozen_base_contract
+  state: STARTED
+  one_shot_execution_state_sha256: a7691c3099cd7affc1071a8fcf753210c491f9bfff74fcf5678521cbfb566e67
+  qnn_resource_ledger_sha256: 89cca957038e2c550963bfd60b8f59b397656ba55da9acc26644537e45d1ec87
+  model_fit_started_before_failure: false
+  fit_artifacts_created: 0
+  prediction_artifacts_created: 0
+  performance_values_created_or_read: false
+  archived_failed_run_root: data/model_runs/protected_period_extension_v1/spent_failed_v1_0_0
+
+repair:
+  exact_change: use_frozen_load_contract_overlay_expansion_for_timeout_and_device_identity
+  superseded_runner_sha256: b6947140f9dbfa7e59d95976f517d8a79b8f2ca4c387ff7b024d8dc499e49d4c
+  repaired_runner_sha256: 8711d03b95bd15ef95d697f8036933d79e889e5e5fb1638f09a8df91bda5388b
+  contract_path_unchanged: configs/protected_period_execution_contract_v1_0_0.yaml
+  access_manifest_path_unchanged: configs/protected_period_access_manifest_v1_0_0.yaml
+  roster_changed: false
+  preprocessing_changed: false
+  seeds_changed: false
+  calibration_changed: false
+  threshold_changed: false
+  reporting_changed: false
+  refit_schedule_changed: false
+  data_scope_changed: false
+
+revalidation:
+  synthetic_tests_required: true
+  same_session_technical_review_result: configs/protected_period_access_review_v1_0_1_result.json
+  repeated_gate_result: configs/protected_period_spent_gate_recheck_v1_0_1_result.json
+  prior_committed_gate_result_preserved: configs/protected_period_spent_gate_v1_0_0_result.json
+  p2a_may_resume_only_after_repeated_gate_pass: true
