@@ -1,0 +1,88 @@
+schema_version: 1
+
+thesis_readiness_audit_allowlist_review:
+  id: thesis_readiness_audit_allowlist_review
+  version: 1.0.0
+  status: ALLOWLIST_REVIEW_FAIL
+  reviewed_on: "2026-08-24"
+  reviewer_context: fresh_independent_codex_context_for_step_5
+  reviewed_allowlist:
+    path: configs/thesis_readiness_audit_v1_0_0_allowlist.yaml
+    version: 1.0.0
+    git_commit: 237f8bc7e12bb8493c537e4ea0386a4ebbade2db
+    sha256: 6b3059fd9ebc7ff943a3cc0123a7550ca89676ba5263aa487b745600577ff22b
+
+review_boundary:
+  readiness_audit_performed: false
+  analytical_artifact_content_read: false
+  protected_period_content_read: false
+  model_fit_refit_inference_prediction_or_reporting_performed: false
+  network_or_external_storage_accessed: false
+  existing_allowlist_input_modified: false
+  exact_review_output_paths_only: true
+
+verification:
+  structural_test:
+    command: python -m unittest tests/test_thesis_readiness_audit_allowlist_v1_0_0.py
+    status: PASS
+    tests_run: 10
+  authority_pin_sha256_matches: true
+  pinned_safe_verifier_sha256_matches: true
+  exact_path_scope_review: PASS_WITHOUT_AUDIT_EXECUTION
+  protected_period_boundary_review: PASS_WITHOUT_PROTECTED_CONTENT_ACCESS
+  schema_and_row_count_protection_review: PASS
+  search_restriction_review: PASS
+  allowed_operations_review: FAIL
+  stop_policy_review: FAIL
+  output_limit_compliance_during_review: FAIL
+
+findings:
+  - id: ALLOWLIST-REVIEW-001
+    severity: BLOCKER
+    category: allowed_operations
+    summary: independent_review_cannot_commit_required_review_evidence
+    evidence:
+      - allowed_operations.independent_review permits writing and diffing the exact review outputs but omits an exact commit operation
+      - entry_conditions_for_audit requires committed review evidence
+      - controlling runbook step 5 requires the versioned verdict to be committed regardless of outcome
+    impact: no reviewer can both stay inside the declared operation scope and complete step 5
+    required_remediation:
+      - issue a new allowlist version from step 4
+      - add an exact commit operation limited to the two review output paths
+      - extend the structural test to enforce consistency between required committed evidence and review operations
+
+  - id: ALLOWLIST-REVIEW-002
+    severity: BLOCKER
+    category: stop_policy
+    summary: allowlist_violation_incident_action_is_not_executable_within_review_scope
+    evidence:
+      - stop_policy.on_allowlist_violation requires a new versioned incident declaration
+      - exact_write_allowlist_for_review permits only the two review verdict files
+      - expanding the allowlist during review is explicitly forbidden
+    impact: after a review-scope violation the reviewer cannot satisfy the declared stop action without causing a second scope violation
+    required_remediation:
+      - define a fail-closed escalation that is executable without protected-content access or silent scope expansion
+      - distinguish non-analytical review-process nonconformance from unexpected protected-content exposure
+      - test that every mandatory stop action has a permitted exact operation and output route
+
+review_process_nonconformance:
+  occurred: true
+  category: output_limit_exceeded
+  description: one static-inspection command rendered more than the allowed 240 lines by combining two exact review-allowlisted source files
+  files_read:
+    - src/modeling/build_secondary_development_results_freeze_inventory_v1_1_7.py
+    - src/modeling/verify_secondary_analysis_execution_v1_1_7.py
+  content_class: non_analytical_source_code
+  protected_or_analytical_content_exposed: false
+  containment:
+    - no broader rerun was performed
+    - no readiness audit was started
+    - review PASS was prohibited
+    - only the exact FAIL outputs were prepared
+
+outcome:
+  verdict: ALLOWLIST_REVIEW_FAIL
+  audit_authorized: false
+  next_required_step: return_to_step_4_and_issue_a_new_allowlist_version
+  same_allowlist_may_be_used_for_step_6: false
+
