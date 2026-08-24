@@ -4,27 +4,27 @@ Status date: 2026-08-24
 
 ## Thesis-completion runbook status
 
-Step 4 of `docs/CODEX_REMAINING_WORK_PROMPTS.md` has prepared, but not approved,
-the successor exact read-only thesis-readiness audit allowlist v1.0.3. The
-v1.0.1 and v1.0.2 reviews ended on process-only findings
-`ALLOWLIST-REVIEW-003` and `ALLOWLIST-REVIEW-004` before substantive review;
-neither established an allowlist defect or exposed protected or analytical
-content. Version 1.0.3 removes the mandatory line-count probe and 120-line
-subject cap, uses one 240-line global cap with 200-line read guidance, and
-makes corrected non-exposure output-limit errors retryable. The v1.0.0
-allowlist and structural test remain byte-identical and v1.0.0 must not be used
-for the readiness audit. Version 1.0.3 has status
-`PREPARED_AWAITING_ALLOWLIST_REVIEW`; its preparation did not execute the
-audit, open content under `data/`, `reports/`, or `notebooks/`, run a model, or
-authorize access to feature years 2021–2024.
+Steps 4 and 5 of `docs/CODEX_REMAINING_WORK_PROMPTS.md` are complete for the
+exact read-only thesis-readiness audit allowlist v1.0.3. Step 4 committed the
+subject as `2a08d0935e7bb49c33b1df0a0da9470d6d0748ae`; its SHA-256 is
+`d05e8e647c2d6b4207b4272255fb2d2d50b89d9892145478332589b4ac09238f`.
+The subsequent `same_session_technical_review` recorded
+`ALLOWLIST_REVIEW_PASS` after a complete subject read and **15/15** passing
+structural tests. The review was intentionally not represented as independent.
 
-The next action is a `same_session_technical_review` of the separately
-committed `configs/thesis_readiness_audit_v1_0_3_allowlist.yaml`, followed by a
-separate review commit. The readiness audit must not start unless that review
-records `ALLOWLIST_REVIEW_PASS`, and Step 6 must then run in another fresh
-context against unchanged committed v1.0.3. This plan-status update does not
-assert completion of the author, promoter, or AI-compliance gates from earlier
-runbook steps.
+There are no unresolved allowlist-review findings. `ALLOWLIST-REVIEW-001` and
+`ALLOWLIST-REVIEW-002` remain structurally remediated;
+`ALLOWLIST-REVIEW-003` and `ALLOWLIST-REVIEW-004` were process-only failures
+without an allowlist defect or protected-content exposure. The v1.0.0
+allowlist and structural test remain byte-identical and v1.0.0 must not be used
+for the readiness audit.
+
+The next action is Step 6 in a new fresh context against the unchanged v1.0.3
+commit and SHA-256 above. Neither preparation nor review executed the readiness
+audit, opened content under `data/`, `reports/`, or `notebooks/`, ran a model,
+or authorized feature-year access beyond the allowlist. This status does not
+assert project readiness or completion of the author, promoter, or
+AI-compliance gates from earlier runbook steps.
 
 ## Current state
 
