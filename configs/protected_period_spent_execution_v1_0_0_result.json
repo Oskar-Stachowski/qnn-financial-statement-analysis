@@ -1,0 +1,1720 @@
+{
+  "access_manifest_sha256": "7e4382c155af67781180060d9d2a883768fc0a768debe1c03ffc252e2044c307",
+  "action": "spent_evaluation_2021_2022",
+  "authority": {
+    "contract_sha256": "3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b",
+    "gate_result_sha256": "e4e3ec6776e2ec426a598654325884b86e2ed67d2f06268a234f372b00c067a9",
+    "runner_sha256": "8711d03b95bd15ef95d697f8036933d79e889e5e5fb1638f09a8df91bda5388b",
+    "scope_id": "SPENT_POST_GATE_EXECUTION_SCOPE_V1_0_0",
+    "scope_sha256": "1bfaf3523f9322e786c06e0d5269766d6994ec8d965e7084eedab4db46587f27"
+  },
+  "execution_evidence_path": "data/model_runs/protected_period_extension_v1/spent/execution_evidence.json",
+  "execution_evidence_sha256": "9b4990e70adc7b57ff20580b77b17377f6452fca67b3155ecc9b4a172d379686",
+  "input_build": {
+    "target_application": {
+      "changed_primitive_cells": 117,
+      "changed_rows": 117,
+      "rows": 56903,
+      "sha256": "ed53de0a56e0d8035ea43e9bad8a4be083eafa7a6db76b224ef3ab96834021f7",
+      "target_label_changes": 0,
+      "target_status_changes": []
+    },
+    "x_t": {
+      "base_projection_sha256": "397c98c3c8d10f493582ce2a8cc7761a464c0066ff7bada6756160a90821e6e1",
+      "corrected_sha256": "b3037e3800fa41dae0a0bdbd36223500545df82090587f1670ffc7027eccdff0",
+      "correction": {
+        "changed_company_years": 122,
+        "current_primitive_cells": 122,
+        "pair_primitive_cells": 0,
+        "rows": 56903
+      },
+      "maximum_feature_year": 2022,
+      "rebuild_sha256": "eae3c0dae06d6b12180cd8297f947cc167ef5dbef5a42fceaf07541ce9a06aaf",
+      "rows": 56903
+    }
+  },
+  "model_fit_performed": true,
+  "model_year_results": [
+    {
+      "calibration_sha256": "39afe3cfc51e7f107a297d142c1d1673716e57d9b3f140b2b62ae1c83110305a",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "family": "xgboost",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "61b071942737c598cb68637aacccb9fab9f77ba9ca6e05761f46d516b6b5ca89",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2021/xgboost__model_stage_v1__coarse__xgboost__004__L_D_R.json",
+      "prediction_rows": 1806,
+      "prediction_sha256": "01d593d1e4a86102205f5d00e3a576bb22d4d7cef50debe5d79cef20a546e5cc",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "3d6d31d90e46d8ecd87698109d1f0f936cc3b1edea35f79c4abdbec0f7edc907",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "0e3f981e342aaa3206c02c3d2c7330bf46c7c1ae70eb97b16e086c0b657d7e51",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.626309624989517,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "1feb626676b8c72f5c689d644a73a24cf03c0f4e700a197fe7c0b897a39affa6",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "234f26d425147d0c48b78db9a0d986c1172d15c0454786f9db35721e8bba4190"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "69da864c12b8ab89f37aa1b2c28f9cbab95104ba9de8a0c4a4c2f07385583cbd",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.3835238750325516,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "70506f5b2d3c33103121da296efcda9769916ff2c9c2a230151d9e82e5266134",
+          "seed": 20260819,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "395c9caebc1892d3c3765d5b07fd6272a58168a22c29d62a30698dbcd33426b6"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "9386ffa858c02f2630420fe98e9308e1eb444480134273b1e34ffb77a21f835e",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.3970022089779377,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "8f1fb231a13ae3e6095729cf3d44d2471f49dded6eb750bc44d5aa3952610e61",
+          "seed": 20260820,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "1d0fe9b56bf86ba7d2343444af2249e8715d29a0240661e69d327af796eb1cb5"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "5e879efcd1b0c4aa2e3378688d41dbbd6037bdd43db2c4004e07c148473945af",
+      "train_membership_sha256": "70a32551b613d1f570e0489a574c5ef47ea1ff2ebfeb64986007e7e70c43e817",
+      "train_rows": 17937,
+      "year": 2021
+    },
+    {
+      "calibration_sha256": "b0dfba01bf615bdb8821c0d0064e67b13b997aa308eb596a6b23309c6fc8e383",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__007",
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "61b071942737c598cb68637aacccb9fab9f77ba9ca6e05761f46d516b6b5ca89",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2021/hist_gradient_boosting__model_stage_v1__coarse__hist_gradient_boosting__007__L_D_R.json",
+      "prediction_rows": 1806,
+      "prediction_sha256": "3efeb6b6250b3951c887ba16fbc4fc07884957f4e217eb85f56a66479a5f5df2",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "3d6d31d90e46d8ecd87698109d1f0f936cc3b1edea35f79c4abdbec0f7edc907",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "6f548c8e0a53101d7e7c1475553af751f51ab2a583159e65c10b896b03c0e462",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.7700763340108097,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "dd9bad2cf424c3f1eda4e2ae85e43b62701b508befd83441c437a68ae1d2723c",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "34d18de00458ee3b92f0ab40393c472bd472764520a02b8150a87df9a3796409"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "983a86b3b23b6c222b634f035c1c14de10bc11ff2b4b488360ccb5ac1a7f16a6",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.8001116249943152,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "dd9bad2cf424c3f1eda4e2ae85e43b62701b508befd83441c437a68ae1d2723c",
+          "seed": 20260819,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "3a572972c4022107a77a93378b3fd8d78b50705b30f2ee13fe8f0fb17599969a"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "afd07b130704ed61c9db1c6a98a6a6179b3a4d50a0ce7354ae37846ead562fae",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.8280494579812512,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "dd9bad2cf424c3f1eda4e2ae85e43b62701b508befd83441c437a68ae1d2723c",
+          "seed": 20260820,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "787cf74ac5d223916d1b960021155fecd7b24a3102331ee7f9fd24713e776d79"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "fe985704cf94da7ee38d1f7c427bc0049f26f7233b8f70acb1c11b03a96cd177",
+      "train_membership_sha256": "70a32551b613d1f570e0489a574c5ef47ea1ff2ebfeb64986007e7e70c43e817",
+      "train_rows": 17937,
+      "year": 2021
+    },
+    {
+      "calibration_sha256": "1605a1c6677d9b09f580fe6ba8c1de9a3f53ebc6a23efc0f9917500ba08866fc",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "family": "random_forest",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "61b071942737c598cb68637aacccb9fab9f77ba9ca6e05761f46d516b6b5ca89",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2021/random_forest__model_stage_v1__coarse__random_forest__003__L_D_R.json",
+      "prediction_rows": 1806,
+      "prediction_sha256": "348929809daa37160ef125cd56c91c289646e3d75a858e24a7a075ec4f842e76",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "3d6d31d90e46d8ecd87698109d1f0f936cc3b1edea35f79c4abdbec0f7edc907",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "ad27e078d13326533b0bb59bffb3d0c80210d14b54d0c97b44aa88b4cf66d48f",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 25.889906541910022,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "50ada73a3e364abbf7ff6f6ebfaa7816f99e68451f5d98ebcb713f8061a0e278",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "1f268f1c774a5d530f4f0d2ba4247172ffa842577a98c4051df9ba365dccf4ac"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "99d04426dd1db5aff1493ec81057614e28e666f7352707ff669d7e16b5b5a0dd",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 25.892017832957208,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "5aaf330272c017086545589142f00b6ec1ccaecec69195a6f3f138f769cabbc5",
+          "seed": 20260819,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "e9be2bef29dd3298d93d363d6cd70184cadad7b941c7fff18d9015427ed543b4"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "82bc454818ea1310efa22df070be76e8f69c34bbea802ce67377d4a26b4c609f",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 25.812363540986553,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "b487e4a58a0ac8fccedcdee8fe38c077c4aefb731379873d033eaeb77f5e769e",
+          "seed": 20260820,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "9cb19eef155cf6a1b9afd627ae3e1b65d7b899dc0eed3cbf44160df26b312d40"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "9ad3543556b554cfed12e66186248b044d16b71b366fafdc1b449a1bfbbc377e",
+      "train_membership_sha256": "70a32551b613d1f570e0489a574c5ef47ea1ff2ebfeb64986007e7e70c43e817",
+      "train_rows": 17937,
+      "year": 2021
+    },
+    {
+      "calibration_sha256": "74e3cd2c9f08f43744039aed73898e87ba97ca62f4bfab139dce27a430c59b16",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+        "family": "pytorch_mlp",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "61b071942737c598cb68637aacccb9fab9f77ba9ca6e05761f46d516b6b5ca89",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2021/pytorch_mlp__model_stage_v1__coarse__pytorch_mlp__epochs_200__003__L_D_R.json",
+      "prediction_rows": 1806,
+      "prediction_sha256": "5fba3541a8ca6d79c32e83d51401e1365149196559c1a544e3f40f63ad482391",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "3d6d31d90e46d8ecd87698109d1f0f936cc3b1edea35f79c4abdbec0f7edc907",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "7b375bb16e812b450e54d19548b89d2cfa62f1c497cbb40c9c43fd4af88de0fe",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 6.888711667037569,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "ae481a6b650f304422e38bc319d6dd2bab749fde4b5aa8247220a6a8ce845a19",
+          "seed": 20260818,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "5f9d3029aa4fe73ed390b49b3d3fbb82609148567bc9964e7047f2173b0d225d"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "9d076eb41427d3cd1b188ef02dede04b7d8200cecab3ac125eec2d4a4dcb04eb",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 6.399841499980539,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "25e21be5969dda97cc07b76d383a6923932aadb88a630fb86afa144fe3cacc9f",
+          "seed": 20260819,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "e7f41f4af0cf98323979831e1cedea01158393ef24d5927521dbfcbd48b2bc6d"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "86993b5f5576d9e533e6f37e6b325b46ad23f2ce1c4d35a243d9534eb45d95f9",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 6.422274083015509,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "6b0d9bb666f0ebd177f26d568a5e66367b827b6fe5304f282457a62ab4fce281",
+          "seed": 20260820,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "7b40fbc08328e1962728d4511da228e0f72c5b5fee30f4493c26dacc5ed41570"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "8bd9fe3e7bbdf376d471b9a1f679a7ed6d6df6c9b3f27bfb773aec615bb29014",
+      "train_membership_sha256": "70a32551b613d1f570e0489a574c5ef47ea1ff2ebfeb64986007e7e70c43e817",
+      "train_rows": 17937,
+      "year": 2021
+    },
+    {
+      "calibration_sha256": "4cdd077ca03d5e6a31eb82bb9d870f15cd91276f98b4f837472d0d8337ebf12c",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__rbf_svm__004",
+        "family": "rbf_svm",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "61b071942737c598cb68637aacccb9fab9f77ba9ca6e05761f46d516b6b5ca89",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2021/rbf_svm__model_stage_v1__coarse__rbf_svm__004__L_D_R.json",
+      "prediction_rows": 1806,
+      "prediction_sha256": "5e3d4e80dd27ebe015e4aedb440a189583f09f25e48aba28b24c25c1d544a5e3",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "3d6d31d90e46d8ecd87698109d1f0f936cc3b1edea35f79c4abdbec0f7edc907",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "ed6d1b8e5c83c1e10fc5ec5575775339b4efdf5bd74abdc4086510e1527e84cb",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 6.9844618330243975,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "9b104ad8c978de9d2f3491d8af812d81fe23c73a1360606945753d286a7c90e9",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "09c8eb8c450d8ee5c2797028611bdac51363c6789b00f061ed826251a7278e8d"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "a7d94d93b871f31a6a13c31a2c3e16e39b3669db507364c994722220e64278a6",
+      "train_membership_sha256": "70a32551b613d1f570e0489a574c5ef47ea1ff2ebfeb64986007e7e70c43e817",
+      "train_rows": 17937,
+      "year": 2021
+    },
+    {
+      "calibration_sha256": "1275add2ae9c4a7c18bdc987f0f4af3f62036a4523d7ea7a7cd0b4daeb5f4758",
+      "identity": {
+        "configuration_id": "model_stage_v1__qnn_q2__t0",
+        "family": "qnn",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": "9856db203fa13431c74f2752dd10820372d44bfa8c9b605a71ebe237a2e1a0d5",
+      "prediction_membership_sha256": "61b071942737c598cb68637aacccb9fab9f77ba9ca6e05761f46d516b6b5ca89",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2021/qnn__model_stage_v1__qnn_q2__t0__L_D_R.json",
+      "prediction_rows": 1806,
+      "prediction_sha256": "254b8be2c1d5886f5ce15d9e323f2a2d897c3aba68c25a8b4debfc195d9277f7",
+      "predictor_names": [
+        "pca_angle_1",
+        "pca_angle_2",
+        "pca_angle_3",
+        "pca_angle_4"
+      ],
+      "preprocessing_sha256": "3d6d31d90e46d8ecd87698109d1f0f936cc3b1edea35f79c4abdbec0f7edc907",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "d7bbe374e0295af12e497e27152d8d3a096e468de2db4cfdbe13736e1261a0ac",
+              "outcome": "COMPLETE",
+              "qnn_attempt_runtime_seconds": 1377.8448930829763,
+              "qnn_global_attempt": 1,
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1377.8448930829763,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "6580d867e106ee543a76c5cee5b2ecaaa7115735aa6a69a51c932efbee25ac0a",
+          "seed": 20260818,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "50d7933db52cab006a1cf82f0be9437ec429eeca97314d5ea71f8ac590c90177"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "39d44715509c5f391ae4cd85bba1a2d03d8974c246b59de4620fbab308a68773",
+              "outcome": "COMPLETE",
+              "qnn_attempt_runtime_seconds": 1347.2624513329938,
+              "qnn_global_attempt": 2,
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1347.2624513329938,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "adc93be62a06486a19948b7338e53fa74e5dcaeeed0b795b7a1f44fa90ce9855",
+          "seed": 20260819,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "f8ce2fb66a0cdec0a3eacecd71287cee62aa18523c4e9830cd58eb25c813e8ad"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "1780cdbe5ea00497d3f3bcbbbff9eb3c9482436532f9e423357bbcf6bcd146ad",
+              "outcome": "COMPLETE",
+              "qnn_attempt_runtime_seconds": 1347.5257031660294,
+              "qnn_global_attempt": 3,
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1347.5257031660294,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "3924e92877684b8e13434720ae4f2565d3ec8a7b4abfa663e8b82f6f5e9411c3",
+          "seed": 20260820,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "d33fca0794bf3d640602a4a125a441f9f7da6a947c95637eb88bcb569bf6c6ed"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "d189a7a7d47f0e9e6916814237926f08e1d7f6a10ecc4d99cd756c7f3847c991",
+      "train_membership_sha256": "70a32551b613d1f570e0489a574c5ef47ea1ff2ebfeb64986007e7e70c43e817",
+      "train_rows": 17937,
+      "year": 2021
+    },
+    {
+      "calibration_sha256": "80a46f3cc1059b6eb9e35001f90f1c5015f68f0fbbcaccc38f8c24cdbcf63360",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__003",
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "61b071942737c598cb68637aacccb9fab9f77ba9ca6e05761f46d516b6b5ca89",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2021/elastic_net_logistic__model_stage_v1__coarse__elastic_net_logistic__003__L_D_R.json",
+      "prediction_rows": 1806,
+      "prediction_sha256": "86fcec2240681bdb0fb3eb25e380bbfee49528227356570fae1c274a27f4cddf",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "3d6d31d90e46d8ecd87698109d1f0f936cc3b1edea35f79c4abdbec0f7edc907",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "e4c730746b35e48dd27348a4316da64b724ebc41fc4d0f68246592b3a0a84c0e",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.7239154999842867,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "7c6fcff34f1d4bf9d9a847f7cad8fae5201474e82a2937381db829232383923c",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "72c78918eab5da612545990c48a3a767c0dcf0879e7feec4af7d7566e4dde9bd"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "6d43201bf077275929bda68cf2e1c73922ba1e796782c7dcd389caa3f1a337c3",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.1722612919984385,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "4084940aef422899e96338275b6182aeff8464567f7356486813b03c113c5fac",
+          "seed": 20260819,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "5de8e245ea68e5d85ac38045a6579b432871ca468488c9cb0727619b59df6ba4"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "ebdf66575d330f646eb0dad6602fa96561a2e747721ed790164c1137863ca88c",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.2107761669903994,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "f5fda4a9b93d3d63821b8880e118275cbaded4282f1dcb4a13e264d587f301bd",
+          "seed": 20260820,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "b493876992d0b2fb22808bfed956fd9d3e70f1924ab344159021f958087515a4"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "228d2c2a7d4d619191a9e09257a1f81b184c195c8247364fb54ec39af40aadcf",
+      "train_membership_sha256": "70a32551b613d1f570e0489a574c5ef47ea1ff2ebfeb64986007e7e70c43e817",
+      "train_rows": 17937,
+      "year": 2021
+    },
+    {
+      "calibration_sha256": "ccb80e7a6e805263bfcab7b46ae079a917069f85edd1ade764ecf3478b7f3257",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__002",
+        "family": "fixed_l2_logistic",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "61b071942737c598cb68637aacccb9fab9f77ba9ca6e05761f46d516b6b5ca89",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2021/fixed_l2_logistic__model_stage_v1__coarse__fixed_l2_logistic__002__L_D_R.json",
+      "prediction_rows": 1806,
+      "prediction_sha256": "f0c7483ff9c991edf247c794dd5eeb7c604d0b08a2bf6593eebf58e994e4794e",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "3d6d31d90e46d8ecd87698109d1f0f936cc3b1edea35f79c4abdbec0f7edc907",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "03e17144ac9f7609b1407ec33bef74232b7cbd563e8f16fcfa9d8d98e0f610dc",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.2355149579234421,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "5023e5c742c34e7822a22c01989b16149fc985eafdcd066e3371c9254084e857",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "35cc5332bf6b34fb38979568ffa280d679e73062fb4dca35c7399b07c7e04399"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "aa17332bfc9d71cec87cee760f32e21bb80233578b01df0978f57657a0c5e117",
+      "train_membership_sha256": "70a32551b613d1f570e0489a574c5ef47ea1ff2ebfeb64986007e7e70c43e817",
+      "train_rows": 17937,
+      "year": 2021
+    },
+    {
+      "calibration_sha256": "b5caa0df5e16bc5ebaa846687519bb828f928b490297e3e85bbb2d0ea6d88696",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__dummy_prior__001",
+        "family": "dummy_prior",
+        "feature_block": "BLOCK_AGNOSTIC"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "61b071942737c598cb68637aacccb9fab9f77ba9ca6e05761f46d516b6b5ca89",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2021/dummy_prior__model_stage_v1__coarse__dummy_prior__001__BLOCK_AGNOSTIC.json",
+      "prediction_rows": 1806,
+      "prediction_sha256": "0cc5dd0f263f02fc9616dc577e15e2c64b2255225c30dd9d1697e5d88693ef44",
+      "predictor_names": [],
+      "preprocessing_sha256": "ad4e567b60f8a03537d75f46675c22f89fa7ddf7be96e38ab470e1341d249223",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "d633235abb9b8f4c20ce63fcb9b3b8f2bfc461f0e0ec1ba0c3c6716795432189",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.0200718329288065,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "87d613b599aeb25be090cd135945c3d4ee59e74154613d98ce7015d78295d5d4",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "cec7fdb1729be2369c3a7e7537fb2075b459c0589c063c65948ba73350911faf"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "704e3d545dc0108326b5414d4e94b2e67590d557c3381dbb36550697f8d4bd78",
+      "train_membership_sha256": "70a32551b613d1f570e0489a574c5ef47ea1ff2ebfeb64986007e7e70c43e817",
+      "train_rows": 17937,
+      "year": 2021
+    },
+    {
+      "calibration_sha256": "39afe3cfc51e7f107a297d142c1d1673716e57d9b3f140b2b62ae1c83110305a",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__xgboost__004",
+        "family": "xgboost",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "27187d466f0c60ab0360285daa8e49ab513ccd0cbd996a7279e3293a67fefe41",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2022/xgboost__model_stage_v1__coarse__xgboost__004__L_D_R.json",
+      "prediction_rows": 1741,
+      "prediction_sha256": "7e636bf76234fe9a3ba5b9f3fdfa017afdcd4d662e254bda495f651c85825ff9",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "fbafe06186a2c6579583a7377d56332e810dc7d9d047b95eb1f049dbb53b7437",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "e74fc0ab75ee1c2623fc43e75c79f3dc86a82d6980afa6220d64d8403f1f1264",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.481986750033684,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "b255e802fe3fc5b6a8a0678d6ecd38a00e23238937b11578d40c71b77fd1ad22",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "d988f3d31daf01dfd8bd1d70f0872ec193184686564da9c5bb0b204783fd2d0c"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "ef9ae2873c10db524aaa53c2afa4c85da8781e3c6895cbaf67b2d0443ec657f3",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.3855552080785856,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "dbffd3336ca9f290f39e0abf3bb51b33c549e298de5d39735c005d6238f60504",
+          "seed": 20260819,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "940e18230c3fd37b8603e2bf57afac2d70042aa63bbb2363129ce9c981bc219a"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "b244317afad8e2d856b14f1633004615cb1530d5eec911573fea5f67d293e663",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.3775963330408558,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "9c0ed2d51f2fd7f2c74ff7a6b98109bfe6e31180e78b0f5743e551012ac2d3cb",
+          "seed": 20260820,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "7d1cb3d5bdd6146e462c7cc9bda95878a80b450080cd21053a9928c03898b807"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "5e879efcd1b0c4aa2e3378688d41dbbd6037bdd43db2c4004e07c148473945af",
+      "train_membership_sha256": "ea918b3e9aea90d5939af7efa164c042e96debb6d1246abfcfaae7bd898ef068",
+      "train_rows": 19599,
+      "year": 2022
+    },
+    {
+      "calibration_sha256": "b0dfba01bf615bdb8821c0d0064e67b13b997aa308eb596a6b23309c6fc8e383",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__hist_gradient_boosting__007",
+        "family": "hist_gradient_boosting",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "27187d466f0c60ab0360285daa8e49ab513ccd0cbd996a7279e3293a67fefe41",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2022/hist_gradient_boosting__model_stage_v1__coarse__hist_gradient_boosting__007__L_D_R.json",
+      "prediction_rows": 1741,
+      "prediction_sha256": "d499a6f177f2bb61debb5de43b386c75028490aee137e3c82742e52ccedf32d5",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "fbafe06186a2c6579583a7377d56332e810dc7d9d047b95eb1f049dbb53b7437",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "c3ae297acaba909cccc133fe3b944cd68383ff10a46c25077e90e91be8412196",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.8076241250382736,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "1c2edbb0d1cc9b7fa9e4737f981347fdd093c641aa3c83a549af0321d1505101",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "1fbe57f60583d5ee867d44731f4b77657eeaddcc20efc0414735cacb4e3841de"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "e504a51c3c815ecc07c69aa8289dbad12c5c4ec42c686103c1e9049f14be82e6",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.791114459047094,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "1c2edbb0d1cc9b7fa9e4737f981347fdd093c641aa3c83a549af0321d1505101",
+          "seed": 20260819,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "7d1c2b3756e2d86292b48fb081a4a7cf9a68c73378cd8c24c349114ed02bf598"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "80d2c181243a34d59ae2f812b99cd8ef09e3b05da14c1b2f1f238616a8497581",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.8137189170811325,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "1c2edbb0d1cc9b7fa9e4737f981347fdd093c641aa3c83a549af0321d1505101",
+          "seed": 20260820,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "3e4e2dd9e515cc068b1f19639daaaf8b79abf5908439999168751495114af5fb"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "fe985704cf94da7ee38d1f7c427bc0049f26f7233b8f70acb1c11b03a96cd177",
+      "train_membership_sha256": "ea918b3e9aea90d5939af7efa164c042e96debb6d1246abfcfaae7bd898ef068",
+      "train_rows": 19599,
+      "year": 2022
+    },
+    {
+      "calibration_sha256": "1605a1c6677d9b09f580fe6ba8c1de9a3f53ebc6a23efc0f9917500ba08866fc",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__random_forest__003",
+        "family": "random_forest",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "27187d466f0c60ab0360285daa8e49ab513ccd0cbd996a7279e3293a67fefe41",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2022/random_forest__model_stage_v1__coarse__random_forest__003__L_D_R.json",
+      "prediction_rows": 1741,
+      "prediction_sha256": "0ffa982a661ec1c9619de1b38130b30c4b8c83d42ad2b4cf02b4bed3b22dc295",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "fbafe06186a2c6579583a7377d56332e810dc7d9d047b95eb1f049dbb53b7437",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "ddb614b8f48ba4db82ae817103deb7514e64f56baaea8acbd5b9182f9a50c4bc",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 27.629932332900353,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "df97598d6059526ef9c8153cf9bd52713ffb6becccd6b85f79402a8e0cbd6da3",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "60fbf6aaac0b28de082288c7af32a02cd0678b7b35678a39d9e9058ade04930e"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "9e4789422302f2a6203f0068dbb376de0a2e5bc7bb3c012a8968eb1b4ddd9a52",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 27.990407416946255,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "4966eb7cf1937104e3190d78ffd683d4ad8390719dd216f703baf61630e58302",
+          "seed": 20260819,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "6fb2751fad524d96291fd4799ac03e0121b60719a385853e383b4c0139de7209"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "44b327f75666c28f5cbfdc373bf96c964f352941e98aa9f0b0bcd6ec6c01ef81",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 27.80615004093852,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "c3abe444a3f8302bbccd59d46c068276357d5c5a9326474e9fab19063ce61b22",
+          "seed": 20260820,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "ed2c4d9e44690eaa33c58e6e0e97a182fea26a6d3a3015d967133da44e78d832"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "9ad3543556b554cfed12e66186248b044d16b71b366fafdc1b449a1bfbbc377e",
+      "train_membership_sha256": "ea918b3e9aea90d5939af7efa164c042e96debb6d1246abfcfaae7bd898ef068",
+      "train_rows": 19599,
+      "year": 2022
+    },
+    {
+      "calibration_sha256": "74e3cd2c9f08f43744039aed73898e87ba97ca62f4bfab139dce27a430c59b16",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__pytorch_mlp__epochs_200__003",
+        "family": "pytorch_mlp",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "27187d466f0c60ab0360285daa8e49ab513ccd0cbd996a7279e3293a67fefe41",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2022/pytorch_mlp__model_stage_v1__coarse__pytorch_mlp__epochs_200__003__L_D_R.json",
+      "prediction_rows": 1741,
+      "prediction_sha256": "08951177ff8edde1f51464bed4dee3ffd83300930bbf1d6c97242daa97bfe6e5",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "fbafe06186a2c6579583a7377d56332e810dc7d9d047b95eb1f049dbb53b7437",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "eb8898b5735580ce5496b36fe98d155b6ae48a2d36ebce08784fdffb150b48e1",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 7.167279249988496,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "a9f58dfe1e8cf68051c34e02201590c8b384925427fb08831801e0981ee06e20",
+          "seed": 20260818,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "e624dbbae13a81a349aa585c32049fc0d1fe4e72ebfb77aea583369eb5a7076c"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "22a717fec2349d8d207e1e6652539b638e65b8b1fc542da2923712edaaafbb6f",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 6.73036979092285,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "157a679118bcb8d25fd6c780d352582e46535da4745648cfa701d859a9cde286",
+          "seed": 20260819,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "6da44ead8307c2f54530400b8c8b6f6a51ef8fa20f8aa1d70aadcb79cabe0e14"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "6d5ac8513aa716c25ff7ebf1402d903b7959845d1c886d59d4563bc5cc07ab3f",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 6.527593791950494,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "659d7e6cc3dd9d9fb34f0b9039daf77747974a8cd0ea5c336a05a6043a5efc31",
+          "seed": 20260820,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "297e6df5b0b3966c191f69490dc456ee08765eef926635d14e0c484a8d6013aa"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "8bd9fe3e7bbdf376d471b9a1f679a7ed6d6df6c9b3f27bfb773aec615bb29014",
+      "train_membership_sha256": "ea918b3e9aea90d5939af7efa164c042e96debb6d1246abfcfaae7bd898ef068",
+      "train_rows": 19599,
+      "year": 2022
+    },
+    {
+      "calibration_sha256": "4cdd077ca03d5e6a31eb82bb9d870f15cd91276f98b4f837472d0d8337ebf12c",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__rbf_svm__004",
+        "family": "rbf_svm",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "27187d466f0c60ab0360285daa8e49ab513ccd0cbd996a7279e3293a67fefe41",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2022/rbf_svm__model_stage_v1__coarse__rbf_svm__004__L_D_R.json",
+      "prediction_rows": 1741,
+      "prediction_sha256": "7cad0ccd883be4bf720590f6315d8f29a0c93023b6fa1fd54c4cbf768d78a5d8",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "fbafe06186a2c6579583a7377d56332e810dc7d9d047b95eb1f049dbb53b7437",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "7b5225c7881df7c3af3b3a5b8a96f0319a26c507c83ec86bde6fc7a9a69f4f96",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 8.052851625019684,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "7710fcbb53e21186a2d481b2c0bc84b008909f2cb0b676566e8b96e0d11f563a",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "46ab843414d41872fd7e378afcfa34225773beadf59523bdf39b11774d83b8fa"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "a7d94d93b871f31a6a13c31a2c3e16e39b3669db507364c994722220e64278a6",
+      "train_membership_sha256": "ea918b3e9aea90d5939af7efa164c042e96debb6d1246abfcfaae7bd898ef068",
+      "train_rows": 19599,
+      "year": 2022
+    },
+    {
+      "calibration_sha256": "1275add2ae9c4a7c18bdc987f0f4af3f62036a4523d7ea7a7cd0b4daeb5f4758",
+      "identity": {
+        "configuration_id": "model_stage_v1__qnn_q2__t0",
+        "family": "qnn",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": "daa8e311286ce3c57b7c4364ff930f224813b49a2aa16adbb9b1776c260d34f8",
+      "prediction_membership_sha256": "27187d466f0c60ab0360285daa8e49ab513ccd0cbd996a7279e3293a67fefe41",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2022/qnn__model_stage_v1__qnn_q2__t0__L_D_R.json",
+      "prediction_rows": 1741,
+      "prediction_sha256": "eb4d40b2446245cae1f6357b5ec607bfab42c81b09d03ceb3800c7baa86b6b55",
+      "predictor_names": [
+        "pca_angle_1",
+        "pca_angle_2",
+        "pca_angle_3",
+        "pca_angle_4"
+      ],
+      "preprocessing_sha256": "fbafe06186a2c6579583a7377d56332e810dc7d9d047b95eb1f049dbb53b7437",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "6a1745a16f5722fbf1b74899707a71c9de1296c4a8ee63edd51e6afc9f61b6c0",
+              "outcome": "COMPLETE",
+              "qnn_attempt_runtime_seconds": 1465.9086723329965,
+              "qnn_global_attempt": 4,
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1465.9086723329965,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "b1adb06b3301f90b26a64c236fe9f6c5afd873081ad45da5d4b44dd9376d2cd1",
+          "seed": 20260818,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "46f9905ad75b428a9a69a6e58440df57dc508aa71062c5dca75ab199846fd892"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "a387292990f2ba21c178dc6e53f9d006f34162dcc7f56fd0ee4a473421e82dbc",
+              "outcome": "COMPLETE",
+              "qnn_attempt_runtime_seconds": 1466.9275952500757,
+              "qnn_global_attempt": 5,
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1466.9275952500757,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "50977419a86b4217c6db3227e8c88bc8cd65890748cbf9865fd45ccca8ac8bf0",
+          "seed": 20260819,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "7e3bd200b131789922c45c8ddf921e8183b4edcc1971fdf3408430130db87b82"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "ca34ddf552b533a6310ec7f73a454da0b74b91f5c2eaaac387b525655284e8b9",
+              "outcome": "COMPLETE",
+              "qnn_attempt_runtime_seconds": 1469.6823802919826,
+              "qnn_global_attempt": 6,
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1469.6823802919826,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "f46201c7473e42710a6daa043cd69d80e560eecab808666863dbf4f06da11665",
+          "seed": 20260820,
+          "software_environment_sha256": "0a8a0b698060cab166d7e6cecb94812898cd91842a3bccb0b93290015a805195",
+          "task_identity_sha256": "96040d26476fbe68e8362ec55eff7503b59998497f99dd2303fcc9bb6ed17aa9"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "d189a7a7d47f0e9e6916814237926f08e1d7f6a10ecc4d99cd756c7f3847c991",
+      "train_membership_sha256": "ea918b3e9aea90d5939af7efa164c042e96debb6d1246abfcfaae7bd898ef068",
+      "train_rows": 19599,
+      "year": 2022
+    },
+    {
+      "calibration_sha256": "80a46f3cc1059b6eb9e35001f90f1c5015f68f0fbbcaccc38f8c24cdbcf63360",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__elastic_net_logistic__003",
+        "family": "elastic_net_logistic",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "27187d466f0c60ab0360285daa8e49ab513ccd0cbd996a7279e3293a67fefe41",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2022/elastic_net_logistic__model_stage_v1__coarse__elastic_net_logistic__003__L_D_R.json",
+      "prediction_rows": 1741,
+      "prediction_sha256": "f9c7ed5ea4e404f38ca48d0707494aa3a51ff44df8903dfbe8af486a72737b98",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "fbafe06186a2c6579583a7377d56332e810dc7d9d047b95eb1f049dbb53b7437",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "3e71c2744f8496f3b96cfffa7c26382b7b247d0ead2fb80a35567b12b6f9b0d8",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.709473333088681,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "94e11d3271e45dd0366ca43f9b0537e14cb4c0615945a8e5f2bdc5dd5683001e",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "4d2184aa98732b580fea7ec19281f8487f718e711b0bcb9d1854220c24e4a3b1"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "11bc0744a11f4027cad44c837901846d1b3f5a7b435194890b8886d51924f6a5",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.1691668749554083,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "dde60cfa2027b23c5bd9cedc8ee65bc72d3c2754d57df189ea5ae7f187d818c3",
+          "seed": 20260819,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "ed3505b4a14287aec889581e4abdca373da599ced58e863adb5fc7f77e60c470"
+        },
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "343be63884db0e99c749fb775565eddd0e1ffe41d3c2056305e5288139c595e8",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.172672332962975,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "5502a53dde98104a04ca47349466309cae8b1c25cedd5cdecf0608c96dba1f88",
+          "seed": 20260820,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "e1f4663a93df83dbc2f895563382e76cd325181f1980befa419e0457a8a38152"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "228d2c2a7d4d619191a9e09257a1f81b184c195c8247364fb54ec39af40aadcf",
+      "train_membership_sha256": "ea918b3e9aea90d5939af7efa164c042e96debb6d1246abfcfaae7bd898ef068",
+      "train_rows": 19599,
+      "year": 2022
+    },
+    {
+      "calibration_sha256": "ccb80e7a6e805263bfcab7b46ae079a917069f85edd1ade764ecf3478b7f3257",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__fixed_l2_logistic__002",
+        "family": "fixed_l2_logistic",
+        "feature_block": "L+D+R"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "27187d466f0c60ab0360285daa8e49ab513ccd0cbd996a7279e3293a67fefe41",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2022/fixed_l2_logistic__model_stage_v1__coarse__fixed_l2_logistic__002__L_D_R.json",
+      "prediction_rows": 1741,
+      "prediction_sha256": "ed23a0e1119bae8f49f19b0cb6f236e2ce06ed86e466a20ffb858cef0c26c589",
+      "predictor_names": [
+        "log_assets_t",
+        "roa_t",
+        "ocf_to_assets_t",
+        "current_ratio_t",
+        "liabilities_to_assets_t",
+        "working_capital_to_assets_t",
+        "accruals_to_assets_t",
+        "asset_growth_1y",
+        "delta_roa_1y",
+        "delta_ocf_to_assets_1y",
+        "current_ratio_change_1y",
+        "delta_liabilities_to_assets_1y",
+        "log1p_revenues_t",
+        "profit_margin_t",
+        "ocf_margin_t",
+        "asset_turnover_t",
+        "revenue_growth_1y",
+        "log_assets_t__missing",
+        "roa_t__missing",
+        "ocf_to_assets_t__missing",
+        "current_ratio_t__missing",
+        "liabilities_to_assets_t__missing",
+        "working_capital_to_assets_t__missing",
+        "accruals_to_assets_t__missing",
+        "asset_growth_1y__missing",
+        "delta_roa_1y__missing",
+        "delta_ocf_to_assets_1y__missing",
+        "current_ratio_change_1y__missing",
+        "delta_liabilities_to_assets_1y__missing",
+        "log1p_revenues_t__missing",
+        "profit_margin_t__missing",
+        "ocf_margin_t__missing",
+        "asset_turnover_t__missing",
+        "revenue_growth_1y__missing"
+      ],
+      "preprocessing_sha256": "fbafe06186a2c6579583a7377d56332e810dc7d9d047b95eb1f049dbb53b7437",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "08854aedd93d814fd660c632a669aa5a4fcff50a5739b52c5d482c39772e4bab",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.2663864999776706,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "041ae3ec78c0e06848f2fcf767ef07122589a0ec77762e888b97accfdd5b9e7c",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "af7dba60a58c47f65ff100c414c47428d9dd7c4b491bf12e225c6b4064f0e668"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "aa17332bfc9d71cec87cee760f32e21bb80233578b01df0978f57657a0c5e117",
+      "train_membership_sha256": "ea918b3e9aea90d5939af7efa164c042e96debb6d1246abfcfaae7bd898ef068",
+      "train_rows": 19599,
+      "year": 2022
+    },
+    {
+      "calibration_sha256": "b5caa0df5e16bc5ebaa846687519bb828f928b490297e3e85bbb2d0ea6d88696",
+      "identity": {
+        "configuration_id": "model_stage_v1__coarse__dummy_prior__001",
+        "family": "dummy_prior",
+        "feature_block": "BLOCK_AGNOSTIC"
+      },
+      "pca_sha256": null,
+      "prediction_membership_sha256": "27187d466f0c60ab0360285daa8e49ab513ccd0cbd996a7279e3293a67fefe41",
+      "prediction_path": "data/model_runs/protected_period_extension_v1/spent/predictions/prediction_2022/dummy_prior__model_stage_v1__coarse__dummy_prior__001__BLOCK_AGNOSTIC.json",
+      "prediction_rows": 1741,
+      "prediction_sha256": "a4022f9899d527f181fd07c693a1406672d10b155d5de43d286cec7d47ad45f1",
+      "predictor_names": [],
+      "preprocessing_sha256": "ad4e567b60f8a03537d75f46675c22f89fa7ddf7be96e38ab470e1341d249223",
+      "seed_components": [
+        {
+          "attempts": [
+            {
+              "attempt": 1,
+              "command_sha256": "6513fec27328858ae3a8972d3b62d3fe8d7a57bd7bc66375565f23726d11ea95",
+              "outcome": "COMPLETE",
+              "resume": false,
+              "retry_reason": "INITIAL",
+              "returncode": 0,
+              "runtime_seconds": 1.0268311669351533,
+              "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ],
+          "raw_scores_sha256": "a6a284fc4d03e21c356dd502d8b26e6e2a1ab85d3d5919b69f39d16a99ecb2b2",
+          "seed": 20260818,
+          "software_environment_sha256": "27629f792a3e03086615769dc837256427339f9abbdfcffbe610f82a992890da",
+          "task_identity_sha256": "a5a9c54002b2732f468b1b9a8f32f6bfa21f8114597d9395370c807edbcd4011"
+        }
+      ],
+      "status": "COMPLETE",
+      "threshold_sha256": "704e3d545dc0108326b5414d4e94b2e67590d557c3381dbb36550697f8d4bd78",
+      "train_membership_sha256": "ea918b3e9aea90d5939af7efa164c042e96debb6d1246abfcfaae7bd898ef068",
+      "train_rows": 19599,
+      "year": 2022
+    }
+  ],
+  "period_label": "design-exposed/spent development",
+  "recalibration_performed": false,
+  "report_path": "reports/protected_period_extension_v1/spent_report_v1_0_0.json",
+  "report_sha256": "0d0716380e58345d9d80f70015b42f6fadd211a069dde0fed3eed4e439ccc86c",
+  "reselection_performed": false,
+  "rethresholding_performed": false,
+  "roster_size": 9,
+  "schema_version": 1,
+  "scope_id": "SPENT_POST_GATE_EXECUTION_SCOPE_V1_0_0",
+  "scope_sha256": "1bfaf3523f9322e786c06e0d5269766d6994ec8d965e7084eedab4db46587f27",
+  "status": "COMPLETE",
+  "targets_in_prediction_files": true,
+  "tuning_performed": false,
+  "years": [
+    2021,
+    2022
+  ]
+}
