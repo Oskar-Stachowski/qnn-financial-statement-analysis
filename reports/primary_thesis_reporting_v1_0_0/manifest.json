@@ -1,0 +1,51 @@
+{
+  "development_rows": 9,
+  "evidence_ledger_records": 639,
+  "figures": 0,
+  "files": [
+    {
+      "bytes": 810,
+      "path": "README.md",
+      "sha256": "0b7e43a0bd96c0768e7c6750ff8b3f77ddb51edbb19b65222ce4451ed34f129f"
+    },
+    {
+      "bytes": 387731,
+      "path": "evidence_ledger.csv",
+      "sha256": "f21ec38bfe4662a61812d07af60d8f4fc1e69c7fb28506abaae6e4046f822b05"
+    },
+    {
+      "bytes": 620907,
+      "path": "evidence_ledger.json",
+      "sha256": "e77a3931e439c8ff560db4160da0238f59d40393f6240a00ba49b19fbbd43170"
+    },
+    {
+      "bytes": 4950,
+      "path": "tables/01_development_family_ranking.csv",
+      "sha256": "13a8aece61d65371a133702639104a3d0926802a50c8484a660533ac30ef773a"
+    },
+    {
+      "bytes": 30866,
+      "path": "tables/02_protected_period_metrics.csv",
+      "sha256": "12d2c2a543b691eb91cfe37ce84b2c4fd76fa9773916c9d56c27a303a0161634"
+    },
+    {
+      "bytes": 1698,
+      "path": "tables/03_period_boundaries.csv",
+      "sha256": "2f418334aede07448d4ddd4cd51e3824c44d5089e834d8e906f83cef9763faa8"
+    },
+    {
+      "bytes": 751,
+      "path": "tables/04_reporting_availability.csv",
+      "sha256": "7ae99371f3e69b8465dbd9c3a68e133ae1df897d25001c9425528d105a15afc5"
+    },
+    {
+      "bytes": 930,
+      "path": "tables/05_package_provenance.csv",
+      "sha256": "58829e2f2be9640cdd92c28fe4bca5ae30d4769c84f3a579ca835e3a40e0bb71"
+    }
+  ],
+  "mode": "GATED_SUCCESSOR_MODE",
+  "protected_metric_rows": 36,
+  "schema_version": 1,
+  "status": "COMPLETE"
+}

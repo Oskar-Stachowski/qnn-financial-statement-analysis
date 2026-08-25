@@ -1,0 +1,7 @@
+requested_output,status,reason
+frozen aggregate AP ROC-AUC Brier F1 precision recall,AVAILABLE,Present in exact frozen aggregate reports.
+clustered bootstrap intervals for AP ROC-AUC F1,AVAILABLE,Present in exact frozen aggregate reports; copied without recomputation.
+log loss,OMIT_NOT_IN_FROZEN_AGGREGATE,No row-level computation is authorized for this package.
+calibration intercept slope and calibration curve,OMIT_NOT_IN_FROZEN_AGGREGATE,No row-level computation is authorized for this package.
+sector size XBRL retention and composition,OMIT_NOT_IN_FROZEN_AGGREGATE,No protected row-level composition read is authorized.
+new paired comparisons FP FN cases and runtime costs,OMIT_BY_PRECOMMITTED_DECISION,Avoid post-result exploratory expansion.

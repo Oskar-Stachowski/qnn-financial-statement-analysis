@@ -1,0 +1,16 @@
+{
+  "access_manifest_sha256": "05fa8b6c531ef72b7c83c1f9f32c692e5c09acc3dcb87bf9dc7c24710cdc2a1c",
+  "development_rows": 9,
+  "mode": "GATED_SUCCESSOR_MODE",
+  "model_fit_refit_or_prediction_performed": false,
+  "new_statistics_computed": false,
+  "output_files": 9,
+  "output_manifest_sha256": "351b838d12876d4727154ede0cc611723149e379421bd23ceb037dc197b96fb3",
+  "package_freeze_manifest_sha256": "46a73163cf23f6f3309f834e0e20fcd11c6152406d2474c86c41d75c6c612da7",
+  "protected_metric_rows": 36,
+  "row_level_protected_content_read": false,
+  "schema_version": 1,
+  "scope_id": "PRIMARY_REPORTING_GENERATION_SCOPE_V1_0_0",
+  "scope_sha256": "311d01f3bcf04d3d33ecb196ac5a3e30db2f80b72c481164ff327562ac5d2f5e",
+  "verdict": "PRIMARY_REPORTING_EXECUTION_PASS"
+}
