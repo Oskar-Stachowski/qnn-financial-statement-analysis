@@ -1,0 +1,13 @@
+{
+  "access_manifest_sha256": "7e4382c155af67781180060d9d2a883768fc0a768debe1c03ffc252e2044c307",
+  "exact_refit_schedule_complete": true,
+  "execution_evidence_sha256": "905afe4bc623d8269bb5c881697de89d52c420289e440bab7798f905ea1baeba",
+  "report_sha256": "0d0716380e58345d9d80f70015b42f6fadd211a069dde0fed3eed4e439ccc86c",
+  "roster_complete": true,
+  "schema_version": 1,
+  "scope_id": "SPENT_POST_EXECUTION_FREEZE_SCOPE_V1_0_0",
+  "scope_sha256": "8875ab71c4e008d0a964c3032c2a1ce22163d85f5c346bc2cb647e9195c0cea0",
+  "terminal_variant": "GATED_FULL_HOLDOUT",
+  "tuning_performed": false,
+  "verdict": "SPENT_REPORT_FREEZE_PASS"
+}
