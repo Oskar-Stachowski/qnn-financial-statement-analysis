@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "id": "thesis_methodology_figures_v1_0_0",
+  "version": "1.0.0",
+  "status": "PASS",
+  "analysis_role": "REPORTING_ONLY_FROM_FROZEN_AGGREGATE_METADATA",
+  "protected_row_level_content_read": false,
+  "model_fit_performed": false,
+  "prediction_generation_performed": false,
+  "figures": 3,
+  "figure_formats": [
+    "png",
+    "svg"
+  ],
+  "source_count": 10,
+  "output_files_excluding_manifest": [
+    {
+      "path": "README.md",
+      "sha256": "68ddcc0be831055dfa2d1e0fb3f6062b00373c55af0eea749b43080ec806697b",
+      "size_bytes": 970
+    },
+    {
+      "path": "figures/01_pipeline_and_leakage_safeguards.png",
+      "sha256": "c2c67fa8847c2c9656bcd74d6c8851cab3b6ae10517b79f99b7c47d4c22daaef",
+      "size_bytes": 293915
+    },
+    {
+      "path": "figures/01_pipeline_and_leakage_safeguards.svg",
+      "sha256": "ac4ca1baab0f175272e7d837f5e99321d92260fe680f3770d842ca0472991745",
+      "size_bytes": 163901
+    },
+    {
+      "path": "figures/02_period_timeline.png",
+      "sha256": "5f5acf388e0b5fdf49681933360904e22c04bf5d96f692fc9799b354ef244085",
+      "size_bytes": 223296
+    },
+    {
+      "path": "figures/02_period_timeline.svg",
+      "sha256": "0f0d5a1f84a7c5e3195cb6803a006ed68dedad401f0eb668ec4883b12a8d16f5",
+      "size_bytes": 128585
+    },
+    {
+      "path": "figures/03_sample_selection_waterfall.png",
+      "sha256": "beea4a3599c25dd627e372548921edb3813290df86fb67713cfb11f6fc791f3f",
+      "size_bytes": 147714
+    },
+    {
+      "path": "figures/03_sample_selection_waterfall.svg",
+      "sha256": "8b545612c1dc2153bb2ceeb949b29a2f135b36d587aeef483f69b31b62fcea3d",
+      "size_bytes": 95232
+    },
+    {
+      "path": "tables/01_pipeline_stages_and_safeguards.csv",
+      "sha256": "c742967a5fbb0498d518c414fc429160035b91bacac7014f9d3bb0dbc11d6453",
+      "size_bytes": 1892
+    },
+    {
+      "path": "tables/02_period_timeline.csv",
+      "sha256": "b69a2c2fede9e69314d4c9e717927282af6042dbfea1b3e79a8e251fb669a3a3",
+      "size_bytes": 1383
+    },
+    {
+      "path": "tables/03_sample_selection_waterfall.csv",
+      "sha256": "054ff847c56b1b4481a19650d0510550ad14fc7ee39add3ff7bcae55951e5f32",
+      "size_bytes": 604
+    },
+    {
+      "path": "tables/04_source_provenance.csv",
+      "sha256": "ae477174f43beb153bf7abd087c1b10727a6089b99a4730778fab0a7885baf4d",
+      "size_bytes": 1652
+    }
+  ]
+}

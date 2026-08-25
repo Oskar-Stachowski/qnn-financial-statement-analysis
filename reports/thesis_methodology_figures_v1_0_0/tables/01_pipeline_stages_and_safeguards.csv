@@ -1,0 +1,9 @@
+order,stage,content,leakage_risk,safeguard,source_path
+1,Filing-first universe PIT,Historyczne membership i dokładny anchor accession,Survivorship/current-snapshot bias; późniejszy filing,Zamrożone historyczne membership; immutable hash; bez ponownego rankowania filingów,configs/supervised_ml_pipeline_v1.yaml
+2,Cechy X_t,Cechy t wyłącznie z exact anchor 10-K za t,"Fallback do 10-K/A, kolejnego 10-K lub informacji t+1",Brak fallbacku; point-in-time timestamp; późniejszy filing i t+1 niedozwolone,docs/06_1_point_in_time_x_t_feature_pipeline_audit_and_policy.md
+3,Target PIT-B,Etykieta t+1 z jawnym target_available_at,Użycie etykiety zanim była dostępna,target_available_at nie później niż cutoff predykcji walidacyjnej,configs/supervised_ml_pipeline_v1.yaml
+4,Próba supervised,eligible + target available + zaakceptowany x_t_status,Dryf membership lub selekcja według wyniku,Zamrożona reguła i SHA-256 dokładnego zbioru identyfikatorów,configs/supervised_ml_pipeline_v1_2_0.yaml
+5,Temporal CV,6 expanding-window foldów; walidacja 2015–2020,Przyszłe lata lub niedostępne targety w train,Roczny embargo + temporal order + cutoff target_available_at,configs/supervised_ml_pipeline_v1.yaml
+6,Preprocessing i fit,"Winsoryzacja, imputacja, scaling i model osobno w foldzie",Statystyki validation w preprocessing lub treningu,Fit wyłącznie na fold-train; validation tylko transform/predict,configs/supervised_ml_pipeline_v1.yaml
+7,OOF i wybór,Pooled OOF AP 2015–2020; seed-averaged raw scores,Wybór po wyniku okresów chronionych,Ranking zamknięty na development; chronione wyniki nie aktywują zmian,configs/model_stage_v1.yaml
+8,Okresy chronione,2021–2022 spent; 2023–2024 temporal holdout,Tuning po otwarciu lub twierdzenie fully unseen,"Wersjonowane gates, hash predykcji przed label gate, no-tune/no-reselection",configs/data_access_policy_v1_1_0.yaml

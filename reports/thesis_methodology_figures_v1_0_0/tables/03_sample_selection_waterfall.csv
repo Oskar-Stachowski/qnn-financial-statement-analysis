@@ -1,0 +1,5 @@
+order,stage,bar_type,delta_n,n_after_stage,retention_vs_train_pct,source_path
+1,Pula train 2011–2020,total_start,47938,47938,100.0,reports/classical_eda_for_thesis/tables/01_selection_flow.csv
+2,Usunięte: target PIT-B niedostępny,decrease,-28154,19784,41.2699737160499,reports/classical_eda_for_thesis/tables/01_selection_flow.csv
+3,Usunięte: niedopuszczony x_t_status,decrease,-113,19671,41.03425257624431,reports/classical_eda_for_thesis/tables/01_selection_flow.csv
+4,Finalna próba supervised,total_end,19671,19671,41.03425257624431,reports/classical_eda_for_thesis/tables/01_selection_flow.csv

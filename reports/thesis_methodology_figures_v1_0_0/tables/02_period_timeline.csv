@@ -1,0 +1,12 @@
+order,period_role,years,start_year,end_year,display_label,allowed_use,prohibited_claim,exposure_disclosure,source_path
+1,training_history,2011-2014,2011,2014,Historia treningowa,"Początkowe okna train
+dla temporal CV","Nie jest osobnym okresem
+raportowania wyników",Brak walidacji OOF w tych latach,configs/supervised_ml_pipeline_v1.yaml
+2,development,2015-2020,2015,2020,Development OOF,"Wybór i ranking modeli;
+pooled OOF","Nie jest niezależnym testem
+post-selection",No independent post-selection test is claimed.,reports/primary_thesis_reporting_v1_0_0/tables/03_period_boundaries.csv
+3,spent_development,2021-2022,2021,2022,Spent development,"Secondary evidence;
+bez zmian metody","Nie jest independent
+validation","Target, feature, missingness and sample-design aggregates for 2021-2022 were exposed before this frozen evaluation.",reports/primary_thesis_reporting_v1_0_0/tables/03_period_boundaries.csv
+4,holdout,2023-2024,2023,2024,Temporal holdout,"Zamrożona ocena czasowa;
+bez zmian metody",Nie jest fully unseen,Aggregate target statistics for 2023-2024 were exposed before the frozen evaluation. Labels were also exposed and aligned during failed pre-metric v1.0.0; no performance metric was computed before this author-authorized versioned rerun. This period is not described as fully unseen.,reports/primary_thesis_reporting_v1_0_0/tables/03_period_boundaries.csv

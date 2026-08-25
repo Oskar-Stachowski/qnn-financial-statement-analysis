@@ -1,0 +1,40 @@
+schema_version: 1
+
+report:
+  id: thesis_methodology_figures_v1_0_0
+  version: 1.0.0
+  status: REPORTING_ONLY
+  language: pl
+  protected_row_level_content_read: false
+  model_fit_performed: false
+  prediction_generation_performed: false
+
+sources:
+  supervised_pipeline: configs/supervised_ml_pipeline_v1_2_0.yaml
+  historical_pipeline_method: configs/supervised_ml_pipeline_v1.yaml
+  model_stage: configs/model_stage_v1.yaml
+  access_policy: configs/data_access_policy_v1_1_0.yaml
+  point_in_time_feature_policy: docs/06_1_point_in_time_x_t_feature_pipeline_audit_and_policy.md
+  period_boundaries: reports/primary_thesis_reporting_v1_0_0/tables/03_period_boundaries.csv
+  selection_flow: reports/classical_eda_for_thesis/tables/01_selection_flow.csv
+  coverage_correction: docs/14_1_coverage_estimand_correction_v1_0_0.md
+
+expected_values:
+  train_pool_n: 47938
+  target_available_n: 19784
+  supervised_sample_n: 19671
+  target_unavailable_n: 28154
+  rejected_x_t_status_n: 113
+  supervised_retention_pct: 41.03425257624431
+  oof_validation_years: [2015, 2016, 2017, 2018, 2019, 2020]
+  protected_periods:
+    spent_development: [2021, 2022]
+    holdout: [2023, 2024]
+
+figures:
+  - figures/01_pipeline_and_leakage_safeguards.png
+  - figures/01_pipeline_and_leakage_safeguards.svg
+  - figures/02_period_timeline.png
+  - figures/02_period_timeline.svg
+  - figures/03_sample_selection_waterfall.png
+  - figures/03_sample_selection_waterfall.svg

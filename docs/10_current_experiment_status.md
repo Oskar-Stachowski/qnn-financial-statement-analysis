@@ -2,6 +2,16 @@
 
 Status date: 2026-08-25
 
+## Thesis methodology figures — 2026-08-25
+
+The reporting-only package `reports/thesis_methodology_figures_v1_0_0/`
+provides a reproducible pipeline/leakage diagram, period-role timeline and
+sample-selection waterfall in PNG and SVG. It reads only frozen configurations,
+method documentation and compact aggregate tables. It performs no fit,
+prediction generation or protected row-level read. Exact sources, diagram data
+and reproduction instructions are recorded in
+[`docs/12_13_thesis_methodology_figures_v1_0_0.md`](12_13_thesis_methodology_figures_v1_0_0.md).
+
 ## Development-only post-hoc exploratory comparison — 2026-08-25
 
 The author-authorized package
