@@ -2,6 +2,12 @@
 
 Stan zweryfikowany: **2026-08-24**
 
+Aktualizacja 2026-08-25: zadania dotyczące tabeli stabilności seedów i
+porównania kosztu obliczeniowego są zamknięte przez reporting-only pakiet
+`reports/methodology_extension_v1_0_0/`. Prompty niżej, które ponownie proponują
+te obliczenia, są w tym zakresie historyczne i nie powinny być uruchamiane.
+Pakiet nie wykonał treningu ani nie otworzył lat chronionych 2021–2024.
+
 Bazowy stan eksperymentu: commit `ae8ab17`
 (`Resolve data access incidents after independent review`).
 
@@ -215,9 +221,12 @@ To bramka autora i promotora. Codex przygotowuje wyłącznie arkusz decyzji, nie
 tworzy finalnej koncepcji pracy ani tekstu naukowego.
 
 ```text
-Przygotuj decision sheet porównujący zatwierdzoną kartę tematu, konspekt,
+Przygotuj decision sheet porównujący zatwierdzony bieżący zakres, konspekt,
 planowane dane i obecny committed stan eksperymentu. Użyj wyłącznie wskazanych
 dokumentów źródłowych i aktualnego statusu; nie otwieraj danych analitycznych.
+Dokumenty umieszczone w `docs/legacy/` albo oznaczone `LEGACY` są wyłącznie
+historyczną proweniencją. Nie traktuj ich rozbieżności jako bieżących blockerów
+ani źródła obowiązującego zakresu; użyj ich tylko do opisania ewolucji projektu.
 
 Dla tytułu, celu, pytań, hipotez, populacji, targetu, zakresu cech, PCA, modeli,
 metryk i okresów nadaj status RETAINED, NARROWED, NOT_TESTED albo EXPLORATORY.

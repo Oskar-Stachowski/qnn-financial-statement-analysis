@@ -1,0 +1,9 @@
+topic,disclosure,thesis_placement
+seed_dispersion,"Seed SD and range are descriptive statistics from exactly three seeds, not confidence intervals and not inferential evidence.",Methods limitation and note below the seed-stability table
+fold_vs_seed_variability,Temporal-fold SD measures year-to-year validation variability; seed SD measures training-initialization variability. They must be reported separately.,Methods and table definitions
+ensemble_metric,The final ensemble AP is calculated after row-wise averaging of raw scores and therefore is not the arithmetic mean of seed-level AP values.,Methods and results table note
+runtime_scope,Final-representative cost sums recorded worker-attempt seconds across six development folds. Program-stage cost includes different search breadths and must be shown separately.,Computational methods
+runtime_comparability,Runtimes were recorded on historical executions in different Python/software environments and on different dates; this is not a controlled hardware benchmark.,Limitations
+qnn_backend,"QNN used the analytic lightning.qubit simulator with shots=None, adjoint differentiation and float64; reported time is not quantum-hardware latency.",QNN implementation details
+claim_boundary,Simulator-only results do not support a quantum-advantage claim.,Discussion and limitations
+data_boundary,All metrics in this extension use development OOF years 2015--2020. Protected years 2021--2024 are neither opened nor reported.,Methods and data split

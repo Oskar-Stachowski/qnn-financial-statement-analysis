@@ -1,0 +1,51 @@
+schema_version: 1
+
+methodology_extension_reporting:
+  id: methodology_extension_reporting_v1_0_0
+  version: 1.0.0
+  status: REPORTING_ONLY
+  created_on: "2026-08-25"
+  project_model_fit_permitted: false
+  protected_feature_years_permitted: false
+  development_feature_years: [2015, 2016, 2017, 2018, 2019, 2020]
+  protected_feature_years: [2021, 2022, 2023, 2024]
+  confirmation_seeds: [20260818, 20260819, 20260820]
+
+scope:
+  seed_stability:
+    primary_family_representatives: true
+    title_aligned_mlp_comparator: true
+    deterministic_single_run_models_reported_as_not_applicable: true
+    inference_from_three_seeds_permitted: false
+  computational_cost:
+    final_representative_worker_runtime: true
+    recorded_program_stage_worker_runtime: true
+    controlled_hardware_benchmark_claim_permitted: false
+    quantum_hardware_runtime_claim_permitted: false
+
+source_authority:
+  final_primary_ranking: data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json
+  confirmation_manifest: data/model_runs/post_coarse_v1_3_0/confirmation_phase_manifest.json
+  coarse_manifest: data/model_runs/classical_mlp_coarse_v1/classical_mlp_coarse_search_manifest.json
+  runtime_metadata: data/model_runs/post_coarse_v1_3_0/runtime_metadata.json
+  qnn_resource_ledger: data/model_runs/post_coarse_v1_3_0/qnn_resource_ledger.json
+  qnn_confirmation_resource_ledger: data/model_runs/post_coarse_v1_3_0/qnn_confirmation_resource_ledger.json
+  qnn_resource_smoke: data/model_runs/post_coarse_v1_3_0/qnn_resource_smoke.json
+  qnn_backend_amendment: configs/model_execution_contract_v1_2_1_lightning_amendment.yaml
+
+outputs:
+  report_directory: reports/methodology_extension_v1_0_0
+  figures:
+    - 01_seed_stability_pr_auc
+    - 02_pr_auc_vs_runtime
+  tables:
+    - 01_seed_stability_summary.csv
+    - 02_seed_stability_detailed.csv
+    - 03_compute_cost_final_representatives.csv
+    - 04_compute_cost_per_seed.csv
+    - 05_compute_cost_program_stages.csv
+    - 06_runtime_environments.csv
+    - 07_methodological_disclosures.csv
+    - 08_source_provenance.csv
+    - 09_seed_stability_thesis_compact.csv
+    - 10_compute_cost_thesis_compact.csv

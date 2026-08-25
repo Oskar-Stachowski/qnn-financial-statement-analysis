@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "id": "methodology_extension_v1_0_0",
+  "status": "PASS",
+  "source_freeze_verdict": "POST_COARSE_V1_3_0_RESULTS_INTEGRITY_PASS",
+  "reporting_only": true,
+  "project_model_fit_performed": false,
+  "protected_feature_years_opened": false,
+  "development_feature_years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "seed_summary_rows": 10,
+  "seed_detailed_rows": 31,
+  "cost_summary_rows": 10,
+  "cost_per_seed_rows": 24,
+  "program_cost_rows": 7,
+  "files": [
+    {
+      "path": "reports/methodology_extension_v1_0_0/README.md",
+      "sha256": "4d0b88a6cb4599b274f68f51753db913abc35c5e29d1cbe45691cf5086086910",
+      "size_bytes": 1243
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/figures/01_seed_stability_pr_auc.png",
+      "sha256": "1ddfbdd876be0517ce8cb9ca04de7b598044231e2898ac24a8f6065258d688d1",
+      "size_bytes": 109745
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/figures/01_seed_stability_pr_auc.svg",
+      "sha256": "74bf0cb36946160fec97bfc917f4a7d630fcbebb94bb46e3a8c8b68b73b0012d",
+      "size_bytes": 75566
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/figures/02_pr_auc_vs_runtime.png",
+      "sha256": "633264ce6b7f730ebe48953e2c04d36cbcf4fe4b98d3b484abffbd136ef0d2a9",
+      "size_bytes": 125232
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/figures/02_pr_auc_vs_runtime.svg",
+      "sha256": "ec8968cb02c107d28a6acdf0a647586e63fcda4094fe1de4438b111164019e18",
+      "size_bytes": 77849
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/01_seed_stability_summary.csv",
+      "sha256": "d7cab52bdccdba5e9af980df0944e85cdbacbffbf76ec0561eea9ee917f6f612",
+      "size_bytes": 5572
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/02_seed_stability_detailed.csv",
+      "sha256": "536e8d4c1c60cc20d747cc62e94fa79b8ec3b1e16beb7675559446d7c0b4dc40",
+      "size_bytes": 19495
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/03_compute_cost_final_representatives.csv",
+      "sha256": "3ceaa12ffeea248245d4a3cfac9b980c7982cebd7efaf3e9de3ab14a8d71351d",
+      "size_bytes": 5339
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/04_compute_cost_per_seed.csv",
+      "sha256": "a888298c60e7ce9f26d1bf36665b5afc72e31f8dbd9b8885d01a28a5bfeabe15",
+      "size_bytes": 15895
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/05_compute_cost_program_stages.csv",
+      "sha256": "c7e99d5eed788d3b0651b04ec39ed69bf4fc948d1a934b7eb9cd69e122fcae0f",
+      "size_bytes": 2194
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/06_runtime_environments.csv",
+      "sha256": "821467e7e58325342e9ae8bc7c421c2af1a060e687b0c7e1092b833f84a94e44",
+      "size_bytes": 1085
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/07_methodological_disclosures.csv",
+      "sha256": "1db36d47aec62249ad11746e4b0c212a6a11520eb46476d3eab34932175315ab",
+      "size_bytes": 1508
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/08_source_provenance.csv",
+      "sha256": "4059e0058bdf3c9d88156e529a1eec4efe9cd2404a9e509d82afed4607f8ad46",
+      "size_bytes": 27892
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/09_seed_stability_thesis_compact.csv",
+      "sha256": "3844ac68035090d6f12606ce181f0ec6c7f3474f0d1290b026ca58560732f2e1",
+      "size_bytes": 973
+    },
+    {
+      "path": "reports/methodology_extension_v1_0_0/tables/10_compute_cost_thesis_compact.csv",
+      "sha256": "c9144d1deb0c49574c7570ae1624c0eb4d37db0d115594e1345adb3940be5d14",
+      "size_bytes": 1071
+    }
+  ]
+}

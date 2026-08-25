@@ -1,0 +1,11 @@
+Rola,Model,Blok cech,AP końcowe,AP seed: średnia ± SD,AP seed: min–max,Status
+główna,XGBoost,L+D+R,0.4131,0.4130 ± 0.0013,0.4117–0.4142,"opisowo, n=3"
+główna,HistGradientBoosting,L+D+R,0.4078,0.4078 ± 0.0000,0.4078–0.4078,"opisowo, n=3"
+główna,Random Forest,L+D+R,0.4066,0.4064 ± 0.0009,0.4057–0.4074,"opisowo, n=3"
+główna,MLP,L+D+R,0.3971,0.3945 ± 0.0015,0.3929–0.3959,"opisowo, n=3"
+główna,SVM RBF,L+D+R,0.3936,nie dotyczy,nie dotyczy,model deterministyczny
+główna,QNN,L+D+R,0.3839,0.3803 ± 0.0040,0.3759–0.3838,"opisowo, n=3"
+główna,Regresja logistyczna Elastic Net,L+D+R,0.3818,0.3818 ± 0.0000,0.3818–0.3818,"opisowo, n=3"
+główna,Regresja logistyczna fixed L2,L+D+R,0.3817,nie dotyczy,nie dotyczy,model deterministyczny
+główna,Dummy prior,BLOCK_AGNOSTIC,0.1723,nie dotyczy,nie dotyczy,model deterministyczny
+porównanie tytułowe,MLP (porównanie tytułowe),L+D,0.3963,0.3951 ± 0.0016,0.3933–0.3965,"opisowo, n=3"
