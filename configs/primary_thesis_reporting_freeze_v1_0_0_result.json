@@ -1,0 +1,18 @@
+{
+  "deterministic_reproduction": true,
+  "development_spent_holdout_estimands_separate": true,
+  "execution_result_sha256": "1395f069b947517a63468ea017765997db5114e10a8e425053ac4bfaa7587920",
+  "failed_v1_0_0_output_included": false,
+  "figure_outputs": 0,
+  "mode": "GATED_SUCCESSOR_MODE",
+  "model_fit_refit_or_prediction_performed": false,
+  "new_statistics_computed": false,
+  "output_manifest_sha256": "351b838d12876d4727154ede0cc611723149e379421bd23ceb037dc197b96fb3",
+  "reproduced_manifest_sha256": "351b838d12876d4727154ede0cc611723149e379421bd23ceb037dc197b96fb3",
+  "row_level_protected_content_read": false,
+  "schema_version": 1,
+  "scope_id": "PRIMARY_REPORTING_FREEZE_SCOPE_V1_0_0",
+  "scope_sha256": "1af87ade42aa7c05432781c97f23bfb86c2cd36b0692864c6d6f8cbf1b8638ae",
+  "verdict": "PRIMARY_REPORTING_FREEZE_PASS",
+  "visual_qa": "NOT_APPLICABLE_NO_CANONICAL_FIGURES"
+}
