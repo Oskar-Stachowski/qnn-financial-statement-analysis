@@ -1,0 +1,100 @@
+schema_version: 1
+
+gate:
+  id: MODEL_EXECUTION_V1_2_SECOND_INTEGRITY_GATE
+  version: 1.0.0
+  status: committed_candidate_not_executed
+  terminal_variant: GATED_FULL_HOLDOUT
+  performance_magnitude_may_affect_verdict: false
+  holdout_feature_years_remain_sealed: [2023, 2024]
+
+authority:
+  subject_commit: cbe89e7bc412bf595082df8a48ecb22682b685b2
+  decision_sha256: 864cd99661a6afbbb44e1c3096d5400e46b6f1062c00f843324c56d7e41bba23
+  contract_sha256: 3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b
+  execution_repair_sha256: cdfb21fb5aac74cba6987dfd65591e77afff13d44eba77001a1bad1a705740f4
+  runner_sha256: 8711d03b95bd15ef95d697f8036933d79e889e5e5fb1638f09a8df91bda5388b
+  roster_sha256: 58d100a612902b0b6762b06521fea56b754959b69ffefbc3c50473e0d6d94130
+  qnn_ansatz_sha256: f2c5a0aa94ee7d3fa7f89b8055b1364d7f20ab594c62fafd5d0b2f46858807b7
+  spent_execution_evidence_sha256: 905afe4bc623d8269bb5c881697de89d52c420289e440bab7798f905ea1baeba
+  spent_report_sha256_opaque_only: 0d0716380e58345d9d80f70015b42f6fadd211a069dde0fed3eed4e439ccc86c
+  spent_freeze_sha256: 1d3be0871bf8fd348143d9a92c7068f24ca90d609ebadfc36a402b761ecce83e
+
+scopes:
+  second_integrity_gate_scope:
+    id: SECOND_INTEGRITY_GATE_SCOPE_V1_0_0
+    definition_sha256: 1d37fe853910b0f7a89961e3882d87888c0d93641104cc006aae3c5445fcd1b2
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.protected_period_extension verify-second-integrity-gate
+      exact_content_inputs:
+        - configs/protected_period_second_integrity_gate_v1_0_0.yaml
+        - configs/protected_period_second_integrity_review_v1_0_0_result.json
+        - configs/protected_period_execution_contract_v1_0_0.yaml
+        - configs/protected_period_execution_repair_v1_0_1.yaml
+        - configs/protected_period_spent_execution_v1_0_0_result.json
+        - configs/protected_period_spent_freeze_v1_0_0_result.json
+        - src/modeling/protected_period_extension.py
+        - data/model_runs/post_coarse_v1_3_0/final_primary_development_ranking.json
+        - data/model_runs/post_coarse_v1_3_0/qnn_selected_ansatz.json
+        - data/model_runs/protected_period_extension_v1/spent/predictions
+      opaque_sha256_and_existence_only:
+        - reports/protected_period_extension_v1/spent_report_v1_0_0.json
+      allowed_execution_evidence_fields:
+        - status
+        - authority
+        - years
+        - roster_size
+        - model_year_results.identity
+        - model_year_results.year
+        - model_year_results.status
+        - model_year_results.seed_components
+        - model_year_results.prediction_path
+        - model_year_results.prediction_sha256
+        - model_year_results.calibration_sha256
+        - model_year_results.threshold_sha256
+        - tuning_performed
+        - reselection_performed
+        - recalibration_performed
+        - rethresholding_performed
+        - period_label
+      allowed_operations:
+        - exact_sha256_verification
+        - identity_and_status_completeness_check
+        - roster_seed_schedule_completeness_check
+        - prediction_schema_presence_check_without_metric_computation
+        - frozen_code_calibration_and_threshold_hash_check
+        - no_tuning_flag_check
+        - holdout_seal_check
+      forbidden_gate_inputs:
+        - reports.protected_period_extension_v1.spent_report_v1_0_0.metric_rows
+        - pr_auc
+        - roc_auc
+        - f1_frozen_threshold
+        - precision_frozen_threshold
+        - recall_frozen_threshold
+        - brier_score
+        - cluster_bootstrap
+        - confidence_interval
+        - calibration_performance
+        - quality_threshold
+        - performance_interpretation
+      output: configs/protected_period_second_integrity_gate_v1_0_0_result.json
+      forbidden_operations:
+        - model_fit
+        - prediction
+        - metric_evaluation
+        - performance_comparison
+        - tuning
+        - methodology_change
+        - feature_or_label_access_2023_2024
+
+review_scope:
+  exact_content_paths:
+    - configs/protected_period_second_integrity_gate_v1_0_0.yaml
+    - configs/protected_period_execution_contract_v1_0_0.yaml
+    - configs/protected_period_execution_repair_v1_0_1.yaml
+    - configs/protected_period_spent_freeze_v1_0_0_result.json
+    - src/modeling/protected_period_extension.py
+  protected_performance_values_read_allowed: false
+  protected_feature_or_label_content_read_allowed: false
+  gate_execution_allowed: false
