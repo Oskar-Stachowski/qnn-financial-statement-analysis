@@ -1,0 +1,11 @@
+{
+  "code_calibration_threshold_hashes_complete": true,
+  "gate_manifest_sha256": "2e24fe4f11327689aab96ee9dd31eb5e44ec5dde7689b0ba674e2853d304b52e",
+  "holdout_2023_2024_remained_sealed": true,
+  "performance_values_read_by_gate": false,
+  "roster_complete": true,
+  "schema_version": 1,
+  "scope_id": "SECOND_INTEGRITY_GATE_SCOPE_V1_0_0",
+  "scope_sha256": "1d37fe853910b0f7a89961e3882d87888c0d93641104cc006aae3c5445fcd1b2",
+  "verdict": "MODEL_EXECUTION_V1_2_INTEGRITY_PASS"
+}
