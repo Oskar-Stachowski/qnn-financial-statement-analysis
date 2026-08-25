@@ -1,0 +1,9 @@
+{
+  "gate_manifest_sha256": "130425486b909a84e608212aef25251128a9faf303aab26aaba6ae9933f381c8",
+  "schema_version": 1,
+  "scope_id": "FEATURE_GATE_VERIFIER_SCOPE_V1_0_0",
+  "scope_sha256": "d9261293b0ae64f50ef63f984c67b3fa4b507f573983841d4dfe048e714daada",
+  "target_statistics_opened": false,
+  "target_values_opened": false,
+  "verdict": "DATA_ACCESS_GATE_2023_2024_FEATURE_APPLICATION_PASS"
+}
