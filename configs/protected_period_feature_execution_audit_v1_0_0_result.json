@@ -1,0 +1,9 @@
+{
+  "execution_evidence_sha256": "1f0951b6e6fc26cb2faf6f184c99a7a4fe215d5326d9719f0ff6424a020dc885",
+  "roster_complete": true,
+  "schema_version": 1,
+  "scope_id": "FEATURE_POST_EXECUTION_AUDIT_SCOPE_V1_0_0",
+  "scope_sha256": "b80a377136d33d4c84ff48986e4b1058f140a2d1267ceee3140f168a71f4f990",
+  "targets_remained_sealed": true,
+  "verdict": "FEATURE_APPLICATION_EXECUTION_PASS"
+}
