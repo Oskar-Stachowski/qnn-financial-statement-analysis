@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "review": {
+    "id": "protected_period_second_integrity_allowlist_review",
+    "version": "1.0.0",
+    "performed_at_utc": "2026-08-25T05:05:06Z",
+    "review_kind": "same_session_technical_review",
+    "independent_review_claimed": false,
+    "same_session_author_override": true,
+    "promoter_approval_claimed": false
+  },
+  "verdict": "INTEGRITY_ALLOWLIST_REVIEW_PASS",
+  "subject_commit": "13cd27000bcb52e65129efaaa0f1ef301dfa7187",
+  "subject_manifest": "configs/protected_period_second_integrity_gate_v1_0_0.yaml",
+  "subject_manifest_sha256": "2e24fe4f11327689aab96ee9dd31eb5e44ec5dde7689b0ba674e2853d304b52e",
+  "authorities": {
+    "runner_verifier_sha256": "8711d03b95bd15ef95d697f8036933d79e889e5e5fb1638f09a8df91bda5388b",
+    "spent_freeze_sha256": "1d3be0871bf8fd348143d9a92c7068f24ca90d609ebadfc36a402b761ecce83e"
+  },
+  "scopes": {
+    "second_integrity_gate_scope": {
+      "id": "SECOND_INTEGRITY_GATE_SCOPE_V1_0_0",
+      "definition_sha256": "1d37fe853910b0f7a89961e3882d87888c0d93641104cc006aae3c5445fcd1b2",
+      "verdict": "PASS",
+      "checks": {
+        "exact_inputs_output_and_command": true,
+        "identity_hash_status_and_completeness_only": true,
+        "spent_report_is_opaque_hash_only": true,
+        "performance_magnitude_cannot_affect_verdict": true,
+        "holdout_features_and_labels_remain_sealed": true
+      }
+    }
+  },
+  "forbidden_input_checks": {
+    "pr_auc": "ABSENT_FROM_VERIFIER_READS",
+    "roc_auc": "ABSENT_FROM_VERIFIER_READS",
+    "f1": "ABSENT_FROM_VERIFIER_READS",
+    "calibration_performance": "ABSENT_FROM_VERIFIER_READS",
+    "confidence_intervals": "ABSENT_FROM_VERIFIER_READS",
+    "quality_threshold": "ABSENT_FROM_VERIFIER_READS",
+    "performance_interpretation": "ABSENT_FROM_VERIFIER_READS"
+  },
+  "global_checks": {
+    "report_metric_rows_deserialized_during_review": false,
+    "gate_executed_during_review": false,
+    "model_fit_executed_during_review": false,
+    "feature_or_label_content_2023_2024_read": false
+  },
+  "limitations": [
+    "This is an author-authorized same-session technical review, not an independent review.",
+    "Calibration and threshold artifact integrity is inherited from the frozen runner execution evidence and SPENT_REPORT_FREEZE_PASS; the gate itself does not read performance values."
+  ]
+}
