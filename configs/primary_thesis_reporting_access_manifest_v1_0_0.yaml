@@ -1,0 +1,142 @@
+schema_version: 1
+
+primary_thesis_reporting_access_manifest:
+  id: primary_thesis_reporting_access_manifest_v1_0_0
+  version: 1.0.0
+  mode: GATED_SUCCESSOR_MODE
+  arbitrary_paths_allowed: false
+  row_level_content_allowed: false
+  model_execution_allowed: false
+
+authority:
+  contract_path: configs/primary_thesis_reporting_contract_v1_0_0.yaml
+  contract_sha256: 043aa4c754a659a7ec0876bfcf204eef0378598284a2b207f6ae85e4cd80f9f4
+  spent_freeze_verdict: SPENT_REPORT_FREEZE_PASS
+  spent_freeze_sha256: 1d3be0871bf8fd348143d9a92c7068f24ca90d609ebadfc36a402b761ecce83e
+  holdout_freeze_verdict: HOLDOUT_REPORT_FREEZE_PASS
+  holdout_freeze_sha256: deed40b26c57eeab351767600b7c6988c9a5da10cc3933a355c61b6b8efaf612
+  failed_holdout_v1_0_0_allowed: false
+
+scopes:
+  reporting_preflight_scope:
+    id: PRIMARY_REPORTING_PREFLIGHT_SCOPE_V1_0_0
+    definition_sha256: b031abebf2263c1b6932e0e7034eabce1a2dc856f97c0e66b80b00a9a571bb24
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.primary_thesis_reporting_v1_0_0 verify-package
+      exact_content_reads:
+        - configs/primary_thesis_reporting_contract_v1_0_0.yaml
+        - configs/primary_thesis_reporting_access_manifest_v1_0_0.yaml
+        - configs/primary_thesis_reporting_package_freeze_v1_0_0.yaml
+        - configs/primary_thesis_reporting_output_schema_v1_0_0.json
+        - src/modeling/primary_thesis_reporting_v1_0_0.py
+        - tests/test_primary_thesis_reporting_v1_0_0.py
+      opaque_hash_only:
+        - reports/post_coarse_v1_3_0/07_final_primary_family_ranking.csv
+        - reports/protected_period_extension_v1/spent_report_v1_0_0.json
+        - configs/protected_period_spent_freeze_v1_0_0_result.json
+        - reports/protected_period_extension_v1/holdout_report_v1_0_1.json
+        - configs/protected_period_holdout_freeze_v1_0_1_result.json
+        - reports/classical_eda_for_thesis/eda_summary.md
+        - reports/pca_diagnostics_for_qnn/pca_summary.md
+        - reports/coarse_search_thesis/analysis_manifest.json
+        - reports/post_coarse_v1_3_0/report_manifest.json
+        - reports/secondary_development_thesis_v1_0_0/analysis_manifest.json
+      outputs: []
+      forbidden:
+        - deserialize_real_metric_or_prediction_content
+        - generate_real_package
+        - read_row_level_data
+        - model_fit_refit_inference_or_prediction
+
+  reporting_generation_scope:
+    id: PRIMARY_REPORTING_GENERATION_SCOPE_V1_0_0
+    definition_sha256: 311d01f3bcf04d3d33ecb196ac5a3e30db2f80b72c481164ff327562ac5d2f5e
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.primary_thesis_reporting_v1_0_0 generate
+      exact_content_reads:
+        - configs/primary_thesis_reporting_contract_v1_0_0.yaml
+        - configs/primary_thesis_reporting_access_manifest_v1_0_0.yaml
+        - configs/primary_thesis_reporting_package_freeze_v1_0_0.yaml
+        - configs/primary_thesis_reporting_access_review_v1_0_0_result.json
+        - configs/primary_thesis_reporting_output_schema_v1_0_0.json
+        - reports/post_coarse_v1_3_0/07_final_primary_family_ranking.csv
+        - reports/protected_period_extension_v1/spent_report_v1_0_0.json
+        - configs/protected_period_spent_freeze_v1_0_0_result.json
+        - reports/protected_period_extension_v1/holdout_report_v1_0_1.json
+        - configs/protected_period_holdout_freeze_v1_0_1_result.json
+        - src/modeling/primary_thesis_reporting_v1_0_0.py
+      opaque_hash_only:
+        - reports/classical_eda_for_thesis/eda_summary.md
+        - reports/pca_diagnostics_for_qnn/pca_summary.md
+        - reports/coarse_search_thesis/analysis_manifest.json
+        - reports/post_coarse_v1_3_0/report_manifest.json
+        - reports/secondary_development_thesis_v1_0_0/analysis_manifest.json
+      allowed_operations:
+        - verify_exact_sha256_before_deserialization
+        - deserialize_exact_frozen_aggregate_csv_and_json_only
+        - require_spent_and_holdout_freeze_pass
+        - copy_and_normalize_existing_fields_without_new_statistics
+        - write_separate_development_spent_and_holdout_boundaries
+        - write_number_level_evidence_ledger
+        - write_deterministic_csv_json_and_navigation_markdown
+      exact_output_root: reports/primary_thesis_reporting_v1_0_0
+      exact_execution_result: configs/primary_thesis_reporting_execution_v1_0_0_result.json
+      forbidden:
+        - read_row_level_oof_or_protected_predictions
+        - read_protected_target_feature_or_membership_rows
+        - include_failed_holdout_v1_0_0_output
+        - compute_new_statistic_ci_rank_or_cross_period_pool
+        - model_fit_refit_inference_or_prediction
+        - write_thesis_narrative_interpretation_or_conclusion
+
+  reporting_freeze_scope:
+    id: PRIMARY_REPORTING_FREEZE_SCOPE_V1_0_0
+    definition_sha256: 1af87ade42aa7c05432781c97f23bfb86c2cd36b0692864c6d6f8cbf1b8638ae
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.primary_thesis_reporting_v1_0_0 freeze
+      exact_content_reads:
+        - configs/primary_thesis_reporting_contract_v1_0_0.yaml
+        - configs/primary_thesis_reporting_access_manifest_v1_0_0.yaml
+        - configs/primary_thesis_reporting_package_freeze_v1_0_0.yaml
+        - configs/primary_thesis_reporting_access_review_v1_0_0_result.json
+        - configs/primary_thesis_reporting_output_schema_v1_0_0.json
+        - configs/primary_thesis_reporting_execution_v1_0_0_result.json
+        - reports/post_coarse_v1_3_0/07_final_primary_family_ranking.csv
+        - reports/protected_period_extension_v1/spent_report_v1_0_0.json
+        - configs/protected_period_spent_freeze_v1_0_0_result.json
+        - reports/protected_period_extension_v1/holdout_report_v1_0_1.json
+        - configs/protected_period_holdout_freeze_v1_0_1_result.json
+        - reports/primary_thesis_reporting_v1_0_0
+        - src/modeling/primary_thesis_reporting_v1_0_0.py
+      opaque_hash_only:
+        - reports/classical_eda_for_thesis/eda_summary.md
+        - reports/pca_diagnostics_for_qnn/pca_summary.md
+        - reports/coarse_search_thesis/analysis_manifest.json
+        - reports/post_coarse_v1_3_0/report_manifest.json
+        - reports/secondary_development_thesis_v1_0_0/analysis_manifest.json
+      allowed_operations:
+        - verify_exact_input_and_output_hashes
+        - regenerate_deterministic_package_in_temporary_directory
+        - compare_file_set_bytes_and_manifest_sha256
+        - verify_period_boundaries_labels_and_omissions
+        - write_freeze_result
+      exact_output: configs/primary_thesis_reporting_freeze_v1_0_0_result.json
+      forbidden:
+        - modify_generated_package
+        - expand_access_scope
+        - compute_new_statistic
+        - model_fit_refit_inference_or_prediction
+        - write_thesis_narrative_interpretation_or_conclusion
+
+review_scope:
+  exact_content_paths:
+    - configs/primary_thesis_reporting_contract_v1_0_0.yaml
+    - configs/primary_thesis_reporting_access_manifest_v1_0_0.yaml
+    - configs/primary_thesis_reporting_package_freeze_v1_0_0.yaml
+    - configs/primary_thesis_reporting_output_schema_v1_0_0.json
+    - src/modeling/primary_thesis_reporting_v1_0_0.py
+    - tests/test_primary_thesis_reporting_v1_0_0.py
+  real_result_values_read_allowed: false
+  row_level_content_read_allowed: false
+  real_package_generation_allowed: false
+  review_may_change_subject: false

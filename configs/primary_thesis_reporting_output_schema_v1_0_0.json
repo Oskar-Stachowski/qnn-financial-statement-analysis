@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "primary_thesis_reporting_output_schema_v1_0_0",
+  "title": "Primary thesis reporting package output schema",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "mode",
+    "development_rows",
+    "protected_metric_rows",
+    "evidence_ledger_records",
+    "figures",
+    "files"
+  ],
+  "properties": {
+    "schema_version": {"const": 1},
+    "status": {"const": "COMPLETE"},
+    "mode": {"const": "GATED_SUCCESSOR_MODE"},
+    "development_rows": {"const": 9},
+    "protected_metric_rows": {"const": 36},
+    "evidence_ledger_records": {"type": "integer", "minimum": 1},
+    "figures": {"const": 0},
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["path", "bytes", "sha256"],
+        "properties": {
+          "path": {"type": "string"},
+          "bytes": {"type": "integer", "minimum": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

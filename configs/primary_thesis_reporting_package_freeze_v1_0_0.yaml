@@ -1,0 +1,38 @@
+schema_version: 1
+
+primary_thesis_reporting_package_freeze:
+  id: primary_thesis_reporting_package_freeze_v1_0_0
+  version: 1.0.0
+  mode: GATED_SUCCESSOR_MODE
+  status: FROZEN_BEFORE_REAL_PACKAGE_GENERATION
+  synthetic_tests_required: true
+  real_result_values_read_by_freeze_step: false
+  independent_review_claimed: false
+
+artifacts:
+  - role: reporting_contract
+    path: configs/primary_thesis_reporting_contract_v1_0_0.yaml
+    sha256: 043aa4c754a659a7ec0876bfcf204eef0378598284a2b207f6ae85e4cd80f9f4
+  - role: exact_access_manifest
+    path: configs/primary_thesis_reporting_access_manifest_v1_0_0.yaml
+    sha256: 05fa8b6c531ef72b7c83c1f9f32c692e5c09acc3dcb87bf9dc7c24710cdc2a1c
+  - role: output_schema
+    path: configs/primary_thesis_reporting_output_schema_v1_0_0.json
+    sha256: 4f504358da31d21c9e23c8fbe9b9e5583a7c8b99c4d2d1d163069367efbec36b
+  - role: deterministic_generator_and_verifier
+    path: src/modeling/primary_thesis_reporting_v1_0_0.py
+    sha256: d4819c9f092ec27d8ac004dbb8c1adc79741a57c769c2f29d7d4fc6327516c9b
+  - role: synthetic_tests
+    path: tests/test_primary_thesis_reporting_v1_0_0.py
+    sha256: a2b36fe5b4d80812b32abdd3ab3e89d3a9513c3bd30f0cdbd0c58888cb1db2d4
+
+test_authority:
+  command: env QNN_TEST_ACCESS_GUARD=1 .venv-classical/bin/python -m src.testing.compat_test_runner tests/test_primary_thesis_reporting_v1_0_0.py
+  tests_expected: 4
+  real_inputs_deserialized: false
+
+transition:
+  review_result: configs/primary_thesis_reporting_access_review_v1_0_0_result.json
+  required_review_verdict: REPORTING_ALLOWLIST_REVIEW_PASS
+  generation_result: configs/primary_thesis_reporting_execution_v1_0_0_result.json
+  freeze_result: configs/primary_thesis_reporting_freeze_v1_0_0_result.json

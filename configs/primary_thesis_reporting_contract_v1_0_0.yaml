@@ -1,0 +1,130 @@
+schema_version: 1
+
+primary_thesis_reporting:
+  id: primary_thesis_reporting_v1_0_0
+  version: 1.0.0
+  mode: GATED_SUCCESSOR_MODE
+  status: FROZEN_BEFORE_PACKAGE_GENERATION
+  subject_commit: 5fe31b96f29cf5d4a6755c3ed721e30670ba04a9
+  output_root: reports/primary_thesis_reporting_v1_0_0
+  project_model_fit_refit_inference_or_prediction_permitted: false
+  row_level_protected_content_permitted: false
+  aggregate_reports_permitted_only_after_freeze_pass: true
+  failed_output_permitted: false
+
+procedural_disclosure:
+  protected_values_observed_after_p6e_before_this_reporting_contract: true
+  preregistration_claimed_for_this_reporting_contract: false
+  effect_on_scope: >-
+    The package may only normalize and copy fields already present in exact
+    frozen aggregate reports. It may not select new analyses based on values.
+
+reporting_decisions:
+  new_post_result_statistics: OMIT
+  new_paired_comparisons: OMIT
+  new_pooled_cross_period_estimand: FORBIDDEN
+  fp_fn_case_studies_and_runtime_cost: OMIT
+  rank_spent_or_holdout_models: FORBIDDEN
+  change_primary_selection_from_protected_results: FORBIDDEN
+  canonical_figures: OMIT
+  author_workbook_chart: CONVENIENCE_ONLY_NOT_CANONICAL_EVIDENCE
+
+exact_value_sources:
+  development_ranking:
+    path: reports/post_coarse_v1_3_0/07_final_primary_family_ranking.csv
+    sha256: 4e48aed3224dbe4745f969ba1dea0c6c91050f14cfd2e3e19bd8ef2ed5b8a73f
+    period_role: development
+    boundary: pooled_oof_2015_2020
+  spent_report:
+    path: reports/protected_period_extension_v1/spent_report_v1_0_0.json
+    sha256: 0d0716380e58345d9d80f70015b42f6fadd211a069dde0fed3eed4e439ccc86c
+    period_role: spent_development
+    required_freeze: SPENT_REPORT_FREEZE_PASS
+  spent_freeze:
+    path: configs/protected_period_spent_freeze_v1_0_0_result.json
+    sha256: 1d3be0871bf8fd348143d9a92c7068f24ca90d609ebadfc36a402b761ecce83e
+  holdout_report:
+    path: reports/protected_period_extension_v1/holdout_report_v1_0_1.json
+    sha256: d69f75628687341d13976898e873b2cc849c1613c4ca131c766b59937ff88325
+    period_role: holdout
+    required_freeze: HOLDOUT_REPORT_FREEZE_PASS
+  holdout_freeze:
+    path: configs/protected_period_holdout_freeze_v1_0_1_result.json
+    sha256: deed40b26c57eeab351767600b7c6988c9a5da10cc3933a355c61b6b8efaf612
+
+opaque_provenance_sources:
+  - package: classical_eda_for_thesis
+    path: reports/classical_eda_for_thesis/eda_summary.md
+    sha256: 940e3b8e54a5a64c7eea3d0b84b1b6e00089f908e41eca4cb014a7a9006a5223
+  - package: pca_diagnostics_for_qnn
+    path: reports/pca_diagnostics_for_qnn/pca_summary.md
+    sha256: bee69739a47e8b095014109b1453c8d2b3177b67a4d2e0d9dd133bdf0d48e7ab
+  - package: coarse_search_thesis
+    path: reports/coarse_search_thesis/analysis_manifest.json
+    sha256: c8f09acb211d46eaa11a20f9a1cbf9f66809a5fe09efcd4a3662ef1eb3d56557
+  - package: post_coarse_v1_3_0
+    path: reports/post_coarse_v1_3_0/report_manifest.json
+    sha256: 655eaed14ef0e37fc8dcb5441771d4b62a5972c0d4fb10a3e540d9e766bf62b8
+  - package: secondary_development_thesis_v1_0_0
+    path: reports/secondary_development_thesis_v1_0_0/analysis_manifest.json
+    sha256: 68c107c5af6b98017bc32a7ef8ba489821f657d2863f185f8b65d6bc276548d0
+
+output_contract:
+  development_family_rows: 9
+  protected_metric_rows: 36
+  protected_rows_per_year: 9
+  protected_years: [2021, 2022, 2023, 2024]
+  canonical_figures: 0
+  evidence_ledger_granularity: one_record_per_reported_numeric_field
+  rounding_storage: source_precision
+  recommended_display_rounding: 4_decimal_places_for_metrics
+  deterministic_sort:
+    development: frozen_rank_order
+    protected: [year, configuration_id]
+  distinct_estimands:
+    - development_only_oof_2015_2020
+    - design_exposed_spent_development_2021_2022
+    - temporal_holdout_2023_2024_with_prior_exposure_disclosure
+
+required_claim_labels:
+  development:
+    - development-only
+    - conditional-on-selection
+    - selection-unadjusted
+    - no-independent-post-selection-test
+  spent_development:
+    - secondary-evidence
+    - design-exposed
+    - spent-development
+    - not-independent-validation
+  holdout:
+    - temporal-holdout
+    - prior-aggregate-exposure-disclosed
+    - failed-v1.0.0-label-exposure-disclosed
+    - not-fully-unseen
+  global:
+    - average-precision-historically-labelled-pr-auc
+    - simulator-only-qnn
+    - no-quantum-advantage-claim
+    - predictive-not-causal
+
+explicit_unavailable_outputs:
+  - output: log_loss
+    status: OMIT_NOT_IN_FROZEN_AGGREGATE
+  - output: calibration_intercept_slope_and_curve
+    status: OMIT_NOT_IN_FROZEN_AGGREGATE
+  - output: sector_size_xbrl_retention_and_composition
+    status: OMIT_NOT_IN_FROZEN_AGGREGATE
+  - output: new_fp_fn_case_studies_runtime_cost_and_paired_comparisons
+    status: OMIT_BY_PRECOMMITTED_DECISION
+
+forbidden:
+  - read_row_level_oof_or_protected_predictions
+  - read_protected_target_or_feature_rows
+  - include_failed_holdout_v1_0_0_as_evidence
+  - pool_period_roles_into_one_estimand
+  - rank_or_select_from_spent_or_holdout_results
+  - compute_unlisted_statistic
+  - model_fit_refit_inference_or_prediction
+  - write_thesis_narrative_interpretation_or_conclusion
+  - claim_independent_test_fully_unseen_holdout_or_quantum_advantage
