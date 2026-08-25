@@ -1,0 +1,73 @@
+{
+  "schema_version": 1,
+  "review": {
+    "id": "protected_period_feature_access_review",
+    "version": "1.0.0",
+    "performed_at_utc": "2026-08-25T05:10:29Z",
+    "review_kind": "same_session_technical_review",
+    "independent_review_claimed": false,
+    "same_session_author_override": true,
+    "promoter_approval_claimed": false
+  },
+  "verdict": "FEATURE_ACCESS_MANIFEST_REVIEW_PASS",
+  "subject_commit": "eefa8a749b3dc73b0230422e9450f9f5a68ac370",
+  "subject_manifest": "configs/protected_period_feature_access_manifest_v1_0_0.yaml",
+  "subject_manifest_sha256": "130425486b909a84e608212aef25251128a9faf303aab26aaba6ae9933f381c8",
+  "authorities": {
+    "p1_contract_sha256": "3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b",
+    "execution_repair_sha256": "cdfb21fb5aac74cba6987dfd65591e77afff13d44eba77001a1bad1a705740f4",
+    "runner_evaluator_verifier_sha256": "8711d03b95bd15ef95d697f8036933d79e889e5e5fb1638f09a8df91bda5388b"
+  },
+  "scopes": {
+    "feature_gate_verifier_scope": {
+      "id": "FEATURE_GATE_VERIFIER_SCOPE_V1_0_0",
+      "definition_sha256": "d9261293b0ae64f50ef63f984c67b3fa4b507f573983841d4dfe048e714daada",
+      "verdict": "PASS",
+      "checks": {
+        "exact_paths_command_and_output": true,
+        "pre_gate_opaque_hash_boundary": true,
+        "actual_row_count_and_schema_summary_absent": true,
+        "target_content_and_statistics_forbidden": true
+      }
+    },
+    "feature_post_gate_execution_scope": {
+      "id": "FEATURE_POST_GATE_EXECUTION_SCOPE_V1_0_0",
+      "definition_sha256": "1bcecdb07b8df1705c4a849f173bf52de1e91c3f046f9b0ec236d387ee7922df",
+      "verdict": "PASS",
+      "checks": {
+        "exact_paths_command_inputs_and_outputs": true,
+        "target_free_feature_application": true,
+        "prediction_2023_train_through_2021": true,
+        "prediction_2024_train_through_2022": true,
+        "label_2023_excluded_from_training": true,
+        "full_roster_seeds_calibration_threshold_frozen": true,
+        "tuning_reselection_recalibration_rethresholding_forbidden": true
+      }
+    },
+    "feature_post_execution_audit_scope": {
+      "id": "FEATURE_POST_EXECUTION_AUDIT_SCOPE_V1_0_0",
+      "definition_sha256": "b80a377136d33d4c84ff48986e4b1058f140a2d1267ceee3140f168a71f4f990",
+      "verdict": "PASS",
+      "checks": {
+        "exact_paths_command_inputs_and_output": true,
+        "prediction_hash_and_membership_checks_only": true,
+        "target_columns_must_be_absent": true,
+        "target_content_and_statistics_remain_forbidden": true,
+        "output_repair_and_new_prediction_forbidden": true
+      }
+    }
+  },
+  "global_checks": {
+    "three_scopes_are_named_and_disjoint": true,
+    "p1_contract_runner_schema_schedule_and_failure_policy_unchanged": true,
+    "protected_feature_content_read_during_review": false,
+    "protected_target_content_or_statistics_read_during_review": false,
+    "actual_row_count_or_schema_summary_read_during_review": false,
+    "gate_executed_during_review": false,
+    "model_fit_executed_during_review": false
+  },
+  "limitations": [
+    "This is an author-authorized same-session technical review, not an independent review.",
+    "No promoter approval is claimed or required by the author's procedural override."
+  ]
+}
