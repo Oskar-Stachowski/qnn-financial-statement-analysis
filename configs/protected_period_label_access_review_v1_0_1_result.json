@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "review": {
+    "id": "protected_period_label_access_successor_review",
+    "version": "1.0.1",
+    "performed_at_utc": "2026-08-25T09:07:47Z",
+    "review_kind": "same_session_technical_review",
+    "independent_review_claimed": false,
+    "same_session_author_override": true,
+    "promoter_approval_claimed": false,
+    "audit_claimed": false
+  },
+  "verdict": "LABEL_ACCESS_MANIFEST_REVIEW_PASS",
+  "subject_commit": "e6351370f88d1bd56f518bf69d069f405f0f74ae",
+  "subject_manifest": "configs/protected_period_label_access_manifest_v1_0_1.yaml",
+  "subject_manifest_sha256": "f8a0274957c8813b427ce92c9950def417b7b97961f265561058fa3e2369dc18",
+  "authorities": {
+    "p1_contract_sha256": "3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b",
+    "loader_repair_sha256": "cdfb21fb5aac74cba6987dfd65591e77afff13d44eba77001a1bad1a705740f4",
+    "holdout_evaluation_repair_sha256": "8d634a1bd346f9eea000a36fa4a03d16f8279b27aaaebde531b86d5f214d3354",
+    "runner_evaluator_reporter_verifier_sha256": "846bea9365d6a5720e48b14b0b8390661eea1a6bc02825378d7262e8834e0c19",
+    "repair_structural_test_sha256": "e39b8abaaa99363a5ca297c345bf9784f37e34e431d0f2f5a5bcd922680b93ed",
+    "pre_metric_failure_result_sha256": "c6f0a6c1dfd1401bccf0105de65bf1e7079388b372de31e798472e8f7bf26750",
+    "initial_label_gate_result_sha256": "2a085025cb1ecfa3040b5099a2856b1a244c8069a45d891316580910ce9ccd36",
+    "blind_prediction_evidence_sha256": "1f0951b6e6fc26cb2faf6f184c99a7a4fe215d5326d9719f0ff6424a020dc885",
+    "feature_execution_audit_sha256": "9380bafba455a6a18c563148a50079aa3fefa1663ac5ae217408c3458c408660"
+  },
+  "failure_classification": {
+    "failed_version": "1.0.0",
+    "terminal_status": "FAILED",
+    "labels_exposed_before_review": true,
+    "performance_metrics_computed_before_review": false,
+    "bootstrap_started_before_review": false,
+    "report_created_before_review": false,
+    "blind_predictions_changed": false,
+    "failure_is_output_serialization_collision": true,
+    "failure_is_scientific_method_failure": false
+  },
+  "scopes": {
+    "label_gate_verifier_scope": {
+      "id": "LABEL_GATE_VERIFIER_SCOPE_V1_0_1",
+      "definition_sha256": "f1bd52612f818bb92abc526ba4faba90e9668386e2ceedd1c5db404b4656738c",
+      "verdict": "PASS",
+      "checks": {
+        "initial_gate_and_failure_are_hash_bound": true,
+        "successor_repair_runner_and_test_are_hash_bound": true,
+        "recheck_discloses_prior_label_exposure": true,
+        "recheck_forbids_label_or_metric_reads": true,
+        "gate_unlocks_only_successor_evaluation_scope": true
+      }
+    },
+    "label_post_gate_evaluation_scope": {
+      "id": "LABEL_POST_GATE_EVALUATION_SCOPE_V1_0_1",
+      "definition_sha256": "3148336b2ca46529973d22feb6c92f4b4ae8473f70681ff6a37c16cfaa1a21e7",
+      "verdict": "PASS",
+      "checks": {
+        "new_terminal_namespace_is_exact": true,
+        "year_partitioned_paths_prevent_cross_year_collision": true,
+        "blind_prediction_hashes_preexist_and_are_unchanged": true,
+        "metric_definitions_and_bootstrap_are_unchanged": true,
+        "model_preprocessing_calibration_threshold_and_refit_are_unchanged": true,
+        "failed_v1_0_0_is_preserved": true,
+        "prior_label_exposure_and_pre_metric_failure_disclosure_required": true,
+        "fully_unseen_claim_forbidden": true,
+        "post_result_methodology_change_forbidden": true
+      }
+    },
+    "label_post_evaluation_freeze_scope": {
+      "id": "LABEL_POST_EVALUATION_FREEZE_SCOPE_V1_0_1",
+      "definition_sha256": "77566f9ac7ae3f38dfdc7222847da7419c4706a5b883cb38e375c70c7e45cb94",
+      "verdict": "PASS",
+      "checks": {
+        "new_terminal_state_and_evidence_hash_check": true,
+        "full_roster_and_nine_results_per_year_check": true,
+        "year_partitioned_prediction_path_and_hash_check": true,
+        "runner_contract_report_and_metric_row_count_check": true,
+        "pre_metric_failure_and_prior_exposure_disclosure_check": true,
+        "report_or_prediction_repair_forbidden": true
+      }
+    }
+  },
+  "structural_test_result": {
+    "command": "env QNN_TEST_ACCESS_GUARD=1 .venv-classical/bin/python -m src.testing.compat_test_runner tests/test_protected_period_extension.py tests/test_protected_period_holdout_evaluation_repair.py",
+    "tests_run": 9,
+    "tests_passed": 9,
+    "verdict": "PASS"
+  },
+  "global_checks": {
+    "three_successor_scopes_are_named_and_disjoint": true,
+    "scope_definition_hashes_recomputed_and_match": true,
+    "repair_change_is_limited_to_serialization_namespace_disclosure_and_stronger_verification": true,
+    "scientific_contract_changed": false,
+    "protected_label_content_or_statistics_read_during_review": false,
+    "performance_metrics_read_during_review": false,
+    "gate_recheck_executed_during_review": false,
+    "successor_evaluation_executed_during_review": false
+  },
+  "limitations": [
+    "This is an author-authorized same-session technical review, not an independent review or audit.",
+    "Labels were already exposed during failed v1.0.0, although no performance metric had been computed.",
+    "No promoter approval is claimed or required by the author's procedural override."
+  ]
+}
