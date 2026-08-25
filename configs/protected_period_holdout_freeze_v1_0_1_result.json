@@ -1,0 +1,15 @@
+{
+  "evaluation_evidence_sha256": "bf277b990ccbf3431d413dcc7fccdca8b25e397fdb990f4e23da4ed6ae1d9ed3",
+  "failed_v1_0_0_preserved": true,
+  "methodology_changed": false,
+  "one_shot_execution_complete": true,
+  "pre_metric_failure_disclosed": true,
+  "prediction_label_evaluator_hashes_complete": true,
+  "prior_exposure_disclosed": true,
+  "report_sha256": "d69f75628687341d13976898e873b2cc849c1613c4ca131c766b59937ff88325",
+  "schema_version": 1,
+  "scope_id": "LABEL_POST_EVALUATION_FREEZE_SCOPE_V1_0_1",
+  "scope_sha256": "77566f9ac7ae3f38dfdc7222847da7419c4706a5b883cb38e375c70c7e45cb94",
+  "verdict": "HOLDOUT_REPORT_FREEZE_PASS",
+  "year_partitioned_outputs_verified": true
+}
