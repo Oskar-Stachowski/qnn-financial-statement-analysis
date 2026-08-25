@@ -60,6 +60,9 @@ from src.modeling.model_execution_contract import load_contract
 ROOT = Path(__file__).resolve().parents[2]
 CONTRACT_PATH = ROOT / "configs/protected_period_execution_contract_v1_0_0.yaml"
 EXECUTION_REPAIR_PATH = ROOT / "configs/protected_period_execution_repair_v1_0_1.yaml"
+HOLDOUT_EVALUATION_REPAIR_PATH = (
+    ROOT / "configs/protected_period_holdout_evaluation_repair_v1_0_1.yaml"
+)
 ACCESS_MANIFEST_PATH = ROOT / "configs/protected_period_access_manifest_v1_0_0.yaml"
 SPENT_GATE_MANIFEST_PATH = ROOT / "configs/protected_period_spent_gate_v1_0_0.yaml"
 SPENT_REVIEW_PATH = ROOT / "configs/protected_period_access_review_v1_0_1_result.json"
@@ -76,17 +79,25 @@ FEATURE_REVIEW_PATH = ROOT / "configs/protected_period_feature_access_review_v1_
 FEATURE_GATE_RESULT_PATH = ROOT / "configs/protected_period_feature_gate_v1_0_0_result.json"
 FEATURE_EXECUTION_EVIDENCE_PATH = ROOT / "configs/protected_period_feature_execution_v1_0_0_result.json"
 FEATURE_AUDIT_RESULT_PATH = ROOT / "configs/protected_period_feature_execution_audit_v1_0_0_result.json"
-LABEL_ACCESS_MANIFEST_PATH = ROOT / "configs/protected_period_label_access_manifest_v1_0_0.yaml"
-LABEL_REVIEW_PATH = ROOT / "configs/protected_period_label_access_review_v1_0_0_result.json"
-LABEL_GATE_RESULT_PATH = ROOT / "configs/protected_period_label_gate_v1_0_0_result.json"
-HOLDOUT_EVALUATION_EVIDENCE_PATH = ROOT / "configs/protected_period_holdout_evaluation_v1_0_0_result.json"
-HOLDOUT_FREEZE_RESULT_PATH = ROOT / "configs/protected_period_holdout_freeze_v1_0_0_result.json"
+INITIAL_LABEL_ACCESS_MANIFEST_PATH = (
+    ROOT / "configs/protected_period_label_access_manifest_v1_0_0.yaml"
+)
+INITIAL_LABEL_GATE_RESULT_PATH = ROOT / "configs/protected_period_label_gate_v1_0_0_result.json"
+HOLDOUT_EVALUATION_FAILURE_PATH = (
+    ROOT / "configs/protected_period_holdout_evaluation_failure_v1_0_0_result.json"
+)
+LABEL_ACCESS_MANIFEST_PATH = ROOT / "configs/protected_period_label_access_manifest_v1_0_1.yaml"
+LABEL_REVIEW_PATH = ROOT / "configs/protected_period_label_access_review_v1_0_1_result.json"
+LABEL_GATE_RESULT_PATH = ROOT / "configs/protected_period_label_gate_recheck_v1_0_1_result.json"
+HOLDOUT_EVALUATION_EVIDENCE_PATH = ROOT / "configs/protected_period_holdout_evaluation_v1_0_1_result.json"
+HOLDOUT_FREEZE_RESULT_PATH = ROOT / "configs/protected_period_holdout_freeze_v1_0_1_result.json"
 
 DATA_ROOT = ROOT / "data/protected_period_extension_v1"
 RUN_ROOT = ROOT / "data/model_runs/protected_period_extension_v1"
 REPORT_ROOT = ROOT / "reports/protected_period_extension_v1"
 SPENT_REPORT_PATH = REPORT_ROOT / "spent_report_v1_0_0.json"
-HOLDOUT_REPORT_PATH = REPORT_ROOT / "holdout_report_v1_0_0.json"
+HOLDOUT_REPORT_PATH = REPORT_ROOT / "holdout_report_v1_0_1.json"
+HOLDOUT_EVALUATION_RUN_ROOT = RUN_ROOT / "holdout_evaluation_v1_0_1"
 
 FULL_X_T_PATH = ROOT / "data/processed/x_t_pit_v1_raw.csv"
 FULL_TARGET_APPLICATION_PATH = (
@@ -173,10 +184,29 @@ def _verify_frozen_implementation(contract: Mapping[str, Any]) -> None:
         repair_identity = repair_document["execution_repair"]
         _require(
             repair["superseded_runner_sha256"] == expected
-            and repair["repaired_runner_sha256"] == actual
             and repair_identity["methodology_changed"] is False
             and failure["model_fit_started_before_failure"] is False,
             "Execution repair authority mismatch.",
+        )
+        intermediate = str(repair["repaired_runner_sha256"])
+        if actual == intermediate:
+            continue
+        _require(
+            HOLDOUT_EVALUATION_REPAIR_PATH.is_file(),
+            "Holdout evaluation repair authority is absent.",
+        )
+        successor_document = _load_yaml(HOLDOUT_EVALUATION_REPAIR_PATH)
+        successor = successor_document["repair"]
+        successor_failure = successor_document["failure"]
+        successor_identity = successor_document["holdout_evaluation_repair"]
+        _require(
+            successor["superseded_runner_sha256"] == intermediate
+            and successor["repaired_runner_sha256"] == actual
+            and successor_identity["methodology_changed"] is False
+            and successor_identity["metric_contract_changed"] is False
+            and successor_identity["blind_predictions_changed"] is False
+            and successor_failure["metric_computation_started_before_failure"] is False,
+            "Holdout evaluation repair authority mismatch.",
         )
 
 
@@ -1308,8 +1338,30 @@ def verify_label_gate() -> dict[str, Any]:
     manifest = _load_yaml(LABEL_ACCESS_MANIFEST_PATH)
     contract = _load_yaml(CONTRACT_PATH)
     audit = _load_json(FEATURE_AUDIT_RESULT_PATH)
+    initial_gate = _load_json(INITIAL_LABEL_GATE_RESULT_PATH)
     _require(audit.get("verdict") == "FEATURE_APPLICATION_EXECUTION_PASS", "Feature execution audit did not pass.")
     _require(manifest["authority"]["prediction_evidence_sha256"] == _sha(FEATURE_EXECUTION_EVIDENCE_PATH), "Prediction evidence changed.")
+    _require(
+        initial_gate.get("verdict") == "DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_PASS"
+        and manifest["authority"]["initial_label_gate_result_sha256"]
+        == _sha(INITIAL_LABEL_GATE_RESULT_PATH),
+        "Initial label gate authority changed.",
+    )
+    _require(
+        manifest["authority"]["initial_label_access_manifest_sha256"]
+        == _sha(INITIAL_LABEL_ACCESS_MANIFEST_PATH),
+        "Initial label access manifest changed.",
+    )
+    _require(
+        manifest["authority"]["pre_metric_failure_result_sha256"]
+        == _sha(HOLDOUT_EVALUATION_FAILURE_PATH),
+        "Pre-metric failure record changed.",
+    )
+    _require(
+        manifest["authority"]["holdout_evaluation_repair_sha256"]
+        == _sha(HOLDOUT_EVALUATION_REPAIR_PATH),
+        "Holdout evaluation repair authority changed.",
+    )
     _verify_frozen_implementation(contract)
     result = {
         "schema_version": 1,
@@ -1317,10 +1369,29 @@ def verify_label_gate() -> dict[str, Any]:
         "gate_manifest_sha256": _sha(LABEL_ACCESS_MANIFEST_PATH),
         "scope_id": scope_id,
         "scope_sha256": scope_hash,
-        "labels_opened_before_pass": False,
+        "initial_label_gate_result_path": str(INITIAL_LABEL_GATE_RESULT_PATH.relative_to(ROOT)),
+        "initial_label_gate_result_sha256": _sha(INITIAL_LABEL_GATE_RESULT_PATH),
+        "initial_label_gate_verdict": initial_gate["verdict"],
+        "labels_opened_before_initial_pass": False,
+        "labels_opened_before_recheck": True,
+        "recheck_after_pre_metric_failure": True,
+        "performance_metrics_computed_before_recheck": False,
     }
     atomic_write_json(LABEL_GATE_RESULT_PATH, result)
     return result
+
+
+def _labeled_prediction_output_path(item: Mapping[str, Any]) -> Path:
+    year = int(item["year"])
+    _require(year in {2023, 2024}, "Unexpected holdout prediction year.")
+    basename = Path(str(item["prediction_path"])).name
+    _require(basename not in {"", ".", ".."}, "Invalid prediction basename.")
+    return (
+        HOLDOUT_EVALUATION_RUN_ROOT
+        / "labeled_predictions"
+        / f"prediction_{year}"
+        / basename
+    )
 
 
 def _evaluate_holdout_once(*, scope_id: str, scope_hash: str) -> dict[str, Any]:
@@ -1340,14 +1411,17 @@ def _evaluate_holdout_once(*, scope_id: str, scope_hash: str) -> dict[str, Any]:
         frame["cik10"] = frame["cik10"].astype(str).str.zfill(10)
         merged = frame.merge(available, on=["cik10", "feature_year"], how="inner", validate="many_to_one")
         _require(not merged.empty, "No evaluable holdout labels aligned to predictions.")
-        out_path = RUN_ROOT / "holdout_evaluation" / "labeled_predictions" / Path(item["prediction_path"]).name
+        out_path = _labeled_prediction_output_path(item)
         out_sha = atomic_write_json(out_path, {"schema_version": 1, "identity": item["identity"], "year": item["year"], "rows": merged.to_dict("records")})
         new_item = dict(item)
         new_item.update({"prediction_path": str(out_path.relative_to(ROOT)), "prediction_sha256": out_sha, "prediction_rows": len(merged)})
         evaluated_results.append(new_item)
     evidence = {
         "schema_version": 1,
-        "action": "one_shot_holdout_evaluation_2023_2024",
+        "action": "one_shot_holdout_evaluation_2023_2024_v1_0_1",
+        "successor_version": "1.0.1",
+        "predecessor_failure_result_sha256": _sha(HOLDOUT_EVALUATION_FAILURE_PATH),
+        "repair_authority_sha256": _sha(HOLDOUT_EVALUATION_REPAIR_PATH),
         "status": "COMPLETE",
         "scope_id": scope_id,
         "scope_sha256": scope_hash,
@@ -1365,7 +1439,12 @@ def _evaluate_holdout_once(*, scope_id: str, scope_hash: str) -> dict[str, Any]:
         evidence,
         HOLDOUT_REPORT_PATH,
         period_label="final temporal model-performance holdout 2023-2024",
-        prior_exposure_disclosure="Aggregate target statistics for 2023-2024 were exposed before the frozen one-shot evaluation; this period is not described as fully unseen.",
+        prior_exposure_disclosure=(
+            "Aggregate target statistics for 2023-2024 were exposed before the frozen "
+            "evaluation. Labels were also exposed and aligned during failed pre-metric "
+            "v1.0.0; no performance metric was computed before this author-authorized "
+            "versioned rerun. This period is not described as fully unseen."
+        ),
     )
     evidence["report_path"] = str(HOLDOUT_REPORT_PATH.relative_to(ROOT))
     evidence["report_sha256"] = report_sha
@@ -1380,11 +1459,15 @@ def evaluate_holdout() -> dict[str, Any]:
         "label_post_gate_evaluation_scope",
         "LABEL_ACCESS_MANIFEST_REVIEW_PASS",
     )
+    gate = _load_json(LABEL_GATE_RESULT_PATH)
     _require(
-        _load_json(LABEL_GATE_RESULT_PATH).get("verdict")
-        == "DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_PASS",
-        "Label gate did not pass.",
+        gate.get("verdict") == "DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_PASS"
+        and gate.get("gate_manifest_sha256") == _sha(LABEL_ACCESS_MANIFEST_PATH)
+        and gate.get("labels_opened_before_recheck") is True
+        and gate.get("performance_metrics_computed_before_recheck") is False,
+        "Versioned label-gate recheck did not pass.",
     )
+    _verify_frozen_implementation(_load_yaml(CONTRACT_PATH))
     authority = {
         "contract_sha256": _sha(CONTRACT_PATH),
         "runner_sha256": _sha(Path(__file__)),
@@ -1392,21 +1475,23 @@ def evaluate_holdout() -> dict[str, Any]:
         "scope_sha256": scope_hash,
         "label_gate_result_sha256": _sha(LABEL_GATE_RESULT_PATH),
         "blind_prediction_evidence_sha256": _sha(FEATURE_EXECUTION_EVIDENCE_PATH),
+        "holdout_evaluation_repair_sha256": _sha(HOLDOUT_EVALUATION_REPAIR_PATH),
+        "predecessor_failure_result_sha256": _sha(HOLDOUT_EVALUATION_FAILURE_PATH),
     }
-    state_path = RUN_ROOT / "holdout_evaluation/one_shot_execution_state.json"
+    state_path = HOLDOUT_EVALUATION_RUN_ROOT / "one_shot_execution_state.json"
     state = _execution_state(
         state_path,
-        "one_shot_holdout_evaluation_2023_2024",
+        "one_shot_holdout_evaluation_2023_2024_v1_0_1",
         authority,
     )
     try:
         result = _evaluate_holdout_once(scope_id=scope_id, scope_hash=scope_hash)
     except Exception as error:
         failure_sha = atomic_write_json(
-            RUN_ROOT / "holdout_evaluation/one_shot_failure.json",
+            HOLDOUT_EVALUATION_RUN_ROOT / "one_shot_failure.json",
             {
                 "schema_version": 1,
-                "action": "one_shot_holdout_evaluation_2023_2024",
+                "action": "one_shot_holdout_evaluation_2023_2024_v1_0_1",
                 "status": "FAILED",
                 "authority": authority,
                 "exception_type": type(error).__name__,
@@ -1433,12 +1518,55 @@ def verify_holdout_freeze() -> dict[str, Any]:
         "LABEL_ACCESS_MANIFEST_REVIEW_PASS",
     )
     evidence = _load_json(HOLDOUT_EVALUATION_EVIDENCE_PATH)
+    contract = _load_yaml(CONTRACT_PATH)
+    _verify_frozen_implementation(contract)
+    _require(
+        evidence.get("status") == "COMPLETE"
+        and evidence.get("action") == "one_shot_holdout_evaluation_2023_2024_v1_0_1"
+        and evidence.get("roster_size") == 9,
+        "Versioned holdout evidence is incomplete.",
+    )
     _verified_file(HOLDOUT_REPORT_PATH, str(evidence["report_sha256"]))
     _require(len(evidence.get("model_year_results", [])) == 18, "Holdout evaluation roster is incomplete.")
+    results_per_year: dict[int, int] = defaultdict(int)
     for item in evidence["model_year_results"]:
-        _verified_file(ROOT / item["prediction_path"], str(item["prediction_sha256"]))
+        path = ROOT / item["prediction_path"]
+        _require(path == _labeled_prediction_output_path(item), "Labeled prediction path is not year-partitioned.")
+        _verified_file(path, str(item["prediction_sha256"]))
+        results_per_year[int(item["year"])] += 1
+    _require(results_per_year == {2023: 9, 2024: 9}, "Holdout year roster is incomplete.")
+    state_path = HOLDOUT_EVALUATION_RUN_ROOT / "one_shot_execution_state.json"
+    state = _load_json(state_path)
+    _require(
+        state.get("status") == "COMPLETE"
+        and state.get("action") == "one_shot_holdout_evaluation_2023_2024_v1_0_1"
+        and state.get("evidence_sha256") == _sha(HOLDOUT_EVALUATION_EVIDENCE_PATH),
+        "Versioned one-shot terminal state is invalid.",
+    )
+    _require(
+        state.get("authority", {}).get("runner_sha256") == _sha(Path(__file__))
+        and state.get("authority", {}).get("contract_sha256") == _sha(CONTRACT_PATH),
+        "One-shot implementation authority changed.",
+    )
     report = _load_json(HOLDOUT_REPORT_PATH)
-    _require(report.get("fully_unseen_claimed") is False and "exposed" in report.get("prior_exposure_disclosure", ""), "Prior-exposure disclosure is missing.")
+    disclosure = str(report.get("prior_exposure_disclosure", "")).lower()
+    _require(
+        report.get("fully_unseen_claimed") is False
+        and report.get("selection_or_tuning_performed") is False
+        and report.get("runner_sha256") == _sha(Path(__file__))
+        and report.get("evaluation_contract_sha256") == _sha(CONTRACT_PATH)
+        and len(report.get("metric_rows", [])) == 18
+        and "exposed" in disclosure
+        and "pre-metric" in disclosure,
+        "Report completeness or prior-exposure disclosure is invalid.",
+    )
+    _require(
+        evidence.get("tuning_performed") is False
+        and evidence.get("reselection_performed") is False
+        and evidence.get("recalibration_performed") is False
+        and evidence.get("rethresholding_performed") is False,
+        "Forbidden post-label methodology change is recorded.",
+    )
     result = {
         "schema_version": 1,
         "verdict": "HOLDOUT_REPORT_FREEZE_PASS",
@@ -1448,6 +1576,9 @@ def verify_holdout_freeze() -> dict[str, Any]:
         "report_sha256": _sha(HOLDOUT_REPORT_PATH),
         "prediction_label_evaluator_hashes_complete": True,
         "one_shot_execution_complete": True,
+        "year_partitioned_outputs_verified": True,
+        "failed_v1_0_0_preserved": True,
+        "pre_metric_failure_disclosed": True,
         "methodology_changed": False,
         "prior_exposure_disclosed": True,
     }

@@ -1,0 +1,176 @@
+schema_version: 1
+
+label_access_manifest:
+  id: protected_period_label_reveal_access_manifest
+  version: 1.0.1
+  gate: DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_V1_0_1_RECHECK
+  protected_label_years: [2023, 2024]
+  labels_already_exposed_by_failed_v1_0_0: true
+  metrics_computed_by_failed_v1_0_0: false
+  arbitrary_paths_allowed: false
+  one_shot_successor_evaluation_required: true
+  rerun_after_v1_0_1_terminal_state_allowed: false
+
+authority:
+  subject_commit: 57e2c3c15cc348eca76336807ac72fe2106cd3f6
+  p1_contract_sha256: 3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b
+  execution_repair_sha256: cdfb21fb5aac74cba6987dfd65591e77afff13d44eba77001a1bad1a705740f4
+  holdout_evaluation_repair_sha256: 8d634a1bd346f9eea000a36fa4a03d16f8279b27aaaebde531b86d5f214d3354
+  runner_evaluator_reporter_verifier_sha256: 846bea9365d6a5720e48b14b0b8390661eea1a6bc02825378d7262e8834e0c19
+  repair_structural_test_sha256: e39b8abaaa99363a5ca297c345bf9784f37e34e431d0f2f5a5bcd922680b93ed
+  initial_label_access_manifest_sha256: 284051fcf6cff90625c228e640c6ed2f3ff33c6f23aaac6921efec99afad2f6f
+  initial_label_gate_result_sha256: 2a085025cb1ecfa3040b5099a2856b1a244c8069a45d891316580910ce9ccd36
+  pre_metric_failure_result_sha256: c6f0a6c1dfd1401bccf0105de65bf1e7079388b372de31e798472e8f7bf26750
+  prediction_evidence_sha256: 1f0951b6e6fc26cb2faf6f184c99a7a4fe215d5326d9719f0ff6424a020dc885
+  feature_execution_audit_sha256: 9380bafba455a6a18c563148a50079aa3fefa1663ac5ae217408c3458c408660
+
+gate:
+  id: DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_V1_0_1_RECHECK
+  status: committed_candidate_not_executed
+  initial_gate_pass_preserved: true
+  labels_already_exposed_before_recheck: true
+  performance_metrics_already_computed: false
+  pass_unlocks_only: LABEL_POST_GATE_EVALUATION_SCOPE_V1_0_1
+  result_may_change_methodology: false
+
+scopes:
+  label_gate_verifier_scope:
+    id: LABEL_GATE_VERIFIER_SCOPE_V1_0_1
+    definition_sha256: f1bd52612f818bb92abc526ba4faba90e9668386e2ceedd1c5db404b4656738c
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.protected_period_extension verify-label-gate
+      exact_content_reads:
+        - configs/protected_period_label_access_manifest_v1_0_1.yaml
+        - configs/protected_period_label_access_review_v1_0_1_result.json
+        - configs/protected_period_execution_contract_v1_0_0.yaml
+        - configs/protected_period_execution_repair_v1_0_1.yaml
+        - configs/protected_period_holdout_evaluation_repair_v1_0_1.yaml
+        - configs/protected_period_holdout_evaluation_failure_v1_0_0_result.json
+        - configs/protected_period_label_access_manifest_v1_0_0.yaml
+        - configs/protected_period_label_gate_v1_0_0_result.json
+        - configs/protected_period_feature_execution_v1_0_0_result.json
+        - configs/protected_period_feature_execution_audit_v1_0_0_result.json
+        - src/modeling/protected_period_extension.py
+        - tests/test_protected_period_holdout_evaluation_repair.py
+      opaque_sha256_and_existence_only:
+        - data/model_runs/protected_period_extension_v1/holdout_blind/predictions
+        - data/protected_period_extension_v1/holdout/x_t_v1_1_corrected_through_2024.csv
+        - data/processed/research_universe.csv
+      output: configs/protected_period_label_gate_recheck_v1_0_1_result.json
+      required_disclosures:
+        labels_opened_before_initial_pass: false
+        labels_opened_before_recheck: true
+        performance_metrics_computed_before_recheck: false
+      forbidden:
+        - further_label_deserialization_2023_2024
+        - target_rebuild_2023_2024
+        - target_row_count_or_statistics_read
+        - prediction_change
+        - model_fit
+        - metric_evaluation
+
+  label_post_gate_evaluation_scope:
+    id: LABEL_POST_GATE_EVALUATION_SCOPE_V1_0_1
+    definition_sha256: 3148336b2ca46529973d22feb6c92f4b4ae8473f70681ff6a37c16cfaa1a21e7
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.protected_period_extension evaluate-holdout
+      exact_inputs:
+        - configs/protected_period_label_access_manifest_v1_0_1.yaml
+        - configs/protected_period_label_access_review_v1_0_1_result.json
+        - configs/protected_period_label_gate_recheck_v1_0_1_result.json
+        - configs/protected_period_label_gate_v1_0_0_result.json
+        - configs/protected_period_execution_contract_v1_0_0.yaml
+        - configs/protected_period_execution_repair_v1_0_1.yaml
+        - configs/protected_period_holdout_evaluation_repair_v1_0_1.yaml
+        - configs/protected_period_holdout_evaluation_failure_v1_0_0_result.json
+        - configs/protected_period_feature_execution_v1_0_0_result.json
+        - configs/protected_period_feature_execution_audit_v1_0_0_result.json
+        - data/model_runs/protected_period_extension_v1/holdout_blind/predictions
+        - data/protected_period_extension_v1/holdout/x_t_v1_base_through_2024.csv
+        - data/protected_period_extension_v1/holdout/x_t_v1_1_corrected_through_2024.csv
+        - data/processed/research_universe.csv
+        - data/raw/companyfacts
+        - data/raw/sec_submissions
+        - data/raw/sec_filings/revenue_statement_evidence
+      allowed_operations:
+        - rebuild_frozen_target_candidate_v2_pit_b_for_feature_years_2023_2024
+        - apply_frozen_v1_1_resolver_correction
+        - fail_if_cross_tag_pair_audit_finds_newly_blocked_pair
+        - realign_unchanged_blind_predictions_to_available_labels
+        - serialize_labeled_predictions_into_year_partitions
+        - frozen_metric_evaluation
+        - economic_group_cluster_bootstrap_2000_seed_20260818
+        - write_mandatory_pre_metric_failure_and_prior_exposure_disclosure
+        - write_new_terminal_one_shot_state
+      exact_output_roots:
+        - data/protected_period_extension_v1/holdout
+        - data/model_runs/protected_period_extension_v1/holdout_evaluation_v1_0_1
+      exact_committed_outputs:
+        - configs/protected_period_holdout_evaluation_v1_0_1_result.json
+        - reports/protected_period_extension_v1/holdout_report_v1_0_1.json
+      mandatory_report_properties:
+        fully_unseen_claimed: false
+        prior_label_exposure_and_pre_metric_failure_disclosure_required: true
+        selection_or_tuning_performed: false
+      forbidden:
+        - modify_or_delete_failed_v1_0_0_evidence
+        - rerun_after_terminal_complete_or_failed_v1_0_1_state
+        - tuning
+        - reselection
+        - recalibration
+        - rethresholding
+        - blind_prediction_change
+        - model_refit
+        - metric_or_bootstrap_change
+        - methodology_change_based_on_result
+        - fully_unseen_claim
+
+  label_post_evaluation_freeze_scope:
+    id: LABEL_POST_EVALUATION_FREEZE_SCOPE_V1_0_1
+    definition_sha256: 77566f9ac7ae3f38dfdc7222847da7419c4706a5b883cb38e375c70c7e45cb94
+    definition:
+      command: .venv-classical/bin/python -m src.modeling.protected_period_extension verify-holdout-freeze
+      exact_inputs:
+        - configs/protected_period_label_access_manifest_v1_0_1.yaml
+        - configs/protected_period_label_access_review_v1_0_1_result.json
+        - configs/protected_period_holdout_evaluation_v1_0_1_result.json
+        - configs/protected_period_holdout_evaluation_failure_v1_0_0_result.json
+        - configs/protected_period_holdout_evaluation_repair_v1_0_1.yaml
+        - reports/protected_period_extension_v1/holdout_report_v1_0_1.json
+        - data/model_runs/protected_period_extension_v1/holdout_evaluation_v1_0_1/one_shot_execution_state.json
+        - data/model_runs/protected_period_extension_v1/holdout_evaluation_v1_0_1/labeled_predictions/prediction_2023
+        - data/model_runs/protected_period_extension_v1/holdout_evaluation_v1_0_1/labeled_predictions/prediction_2024
+        - data/model_runs/protected_period_extension_v1/holdout_blind/predictions
+      allowed_operations:
+        - json_deserialize
+        - exact_prediction_label_evaluator_and_report_hash_verification
+        - full_roster_and_per_year_output_completeness_check
+        - new_one_shot_terminal_state_check
+        - mandatory_pre_metric_failure_and_prior_exposure_disclosure_check
+        - no_methodology_change_check
+      output: configs/protected_period_holdout_freeze_v1_0_1_result.json
+      forbidden:
+        - report_or_prediction_repair
+        - model_fit
+        - new_prediction
+        - new_evaluation
+        - tuning
+        - methodology_change
+
+review_scope:
+  exact_content_paths:
+    - configs/protected_period_label_access_manifest_v1_0_1.yaml
+    - configs/protected_period_execution_contract_v1_0_0.yaml
+    - configs/protected_period_execution_repair_v1_0_1.yaml
+    - configs/protected_period_holdout_evaluation_repair_v1_0_1.yaml
+    - configs/protected_period_holdout_evaluation_failure_v1_0_0_result.json
+    - configs/protected_period_label_gate_v1_0_0_result.json
+    - configs/protected_period_feature_execution_v1_0_0_result.json
+    - configs/protected_period_feature_execution_audit_v1_0_0_result.json
+    - src/modeling/protected_period_extension.py
+    - tests/test_protected_period_holdout_evaluation_repair.py
+  protected_label_content_or_statistics_read_during_review_allowed: false
+  labels_already_exposed_by_failed_execution: true
+  performance_metrics_already_computed: false
+  gate_recheck_execution_allowed: false
+  successor_evaluation_allowed: false

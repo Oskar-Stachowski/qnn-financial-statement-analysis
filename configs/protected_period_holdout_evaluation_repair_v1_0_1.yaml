@@ -1,0 +1,74 @@
+schema_version: 1
+
+holdout_evaluation_repair:
+  id: protected_period_holdout_evaluation_year_partition_repair
+  version: 1.0.1
+  status: frozen_after_pre_metric_technical_failure
+  author_authorized_versioned_repair: true
+  authorization_message: kontynuuj
+  independent_review_claimed: false
+  promoter_approval_claimed: false
+  methodology_changed: false
+  metric_contract_changed: false
+  blind_predictions_changed: false
+
+failure:
+  step: P6D
+  action: one_shot_holdout_evaluation_2023_2024
+  cause: year_agnostic_labeled_prediction_output_collision
+  failure_point: first_sha256_verification_in_generate_evaluation_report
+  labels_deserialized_built_and_aligned: true
+  labeled_prediction_artifacts_written: true
+  metric_computation_started_before_failure: false
+  performance_values_created_or_read: false
+  bootstrap_started_before_failure: false
+  report_created: false
+  original_rerun_allowed: false
+  failed_evaluation_evidence_path: configs/protected_period_holdout_evaluation_v1_0_0_result.json
+  failed_evaluation_evidence_sha256: 46482570ca8707135e914782390f333712a4e06ccc9a1e1a11223d8a24413494
+  committed_failure_result_path: configs/protected_period_holdout_evaluation_failure_v1_0_0_result.json
+  committed_failure_result_sha256: c6f0a6c1dfd1401bccf0105de65bf1e7079388b372de31e798472e8f7bf26750
+  terminal_state_sha256: a60268f48d08a1b443939a6f4a527ab9e98860edf9acb2d1033a857d6302c963
+  one_shot_failure_sha256: ffae7f197ef3f6ff4ba650e00c630a3e8c5734d6d7bf29dd720ed3d4486a2561
+  archived_failed_run_root: data/model_runs/protected_period_extension_v1/holdout_evaluation_failed_v1_0_0
+
+repair:
+  exact_change:
+    - partition_labeled_prediction_outputs_by_prediction_year
+    - use_new_v1_0_1_one_shot_state_and_output_namespace
+    - disclose_prior_label_exposure_and_pre_metric_failure
+    - strengthen_structural_freeze_verification
+  superseded_runner_sha256: 8711d03b95bd15ef95d697f8036933d79e889e5e5fb1638f09a8df91bda5388b
+  repaired_runner_sha256: 846bea9365d6a5720e48b14b0b8390661eea1a6bc02825378d7262e8834e0c19
+  execution_contract_path_unchanged: configs/protected_period_execution_contract_v1_0_0.yaml
+  execution_contract_sha256: 3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b
+  initial_label_gate_result_path: configs/protected_period_label_gate_v1_0_0_result.json
+  initial_label_gate_result_sha256: 2a085025cb1ecfa3040b5099a2856b1a244c8069a45d891316580910ce9ccd36
+  roster_changed: false
+  preprocessing_changed: false
+  seeds_changed: false
+  metric_definitions_changed: false
+  bootstrap_changed: false
+  calibration_changed: false
+  threshold_changed: false
+  refit_schedule_changed: false
+  target_construction_changed: false
+  blind_prediction_artifacts_changed: false
+
+successor_outputs:
+  run_root: data/model_runs/protected_period_extension_v1/holdout_evaluation_v1_0_1
+  year_partitions:
+    - data/model_runs/protected_period_extension_v1/holdout_evaluation_v1_0_1/labeled_predictions/prediction_2023
+    - data/model_runs/protected_period_extension_v1/holdout_evaluation_v1_0_1/labeled_predictions/prediction_2024
+  evaluation_evidence: configs/protected_period_holdout_evaluation_v1_0_1_result.json
+  report: reports/protected_period_extension_v1/holdout_report_v1_0_1.json
+  freeze_result: configs/protected_period_holdout_freeze_v1_0_1_result.json
+
+revalidation:
+  original_synthetic_tests_required: true
+  repair_structural_test_path: tests/test_protected_period_holdout_evaluation_repair.py
+  repair_structural_test_sha256: e39b8abaaa99363a5ca297c345bf9784f37e34e431d0f2f5a5bcd922680b93ed
+  same_session_technical_review_result: configs/protected_period_label_access_review_v1_0_1_result.json
+  repeated_label_gate_result: configs/protected_period_label_gate_recheck_v1_0_1_result.json
+  v1_0_1_evaluation_may_start_only_after_repeated_gate_pass: true
+  mandatory_disclosure: Labels were exposed during failed pre-metric v1.0.0; no performance metric was computed before the authorized versioned rerun.
