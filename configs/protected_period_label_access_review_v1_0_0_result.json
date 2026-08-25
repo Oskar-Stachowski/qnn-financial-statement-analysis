@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "review": {
+    "id": "protected_period_label_access_review",
+    "version": "1.0.0",
+    "performed_at_utc": "2026-08-25T08:39:44Z",
+    "review_kind": "same_session_technical_review",
+    "independent_review_claimed": false,
+    "same_session_author_override": true,
+    "promoter_approval_claimed": false
+  },
+  "verdict": "LABEL_ACCESS_MANIFEST_REVIEW_PASS",
+  "subject_commit": "d80e93a5e26455395be9a486c63a049c04404afb",
+  "subject_manifest": "configs/protected_period_label_access_manifest_v1_0_0.yaml",
+  "subject_manifest_sha256": "284051fcf6cff90625c228e640c6ed2f3ff33c6f23aaac6921efec99afad2f6f",
+  "authorities": {
+    "p1_contract_sha256": "3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b",
+    "execution_repair_sha256": "cdfb21fb5aac74cba6987dfd65591e77afff13d44eba77001a1bad1a705740f4",
+    "runner_evaluator_reporter_verifier_sha256": "8711d03b95bd15ef95d697f8036933d79e889e5e5fb1638f09a8df91bda5388b",
+    "prediction_evidence_sha256": "1f0951b6e6fc26cb2faf6f184c99a7a4fe215d5326d9719f0ff6424a020dc885",
+    "feature_execution_audit_sha256": "9380bafba455a6a18c563148a50079aa3fefa1663ac5ae217408c3458c408660"
+  },
+  "scopes": {
+    "label_gate_verifier_scope": {
+      "id": "LABEL_GATE_VERIFIER_SCOPE_V1_0_0",
+      "definition_sha256": "074a19b5af21b8d7e8d2f2faa2cbad0b4ccceff6a47c4cedba40231359efabaa",
+      "verdict": "PASS",
+      "checks": {
+        "exact_paths_command_and_output": true,
+        "prediction_evidence_and_audit_are_hash_bound": true,
+        "labels_target_build_counts_and_statistics_forbidden": true,
+        "gate_unlocks_only_evaluation_scope": true
+      }
+    },
+    "label_post_gate_evaluation_scope": {
+      "id": "LABEL_POST_GATE_EVALUATION_SCOPE_V1_0_0",
+      "definition_sha256": "44751fc1d827520bcb164dd2a5a9f3c8fbdb18dbad6a3c46dc84245a083a2da5",
+      "verdict": "PASS",
+      "checks": {
+        "exact_paths_command_inputs_and_outputs": true,
+        "blind_prediction_hashes_preexist": true,
+        "frozen_evaluator_metrics_bootstrap_calibration_threshold": true,
+        "terminal_one_shot_complete_or_failed_state_blocks_rerun": true,
+        "prior_exposure_disclosure_required": true,
+        "fully_unseen_claim_forbidden": true,
+        "tuning_reselection_recalibration_rethresholding_forbidden": true,
+        "result_based_methodology_change_forbidden": true
+      }
+    },
+    "label_post_evaluation_freeze_scope": {
+      "id": "LABEL_POST_EVALUATION_FREEZE_SCOPE_V1_0_0",
+      "definition_sha256": "3dc7ebb856e1930355a7b5440348c184768161f9bf1858086440b07c7b7a546e",
+      "verdict": "PASS",
+      "checks": {
+        "exact_paths_command_inputs_and_output": true,
+        "prediction_label_evaluator_and_report_hash_checks": true,
+        "full_roster_and_output_completeness_check": true,
+        "one_shot_terminal_state_check": true,
+        "disclosure_and_no_methodology_change_check": true,
+        "report_or_prediction_repair_forbidden": true
+      }
+    }
+  },
+  "global_checks": {
+    "three_scopes_are_named_and_disjoint": true,
+    "prediction_hashes_complete_before_label_gate": true,
+    "evaluation_and_reporting_code_unchanged_since_p1_repair": true,
+    "protected_label_content_or_statistics_read_during_review": false,
+    "gate_executed_during_review": false,
+    "evaluation_executed_during_review": false
+  },
+  "limitations": [
+    "This is an author-authorized same-session technical review, not an independent review.",
+    "No promoter approval is claimed or required by the author's procedural override."
+  ]
+}
