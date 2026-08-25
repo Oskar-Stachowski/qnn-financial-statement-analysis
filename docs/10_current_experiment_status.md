@@ -2,6 +2,26 @@
 
 Status date: 2026-08-25
 
+## Coverage and estimand successor correction — 2026-08-25
+
+The historical target freeze-gate coverage `14,122 / 26,917 = 52.46%` is not
+the coverage of the final filing-first universe or the final modeling sample.
+The current denominators are:
+
+- final filing-first universe 2011–2024: `26,602 / 64,901 = 40.99%` target
+  availability;
+- train pool 2011–2020: `47,938 -> 19,784` after the target-availability
+  requirement (`41.27%`);
+- final supervised sample after the additional accepted-`x_t_status`
+  requirement: `19,671 / 47,938 = 41.03%`.
+
+The current estimand is conditional on membership in the eligible filing-first
+universe, availability of a comparable PIT-B target, accepted `x_t_status` and
+the applicable reporting-period role. It does not automatically generalize to
+all SEC issuers or all eligible company-years. The exact successor statement,
+source paths and audit rule are in
+[`docs/14_1_coverage_estimand_correction_v1_0_0.md`](14_1_coverage_estimand_correction_v1_0_0.md).
+
 ## Gated successor update — 2026-08-25
 
 The optional protected-period path is complete in `GATED_FULL_HOLDOUT` mode.

@@ -1,6 +1,6 @@
 ### Podsumowanie klasycznego EDA — train 2011–2020
 
-1. **Najważniejsze cechy próby.** Analiza obejmuje **19,671** obserwacji company-year z lat **2011–2020**, dotyczących **4,426** unikalnych spółek (CIK) i **4,418** grup ekonomicznych. Mediana liczby obserwacji na spółkę wynosi 4.0. Dla 5 obserwacji nie można było przypisać kwartyla wielkości z powodu braku lub niedodatniej wartości aktywów; wiersze te pozostały w próbie.
+1. **Najważniejsze cechy i selekcja próby.** Pula train 2011–2020 obejmuje **47,938** eligible company-years. Po wymogu dostępnego targetu pozostaje **19,784** obserwacji (**41.27%**), a po dodatkowym wymogu zaakceptowanego `X_t` — finalne **19,671** obserwacji (**41.03%**). Analiza dotyczy **4,426** unikalnych spółek (CIK) i **4,418** grup ekonomicznych. Mediana liczby obserwacji na spółkę wynosi 4.0. Dla 5 obserwacji nie można było przypisać kwartyla wielkości z powodu braku lub niedodatniej wartości aktywów; wiersze te pozostały w próbie. Historyczne coverage **52.46%** dotyczy starszej populacji freeze-gate i nie opisuje tej próby ani finalnego filing-first universe.
 
 2. **Niezbalansowanie targetu.** Klasa pozytywna obejmuje **3,623** obserwacji, czyli **18.42%** próby, wobec **16,048** obserwacji klasy negatywnej. Rozkład należy uwzględnić przy interpretacji późniejszych metryk modelowych, lecz EDA nie zmienia polityki próby ani strategii modelowania.
 
@@ -16,4 +16,4 @@
 
 8. **Jakość danych.** W finalnej próbie wykryto 0 wierszy ze zduplikowanym kluczem kanonicznym, 0 wierszy ze zduplikowanym kluczem `CIK×year` oraz łącznie 0 wartości `+inf/-inf` w 17 cechach. Wszystkie pominięcia wymagane przez konkretne statystyki zostały ujawnione w tabelach.
 
-9. **Ograniczenia interpretacyjne.** EDA jest analizą opisową próby warunkowej względem dostępnego targetu i zaakceptowanego statusu `X_t`. Dane mają strukturę panelową, rozkłady mogą być silnie skośne, a braki mogą nie być losowe. Wyniki nie dowodzą zależności przyczynowych, nie uzasadniają selekcji cech i nie zawierają żadnej informacji z lat 2021–2024.
+9. **Ograniczenia interpretacyjne.** EDA jest analizą opisową próby warunkowej względem przynależności do eligible filing-first universe, dostępnego porównywalnego targetu PIT-B i zaakceptowanego statusu `X_t`. Największa redukcja wynika z niedostępności targetu (`28,154` obserwacje), a nie z filtra `X_t` (`113` obserwacji), dlatego selection bias i informative censoring pozostają istotnymi ograniczeniami. Dane mają strukturę panelową, rozkłady mogą być silnie skośne, a braki mogą nie być losowe. Wyniki nie dowodzą zależności przyczynowych, nie uzasadniają selekcji cech i nie zawierają żadnej informacji z lat 2021–2024.

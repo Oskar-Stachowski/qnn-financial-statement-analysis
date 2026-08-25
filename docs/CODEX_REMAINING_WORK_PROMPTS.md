@@ -8,6 +8,13 @@ porównania kosztu obliczeniowego są zamknięte przez reporting-only pakiet
 te obliczenia, są w tym zakresie historyczne i nie powinny być uruchamiane.
 Pakiet nie wykonał treningu ani nie otworzył lat chronionych 2021–2024.
 
+Aktualizacja 2026-08-25: problem coverage i estimandu jest zamknięty przez
+successor `docs/14_1_coverage_estimand_correction_v1_0_0.md`. Finalne wartości
+to `26 602 / 64 901 = 40,99%` dla całego filing-first universe oraz przepływ
+`47 938 → 19 784 → 19 671` dla train 2011–2020. Historyczne `52,46%` dotyczy
+wyłącznie starszej populacji freeze-gate `14 122 / 26 917` i nie może być
+przypisywane finalnemu universe ani finalnej próbie modelowej.
+
 Bazowy stan eksperymentu: commit `ae8ab17`
 (`Resolve data access incidents after independent review`).
 
