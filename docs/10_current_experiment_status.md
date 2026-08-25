@@ -1,8 +1,48 @@
 # Current experiment status
 
-Status date: 2026-08-24
+Status date: 2026-08-25
 
-## Thesis-completion runbook status
+## Gated successor update — 2026-08-25
+
+The optional protected-period path is complete in `GATED_FULL_HOLDOUT` mode.
+The frozen boundaries are:
+
+- 2021–2022: `SPENT_REPORT_FREEZE_PASS`, labelled secondary
+  design-exposed/spent-development evidence;
+- 2023–2024: `HOLDOUT_REPORT_FREEZE_PASS`, labelled temporal holdout with
+  mandatory prior-exposure disclosure and no fully-unseen claim;
+- primary reporting v1.0.0: `PRIMARY_REPORTING_FREEZE_PASS`, with development,
+  spent-development and holdout retained as separate estimands.
+
+The first holdout evaluation v1.0.0 failed before metric computation because
+year-agnostic output paths caused a 2023/2024 file collision. Its terminal FAIL
+and partial output are preserved. The author-authorized v1.0.1 repair changed
+only output partitioning, the successor one-shot namespace, disclosure and
+structural verification; it did not change models, predictions, metrics,
+bootstrap, calibration or thresholds.
+
+The successor reporting package contains nine frozen development-family rows,
+36 protected model/year rows and a 639-record number-level evidence ledger. It
+reads only exact frozen aggregate reports, performs no new statistical
+calculation and accesses no row-level protected content. Its review and freeze
+were performed as explicitly disclosed same-session technical checks, not as
+independent review or audit.
+
+Canonical successor artifacts:
+
+- `reports/primary_thesis_reporting_v1_0_0/`;
+- `configs/primary_thesis_reporting_contract_v1_0_0.yaml`;
+- `configs/primary_thesis_reporting_access_manifest_v1_0_0.yaml`;
+- `configs/primary_thesis_reporting_freeze_v1_0_0_result.json`;
+- [`docs/12_10_primary_thesis_reporting_v1_0_0.md`](12_10_primary_thesis_reporting_v1_0_0.md);
+- [`docs/15_author_work_handoff_v1_0_0.md`](15_author_work_handoff_v1_0_0.md).
+
+No chapter, master-thesis DOCX/PDF, presentation, APD package or release
+artifact was modified by this Codex reporting task. The next permitted content
+work is author-controlled integration in Work mode. No successor
+thesis-readiness audit has been executed.
+
+## Historical thesis-completion audit status — 2026-08-24
 
 Steps 4 and 5 are complete for exact read-only thesis-readiness audit allowlist
 v1.0.4. Step 4 committed the subject as
@@ -31,12 +71,13 @@ is that a search accidentally scoped to a nonsensitive code/config/document
 root, with no unlisted content rendered, stops only that command and must be
 retried on enumerated exact paths; it no longer discards the entire audit. The
 committed Step 5 review records `ALLOWLIST_REVIEW_PASS` after a complete subject
-read and **15/15** passing structural tests. Step 6 is now complete against
+read and **15/15** passing structural tests. At that date, Step 6 was complete against
 unchanged v1.0.5 with `BASELINE_AUDIT_FAIL`: both frozen result verifiers pass,
 but five blockers remain in the thesis package and chapters. The next action is
-to close those documented blockers and confirm them in a successor audit; no
-model rerun or protected-period access is needed. This status does not infer
-completion of the author, promoter, or AI-compliance gates.
+to close those documented blockers. This historical verdict predates the
+protected-period extension, the successor reporting package and the newer
+Chapter 1 commit; it is not a current readiness verdict. This status does not
+infer completion of the author, promoter, or AI-compliance gates.
 
 ## Current state
 
@@ -106,6 +147,12 @@ post-coarse execution or by this status update.
   [`reports/secondary_development_thesis_v1_0_0/summary.md`](../reports/secondary_development_thesis_v1_0_0/summary.md).
 - Machine-readable secondary report manifest:
   `reports/secondary_development_thesis_v1_0_0/analysis_manifest.json`.
+- Gated successor reporting package:
+  `reports/primary_thesis_reporting_v1_0_0/`.
+- Number-level evidence ledger:
+  `reports/primary_thesis_reporting_v1_0_0/evidence_ledger.csv`.
+- Successor reporting freeze result:
+  `configs/primary_thesis_reporting_freeze_v1_0_0_result.json`.
 
 Large fitted objects, row-level OOF predictions, fold checkpoints, and worker
 arrays remain intentionally outside Git. They must not be rewritten or mixed
@@ -184,11 +231,12 @@ record and restore instructions are in
 
 ## Next permitted work
 
-The preregistered secondary-development analyses on OOF 2015–2020 and their
-derivative thesis report are complete. The next permitted work is editorial:
-integrate the frozen tables, figures, interpretation, and limitations into the
-thesis chapters without rerunning models or changing the scientific boundary.
-The incremental byte-preserving backup of the v1.1.6/v1.1.7 source outputs is
+The preregistered secondary-development analyses on OOF 2015–2020, their
+derivative thesis report and the gated successor primary evidence ledger are
+complete. The next permitted content work is author-controlled editorial
+integration in Work mode: use the frozen tables, figures, evidence ledger and
+limitations without rerunning models or changing the scientific boundary. The
+incremental byte-preserving backup of the v1.1.6/v1.1.7 source outputs is
 complete.
 
 Their executable controller, configuration, output schemas, synthetic tests,
@@ -327,28 +375,30 @@ scratch space.
 
 ## Protected-period boundary
 
-Feature years 2021–2024 remain closed under
+Feature years 2021–2024 were opened only through versioned scopes derived from
 [`docs/09_1_data_access_policy_v1_1_0.md`](09_1_data_access_policy_v1_1_0.md).
+The evaluation is now terminal and frozen; this does not grant general future
+access to row-level protected content.
 
-- 2021–2022 are a design-exposed, spent development period and may later be
-  reopened only through `DATA_ACCESS_GATE_2021_2022_REOPEN_V1`. Any result must
-  be labelled secondary spent-period evidence and cannot activate tuning.
-- 2023–2024 remain a temporal model-performance holdout with documented prior
-  aggregate-target exposure. Blind feature application requires
-  `DATA_ACCESS_GATE_2023_2024_FEATURE_APPLICATION_V1`; labels require the later
-  `DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_V1`.
+- 2021–2022 passed `DATA_ACCESS_GATE_2021_2022_REOPEN_V1` and the complete
+  roster report passed `SPENT_REPORT_FREEZE_PASS`. The period remains labelled
+  secondary design-exposed/spent development and cannot activate tuning.
+- 2023–2024 passed the blind feature-application and later label-reveal gates.
+  The complete versioned report passed `HOLDOUT_REPORT_FREEZE_PASS`. It records
+  prior aggregate exposure, the pre-metric v1.0.0 label exposure, and no
+  fully-unseen claim.
+- Only exact frozen aggregate reports with PASS enter primary thesis reporting
+  v1.0.0. Row-level predictions, labels, features and membership remain outside
+  the reporting allowlist.
 - The historical access incidents in
   [`docs/09_2_data_access_incident_v1_0_0.md`](09_2_data_access_incident_v1_0_0.md)
   and
   [`docs/09_3_data_access_incident_v1_1_0.md`](09_3_data_access_incident_v1_1_0.md)
   remain preserved. The fresh independent
   [`review v1.0.0`](09_5_data_access_incident_v1_1_0_independent_review_v1_0_0.md)
-  returned `REVIEW_PASS`; both containment records are now `RESOLVED —
-  CONTAINED — INDEPENDENT REVIEW COMPLETE`. This resolution grants no
-  protected-period access. The affected thesis-readiness audit remains invalid
-  and must not resume until a separate committed exact allowlist is reviewed
-  and applied in a fresh context or by an independent reviewer.
+  returned `REVIEW_PASS`; both containment records remain preserved as
+  `RESOLVED — CONTAINED — INDEPENDENT REVIEW COMPLETE`.
 
-Before a gate, protected-period artifacts may be checked only for existence or
-by opaque byte-level hashing. Their values, schemas, row counts, distributions,
-predictions, and performance must not be inspected.
+The earlier thesis-readiness audit remains historical and was not resumed.
+Future use of protected evidence is limited to exact lookups from the frozen
+successor ledger unless a new versioned scope is committed and reviewed.

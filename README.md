@@ -4,7 +4,7 @@ A point-in-time, leakage-controlled research pipeline for classifying one-year m
 
 > Master's thesis research project by **Oskar Stachowski**.
 >
-> Repository state reflected in this README: **24 August 2026**.
+> Repository state reflected in this README: **25 August 2026**.
 
 ## Research objective
 
@@ -30,7 +30,8 @@ The outcome is **not** a bankruptcy, fraud, insolvency, or accounting-manipulati
 | PCA-matched controls, robustness, and interpretability | **Complete and frozen**, 96/96 tasks through report `v1.1.7` |
 | Thesis-ready secondary tables, figures, and interpretation | **Complete and frozen**, report `v1.0.0` |
 | Large raw-data, model-artifact, and secondary-result backups | **Complete and restore-validated** in Amazon S3 |
-| Evaluation using feature years 2021–2024 | **Closed under the frozen access policy** |
+| Evaluation using feature years 2021–2024 | **Complete and frozen**: 2021–2022 spent development; 2023–2024 temporal holdout |
+| Gated successor evidence ledger | **Complete and frozen**, primary thesis reporting `v1.0.0` |
 
 The authoritative progress record is [`docs/10_current_experiment_status.md`](docs/10_current_experiment_status.md).
 
@@ -72,6 +73,13 @@ CSV tables, six figures in PNG and SVG, and a concise interpretation. The
 [`reports/secondary_development_thesis_v1_0_0/`](reports/secondary_development_thesis_v1_0_0/).
 The secondary variants are descriptive development evidence: they do not
 change the frozen primary ranking and do not establish quantum advantage.
+
+The gated successor reporting package now adds the exact frozen aggregate
+reports for 2021–2024 without opening row-level predictions or recomputing
+statistics. It keeps development, spent-development and holdout as three
+separate estimands and provides a 639-record number-level evidence ledger in
+[`reports/primary_thesis_reporting_v1_0_0/`](reports/primary_thesis_reporting_v1_0_0/).
+Its deterministic reproduction returns `PRIMARY_REPORTING_FREEZE_PASS`.
 
 ## Data and point-in-time design
 
@@ -165,7 +173,14 @@ The preregistered benchmark contains:
 - deterministic float64 PyTorch MLP;
 - analytic PennyLane QNN, conditional on the frozen technical-feasibility rules.
 
-The QNN stage uses fold-training-only PCA, four or six components/qubits, deterministic float64 execution, analytic `default.qubit`, and adjoint differentiation. The preregistered architecture packages are `ROT_CNOT_RING`, `RY_RZ_CZ_BRICKWORK`, and `RY_CRX_RING`. PCA-matched logistic and MLP controls are diagnostic comparisons and do not enter the primary classical-model ranking.
+The completed QNN stage uses fold-training-only PCA, four or six
+components/qubits, deterministic float64 execution, analytic
+`lightning.qubit`, and adjoint differentiation. The earlier `default.qubit`
+execution was interrupted and its partial outputs were ineligible and not
+reused. The preregistered architecture packages are `ROT_CNOT_RING`,
+`RY_RZ_CZ_BRICKWORK`, and `RY_CRX_RING`. PCA-matched logistic and MLP controls
+are diagnostic comparisons and do not enter the primary classical-model
+ranking.
 
 The complete model-stage specification is in [`docs/08_1_model_stage_v1_frozen_specification.md`](docs/08_1_model_stage_v1_frozen_specification.md).
 
@@ -190,9 +205,24 @@ The primary ranking metric is **pooled out-of-fold PR-AUC** over validation year
 
 The authoritative policy is [`docs/09_1_data_access_policy_v1_1_0.md`](docs/09_1_data_access_policy_v1_1_0.md).
 
-Feature years **2021–2022 are a design-exposed, spent development period**. Their target, missingness, retention, and feature diagnostics were inspected during pipeline design, so they must not be described as independent one-shot external validation. They may later provide explicitly labelled secondary evidence, but they cannot activate tuning or methodology changes.
+Feature years **2021–2022 are a design-exposed, spent development period**.
+Their complete frozen report passed `SPENT_REPORT_FREEZE_PASS`. It is secondary
+evidence only, not independent validation, and it did not activate tuning or a
+methodology change.
 
-Feature years **2023–2024 remain a temporal model-performance holdout with documented prior aggregate-target exposure**. Row-level features, labels, predictions, and model performance remain protected. Blind feature application and later label reveal require separate committed access gates. No result from 2021–2024 may alter the frozen model family, hyperparameters, ansatz, feature block, preprocessing, calibration, or threshold.
+Feature years **2023–2024 are a temporal model-performance holdout with
+documented prior exposure**. Blind feature application, label reveal and the
+versioned evaluation completed through `HOLDOUT_REPORT_FREEZE_PASS`. The first
+v1.0.0 evaluation failed before metric computation because labeled outputs for
+the two years collided; that failure is preserved. Version 1.0.1 partitions
+outputs by year and discloses that labels had already been exposed. The period
+is not described as fully unseen.
+
+This completion does not grant general access to row-level protected content.
+Only the exact frozen aggregate reports enter the reviewed successor reporting
+package. No 2021–2024 result changed the frozen model family,
+hyperparameters, ansatz, feature block, preprocessing, calibration or
+threshold.
 
 ## Reproducible environments
 
@@ -304,19 +334,24 @@ Consequently, cloning the repository provides the code, specifications, tests, a
 | Secondary-development result freeze | [`docs/12_8_secondary_development_results_freeze_v1_1_7.md`](docs/12_8_secondary_development_results_freeze_v1_1_7.md) |
 | Secondary thesis-reporting contract | [`docs/12_9_secondary_development_thesis_reporting_v1_0_0.md`](docs/12_9_secondary_development_thesis_reporting_v1_0_0.md) |
 | Secondary thesis-report summary | [`reports/secondary_development_thesis_v1_0_0/summary.md`](reports/secondary_development_thesis_v1_0_0/summary.md) |
+| Gated successor reporting contract | [`docs/12_10_primary_thesis_reporting_v1_0_0.md`](docs/12_10_primary_thesis_reporting_v1_0_0.md) |
+| Primary evidence ledger package | [`reports/primary_thesis_reporting_v1_0_0/`](reports/primary_thesis_reporting_v1_0_0/) |
+| Author Work handoff | [`docs/15_author_work_handoff_v1_0_0.md`](docs/15_author_work_handoff_v1_0_0.md) |
 | S3 backup and restore record | [`docs/INSTRUKCJA_BACKUP_AMAZON_S3.md`](docs/INSTRUKCJA_BACKUP_AMAZON_S3.md) |
 | Coarse-search summary | [`reports/coarse_search_thesis/summary.md`](reports/coarse_search_thesis/summary.md) |
 | Coarse-search family table | [`reports/coarse_search_thesis/tables/07_thesis_family_summary.csv`](reports/coarse_search_thesis/tables/07_thesis_family_summary.csv) |
 
 ## Next stages
 
-The next scientific work is thesis integration: incorporate the already frozen
-primary and secondary tables, figures, limitations, and narrative into the
-final chapters. It must not rerun models, reinterpret label variants as direct
-comparisons, or alter the frozen primary decisions. The incremental
-byte-preserving backup of v1.1.6/v1.1.7 is complete and restore-validated.
+The next work is author-controlled thesis integration in Work mode using the
+frozen evidence ledger, period-boundary table, existing primary and secondary
+tables, figures and limitations. It must not rerun models, reinterpret label
+variants as direct comparisons, pool the three period roles, or alter the
+frozen primary decisions. Chapter files are outside the Codex reporting task.
 
-Feature years 2021–2024 remain closed. Reopening 2021–2022 requires the committed spent-development access gate and cannot activate tuning. The 2023–2024 holdout requires separate blind-feature-application and label-reveal gates.
+No successor thesis-readiness audit has been run after protected-period access
+and reporting-package generation. The 2026-08-24 baseline audit remains a
+historical result, not a current readiness verdict.
 
 ## Citation and disclaimer
 
