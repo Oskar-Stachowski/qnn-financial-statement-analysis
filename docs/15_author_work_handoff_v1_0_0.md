@@ -8,6 +8,8 @@ thesis prose, interpretations or conclusions.
 | Need | Exact project artifact |
 |---|---|
 | Coverage denominators, selection flow and conditional estimand | `docs/14_1_coverage_estimand_correction_v1_0_0.md`; `reports/classical_eda_for_thesis/tables/01_selection_flow.csv` |
+| Post-hoc paired XGBoost comparisons and seed-matched QNN controls | `reports/posthoc_exploratory_comparison_v1_0_0/tables/01_paired_clustered_bootstrap_tree_models.csv`; `tables/02_seed_matched_qnn_vs_pca_controls.csv`; `tables/09_thesis_compact.csv` |
+| Post-hoc forest plots and mandatory disclosures | `reports/posthoc_exploratory_comparison_v1_0_0/figures/`; `tables/06_methodological_disclosures.csv` |
 | Development family ranking | `reports/primary_thesis_reporting_v1_0_0/tables/01_development_family_ranking.csv` |
 | 2021–2024 frozen metrics | `reports/primary_thesis_reporting_v1_0_0/tables/02_protected_period_metrics.csv` |
 | Period labels and disclosures | `reports/primary_thesis_reporting_v1_0_0/tables/03_period_boundaries.csv` |
@@ -89,9 +91,10 @@ closure status is intentionally not inferred.
 - Do not rerun, refit, reselect, recalibrate or rethreshold models.
 - Do not pool development, spent-development and holdout into one estimand.
 - Do not derive further omitted statistics from row-level predictions. The
-  reporting-only seed-stability and runtime extension is already closed under
-  `configs/methodology_extension_reporting_v1_0_0.yaml`; use its frozen outputs
-  rather than recomputing or expanding the analysis.
+  author-authorized exceptions are already closed under
+  `configs/methodology_extension_reporting_v1_0_0.yaml` and
+  `configs/posthoc_exploratory_comparison_v1_0_0.yaml`; use their versioned
+  outputs rather than recomputing or expanding either analysis.
 - Do not use the failed v1.0.0 partial holdout output as evidence.
 - Do not describe AP as a trapezoidal PR-curve integral; use average precision,
   historically labelled PR-AUC in project artifacts.

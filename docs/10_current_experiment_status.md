@@ -2,6 +2,24 @@
 
 Status date: 2026-08-25
 
+## Development-only post-hoc exploratory comparison — 2026-08-25
+
+The author-authorized package
+`reports/posthoc_exploratory_comparison_v1_0_0/` closes two narrow reporting
+gaps without changing the primary experiment. It uses only existing OOF rows
+from validation years 2015--2020 and performs paired `economic_group_id`
+clustered bootstrap comparisons for XGBoost versus HistGradientBoosting and
+Random Forest, plus seed-matched QNN `20260818` comparisons with the existing
+PCA-matched MLP and fixed-L2 logistic controls.
+
+The package is explicitly post-hoc, exploratory, conditional on earlier model
+selection, selection-unadjusted and pointwise without multiplicity correction.
+It performs no fit, refit, prediction generation, tuning, new seed, ensemble,
+calibration, threshold or split change and opens no protected or holdout row.
+No fixed-L2 MLP artifact exists; no such model was created. The exact method,
+scope decision and reproduction command are recorded in
+[`docs/12_12_posthoc_exploratory_comparison_v1_0_0.md`](12_12_posthoc_exploratory_comparison_v1_0_0.md).
+
 ## Coverage and estimand successor correction — 2026-08-25
 
 The historical target freeze-gate coverage `14,122 / 26,917 = 52.46%` is not

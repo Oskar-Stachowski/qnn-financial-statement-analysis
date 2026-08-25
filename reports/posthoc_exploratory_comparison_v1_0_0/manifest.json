@@ -1,0 +1,117 @@
+{
+  "additional_seeds_used": false,
+  "analysis_role": "POST_HOC_EXPLORATORY_CONDITIONAL_ON_SELECTION",
+  "bootstrap": {
+    "interval": "95_percent_percentile_linear",
+    "minimum_valid_replicates": 1900,
+    "paired_cluster_draws_across_models": true,
+    "replicates_requested": 2000,
+    "resampling_unit": "economic_group_id",
+    "seed": 20260818,
+    "selection_adjusted": false
+  },
+  "comparison_count": 4,
+  "economic_group_count": 3340,
+  "holdout_or_test_rows_opened": false,
+  "hyperparameter_search_performed": false,
+  "id": "posthoc_exploratory_comparison_v1_0_0",
+  "observed_validation_feature_years": [
+    2015,
+    2016,
+    2017,
+    2018,
+    2019,
+    2020
+  ],
+  "output_files_excluding_manifest": [
+    {
+      "path": "README.md",
+      "sha256": "0690267d8b839679b0d6b174759dfcef5faa5facadfd11d0f9ed11200a360807",
+      "size_bytes": 723
+    },
+    {
+      "path": "figures/01_tree_model_paired_differences.png",
+      "sha256": "4a1dd988e966abc55a79a137e8bb44a74eacf0285209d47973675a9ce4132c68",
+      "size_bytes": 77524
+    },
+    {
+      "path": "figures/01_tree_model_paired_differences.svg",
+      "sha256": "1f89f75a1881aaeb9e69a8c497a0941092d6fc956112814f1995998073df383e",
+      "size_bytes": 73626
+    },
+    {
+      "path": "figures/02_qnn_seed_matched_paired_differences.png",
+      "sha256": "73981f1f172873374d94490b0e7421b887d41d8fd67c136a16d39ccd93623144",
+      "size_bytes": 85923
+    },
+    {
+      "path": "figures/02_qnn_seed_matched_paired_differences.svg",
+      "sha256": "5157aff9b093168fa7a61b466a0ea77b97dbd81d5d112dbf24c8bfa0fe062213",
+      "size_bytes": 75846
+    },
+    {
+      "path": "summary.md",
+      "sha256": "1b48925d2d90cac8c0fe535b713b64ba73a711ad9b658e135acd5526e328f6d2",
+      "size_bytes": 1410
+    },
+    {
+      "path": "tables/01_paired_clustered_bootstrap_tree_models.csv",
+      "sha256": "3f303cd5706512d43adef6d049a6e8b3375dbf330d83b92520ccd0e9ef3f3388",
+      "size_bytes": 2082
+    },
+    {
+      "path": "tables/02_seed_matched_qnn_vs_pca_controls.csv",
+      "sha256": "f1dff277cfe0bb752e0fafdd03f0b0ae82ecb7b6acaa0234f8368eb40240881f",
+      "size_bytes": 2061
+    },
+    {
+      "path": "tables/03_existing_qnn_variants_descriptive.csv",
+      "sha256": "8e41eda0e472e61d009c2227b8be23aa71cc47537a437ea725348a469d7294d6",
+      "size_bytes": 1315
+    },
+    {
+      "path": "tables/04_existing_seed_stability.csv",
+      "sha256": "6206117bf20bd41996372558f1ac0dde8f2782cb2e2f0c789728a12052de7459",
+      "size_bytes": 1780
+    },
+    {
+      "path": "tables/05_alignment_checks.csv",
+      "sha256": "6777a9ea8e0a6a29ecb9ea86a2dbe1ec5a3fc5e18f302267966c5b144198df72",
+      "size_bytes": 870
+    },
+    {
+      "path": "tables/06_methodological_disclosures.csv",
+      "sha256": "69cb320922fda925b021f5e93bfd1795448d97eee15b1f05710acddf1911178c",
+      "size_bytes": 1292
+    },
+    {
+      "path": "tables/07_source_provenance.csv",
+      "sha256": "4b5214bb500a13cc3e4c05b196f9d3c6f1318d23f3f5e47a209bbe2b70626a0a",
+      "size_bytes": 11432
+    },
+    {
+      "path": "tables/08_bootstrap_replicates.csv",
+      "sha256": "debe381b88b728edc12d477aabeb551119cfa12d432329ab3565eb498fb6458e",
+      "size_bytes": 1315914
+    },
+    {
+      "path": "tables/09_thesis_compact.csv",
+      "sha256": "78f1e1a7919f82d2eb8540a88ded05061e4e1ef207a043ae7e4e13e184777a78",
+      "size_bytes": 708
+    }
+  ],
+  "positive_n": 1986,
+  "prediction_generation_performed": false,
+  "project_model_fit_performed": false,
+  "protected_feature_years_opened": false,
+  "rows": 10760,
+  "schema_version": 1,
+  "scope_decisions": {
+    "executed_existing_fixed_l2_control": "PCA_MATCHED_FIXED_L2_LOGISTIC",
+    "fixed_l2_mlp": "NOT_AVAILABLE_NO_NEW_FIT",
+    "qnn_variants": "EXISTING_PREDEFINED_RESULTS_DESCRIPTIVE_ONLY",
+    "seed_stability": "EXISTING_THREE_SEED_DESCRIPTIVE_TABLE_REUSED"
+  },
+  "status": "PASS",
+  "version": "1.0.0"
+}

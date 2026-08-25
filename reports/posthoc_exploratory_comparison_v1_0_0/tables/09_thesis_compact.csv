@@ -1,0 +1,5 @@
+comparison,delta_ap,delta_ap_95_ci,delta_roc_auc,delta_roc_auc_95_ci,status
+XGBoost − HistGradientBoosting,0.005278638589874041,[-0.0048; 0.0146],0.001075513550403251,[-0.0018; 0.0041],post-hoc exploratory; conditional on selection
+XGBoost − Random Forest,0.006451975588768422,[-0.0020; 0.0147],0.001086359933255121,[-0.0016; 0.0041],post-hoc exploratory; conditional on selection
+QNN − PCA-matched MLP,-0.009429055184260016,[-0.0225; 0.0039],-0.0031447049795342297,[-0.0065; 0.0004],post-hoc exploratory; conditional on selection
+QNN − PCA-matched fixed-L2 logistic,0.002207224350341208,[-0.0137; 0.0176],-0.00033101553592262967,[-0.0044; 0.0039],post-hoc exploratory; conditional on selection

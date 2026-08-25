@@ -1,0 +1,109 @@
+schema_version: 1
+
+analysis:
+  id: posthoc_exploratory_comparison_v1_0_0
+  version: 1.0.0
+  created_on: "2026-08-25"
+  status: AUTHOR_AUTHORIZED_POST_HOC_EXPLORATORY
+  same_session_scope_review: true
+  project_model_fit_permitted: false
+  prediction_generation_permitted: false
+  hyperparameter_search_permitted: false
+  additional_seeds_permitted: false
+  protected_or_holdout_content_permitted: false
+  development_feature_years: [2015, 2016, 2017, 2018, 2019, 2020]
+  forbidden_feature_years: [2021, 2022, 2023, 2024]
+  expected_rows: 10760
+  expected_positive_n: 1986
+  expected_seed: 20260818
+
+bootstrap:
+  resampling_unit: economic_group_id
+  paired_cluster_draws_across_models: true
+  clusters_sampled_with_replacement: true
+  replicates: 2000
+  minimum_valid_replicates: 1900
+  confidence_level: 0.95
+  interval: percentile
+  percentiles: [2.5, 97.5]
+  numpy_percentile_method: linear
+  seed: 20260818
+  selection_adjusted: false
+  confirmatory_claim_permitted: false
+
+comparisons:
+  tree_models:
+    - id: xgboost_minus_hist_gradient_boosting
+      model_a: xgboost
+      model_b: hist_gradient_boosting
+    - id: xgboost_minus_random_forest
+      model_a: xgboost
+      model_b: random_forest
+  seed_matched_qnn_controls:
+    - id: qnn_minus_pca_matched_mlp
+      model_a: qnn_seed_20260818
+      model_b: pca_matched_mlp_seed_20260818
+      request_mapping: EXACT_REQUESTED_CONTROL
+    - id: qnn_minus_pca_matched_fixed_l2_logistic
+      model_a: qnn_seed_20260818
+      model_b: pca_matched_fixed_l2_logistic_seed_20260818
+      request_mapping: EXISTING_FIXED_L2_LOGISTIC_CONTROL_NOT_FIXED_L2_MLP
+
+sources:
+  bootstrap_policy: configs/post_coarse_experiment_v1_0_1_lightning.yaml
+  final_development_ranking: reports/primary_thesis_reporting_v1_0_0/tables/01_development_family_ranking.csv
+  existing_pca_controls_summary: reports/secondary_development_thesis_v1_0_0/tables/02_pca_matched_controls.csv
+  existing_qnn_variants: reports/secondary_development_thesis_v1_0_0/tables/04_qnn_structural_robustness.csv
+  existing_seed_stability: reports/methodology_extension_v1_0_0/tables/01_seed_stability_summary.csv
+  tree_seed_averaged_oof:
+    xgboost: data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/xgboost/model_stage_v1__coarse__xgboost__004/L_D_R/oof_predictions.json
+    hist_gradient_boosting: data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/hist_gradient_boosting/model_stage_v1__coarse__hist_gradient_boosting__007/L_D_R/oof_predictions.json
+    random_forest: data/model_runs/post_coarse_v1_3_0/seed_averaged_oof/random_forest/model_stage_v1__coarse__random_forest__003/L_D_R/oof_predictions.json
+  qnn_seed_20260818:
+    q2_candidate_manifest: data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L_D_R/seed_20260818/candidate_manifest.json
+    q2_prediction_files:
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L_D_R/seed_20260818/fold_2015/oof_predictions.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L_D_R/seed_20260818/fold_2016/oof_predictions.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L_D_R/seed_20260818/fold_2017/oof_predictions.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L_D_R/seed_20260818/fold_2018/oof_predictions.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L_D_R/seed_20260818/fold_2019/oof_predictions.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q2/qnn/model_stage_v1__qnn_q2__t0/L_D_R/seed_20260818/fold_2020/oof_predictions.json
+    q1_identity_manifests:
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__rot_cnot_ring/L_D_R/seed_20260818/fold_2015/result_manifest.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__rot_cnot_ring/L_D_R/seed_20260818/fold_2016/result_manifest.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__rot_cnot_ring/L_D_R/seed_20260818/fold_2017/result_manifest.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__rot_cnot_ring/L_D_R/seed_20260818/fold_2018/result_manifest.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__rot_cnot_ring/L_D_R/seed_20260818/fold_2019/result_manifest.json
+      - data/model_runs/post_coarse_v1_3_0/candidate_results/qnn_q1/qnn/model_stage_v1__qnn_q1__rot_cnot_ring/L_D_R/seed_20260818/fold_2020/result_manifest.json
+  pca_matched_controls:
+    execution_root: data/model_runs/secondary_development_v1_1_6
+    phase_manifest: data/model_runs/secondary_development_v1_1_6/phase_manifests/pca_matched_controls.json
+    allowed_task_result_references:
+      - task_results/4c5df1e7ba2b555297a283c1a85af1c3dcff14ebf1b8f643cfb25f20a2f0cec6.json
+      - task_results/1255572427e45d8500529b81b65e8931201bcdeea8cf4a138351b8dc0083613a.json
+      - task_results/0415c7bddf820136e2441d9dc68d46fd7b19940f355e7385c32b5c1ed5a1d7a6.json
+      - task_results/2c2213a070bbfca0aec7d81ac16a6c6215b7a5d46099e9ea272776f2ee47e642.json
+      - task_results/ef0674b8bd26aebc97f446e9df1822db066589f5f659ea666fdce471152ea708.json
+      - task_results/84e4e2ecbc6cdaa386207130f781e183846f3da355ffa7f4a0186431547b2e61.json
+      - task_results/65c4c75e9080e6aa5c024a4c908c7e71d27bff8a60ac0fc1e1e45172b7d340b8.json
+      - task_results/290a4b347061a5dcd30da8a024cc15c6c60c5dde92206db2c90c02a3fb1d2215.json
+      - task_results/18cfbc10c9bff22d924b544e9550b7d78dd3e82acda038937f05e065c7768627.json
+      - task_results/144d294d94c8207fb84c4d70866a7dae14e4fefdda2164bd54cd5e2261a6b880.json
+      - task_results/3994c530f1d9b216a764fea4219752cd6abefcbeb23d22440eeb6ddb7cba8c4e.json
+      - task_results/701f8d0ba30474efbf7c06e50e393907eb6a131b6e7b5fedd1cd147a4ea02a23.json
+
+outputs:
+  report_directory: reports/posthoc_exploratory_comparison_v1_0_0
+  tables:
+    - 01_paired_clustered_bootstrap_tree_models.csv
+    - 02_seed_matched_qnn_vs_pca_controls.csv
+    - 03_existing_qnn_variants_descriptive.csv
+    - 04_existing_seed_stability.csv
+    - 05_alignment_checks.csv
+    - 06_methodological_disclosures.csv
+    - 07_source_provenance.csv
+    - 08_bootstrap_replicates.csv
+    - 09_thesis_compact.csv
+  figures:
+    - 01_tree_model_paired_differences
+    - 02_qnn_seed_matched_paired_differences

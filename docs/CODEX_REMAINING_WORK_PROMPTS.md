@@ -15,6 +15,14 @@ to `26 602 / 64 901 = 40,99%` dla całego filing-first universe oraz przepływ
 wyłącznie starszej populacji freeze-gate `14 122 / 26 917` i nie może być
 przypisywane finalnemu universe ani finalnej próbie modelowej.
 
+Aktualizacja 2026-08-25: ograniczone porównania post-hoc są zamknięte przez
+`reports/posthoc_exploratory_comparison_v1_0_0/`. Pakiet obejmuje sparowany
+clustered bootstrap XGBoost--HistGB/RF, seed-matched QNN `20260818` wobec
+istniejących kontroli PCA-matched, predefiniowane warianty QNN i istniejącą
+stabilność seedów. Nie uruchamiaj dalszych bootstrapów, nowych seedów ani
+kontroli; użyj wersjonowanych tabel i obowiązkowej etykiety
+`post-hoc exploratory; conditional-on-selection; selection-unadjusted`.
+
 Bazowy stan eksperymentu: commit `ae8ab17`
 (`Resolve data access incidents after independent review`).
 

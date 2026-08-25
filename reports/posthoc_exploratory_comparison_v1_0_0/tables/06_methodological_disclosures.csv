@@ -1,0 +1,11 @@
+topic,disclosure
+analysis_role,Post-hoc exploratory development-only analysis; not preregistered confirmatory inference.
+selection_conditioning,All paired CIs are conditional on previously selected configurations and are not selection-adjusted.
+multiplicity,Intervals are pointwise 95% percentile intervals with no multiplicity adjustment.
+resampling,economic_group_id clusters are sampled with replacement; each replicate uses identical cluster draws for every model.
+metrics,AP means average precision; ROC-AUC is secondary. Delta direction is model A minus model B.
+fixed_l2_request,No fixed-L2 MLP artifact exists. The only existing fixed-L2 PCA-matched control is logistic regression; no new model was fitted.
+qnn_variants,"Existing pre-defined QNN variants are shown descriptively without new tuning, reranking or inferential claims."
+seed_stability,"Seed mean, sample SD and range are descriptive statistics from exactly three existing seeds, not confidence intervals."
+protected_boundary,"Only OOF validation years 2015-2020 are read. No 2021-2024 row, prediction, feature, target, holdout or test artifact is opened."
+experiment_boundary,"No model fit, refit, prediction generation, new seed, tuning, ensemble, split change, calibration or threshold change is performed."
