@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "review": {
+    "id": "primary_thesis_reporting_access_review_v1_0_0",
+    "performed_at_utc": "2026-08-25T10:00:10Z",
+    "review_kind": "same_session_technical_review",
+    "independent_review_claimed": false,
+    "blinded_to_previously_observed_aggregate_values": false,
+    "same_session_author_override": true,
+    "promoter_approval_claimed": false,
+    "audit_claimed": false
+  },
+  "verdict": "REPORTING_ALLOWLIST_REVIEW_PASS",
+  "subject_commit": "3c5d1fe1e4ba599bc32f5fc7f715a8e8cff87550",
+  "subject_manifest": "configs/primary_thesis_reporting_access_manifest_v1_0_0.yaml",
+  "subject_manifest_sha256": "05fa8b6c531ef72b7c83c1f9f32c692e5c09acc3dcb87bf9dc7c24710cdc2a1c",
+  "authorities": {
+    "contract_sha256": "043aa4c754a659a7ec0876bfcf204eef0378598284a2b207f6ae85e4cd80f9f4",
+    "package_freeze_manifest_sha256": "46a73163cf23f6f3309f834e0e20fcd11c6152406d2474c86c41d75c6c612da7",
+    "output_schema_sha256": "4f504358da31d21c9e23c8fbe9b9e5583a7c8b99c4d2d1d163069367efbec36b",
+    "generator_verifier_sha256": "d4819c9f092ec27d8ac004dbb8c1adc79741a57c769c2f29d7d4fc6327516c9b",
+    "synthetic_tests_sha256": "a2b36fe5b4d80812b32abdd3ab3e89d3a9513c3bd30f0cdbd0c58888cb1db2d4",
+    "spent_freeze_sha256": "1d3be0871bf8fd348143d9a92c7068f24ca90d609ebadfc36a402b761ecce83e",
+    "holdout_freeze_sha256": "deed40b26c57eeab351767600b7c6988c9a5da10cc3933a355c61b6b8efaf612"
+  },
+  "scopes": {
+    "reporting_preflight_scope": {
+      "id": "PRIMARY_REPORTING_PREFLIGHT_SCOPE_V1_0_0",
+      "definition_sha256": "b031abebf2263c1b6932e0e7034eabce1a2dc856f97c0e66b80b00a9a571bb24",
+      "verdict": "PASS",
+      "checks": {
+        "only_contract_code_schema_test_and_manifest_are_content_read": true,
+        "real_aggregate_sources_are_opaque_hash_only": true,
+        "real_generation_is_forbidden": true,
+        "arbitrary_paths_are_absent": true
+      }
+    },
+    "reporting_generation_scope": {
+      "id": "PRIMARY_REPORTING_GENERATION_SCOPE_V1_0_0",
+      "definition_sha256": "311d01f3bcf04d3d33ecb196ac5a3e30db2f80b72c481164ff327562ac5d2f5e",
+      "verdict": "PASS",
+      "checks": {
+        "only_exact_frozen_aggregate_value_sources_are_deserialized": true,
+        "spent_and_holdout_freeze_pass_are_required": true,
+        "row_level_oof_and_protected_paths_are_absent": true,
+        "failed_holdout_v1_0_0_is_forbidden": true,
+        "new_statistics_ci_ranking_and_cross_period_pooling_are_forbidden": true,
+        "development_spent_and_holdout_estimands_remain_separate": true,
+        "generator_has_no_arbitrary_path_argument": true,
+        "thesis_narrative_interpretation_and_conclusion_are_forbidden": true
+      }
+    },
+    "reporting_freeze_scope": {
+      "id": "PRIMARY_REPORTING_FREEZE_SCOPE_V1_0_0",
+      "definition_sha256": "1af87ade42aa7c05432781c97f23bfb86c2cd36b0692864c6d6f8cbf1b8638ae",
+      "verdict": "PASS",
+      "checks": {
+        "exact_input_and_output_hashes_are_verified": true,
+        "temporary_deterministic_reproduction_is_required": true,
+        "file_set_and_bytes_are_compared": true,
+        "freeze_cannot_modify_generated_package": true,
+        "access_scope_cannot_expand": true
+      }
+    }
+  },
+  "reporting_decision_review": {
+    "protected_values_were_observed_after_p6e_before_contract_freeze": true,
+    "preregistration_claim_for_reporting_contract": false,
+    "new_post_result_statistics": "OMIT",
+    "new_paired_comparisons": "OMIT",
+    "new_cross_period_estimand": "FORBIDDEN",
+    "fp_fn_cases_and_runtime_cost": "OMIT",
+    "canonical_figures": "OMIT",
+    "missing_fields_are_explicit_omit_not_derived": true
+  },
+  "synthetic_test_result": {
+    "tests_run": 4,
+    "tests_passed": 4,
+    "verdict": "PASS",
+    "real_result_values_deserialized": false
+  },
+  "review_exposure": {
+    "real_aggregate_result_values_read_during_this_review": false,
+    "row_level_content_read": false,
+    "package_generated_during_review": false,
+    "model_fit_refit_inference_or_prediction_performed": false
+  },
+  "limitations": [
+    "This is an author-authorized same-session technical review, not the independent review requested by the original runbook.",
+    "The reviewer was not blinded because aggregate values had already been observed earlier in the session after P6E.",
+    "The conservative contract therefore permits only field-preserving normalization of exact frozen aggregate reports and explicitly omits new analyses."
+  ]
+}
