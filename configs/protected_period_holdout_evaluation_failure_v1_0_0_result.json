@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "verdict": "HOLDOUT_EVALUATION_PRE_METRIC_TECHNICAL_FAIL",
+  "recorded_at_utc": "2026-08-25T08:59:47Z",
+  "failed_action": "one_shot_holdout_evaluation_2023_2024",
+  "terminal_status": "FAILED",
+  "subject_commit": "2f83f215405de73c4873ac720506acee805d09df",
+  "authority": {
+    "execution_contract_sha256": "3d4e90f7c034d8610680f48f86951a6182b3ef5809004d4f0269f0be1f7cc53b",
+    "runner_sha256": "8711d03b95bd15ef95d697f8036933d79e889e5e5fb1638f09a8df91bda5388b",
+    "label_access_manifest_sha256": "284051fcf6cff90625c228e640c6ed2f3ff33c6f23aaac6921efec99afad2f6f",
+    "label_access_review_sha256": "db60f807e52eb05360d2a4c6ada4305fc5010be27242be9e5ec357edbe8f42cc",
+    "initial_label_gate_result_sha256": "2a085025cb1ecfa3040b5099a2856b1a244c8069a45d891316580910ce9ccd36",
+    "blind_prediction_evidence_sha256": "1f0951b6e6fc26cb2faf6f184c99a7a4fe215d5326d9719f0ff6424a020dc885",
+    "feature_execution_audit_sha256": "9380bafba455a6a18c563148a50079aa3fefa1663ac5ae217408c3458c408660"
+  },
+  "failure_evidence": {
+    "partial_evaluation_evidence_path": "configs/protected_period_holdout_evaluation_v1_0_0_result.json",
+    "partial_evaluation_evidence_sha256": "46482570ca8707135e914782390f333712a4e06ccc9a1e1a11223d8a24413494",
+    "partial_evidence_status_field": "COMPLETE",
+    "partial_evidence_is_terminal_success": false,
+    "partial_evidence_model_year_results": 18,
+    "terminal_state_path": "data/model_runs/protected_period_extension_v1/holdout_evaluation/one_shot_execution_state.json",
+    "terminal_state_sha256": "a60268f48d08a1b443939a6f4a527ab9e98860edf9acb2d1033a857d6302c963",
+    "failure_path": "data/model_runs/protected_period_extension_v1/holdout_evaluation/one_shot_failure.json",
+    "failure_sha256": "ffae7f197ef3f6ff4ba650e00c630a3e8c5734d6d7bf29dd720ed3d4486a2561",
+    "report_path": "reports/protected_period_extension_v1/holdout_report_v1_0_0.json",
+    "report_created": false
+  },
+  "cause": {
+    "class": "year_agnostic_labeled_prediction_output_collision",
+    "description": "The 2023 and 2024 blind prediction artifacts share basenames; the evaluator wrote labeled artifacts into one flat directory, so each 2024 artifact overwrote its 2023 counterpart.",
+    "failure_point": "first SHA-256 verification in generate_evaluation_report",
+    "labels_deserialized_built_and_aligned": true,
+    "labeled_prediction_artifacts_written": true,
+    "human_performance_values_read": false,
+    "metric_computation_started": false,
+    "metric_values_created": false,
+    "bootstrap_started": false,
+    "blind_predictions_changed": false,
+    "model_fit_performed": false,
+    "methodology_changed": false
+  },
+  "terminal_contract": {
+    "original_rerun_allowed": false,
+    "failed_v1_0_0_must_be_preserved": true
+  },
+  "versioned_recovery_authorization": {
+    "authorized": true,
+    "authorization_source": "author",
+    "authorization_message": "kontynuuj",
+    "promoter_approval_required": false,
+    "allowed_successor_version": "1.0.1",
+    "allowed_change": "Use year-partitioned labeled-prediction paths and a new one-shot state/output namespace.",
+    "metric_contract_change_allowed": false,
+    "model_or_prediction_change_allowed": false,
+    "mandatory_disclosure": "Labels were exposed during failed v1.0.0; no performance metric was computed before the authorized versioned rerun."
+  }
+}
