@@ -1,0 +1,8 @@
+{
+  "gate_manifest_sha256": "284051fcf6cff90625c228e640c6ed2f3ff33c6f23aaac6921efec99afad2f6f",
+  "labels_opened_before_pass": false,
+  "schema_version": 1,
+  "scope_id": "LABEL_GATE_VERIFIER_SCOPE_V1_0_0",
+  "scope_sha256": "074a19b5af21b8d7e8d2f2faa2cbad0b4ccceff6a47c4cedba40231359efabaa",
+  "verdict": "DATA_ACCESS_GATE_2023_2024_LABEL_REVEAL_PASS"
+}
